@@ -7,6 +7,8 @@
 #include <regex>
 
 #include "StdGenCode.h"
+#include "../tester/Circular.h"
+#include "../modification/ShiftTuples.h"
 
 
 StdGenCode::StdGenCode(std::vector<std::string> code_vec) : AbstractGenCode(code_vec) {
@@ -14,9 +16,9 @@ StdGenCode::StdGenCode(std::vector<std::string> code_vec) : AbstractGenCode(code
 }
 
 
-bool StdGenCode::test() {
+bool StdGenCode::test_code() {
 
-    if (!AbstractGenCode::test()) {
+    if (!AbstractGenCode::test_code()) {
         return this->is_ok;
     }
 
@@ -32,67 +34,17 @@ bool StdGenCode::test() {
         }
     }
 
-    return true;
+    return (this->is_ok = true);
 }
 
 bool StdGenCode::is_circular() {
-    if (!this->test()) { return false; }
-
-    std::string string_sequence = this->as_string_sequence();
-    bool is_code_circular = true;
-
-    for (unsigned int i = 1; i < (1+this->word_length[0]) / 2; ++i) {
-        for (unsigned int j = 0; j < string_sequence.length(); j += this->word_length[0]) {
-            std::string current_substring = string_sequence.substr(j, i);
-            unsigned int start_word_idx = {j / (unsigned) this->word_length[0]};
-
-            is_code_circular = is_code_circular & this->rec_is_circular(std::vector<unsigned int>(),
-                                                                        current_substring,
-                                                                        start_word_idx);
-        }
-    }
-
-    return is_code_circular;
+    if (!this->test_code()) { return false; }
+    auto tester = std::make_shared<Circular>();
+    return this->run_test(tester);
 }
 
-bool StdGenCode::rec_is_circular(std::vector<unsigned int> chained_indexes,
-                                 std::string current_substring,
-                                 unsigned int current_word_pos) {
-
-    std::regex r("(?=(" + current_substring + ")).");
-    auto it_find = std::find(chained_indexes.begin(), chained_indexes.end(), current_word_pos);
-
-    if (chained_indexes.size() % 2 == 0 && it_find != chained_indexes.end()) {
-        auto index = std::distance(chained_indexes.begin(), it_find);
-        if(index == 0) {
-            this->add_circle(chained_indexes);
-        }
-        return false;
-    }
-
-    chained_indexes.push_back(current_word_pos);
-    std::smatch sm;
-    bool is_code_circular = true;
-
-    for (auto it = std::sregex_iterator(this->string_sequence.begin(), this->string_sequence.end(), r);
-         it != std::sregex_iterator();
-         ++it) {
-
-        unsigned int letter_pos = (unsigned int) it->position();
-        unsigned int inverse_size = ((unsigned int) this->word_length[0]) - ((unsigned int) current_substring.length());
-
-         if (letter_pos % this->word_length[0] == inverse_size) {
-            unsigned int word_pos = (letter_pos / this->word_length[0]);
-            std::string new_sub_word = this->as_string_sequence().substr(word_pos * this->word_length[0],
-                                                                         inverse_size);
-            is_code_circular = is_code_circular &
-                               this->rec_is_circular(chained_indexes, new_sub_word, word_pos);
-
-
-        }
-
-    }
-
-
-    return is_code_circular;
+void StdGenCode::shift_tuples(int shifts) {
+    if (!this->test_code()) { return; }
+    auto tester = std::make_shared<ShiftTuples>();
+    this->run_modification(tester, &shifts);
 }

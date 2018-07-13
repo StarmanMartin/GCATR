@@ -7,12 +7,12 @@
 #include <iostream>
 #include <regex>
 
-bool Circular::test(std::shared_ptr<AbstractGenCode> code) {
-
+bool Circular::test(AbstractGenCode *code) {
+    return this->is_circular(code);
 }
 
 
-bool Circular::is_circular(std::shared_ptr<AbstractGenCode> code) {
+bool Circular::is_circular(AbstractGenCode *code) {
     std::string string_sequence = code->as_string_sequence();
     bool is_code_circular = true;
 
@@ -31,7 +31,7 @@ bool Circular::is_circular(std::shared_ptr<AbstractGenCode> code) {
     return is_code_circular;
 }
 
-bool Circular::rec_is_circular(std::shared_ptr<AbstractGenCode> code,
+bool Circular::rec_is_circular(AbstractGenCode *code,
                                std::vector<unsigned int> chained_indexes,
                                std::string current_substring,
                                unsigned int current_word_pos) {
@@ -58,12 +58,13 @@ bool Circular::rec_is_circular(std::shared_ptr<AbstractGenCode> code,
          ++it) {
 
         unsigned int letter_pos = (unsigned int) it->position();
-        unsigned int inverse_size = ((unsigned int) code->get_word_length()[0]) - ((unsigned int) current_substring.length());
+        unsigned int inverse_size =
+                ((unsigned int) code->get_word_length()[0]) - ((unsigned int) current_substring.length());
 
         if (letter_pos % code->get_word_length()[0] == inverse_size) {
             unsigned int word_pos = (letter_pos / code->get_word_length()[0]);
             std::string new_sub_word = string_sequence.substr(word_pos * code->get_word_length()[0],
-                                                                         inverse_size);
+                                                              inverse_size);
             is_code_circular = is_code_circular &
                                this->rec_is_circular(code, chained_indexes, new_sub_word, word_pos);
 

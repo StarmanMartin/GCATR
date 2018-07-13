@@ -5,6 +5,8 @@
 #ifndef GCATCPP_ABSTRACTTESTER_H
 #define GCATCPP_ABSTRACTTESTER_H
 
+#include <memory>
+
 #include "../codes/AbstractGenCode.h"
 
 class AbstractTester {
@@ -12,10 +14,11 @@ private:
     std::string error_msg;
 public:
 
-    explicit AbstractTester(){};
+    explicit AbstractTester() {};
 
-    virtual bool test(std::shared_ptr<AbstractGenCode> code) = 0;
-    virtual std::string get_error_msg() const;
+    virtual bool test(AbstractGenCode *code) = 0;
+
+    std::string get_error_msg() const;
 };
 
 

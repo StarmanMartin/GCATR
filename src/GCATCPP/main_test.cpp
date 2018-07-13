@@ -3,6 +3,7 @@
 #include <sstream>
 
 #include "codes/StdGenCode.h"
+#include "modification/ShiftTuples.h"
 
 StdGenCode testCode(std::vector<std::string> c, bool should_is_circle) {
     StdGenCode a (c);
@@ -35,11 +36,14 @@ int main() {
     testCode(c, false);
 
     c = {"AGA", "AUA", "CAA"};
-   testCode(c, true);
+    auto l = testCode(c, true);
 
     c = {"AGA", "ALA", "CAA"};
-    std::cout << testCode(c, false) << std::endl;
+    testCode(c, false);
 
     c = {"AGA", "ATU", "CAA"};
     testCode(c, false);
+
+    l.shift_tuples();
+    std::cout << l << std::endl;
 }

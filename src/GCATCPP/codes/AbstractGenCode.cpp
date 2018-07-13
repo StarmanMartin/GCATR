@@ -5,27 +5,47 @@
 #include <numeric>
 #include <iostream>
 #include <regex>
+#include <sstream>
+#include <iterator>
 
 #include "../tester/AbstractTester.h"
+#include "../modification/AbstractModifier.h"
 
 #include "AbstractGenCode.h"
 
 #define EMPTY_SEQUNECE "#"
 
 
-
-AbstractGenCode::AbstractGenCode( std::vector <std::string> code_vec) :
-        code_vec(code_vec), is_tested(false), is_ok(false), string_sequence(EMPTY_SEQUNECE) {
-    std::vector<int> temp_length(0);
-    this->word_length = temp_length;
-
-    std::vector< std::vector<unsigned int> > temp_circle(0);
-    this->circle = temp_circle;
+AbstractGenCode::AbstractGenCode(std::vector<std::string> code_vec) {
+    this->reset(code_vec);
 
 }
 
+AbstractGenCode::AbstractGenCode(const AbstractGenCode &agc) {
+    this->code_vec = agc.code_vec;
+    this->is_tested = false;
+    this->is_ok = agc.is_ok;
+    this->string_sequence = agc.string_sequence;
+    std::vector<int> temp_length(this->word_length.size());
+    for(int length : this->word_length) {
+        temp_length.push_back(length);
+    }
 
-bool AbstractGenCode::test() {
+    this->word_length = temp_length;
+}
+
+void AbstractGenCode::reset(std::vector<std::string> code_vec) {
+    this->code_vec = code_vec;
+    this->is_tested = false;
+    this->is_ok = false;
+    this->string_sequence = EMPTY_SEQUNECE;
+
+    std::vector<int> temp_length(0);
+    this->word_length = temp_length;
+}
+
+
+bool AbstractGenCode::test_code() {
     if (this->is_tested) {
         return this->is_ok;
     }
@@ -45,7 +65,7 @@ bool AbstractGenCode::test() {
         return (this->is_ok = false);
     }
 
-    return true;
+    return (this->is_ok = true);
 }
 
 std::string AbstractGenCode::as_string_sequence() {
@@ -59,10 +79,38 @@ std::string AbstractGenCode::as_string_sequence() {
     return this->string_sequence = result;
 }
 
-std::vector< int > AbstractGenCode::get_word_length() const {
+std::vector<std::string> AbstractGenCode::as_vector() {
+    return this->code_vec;
+}
+
+
+std::vector<int> AbstractGenCode::get_word_length() const {
     return this->word_length;
 }
 
-virtual bool AbstractGenCode::run_test(std::shared_ptr<AbstractTester> t) {
-    t->test(this);
+bool AbstractGenCode::run_test(std::shared_ptr<AbstractTester> t) {
+    bool result = t->test(this);
+    this->error_msg = t->get_error_msg();
+    return result;
+}
+
+void AbstractGenCode::run_modification(std::shared_ptr<AbstractModifier> t, void *args) {
+    auto result = t->modify(this, args);
+    for(auto codon :result) {
+        std::cout << codon << " ";
+    }
+
+    std::cout << std::endl;
+    this->reset(result);
+}
+
+const std::string AbstractGenCode::to_string() const {
+
+    const char* const delim = ", ";
+
+    std::ostringstream imploded;
+    std::copy(this->code_vec.begin(), this->code_vec.end(),
+              std::ostream_iterator<std::string>(imploded, delim));
+
+    return acid::acid_to_string(this->acid) + "\n " + imploded.str();
 }

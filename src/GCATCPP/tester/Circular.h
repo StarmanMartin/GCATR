@@ -9,16 +9,16 @@
 
 class Circular : public AbstractTester {
 public:
-    bool test(std::shared_ptr<AbstractGenCode> code);
+    virtual bool test(AbstractGenCode *code);
 
 private:
     std::vector<std::vector<unsigned int> > circle;
 
-    virtual void add_circle(std::vector<unsigned int>);
+    void add_circle(std::vector<unsigned int>);
 
-    bool is_circular(std::shared_ptr<AbstractGenCode> code);
+    bool is_circular(AbstractGenCode *code);
 
-    bool rec_is_circular(std::shared_ptr<AbstractGenCode> code,
+    bool rec_is_circular(AbstractGenCode *code,
                          std::vector<unsigned int> chained_indexes,
                          std::string current_substring,
                          unsigned int current_word_pos);

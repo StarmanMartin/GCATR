@@ -13,13 +13,10 @@ class StdGenCode : public AbstractGenCode{
 public:
     StdGenCode(std::vector<std::string>);
 
-    bool test();
+    bool test_code();
 
-    bool is_circular();
-
-private:
-
-    bool rec_is_circular(std::vector<unsigned int>, std::string, unsigned int);
+    virtual bool is_circular();
+    virtual void shift_tuples(int shifts=1);
 };
 
 #endif //CPPFOO_STDGENCODE_H
