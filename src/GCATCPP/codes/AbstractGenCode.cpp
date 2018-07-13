@@ -6,6 +6,8 @@
 #include <iostream>
 #include <regex>
 
+#include "../tester/AbstractTester.h"
+
 #include "AbstractGenCode.h"
 
 #define EMPTY_SEQUNECE "#"
@@ -32,7 +34,14 @@ bool AbstractGenCode::test() {
     this->is_ok = true;
 
     if (this->code_vec.size() == 0) {
-        this->error_msg = "Code is empty";
+        this->error_msg = "Code is empty!";
+        return (this->is_ok = false);
+    }
+
+    this->acid = acid::check_acid_type(this->as_string_sequence());
+
+    if (this->acid == acid::NONE) {
+        this->error_msg = "Code contains not known bases!";
         return (this->is_ok = false);
     }
 
@@ -50,15 +59,10 @@ std::string AbstractGenCode::as_string_sequence() {
     return this->string_sequence = result;
 }
 
-void AbstractGenCode::add_circle(std::vector<unsigned int> chained_indexes) {
-    int min_pos = int(distance(chained_indexes.begin(), min_element(chained_indexes.begin(), chained_indexes.end())));
-    std::rotate(chained_indexes.begin(), chained_indexes.begin() + min_pos, chained_indexes.end());
+std::vector< int > AbstractGenCode::get_word_length() const {
+    return this->word_length;
+}
 
-    for (auto vector : this->circle) {
-        if (equal(vector.begin(), vector.end(), chained_indexes.begin())) {
-            return;
-        }
-    }
-
-    this->circle.push_back(chained_indexes);
+virtual bool AbstractGenCode::run_test(std::shared_ptr<AbstractTester> t) {
+    t->test(this);
 }

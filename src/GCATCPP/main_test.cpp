@@ -4,7 +4,7 @@
 
 #include "codes/StdGenCode.h"
 
-void testCode(std::vector<std::string> c, bool should_is_circle) {
+StdGenCode testCode(std::vector<std::string> c, bool should_is_circle) {
     StdGenCode a (c);
     auto is_circle = a.is_circular();
     std::stringstream os;
@@ -23,7 +23,7 @@ void testCode(std::vector<std::string> c, bool should_is_circle) {
         std::cerr.flush();
     }
 
-
+    return a;
 
 }
 
@@ -34,6 +34,12 @@ int main() {
     c = {"AAA"};
     testCode(c, false);
 
-    c = {"AGA", "ATA", "CAA"};
-    testCode(c, true);
+    c = {"AGA", "AUA", "CAA"};
+   testCode(c, true);
+
+    c = {"AGA", "ALA", "CAA"};
+    std::cout << testCode(c, false) << std::endl;
+
+    c = {"AGA", "ATU", "CAA"};
+    testCode(c, false);
 }
