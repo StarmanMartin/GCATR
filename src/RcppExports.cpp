@@ -5,6 +5,43 @@
 
 using namespace Rcpp;
 
+// add_bda_rule
+bool add_bda_rule(int i_1, int i_2, std::string Q_11, std::string Q_12, std::string Q_21, std::string Q_22);
+RcppExport SEXP _GCATR_add_bda_rule(SEXP i_1SEXP, SEXP i_2SEXP, SEXP Q_11SEXP, SEXP Q_12SEXP, SEXP Q_21SEXP, SEXP Q_22SEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< int >::type i_1(i_1SEXP);
+    Rcpp::traits::input_parameter< int >::type i_2(i_2SEXP);
+    Rcpp::traits::input_parameter< std::string >::type Q_11(Q_11SEXP);
+    Rcpp::traits::input_parameter< std::string >::type Q_12(Q_12SEXP);
+    Rcpp::traits::input_parameter< std::string >::type Q_21(Q_21SEXP);
+    Rcpp::traits::input_parameter< std::string >::type Q_22(Q_22SEXP);
+    rcpp_result_gen = Rcpp::wrap(add_bda_rule(i_1, i_2, Q_11, Q_12, Q_21, Q_22));
+    return rcpp_result_gen;
+END_RCPP
+}
+// start_bda_for_code
+bool start_bda_for_code(StringVector code);
+RcppExport SEXP _GCATR_start_bda_for_code(SEXP codeSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< StringVector >::type code(codeSEXP);
+    rcpp_result_gen = Rcpp::wrap(start_bda_for_code(code));
+    return rcpp_result_gen;
+END_RCPP
+}
+// run_bda
+StringVector run_bda();
+RcppExport SEXP _GCATR_run_bda() {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    rcpp_result_gen = Rcpp::wrap(run_bda());
+    return rcpp_result_gen;
+END_RCPP
+}
 // check_if_circular
 bool check_if_circular(StringVector code);
 RcppExport SEXP _GCATR_check_if_circular(SEXP codeSEXP) {
@@ -16,9 +53,24 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// get_acid
+StringVector get_acid(StringVector code);
+RcppExport SEXP _GCATR_get_acid(SEXP codeSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< StringVector >::type code(codeSEXP);
+    rcpp_result_gen = Rcpp::wrap(get_acid(code));
+    return rcpp_result_gen;
+END_RCPP
+}
 
 static const R_CallMethodDef CallEntries[] = {
+    {"_GCATR_add_bda_rule", (DL_FUNC) &_GCATR_add_bda_rule, 6},
+    {"_GCATR_start_bda_for_code", (DL_FUNC) &_GCATR_start_bda_for_code, 1},
+    {"_GCATR_run_bda", (DL_FUNC) &_GCATR_run_bda, 0},
     {"_GCATR_check_if_circular", (DL_FUNC) &_GCATR_check_if_circular, 1},
+    {"_GCATR_get_acid", (DL_FUNC) &_GCATR_get_acid, 1},
     {NULL, NULL, 0}
 };
 
