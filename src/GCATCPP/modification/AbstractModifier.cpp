@@ -3,7 +3,3 @@
 //
 
 #include "AbstractModifier.h"
-
-std::string AbstractModifier::get_error_msg() const {
-    return this->error_msg;
-}

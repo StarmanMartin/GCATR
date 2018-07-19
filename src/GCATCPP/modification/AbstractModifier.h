@@ -8,18 +8,16 @@
 #include <iostream>
 #include <vector>
 
+#include "../helper/AbstractErrorManager.h"
+
 class AbstractGenCode;
 
-class AbstractModifier {
-protected:
-    std::string error_msg;
+class AbstractModifier : public err::AbstractErrorManager {
 public:
 
     explicit AbstractModifier() {};
 
-    virtual std::vector<std::string> modify(AbstractGenCode *code, void* args) = 0;
-
-    std::string get_error_msg() const;
+    virtual std::vector<std::string> modify(AbstractGenCode *code, void *args) = 0;
 };
 
 

@@ -12,11 +12,17 @@ class StdGenCode : public AbstractGenCode{
 
 public:
     StdGenCode(std::vector<std::string>);
+    StdGenCode(const StdGenCode &agc);
 
     bool test_code();
 
-    virtual bool is_circular();
-    virtual void shift_tuples(int shifts=1);
+    bool is_circular();
+    bool is_cn_circular();
+    bool is_self_complementary();
+    bool is_comma_free();
+    void shift_tuples(int shifts=1);
+
+protected:
 };
 
 #endif //CPPFOO_STDGENCODE_H

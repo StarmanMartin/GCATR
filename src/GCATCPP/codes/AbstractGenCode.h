@@ -9,38 +9,47 @@
 #include <memory>
 
 #include "Acid.h"
+#include "../helper/AbstractErrorManager.h"
 
 class AbstractTester;
 
 class AbstractModifier;
 
-class AbstractGenCode {
+class AbstractGenCode : public err::AbstractErrorManager {
 public:
     explicit AbstractGenCode(std::vector<std::string>);
     AbstractGenCode(const AbstractGenCode &agc);
 
     virtual bool test_code();
 
-    std::vector<int> get_word_length() const;
+    std::vector<int> get_word_length();
 
     std::string as_string_sequence();
 
     std::vector<std::string> as_vector();
 
     virtual bool is_circular()= 0;
+    virtual bool is_cn_circular() = 0;
+    virtual bool is_self_complementary() = 0;
+    virtual bool is_comma_free() = 0;
 
     virtual void shift_tuples(int shifts = 1) = 0;
+
+    acid::acids get_acid();
 
 protected:
     std::vector<std::string> code_vec;
     bool is_tested;
     bool is_ok;
     std::string string_sequence;
-    std::string error_msg;
 
     acid::acids acid;
 
     std::vector<int> word_length;
+
+    virtual ~AbstractGenCode() {
+        this->print_errors();
+    };
 
     void reset(std::vector<std::string>);
 

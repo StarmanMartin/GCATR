@@ -18,7 +18,6 @@
 
 AbstractGenCode::AbstractGenCode(std::vector<std::string> code_vec) {
     this->reset(code_vec);
-
 }
 
 AbstractGenCode::AbstractGenCode(const AbstractGenCode &agc) {
@@ -27,7 +26,7 @@ AbstractGenCode::AbstractGenCode(const AbstractGenCode &agc) {
     this->is_ok = agc.is_ok;
     this->string_sequence = agc.string_sequence;
     std::vector<int> temp_length(this->word_length.size());
-    for(int length : this->word_length) {
+    for (int length : this->word_length) {
         temp_length.push_back(length);
     }
 
@@ -52,20 +51,25 @@ bool AbstractGenCode::test_code() {
 
     this->is_tested = true;
     this->is_ok = true;
+        this->acid = acid::check_acid_type(this->as_string_sequence());
 
     if (this->code_vec.size() == 0) {
-        this->error_msg = "Code is empty!";
+        this->add_error_msg("Code is empty!");
         return (this->is_ok = false);
     }
 
-    this->acid = acid::check_acid_type(this->as_string_sequence());
 
     if (this->acid == acid::NONE) {
-        this->error_msg = "Code contains not known bases!";
+        this->add_error_msg("Code contains not known bases!");
         return (this->is_ok = false);
     }
 
     return (this->is_ok = true);
+}
+
+acid::acids AbstractGenCode::get_acid() {
+    this->test_code();
+    return this->acid;
 }
 
 std::string AbstractGenCode::as_string_sequence() {
@@ -84,33 +88,31 @@ std::vector<std::string> AbstractGenCode::as_vector() {
 }
 
 
-std::vector<int> AbstractGenCode::get_word_length() const {
+std::vector<int> AbstractGenCode::get_word_length() {
+    this->test_code();
     return this->word_length;
 }
 
 bool AbstractGenCode::run_test(std::shared_ptr<AbstractTester> t) {
     bool result = t->test(this);
-    this->error_msg = t->get_error_msg();
+    this->add_error_msges(t->get_error_msg());
     return result;
 }
 
 void AbstractGenCode::run_modification(std::shared_ptr<AbstractModifier> t, void *args) {
     auto result = t->modify(this, args);
-    for(auto codon :result) {
-        std::cout << codon << " ";
-    }
-
-    std::cout << std::endl;
+    this->add_error_msges(t->get_error_msg());
     this->reset(result);
+    this->test_code();
 }
 
 const std::string AbstractGenCode::to_string() const {
 
-    const char* const delim = ", ";
+    const char *const delim = ", ";
 
     std::ostringstream imploded;
     std::copy(this->code_vec.begin(), this->code_vec.end(),
               std::ostream_iterator<std::string>(imploded, delim));
 
-    return acid::acid_to_string(this->acid) + "\n " + imploded.str();
+    return "Acid: " + acid::acid_to_string(this->acid) + "\n " + imploded.str();
 }

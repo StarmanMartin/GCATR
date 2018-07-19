@@ -15,6 +15,6 @@ PKG_LIBS = $(SHLIB_OPENMP_CFLAGS) $(LAPACK_LIBS) $(BLAS_LIBS) $(FLIBS)
 
 # Added commands
 
-SOURCES = $(wildcard GCATCPP/codes/*.cpp)
+SOURCES = $(wildcard GCATCPP/codes/*.cpp GCATCPP/tester/*.cpp GCATCPP/modification/*.cpp GCATCPP/bda/*.cpp GCATCPP/helper/*.cpp GCATCPP/miner/*.cpp GCATCPP/graph/*.cpp)
 
 OBJECTS = main.o RcppExports.o $(SOURCES:.cpp=.o)

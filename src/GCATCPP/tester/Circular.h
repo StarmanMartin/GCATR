@@ -7,21 +7,30 @@
 
 #include "AbstractTester.h"
 
+#include "../graph/Graph.h"
+
 class Circular : public AbstractTester {
 public:
     virtual bool test(AbstractGenCode *code);
 
-private:
-    std::vector<std::vector<unsigned int> > circle;
+    std::vector<graph::Graph > get_circles();
+    std::vector<graph::Graph > get_longest_path();
 
-    void add_circle(std::vector<unsigned int>);
+protected:
+    std::vector<graph::Graph> circle;
+    std::vector<graph::Graph> longest_path;
+    unsigned int longest_path_size;
 
-    bool is_circular(AbstractGenCode *code);
+    void add_circle(graph::Graph);
+    void add_longest_path(graph::Graph);
 
-    bool rec_is_circular(AbstractGenCode *code,
-                         std::vector<unsigned int> chained_indexes,
-                         std::string current_substring,
-                         unsigned int current_word_pos);
+    virtual bool is_circular(AbstractGenCode *code);
+
+    bool rec_is_circular(AbstractGenCode* ,
+                         std::vector<unsigned int>,
+                         graph::Graph,
+                         std::string,
+                         unsigned int);
 };
 
 

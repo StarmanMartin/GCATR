@@ -8,17 +8,14 @@
 #include <memory>
 
 #include "../codes/AbstractGenCode.h"
+#include "../helper/AbstractErrorManager.h"
 
-class AbstractTester {
-private:
-    std::string error_msg;
+class AbstractTester : public err::AbstractErrorManager {
 public:
 
     explicit AbstractTester() {};
 
     virtual bool test(AbstractGenCode *code) = 0;
-
-    std::string get_error_msg() const;
 };
 
 
