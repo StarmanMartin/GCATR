@@ -17,3 +17,8 @@ std::vector <std::string> RAdapterUtils::as_cpp_string_vector(StringVector r_vec
 StringVector RAdapterUtils::as_r_string_vector(std::vector <std::string> r_vec) {
   return wrap(r_vec);
 }
+
+Rcpp::List RAdapterUtils::as_R_matrix(std::vector<std::vector<std::string> >r_vec ) {
+  return wrap( r_vec );
+  
+}

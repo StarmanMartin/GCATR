@@ -15,6 +15,7 @@ namespace err {
     public:
         void print_errors();
         std::vector<std::string> get_error_msg();
+        void add_error_msg(std::string);
 
     protected:
         AbstractErrorManager();
@@ -26,7 +27,7 @@ namespace err {
         bool _has_error;
         std::vector<std::string> msg;
 
-        void add_error_msg(std::string);
+
         void add_error_msges(std::vector<std::string>);
         void reset_msg();
 

@@ -42,6 +42,7 @@ std::vector<std::vector<std::string> > LongestPathMiner::mine_path_as_vector(Abs
 std::vector<graph::Graph> LongestPathMiner::mine_path_as_graph(AbstractGenCode *gen_code) {
     Circular codeTester;
     if (!codeTester.test(gen_code)) {
+        gen_code->add_error_msg("Code is not circular -> infinite longest path");
         std::vector<graph::Graph> res;
         return res;
     }

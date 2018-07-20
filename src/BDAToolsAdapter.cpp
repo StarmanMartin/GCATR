@@ -32,7 +32,9 @@ bool add_bda_rule(int i_1, int i_2, std::string Q_11, std::string Q_12, std::str
     return false;
   }
   
-  return main_bda_ptr->add_rule((unsigned)i_1, (unsigned)i_2, Q_11[0], Q_12[0], Q_21[0], Q_22[0]);
+  auto return_val = main_bda_ptr->add_rule((unsigned)i_1, (unsigned)i_2, Q_11[0], Q_12[0], Q_21[0], Q_22[0]);
+  main_bda_ptr->print_errors();
+  return return_val;
 }
 
 // [[Rcpp::export]]
@@ -45,6 +47,8 @@ bool start_bda_for_code(StringVector code) {
   if(main_bda_ptr != NULL) {
     delete main_bda_ptr;
   }
+  
+  a->print_errors();
   
   main_bda_ptr = new BDA::BDATools(a);
   
@@ -59,5 +63,7 @@ StringVector run_bda() {
     return {};
   }
   
-  return RAdapterUtils::as_r_string_vector(main_bda_ptr->run_bda_for_code());
+  auto return_val = RAdapterUtils::as_r_string_vector(main_bda_ptr->run_bda_for_code());
+  main_bda_ptr->print_errors();
+  return return_val;
 }

@@ -24,10 +24,9 @@ TEST(LongestPathMiner, simplePath) {
 TEST(LongestPathMiner, complexPaths) {
     //##1 ##2 ###3 ##4 ##5 ##6 ##7 ##8 ##9 #10 #11 #12 #13 #14 #15 #16 #17 #18 #19 #20
     //AAC AAG AAU ACC ACG ACU AGC AGG AGU AUU CCG CCU CGG CGU CUU GCU GGU GUU UCA UGA
-    auto a = run_longest_path_miner(
+    auto longest_path_collection = run_longest_path_miner(
             {"AAC", "AAG", "AAU", "ACC", "ACG", "ACU", "AGC", "AGG", "AGU", "AUU", "CCG", "CCU", "CGG", "CGU", "CUU",
              "GCU", "GGU", "GUU", "UCA", "UGA"});
-    test_help::test_equal_vector(a[0], {"UC", "A", "AC", "C", "CG", "G", "CU", "U", "CA"});
-    test_help::test_equal_vector(a[1], {"UG", "A", "AC", "C", "CG", "G", "CU", "U", "CA"});
-    //test_help::test_equal_vector(a[1], {"A", "AC", "C", "UG", "A", "C", "UG", "A"});
+    test_help::test_equal_vector(longest_path_collection[0], {"UC", "A", "AC", "C", "CG", "G", "CU", "U", "CA"});
+    test_help::test_equal_vector(longest_path_collection[1], {"UG", "A", "AC", "C", "CG", "G", "CU", "U", "CA"});
 }

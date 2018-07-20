@@ -17,7 +17,35 @@ check_if_circular <- function(code) {
     .Call(`_GCATR_check_if_circular`, code)
 }
 
+check_if_cn_circular <- function(code) {
+    .Call(`_GCATR_check_if_cn_circular`, code)
+}
+
+check_if_comma_free <- function(code) {
+    .Call(`_GCATR_check_if_comma_free`, code)
+}
+
+check_if_self_complementary <- function(code) {
+    .Call(`_GCATR_check_if_self_complementary`, code)
+}
+
 get_acid <- function(code) {
     .Call(`_GCATR_get_acid`, code)
+}
+
+get_one_logest_path_as_vector <- function(code) {
+    .Call(`_GCATR_get_one_logest_path_as_vector`, code)
+}
+
+get_all_logest_path_as_vector <- function(code) {
+    .Call(`_GCATR_get_all_logest_path_as_vector`, code)
+}
+
+get_one_circle_as_vector <- function(code) {
+    .Call(`_GCATR_get_one_circle_as_vector`, code)
+}
+
+get_all_circle_as_vector <- function(code) {
+    .Call(`_GCATR_get_all_circle_as_vector`, code)
 }
 

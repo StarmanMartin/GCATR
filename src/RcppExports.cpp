@@ -53,6 +53,39 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// check_if_cn_circular
+bool check_if_cn_circular(StringVector code);
+RcppExport SEXP _GCATR_check_if_cn_circular(SEXP codeSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< StringVector >::type code(codeSEXP);
+    rcpp_result_gen = Rcpp::wrap(check_if_cn_circular(code));
+    return rcpp_result_gen;
+END_RCPP
+}
+// check_if_comma_free
+bool check_if_comma_free(StringVector code);
+RcppExport SEXP _GCATR_check_if_comma_free(SEXP codeSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< StringVector >::type code(codeSEXP);
+    rcpp_result_gen = Rcpp::wrap(check_if_comma_free(code));
+    return rcpp_result_gen;
+END_RCPP
+}
+// check_if_self_complementary
+bool check_if_self_complementary(StringVector code);
+RcppExport SEXP _GCATR_check_if_self_complementary(SEXP codeSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< StringVector >::type code(codeSEXP);
+    rcpp_result_gen = Rcpp::wrap(check_if_self_complementary(code));
+    return rcpp_result_gen;
+END_RCPP
+}
 // get_acid
 StringVector get_acid(StringVector code);
 RcppExport SEXP _GCATR_get_acid(SEXP codeSEXP) {
@@ -64,13 +97,64 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// get_one_logest_path_as_vector
+StringVector get_one_logest_path_as_vector(StringVector code);
+RcppExport SEXP _GCATR_get_one_logest_path_as_vector(SEXP codeSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< StringVector >::type code(codeSEXP);
+    rcpp_result_gen = Rcpp::wrap(get_one_logest_path_as_vector(code));
+    return rcpp_result_gen;
+END_RCPP
+}
+// get_all_logest_path_as_vector
+Rcpp::List get_all_logest_path_as_vector(StringVector code);
+RcppExport SEXP _GCATR_get_all_logest_path_as_vector(SEXP codeSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< StringVector >::type code(codeSEXP);
+    rcpp_result_gen = Rcpp::wrap(get_all_logest_path_as_vector(code));
+    return rcpp_result_gen;
+END_RCPP
+}
+// get_one_circle_as_vector
+StringVector get_one_circle_as_vector(StringVector code);
+RcppExport SEXP _GCATR_get_one_circle_as_vector(SEXP codeSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< StringVector >::type code(codeSEXP);
+    rcpp_result_gen = Rcpp::wrap(get_one_circle_as_vector(code));
+    return rcpp_result_gen;
+END_RCPP
+}
+// get_all_circle_as_vector
+Rcpp::List get_all_circle_as_vector(StringVector code);
+RcppExport SEXP _GCATR_get_all_circle_as_vector(SEXP codeSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< StringVector >::type code(codeSEXP);
+    rcpp_result_gen = Rcpp::wrap(get_all_circle_as_vector(code));
+    return rcpp_result_gen;
+END_RCPP
+}
 
 static const R_CallMethodDef CallEntries[] = {
     {"_GCATR_add_bda_rule", (DL_FUNC) &_GCATR_add_bda_rule, 6},
     {"_GCATR_start_bda_for_code", (DL_FUNC) &_GCATR_start_bda_for_code, 1},
     {"_GCATR_run_bda", (DL_FUNC) &_GCATR_run_bda, 0},
     {"_GCATR_check_if_circular", (DL_FUNC) &_GCATR_check_if_circular, 1},
+    {"_GCATR_check_if_cn_circular", (DL_FUNC) &_GCATR_check_if_cn_circular, 1},
+    {"_GCATR_check_if_comma_free", (DL_FUNC) &_GCATR_check_if_comma_free, 1},
+    {"_GCATR_check_if_self_complementary", (DL_FUNC) &_GCATR_check_if_self_complementary, 1},
     {"_GCATR_get_acid", (DL_FUNC) &_GCATR_get_acid, 1},
+    {"_GCATR_get_one_logest_path_as_vector", (DL_FUNC) &_GCATR_get_one_logest_path_as_vector, 1},
+    {"_GCATR_get_all_logest_path_as_vector", (DL_FUNC) &_GCATR_get_all_logest_path_as_vector, 1},
+    {"_GCATR_get_one_circle_as_vector", (DL_FUNC) &_GCATR_get_one_circle_as_vector, 1},
+    {"_GCATR_get_all_circle_as_vector", (DL_FUNC) &_GCATR_get_all_circle_as_vector, 1},
     {NULL, NULL, 0}
 };
 

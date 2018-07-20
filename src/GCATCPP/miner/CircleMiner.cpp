@@ -34,6 +34,7 @@ std::vector<std::vector<std::string> > CircleMiner::mine_path_as_vector(Abstract
 std::vector<graph::Graph> CircleMiner::mine_path_as_graph(AbstractGenCode *gen_code) {
     Circular tester;
     if (tester.test(gen_code)) {
+        gen_code->add_error_msg("Code is circular -> ino circle path");
         std::vector<graph::Graph> res;
         return res;
     }

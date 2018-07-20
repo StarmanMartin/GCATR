@@ -12,7 +12,7 @@
 class AbstractGenCode;
 
 namespace miner {
-    class CircleMiner {
+class CircleMiner {
     public:
         static std::vector<std::vector<std::string>> mine_path_as_vector(AbstractGenCode*);
         static std::vector<graph::Graph> mine_path_as_graph(AbstractGenCode*);
