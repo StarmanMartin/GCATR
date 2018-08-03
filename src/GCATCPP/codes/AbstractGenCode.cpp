@@ -16,6 +16,25 @@
 #define EMPTY_SEQUNECE "#"
 
 
+AbstractGenCode::AbstractGenCode(std::string sequence, unsigned int word_length) : string_sequence(sequence) {
+    this->reset({});
+
+    std::vector<std::string> code_vec(sequence.length() / word_length);
+    this->word_length.push_back((signed) word_length);
+
+    for (struct {
+             unsigned int letter;
+             int word;
+         } idx = {0, 0};
+         idx.letter < sequence.length();
+         idx.word++, idx.letter += word_length) {
+        code_vec[idx.word] = sequence.substr(idx.letter, word_length);
+
+    }
+
+    this->code_vec = code_vec;
+}
+
 AbstractGenCode::AbstractGenCode(std::vector<std::string> code_vec) {
     this->reset(code_vec);
 }
@@ -25,11 +44,7 @@ AbstractGenCode::AbstractGenCode(const AbstractGenCode &agc) {
     this->is_tested = false;
     this->is_ok = agc.is_ok;
     this->string_sequence = agc.string_sequence;
-    std::vector<int> temp_length(this->word_length.size());
-    for (int length : this->word_length) {
-        temp_length.push_back(length);
-    }
-
+    std::vector<int> temp_length(agc.word_length);
     this->word_length = temp_length;
 }
 
@@ -38,9 +53,7 @@ void AbstractGenCode::reset(std::vector<std::string> code_vec) {
     this->is_tested = false;
     this->is_ok = false;
     this->string_sequence = EMPTY_SEQUNECE;
-
-    std::vector<int> temp_length(0);
-    this->word_length = temp_length;
+    this->word_length = {};
 }
 
 
@@ -51,7 +64,7 @@ bool AbstractGenCode::test_code() {
 
     this->is_tested = true;
     this->is_ok = true;
-        this->acid = acid::check_acid_type(this->as_string_sequence());
+    this->acid = acid::check_acid_type(this->as_string_sequence());
 
     if (this->code_vec.size() == 0) {
         this->add_error_msg("Code is empty!");
@@ -83,7 +96,7 @@ std::string AbstractGenCode::as_string_sequence() {
     return this->string_sequence = result;
 }
 
-std::vector<std::string> AbstractGenCode::as_vector() {
+std::vector<std::string> AbstractGenCode::as_vector() const {
     return this->code_vec;
 }
 

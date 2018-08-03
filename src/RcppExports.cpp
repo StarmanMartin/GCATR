@@ -21,14 +21,26 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
-// start_bda_for_code
-bool start_bda_for_code(StringVector code);
-RcppExport SEXP _GCATR_start_bda_for_code(SEXP codeSEXP) {
+// code_start_bda
+bool code_start_bda(StringVector code);
+RcppExport SEXP _GCATR_code_start_bda(SEXP codeSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< StringVector >::type code(codeSEXP);
-    rcpp_result_gen = Rcpp::wrap(start_bda_for_code(code));
+    rcpp_result_gen = Rcpp::wrap(code_start_bda(code));
+    return rcpp_result_gen;
+END_RCPP
+}
+// seq_start_bda
+bool seq_start_bda(std::string seq, int word_lenth);
+RcppExport SEXP _GCATR_seq_start_bda(SEXP seqSEXP, SEXP word_lenthSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< std::string >::type seq(seqSEXP);
+    Rcpp::traits::input_parameter< int >::type word_lenth(word_lenthSEXP);
+    rcpp_result_gen = Rcpp::wrap(seq_start_bda(seq, word_lenth));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -42,119 +54,195 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
-// check_if_circular
-bool check_if_circular(StringVector code);
-RcppExport SEXP _GCATR_check_if_circular(SEXP codeSEXP) {
+// code_get_edges_and_vertices_of_gen_graph
+Rcpp::List code_get_edges_and_vertices_of_gen_graph(StringVector code);
+RcppExport SEXP _GCATR_code_get_edges_and_vertices_of_gen_graph(SEXP codeSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< StringVector >::type code(codeSEXP);
-    rcpp_result_gen = Rcpp::wrap(check_if_circular(code));
+    rcpp_result_gen = Rcpp::wrap(code_get_edges_and_vertices_of_gen_graph(code));
     return rcpp_result_gen;
 END_RCPP
 }
-// check_if_cn_circular
-bool check_if_cn_circular(StringVector code);
-RcppExport SEXP _GCATR_check_if_cn_circular(SEXP codeSEXP) {
+// seq_get_edges_and_vertices_of_gen_graph
+Rcpp::List seq_get_edges_and_vertices_of_gen_graph(std::string seq, int word_length);
+RcppExport SEXP _GCATR_seq_get_edges_and_vertices_of_gen_graph(SEXP seqSEXP, SEXP word_lengthSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< StringVector >::type code(codeSEXP);
-    rcpp_result_gen = Rcpp::wrap(check_if_cn_circular(code));
+    Rcpp::traits::input_parameter< std::string >::type seq(seqSEXP);
+    Rcpp::traits::input_parameter< int >::type word_length(word_lengthSEXP);
+    rcpp_result_gen = Rcpp::wrap(seq_get_edges_and_vertices_of_gen_graph(seq, word_length));
     return rcpp_result_gen;
 END_RCPP
 }
-// check_if_comma_free
-bool check_if_comma_free(StringVector code);
-RcppExport SEXP _GCATR_check_if_comma_free(SEXP codeSEXP) {
+// code_prepare_plot_all_circles
+Rcpp::List code_prepare_plot_all_circles(StringVector code);
+RcppExport SEXP _GCATR_code_prepare_plot_all_circles(SEXP codeSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< StringVector >::type code(codeSEXP);
-    rcpp_result_gen = Rcpp::wrap(check_if_comma_free(code));
+    rcpp_result_gen = Rcpp::wrap(code_prepare_plot_all_circles(code));
     return rcpp_result_gen;
 END_RCPP
 }
-// check_if_self_complementary
-bool check_if_self_complementary(StringVector code);
-RcppExport SEXP _GCATR_check_if_self_complementary(SEXP codeSEXP) {
+// seq_prepare_plot_all_circles
+Rcpp::List seq_prepare_plot_all_circles(std::string seq, int word_length);
+RcppExport SEXP _GCATR_seq_prepare_plot_all_circles(SEXP seqSEXP, SEXP word_lengthSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< StringVector >::type code(codeSEXP);
-    rcpp_result_gen = Rcpp::wrap(check_if_self_complementary(code));
+    Rcpp::traits::input_parameter< std::string >::type seq(seqSEXP);
+    Rcpp::traits::input_parameter< int >::type word_length(word_lengthSEXP);
+    rcpp_result_gen = Rcpp::wrap(seq_prepare_plot_all_circles(seq, word_length));
     return rcpp_result_gen;
 END_RCPP
 }
-// get_acid
-StringVector get_acid(StringVector code);
-RcppExport SEXP _GCATR_get_acid(SEXP codeSEXP) {
+// code_prepare_plot_longest_path
+Rcpp::List code_prepare_plot_longest_path(StringVector code);
+RcppExport SEXP _GCATR_code_prepare_plot_longest_path(SEXP codeSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< StringVector >::type code(codeSEXP);
-    rcpp_result_gen = Rcpp::wrap(get_acid(code));
+    rcpp_result_gen = Rcpp::wrap(code_prepare_plot_longest_path(code));
     return rcpp_result_gen;
 END_RCPP
 }
-// get_one_logest_path_as_vector
-StringVector get_one_logest_path_as_vector(StringVector code);
-RcppExport SEXP _GCATR_get_one_logest_path_as_vector(SEXP codeSEXP) {
+// seq_prepare_plot_longest_path
+Rcpp::List seq_prepare_plot_longest_path(std::string seq, int word_length);
+RcppExport SEXP _GCATR_seq_prepare_plot_longest_path(SEXP seqSEXP, SEXP word_lengthSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< StringVector >::type code(codeSEXP);
-    rcpp_result_gen = Rcpp::wrap(get_one_logest_path_as_vector(code));
+    Rcpp::traits::input_parameter< std::string >::type seq(seqSEXP);
+    Rcpp::traits::input_parameter< int >::type word_length(word_lengthSEXP);
+    rcpp_result_gen = Rcpp::wrap(seq_prepare_plot_longest_path(seq, word_length));
     return rcpp_result_gen;
 END_RCPP
 }
-// get_all_logest_path_as_vector
-Rcpp::List get_all_logest_path_as_vector(StringVector code);
-RcppExport SEXP _GCATR_get_all_logest_path_as_vector(SEXP codeSEXP) {
+// code_check_if_circular
+bool code_check_if_circular(StringVector code);
+RcppExport SEXP _GCATR_code_check_if_circular(SEXP codeSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< StringVector >::type code(codeSEXP);
-    rcpp_result_gen = Rcpp::wrap(get_all_logest_path_as_vector(code));
+    rcpp_result_gen = Rcpp::wrap(code_check_if_circular(code));
     return rcpp_result_gen;
 END_RCPP
 }
-// get_one_circle_as_vector
-StringVector get_one_circle_as_vector(StringVector code);
-RcppExport SEXP _GCATR_get_one_circle_as_vector(SEXP codeSEXP) {
+// code_check_if_cn_circular
+bool code_check_if_cn_circular(StringVector code);
+RcppExport SEXP _GCATR_code_check_if_cn_circular(SEXP codeSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< StringVector >::type code(codeSEXP);
-    rcpp_result_gen = Rcpp::wrap(get_one_circle_as_vector(code));
+    rcpp_result_gen = Rcpp::wrap(code_check_if_cn_circular(code));
     return rcpp_result_gen;
 END_RCPP
 }
-// get_all_circle_as_vector
-Rcpp::List get_all_circle_as_vector(StringVector code);
-RcppExport SEXP _GCATR_get_all_circle_as_vector(SEXP codeSEXP) {
+// code_check_if_comma_free
+bool code_check_if_comma_free(StringVector code);
+RcppExport SEXP _GCATR_code_check_if_comma_free(SEXP codeSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< StringVector >::type code(codeSEXP);
-    rcpp_result_gen = Rcpp::wrap(get_all_circle_as_vector(code));
+    rcpp_result_gen = Rcpp::wrap(code_check_if_comma_free(code));
+    return rcpp_result_gen;
+END_RCPP
+}
+// code_check_if_self_complementary
+bool code_check_if_self_complementary(StringVector code);
+RcppExport SEXP _GCATR_code_check_if_self_complementary(SEXP codeSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< StringVector >::type code(codeSEXP);
+    rcpp_result_gen = Rcpp::wrap(code_check_if_self_complementary(code));
+    return rcpp_result_gen;
+END_RCPP
+}
+// code_get_acid
+StringVector code_get_acid(StringVector code);
+RcppExport SEXP _GCATR_code_get_acid(SEXP codeSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< StringVector >::type code(codeSEXP);
+    rcpp_result_gen = Rcpp::wrap(code_get_acid(code));
+    return rcpp_result_gen;
+END_RCPP
+}
+// code_get_one_logest_path_as_vector
+StringVector code_get_one_logest_path_as_vector(StringVector code);
+RcppExport SEXP _GCATR_code_get_one_logest_path_as_vector(SEXP codeSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< StringVector >::type code(codeSEXP);
+    rcpp_result_gen = Rcpp::wrap(code_get_one_logest_path_as_vector(code));
+    return rcpp_result_gen;
+END_RCPP
+}
+// code_get_all_logest_path_as_vector
+Rcpp::List code_get_all_logest_path_as_vector(StringVector code);
+RcppExport SEXP _GCATR_code_get_all_logest_path_as_vector(SEXP codeSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< StringVector >::type code(codeSEXP);
+    rcpp_result_gen = Rcpp::wrap(code_get_all_logest_path_as_vector(code));
+    return rcpp_result_gen;
+END_RCPP
+}
+// code_get_one_circle_as_vector
+StringVector code_get_one_circle_as_vector(StringVector code);
+RcppExport SEXP _GCATR_code_get_one_circle_as_vector(SEXP codeSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< StringVector >::type code(codeSEXP);
+    rcpp_result_gen = Rcpp::wrap(code_get_one_circle_as_vector(code));
+    return rcpp_result_gen;
+END_RCPP
+}
+// code_get_all_circle_as_vector
+Rcpp::List code_get_all_circle_as_vector(StringVector code);
+RcppExport SEXP _GCATR_code_get_all_circle_as_vector(SEXP codeSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< StringVector >::type code(codeSEXP);
+    rcpp_result_gen = Rcpp::wrap(code_get_all_circle_as_vector(code));
     return rcpp_result_gen;
 END_RCPP
 }
 
 static const R_CallMethodDef CallEntries[] = {
     {"_GCATR_add_bda_rule", (DL_FUNC) &_GCATR_add_bda_rule, 6},
-    {"_GCATR_start_bda_for_code", (DL_FUNC) &_GCATR_start_bda_for_code, 1},
+    {"_GCATR_code_start_bda", (DL_FUNC) &_GCATR_code_start_bda, 1},
+    {"_GCATR_seq_start_bda", (DL_FUNC) &_GCATR_seq_start_bda, 2},
     {"_GCATR_run_bda", (DL_FUNC) &_GCATR_run_bda, 0},
-    {"_GCATR_check_if_circular", (DL_FUNC) &_GCATR_check_if_circular, 1},
-    {"_GCATR_check_if_cn_circular", (DL_FUNC) &_GCATR_check_if_cn_circular, 1},
-    {"_GCATR_check_if_comma_free", (DL_FUNC) &_GCATR_check_if_comma_free, 1},
-    {"_GCATR_check_if_self_complementary", (DL_FUNC) &_GCATR_check_if_self_complementary, 1},
-    {"_GCATR_get_acid", (DL_FUNC) &_GCATR_get_acid, 1},
-    {"_GCATR_get_one_logest_path_as_vector", (DL_FUNC) &_GCATR_get_one_logest_path_as_vector, 1},
-    {"_GCATR_get_all_logest_path_as_vector", (DL_FUNC) &_GCATR_get_all_logest_path_as_vector, 1},
-    {"_GCATR_get_one_circle_as_vector", (DL_FUNC) &_GCATR_get_one_circle_as_vector, 1},
-    {"_GCATR_get_all_circle_as_vector", (DL_FUNC) &_GCATR_get_all_circle_as_vector, 1},
+    {"_GCATR_code_get_edges_and_vertices_of_gen_graph", (DL_FUNC) &_GCATR_code_get_edges_and_vertices_of_gen_graph, 1},
+    {"_GCATR_seq_get_edges_and_vertices_of_gen_graph", (DL_FUNC) &_GCATR_seq_get_edges_and_vertices_of_gen_graph, 2},
+    {"_GCATR_code_prepare_plot_all_circles", (DL_FUNC) &_GCATR_code_prepare_plot_all_circles, 1},
+    {"_GCATR_seq_prepare_plot_all_circles", (DL_FUNC) &_GCATR_seq_prepare_plot_all_circles, 2},
+    {"_GCATR_code_prepare_plot_longest_path", (DL_FUNC) &_GCATR_code_prepare_plot_longest_path, 1},
+    {"_GCATR_seq_prepare_plot_longest_path", (DL_FUNC) &_GCATR_seq_prepare_plot_longest_path, 2},
+    {"_GCATR_code_check_if_circular", (DL_FUNC) &_GCATR_code_check_if_circular, 1},
+    {"_GCATR_code_check_if_cn_circular", (DL_FUNC) &_GCATR_code_check_if_cn_circular, 1},
+    {"_GCATR_code_check_if_comma_free", (DL_FUNC) &_GCATR_code_check_if_comma_free, 1},
+    {"_GCATR_code_check_if_self_complementary", (DL_FUNC) &_GCATR_code_check_if_self_complementary, 1},
+    {"_GCATR_code_get_acid", (DL_FUNC) &_GCATR_code_get_acid, 1},
+    {"_GCATR_code_get_one_logest_path_as_vector", (DL_FUNC) &_GCATR_code_get_one_logest_path_as_vector, 1},
+    {"_GCATR_code_get_all_logest_path_as_vector", (DL_FUNC) &_GCATR_code_get_all_logest_path_as_vector, 1},
+    {"_GCATR_code_get_one_circle_as_vector", (DL_FUNC) &_GCATR_code_get_one_circle_as_vector, 1},
+    {"_GCATR_code_get_all_circle_as_vector", (DL_FUNC) &_GCATR_code_get_all_circle_as_vector, 1},
     {NULL, NULL, 0}
 };
 

@@ -11,7 +11,7 @@ using namespace miner;
 
 std::vector<std::vector<std::string> > LongestPathMiner::mine_path_as_vector(AbstractGenCode* gen_code) {
 
-    auto circle_index = LongestPathMiner::mine_path_as_graph(gen_code);
+    auto circle_index = LongestPathMiner::mine_all_path_as_graph(gen_code);
     std::vector<std::vector<std::string>> res(circle_index.size());
     for (int i = 0; i < circle_index.size(); ++i) {
         auto edges = circle_index[i].get_edges();
@@ -39,7 +39,18 @@ std::vector<std::vector<std::string> > LongestPathMiner::mine_path_as_vector(Abs
     return res;
 }
 
-std::vector<graph::Graph> LongestPathMiner::mine_path_as_graph(AbstractGenCode *gen_code) {
+graph::Graph LongestPathMiner::mine_path_as_graph(AbstractGenCode *gen_code) {
+    graph::Graph res;
+    auto circles_as_graph = LongestPathMiner::mine_all_path_as_graph(gen_code);
+    for(auto g : circles_as_graph) {
+        res.add_graph(g);
+    }
+
+    return res;
+}
+
+std::vector<graph::Graph> LongestPathMiner::mine_all_path_as_graph(AbstractGenCode *gen_code) {
+
     Circular codeTester;
     if (!codeTester.test(gen_code)) {
         gen_code->add_error_msg("Code is not circular -> infinite longest path");
@@ -48,4 +59,5 @@ std::vector<graph::Graph> LongestPathMiner::mine_path_as_graph(AbstractGenCode *
     }
 
     return codeTester.get_longest_path();
+
 }

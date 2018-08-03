@@ -5,6 +5,7 @@
 #include <memory>
 
 #include "test_utils.cpp"
+#include "../codes/StdGenCode.h"
 #include "../graph/Graph.h"
 #include "../graph/Vertex.h"
 #include "../graph/Edge.h"
@@ -39,6 +40,16 @@ graph::Graph generate_graph_for_code(std::vector<std::string> c) {
     return g;
 }
 
+
+TEST(GraphTest, ConstructorEdgeTest) {
+    graph::Graph g;
+    StdGenCode c({"ACG", "CGT"});
+    g.parse_code(c);
+
+    std::vector<graph::Edge> v = generate_edge_vec({"AC", "G", "A", "CG", "CG", "T", "C", "GT"});
+
+    test_help::test_equal_vector<graph::Edge>(g.get_edges(), v);
+}
 
 TEST(GraphTest, EdgeTest) {
     graph::Graph g = generate_graph_for_code({"ACG", "CGT"});

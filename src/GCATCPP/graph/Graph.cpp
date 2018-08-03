@@ -6,9 +6,23 @@
 
 using namespace graph;
 
+#include "../codes/AbstractGenCode.h"
+
+void Graph::parse_code(const AbstractGenCode& code) {
+    for(auto word : code.as_vector()) {
+        this->add_word(word);
+    }
+}
+
 void Graph::add_word(std::string word) {
     for (size_t i = 1; i < word.length(); ++i) {
         this->add_vertices(word.substr(0, i), word.substr(i));
+    }
+}
+
+void Graph::add_graph(const Graph& add_graph) {
+    for (auto new_vertex : add_graph.edges) {
+        this->add_vertices(new_vertex->get_from()->get_label(), new_vertex->get_to()->get_label());
     }
 }
 

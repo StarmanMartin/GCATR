@@ -11,12 +11,17 @@
 #include "Edge.h"
 #include "Vertex.h"
 
+class AbstractGenCode;
+
 namespace graph {
 
     class Graph {
     public:
+        void parse_code(const AbstractGenCode&  );
+
         void add_vertices(std::string from, std::string to);
         void add_word(std::string word);
+        void add_graph(const Graph&);
 
         int compare(const Graph &) const;
 

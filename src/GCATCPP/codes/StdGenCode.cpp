@@ -21,6 +21,10 @@ StdGenCode::StdGenCode(std::vector<std::string> code_vec) : AbstractGenCode(code
 
 }
 
+StdGenCode::StdGenCode(std::string sequence, unsigned int word_length) : AbstractGenCode(sequence, word_length) {
+  
+}
+
 StdGenCode::StdGenCode(const StdGenCode &agc) : AbstractGenCode(agc) {
 
 }

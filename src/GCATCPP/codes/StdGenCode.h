@@ -12,6 +12,7 @@ class StdGenCode : public AbstractGenCode{
 
 public:
     StdGenCode(std::vector<std::string>);
+    StdGenCode(std::string, unsigned int);
     StdGenCode(const StdGenCode &agc);
 
     bool test_code();

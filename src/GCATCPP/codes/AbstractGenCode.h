@@ -18,6 +18,8 @@ class AbstractModifier;
 class AbstractGenCode : public err::AbstractErrorManager {
 public:
     explicit AbstractGenCode(std::vector<std::string>);
+    explicit AbstractGenCode(std::string, unsigned int);
+    
     AbstractGenCode(const AbstractGenCode &agc);
 
     virtual bool test_code();
@@ -26,7 +28,7 @@ public:
 
     std::string as_string_sequence();
 
-    std::vector<std::string> as_vector();
+    std::vector<std::string> as_vector() const;
 
     virtual bool is_circular()= 0;
     virtual bool is_cn_circular() = 0;
