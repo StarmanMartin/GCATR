@@ -60,11 +60,36 @@ Rcpp::List prepare_plot_longest_path(StdGenCode& gc) {
   return generate_named_vertices_and_edges_list(graph_circular);
 }
 
-Rcpp::List get_edges_and_vertices_of_gen_graph(StdGenCode a) {
+Rcpp::List prepare_plot_gen_graph(StdGenCode& a, bool show_circles, bool show_longest_path) {
   graph::Graph g;
   g.parse_code(a);
-  return generate_named_vertices_and_edges_list(g);
+  std::vector<std::string> circular_path;
+  std::vector<std::string> longest_path;
+  if(show_circles) {
+    graph::Graph graph_circular = miner::CircleMiner::mine_path_as_graph(&a);
+    circular_path = get_edges_of_gen_graph(graph_circular);
+    g.remove_edges(graph_circular);
+  }
+  
+  if(show_longest_path) {
+    graph::Graph graph_l_path = miner::LongestPathMiner::mine_path_as_graph(&a);
+    longest_path = get_edges_of_gen_graph(graph_l_path);
+    g.remove_edges(graph_l_path);
+  }
+  
+  std::vector<std::vector<std::string>> edges_and_vertices = {
+    get_edges_of_gen_graph(g),
+    get_vertices_of_gen_graphconst(g),
+    longest_path,
+    circular_path
+  };
+  
+  auto r_list = RAdapterUtils::as_R_matrix(edges_and_vertices);
+  r_list.names() = CharacterVector::create("edges", "vertices", "longest_path_edges", "circular_path_edges");
+  
+  return r_list;
 }
+
 
 //' Get edges of an generic graph
 //' 
@@ -86,13 +111,13 @@ Rcpp::List get_edges_and_vertices_of_gen_graph(StdGenCode a) {
 //' @param code A vertor with codons.
 //' @return List: Edges and vertices of an generic graph. If A -> CG the Letter A is followed by the string CG.
 //' @examples
-//' code_get_edges_of_gen_graph(c("ACG", "CAG"))
+//' code_prepare_plot_gen_graph(c("ACG", "CAG"))
 //' 
 //' @export 
 // [[Rcpp::export]]
-Rcpp::List code_get_edges_and_vertices_of_gen_graph(StringVector code) {
+Rcpp::List code_prepare_plot_gen_graph(StringVector code, bool show_circles=false, bool show_longest_path=false) {
   StdGenCode a(RAdapterUtils::as_cpp_string_vector(code));
-  return get_edges_and_vertices_of_gen_graph(a);
+  return prepare_plot_gen_graph(a, show_circles, show_longest_path);
 }
 
 
@@ -117,13 +142,13 @@ Rcpp::List code_get_edges_and_vertices_of_gen_graph(StringVector code) {
 //' @param word_length the length of the word.
 //' @return List: Edges and vertices of an generic graph. If A -> CG the Letter A is followed by the string CG.
 //' @examples
-//' code_get_edges_of_gen_graph(c("ACG", "CAG"))
+//' seq_prepare_plot_gen_graph(c("ACG", "CAG"))
 //' 
 //' @export 
 // [[Rcpp::export]]
-Rcpp::List seq_get_edges_and_vertices_of_gen_graph(std::string seq, int word_length) {
+Rcpp::List seq_prepare_plot_gen_graph(std::string seq, int word_length, bool show_circles=false, bool show_longest_path=false) {
   StdGenCode a(seq, word_length);
-  return get_edges_and_vertices_of_gen_graph(a);
+  return prepare_plot_gen_graph(a, show_circles, show_longest_path);
 }
 
 

@@ -46,7 +46,7 @@ std::vector<graph::Graph> CircleMiner::mine_all_path_as_graph(AbstractGenCode *g
 
     Circular tester;
     if (tester.test(gen_code)) {
-        gen_code->add_error_msg("Code is circular -> ino circle path");
+        gen_code->add_error_msg("Code is circular -> no circle path");
         std::vector<graph::Graph>res;
         return res;
     }

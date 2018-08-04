@@ -14,6 +14,29 @@ void Graph::parse_code(const AbstractGenCode& code) {
     }
 }
 
+
+
+std::vector< Edge > Graph::remove_edges(const Graph& to_remove) {
+    std::vector< std::shared_ptr<Edge> > new_edges;
+    for(auto own_edge : this->edges) {
+        bool has_found_edge = false;
+        for(auto edge : to_remove.edges) {
+            auto comp_val = own_edge->compare(*edge);
+            if(comp_val == 0) {
+                has_found_edge = true;
+                break;
+            }
+        }
+
+        if(!has_found_edge) {
+            new_edges.push_back(own_edge);
+        }
+    }
+
+    this->edges = new_edges;
+    return this->get_edges();
+}
+
 void Graph::add_word(std::string word) {
     for (size_t i = 1; i < word.length(); ++i) {
         this->add_vertices(word.substr(0, i), word.substr(i));

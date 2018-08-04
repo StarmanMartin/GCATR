@@ -101,11 +101,11 @@ run_bda <- function() {
 #' @param code A vertor with codons.
 #' @return List: Edges and vertices of an generic graph. If A -> CG the Letter A is followed by the string CG.
 #' @examples
-#' code_get_edges_of_gen_graph(c("ACG", "CAG"))
+#' code_prepare_plot_gen_graph(c("ACG", "CAG"))
 #' 
 #' @export 
-code_get_edges_and_vertices_of_gen_graph <- function(code) {
-    .Call('_GCATR_code_get_edges_and_vertices_of_gen_graph', PACKAGE = 'GCATR', code)
+code_prepare_plot_gen_graph <- function(code, show_circles = FALSE, show_longest_path = FALSE) {
+    .Call('_GCATR_code_prepare_plot_gen_graph', PACKAGE = 'GCATR', code, show_circles, show_longest_path)
 }
 
 #' Get edges of an generic graph
@@ -129,11 +129,11 @@ code_get_edges_and_vertices_of_gen_graph <- function(code) {
 #' @param word_length the length of the word.
 #' @return List: Edges and vertices of an generic graph. If A -> CG the Letter A is followed by the string CG.
 #' @examples
-#' code_get_edges_of_gen_graph(c("ACG", "CAG"))
+#' seq_prepare_plot_gen_graph(c("ACG", "CAG"))
 #' 
 #' @export 
-seq_get_edges_and_vertices_of_gen_graph <- function(seq, word_length) {
-    .Call('_GCATR_seq_get_edges_and_vertices_of_gen_graph', PACKAGE = 'GCATR', seq, word_length)
+seq_prepare_plot_gen_graph <- function(seq, word_length, show_circles = FALSE, show_longest_path = FALSE) {
+    .Call('_GCATR_seq_prepare_plot_gen_graph', PACKAGE = 'GCATR', seq, word_length, show_circles, show_longest_path)
 }
 
 #' Returns a list of circles as vectors.

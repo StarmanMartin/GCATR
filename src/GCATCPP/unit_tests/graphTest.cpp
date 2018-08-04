@@ -83,3 +83,14 @@ TEST(GraphTest, CompareTest) {
 
     EXPECT_FALSE(g.compare(g2) == 0);
 }
+
+TEST(GraphTest, RemoveEdgeTest) {
+    graph::Graph g = generate_graph_for_code({"ACG"});
+
+    graph::Graph g2;
+    g2.add_vertices("A", "CG");
+
+    std::vector<graph::Edge> v = generate_edge_vec({"AC", "G"});
+
+    test_help::test_equal_vector<graph::Edge>(g.remove_edges(g2), v);
+}

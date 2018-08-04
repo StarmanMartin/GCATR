@@ -4,7 +4,7 @@
 \alias{code_plot_graph}
 \title{Plots generic graph for a code}
 \usage{
-code_plot_graph(code)
+code_plot_graph(code, show_circles = FALSE, show_longest_path = FALSE)
 }
 \arguments{
 \item{code}{the code as a vector}

@@ -54,26 +54,30 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
-// code_get_edges_and_vertices_of_gen_graph
-Rcpp::List code_get_edges_and_vertices_of_gen_graph(StringVector code);
-RcppExport SEXP _GCATR_code_get_edges_and_vertices_of_gen_graph(SEXP codeSEXP) {
+// code_prepare_plot_gen_graph
+Rcpp::List code_prepare_plot_gen_graph(StringVector code, bool show_circles, bool show_longest_path);
+RcppExport SEXP _GCATR_code_prepare_plot_gen_graph(SEXP codeSEXP, SEXP show_circlesSEXP, SEXP show_longest_pathSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< StringVector >::type code(codeSEXP);
-    rcpp_result_gen = Rcpp::wrap(code_get_edges_and_vertices_of_gen_graph(code));
+    Rcpp::traits::input_parameter< bool >::type show_circles(show_circlesSEXP);
+    Rcpp::traits::input_parameter< bool >::type show_longest_path(show_longest_pathSEXP);
+    rcpp_result_gen = Rcpp::wrap(code_prepare_plot_gen_graph(code, show_circles, show_longest_path));
     return rcpp_result_gen;
 END_RCPP
 }
-// seq_get_edges_and_vertices_of_gen_graph
-Rcpp::List seq_get_edges_and_vertices_of_gen_graph(std::string seq, int word_length);
-RcppExport SEXP _GCATR_seq_get_edges_and_vertices_of_gen_graph(SEXP seqSEXP, SEXP word_lengthSEXP) {
+// seq_prepare_plot_gen_graph
+Rcpp::List seq_prepare_plot_gen_graph(std::string seq, int word_length, bool show_circles, bool show_longest_path);
+RcppExport SEXP _GCATR_seq_prepare_plot_gen_graph(SEXP seqSEXP, SEXP word_lengthSEXP, SEXP show_circlesSEXP, SEXP show_longest_pathSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< std::string >::type seq(seqSEXP);
     Rcpp::traits::input_parameter< int >::type word_length(word_lengthSEXP);
-    rcpp_result_gen = Rcpp::wrap(seq_get_edges_and_vertices_of_gen_graph(seq, word_length));
+    Rcpp::traits::input_parameter< bool >::type show_circles(show_circlesSEXP);
+    Rcpp::traits::input_parameter< bool >::type show_longest_path(show_longest_pathSEXP);
+    rcpp_result_gen = Rcpp::wrap(seq_prepare_plot_gen_graph(seq, word_length, show_circles, show_longest_path));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -228,8 +232,8 @@ static const R_CallMethodDef CallEntries[] = {
     {"_GCATR_code_start_bda", (DL_FUNC) &_GCATR_code_start_bda, 1},
     {"_GCATR_seq_start_bda", (DL_FUNC) &_GCATR_seq_start_bda, 2},
     {"_GCATR_run_bda", (DL_FUNC) &_GCATR_run_bda, 0},
-    {"_GCATR_code_get_edges_and_vertices_of_gen_graph", (DL_FUNC) &_GCATR_code_get_edges_and_vertices_of_gen_graph, 1},
-    {"_GCATR_seq_get_edges_and_vertices_of_gen_graph", (DL_FUNC) &_GCATR_seq_get_edges_and_vertices_of_gen_graph, 2},
+    {"_GCATR_code_prepare_plot_gen_graph", (DL_FUNC) &_GCATR_code_prepare_plot_gen_graph, 3},
+    {"_GCATR_seq_prepare_plot_gen_graph", (DL_FUNC) &_GCATR_seq_prepare_plot_gen_graph, 4},
     {"_GCATR_code_prepare_plot_all_circles", (DL_FUNC) &_GCATR_code_prepare_plot_all_circles, 1},
     {"_GCATR_seq_prepare_plot_all_circles", (DL_FUNC) &_GCATR_seq_prepare_plot_all_circles, 2},
     {"_GCATR_code_prepare_plot_longest_path", (DL_FUNC) &_GCATR_code_prepare_plot_longest_path, 1},
