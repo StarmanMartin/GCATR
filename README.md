@@ -68,7 +68,7 @@ G(X) if existing.
 *code* &rarr; [string vector] The DNA or RNA code as list represented by the graph. 
 ####Return:
 A [igraph](http://igraph.org/r/) object
-  ```bash
+  ```R
       code_factor_longest_path <- function(code)
       #see:
       ?code_factor_longest_path
