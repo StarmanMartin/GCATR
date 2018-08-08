@@ -1,0 +1,16 @@
+<p>Checks the property of the self-complementarity of a code, i.e. if with each tuple its complementary tuple is also in the code.
+<p>The complementary tuple for a given tuple is defined as a result of the substitution of the nucleotide bases the way given below and afterwards the reversing of the result. 
+<table>
+	<tr><td style="font-weight:bold">Adenine</td><td>with</td><td style="font-weight:bold">Uracil</td></tr>
+	<tr><td style="font-weight:bold">Uracil</td><td>with</td><td style="font-weight:bold">Adenine</td></tr>
+	<tr><td style="font-weight:bold">Guanine</td><td>with</td><td style="font-weight:bold">Cytosine</td></tr>
+	<tr><td style="font-weight:bold">Cytosine</td><td>with</td><td style="font-weight:bold">Guanine</td></tr>
+</table>
+<p><b>Example:</b><table class="example">
+	<tr><td>Input sequence:</td><td>AGU UGA UCA ACU UCG CGA</td></tr>
+	<tr><td>Test result:</td><td style="color:green">Pass</td></tr>
+</table>
+<p><b>Example:</b><table class="example">
+	<tr><td>Input sequence:</td><td>AGU UGA UAC GCA CAG</td></tr>
+	<tr><td>Test result:</td><td style="color:red">Fail</td></tr>
+</table>

@@ -4,7 +4,8 @@
 \alias{code_prepare_plot_gen_graph}
 \title{Get edges of an generic graph}
 \usage{
-code_prepare_plot_gen_graph(code)
+code_prepare_plot_gen_graph(code, show_circles = FALSE,
+  show_longest_path = FALSE)
 }
 \arguments{
 \item{code}{A vertor with codons.}

@@ -4,7 +4,8 @@
 \alias{seq_plot_graph}
 \title{Plots generic graph for a sequence}
 \usage{
-seq_plot_graph(seq, word_length)
+seq_plot_graph(seq, word_length, show_circles = FALSE,
+  show_longest_path = FALSE)
 }
 \arguments{
 \item{seq}{A gene sequence.}

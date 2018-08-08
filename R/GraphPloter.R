@@ -1,6 +1,4 @@
-require(igraph)
-
-do_plot_graph <- function(vertices_edges_list) {
+factor_graph <- function(vertices_edges_list) {
   g <- igraph::make_empty_graph();
   vertices_vec = vertices_edges_list$vertices
   edges_vec = vertices_edges_list$edges
@@ -14,12 +12,12 @@ do_plot_graph <- function(vertices_edges_list) {
     if(!is.null(vertices_edges_list$longest_path_edges)) {
       g <- g +  igraph::edges(vertices_edges_list$longest_path_edges, color="green")
     }
-    plot(g,  layout=layout.circle, edge.arrow.size = 0.5, vertex.size = 20)
-  }
-}
+    if(!is.null(vertices_edges_list$c3_edges)) {
+      g <- g +  igraph::edges(vertices_edges_list$c3_edges, color="black",directed=FALSE)
+    }
 
-plot_graph <- function(vertices_edges_list) {
-  return(do_plot_graph(vertices_edges_list))
+    return(g)
+  }
 }
 
 #' Plots generic graph for a sequence
@@ -42,12 +40,12 @@ plot_graph <- function(vertices_edges_list) {
 #' @param seq A gene sequence.
 #' @param word_lenth length of the codons.
 #' @examples
-#' seq_plot_graph("ACGCGA", 3)
+#' seq_factor_graph("ACGCGA", 3)
 #' 
 #' @export 
-seq_plot_graph <- function(seq, word_length, show_circles=FALSE, show_longest_path=FALSE) {
-  vertices_edges_list = seq_prepare_plot_gen_graph(seq, word_length=3, show_circles, show_longest_path)
-  plot_graph(vertices_edges_list)
+seq_factor_graph <- function(seq, word_length=3, show_circles=FALSE, show_longest_path=FALSE) {
+  vertices_edges_list = seq_prepare_factor_gen_graph(seq, word_length, show_circles, show_longest_path)
+  return(factor_graph(vertices_edges_list))
 }
 
 #' Plots generic graph for a code
@@ -69,34 +67,47 @@ seq_plot_graph <- function(seq, word_length, show_circles=FALSE, show_longest_pa
 #'
 #' @param code the code as a vector
 #' @examples
-#' code_plot_graph(c("ACG", "CGA"))
+#' code_factor_graph(c("ACG", "CGA"))
 #' 
 #' @export 
-code_plot_graph <- function(code, show_circles=FALSE, show_longest_path=FALSE) {
-  vertices_edges_list = code_prepare_plot_gen_graph(code, show_circles, show_longest_path)
-  plot_graph(vertices_edges_list)
+code_factor_graph <- function(code, show_circles=FALSE, show_longest_path=FALSE) {
+  vertices_edges_list = code_prepare_factor_gen_graph(code, show_circles, show_longest_path)
+  return(factor_graph((vertices_edges_list))
 }
 
 #' @export 
-code_plot_circels <- function(code) {
-  vertices_edges_list = code_prepare_plot_all_circles(code)
-  do_plot_graph(vertices_edges_list)
+seq_factor_c3graph <- function(seq) {
+  vertices_edges_list = seq_prepare_factor_gen_c3graph(seq, 3)
+  return(factor_graph(vertices_edges_list))
+}
+
+
+#' @export 
+code_factor_c3graph <- function(code) {
+  vertices_edges_list = code_prepare_factor_gen_c3graph(code)
+  return(factor_graph(vertices_edges_list))
 }
 
 #' @export 
-seq_plot_circels <- function(seq, word_length=3) {
-  vertices_edges_list = seq_prepare_plot_all_circles(seq, word_length)
-  do_plot_graph(vertices_edges_list)
+code_factor_circles <- function(code) {
+  vertices_edges_list = code_prepare_factor_all_circles(code)
+  return(factor_graph(vertices_edges_list)))
 }
 
 #' @export 
-code_plot_longest_path <- function(code) {
-  vertices_edges_list = code_prepare_plot_longest_path(code)
-  do_plot_graph(vertices_edges_list)
+seq_factor_circles <- function(seq, word_length=3) {
+  vertices_edges_list = seq_prepare_factor_all_circles(seq, word_length)
+  return(factor_graph(vertices_edges_list))
 }
 
 #' @export 
-seq_plot_longest_path <- function(seq, word_length=3) {
-  vertices_edges_list = seq_prepare_plot_longest_path(seq, word_length)
-  do_plot_graph(vertices_edges_list)
+code_factor_longest_path <- function(code) {
+  vertices_edges_list = code_prepare_factor_longest_path(code)
+  return(factor_graph(vertices_edges_list))
+}
+
+#' @export 
+seq_factor_longest_path <- function(seq, word_length=3) {
+  vertices_edges_list = seq_prepare_factor_longest_path(seq, word_length)
+  return(return(factor_graph(((vertices_edges_list))))
 }

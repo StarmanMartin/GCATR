@@ -4,7 +4,8 @@
 \alias{seq_prepare_plot_gen_graph}
 \title{Get edges of an generic graph}
 \usage{
-seq_prepare_plot_gen_graph(seq, word_length)
+seq_prepare_plot_gen_graph(seq, word_length, show_circles = FALSE,
+  show_longest_path = FALSE)
 }
 \arguments{
 \item{seq}{a nucleotide sequence.}

@@ -7,6 +7,7 @@ Author: Martin Starman
 Maintainer: Martin Starman <m.starman@doktoranden.hs-mannheim.de>
 Description: The package is a verson of the GCAT tool optimized for R.
 License: GPL (>= 2)
-Imports: Rcpp (>= 0.12.17), igraph
+Imports: Rcpp (>= 0.12.18)
+Depends: igraph (>= 1.2.1)
 LinkingTo: Rcpp
 RoxygenNote: 6.0.1

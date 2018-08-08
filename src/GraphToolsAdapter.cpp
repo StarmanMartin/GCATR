@@ -3,6 +3,7 @@
 
 #include "GCATCPP/codes/StdGenCode.h"
 #include "GCATCPP/graph/Graph.h"
+#include "GCATCPP/graph/C3Graph.h"
 #include "GCATCPP/miner/LongestPathMiner.h"
 #include "GCATCPP/miner/CircleMiner.h"
 
@@ -12,9 +13,7 @@
 
 using namespace Rcpp;
 
-
-std::vector<std::string> get_edges_of_gen_graph(const graph::Graph& g) {
-  auto edges = g.get_edges();
+std::vector<std::string> edges_to_string_vercor(const std::vector<graph::Edge>& edges) {
   std::vector<std::string> res(edges.size()*2);
   
   for (struct { unsigned int edge; int vertex; } idx = {0, 0};
@@ -25,6 +24,11 @@ std::vector<std::string> get_edges_of_gen_graph(const graph::Graph& g) {
   }
   
   return res;
+}
+
+std::vector<std::string> get_edges_of_gen_graph(const graph::Graph& g) {
+  auto edges = g.get_edges();
+  return edges_to_string_vercor(edges);
 }
 
 std::vector<std::string> get_vertices_of_gen_graphconst(const graph::Graph& g) {
@@ -91,6 +95,36 @@ Rcpp::List prepare_plot_gen_graph(StdGenCode& a, bool show_circles, bool show_lo
 }
 
 
+
+Rcpp::List prepare_plot_gen_c3graph(StdGenCode& a) {
+  graph::C3Graph g;
+  g.parse_code(a);
+  
+  std::vector<std::vector<std::string>> edges_and_vertices = {
+    get_edges_of_gen_graph(g),
+    get_vertices_of_gen_graphconst(g),
+    edges_to_string_vercor(g.get_c3_edges())
+  };
+  
+  auto r_list = RAdapterUtils::as_R_matrix(edges_and_vertices);
+  r_list.names() = CharacterVector::create("edges", "vertices", "c3_edges");
+  
+  return r_list;
+}
+
+// [[Rcpp::export]]
+Rcpp::List seq_prepare_plot_gen_c3graph(std::string seq, int word_length) {
+  StdGenCode a(seq, word_length);
+  return prepare_plot_gen_c3graph(a);
+}
+
+
+// [[Rcpp::export]]
+Rcpp::List code_prepare_plot_gen_c3graph(StringVector code) {
+  StdGenCode a(RAdapterUtils::as_cpp_string_vector(code));
+  return prepare_plot_gen_c3graph(a);
+}
+
 //' Get edges of an generic graph
 //' 
 //' The following definition relates a directed graph to
@@ -119,7 +153,6 @@ Rcpp::List code_prepare_plot_gen_graph(StringVector code, bool show_circles=fals
   StdGenCode a(RAdapterUtils::as_cpp_string_vector(code));
   return prepare_plot_gen_graph(a, show_circles, show_longest_path);
 }
-
 
 //' Get edges of an generic graph
 //' 
