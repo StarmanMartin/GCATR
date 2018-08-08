@@ -23,11 +23,11 @@ Prepares a R [igraph](http://igraph.org/r/) object. The graph G(X) is called the
 Basically, the graph G(X) associated to a code X interprets n-nucleotide words from X in (n−1) ways
 by pairs of i-nucleotides and (n-i)-nucleotides for 0 < i < n.<br/>
 *2007 E. FIMMEL, C. J. MICHEL, AND L. STRÜNGMANN. N-nucleotide circular codes in graph theory*
-####Parameters:
+#### Parameters:
 *code* &rarr; [string vector] The DNA or RNA code as list represented by the graph.<br/>
 *show_circles* &rarr; [bool] If true the all edges building a circle are colored red.<br/>
 *show_longest_path* &rarr; [bool] If true the all edges part of the longest path are colored blue.
-####Return:
+#### Return:
 A [igraph](http://igraph.org/r/) object
    ```R
       code_factor_graph <- function(code, show_circles=FALSE, show_longest_path=FALSE)
@@ -40,9 +40,9 @@ Extents the Graph G(X) from _code_factor_graph_ by the so called C3 edges.
 If the graph shows a cycle with alternating edges of the C3 edges and the usual edges follows that
 the circular permutation of the code is not a circular code. Only works for word length of 3.<br/>
 *2007 E. FIMMEL, C. J. MICHEL, AND L. STRÜNGMANN. N-nucleotide circular codes in graph theory*
-####Parameters:
+#### Parameters:
 *code* &rarr; [string vector] The DNA or RNA code as list represented by the graph.  
-####Return:
+#### Return:
 A [igraph](http://igraph.org/r/) object
    ```R
       code_factor_c3graph <- function(code)
@@ -52,9 +52,9 @@ A [igraph](http://igraph.org/r/) object
 ### code_factor_circles
 Prepares a R [igraph](http://igraph.org/r/) object. Returns only the circles in
 G(X) if existing.
-####Parameters:
+#### Parameters:
 *code* &rarr; [string vector] The DNA or RNA code as list represented by the graph. 
-####Return:
+#### Return:
 A [igraph](http://igraph.org/r/) object
   ```R
       code_factor_circles <- function(code)
@@ -64,9 +64,9 @@ A [igraph](http://igraph.org/r/) object
 ### code_factor_longest_path
 Prepares a R [igraph](http://igraph.org/r/) object. Returns only the longest Path in
 G(X) if existing.
-####Parameters:
+#### Parameters:
 *code* &rarr; [string vector] The DNA or RNA code as list represented by the graph. 
-####Return:
+#### Return:
 A [igraph](http://igraph.org/r/) object
   ```R
       code_factor_longest_path <- function(code)
@@ -78,12 +78,12 @@ Prepares a R [igraph](http://igraph.org/r/) object. The graph G(X) is called the
 Basically, the graph G(X) associated to a code X interprets n-nucleotide words from X in (n−1) ways
 by pairs of i-nucleotides and (n-i)-nucleotides for 0 < i < n.<br/>
 *2007 E. FIMMEL, C. J. MICHEL, AND L. STRÜNGMANN. N-nucleotide circular codes in graph theory*
-####Parameters:
+#### Parameters:
 *seq* &rarr; [string] A DNA or RNA sequence used to extract the code represented by the graph.<br/>
 *word_length* &rarr; [unsigned int] The length of the words in the sequence.<br/>
 *show_circles* &rarr; [bool] If true the all edges building a circle are colored red.<br/>
 *show_longest_path* &rarr; [bool] If true the all edges part of the longest path are colored blue.
-####Return:
+#### Return:
 A [igraph](http://igraph.org/r/) object
    ```R
       seq_factor_graph <- function(seq, word_length=3, show_circles=FALSE, show_longest_path=FALSE)
@@ -96,9 +96,9 @@ Extents the Graph G(X) from _code_factor_graph_ by the so called C3 edges.
 If the graph shows a cycle with alternating edges of the C3 edges and the usual edges follows that
 the circular permutation of the code is not a circular code. Only works for word length of 3.<br/>
 *2007 E. FIMMEL, C. J. MICHEL, AND L. STRÜNGMANN. N-nucleotide circular codes in graph theory*
-####Parameters:
+#### Parameters:
 *seq* &rarr; [string] A DNA or RNA sequence used to extract the code represented by the graph. 
-####Return:
+#### Return:
 A [igraph](http://igraph.org/r/) object 
    ```R
       seq_factor_c3graph <- function(seq)
@@ -108,10 +108,10 @@ A [igraph](http://igraph.org/r/) object
 ### seq_factor_circles
 Prepares a R [igraph](http://igraph.org/r/) object. Returns only the circles in
 G(X) if existing.
-####Parameters:
+#### Parameters:
 *seq* &rarr; [string] A DNA or RNA sequence used to extract the code represented by the graph.<br/>
 *word_length* &rarr; [unsigned int] The length of the words in the sequence.
-####Return:
+#### Return:
 A [igraph](http://igraph.org/r/) object
    ```R
       seq_factor_circles <- function(seq, word_length=3)
@@ -121,10 +121,10 @@ A [igraph](http://igraph.org/r/) object
 ### seq_factor_longest_path
 Prepares a R [igraph](http://igraph.org/r/) object. Returns only the longest Path in
 G(X) if existing.
-####Parameters:
+#### Parameters:
 *seq* &rarr; [string] A DNA or RNA sequence used to extract the code represented by the graph.<br/>
 *word_length* &rarr; [unsigned int] The length of the words in the sequence.
-####Return:
+#### Return:
 A [igraph](http://igraph.org/r/) object
    ```R
       seq_factor_longest_path <- function(seq, word_length=3)
