@@ -1,3 +1,0 @@
-useDynLib(GCATR, .registration=TRUE)
-exportPattern("^[[:alpha:]]+")
-importFrom(Rcpp, evalCpp)
