@@ -1,4 +1,6 @@
-#Version 0.1 is only a beta and not ready for use.
+
+# Version 0.1 is only a beta and not ready for use.
+
 ![Genetic Code Analysis Toolkit Logo](/man/resources/bio/gcat/logo.png?raw=true)
 
 This project contains the source code for R version of the Genetic Code Analysis Toolkit (GCAT) project. Please refer to the [public homepage](http://www.gcat.bio/) and the [project homepage](http://www.mbi.hs-mannheim.de/research/mathematics-of-the-genetic-information.html) for more information.
