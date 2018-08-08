@@ -10,24 +10,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="428808ef-23ef-4101-a605-146f2c23553c" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/DESCRIPTION" beforeDir="false" afterPath="$PROJECT_DIR$/DESCRIPTION" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NAMESPACE" beforeDir="false" afterPath="$PROJECT_DIR$/NAMESPACE" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/R/GraphPloter.R" beforeDir="false" afterPath="$PROJECT_DIR$/R/GraphPloter.R" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/R/RcppExports.R" beforeDir="false" afterPath="$PROJECT_DIR$/R/RcppExports.R" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/man/code_prepare_plot_gen_graph.Rd" beforeDir="false" afterPath="$PROJECT_DIR$/man/code_prepare_plot_gen_graph.Rd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/man/seq_plot_graph.Rd" beforeDir="false" afterPath="$PROJECT_DIR$/man/seq_plot_graph.Rd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/man/seq_prepare_plot_gen_graph.Rd" beforeDir="false" afterPath="$PROJECT_DIR$/man/seq_prepare_plot_gen_graph.Rd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GCATCPP/codes/AbstractGenCode.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GCATCPP/codes/StdGenCode.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GCATCPP/graph/C3Graph.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/GCATCPP/graph/C3Graph.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GCATCPP/graph/C3Graph.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/GCATCPP/graph/C3Graph.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GCATCPP/graph/Graph.o" beforeDir="false" afterPath="$PROJECT_DIR$/src/GCATCPP/graph/Graph.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GCATCPP/miner/CircleMiner.o" beforeDir="false" afterPath="$PROJECT_DIR$/src/GCATCPP/miner/CircleMiner.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GCATCPP/miner/LongestPathMiner.o" beforeDir="false" afterPath="$PROJECT_DIR$/src/GCATCPP/miner/LongestPathMiner.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GCATCPP/tester/C_n.o" beforeDir="false" afterPath="$PROJECT_DIR$/src/GCATCPP/tester/C_n.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GCATCPP/tester/Circular.o" beforeDir="false" afterPath="$PROJECT_DIR$/src/GCATCPP/tester/Circular.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GraphToolsAdapter.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/GraphToolsAdapter.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/RcppExports.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/RcppExports.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -42,8 +25,8 @@
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="221">
-                <caret line="13" column="1" lean-forward="true" selection-start-line="13" selection-start-column="1" selection-end-line="13" selection-end-column="1" />
+              <first_editor relative-caret-position="153">
+                <caret line="9" column="109" selection-start-line="9" selection-start-column="109" selection-end-line="9" selection-end-column="109" />
               </first_editor>
               <second_editor />
             </state>
@@ -205,12 +188,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1533642259947</updated>
-      <workItem from="1533642261284" duration="6259000" />
+      <workItem from="1533642261284" duration="6596000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="6259000" />
+    <option name="totallyTimeSpent" value="6596000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1874" height="1096" extended-state="6" />
@@ -264,8 +247,8 @@
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="221">
-            <caret line="13" column="1" lean-forward="true" selection-start-line="13" selection-start-column="1" selection-end-line="13" selection-end-column="1" />
+          <first_editor relative-caret-position="153">
+            <caret line="9" column="109" selection-start-line="9" selection-start-column="109" selection-end-line="9" selection-end-column="109" />
           </first_editor>
           <second_editor />
         </state>

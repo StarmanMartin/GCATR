@@ -6,13 +6,14 @@
 This project contains the source code for R version of the Genetic Code Analysis Toolkit (GCAT) project. Please refer to the [public homepage](http://www.gcat.bio/) and the [project homepage](http://www.mbi.hs-mannheim.de/research/mathematics-of-the-genetic-information.html) for more information.
 
 # Installation
-GCATR is available for R version 3.5 and higher. It requires C++11 (or later) and [Rcpp (>= 0.12.18)](https://cran.r-project.org/web/packages/Rcpp/index.html) installed on your machine. To install the current version devtools needs to be installd on your computer. Install the R package by 
+GCATR is available for R version 3.5 and higher. It requires a C++11 (or later) compiler and [Rcpp (>= 0.12.18)](https://cran.r-project.org/web/packages/Rcpp/index.html) installed on your machine. 
+Furthermore the current version of devtools needs to be installed on your computer. Install the R package by:
  * starting the a R console and run:
    ```bash
    install.packages("devtools")
    devtools::install_github("StarmanMartin/GCATR")
    ```
- *
+
  
 # Components
 ## Graph tools
