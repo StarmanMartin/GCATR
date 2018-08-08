@@ -72,7 +72,7 @@ seq_factor_graph <- function(seq, word_length=3, show_circles=FALSE, show_longes
 #' @export 
 code_factor_graph <- function(code, show_circles=FALSE, show_longest_path=FALSE) {
   vertices_edges_list = code_prepare_factor_gen_graph(code, show_circles, show_longest_path)
-  return(factor_graph((vertices_edges_list))
+  return(factor_graph(vertices_edges_list))
 }
 
 #' @export 
@@ -91,7 +91,7 @@ code_factor_c3graph <- function(code) {
 #' @export 
 code_factor_circles <- function(code) {
   vertices_edges_list = code_prepare_factor_all_circles(code)
-  return(factor_graph(vertices_edges_list)))
+  return(factor_graph(vertices_edges_list))
 }
 
 #' @export 
@@ -109,5 +109,5 @@ code_factor_longest_path <- function(code) {
 #' @export 
 seq_factor_longest_path <- function(seq, word_length=3) {
   vertices_edges_list = seq_prepare_factor_longest_path(seq, word_length)
-  return(return(factor_graph(((vertices_edges_list))))
+  return(factor_graph(vertices_edges_list))
 }

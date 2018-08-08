@@ -81,34 +81,10 @@ run_bda <- function() {
     .Call('_GCATR_run_bda', PACKAGE = 'GCATR')
 }
 
-#' @export 
 seq_prepare_plot_gen_c3graph <- function(seq, word_length) {
     .Call('_GCATR_seq_prepare_plot_gen_c3graph', PACKAGE = 'GCATR', seq, word_length)
 }
 
-#' Get edges of an generic graph
-#' 
-#' The following definition relates a directed graph to
-#' any n-nucleotide code. Recall from graph theory (Clark and Holton, 1991) that a graph G consists of
-#' a finite set of vertices (nodes) V and a finite set of edges E. Here, an edge is a set \{v,w\} of vertices
-#' from V . The graph is called oriented if the edges have an orientation, i.e. edges are considered to be
-#' ordered pairs [v,w] in this case.\cr
-#' Definition 2.1. Let X Bn be an n-nucleotide code (n 2 N). We define a directed graph G(X) =
-#' (V (X),E(X)) with set of vertices V (X) and set of edges E(X) as follows:
-#' N-NUCLEOTIDE CIRCULAR CODES IN GRAPH THEORY 5\cr
-#' V (X) = \{N1...Ni,Ni+1...Nn : N1N2N3...Nn in X, 0 < i < n\}\cr
-#' E(X) = \{[N1...Ni,Ni+1...Nn] : N1N2N3...Nn in X, 0 < i < n\}\cr
-#' The graph G(X) is called the representing graph of X or the graph associated to X.\cr
-#' Basically, the graph G(X) associated to a code X interprets n-nucleotide words from X in (n−1) ways
-#' by pairs of i-nucleotides and (n-i)-nucleotides for 0 < i < n.\cr
-#' \emph{2007 E. FIMMEL, C. J. MICHEL, AND L. STRÜNGMANN. N-nucleotide circular codes in graph theory}
-#'
-#' @param code A vertor with codons.
-#' @return List: Edges and vertices of an generic graph. If A -> CG the Letter A is followed by the string CG.
-#' @examples
-#' code_prepare_plot_gen_graph(c("ACG", "CAG"))
-#' 
-#' @export 
 code_prepare_plot_gen_c3graph <- function(code) {
     .Call('_GCATR_code_prepare_plot_gen_c3graph', PACKAGE = 'GCATR', code)
 }
