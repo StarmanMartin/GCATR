@@ -54,45 +54,45 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
-// seq_prepare_plot_gen_c3graph
-Rcpp::List seq_prepare_plot_gen_c3graph(std::string seq, int word_length);
-RcppExport SEXP _GCATR_seq_prepare_plot_gen_c3graph(SEXP seqSEXP, SEXP word_lengthSEXP) {
+// seq_prepare_factor_gen_c3graph
+Rcpp::List seq_prepare_factor_gen_c3graph(std::string seq, int word_length);
+RcppExport SEXP _GCATR_seq_prepare_factor_gen_c3graph(SEXP seqSEXP, SEXP word_lengthSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< std::string >::type seq(seqSEXP);
     Rcpp::traits::input_parameter< int >::type word_length(word_lengthSEXP);
-    rcpp_result_gen = Rcpp::wrap(seq_prepare_plot_gen_c3graph(seq, word_length));
+    rcpp_result_gen = Rcpp::wrap(seq_prepare_factor_gen_c3graph(seq, word_length));
     return rcpp_result_gen;
 END_RCPP
 }
-// code_prepare_plot_gen_c3graph
-Rcpp::List code_prepare_plot_gen_c3graph(StringVector code);
-RcppExport SEXP _GCATR_code_prepare_plot_gen_c3graph(SEXP codeSEXP) {
+// code_prepare_factor_gen_c3graph
+Rcpp::List code_prepare_factor_gen_c3graph(StringVector code);
+RcppExport SEXP _GCATR_code_prepare_factor_gen_c3graph(SEXP codeSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< StringVector >::type code(codeSEXP);
-    rcpp_result_gen = Rcpp::wrap(code_prepare_plot_gen_c3graph(code));
+    rcpp_result_gen = Rcpp::wrap(code_prepare_factor_gen_c3graph(code));
     return rcpp_result_gen;
 END_RCPP
 }
-// code_prepare_plot_gen_graph
-Rcpp::List code_prepare_plot_gen_graph(StringVector code, bool show_circles, bool show_longest_path);
-RcppExport SEXP _GCATR_code_prepare_plot_gen_graph(SEXP codeSEXP, SEXP show_circlesSEXP, SEXP show_longest_pathSEXP) {
+// code_prepare_factor_gen_graph
+Rcpp::List code_prepare_factor_gen_graph(StringVector code, bool show_circles, bool show_longest_path);
+RcppExport SEXP _GCATR_code_prepare_factor_gen_graph(SEXP codeSEXP, SEXP show_circlesSEXP, SEXP show_longest_pathSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< StringVector >::type code(codeSEXP);
     Rcpp::traits::input_parameter< bool >::type show_circles(show_circlesSEXP);
     Rcpp::traits::input_parameter< bool >::type show_longest_path(show_longest_pathSEXP);
-    rcpp_result_gen = Rcpp::wrap(code_prepare_plot_gen_graph(code, show_circles, show_longest_path));
+    rcpp_result_gen = Rcpp::wrap(code_prepare_factor_gen_graph(code, show_circles, show_longest_path));
     return rcpp_result_gen;
 END_RCPP
 }
-// seq_prepare_plot_gen_graph
-Rcpp::List seq_prepare_plot_gen_graph(std::string seq, int word_length, bool show_circles, bool show_longest_path);
-RcppExport SEXP _GCATR_seq_prepare_plot_gen_graph(SEXP seqSEXP, SEXP word_lengthSEXP, SEXP show_circlesSEXP, SEXP show_longest_pathSEXP) {
+// seq_prepare_factor_gen_graph
+Rcpp::List seq_prepare_factor_gen_graph(std::string seq, int word_length, bool show_circles, bool show_longest_path);
+RcppExport SEXP _GCATR_seq_prepare_factor_gen_graph(SEXP seqSEXP, SEXP word_lengthSEXP, SEXP show_circlesSEXP, SEXP show_longest_pathSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -100,53 +100,53 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< int >::type word_length(word_lengthSEXP);
     Rcpp::traits::input_parameter< bool >::type show_circles(show_circlesSEXP);
     Rcpp::traits::input_parameter< bool >::type show_longest_path(show_longest_pathSEXP);
-    rcpp_result_gen = Rcpp::wrap(seq_prepare_plot_gen_graph(seq, word_length, show_circles, show_longest_path));
+    rcpp_result_gen = Rcpp::wrap(seq_prepare_factor_gen_graph(seq, word_length, show_circles, show_longest_path));
     return rcpp_result_gen;
 END_RCPP
 }
-// code_prepare_plot_all_circles
-Rcpp::List code_prepare_plot_all_circles(StringVector code);
-RcppExport SEXP _GCATR_code_prepare_plot_all_circles(SEXP codeSEXP) {
+// code_prepare_factor_all_circles
+Rcpp::List code_prepare_factor_all_circles(StringVector code);
+RcppExport SEXP _GCATR_code_prepare_factor_all_circles(SEXP codeSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< StringVector >::type code(codeSEXP);
-    rcpp_result_gen = Rcpp::wrap(code_prepare_plot_all_circles(code));
+    rcpp_result_gen = Rcpp::wrap(code_prepare_factor_all_circles(code));
     return rcpp_result_gen;
 END_RCPP
 }
-// seq_prepare_plot_all_circles
-Rcpp::List seq_prepare_plot_all_circles(std::string seq, int word_length);
-RcppExport SEXP _GCATR_seq_prepare_plot_all_circles(SEXP seqSEXP, SEXP word_lengthSEXP) {
+// seq_prepare_factor_all_circles
+Rcpp::List seq_prepare_factor_all_circles(std::string seq, int word_length);
+RcppExport SEXP _GCATR_seq_prepare_factor_all_circles(SEXP seqSEXP, SEXP word_lengthSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< std::string >::type seq(seqSEXP);
     Rcpp::traits::input_parameter< int >::type word_length(word_lengthSEXP);
-    rcpp_result_gen = Rcpp::wrap(seq_prepare_plot_all_circles(seq, word_length));
+    rcpp_result_gen = Rcpp::wrap(seq_prepare_factor_all_circles(seq, word_length));
     return rcpp_result_gen;
 END_RCPP
 }
-// code_prepare_plot_longest_path
-Rcpp::List code_prepare_plot_longest_path(StringVector code);
-RcppExport SEXP _GCATR_code_prepare_plot_longest_path(SEXP codeSEXP) {
+// code_prepare_factor_longest_path
+Rcpp::List code_prepare_factor_longest_path(StringVector code);
+RcppExport SEXP _GCATR_code_prepare_factor_longest_path(SEXP codeSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< StringVector >::type code(codeSEXP);
-    rcpp_result_gen = Rcpp::wrap(code_prepare_plot_longest_path(code));
+    rcpp_result_gen = Rcpp::wrap(code_prepare_factor_longest_path(code));
     return rcpp_result_gen;
 END_RCPP
 }
-// seq_prepare_plot_longest_path
-Rcpp::List seq_prepare_plot_longest_path(std::string seq, int word_length);
-RcppExport SEXP _GCATR_seq_prepare_plot_longest_path(SEXP seqSEXP, SEXP word_lengthSEXP) {
+// seq_prepare_factor_longest_path
+Rcpp::List seq_prepare_factor_longest_path(std::string seq, int word_length);
+RcppExport SEXP _GCATR_seq_prepare_factor_longest_path(SEXP seqSEXP, SEXP word_lengthSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< std::string >::type seq(seqSEXP);
     Rcpp::traits::input_parameter< int >::type word_length(word_lengthSEXP);
-    rcpp_result_gen = Rcpp::wrap(seq_prepare_plot_longest_path(seq, word_length));
+    rcpp_result_gen = Rcpp::wrap(seq_prepare_factor_longest_path(seq, word_length));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -255,14 +255,14 @@ static const R_CallMethodDef CallEntries[] = {
     {"_GCATR_code_start_bda", (DL_FUNC) &_GCATR_code_start_bda, 1},
     {"_GCATR_seq_start_bda", (DL_FUNC) &_GCATR_seq_start_bda, 2},
     {"_GCATR_run_bda", (DL_FUNC) &_GCATR_run_bda, 0},
-    {"_GCATR_seq_prepare_plot_gen_c3graph", (DL_FUNC) &_GCATR_seq_prepare_plot_gen_c3graph, 2},
-    {"_GCATR_code_prepare_plot_gen_c3graph", (DL_FUNC) &_GCATR_code_prepare_plot_gen_c3graph, 1},
-    {"_GCATR_code_prepare_plot_gen_graph", (DL_FUNC) &_GCATR_code_prepare_plot_gen_graph, 3},
-    {"_GCATR_seq_prepare_plot_gen_graph", (DL_FUNC) &_GCATR_seq_prepare_plot_gen_graph, 4},
-    {"_GCATR_code_prepare_plot_all_circles", (DL_FUNC) &_GCATR_code_prepare_plot_all_circles, 1},
-    {"_GCATR_seq_prepare_plot_all_circles", (DL_FUNC) &_GCATR_seq_prepare_plot_all_circles, 2},
-    {"_GCATR_code_prepare_plot_longest_path", (DL_FUNC) &_GCATR_code_prepare_plot_longest_path, 1},
-    {"_GCATR_seq_prepare_plot_longest_path", (DL_FUNC) &_GCATR_seq_prepare_plot_longest_path, 2},
+    {"_GCATR_seq_prepare_factor_gen_c3graph", (DL_FUNC) &_GCATR_seq_prepare_factor_gen_c3graph, 2},
+    {"_GCATR_code_prepare_factor_gen_c3graph", (DL_FUNC) &_GCATR_code_prepare_factor_gen_c3graph, 1},
+    {"_GCATR_code_prepare_factor_gen_graph", (DL_FUNC) &_GCATR_code_prepare_factor_gen_graph, 3},
+    {"_GCATR_seq_prepare_factor_gen_graph", (DL_FUNC) &_GCATR_seq_prepare_factor_gen_graph, 4},
+    {"_GCATR_code_prepare_factor_all_circles", (DL_FUNC) &_GCATR_code_prepare_factor_all_circles, 1},
+    {"_GCATR_seq_prepare_factor_all_circles", (DL_FUNC) &_GCATR_seq_prepare_factor_all_circles, 2},
+    {"_GCATR_code_prepare_factor_longest_path", (DL_FUNC) &_GCATR_code_prepare_factor_longest_path, 1},
+    {"_GCATR_seq_prepare_factor_longest_path", (DL_FUNC) &_GCATR_seq_prepare_factor_longest_path, 2},
     {"_GCATR_code_check_if_circular", (DL_FUNC) &_GCATR_code_check_if_circular, 1},
     {"_GCATR_code_check_if_cn_circular", (DL_FUNC) &_GCATR_code_check_if_cn_circular, 1},
     {"_GCATR_code_check_if_comma_free", (DL_FUNC) &_GCATR_code_check_if_comma_free, 1},

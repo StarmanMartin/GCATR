@@ -81,12 +81,12 @@ run_bda <- function() {
     .Call('_GCATR_run_bda', PACKAGE = 'GCATR')
 }
 
-seq_prepare_plot_gen_c3graph <- function(seq, word_length) {
-    .Call('_GCATR_seq_prepare_plot_gen_c3graph', PACKAGE = 'GCATR', seq, word_length)
+seq_prepare_factor_gen_c3graph <- function(seq, word_length) {
+    .Call('_GCATR_seq_prepare_factor_gen_c3graph', PACKAGE = 'GCATR', seq, word_length)
 }
 
-code_prepare_plot_gen_c3graph <- function(code) {
-    .Call('_GCATR_code_prepare_plot_gen_c3graph', PACKAGE = 'GCATR', code)
+code_prepare_factor_gen_c3graph <- function(code) {
+    .Call('_GCATR_code_prepare_factor_gen_c3graph', PACKAGE = 'GCATR', code)
 }
 
 #' Get edges of an generic graph
@@ -109,11 +109,11 @@ code_prepare_plot_gen_c3graph <- function(code) {
 #' @param code A vertor with codons.
 #' @return List: Edges and vertices of an generic graph. If A -> CG the Letter A is followed by the string CG.
 #' @examples
-#' code_prepare_plot_gen_graph(c("ACG", "CAG"))
+#' code_prepare_factor_gen_graph(c("ACG", "CAG"))
 #' 
 #' @export 
-code_prepare_plot_gen_graph <- function(code, show_circles = FALSE, show_longest_path = FALSE) {
-    .Call('_GCATR_code_prepare_plot_gen_graph', PACKAGE = 'GCATR', code, show_circles, show_longest_path)
+code_prepare_factor_gen_graph <- function(code, show_circles = FALSE, show_longest_path = FALSE) {
+    .Call('_GCATR_code_prepare_factor_gen_graph', PACKAGE = 'GCATR', code, show_circles, show_longest_path)
 }
 
 #' Get edges of an generic graph
@@ -137,11 +137,11 @@ code_prepare_plot_gen_graph <- function(code, show_circles = FALSE, show_longest
 #' @param word_length the length of the word.
 #' @return List: Edges and vertices of an generic graph. If A -> CG the Letter A is followed by the string CG.
 #' @examples
-#' seq_prepare_plot_gen_graph(c("ACG", "CAG"))
+#' seq_prepare_factor_gen_graph(c("ACG", "CAG"))
 #' 
 #' @export 
-seq_prepare_plot_gen_graph <- function(seq, word_length, show_circles = FALSE, show_longest_path = FALSE) {
-    .Call('_GCATR_seq_prepare_plot_gen_graph', PACKAGE = 'GCATR', seq, word_length, show_circles, show_longest_path)
+seq_prepare_factor_gen_graph <- function(seq, word_length, show_circles = FALSE, show_longest_path = FALSE) {
+    .Call('_GCATR_seq_prepare_factor_gen_graph', PACKAGE = 'GCATR', seq, word_length, show_circles, show_longest_path)
 }
 
 #' Returns a list of circles as vectors.
@@ -151,10 +151,10 @@ seq_prepare_plot_gen_graph <- function(seq, word_length, show_circles = FALSE, s
 #'
 #' @param code A vertor with codons.
 #' @examples
-#' code_prepare_plot_all_circles(c("ACG", "CAG"))
+#' code_prepare_factor_all_circles(c("ACG", "CAG"))
 #' 
-code_prepare_plot_all_circles <- function(code) {
-    .Call('_GCATR_code_prepare_plot_all_circles', PACKAGE = 'GCATR', code)
+code_prepare_factor_all_circles <- function(code) {
+    .Call('_GCATR_code_prepare_factor_all_circles', PACKAGE = 'GCATR', code)
 }
 
 #' Returns a list of circles as vectors.
@@ -165,10 +165,10 @@ code_prepare_plot_all_circles <- function(code) {
 #' @param seq a nucleotide sequence.
 #' @param word_length the length of the word.
 #' @examples
-#' seq_prepare_plot_all_circles("ACGCAG", 3)
+#' seq_prepare_factor_all_circles("ACGCAG", 3)
 #' 
-seq_prepare_plot_all_circles <- function(seq, word_length) {
-    .Call('_GCATR_seq_prepare_plot_all_circles', PACKAGE = 'GCATR', seq, word_length)
+seq_prepare_factor_all_circles <- function(seq, word_length) {
+    .Call('_GCATR_seq_prepare_factor_all_circles', PACKAGE = 'GCATR', seq, word_length)
 }
 
 #' Returns a list of circles as vectors.
@@ -178,10 +178,10 @@ seq_prepare_plot_all_circles <- function(seq, word_length) {
 #'
 #' @param code A vertor with codons.
 #' @examples
-#' code_prepare_plot_all_circles(c("ACG", "CAG"))
+#' code_prepare_factor_all_circles(c("ACG", "CAG"))
 #' 
-code_prepare_plot_longest_path <- function(code) {
-    .Call('_GCATR_code_prepare_plot_longest_path', PACKAGE = 'GCATR', code)
+code_prepare_factor_longest_path <- function(code) {
+    .Call('_GCATR_code_prepare_factor_longest_path', PACKAGE = 'GCATR', code)
 }
 
 #' Returns a list of circles as vectors.
@@ -192,10 +192,10 @@ code_prepare_plot_longest_path <- function(code) {
 #' @param seq a nucleotide sequence.
 #' @param word_length the length of the word.
 #' @examples
-#' seq_prepare_plot_all_circles("ACGCAG", 3)
+#' seq_prepare_factor_all_circles("ACGCAG", 3)
 #' 
-seq_prepare_plot_longest_path <- function(seq, word_length) {
-    .Call('_GCATR_seq_prepare_plot_longest_path', PACKAGE = 'GCATR', seq, word_length)
+seq_prepare_factor_longest_path <- function(seq, word_length) {
+    .Call('_GCATR_seq_prepare_factor_longest_path', PACKAGE = 'GCATR', seq, word_length)
 }
 
 #' Check if a code is circular.

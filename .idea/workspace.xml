@@ -10,7 +10,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="428808ef-23ef-4101-a605-146f2c23553c" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/R/RcppExports.R" beforeDir="false" afterPath="$PROJECT_DIR$/R/RcppExports.R" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GraphToolsAdapter.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/GraphToolsAdapter.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/RcppExports.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/RcppExports.cpp" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -21,7 +23,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="README.md" pinned="false" current-in-tab="true">
+      <file leaf-file-name="README.md" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
@@ -29,6 +31,15 @@
                 <caret line="98" column="6" selection-start-line="98" selection-start-column="6" selection-end-line="98" selection-end-column="6" />
               </first_editor>
               <second_editor />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GraphToolsAdapter.cpp" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/GraphToolsAdapter.cpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="255">
+              <caret line="15" column="45" selection-start-line="15" selection-start-column="45" selection-end-line="15" selection-end-column="45" />
             </state>
           </provider>
         </entry>
@@ -80,13 +91,13 @@
       <replace>plot</replace>
       <replace>$1return(plot_graph($2))</replace>
       <replace>factor</replace>
-      <replace>_factor_</replace>
       <replace>factor_</replace>
       <replace>Prepares a R [igraph](http://igraph.org/r/) object</replace>
       <replace>circles</replace>
       <replace>```R</replace>
       <replace># example:</replace>
       <replace># $1</replace>
+      <replace>_factor_</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -97,6 +108,7 @@
       <list>
         <option value="$PROJECT_DIR$/R/GraphPloter.R" />
         <option value="$PROJECT_DIR$/README.md" />
+        <option value="$PROJECT_DIR$/src/GraphToolsAdapter.cpp" />
       </list>
     </option>
   </component>
@@ -130,12 +142,13 @@
             <path>
               <item name="GCATR" type="b2602c69:ProjectViewProjectNode" />
               <item name="GCATR" type="462c0819:PsiDirectoryNode" />
-              <item name="man" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="GCATR" type="b2602c69:ProjectViewProjectNode" />
               <item name="GCATR" type="462c0819:PsiDirectoryNode" />
-              <item name="R" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="GCATCPP" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -172,12 +185,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1533642259947</updated>
-      <workItem from="1533642261284" duration="7252000" />
+      <workItem from="1533642261284" duration="7985000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="7252000" />
+    <option name="totallyTimeSpent" value="7985000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1874" height="1096" extended-state="6" />
@@ -235,6 +248,13 @@
             <caret line="98" column="6" selection-start-line="98" selection-start-column="6" selection-end-line="98" selection-end-column="6" />
           </first_editor>
           <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GraphToolsAdapter.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="15" column="45" selection-start-line="15" selection-start-column="45" selection-end-line="15" selection-end-column="45" />
         </state>
       </provider>
     </entry>

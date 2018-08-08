@@ -13,7 +13,7 @@
 
 using namespace Rcpp;
 
-std::vector<std::string> edges_to_string_vercor(const std::vector<graph::Edge>& edges) {
+std::vector<std::string> edges_to_string_vector(const std::vector <graph::Edge> &edges) {
   std::vector<std::string> res(edges.size()*2);
   
   for (struct { unsigned int edge; int vertex; } idx = {0, 0};
@@ -28,7 +28,7 @@ std::vector<std::string> edges_to_string_vercor(const std::vector<graph::Edge>& 
 
 std::vector<std::string> get_edges_of_gen_graph(const graph::Graph& g) {
   auto edges = g.get_edges();
-  return edges_to_string_vercor(edges);
+  return edges_to_string_vector(edges);
 }
 
 std::vector<std::string> get_vertices_of_gen_graphconst(const graph::Graph& g) {
@@ -54,17 +54,17 @@ Rcpp::List generate_named_vertices_and_edges_list(const graph::Graph& g) {
   return r_list;
 }
 
-Rcpp::List prepare_plot_all_circles(StdGenCode& gc) {
+Rcpp::List prepare_factor_all_circles(StdGenCode& gc) {
   graph::Graph graph_circular = miner::CircleMiner::mine_path_as_graph(&gc);
   return generate_named_vertices_and_edges_list(graph_circular);
 }
 
-Rcpp::List prepare_plot_longest_path(StdGenCode& gc) {
+Rcpp::List prepare_factor_longest_path(StdGenCode& gc) {
   graph::Graph graph_circular = miner::LongestPathMiner::mine_path_as_graph(&gc);
   return generate_named_vertices_and_edges_list(graph_circular);
 }
 
-Rcpp::List prepare_plot_gen_graph(StdGenCode& a, bool show_circles, bool show_longest_path) {
+Rcpp::List prepare_factor_gen_graph(StdGenCode& a, bool show_circles, bool show_longest_path) {
   graph::Graph g;
   g.parse_code(a);
   std::vector<std::string> circular_path;
@@ -96,14 +96,14 @@ Rcpp::List prepare_plot_gen_graph(StdGenCode& a, bool show_circles, bool show_lo
 
 
 
-Rcpp::List prepare_plot_gen_c3graph(StdGenCode& a) {
+Rcpp::List prepare_factor_gen_c3graph(StdGenCode& a) {
   graph::C3Graph g;
   g.parse_code(a);
   
   std::vector<std::vector<std::string>> edges_and_vertices = {
     get_edges_of_gen_graph(g),
     get_vertices_of_gen_graphconst(g),
-    edges_to_string_vercor(g.get_c3_edges())
+    edges_to_string_vector(g.get_c3_edges())
   };
   
   auto r_list = RAdapterUtils::as_R_matrix(edges_and_vertices);
@@ -113,16 +113,16 @@ Rcpp::List prepare_plot_gen_c3graph(StdGenCode& a) {
 }
 
 // [[Rcpp::export]]
-Rcpp::List seq_prepare_plot_gen_c3graph(std::string seq, int word_length) {
+Rcpp::List seq_prepare_factor_gen_c3graph(std::string seq, int word_length) {
   StdGenCode a(seq, word_length);
-  return prepare_plot_gen_c3graph(a);
+  return prepare_factor_gen_c3graph(a);
 }
 
 
 // [[Rcpp::export]]
-Rcpp::List code_prepare_plot_gen_c3graph(StringVector code) {
+Rcpp::List code_prepare_factor_gen_c3graph(StringVector code) {
   StdGenCode a(RAdapterUtils::as_cpp_string_vector(code));
-  return prepare_plot_gen_c3graph(a);
+  return prepare_factor_gen_c3graph(a);
 }
 
 //' Get edges of an generic graph
@@ -145,13 +145,13 @@ Rcpp::List code_prepare_plot_gen_c3graph(StringVector code) {
 //' @param code A vertor with codons.
 //' @return List: Edges and vertices of an generic graph. If A -> CG the Letter A is followed by the string CG.
 //' @examples
-//' code_prepare_plot_gen_graph(c("ACG", "CAG"))
+//' code_prepare_factor_gen_graph(c("ACG", "CAG"))
 //' 
 //' @export 
 // [[Rcpp::export]]
-Rcpp::List code_prepare_plot_gen_graph(StringVector code, bool show_circles=false, bool show_longest_path=false) {
+Rcpp::List code_prepare_factor_gen_graph(StringVector code, bool show_circles=false, bool show_longest_path=false) {
   StdGenCode a(RAdapterUtils::as_cpp_string_vector(code));
-  return prepare_plot_gen_graph(a, show_circles, show_longest_path);
+  return prepare_factor_gen_graph(a, show_circles, show_longest_path);
 }
 
 //' Get edges of an generic graph
@@ -175,13 +175,13 @@ Rcpp::List code_prepare_plot_gen_graph(StringVector code, bool show_circles=fals
 //' @param word_length the length of the word.
 //' @return List: Edges and vertices of an generic graph. If A -> CG the Letter A is followed by the string CG.
 //' @examples
-//' seq_prepare_plot_gen_graph(c("ACG", "CAG"))
+//' seq_prepare_factor_gen_graph(c("ACG", "CAG"))
 //' 
 //' @export 
 // [[Rcpp::export]]
-Rcpp::List seq_prepare_plot_gen_graph(std::string seq, int word_length, bool show_circles=false, bool show_longest_path=false) {
+Rcpp::List seq_prepare_factor_gen_graph(std::string seq, int word_length, bool show_circles=false, bool show_longest_path=false) {
   StdGenCode a(seq, word_length);
-  return prepare_plot_gen_graph(a, show_circles, show_longest_path);
+  return prepare_factor_gen_graph(a, show_circles, show_longest_path);
 }
 
 
@@ -194,12 +194,12 @@ Rcpp::List seq_prepare_plot_gen_graph(std::string seq, int word_length, bool sho
 //'
 //' @param code A vertor with codons.
 //' @examples
-//' code_prepare_plot_all_circles(c("ACG", "CAG"))
+//' code_prepare_factor_all_circles(c("ACG", "CAG"))
 //' 
 // [[Rcpp::export]]
-Rcpp::List code_prepare_plot_all_circles(StringVector code) {
+Rcpp::List code_prepare_factor_all_circles(StringVector code) {
   StdGenCode gc(RAdapterUtils::as_cpp_string_vector(code));
-  return prepare_plot_all_circles(gc);
+  return prepare_factor_all_circles(gc);
 }
 
 //' Returns a list of circles as vectors.
@@ -210,12 +210,12 @@ Rcpp::List code_prepare_plot_all_circles(StringVector code) {
 //' @param seq a nucleotide sequence.
 //' @param word_length the length of the word.
 //' @examples
-//' seq_prepare_plot_all_circles("ACGCAG", 3)
+//' seq_prepare_factor_all_circles("ACGCAG", 3)
 //' 
 // [[Rcpp::export]]
-Rcpp::List seq_prepare_plot_all_circles(std::string seq, int word_length) {
+Rcpp::List seq_prepare_factor_all_circles(std::string seq, int word_length) {
   StdGenCode gc(seq, word_length);
-  return prepare_plot_all_circles(gc);
+  return prepare_factor_all_circles(gc);
 }
 
 
@@ -226,12 +226,12 @@ Rcpp::List seq_prepare_plot_all_circles(std::string seq, int word_length) {
 //'
 //' @param code A vertor with codons.
 //' @examples
-//' code_prepare_plot_all_circles(c("ACG", "CAG"))
+//' code_prepare_factor_all_circles(c("ACG", "CAG"))
 //' 
 // [[Rcpp::export]]
-Rcpp::List code_prepare_plot_longest_path(StringVector code) {
+Rcpp::List code_prepare_factor_longest_path(StringVector code) {
   StdGenCode gc(RAdapterUtils::as_cpp_string_vector(code));
-  return prepare_plot_longest_path(gc);
+  return prepare_factor_longest_path(gc);
 }
 
 //' Returns a list of circles as vectors.
@@ -242,10 +242,10 @@ Rcpp::List code_prepare_plot_longest_path(StringVector code) {
 //' @param seq a nucleotide sequence.
 //' @param word_length the length of the word.
 //' @examples
-//' seq_prepare_plot_all_circles("ACGCAG", 3)
+//' seq_prepare_factor_all_circles("ACGCAG", 3)
 //' 
 // [[Rcpp::export]]
-Rcpp::List seq_prepare_plot_longest_path(std::string seq, int word_length) {
+Rcpp::List seq_prepare_factor_longest_path(std::string seq, int word_length) {
   StdGenCode gc(seq, word_length);
-  return prepare_plot_longest_path(gc);
+  return prepare_factor_longest_path(gc);
 }
