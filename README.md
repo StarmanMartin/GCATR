@@ -9,7 +9,7 @@ This project contains the source code for R version of the Genetic Code Analysis
 GCATR is available for R version 3.5 and higher. It requires a C++11 (or later) compiler and [Rcpp (>= 0.12.18)](https://cran.r-project.org/web/packages/Rcpp/index.html) installed on your machine. 
 Furthermore the current version of devtools needs to be installed on your computer. Install the R package by:
  * starting the a R console and run:
-   ```bash
+   ```R
    install.packages("devtools")
    devtools::install_github("StarmanMartin/GCATR")
    ```
@@ -29,7 +29,7 @@ by pairs of i-nucleotides and (n-i)-nucleotides for 0 < i < n.<br/>
 *show_longest_path* &rarr; [bool] If true the all edges part of the longest path are colored blue.
 ####Return:
 A [igraph](http://igraph.org/r/) object
-   ```bash
+   ```R
       code_factor_graph <- function(code, show_circles=FALSE, show_longest_path=FALSE)
       #see:
       ?code_factor_graph
@@ -44,7 +44,7 @@ the circular permutation of the code is not a circular code. Only works for word
 *code* &rarr; [string vector] The DNA or RNA code as list represented by the graph.  
 ####Return:
 A [igraph](http://igraph.org/r/) object
-   ```bash
+   ```R
       code_factor_c3graph <- function(code)
       #see:
       ?code_factor_c3graph
@@ -56,7 +56,7 @@ G(X) if existing.
 *code* &rarr; [string vector] The DNA or RNA code as list represented by the graph. 
 ####Return:
 A [igraph](http://igraph.org/r/) object
-  ```bash
+  ```R
       code_factor_circles <- function(code)
       #see:
       ?code_factor_circles
@@ -85,7 +85,7 @@ by pairs of i-nucleotides and (n-i)-nucleotides for 0 < i < n.<br/>
 *show_longest_path* &rarr; [bool] If true the all edges part of the longest path are colored blue.
 ####Return:
 A [igraph](http://igraph.org/r/) object
-   ```bash
+   ```R
       seq_factor_graph <- function(seq, word_length=3, show_circles=FALSE, show_longest_path=FALSE)
       #see:
       ?seq_factor_graph
@@ -100,7 +100,7 @@ the circular permutation of the code is not a circular code. Only works for word
 *seq* &rarr; [string] A DNA or RNA sequence used to extract the code represented by the graph. 
 ####Return:
 A [igraph](http://igraph.org/r/) object 
-   ```bash
+   ```R
       seq_factor_c3graph <- function(seq)
       #see:
       ?seq_factor_c3graph
@@ -113,7 +113,7 @@ G(X) if existing.
 *word_length* &rarr; [unsigned int] The length of the words in the sequence.
 ####Return:
 A [igraph](http://igraph.org/r/) object
-   ```bash
+   ```R
       seq_factor_circles <- function(seq, word_length=3)
       #see:
       ?seq_factor_circles
@@ -126,7 +126,7 @@ G(X) if existing.
 *word_length* &rarr; [unsigned int] The length of the words in the sequence.
 ####Return:
 A [igraph](http://igraph.org/r/) object
-   ```bash
+   ```R
       seq_factor_longest_path <- function(seq, word_length=3)
       #see:
       ?seq_factor_longest_path
