@@ -31,8 +31,8 @@ by pairs of i-nucleotides and (n-i)-nucleotides for 0 < i < n.<br/>
 A [igraph](http://igraph.org/r/) object
    ```R
       code_factor_graph <- function(code, show_circles=FALSE, show_longest_path=FALSE)
-      #see:
-      ?code_factor_graph
+      # example:
+      plot(code_factor_graph(c("ACG", "CGA")))
    ```
 ### code_factor_c3graph
 Prepares a R [igraph](http://igraph.org/r/) object. 
@@ -46,8 +46,8 @@ the circular permutation of the code is not a circular code. Only works for word
 A [igraph](http://igraph.org/r/) object
    ```R
       code_factor_c3graph <- function(code)
-      #see:
-      ?code_factor_c3graph
+      # example:
+      plot(code_factor_c3graph(c("ACG", "CGA")))
    ```
 ### code_factor_circles
 Prepares a R [igraph](http://igraph.org/r/) object. Returns only the circles in
@@ -58,8 +58,8 @@ G(X) if existing.
 A [igraph](http://igraph.org/r/) object
   ```R
       code_factor_circles <- function(code)
-      #see:
-      ?code_factor_circles
+      # example:
+      plot(code_factor_circles(c("ACG", "CGA")))
    ```
 ### code_factor_longest_path
 Prepares a R [igraph](http://igraph.org/r/) object. Returns only the longest Path in
@@ -70,8 +70,8 @@ G(X) if existing.
 A [igraph](http://igraph.org/r/) object
   ```R
       code_factor_longest_path <- function(code)
-      #see:
-      ?code_factor_longest_path
+      # example:
+      plot(code_factor_longest_path(c("ACG", "CGT")))
    ```
 ### seq_factor_graph
 Prepares a R [igraph](http://igraph.org/r/) object. The graph G(X) is called the representing graph of X or the graph associated to X.
@@ -87,8 +87,8 @@ by pairs of i-nucleotides and (n-i)-nucleotides for 0 < i < n.<br/>
 A [igraph](http://igraph.org/r/) object
    ```R
       seq_factor_graph <- function(seq, word_length=3, show_circles=FALSE, show_longest_path=FALSE)
-      #see:
-      ?seq_factor_graph
+      # example:
+      plot(seq_factor_graph("ACGCGA", 3))
    ```
 ### code_factor_c3graph
 Prepares a R [igraph](http://igraph.org/r/) object. 
@@ -102,8 +102,8 @@ the circular permutation of the code is not a circular code. Only works for word
 A [igraph](http://igraph.org/r/) object 
    ```R
       seq_factor_c3graph <- function(seq)
-      #see:
-      ?seq_factor_c3graph
+      # example:
+      plot(seq_factor_c3graph("ACGCGA"))
    ```
 ### seq_factor_circles
 Prepares a R [igraph](http://igraph.org/r/) object. Returns only the circles in
@@ -115,8 +115,8 @@ G(X) if existing.
 A [igraph](http://igraph.org/r/) object
    ```R
       seq_factor_circles <- function(seq, word_length=3)
-      #see:
-      ?seq_factor_circles
+      # example:
+      plot(seq_factor_circles("ACGCGA", 3))
    ```
 ### seq_factor_longest_path
 Prepares a R [igraph](http://igraph.org/r/) object. Returns only the longest Path in
@@ -128,8 +128,8 @@ G(X) if existing.
 A [igraph](http://igraph.org/r/) object
    ```R
       seq_factor_longest_path <- function(seq, word_length=3)
-      #see:
-      ?seq_factor_longest_path
+      # example:
+      plot(seq_factor_longest_path("ACGCGT", 3))
    ```
 
 ## Analysis Tool
