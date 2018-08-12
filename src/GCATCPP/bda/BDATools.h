@@ -42,11 +42,13 @@ namespace BDA {
 
     public:
 
-        BDATools(std::shared_ptr<AbstractGenCode>);
+        explicit BDATools(std::shared_ptr<AbstractGenCode>);
 
         bool add_rule(unsigned int i_1, unsigned int i_2, char Q_11, char Q_12, char Q_21, char Q_22);
 
         bool add_rule(BDA_Rule rule);
+
+        std::shared_ptr<AbstractGenCode> get_code();
 
         std::vector<std::string> run_bda_for_code();
     };

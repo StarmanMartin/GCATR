@@ -7,10 +7,10 @@
 code_check_if_cn_circular(code)
 }
 \arguments{
-\item{code}{A vertor with codons.}
+\item{code}{A vector with codons.}
 }
 \value{
-Boolean value. True if the code C_{n} circular.
+Boolean vector. True if the code C_{n} circular.
 }
 \description{
 This function checks the same property as \code{\link{check_if_circular}}. 

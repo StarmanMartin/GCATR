@@ -66,6 +66,9 @@ std::vector<std::string> BDATools::run_bda_for_code() {
     return result_vec;
 }
 
+std::shared_ptr<AbstractGenCode> BDATools::get_code() {
+    return this->code;
+}
 
 bool BDATools::validate_rule(BDA_Rule rule) {
     if (rule.i_1 == rule.i_2) {

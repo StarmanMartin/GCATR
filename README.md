@@ -16,6 +16,41 @@ Furthermore the current version of devtools needs to be installed on your comput
 
  
 # Components
+
+## BDA
+
+
+
+## Codes
+
+### get_rna_codon_list
+
+This function makes a List of all RNA codon. It will generate the following list:<br/>
+_UUU UCU UAU UGU UUC UCC UAC UGC UUA UCA UAA UGA UUG UCG UAG UGG CUU CCU CAU CGU CUC CCC CAC CGC CUA CCA CAA CGA CUG CCG CAG CGG
+AUU ACU AAU AGU AUC ACC AAC AGC AUA ACA AAA AGA AUG ACG AAG AGG GUU GCU GAU GGU GUC GCC GAC GGC GUA GCA GAA GGA GUG GCG GAG GGG_
+#### Return:
+A vector object with all RNA codons
+
+    ```R
+        get_rna_codon_list <- function()
+        # examples
+        res <- get_rna_codon_list()
+    ```
+   
+### get_rna_codon_table
+
+![Genetic Code Analysis Toolkit Logo](/man/resources/bio/gcat/codon_table.jpg?raw=true)<br/><br/>
+Returns the tables displayed in the table above. The tables will be stored in a matrix object. 
+
+#### Return:
+A matrix object with all RNA codons
+
+    ```R
+        get_rna_codon_table <- function()
+        # examples
+        res <- get_rna_codon_table()
+    ```
+   
 ## Graph tools
 
 ### code_factor_graph
@@ -90,9 +125,9 @@ A [igraph](http://igraph.org/r/) object
       # example:
       plot(seq_factor_graph("ACGCGA", 3))
    ```
-### code_factor_c3graph
+### seq_factor_c3graph
 Prepares a R [igraph](http://igraph.org/r/) object. 
-Extents the Graph G(X) from _code_factor_graph_ by the so called C3 edges.
+Extents the Graph G(X) from _seq_factor_graph_ by the so called C3 edges.
 If the graph shows a cycle with alternating edges of the C3 edges and the usual edges follows that
 the circular permutation of the code is not a circular code. Only works for word length of 3.<br/>
 *2007 E. FIMMEL, C. J. MICHEL, AND L. STRÜNGMANN. N-nucleotide circular codes in graph theory*

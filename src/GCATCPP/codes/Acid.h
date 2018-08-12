@@ -20,8 +20,8 @@ namespace acid {
 
     const int acid_base_length = 4;
 
-    const char dna[acid_base_length] = {THYMINE, ADENINE, CYTOSINE, GUANINE};
-    const char rna[acid_base_length] = {URACIL, ADENINE, CYTOSINE, GUANINE};
+    const char dna[acid_base_length] = {THYMINE, CYTOSINE, ADENINE, GUANINE};
+    const char rna[acid_base_length] = {URACIL, CYTOSINE, ADENINE, GUANINE};
 
 
     const std::map<bases, const std::string> bases_name_list{

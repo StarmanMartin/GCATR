@@ -7,7 +7,7 @@
 code_get_all_logest_path_as_vector(code)
 }
 \arguments{
-\item{code}{A vertor with codons.}
+\item{code}{A vector with codons.}
 }
 \value{
 Boolean value. True if the code self complementary.

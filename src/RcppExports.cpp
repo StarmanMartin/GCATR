@@ -5,9 +5,9 @@
 
 using namespace Rcpp;
 
-// add_bda_rule
-bool add_bda_rule(int i_1, int i_2, std::string Q_11, std::string Q_12, std::string Q_21, std::string Q_22);
-RcppExport SEXP _GCATR_add_bda_rule(SEXP i_1SEXP, SEXP i_2SEXP, SEXP Q_11SEXP, SEXP Q_12SEXP, SEXP Q_21SEXP, SEXP Q_22SEXP) {
+// add_bda
+bool add_bda(int i_1, int i_2, std::string Q_11, std::string Q_12, std::string Q_21, std::string Q_22);
+RcppExport SEXP _GCATR_add_bda(SEXP i_1SEXP, SEXP i_2SEXP, SEXP Q_11SEXP, SEXP Q_12SEXP, SEXP Q_21SEXP, SEXP Q_22SEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -17,7 +17,7 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< std::string >::type Q_12(Q_12SEXP);
     Rcpp::traits::input_parameter< std::string >::type Q_21(Q_21SEXP);
     Rcpp::traits::input_parameter< std::string >::type Q_22(Q_22SEXP);
-    rcpp_result_gen = Rcpp::wrap(add_bda_rule(i_1, i_2, Q_11, Q_12, Q_21, Q_22));
+    rcpp_result_gen = Rcpp::wrap(add_bda(i_1, i_2, Q_11, Q_12, Q_21, Q_22));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -33,19 +33,19 @@ BEGIN_RCPP
 END_RCPP
 }
 // seq_start_bda
-bool seq_start_bda(std::string seq, int word_lenth);
-RcppExport SEXP _GCATR_seq_start_bda(SEXP seqSEXP, SEXP word_lenthSEXP) {
+bool seq_start_bda(std::string seq, int word_length);
+RcppExport SEXP _GCATR_seq_start_bda(SEXP seqSEXP, SEXP word_lengthSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< std::string >::type seq(seqSEXP);
-    Rcpp::traits::input_parameter< int >::type word_lenth(word_lenthSEXP);
-    rcpp_result_gen = Rcpp::wrap(seq_start_bda(seq, word_lenth));
+    Rcpp::traits::input_parameter< int >::type word_length(word_lengthSEXP);
+    rcpp_result_gen = Rcpp::wrap(seq_start_bda(seq, word_length));
     return rcpp_result_gen;
 END_RCPP
 }
 // run_bda
-StringVector run_bda();
+List run_bda();
 RcppExport SEXP _GCATR_run_bda() {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
@@ -249,9 +249,29 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// get_dna_bases
+Rcpp::StringVector get_dna_bases();
+RcppExport SEXP _GCATR_get_dna_bases() {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    rcpp_result_gen = Rcpp::wrap(get_dna_bases());
+    return rcpp_result_gen;
+END_RCPP
+}
+// get_rna_bases
+Rcpp::StringVector get_rna_bases();
+RcppExport SEXP _GCATR_get_rna_bases() {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    rcpp_result_gen = Rcpp::wrap(get_rna_bases());
+    return rcpp_result_gen;
+END_RCPP
+}
 
 static const R_CallMethodDef CallEntries[] = {
-    {"_GCATR_add_bda_rule", (DL_FUNC) &_GCATR_add_bda_rule, 6},
+    {"_GCATR_add_bda", (DL_FUNC) &_GCATR_add_bda, 6},
     {"_GCATR_code_start_bda", (DL_FUNC) &_GCATR_code_start_bda, 1},
     {"_GCATR_seq_start_bda", (DL_FUNC) &_GCATR_seq_start_bda, 2},
     {"_GCATR_run_bda", (DL_FUNC) &_GCATR_run_bda, 0},
@@ -272,6 +292,8 @@ static const R_CallMethodDef CallEntries[] = {
     {"_GCATR_code_get_all_logest_path_as_vector", (DL_FUNC) &_GCATR_code_get_all_logest_path_as_vector, 1},
     {"_GCATR_code_get_one_circle_as_vector", (DL_FUNC) &_GCATR_code_get_one_circle_as_vector, 1},
     {"_GCATR_code_get_all_circle_as_vector", (DL_FUNC) &_GCATR_code_get_all_circle_as_vector, 1},
+    {"_GCATR_get_dna_bases", (DL_FUNC) &_GCATR_get_dna_bases, 0},
+    {"_GCATR_get_rna_bases", (DL_FUNC) &_GCATR_get_rna_bases, 0},
     {NULL, NULL, 0}
 };
 

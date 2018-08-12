@@ -147,7 +147,6 @@ Rcpp::List code_prepare_factor_gen_c3graph(StringVector code) {
 //' @examples
 //' code_prepare_factor_gen_graph(c("ACG", "CAG"))
 //' 
-//' @export 
 // [[Rcpp::export]]
 Rcpp::List code_prepare_factor_gen_graph(StringVector code, bool show_circles=false, bool show_longest_path=false) {
   StdGenCode a(RAdapterUtils::as_cpp_string_vector(code));
@@ -177,7 +176,6 @@ Rcpp::List code_prepare_factor_gen_graph(StringVector code, bool show_circles=fa
 //' @examples
 //' seq_prepare_factor_gen_graph(c("ACG", "CAG"))
 //' 
-//' @export 
 // [[Rcpp::export]]
 Rcpp::List seq_prepare_factor_gen_graph(std::string seq, int word_length, bool show_circles=false, bool show_longest_path=false) {
   StdGenCode a(seq, word_length);

@@ -34,8 +34,8 @@ bool code_check_if_circular(StringVector code) {
 //' Yet,  this function checks the property for for all circular permutations of the codons in the code.
 //' \emph{2007 Christian MICHEL. CIRCULAR CODES IN GENES}
 //'
-//' @param code A vertor with codons.
-//' @return Boolean value. True if the code C_{n} circular.
+//' @param code A vector with codons.
+//' @return Boolean vector. True if the code C_{n} circular.
 //' @examples
 //' code_check_if_cn_circular(c("ACG", "CAG"))
 //' 
@@ -52,7 +52,7 @@ bool code_check_if_cn_circular(StringVector code) {
 //' Comma free is a stronger restricted version of the circular code property.
 //' \emph{2007 Christian MICHEL. CIRCULAR CODES IN GENES}
 //'
-//' @param code A vertor with codons.
+//' @param code A vector with codons.
 //' @return Boolean value. True if the code self complementary.
 //' @examples
 //' code_check_if_comma_free(c("ACG", "CAG"))
@@ -72,7 +72,7 @@ bool code_check_if_comma_free(StringVector code) {
 //' any codon (word) the corresponding anti-codons. 
 //' \emph{2007 Christian MICHEL. CIRCULAR CODES IN GENES}
 //'
-//' @param code A vertor with codons.
+//' @param code A vector with codons.
 //' @return Boolean value. True if the code self complementary.
 //' @examples
 //' code_check_if_self_complementary(c("ACG", "CAG"))
@@ -90,7 +90,7 @@ bool code_check_if_self_complementary(StringVector code) {
 //' any codon (word) the corresponding anti-codons. 
 //' \emph{2007 Christian MICHEL. CIRCULAR CODES IN GENES}
 //'
-//' @param code A vertor with codons.
+//' @param code A vector with codons.
 //' @return Boolean value. True if the code self complementary.
 //' @examples
 //' code_check_if_self_complementary(c("ACG", "CAG"))
@@ -131,7 +131,7 @@ StringVector code_get_one_logest_path_as_vector(StringVector code) {
 //' any codon (word) the corresponding anti-codons. 
 //' \emph{2007 Christian MICHEL. CIRCULAR CODES IN GENES}
 //'
-//' @param code A vertor with codons.
+//' @param code A vector with codons.
 //' @return Boolean value. True if the code self complementary.
 //' @examples
 //' code_check_if_self_complementary(c("ACG", "CAG"))
@@ -154,7 +154,7 @@ Rcpp::List code_get_all_logest_path_as_vector(StringVector code) {
 //' any codon (word) the corresponding anti-codons. 
 //' \emph{2007 Christian MICHEL. CIRCULAR CODES IN GENES}
 //'
-//' @param code A vertor with codons.
+//' @param code A vector with codons.
 //' @return Boolean value. True if the code self complementary.
 //' @examples
 //' code_check_if_self_complementary(c("ACG", "CAG"))
@@ -193,3 +193,24 @@ Rcpp::List code_get_all_circle_as_vector(StringVector code) {
   return RAdapterUtils::as_R_matrix(circle_path_collection);
 }
 
+//' @export 
+// [[Rcpp::export]]
+Rcpp::StringVector get_dna_bases() {
+  std::vector<std::string> result(acid::acid_base_length);
+  for(int i = 0; i < acid::acid_base_length; ++i) {
+    result[i] = acid::dna[i];
+  }
+  
+  return RAdapterUtils::as_r_string_vector(result);
+}
+
+//' @export 
+// [[Rcpp::export]]
+Rcpp::StringVector get_rna_bases() {
+  std::vector<std::string> result(acid::acid_base_length);
+  for(int i = 0; i < acid::acid_base_length; ++i) {
+    result[i] = acid::rna[i];
+  }
+  
+  return RAdapterUtils::as_r_string_vector(result);
+}

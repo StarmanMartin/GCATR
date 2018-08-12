@@ -1446,6 +1446,7 @@
       <w>addNextMethod</w>
       <w>addTaskCallback</w>
       <w>addTclPath</w>
+      <w>add_bda_rule</w>
       <w>add_datalist</w>
       <w>add_edges</w>
       <w>add_headers</w>
@@ -1592,6 +1593,7 @@
       <w>armadillo_version</w>
       <w>arpack</w>
       <w>arpack_defaults</w>
+      <w>arrangeGrob</w>
       <w>arrangeWindows</w>
       <w>array</w>
       <w>arrayInd</w>
@@ -2362,7 +2364,23 @@
       <w>cocitation</w>
       <w>code</w>
       <w>code.length</w>
+      <w>code_check_if_circular</w>
+      <w>code_check_if_cn_circular</w>
+      <w>code_check_if_comma_free</w>
+      <w>code_check_if_self_complementary</w>
+      <w>code_get_acid</w>
+      <w>code_get_all_circle_as_vector</w>
+      <w>code_get_all_logest_path_as_vector</w>
+      <w>code_get_one_circle_as_vector</w>
+      <w>code_get_one_logest_path_as_vector</w>
       <w>code_len</w>
+      <w>code_plot_c3graph</w>
+      <w>code_plot_circels</w>
+      <w>code_plot_graph</w>
+      <w>code_plot_longest_path</w>
+      <w>code_prepare_plot_gen_c3graph</w>
+      <w>code_prepare_plot_gen_graph</w>
+      <w>code_start_bda</w>
       <w>codetools</w>
       <w>codoc</w>
       <w>codocClasses</w>
@@ -2407,6 +2425,7 @@
       <w>colours</w>
       <w>columb</w>
       <w>columb.polys</w>
+      <w>combine</w>
       <w>combine.4thcorner</w>
       <w>combine.randtest.rlq</w>
       <w>combine_styles</w>
@@ -3033,6 +3052,7 @@
       <w>el</w>
       <w>elNamed</w>
       <w>elec88</w>
+      <w>ellipseGrob</w>
       <w>ellipsoidPoints</w>
       <w>ellipsoidhull</w>
       <w>em</w>
@@ -3693,6 +3713,7 @@
       <w>ginv</w>
       <w>girth</w>
       <w>git2r</w>
+      <w>git_config_files</w>
       <w>github_document</w>
       <w>github_pat</w>
       <w>github_pull</w>
@@ -3720,7 +3741,10 @@
       <w>glsEstimate</w>
       <w>glsStruct</w>
       <w>glue</w>
+      <w>glue_col</w>
+      <w>glue_collapse</w>
       <w>glue_data</w>
+      <w>glue_data_col</w>
       <w>glue_data_sql</w>
       <w>glue_sql</w>
       <w>gnls</w>
@@ -3838,6 +3862,7 @@
       <w>grid.DLapply</w>
       <w>grid.abline</w>
       <w>grid.add</w>
+      <w>grid.arrange</w>
       <w>grid.arrows</w>
       <w>grid.bezier</w>
       <w>grid.cap</w>
@@ -3855,6 +3880,7 @@
       <w>grid.display.list</w>
       <w>grid.draw</w>
       <w>grid.edit</w>
+      <w>grid.ellipse</w>
       <w>grid.force</w>
       <w>grid.frame</w>
       <w>grid.function</w>
@@ -3876,6 +3902,7 @@
       <w>grid.move.to</w>
       <w>grid.multipanel</w>
       <w>grid.newpage</w>
+      <w>grid.ngon</w>
       <w>grid.null</w>
       <w>grid.pack</w>
       <w>grid.panel</w>
@@ -3899,10 +3926,12 @@
       <w>grid.show.layout</w>
       <w>grid.show.viewport</w>
       <w>grid.strip</w>
+      <w>grid.table</w>
       <w>grid.text</w>
       <w>grid.xaxis</w>
       <w>grid.xspline</w>
       <w>grid.yaxis</w>
+      <w>gridExtra</w>
       <w>gridrowcol</w>
       <w>grob</w>
       <w>grobAscent</w>
@@ -3927,6 +3956,26 @@
       <w>gsub_file</w>
       <w>gsub_files</w>
       <w>gsummary</w>
+      <w>gtable</w>
+      <w>gtable_add_col_space</w>
+      <w>gtable_add_cols</w>
+      <w>gtable_add_grob</w>
+      <w>gtable_add_padding</w>
+      <w>gtable_add_row_space</w>
+      <w>gtable_add_rows</w>
+      <w>gtable_cbind</w>
+      <w>gtable_col</w>
+      <w>gtable_col_spacer</w>
+      <w>gtable_combine</w>
+      <w>gtable_filter</w>
+      <w>gtable_height</w>
+      <w>gtable_matrix</w>
+      <w>gtable_rbind</w>
+      <w>gtable_row</w>
+      <w>gtable_row_spacer</w>
+      <w>gtable_show_layout</w>
+      <w>gtable_trim</w>
+      <w>gtable_width</w>
       <w>guess_media</w>
       <w>guess_type</w>
       <w>gzcon</w>
@@ -4092,6 +4141,7 @@
       <w>identifiler</w>
       <w>identify</w>
       <w>identity</w>
+      <w>identity_transformer</w>
       <w>ie_get_proxy_for_url</w>
       <w>ie_proxy_info</w>
       <w>ifelse</w>
@@ -4322,6 +4372,7 @@
       <w>is.function</w>
       <w>is.graphical.degree.sequence</w>
       <w>is.grob</w>
+      <w>is.gtable</w>
       <w>is.hierarchical</w>
       <w>is.igraph</w>
       <w>is.infinite</w>
@@ -4566,6 +4617,7 @@
       <w>is_syntactic_literal</w>
       <w>is_testing</w>
       <w>is_testthat</w>
+      <w>is_tree</w>
       <w>is_true</w>
       <w>is_unary_lang</w>
       <w>is_unix</w>
@@ -4703,6 +4755,7 @@
       <w>larrows</w>
       <w>lascaux</w>
       <w>last_cit</w>
+      <w>last_commit</w>
       <w>lastcit.game</w>
       <w>latexToUtf8</w>
       <w>latex_dependency</w>
@@ -4945,6 +4998,7 @@
       <w>ls.print</w>
       <w>ls.size</w>
       <w>ls.str</w>
+      <w>ls_tree</w>
       <w>lsegments</w>
       <w>lseqinr</w>
       <w>lsf.str</w>
@@ -5047,6 +5101,7 @@
       <w>markdown_man</w>
       <w>markdown_text</w>
       <w>markdown_xml</w>
+      <w>marrangeGrob</w>
       <w>mase</w>
       <w>mat.or.vec</w>
       <w>match</w>
@@ -5360,6 +5415,7 @@
       <w>nexus_search</w>
       <w>nfGroupedData</w>
       <w>ngettext</w>
+      <w>ngonGrob</w>
       <w>nhtemp</w>
       <w>nicely</w>
       <w>niche</w>
@@ -5831,6 +5887,7 @@
       <w>polySpline</w>
       <w>polygon</w>
       <w>polygonGrob</w>
+      <w>polygon_regular</w>
       <w>polylineGrob</w>
       <w>polym</w>
       <w>polypath</w>
@@ -6263,6 +6320,7 @@
       <w>registerS3methods</w>
       <w>registeredRenderers</w>
       <w>regmatches</w>
+      <w>reinstall_tinytex</w>
       <w>relative_to</w>
       <w>release</w>
       <w>release_checks</w>
@@ -6330,6 +6388,7 @@
       <w>replicate</w>
       <w>replications</w>
       <w>repository</w>
+      <w>repository_head</w>
       <w>representation</w>
       <w>require</w>
       <w>require2</w>
@@ -6482,6 +6541,7 @@
       <w>rug</w>
       <w>rule</w>
       <w>run</w>
+      <w>run_bda</w>
       <w>run_examples</w>
       <w>runif</w>
       <w>runmad</w>
@@ -6666,6 +6726,13 @@
       <w>seq2_along</w>
       <w>seq_along</w>
       <w>seq_len</w>
+      <w>seq_plot_c3graph</w>
+      <w>seq_plot_circels</w>
+      <w>seq_plot_graph</w>
+      <w>seq_plot_longest_path</w>
+      <w>seq_prepare_plot_gen_c3graph</w>
+      <w>seq_prepare_plot_gen_graph</w>
+      <w>seq_start_bda</w>
       <w>seqinr</w>
       <w>sequence</w>
       <w>sequential_pal</w>
@@ -6750,6 +6817,7 @@
       <w>setup_rtools</w>
       <w>setwd</w>
       <w>shQuote</w>
+      <w>sha</w>
       <w>sha1</w>
       <w>sha1_hash</w>
       <w>sha2</w>
@@ -6973,6 +7041,7 @@
       <w>srcfilealias</w>
       <w>srcfilecopy</w>
       <w>srcref</w>
+      <w>ssh_path</w>
       <w>ssl_cert_locations</w>
       <w>stCuts</w>
       <w>stMincuts</w>
@@ -6992,8 +7061,10 @@
       <w>startDynamicHelp</w>
       <w>startsWith</w>
       <w>stash</w>
+      <w>stash_apply</w>
       <w>stash_drop</w>
       <w>stash_list</w>
+      <w>stash_pop</w>
       <w>stat.anova</w>
       <w>statefig</w>
       <w>static.fitness.game</w>
@@ -7451,6 +7522,7 @@
       <w>table.paint</w>
       <w>table.phylog</w>
       <w>table.value</w>
+      <w>tableGrob</w>
       <w>tablecode</w>
       <w>tabulate</w>
       <w>tag</w>
@@ -7817,6 +7889,7 @@
       <w>tkyview</w>
       <w>tkyview.moveto</w>
       <w>tkyview.scroll</w>
+      <w>tl_pkgs</w>
       <w>tl_sizes</w>
       <w>tlmgr</w>
       <w>tlmgr_conf</w>
@@ -7919,6 +7992,8 @@
       <w>tsboot</w>
       <w>tsdiag</w>
       <w>tsp</w>
+      <w>ttheme_default</w>
+      <w>ttheme_minimal</w>
       <w>ttkbutton</w>
       <w>ttkcheckbutton</w>
       <w>ttkcombobox</w>

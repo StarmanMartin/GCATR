@@ -7,7 +7,7 @@
 code_check_if_comma_free(code)
 }
 \arguments{
-\item{code}{A vertor with codons.}
+\item{code}{A vector with codons.}
 }
 \value{
 Boolean value. True if the code self complementary.
