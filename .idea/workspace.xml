@@ -15,8 +15,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="428808ef-23ef-4101-a605-146f2c23553c" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/R/BdaTools.R" beforeDir="false" afterPath="$PROJECT_DIR$/R/BdaTools.R" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GCATCPP/bda/BDATools.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/GCATCPP/bda/BDATools.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/man/resources/bio/gcat/bda_diagramm.docx" beforeDir="false" afterPath="$PROJECT_DIR$/man/resources/bio/gcat/bda_diagramm.docx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/man/resources/bio/gcat/~$a_diagramm.docx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/BDAToolsAdapter.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/BDAToolsAdapter.cpp" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/src/GCATCPP/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -35,8 +39,8 @@
               <entry file="file://$PROJECT_DIR$/README.md">
                 <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
                   <state split_layout="SPLIT">
-                    <first_editor relative-caret-position="769">
-                      <caret line="168" column="78" selection-start-line="168" selection-start-column="78" selection-end-line="168" selection-end-column="78" />
+                    <first_editor relative-caret-position="545">
+                      <caret line="275" column="63" selection-start-line="275" selection-start-column="63" selection-end-line="275" selection-end-column="63" />
                       <folding>
                         <element signature="e#1924#1936#0" />
                       </folding>
@@ -287,12 +291,12 @@
       <option name="presentableId" value="Default" />
       <updated>1533642259947</updated>
       <workItem from="1533642261284" duration="13621000" />
-      <workItem from="1533970596217" duration="8158000" />
+      <workItem from="1533970596217" duration="12162000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="21779000" />
+    <option name="totallyTimeSpent" value="25783000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="0" width="943" height="1087" extended-state="0" />
@@ -441,23 +445,23 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/GCATCPP/bda/BDATools.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="335">
-          <caret line="47" column="33" selection-start-line="47" selection-start-column="33" selection-end-line="47" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="769">
-            <caret line="168" column="78" selection-start-line="168" selection-start-column="78" selection-end-line="168" selection-end-column="78" />
+          <first_editor relative-caret-position="545">
+            <caret line="275" column="63" selection-start-line="275" selection-start-column="63" selection-end-line="275" selection-end-column="63" />
             <folding>
               <element signature="e#1924#1936#0" />
             </folding>
           </first_editor>
           <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GCATCPP/bda/BDATools.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="335">
+          <caret line="47" column="33" selection-start-line="47" selection-start-column="33" selection-end-line="47" selection-end-column="33" />
         </state>
       </provider>
     </entry>
