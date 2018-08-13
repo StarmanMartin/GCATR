@@ -46,7 +46,6 @@ std::vector<std::string> BDATools::run_bda_for_code() {
     for (BDA_Rule rule : this->rules) {
         for (int i = 0; i < code_vec.size(); ++i) {
             std::stringstream os;
-            char i_1_letter = code_vec[i][rule.i_1];
             if (code_vec[i][rule.i_1] == rule.Q_12) {
                 os << result_vec[i] << "1";
             } else if (code_vec[i][rule.i_1] == rule.Q_11) {

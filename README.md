@@ -17,9 +17,6 @@ Furthermore the current version of devtools needs to be installed on your comput
  
 # Components
 
-## BDA
-
-
 
 ## Codes
 
@@ -166,6 +163,10 @@ A [igraph](http://igraph.org/r/) object
       # example:
       plot(seq_factor_longest_path("ACGCGT", 3))
    ```
+
+## BDA
+
+![Genetic Code Analysis Toolkit Logo](/man/resources/bio/gcat/bda_diagramm.pdf?raw=true)<br/><br/>
 
 ## Analysis Tool
 
