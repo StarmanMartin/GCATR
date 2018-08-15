@@ -7,14 +7,17 @@
 code_check_if_comma_free(code)
 }
 \arguments{
-\item{code}{A vector with codons.}
+\item{code}{is a DNA or RNA code as string vector.}
 }
 \value{
-Boolean value. True if the code self complementary.
+Boolean value. True if the code comma free.
 }
 \description{
 The function checks if the code is comma free. 
 Comma free is a stronger restricted version of the circular code property.
+For more info on this subject read:\cr
+\link{https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5492142/},\cr
+\link{http://dpt-info.u-strasbg.fr/~c.michel/Circular_Codes.pdf},\cr
 \emph{2007 Christian MICHEL. CIRCULAR CODES IN GENES}
 }
 \examples{

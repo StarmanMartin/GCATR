@@ -2,21 +2,23 @@
 % Please edit documentation in R/RcppExports.R
 \name{code_get_all_circle_as_vector}
 \alias{code_get_all_circle_as_vector}
-\title{Returns a list of circles as vectors.}
+\title{Finds all circles constructable in a code.}
 \usage{
 code_get_all_circle_as_vector(code)
 }
 \arguments{
-\item{code}{A vertor with codons.}
-}
-\value{
-List of string vectors.
+\item{code}{A DNA or RNA code as string vector represented by the graph.}
 }
 \description{
-The function checks if the code is circular. If the code is not circular the functions returns all circles. 
-\emph{2007 Christian MICHEL. CIRCULAR CODES IN GENES}
+Prepares a List of R path string vector. Extracts all circle path of the Graph G(X).
+If the graph shows no cycle the list will be empty. Otherwise it returns a list object containing vectors with all
+circle paths.\cr
+\emph{2007 E. FIMMEL, C. J. MICHEL, AND L. STRÜNGMANN. N-nucleotide circular codes in graph theory}
 }
 \examples{
-code_get_all_circle_as_vector(c("ACG", "CAG"))
+c_path_list <- code_get_all_circle_as_vector(c("ACG", "CGA"))
 
+}
+\seealso{
+[code_factor_circles(code)] for code, [code_get_one_circle_as_vector()] for one result as vector
 }

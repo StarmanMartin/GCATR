@@ -2,7 +2,7 @@
 % Please edit documentation in R/RcppExports.R
 \name{code_get_acid}
 \alias{code_get_acid}
-\title{Check if a code is self complementary.}
+\title{Get acid type of a code}
 \usage{
 code_get_acid(code)
 }
@@ -10,14 +10,19 @@ code_get_acid(code)
 \item{code}{A vector with codons.}
 }
 \value{
-Boolean value. True if the code self complementary.
+String value. One of NONE, DNA, RNA
 }
 \description{
-The function checks if the code is self complementary. A self complementary code contains for 
-any codon (word) the corresponding anti-codons. 
+Returns either RNA or DNA depending on the codes Bases. If the code contains only CYTOSINE (C), ADENINE (A), GUANINE (G)
+the functions returns DNA. If the code contains THYMINE (T) it will also return DNA. On the other side, if the
+the code contains URACIL (U) bases the function returns RNA. If the code contains URACIL (U) & THYMINE (T) or any other letter
+then CYTOSINE (A), ADENINE (A), GUANINE (G), URACIL (U) or THYMINE (T) it will return NONE
+For more info on this subject read:\cr
+\link{https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5492142/},\cr
+\link{http://dpt-info.u-strasbg.fr/~c.michel/Circular_Codes.pdf},\cr
 \emph{2007 Christian MICHEL. CIRCULAR CODES IN GENES}
 }
 \examples{
-code_check_if_self_complementary(c("ACG", "CAG"))
+acid <- code_get_acid(c("ACG", "CAG"))
 
 }

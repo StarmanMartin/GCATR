@@ -7,9 +7,9 @@
 seq_start_bda(seq, word_length)
 }
 \arguments{
-\item{seq}{A gene sequence.}
+\item{seq}{A gene sequence as string.}
 
-\item{word_length}{length of the codons.}
+\item{word_length}{A number, the length of the codons in the seq.}
 }
 \value{
 Boolean value. True if the procedure has started
@@ -28,4 +28,8 @@ add_bda(1, 2, "C", "G", "A", "T")
 add_bda(1, 3, "A", "G", "C", "T")
 res <- run_bda()
 
+}
+\seealso{
+[code_start_bda()] for code, [start_bda()] for all codons, [add_bda] add a BDA,
+          [run_bda] for executing and run the BDAs
 }

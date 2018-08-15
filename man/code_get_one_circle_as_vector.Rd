@@ -2,22 +2,23 @@
 % Please edit documentation in R/RcppExports.R
 \name{code_get_one_circle_as_vector}
 \alias{code_get_one_circle_as_vector}
-\title{Check if a code is self complementary.}
+\title{Finds one circle constructable in a code.}
 \usage{
 code_get_one_circle_as_vector(code)
 }
 \arguments{
-\item{code}{A vector with codons.}
-}
-\value{
-Boolean value. True if the code self complementary.
+\item{code}{A DNA or RNA code as string vector represented by the graph.}
 }
 \description{
-The function checks if the code is self complementary. A self complementary code contains for 
-any codon (word) the corresponding anti-codons. 
-\emph{2007 Christian MICHEL. CIRCULAR CODES IN GENES}
+Prepares a R path string vector. Extracts all circle path of the Graph G(X).
+If the graph shows no cycle the vector will be empty. Otherwise it returns a vector with one
+circle paths.\cr
+\emph{2007 E. FIMMEL, C. J. MICHEL, AND L. STRÜNGMANN. N-nucleotide circular codes in graph theory}
 }
 \examples{
-code_check_if_self_complementary(c("ACG", "CAG"))
+l_path <- code_get_one_circle_as_vector(c("ACG", "CGA"))
 
+}
+\seealso{
+[code_factor_circles(code)] for code, [code_get_all_circle_as_vector()] for the results as list
 }

@@ -14,7 +14,10 @@ Boolean value. True if the code self complementary.
 }
 \description{
 The function checks if the code is self complementary. A self complementary code contains for 
-any codon (word) the corresponding anti-codons. 
+any codon (word) in the code the corresponding anti-codons.
+For more info on this subject read:\cr
+\link{https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5492142/},\cr
+\link{http://dpt-info.u-strasbg.fr/~c.michel/Circular_Codes.pdf},\cr
 \emph{2007 Christian MICHEL. CIRCULAR CODES IN GENES}
 }
 \examples{

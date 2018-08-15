@@ -7,7 +7,7 @@
 code_start_bda(code)
 }
 \arguments{
-\item{code}{A vertor with codons.}
+\item{code}{is a DNA or RNA code as string vector.}
 }
 \value{
 Boolean value. True if the procedure has started
@@ -25,4 +25,8 @@ code_start_bda(c("ACG", "CAG"))
 add_bda(1, 2, "C", "G", "A", "T")
 res.binary <- run_bda()
 
+}
+\seealso{
+[seq_start_bda()] for sequence, [start_bda()] for all codons, [add_bda] add a BDA,
+          [run_bda()] for executing and run the BDAs
 }

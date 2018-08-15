@@ -10,13 +10,16 @@
 
 using namespace Rcpp;
 
-//' Check if a code is circular.
+//' Check if a DNA/RNA code is circular.
 //' 
 //' This function checks if a genetic code is circular.
-//' Circular codes in gens for retrieving the reading frames of genes.
+//' Circular codes is an approach for finding the method used in gens for retrieving the correct reading frames.\cr
+//' For more info on this subject read:\cr
+//' \link{https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5492142/},\cr
+//' \link{http://dpt-info.u-strasbg.fr/~c.michel/Circular_Codes.pdf},\cr
 //' \emph{2007 Christian MICHEL. CIRCULAR CODES IN GENES}
 //'
-//' @param code A vertor with codons.
+//' @param code is a DNA or RNA code as string vector.
 //' @return Boolean value. True if the code is circular.
 //' @examples
 //' code_check_if_circular(c("ACG", "CAG"))
@@ -28,14 +31,18 @@ bool code_check_if_circular(StringVector code) {
   return a.is_circular();
 }
 
-//' Check if a code is C_{n} circular.
-//' 
-//' This function checks the same property as \code{\link{check_if_circular}}. 
-//' Yet,  this function checks the property for for all circular permutations of the codons in the code.
+//' Check if a DNA/RNA code is cn circular.
+//'
+//' This function checks if a genetic code is cn circular.
+//' Circular codes is an approach for finding the method used in gens for retrieving the correct reading frames.
+//' For a code to be cn circular means that each circular permutation of all codons construct a new circular code.
+//' For more info on this subject read:\cr
+//' \link{https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5492142/},\cr
+//' \link{http://dpt-info.u-strasbg.fr/~c.michel/Circular_Codes.pdf},\cr
 //' \emph{2007 Christian MICHEL. CIRCULAR CODES IN GENES}
 //'
-//' @param code A vector with codons.
-//' @return Boolean vector. True if the code C_{n} circular.
+//' @param code is a DNA or RNA code as string vector.
+//' @return Boolean value. True if the code is cn circular.
 //' @examples
 //' code_check_if_cn_circular(c("ACG", "CAG"))
 //' 
@@ -50,10 +57,13 @@ bool code_check_if_cn_circular(StringVector code) {
 //' 
 //' The function checks if the code is comma free. 
 //' Comma free is a stronger restricted version of the circular code property.
+//' For more info on this subject read:\cr
+//' \link{https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5492142/},\cr
+//' \link{http://dpt-info.u-strasbg.fr/~c.michel/Circular_Codes.pdf},\cr
 //' \emph{2007 Christian MICHEL. CIRCULAR CODES IN GENES}
 //'
-//' @param code A vector with codons.
-//' @return Boolean value. True if the code self complementary.
+//' @param code is a DNA or RNA code as string vector.
+//' @return Boolean value. True if the code comma free.
 //' @examples
 //' code_check_if_comma_free(c("ACG", "CAG"))
 //' 
@@ -69,7 +79,10 @@ bool code_check_if_comma_free(StringVector code) {
 //' Check if a code is self complementary.
 //' 
 //' The function checks if the code is self complementary. A self complementary code contains for 
-//' any codon (word) the corresponding anti-codons. 
+//' any codon (word) in the code the corresponding anti-codons.
+//' For more info on this subject read:\cr
+//' \link{https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5492142/},\cr
+//' \link{http://dpt-info.u-strasbg.fr/~c.michel/Circular_Codes.pdf},\cr
 //' \emph{2007 Christian MICHEL. CIRCULAR CODES IN GENES}
 //'
 //' @param code A vector with codons.
@@ -84,16 +97,21 @@ bool code_check_if_self_complementary(StringVector code) {
   return a.is_self_complementary();
 }
 
-//' Check if a code is self complementary.
+//' Get acid type of a code
 //' 
-//' The function checks if the code is self complementary. A self complementary code contains for 
-//' any codon (word) the corresponding anti-codons. 
+//' Returns either RNA or DNA depending on the codes Bases. If the code contains only CYTOSINE (C), ADENINE (A), GUANINE (G)
+//' the functions returns DNA. If the code contains THYMINE (T) it will also return DNA. On the other side, if the
+//' the code contains URACIL (U) bases the function returns RNA. If the code contains URACIL (U) & THYMINE (T) or any other letter
+//' then CYTOSINE (A), ADENINE (A), GUANINE (G), URACIL (U) or THYMINE (T) it will return NONE
+//' For more info on this subject read:\cr
+//' \link{https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5492142/},\cr
+//' \link{http://dpt-info.u-strasbg.fr/~c.michel/Circular_Codes.pdf},\cr
 //' \emph{2007 Christian MICHEL. CIRCULAR CODES IN GENES}
 //'
 //' @param code A vector with codons.
-//' @return Boolean value. True if the code self complementary.
+//' @return String value. One of NONE, DNA, RNA
 //' @examples
-//' code_check_if_self_complementary(c("ACG", "CAG"))
+//' acid <- code_get_acid(c("ACG", "CAG"))
 //' 
 //' @export
 // [[Rcpp::export]]
@@ -102,20 +120,21 @@ StringVector code_get_acid(StringVector code) {
   return acid::acid_to_string(a.get_acid());;
 }
 
-//' Check if a code is self complementary.
-//' 
-//' The function checks if the code is self complementary. A self complementary code contains for 
-//' any codon (word) the corresponding anti-codons. 
-//' \emph{2007 Christian MICHEL. CIRCULAR CODES IN GENES}
+//' Finds one longest path constructable in a code.
 //'
-//' @param code A vertor with codons.
-//' @return Boolean value. True if the code self complementary.
+//' Prepares a R path string vector. Extracts all longest paths of the Graph G(X).
+//' If the graph shows a cycle the vector will be empty. Otherwise it returns a vector with one longest path.\cr
+//' \emph{2007 E. FIMMEL, C. J. MICHEL, AND L. STRÜNGMANN. N-nucleotide circular codes in graph theory}
+//'
+//' @seealso [code_factor_longest_path(code)] for code, [code_get_all_longest_path_as_vector()] for the results as list
+//'
+//' @param code A DNA or RNA code as string vector represented by the graph.
 //' @examples
-//' code_check_if_self_complementary(c("ACG", "CAG"))
-//' 
+//' l_path <- code_get_one_circle_as_vector(c("ACG", "CGA"))
+//'
 //' @export
 // [[Rcpp::export]]
-StringVector code_get_one_logest_path_as_vector(StringVector code) {
+StringVector code_get_one_longest_path_as_vector(StringVector code) {
   StdGenCode gc(RAdapterUtils::as_cpp_string_vector(code));
   auto longest_path_collection = miner::LongestPathMiner::mine_path_as_vector(&gc);
   if(longest_path_collection.size() == 0) {
@@ -125,20 +144,22 @@ StringVector code_get_one_logest_path_as_vector(StringVector code) {
   return RAdapterUtils::as_r_string_vector(longest_path_collection[0]);
 }
 
-//' Check if a code is self complementary.
-//' 
-//' The function checks if the code is self complementary. A self complementary code contains for 
-//' any codon (word) the corresponding anti-codons. 
-//' \emph{2007 Christian MICHEL. CIRCULAR CODES IN GENES}
+//' Finds all longest path constructable in a code.
 //'
-//' @param code A vector with codons.
-//' @return Boolean value. True if the code self complementary.
+//' Prepares a List of R path string vector. Extracts all longest path of the Graph G(X).
+//' If the graph shows a cycle the list will be empty. Otherwise it returns a list object containing vectors with all
+//' longest paths.\cr
+//' \emph{2007 E. FIMMEL, C. J. MICHEL, AND L. STRÜNGMANN. N-nucleotide circular codes in graph theory}
+//'
+//' @seealso [code_factor_longest_path(code)] for code, [code_get_one_longest_path_as_vector()] for one result as vector
+//'
+//' @param code A DNA or RNA code as string vector represented by the graph.
 //' @examples
-//' code_check_if_self_complementary(c("ACG", "CAG"))
-//' 
+//' l_path_list <- code_get_all_circle_as_vector(c("ACG", "CGA"))
+//'
 //' @export
 // [[Rcpp::export]]
-Rcpp::List code_get_all_logest_path_as_vector(StringVector code) {
+Rcpp::List code_get_all_longest_path_as_vector(StringVector code) {
   StdGenCode gc(RAdapterUtils::as_cpp_string_vector(code));
   auto longest_path_collection = miner::LongestPathMiner::mine_path_as_vector(&gc);
   if(longest_path_collection.size() == 0) {
@@ -148,17 +169,19 @@ Rcpp::List code_get_all_logest_path_as_vector(StringVector code) {
   return RAdapterUtils::as_R_matrix(longest_path_collection);
 }
 
-//' Check if a code is self complementary.
-//' 
-//' The function checks if the code is self complementary. A self complementary code contains for 
-//' any codon (word) the corresponding anti-codons. 
-//' \emph{2007 Christian MICHEL. CIRCULAR CODES IN GENES}
+//' Finds one circle constructable in a code.
 //'
-//' @param code A vector with codons.
-//' @return Boolean value. True if the code self complementary.
+//' Prepares a R path string vector. Extracts all circle path of the Graph G(X).
+//' If the graph shows no cycle the vector will be empty. Otherwise it returns a vector with one
+//' circle paths.\cr
+//' \emph{2007 E. FIMMEL, C. J. MICHEL, AND L. STRÜNGMANN. N-nucleotide circular codes in graph theory}
+//'
+//' @seealso [code_factor_circles(code)] for code, [code_get_all_circle_as_vector()] for the results as list
+//'
+//' @param code A DNA or RNA code as string vector represented by the graph.
 //' @examples
-//' code_check_if_self_complementary(c("ACG", "CAG"))
-//' 
+//' l_path <- code_get_one_circle_as_vector(c("ACG", "CGA"))
+//'
 //' @export
 // [[Rcpp::export]]
 StringVector code_get_one_circle_as_vector(StringVector code) {
@@ -171,17 +194,20 @@ StringVector code_get_one_circle_as_vector(StringVector code) {
   return RAdapterUtils::as_r_string_vector(circle_path_collection[0]);
 }
 
-//' Returns a list of circles as vectors.
-//' 
-//' The function checks if the code is circular. If the code is not circular the functions returns all circles. 
-//' \emph{2007 Christian MICHEL. CIRCULAR CODES IN GENES}
+//' Finds all circles constructable in a code.
 //'
-//' @param code A vertor with codons.
-//' @return List of string vectors.
+//' Prepares a List of R path string vector. Extracts all circle path of the Graph G(X).
+//' If the graph shows no cycle the list will be empty. Otherwise it returns a list object containing vectors with all
+//' circle paths.\cr
+//' \emph{2007 E. FIMMEL, C. J. MICHEL, AND L. STRÜNGMANN. N-nucleotide circular codes in graph theory}
+//'
+//' @seealso [code_factor_circles(code)] for code, [code_get_one_circle_as_vector()] for one result as vector
+//'
+//' @param code A DNA or RNA code as string vector represented by the graph.
 //' @examples
-//' code_get_all_circle_as_vector(c("ACG", "CAG"))
-//' 
-//' @export 
+//' c_path_list <- code_get_all_circle_as_vector(c("ACG", "CGA"))
+//'
+//' @export
 // [[Rcpp::export]]
 Rcpp::List code_get_all_circle_as_vector(StringVector code) {
   StdGenCode gc(RAdapterUtils::as_cpp_string_vector(code));
@@ -193,6 +219,9 @@ Rcpp::List code_get_all_circle_as_vector(StringVector code) {
   return RAdapterUtils::as_R_matrix(circle_path_collection);
 }
 
+//' Returns all DNA bases
+//'
+//' @return {"T", "C", "A", "G"}
 //' @export 
 // [[Rcpp::export]]
 Rcpp::StringVector get_dna_bases() {
@@ -204,7 +233,10 @@ Rcpp::StringVector get_dna_bases() {
   return RAdapterUtils::as_r_string_vector(result);
 }
 
-//' @export 
+//' Returns all DNA bases
+//'
+//' @return {"U", "C", "A", "G"}
+//' @export
 // [[Rcpp::export]]
 Rcpp::StringVector get_rna_bases() {
   std::vector<std::string> result(acid::acid_base_length);

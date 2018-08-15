@@ -10,7 +10,7 @@ start_bda()
 Boolean value. True if the procedure has started
 }
 \description{
-To generate a BDA based binary representation of a code or a list of codons, you need to start a BDA procedure. 
+To generate a BDA based binary representation of a code or a sequence of codons, you need to start a BDA procedure first. 
 To do so you can eihter call \code{\link{code_start_bda}} or \code{\link{seq_start_bda}}. To start a procedure
 for all RNA codons call \code{\link{start_bda}}.
 To add a BDA simply Call \code{\link{add_bda}}. To execute the BDAs call \code{\link{run_bda_as_matrix}} or \code{\link{run_bda}}.
@@ -23,4 +23,8 @@ add_bda(1, 2, "C", "G", "A", "U")
 add_bda(1, 3, "A", "G", "C", "U")
 res <- run_bda_as_matrix()
 
+}
+\seealso{
+[seq_start_bda()] for sequence, [code_start_bda()] for code, [add_bda] add a BDA,
+          [run_bda] for executing and run the BDAs
 }

@@ -2,19 +2,23 @@
 % Please edit documentation in R/RcppExports.R
 \name{code_check_if_cn_circular}
 \alias{code_check_if_cn_circular}
-\title{Check if a code is C_{n} circular.}
+\title{Check if a DNA/RNA code is cn circular.}
 \usage{
 code_check_if_cn_circular(code)
 }
 \arguments{
-\item{code}{A vector with codons.}
+\item{code}{is a DNA or RNA code as string vector.}
 }
 \value{
-Boolean vector. True if the code C_{n} circular.
+Boolean value. True if the code is cn circular.
 }
 \description{
-This function checks the same property as \code{\link{check_if_circular}}. 
-Yet,  this function checks the property for for all circular permutations of the codons in the code.
+This function checks if a genetic code is cn circular.
+Circular codes is an approach for finding the method used in gens for retrieving the correct reading frames.
+For a code to be cn circular means that each circular permutation of all codons construct a new circular code.
+For more info on this subject read:\cr
+\link{https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5492142/},\cr
+\link{http://dpt-info.u-strasbg.fr/~c.michel/Circular_Codes.pdf},\cr
 \emph{2007 Christian MICHEL. CIRCULAR CODES IN GENES}
 }
 \examples{

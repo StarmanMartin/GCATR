@@ -2,15 +2,22 @@
 % Please edit documentation in R/GraphPloter.R
 \name{code_factor_graph}
 \alias{code_factor_graph}
-\title{Plots generic graph for a code}
+\title{Prepares a R igraph object.}
 \usage{
 code_factor_graph(code, show_circles = FALSE, show_longest_path = FALSE)
 }
 \arguments{
-\item{code}{the code as a vector}
+\item{code}{A DNA or RNA code as string vector represented by the graph.}
+
+\item{show_circles}{A bool value. If true the all edges building a circle are colored red.}
+
+\item{show_longest_path}{A bool value. If true the all edges part of the longest path are colored blue.}
+}
+\value{
+A igraph (<http://igraph.org/r/>) object
 }
 \description{
-The following definition relates a directed graph to
+The funciton prepares graph G(X) object for a code. The following definition relates a directed graph to
 any n-nucleotide code. Recall from graph theory (Clark and Holton, 1991) that a graph G consists of
 a finite set of vertices (nodes) V and a finite set of edges E. Here, an edge is a set \{v,w\} of vertices
 from V . The graph is called oriented if the edges have an orientation, i.e. edges are considered to be
@@ -26,6 +33,10 @@ by pairs of i-nucleotides and (n-i)-nucleotides for 0 < i < n.\cr
 \emph{2007 E. FIMMEL, C. J. MICHEL, AND L. STRÜNGMANN. N-nucleotide circular codes in graph theory}
 }
 \examples{
-code_factor_graph(c("ACG", "CGA"))
+G <- code_factor_graph(c("ACG", "CGA"))
+plot(G)
 
+}
+\seealso{
+[seq_factor_graph(seq, word_length)] for sequences
 }

@@ -2,18 +2,22 @@
 % Please edit documentation in R/GraphPloter.R
 \name{seq_factor_graph}
 \alias{seq_factor_graph}
-\title{Plots generic graph for a sequence}
+\title{Prepares a R igraph object.}
 \usage{
 seq_factor_graph(seq, word_length = 3, show_circles = FALSE,
   show_longest_path = FALSE)
 }
 \arguments{
-\item{seq}{A gene sequence.}
+\item{seq}{A gene sequence as string.}
 
-\item{word_lenth}{length of the codons.}
+\item{word_length}{A number, the length of the codons in the seq.}
+
+\item{show_circles}{A bool value. If true the all edges building a circle are colored red.}
+
+\item{show_longest_path}{A bool value. If true the all edges part of the longest path are colored blue.}
 }
 \description{
-The following definition relates a directed graph to
+The funciton prepares graph G(X) object for a sequence. The following definition relates a directed graph to
 any n-nucleotide code. Recall from graph theory (Clark and Holton, 1991) that a graph G consists of
 a finite set of vertices (nodes) V and a finite set of edges E. Here, an edge is a set \{v,w\} of vertices
 from V . The graph is called oriented if the edges have an orientation, i.e. edges are considered to be
@@ -29,6 +33,10 @@ by pairs of i-nucleotides and (n-i)-nucleotides for 0 < i < n.\cr
 \emph{2007 E. FIMMEL, C. J. MICHEL, AND L. STRÜNGMANN. N-nucleotide circular codes in graph theory}
 }
 \examples{
-seq_factor_graph("ACGCGA", 3)
+G <- seq_factor_graph("ACGCGA", 3)
+plot(G)
 
+}
+\seealso{
+[code_factor_graph(code)] for code
 }

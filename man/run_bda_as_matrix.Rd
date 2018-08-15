@@ -6,9 +6,6 @@
 \usage{
 run_bda_as_matrix()
 }
-\value{
-A matrix representation of the BDA procedure results.
-}
 \description{
 Run the currently open BDA procedure. Therefore, you need to start a BDA procedure. For this method the procedure has to be started by the \code{\link{start_bda}} function. To start a procedure
 for all codons call \code{\link{start_bda}}.
@@ -22,4 +19,8 @@ add_bda(1, 2, "C", "G", "A", "U")
 add_bda(1, 3, "A", "G", "C", "U")
 res <- run_bda_as_matrix()
 
+}
+\seealso{
+[seq_start_bda()] for sequence, [start_bda()] for all codons, [add_bda] add a BDA,
+          [run_bda] for executing and run the BDAs
 }

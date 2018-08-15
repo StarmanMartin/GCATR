@@ -2,19 +2,22 @@
 % Please edit documentation in R/RcppExports.R
 \name{code_check_if_circular}
 \alias{code_check_if_circular}
-\title{Check if a code is circular.}
+\title{Check if a DNA/RNA code is circular.}
 \usage{
 code_check_if_circular(code)
 }
 \arguments{
-\item{code}{A vertor with codons.}
+\item{code}{is a DNA or RNA code as string vector.}
 }
 \value{
 Boolean value. True if the code is circular.
 }
 \description{
 This function checks if a genetic code is circular.
-Circular codes in gens for retrieving the reading frames of genes.
+Circular codes is an approach for finding the method used in gens for retrieving the correct reading frames.\cr
+For more info on this subject read:\cr
+\link{https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5492142/},\cr
+\link{http://dpt-info.u-strasbg.fr/~c.michel/Circular_Codes.pdf},\cr
 \emph{2007 Christian MICHEL. CIRCULAR CODES IN GENES}
 }
 \examples{

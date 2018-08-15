@@ -205,25 +205,25 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
-// code_get_one_logest_path_as_vector
-StringVector code_get_one_logest_path_as_vector(StringVector code);
-RcppExport SEXP _GCATR_code_get_one_logest_path_as_vector(SEXP codeSEXP) {
+// code_get_one_longest_path_as_vector
+StringVector code_get_one_longest_path_as_vector(StringVector code);
+RcppExport SEXP _GCATR_code_get_one_longest_path_as_vector(SEXP codeSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< StringVector >::type code(codeSEXP);
-    rcpp_result_gen = Rcpp::wrap(code_get_one_logest_path_as_vector(code));
+    rcpp_result_gen = Rcpp::wrap(code_get_one_longest_path_as_vector(code));
     return rcpp_result_gen;
 END_RCPP
 }
-// code_get_all_logest_path_as_vector
-Rcpp::List code_get_all_logest_path_as_vector(StringVector code);
-RcppExport SEXP _GCATR_code_get_all_logest_path_as_vector(SEXP codeSEXP) {
+// code_get_all_longest_path_as_vector
+Rcpp::List code_get_all_longest_path_as_vector(StringVector code);
+RcppExport SEXP _GCATR_code_get_all_longest_path_as_vector(SEXP codeSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< StringVector >::type code(codeSEXP);
-    rcpp_result_gen = Rcpp::wrap(code_get_all_logest_path_as_vector(code));
+    rcpp_result_gen = Rcpp::wrap(code_get_all_longest_path_as_vector(code));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -288,8 +288,8 @@ static const R_CallMethodDef CallEntries[] = {
     {"_GCATR_code_check_if_comma_free", (DL_FUNC) &_GCATR_code_check_if_comma_free, 1},
     {"_GCATR_code_check_if_self_complementary", (DL_FUNC) &_GCATR_code_check_if_self_complementary, 1},
     {"_GCATR_code_get_acid", (DL_FUNC) &_GCATR_code_get_acid, 1},
-    {"_GCATR_code_get_one_logest_path_as_vector", (DL_FUNC) &_GCATR_code_get_one_logest_path_as_vector, 1},
-    {"_GCATR_code_get_all_logest_path_as_vector", (DL_FUNC) &_GCATR_code_get_all_logest_path_as_vector, 1},
+    {"_GCATR_code_get_one_longest_path_as_vector", (DL_FUNC) &_GCATR_code_get_one_longest_path_as_vector, 1},
+    {"_GCATR_code_get_all_longest_path_as_vector", (DL_FUNC) &_GCATR_code_get_all_longest_path_as_vector, 1},
     {"_GCATR_code_get_one_circle_as_vector", (DL_FUNC) &_GCATR_code_get_one_circle_as_vector, 1},
     {"_GCATR_code_get_all_circle_as_vector", (DL_FUNC) &_GCATR_code_get_all_circle_as_vector, 1},
     {"_GCATR_get_dna_bases", (DL_FUNC) &_GCATR_get_dna_bases, 0},

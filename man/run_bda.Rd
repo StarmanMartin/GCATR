@@ -24,3 +24,7 @@ add_bda(1, 3, "A", "G", "C", "T")
 res.binary <- run_bda()
 
 }
+\seealso{
+[seq_start_bda()] for sequence, [start_bda()] for all codons, [add_bda] add a BDA,
+          [code_start_bda()] for code
+}

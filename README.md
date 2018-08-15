@@ -292,5 +292,191 @@ A matrix object with 16 rows. See *run_bda_as_matrix*.
 
 ## Analysis Tool
 
+### code_check_if_circular
+Check if a DNA/RNA code is circular.
+
+This function checks if a genetic code is circular.
+Circular codes is an approach for finding the method used in gens for retrieving the correct reading frames.<br/>
+For more info on this subject read:<br/>
+[ncbi article](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5492142/),<br/>
+[2007 Christian MICHEL. CIRCULAR CODES IN GENES](http://dpt-info.u-strasbg.fr/~c.michel/Circular_Codes.pdf)
+
+@param code is a DNA or RNA code as string vector.
+#### Return:
+ Boolean value. True if the code is circular.
+@examples
+code_check_if_circular(c("ACG", "CAG"))
+
+```R
+code_check_if_circular <- function(code)
+# example:
+
+```
+
+### code_check_if_cn_circular
+Check if a DNA/RNA code is cn circular.
+
+This function checks if a genetic code is cn circular.
+Circular codes is an approach for finding the method used in gens for retrieving the correct reading frames.
+For a code to be cn circular means that each circular permutation the codons construct a new circular code.
+For more info on this subject read:<br/>
+[ncbi article](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5492142/),<br/>
+[2007 Christian MICHEL. CIRCULAR CODES IN GENES](http://dpt-info.u-strasbg.fr/~c.michel/Circular_Codes.pdf)
+
+@param code is a DNA or RNA code as string vector.
+#### Return:
+ Boolean value. True if the code is cn circular.
+
+```R
+code_check_if_cn_circular <- function(code)
+# example:
+code <- c("ACC", "ACG", "CUU", "GCC", "GGU", "GUU", "UAG", "UAU", "UGC")
+if(code_check_if_cn_circular(code)) { ... }
+```
+
+### code_check_if_comma_free
+Check if a code is comma free.
+
+The function checks if the code is comma free. 
+Comma free is a stronger restricted version of the circular code property.
+For more info on this subject read:<br/>
+[ncbi article](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5492142/),<br/>
+[2007 Christian MICHEL. CIRCULAR CODES IN GENES](http://dpt-info.u-strasbg.fr/~c.michel/Circular_Codes.pdf)
+
+@param code is a DNA or RNA code as string vector.
+#### Return:
+ Boolean value. True if the code comma free.
+
+```R
+code_check_if_comma_free <- function(code)
+# example:
+code <- c("ACC", "AGG", "CGU", "UAA", "UGC")
+if(code_check_if_comma_free(code)) { ... }
+```
+
+### code_check_if_self_complementary
+Check if a code is self complementary.
+
+The function checks if the code is self complementary. A self complementary code contains for 
+any codon (word) in the code the corresponding anti-codons.
+For more info on this subject read:<br/>
+[ncbi article](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5492142/),<br/>
+[2007 Christian MICHEL. CIRCULAR CODES IN GENES](http://dpt-info.u-strasbg.fr/~c.michel/Circular_Codes.pdf)
+
+@param code A vector with codons.
+#### Return:
+ Boolean value. True if the code self complementary.
+
+
+```R
+code_check_if_self_complementary <- function(code)
+# example:
+if(code_check_if_self_complementary(c("ACG", "CAG"))) { ... }
+```
+
+### code_get_acid
+Get acid type of a code
+
+Returns either RNA or DNA depending on the codes Bases. If the code contains only CYTOSINE (C), ADENINE (A), GUANINE (G)
+the functions returns DNA. If the code contains THYMINE (T) it will also return DNA. On the other side, if the
+the code contains URACIL (U) bases the function returns RNA. If the code contains URACIL (U) & THYMINE (T) or any other letter
+then CYTOSINE (C), ADENINE (A), GUANINE (G), URACIL (U) or THYMINE (T) it will return NONE
+For more info on this subject read:<br/>
+[ncbi article](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5492142/),<br/>
+[2007 Christian MICHEL. CIRCULAR CODES IN GENES](http://dpt-info.u-strasbg.fr/~c.michel/Circular_Codes.pdf)
+
+@param code A vector with codons.
+#### Retrun:
+ String value. One of NONE, DNA, RNA
+
+```R
+code_get_acid <- function(code)
+# example:
+acid <- code_get_acid(c("ACG", "CAG"))
+```
+
+### code_get_one_longest_path_as_vector
+Finds one longest path constructable in a code.
+
+Prepares a R path string vector. Extracts all longest paths of the Graph G(X).
+If the graph shows a cycle the vector will be empty. Otherwise it returns a vector with one longest path.<br/>
+*2007 E. FIMMEL, C. J. MICHEL, AND L. STRÜNGMANN. N-nucleotide circular codes in graph theory*
+
+@param code A DNA or RNA code as string vector represented by the graph.
+
+```R
+code_get_one_longest_path_as_vector <- function(code)
+# example:
+l_path <- code_get_one_circle_as_vector(c("ACG", "CGA"))
+```
+
+### code_get_all_longest_path_as_vector
+Finds all longest path constructable in a code.
+
+Prepares a List of R path string vector. Extracts all longest path of the Graph G(X).
+If the graph shows a cycle the list will be empty. Otherwise it returns a list object containing vectors with all
+longest paths.<br/>
+*2007 E. FIMMEL, C. J. MICHEL, AND L. STRÜNGMANN. N-nucleotide circular codes in graph theory*
+
+@param code A DNA or RNA code as string vector represented by the graph.
+
+```R
+code_get_all_longest_path_as_vector <- function(code)
+# example:
+l_path_list <- code_get_all_longest_path_as_vector(c("ACG", "CGA"))
+```
+
+### code_get_one_circle_as_vector
+Finds one circle constructable in a code.
+
+Prepares a R path string vector. Extracts all circle path of the Graph G(X).
+If the graph shows no cycle the vector will be empty. Otherwise it returns a vector with one
+circle paths.<br/>
+*2007 E. FIMMEL, C. J. MICHEL, AND L. STRÜNGMANN. N-nucleotide circular codes in graph theory*
+
+
+@param code A DNA or RNA code as string vector represented by the graph.
+
+```R
+code_get_one_circle_as_vector <- function(code)
+# example:
+c_path <- code_get_one_circle_as_vector(c("ACG", "CGA"))
+```
+
+### code_get_all_circle_as_vector
+Finds all circles constructable in a code.
+
+Prepares a List of R path string vector. Extracts all circle path of the Graph G(X).
+If the graph shows no cycle the list will be empty. Otherwise it returns a list object containing vectors with all
+circle paths.<br/>
+*2007 E. FIMMEL, C. J. MICHEL, AND L. STRÜNGMANN. N-nucleotide circular codes in graph theory*
+
+@param code A DNA or RNA code as string vector represented by the graph.
+
+```R
+code_get_all_circle_as_vector <- function(code)
+# example:
+c_path_list <- code_get_all_circle_as_vector(c("ACG", "CGA"))
+```
+
+### get_dna_bases
+Returns all DNA bases
+
+#### Retrun:
+{"T", "C", "A", "G"}
+
+```R
+get_dna_bases <- function() 
+```
+### get_rna_bases
+Returns all DNA bases
+
+#### Retrun:
+{"U", "C", "A", "G"}
+```R
+get_rna_bases <- function()
+```
+
+
 # Copyright and license
 Code and documentation copyright 2018-2019 Mannheim University of Applied Sciences. Code released under the GPL License, Version 2.0.
