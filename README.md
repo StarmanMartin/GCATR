@@ -8,11 +8,11 @@ This project contains the source code for R version of the Genetic Code Analysis
 # Installation
 GCATR is available for R version 3.5 and higher. It requires a C++11 (or later) compiler and [Rcpp (>= 0.12.18)](https://cran.r-project.org/web/packages/Rcpp/index.html) installed on your machine. 
 Furthermore the current version of devtools needs to be installed on your computer. Install the R package by:
- * starting the a R console and run:
-   ```R
-   install.packages("devtools")
-   devtools::install_github("StarmanMartin/GCATR")
-   ```
+<br/>starting the a R console and run:
+```R
+install.packages("devtools")
+devtools::install_github("StarmanMartin/GCATR")
+```
 
  
 # Components
@@ -27,12 +27,11 @@ _UUU UCU UAU UGU UUC UCC UAC UGC UUA UCA UAA UGA UUG UCG UAG UGG CUU CCU CAU CGU
 AUU ACU AAU AGU AUC ACC AAC AGC AUA ACA AAA AGA AUG ACG AAG AGG GUU GCU GAU GGU GUC GCC GAC GGC GUA GCA GAA GGA GUG GCG GAG GGG_
 #### Return:
 A vector object with all RNA codons
-
-    ```R
-        get_rna_codon_list <- function()
-        # examples
-        res <- get_rna_codon_list()
-    ```
+```R
+get_rna_codon_list <- function()
+# examples
+res <- get_rna_codon_list()
+```
    
 ### get_rna_codon_table
 
@@ -42,11 +41,11 @@ Returns the tables displayed in the table above. The tables will be stored in a 
 #### Return:
 A matrix object with all RNA codons
 
-    ```R
-        get_rna_codon_table <- function()
-        # examples
-        res <- get_rna_codon_table()
-    ```
+```R
+get_rna_codon_table <- function()
+# examples
+res <- get_rna_codon_table()
+```
    
 ## Graph tools
 
