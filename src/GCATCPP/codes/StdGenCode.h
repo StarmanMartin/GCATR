@@ -11,17 +11,18 @@
 class StdGenCode : public AbstractGenCode{
 
 public:
-    StdGenCode(std::vector<std::string>);
+    explicit StdGenCode(std::vector<std::string>);
     StdGenCode(std::string, unsigned int);
     StdGenCode(const StdGenCode &agc);
 
-    bool test_code();
+    bool test_code() override;
 
-    bool is_circular();
-    bool is_cn_circular();
-    bool is_self_complementary();
-    bool is_comma_free();
-    void shift_tuples(int shifts=1);
+    bool is_circular() override;
+    bool is_cn_circular() override;
+    bool is_self_complementary() override;
+    bool is_comma_free() override;
+    seq::Seq_Result find_code_in_sequence(const std::string &seq) override;
+    void shift_tuples(int shifts=1) override; // NOLINT
 
 protected:
 };

@@ -35,17 +35,18 @@ AbstractGenCode::AbstractGenCode(std::string sequence, unsigned int word_length)
     this->code_vec = code_vec;
 }
 
-AbstractGenCode::AbstractGenCode(std::vector<std::string> code_vec) {
+AbstractGenCode::AbstractGenCode(const std::vector<std::string> &code_vec) {
     this->reset(code_vec);
 }
 
-AbstractGenCode::AbstractGenCode(const AbstractGenCode &agc) {
+AbstractGenCode::AbstractGenCode(const AbstractGenCode &agc) : AbstractErrorManager(agc) {
     this->code_vec = agc.code_vec;
     this->is_tested = false;
     this->is_ok = agc.is_ok;
     this->string_sequence = agc.string_sequence;
     std::vector<int> temp_length(agc.word_length);
     this->word_length = temp_length;
+    this->acid = acid::acids::NONE;
 }
 
 void AbstractGenCode::reset(std::vector<std::string> code_vec) {
@@ -66,7 +67,7 @@ bool AbstractGenCode::test_code() {
     this->is_ok = true;
     this->acid = acid::check_acid_type(this->as_string_sequence());
 
-    if (this->code_vec.size() == 0) {
+    if (this->code_vec.empty()) {
         this->add_error_msg("Code is empty!");
         return (this->is_ok = false);
     }

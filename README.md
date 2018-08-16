@@ -292,6 +292,34 @@ A matrix object with 16 rows. See *run_bda_as_matrix*.
 
 ## Analysis Tool
 
+### find_amd_analysis_code_in_sequence
+
+Analysis a sequence based on a generic code.
+
+Finds all appearance of a code ion a sequence. Finds the longest connected matches of words of the code in the sequence.
+The function also calculates the matching bases of the found words in the sequence.
+
+#### Parameters:
+*seq* &rarr; [string] A DNA or RNA sequence.<br/>
+*code* &rarr; [string vector] A DNA or RNA code as string vector.
+
+#### Returns
+ A List with all analysing results. The list contains following:<br/>
+*words*  &rarr;  all found words of the code in the sequence in the correct order.<br/>
+*idx_list*  &rarr; the first-letter index of all found words of the code in the sequence in the correct order.<br/>
+*rest*  &rarr; all parts of the sequence which are not matching the code.<br/>
+*parts*  &rarr; the sequence separated in matching and non matching parts. Odd indexes are matching, even indexes are not matching.<br/>
+*longest_match*  &rarr; the longest connected matching sequence.<br/>
+*total_match_in_percent*  &rarr; the percentage of the matching parts.
+
+```R
+find_amd_analysis_code_in_sequence <- function(seq, code)
+# example
+code <- c("ACG", "TCG")
+seq <- "ACGTCGCGACGTACGACGTCGTACTCGATGCAAGATC"
+res <- find_amd_analysis_code_in_sequence(seq, code)
+```
+
 ### code_check_if_circular
 Check if a DNA/RNA code is circular.
 
@@ -301,16 +329,16 @@ For more info on this subject read:<br/>
 [ncbi article](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5492142/),<br/>
 [2007 Christian MICHEL. CIRCULAR CODES IN GENES](http://dpt-info.u-strasbg.fr/~c.michel/Circular_Codes.pdf)
 
-@param code is a DNA or RNA code as string vector.
+#### Parameters:
+*code*  &rarr; [string vector] A DNA or RNA code as list.
 #### Return:
  Boolean value. True if the code is circular.
-@examples
-code_check_if_circular(c("ACG", "CAG"))
 
 ```R
 code_check_if_circular <- function(code)
 # example:
-
+code <- c("ACC", "ACG", "CUU", "GCC", "GGU", "GUU", "UAG", "UAU", "UGC")
+if(code_check_if_circular(code)) { ... }
 ```
 
 ### code_check_if_cn_circular
@@ -323,7 +351,8 @@ For more info on this subject read:<br/>
 [ncbi article](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5492142/),<br/>
 [2007 Christian MICHEL. CIRCULAR CODES IN GENES](http://dpt-info.u-strasbg.fr/~c.michel/Circular_Codes.pdf)
 
-@param code is a DNA or RNA code as string vector.
+#### Parameters:
+*code*  &rarr; [string vector] A DNA or RNA code as list.
 #### Return:
  Boolean value. True if the code is cn circular.
 
@@ -343,7 +372,8 @@ For more info on this subject read:<br/>
 [ncbi article](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5492142/),<br/>
 [2007 Christian MICHEL. CIRCULAR CODES IN GENES](http://dpt-info.u-strasbg.fr/~c.michel/Circular_Codes.pdf)
 
-@param code is a DNA or RNA code as string vector.
+#### Parameters:
+*code*  &rarr; [string vector] A DNA or RNA code as list.
 #### Return:
  Boolean value. True if the code comma free.
 
@@ -363,7 +393,8 @@ For more info on this subject read:<br/>
 [ncbi article](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5492142/),<br/>
 [2007 Christian MICHEL. CIRCULAR CODES IN GENES](http://dpt-info.u-strasbg.fr/~c.michel/Circular_Codes.pdf)
 
-@param code A vector with codons.
+#### Parameters:
+*code*  &rarr; [string vector] A DNA or RNA code as list.
 #### Return:
  Boolean value. True if the code self complementary.
 
@@ -385,7 +416,8 @@ For more info on this subject read:<br/>
 [ncbi article](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5492142/),<br/>
 [2007 Christian MICHEL. CIRCULAR CODES IN GENES](http://dpt-info.u-strasbg.fr/~c.michel/Circular_Codes.pdf)
 
-@param code A vector with codons.
+#### Parameters:
+*code*  &rarr; [string vector] A DNA or RNA code as list.
 #### Retrun:
  String value. One of NONE, DNA, RNA
 
@@ -402,7 +434,8 @@ Prepares a R path string vector. Extracts all longest paths of the Graph G(X).
 If the graph shows a cycle the vector will be empty. Otherwise it returns a vector with one longest path.<br/>
 *2007 E. FIMMEL, C. J. MICHEL, AND L. STRÜNGMANN. N-nucleotide circular codes in graph theory*
 
-@param code A DNA or RNA code as string vector represented by the graph.
+#### Parameters:
+*code*  &rarr; [string vector] A DNA or RNA code as list represented by the graph.
 
 ```R
 code_get_one_longest_path_as_vector <- function(code)
@@ -435,7 +468,8 @@ circle paths.<br/>
 *2007 E. FIMMEL, C. J. MICHEL, AND L. STRÜNGMANN. N-nucleotide circular codes in graph theory*
 
 
-@param code A DNA or RNA code as string vector represented by the graph.
+#### Parameters:
+*code*  &rarr; [string vector] A DNA or RNA code as list represented by the graph.
 
 ```R
 code_get_one_circle_as_vector <- function(code)
@@ -451,7 +485,8 @@ If the graph shows no cycle the list will be empty. Otherwise it returns a list 
 circle paths.<br/>
 *2007 E. FIMMEL, C. J. MICHEL, AND L. STRÜNGMANN. N-nucleotide circular codes in graph theory*
 
-@param code A DNA or RNA code as string vector represented by the graph.
+#### Parameters:
+*code*  &rarr; [string vector] A DNA or RNA code as list represented by the graph.
 
 ```R
 code_get_all_circle_as_vector <- function(code)

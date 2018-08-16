@@ -5,6 +5,7 @@
 #ifndef GCATCPP_ABSTRACTGENCODE_H
 #define GCATCPP_ABSTRACTGENCODE_H
 
+#include <utility>
 #include <vector>
 #include <memory>
 
@@ -15,9 +16,29 @@ class AbstractTester;
 
 class AbstractModifier;
 
+namespace seq {
+
+    struct Seq_Result {
+        std::vector<std::string> words;
+        std::vector<std::string> parts;
+        std::string rest;
+        std::vector<unsigned int> idx_list;
+        std::string seq;
+        unsigned int longest_match;
+        double total_match_in_percent;
+
+        explicit Seq_Result(std::string seq) :
+                seq(std::move(seq)), longest_match(0), total_match_in_percent(0) {}
+    };
+
+    typedef struct Seq_Result Seq_Result;
+}
+
+
+
 class AbstractGenCode : public err::AbstractErrorManager {
 public:
-    explicit AbstractGenCode(std::vector<std::string>);
+    explicit AbstractGenCode(const std::vector<std::string> &);
     explicit AbstractGenCode(std::string, unsigned int);
     
     AbstractGenCode(const AbstractGenCode &agc);
@@ -35,7 +56,9 @@ public:
     virtual bool is_self_complementary() = 0;
     virtual bool is_comma_free() = 0;
 
-    virtual void shift_tuples(int shifts = 1) = 0;
+    virtual void shift_tuples(int shifts=1) = 0; // NOLINT
+
+    virtual seq::Seq_Result find_code_in_sequence(const std::string &) = 0;
 
     acid::acids get_acid();
 
@@ -49,7 +72,7 @@ protected:
 
     std::vector<int> word_length;
 
-    virtual ~AbstractGenCode() {
+    ~AbstractGenCode() override {
         this->print_errors();
     };
 
@@ -61,7 +84,7 @@ protected:
 
     const std::string to_string() const;
 
-    operator std::string() const { return this->to_string(); }
+    explicit operator std::string() const override { return this->to_string(); }
 
     friend std::ostream &operator<<(std::ostream &_stream, AbstractGenCode const &mc) {
         _stream << mc.to_string();

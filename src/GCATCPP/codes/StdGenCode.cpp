@@ -5,7 +5,9 @@
 #include <numeric>
 #include <iostream>
 #include <regex>
-
+#include <utility>
+#include <algorithm>
+#include <sstream>
 #include "StdGenCode.h"
 #include "../tester/Circular.h"
 #include "../tester/C_n.h"
@@ -21,16 +23,15 @@ StdGenCode::StdGenCode(std::vector<std::string> code_vec) : AbstractGenCode(code
 
 }
 
-StdGenCode::StdGenCode(std::string sequence, unsigned int word_length) : AbstractGenCode(sequence, word_length) {
-  
-}
-
-StdGenCode::StdGenCode(const StdGenCode &agc) : AbstractGenCode(agc) {
+StdGenCode::StdGenCode(std::string sequence, unsigned int word_length) : AbstractGenCode(std::move(sequence),
+                                                                                         word_length) {
 
 }
+
+StdGenCode::StdGenCode(const StdGenCode &agc) = default;
 
 bool StdGenCode::test_code() {
-    if(this->is_tested || !AbstractGenCode::test_code()) {
+    if (this->is_tested || !AbstractGenCode::test_code()) {
         return this->is_ok;
     }
 
@@ -38,7 +39,7 @@ bool StdGenCode::test_code() {
     this->word_length.empty();
     this->word_length.push_back((signed) this->code_vec[0].length());
 
-    for (std::string word : this->code_vec) {
+    for (const std::string &word : this->code_vec) {
         if (this->word_length[0] != (signed) word.length()) {
             this->add_error_msg("Word size dose not match");
             this->word_length.empty();
@@ -73,8 +74,56 @@ bool StdGenCode::is_comma_free() {
     return this->run_test(tester);
 }
 
-void StdGenCode::shift_tuples(int shifts) {
+void StdGenCode::shift_tuples(int shifts) { // NOLINT
     if (!this->test_code()) { return; }
     auto tester = std::make_shared<ShiftTuples>();
     this->run_modification(tester, &shifts);
+}
+
+seq::Seq_Result StdGenCode::find_code_in_sequence(const std::string &seq) {
+    this->test_code();
+    seq::Seq_Result result = seq::Seq_Result(seq);
+    std::stringstream rest;
+    std::stringstream parts;
+    unsigned int current_match_length = 0;
+    for (int i = 0; i < seq.length(); i += this->word_length[0]) {
+        bool found = false;
+        std::string seq_word = seq.substr(static_cast<unsigned long>(i),
+                                          static_cast<unsigned long>(this->word_length[0]));
+
+        for (const std::string &word : this->code_vec) {
+            if (seq_word == word) {
+                result.words.emplace_back(seq_word);
+                result.idx_list.emplace_back(i);
+                current_match_length += this->word_length[0];
+                found = true;
+                break;
+            }
+        }
+
+        parts.seekg(0, std::ios::end);
+        auto size = (int) parts.tellg();
+
+        if(!found && current_match_length > 0 || found && current_match_length == this->word_length[0]) {
+            result.parts.emplace_back(parts.str());
+            parts.clear();//clear any bits set
+            parts.str(std::string());
+        }
+
+        parts << seq_word;
+
+        if (!found) {
+            rest << seq_word;
+            result.longest_match = std::max(current_match_length, result.longest_match);
+            result.total_match_in_percent += current_match_length;
+            current_match_length = 0;
+        }
+    }
+
+    result.parts.emplace_back(parts.str());
+    result.rest = rest.str();
+    result.total_match_in_percent = 100.0 * (result.total_match_in_percent / (double) seq.length());
+
+    return result;
+
 }

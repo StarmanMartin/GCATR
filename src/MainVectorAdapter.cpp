@@ -246,3 +246,38 @@ Rcpp::StringVector get_rna_bases() {
   
   return RAdapterUtils::as_r_string_vector(result);
 }
+
+//' Analysis a sequence based on a generic code.
+//'
+//' Finds all appearance of a code ion a sequence. Finds the longest connected matches of words of the code in the sequence.
+//' The function also calculates the matching bases of the found words in the sequence.
+//'
+//' @return Returns a List with all analysing results. The list contains following:\cr
+//' \emph{words} all found words of the code in the sequence in the correct order.\cr
+//' \emph{idx_list} the first-letter index of all found words of the code in the sequence in the correct order.\cr
+//' \emph{rest} all parts of the sequence which are not matching the code.\cr
+//' \emph{parts} the sequence separated in matching and non matching parts. Odd indexes are matching, even indexes are not matching.\cr
+//' \emph{longest_match} the longest connected matching sequence.\cr
+//' \emph{total_match_in_percent} the percentage of the matching parts.
+//'
+//' @param seq A DNA or RNA sequence.
+//' @param code A DNA or RNA code as string vector represented by the graph.
+//' @examples
+//' code <- c("ACG", "TCG")
+//' seq <- "ACGTCGCGACGTACGACGTCGTACTCGATGCAAGATC"
+//' res <- find_amd_analysis_code_in_sequence(seq, code)
+//'
+//' @export
+// [[Rcpp::export]]
+Rcpp::List find_amd_analysis_code_in_sequence(std::string seq, StringVector code) {
+  StdGenCode gc(RAdapterUtils::as_cpp_string_vector(code));
+  auto res = gc.find_code_in_sequence(seq);
+
+  return Rcpp::List::create(
+    Rcpp::Named("word") = Rcpp::wrap(res.words),
+    Rcpp::Named("idx_list") = Rcpp::wrap(res.idx_list),
+    Rcpp::Named("rest") = Rcpp::wrap(res.rest),
+    Rcpp::Named("parts") = Rcpp::wrap(res.parts),
+    Rcpp::Named("longest_match") = res.longest_match,
+    Rcpp::Named("total_match_in_percent") = res.total_match_in_percent);
+}

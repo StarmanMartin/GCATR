@@ -8,27 +8,26 @@ using namespace graph;
 
 #include "../codes/AbstractGenCode.h"
 
-void Graph::parse_code(const AbstractGenCode& code) {
-    for(auto word : code.as_vector()) {
+void Graph::parse_code(const AbstractGenCode &code) {
+    for (auto word : code.as_vector()) {
         this->add_word(word);
     }
 }
 
 
-
-std::vector< Edge > Graph::remove_edges(const Graph& to_remove) {
-    std::vector< std::shared_ptr<Edge> > new_edges;
-    for(auto own_edge : this->edges) {
+std::vector<Edge> Graph::remove_edges(const Graph &to_remove) {
+    std::vector<std::shared_ptr<Edge> > new_edges;
+    for (auto own_edge : this->edges) {
         bool has_found_edge = false;
-        for(auto edge : to_remove.edges) {
+        for (auto edge : to_remove.edges) {
             auto comp_val = own_edge->compare(*edge);
-            if(comp_val == 0) {
+            if (comp_val == 0) {
                 has_found_edge = true;
                 break;
             }
         }
 
-        if(!has_found_edge) {
+        if (!has_found_edge) {
             new_edges.push_back(own_edge);
         }
     }
@@ -43,7 +42,7 @@ void Graph::add_word(std::string word) {
     }
 }
 
-void Graph::add_graph(const Graph& add_graph) {
+void Graph::add_graph(const Graph &add_graph) {
     for (auto new_vertex : add_graph.edges) {
         this->add_vertices(new_vertex->get_from()->get_label(), new_vertex->get_to()->get_label());
     }
@@ -58,7 +57,7 @@ void Graph::add_vertices(std::string from, std::string to) {
     for (int i = 0; i < this->edges.size(); ++i) {
         auto edge = *(this->edges[i]);
         auto comp_val = new_edge_ptr->compare(edge);
-        if(comp_val == 0) {
+        if (comp_val == 0) {
             return;
         } else if (comp_val > 0) {
             this->edges.insert(this->edges.begin() + i, new_edge_ptr);
@@ -69,17 +68,26 @@ void Graph::add_vertices(std::string from, std::string to) {
     this->edges.push_back(new_edge_ptr);
 }
 
+std::shared_ptr<Vertex> Graph::find_vertices(std::string &word) {
+    Vertex new_vertex(word);
+    for (std::shared_ptr<Vertex> vertex: this->vertices) {
+        if (vertex->compare(new_vertex) == 0) {
+            return vertex;
+        }
+    }
 
+    return nullptr;
+}
 
 std::shared_ptr<Vertex> Graph::add_vertices(std::shared_ptr<Vertex> new_vertex) {
     for (int i = 0; i < this->vertices.size(); ++i) {
         Vertex vertex = *(this->vertices[i]);
-            if (new_vertex->compare(vertex) == 0) {
-                return this->vertices[i];
-            } else if (new_vertex->compare(vertex) > 0) {
-                this->vertices.insert(this->vertices.begin() + i, new_vertex);
-                return new_vertex;
-            }
+        if (new_vertex->compare(vertex) == 0) {
+            return this->vertices[i];
+        } else if (new_vertex->compare(vertex) > 0) {
+            this->vertices.insert(this->vertices.begin() + i, new_vertex);
+            return new_vertex;
+        }
 
     }
 
@@ -104,17 +112,17 @@ std::vector<Edge> Graph::get_edges() const {
 }
 
 int Graph::compare(const Graph &in_g) const {
-    if(this->edges.size() != in_g.edges.size()) {
-        return (signed)this->edges.size() - (signed)in_g.edges.size();
+    if (this->edges.size() != in_g.edges.size()) {
+        return (signed) this->edges.size() - (signed) in_g.edges.size();
     }
 
-    if(this->vertices.size() != in_g.vertices.size()) {
-        return (signed)this->vertices.size() - (signed)in_g.vertices.size();
+    if (this->vertices.size() != in_g.vertices.size()) {
+        return (signed) this->vertices.size() - (signed) in_g.vertices.size();
     }
 
-    for(int i = 0; i < this->edges.size(); ++i) {
+    for (int i = 0; i < this->edges.size(); ++i) {
         auto comp_val = this->edges[i]->compare(*in_g.edges[i]);
-        if(comp_val != 0) {
+        if (comp_val != 0) {
             return comp_val;
         }
     }

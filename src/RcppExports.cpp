@@ -269,6 +269,18 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// find_amd_analysis_code_in_sequence
+Rcpp::List find_amd_analysis_code_in_sequence(std::string seq, StringVector code);
+RcppExport SEXP _GCATR_find_amd_analysis_code_in_sequence(SEXP seqSEXP, SEXP codeSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< std::string >::type seq(seqSEXP);
+    Rcpp::traits::input_parameter< StringVector >::type code(codeSEXP);
+    rcpp_result_gen = Rcpp::wrap(find_amd_analysis_code_in_sequence(seq, code));
+    return rcpp_result_gen;
+END_RCPP
+}
 
 static const R_CallMethodDef CallEntries[] = {
     {"_GCATR_add_bda", (DL_FUNC) &_GCATR_add_bda, 6},
@@ -294,6 +306,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_GCATR_code_get_all_circle_as_vector", (DL_FUNC) &_GCATR_code_get_all_circle_as_vector, 1},
     {"_GCATR_get_dna_bases", (DL_FUNC) &_GCATR_get_dna_bases, 0},
     {"_GCATR_get_rna_bases", (DL_FUNC) &_GCATR_get_rna_bases, 0},
+    {"_GCATR_find_amd_analysis_code_in_sequence", (DL_FUNC) &_GCATR_find_amd_analysis_code_in_sequence, 2},
     {NULL, NULL, 0}
 };
 

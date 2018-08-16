@@ -45,6 +45,8 @@ namespace graph {
         std::vector<std::shared_ptr<Vertex> > vertices = {};
         std::vector<std::shared_ptr<Edge> > edges = {};
 
+        std::shared_ptr<Vertex> find_vertices(std::string &word);
+
         std::shared_ptr<Vertex> add_vertices(std::shared_ptr<Vertex>);
     };
 }

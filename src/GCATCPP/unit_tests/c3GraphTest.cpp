@@ -12,8 +12,8 @@
 
 std::vector<graph::Vertex> c3_generate_vertex_vec(std::vector<std::string> vertices) {
     std::vector<graph::Vertex> v;
-    for (auto w : vertices) {
-        v.push_back(graph::Vertex(w));
+    for (const auto &w : vertices) {
+        v.emplace_back(w);
     }
 
     return v;
@@ -25,7 +25,7 @@ std::vector<graph::Edge> c3_generate_edge_vec(std::vector<std::string> v) {
         std::shared_ptr<graph::Vertex> from_ptr = std::make_shared<graph::Vertex>(v[i]);
         std::shared_ptr<graph::Vertex> to_ptr = std::make_shared<graph::Vertex>(v[i + 1]);
 
-        e.push_back(graph::Edge(from_ptr, to_ptr));
+        e.emplace_back(from_ptr, to_ptr);
     }
 
     return e;
@@ -33,37 +33,26 @@ std::vector<graph::Edge> c3_generate_edge_vec(std::vector<std::string> v) {
 
 graph::C3Graph c3_generate_graph_for_code(std::vector<std::string> c) {
     graph::C3Graph g;
-    for (auto w : c) {
+    for (const auto &w : c) {
         g.add_word(w);
     }
 
     return g;
 }
 
-
-TEST(C3GraphTest, ConstructorEdgeTest) {
-    graph::C3Graph g;
-    StdGenCode c({"ACG", "CGT"});
-    g.parse_code(c);
-
-    std::vector<graph::Edge> v = c3_generate_edge_vec({"AC", "G", "A", "CG", "CG", "T", "C", "GT"});
-
-    test_help::test_equal_vector<graph::Edge>(g.get_edges(), v);
-}
-
 TEST(C3GraphTest, EdgeTest) {
     graph::C3Graph g = c3_generate_graph_for_code({"ACG", "CGT"});
 
-    std::vector<graph::Edge> v = c3_generate_edge_vec({"AC", "G", "A", "CG", "CG", "T", "C", "GT"});
+    std::vector<graph::Edge> v = c3_generate_edge_vec({"TC", "G", "C", "GA", "GA", "C", "G", "TC"});
 
-    test_help::test_equal_vector<graph::Edge>(g.get_edges(), v);
+    test_help::test_equal_vector<graph::Edge>(g.get_c3_edges(), v);
 }
 
 
 TEST(C3GraphTest, VertexTest) {
     graph::C3Graph g = c3_generate_graph_for_code({"ACG", "CGT"});
 
-    std::vector<graph::Vertex> v = c3_generate_vertex_vec({"CG", "AC", "GT", "G", "A", "C", "T"});
+    std::vector<graph::Vertex> v = c3_generate_vertex_vec({"CG", "GA", "AC", "TC", "GT", "G", "A", "C", "T"});
 
     test_help::test_equal_vector<graph::Vertex>(g.get_vertices(), v);
 }

@@ -41,8 +41,8 @@ void C3Graph::add_c3_edge(std::shared_ptr<Vertex> from_ptr, std::shared_ptr<Vert
 
 std::vector<Edge> C3Graph::get_c3_edges() const {
     std::vector<Edge> res_vec;
-    for (auto edge : this->c3_edges) {
-        res_vec.push_back(Edge(edge.operator*()));
+    for (const auto &edge : this->c3_edges) {
+        res_vec.emplace_back(Edge(edge.operator*()));
     }
     return res_vec;
 }

@@ -29,7 +29,7 @@ set(SOURCE_TEST_FILES unit_tests/test_utils.cpp
         unit_tests/cnCircularTest.cpp unit_tests/acidTest.cpp unit_tests/selfComplementaryTest.cpp unit_tests/commaFreeTest.cpp
         unit_tests/minerCircularTest.cpp unit_tests/graphTest.cpp unit_tests/minerPathTest.cpp unit_tests/sequenceTest.cpp unit_tests/c3GraphTest.cpp)
 
-set(CURRENT_TEST_FILES unit_tests/test_utils.cpp unit_tests/c3GraphTest.cpp)
+set(CURRENT_TEST_FILES unit_tests/test_utils.cpp unit_tests/sequenceTest.cpp)
 
 
 add_executable(MainTest ${SOURCE_FILES} ${SOURCE_TEST_FILES})
