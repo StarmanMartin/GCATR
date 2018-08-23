@@ -3,7 +3,7 @@
 
 ![Genetic Code Analysis Toolkit Logo](/man/resources/bio/gcat/logo.png?raw=true)
 
-This project contains the source code for R version of the Genetic Code Analysis Toolkit (GCAT) project. Please refer to the [public homepage](http://www.gcat.bio/) and the [project homepage](http://www.mbi.hs-mannheim.de/research/mathematics-of-the-genetic-information.html) for more information.
+This project contains the source code for the R version of the Genetic Code Analysis Toolkit (GCAT) project. Please refer to the [public homepage](http://www.gcat.bio/) and the [project homepage](http://www.mbi.hs-mannheim.de/research/mathematics-of-the-genetic-information.html) for more information.
 
 # Installation
 GCATR is available for R version 3.5 and higher. It requires a C++11 (or later) compiler and [Rcpp (>= 0.12.18)](https://cran.r-project.org/web/packages/Rcpp/index.html) installed on your machine. 
@@ -22,7 +22,7 @@ devtools::install_github("StarmanMartin/GCATR")
 
 ### get_rna_codon_list
 
-This function makes a List of all trinucleotide RNA codon. It will generate the following list:<br/>
+This function generates a List of all trinucleotide RNA codon. It will generate the following list:<br/>
 _UUU UCU UAU UGU UUC UCC UAC UGC UUA UCA UAA UGA UUG UCG UAG UGG CUU CCU CAU CGU CUC CCC CAC CGC CUA CCA CAA CGA CUG CCG CAG CGG
 AUU ACU AAU AGU AUC ACC AAC AGC AUA ACA AAA AGA AUG ACG AAG AGG GUU GCU GAU GGU GUC GCC GAC GGC GUA GCA GAA GGA GUG GCG GAG GGG_
 #### Return:
@@ -36,7 +36,7 @@ res <- get_rna_codon_list()
 ### get_rna_codon_table
 
 ![Genetic Code Analysis Toolkit Logo](/man/resources/bio/gcat/codon_table.jpg?raw=true)<br/><br/>
-Returns the tables displayed in the table above. The tables will be stored in a matrix object. 
+Returns the tables displayed in the fig. above. The tables will be stored in a matrix object. 
 
 #### Return:
 A matrix object with all RNA codons
