@@ -3,24 +3,25 @@
 //
 
 #include <sstream>
+#include <string>
 #include <iterator>
 #include <algorithm>
-#include "KnownCodes.h"
+#include "CodonTranslTables.h"
 
 using namespace gen_codes;
 
-KnownCodes::KnownCodes() {
-    std::vector<CodeData> temp(NUMBER_OF_CODES);
+CodonTranslTables::CodonTranslTables() {
+    std::vector<TranslTableData> temp(NUMBER_OF_CODES);
     this->codes = temp;
 };
 
-KnownCodes &KnownCodes::getInstance() {
-    static KnownCodes _instance;
+CodonTranslTables &CodonTranslTables::getInstance() {
+    static CodonTranslTables _instance;
 
     return _instance;
 }
 
-const std::string KnownCodes::getAllCodesText() {
+const std::string CodonTranslTables::getAllCodesText() {
 
     std::vector<std::string> codeStringList = this->getAllCodes();
 
@@ -34,7 +35,7 @@ const std::string KnownCodes::getAllCodesText() {
     return imploded.str();
 }
 
-const std::vector<std::string> KnownCodes::getAllCodes() {
+const std::vector<std::string> CodonTranslTables::getAllCodes() {
     this->setCodes();
     auto codeStringList = std::vector<std::string>();
 
@@ -48,7 +49,7 @@ const std::vector<std::string> KnownCodes::getAllCodes() {
     return codeStringList;
 }
 
-void KnownCodes::setCodes() {
+void CodonTranslTables::setCodes() {
     if (this->isCodesSet) {
         return;
     }
@@ -90,51 +91,66 @@ void KnownCodes::setCodes() {
     this->codes[23].setData("Blastocrithidia Nuclear", 31, {"TGA", "Trp", "TAG", "Glu_STOP", "TAA", "Glu_STOP"});
 }
 
-const std::vector<std::string> KnownCodes::getCodeByName(const std::string &name) {
+const std::vector<std::string> CodonTranslTables::getCodeByName(const std::string &name, acid::acids ac) {
     this->setCodes();
-    for (CodeData& code : this->codes) {
+    for (TranslTableData& code : this->codes) {
         if(code.name == name) {
-            return this->prepareCode(code);
+            return this->prepareCode(code, ac);
         }
     }
 
     return std::vector<std::string>();
 }
 
-const std::vector<std::string> KnownCodes::getCodeByIndex(int idx) {
+const std::vector<std::string> CodonTranslTables::getCodeByIndex(int idx, acid::acids ac) {
     this->setCodes();
     for (int startIdx = std::min(idx, NUMBER_OF_CODES) - 1; startIdx >= 0; --startIdx) {
         if (this->codes[startIdx].index == idx) {
-            return this->prepareCode(this->codes[startIdx]);
+            return this->prepareCode(this->codes[startIdx], ac);
         }
     }
 
     return std::vector<std::string>();
 }
 
-const std::vector<std::string> KnownCodes::getStandardCode() {
-    return this->standardCode;
+const std::vector<std::string> CodonTranslTables::getStandardCode(acid::acids ac) {
+    return this->getCodeByIndex(1, ac);
 }
 
-const std::vector<std::string> KnownCodes::prepareCode(const CodeData &data) {
+const std::vector<std::string> CodonTranslTables::prepareCode(const TranslTableData &data, acid::acids ac) {
     auto newCode = this->standardCode;
     for(int i = 0; i < newCode.size(); i += 2) {
         for (int deviationIdx = 0; deviationIdx < data.deviation.size(); deviationIdx += 2) {
             if(newCode[i] == data.deviation[deviationIdx]) {
                 std::string label = data.deviation[deviationIdx+1];
-                newCode[i+1] = KnownCodes::replaceAll(label, "_", " or ");
+                newCode[i+1] = CodonTranslTables::replaceAll(label, "_", " or ");
             }
+        }
+
+        if(ac == acid::acids::RNA) {
+            std::replace( newCode[i].begin(), newCode[i].end(), acid::bases::THYMINE, acid::bases::URACIL);
         }
     }
 
     return newCode;
 }
 
-std::string KnownCodes::replaceAll(std::string str, const std::string &from, const std::string &to) {
+std::string CodonTranslTables::replaceAll(std::string str, const std::string &from, const std::string &to) {
     size_t start_pos = 0;
     while((start_pos = str.find(from, start_pos)) != std::string::npos) {
         str.replace(start_pos, from.length(), to);
         start_pos += to.length();
     }
     return str;
+}
+
+const int CodonTranslTables::getIdxByName(const std::string &name) {
+    this->setCodes();
+    for (TranslTableData& code : this->codes) {
+        if(code.name == name) {
+            return code.index;
+        }
+    }
+
+    return 1;
 }

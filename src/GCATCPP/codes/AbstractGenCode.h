@@ -62,7 +62,14 @@ public:
 
     acid::acids get_acid();
 
+    void setTranslTableByIdx(int idx, int forWordLength);
+    void setTranslTableByName(const std::string &name, int forWordLength);
+    void setTranslTableToStandardCode(int forWordLength);
+
+    std::vector<std::string> get_amino_acids();
+
 protected:
+    std::map<int, int> transl_table_idx;
     std::vector<std::string> code_vec;
     bool is_tested;
     bool is_ok;
@@ -77,6 +84,7 @@ protected:
     };
 
     void reset(std::vector<std::string>);
+    const std::vector<std::string> factor_transl_table(int wordLength) const;
 
     bool run_test(std::shared_ptr<AbstractTester>);
 

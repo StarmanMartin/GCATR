@@ -7,11 +7,12 @@
 #include <regex>
 #include <sstream>
 #include <iterator>
-
+#include <utility>
 #include "../tester/AbstractTester.h"
 #include "../modification/AbstractModifier.h"
 
 #include "AbstractGenCode.h"
+#include "../genericCode/CodonTranslTables.h"
 
 #define EMPTY_SEQUNECE "#"
 
@@ -50,11 +51,13 @@ AbstractGenCode::AbstractGenCode(const AbstractGenCode &agc) : AbstractErrorMana
 }
 
 void AbstractGenCode::reset(std::vector<std::string> code_vec) {
-    this->code_vec = code_vec;
+    this->code_vec = std::move(code_vec);
     this->is_tested = false;
     this->is_ok = false;
     this->string_sequence = EMPTY_SEQUNECE;
     this->word_length = {};
+    this->transl_table_idx.clear();
+    this->transl_table_idx[3] = 1;
 }
 
 
@@ -130,3 +133,60 @@ const std::string AbstractGenCode::to_string() const {
 
     return "Acid: " + acid::acid_to_string(this->acid) + "\n " + imploded.str();
 }
+
+void AbstractGenCode::setTranslTableByIdx(int idx, int forWordLength) {
+    this->transl_table_idx[forWordLength] = idx;
+}
+
+void AbstractGenCode::setTranslTableByName(const std::string &name, int forWordLength) {
+    switch(forWordLength) {
+        case 3:
+            this->transl_table_idx[forWordLength] = gen_codes::CodonTranslTables::getInstance().getIdxByName(name);
+            break;
+        default:
+            break;
+    }
+
+}
+
+void AbstractGenCode::setTranslTableToStandardCode(int forWordLength) {
+    this->transl_table_idx[forWordLength] = 1;
+}
+
+const std::vector<std::string> AbstractGenCode::factor_transl_table(int wordLength) const {
+    if(!this->transl_table_idx.count(wordLength)) {
+        return std::vector<std::string>();
+    }
+
+    int translCodeIdx = this->transl_table_idx.at(wordLength);
+    std::vector<std::string> translTable;
+
+    switch(wordLength) {
+        case 3:
+            return gen_codes::CodonTranslTables::getInstance().getCodeByIndex(translCodeIdx, this->acid);
+        default:
+            return std::vector<std::string>();
+    }
+}
+
+std::vector<std::string> AbstractGenCode::get_amino_acids() {
+    std::vector<std::string> vec_acids;
+    this->test_code();
+    std::map<int, std::vector<std::string>> translTables;
+    for(const std::string &codon : this->code_vec) {
+        auto wordLength = (int) codon.length();
+        if(!translTables.count(wordLength)) {
+            translTables[wordLength] = this->factor_transl_table(wordLength);
+        }
+
+        auto it = std::find(translTables[wordLength].begin(), translTables[wordLength].end(), codon);
+        if (it != translTables[wordLength].end()) {
+            it++;
+            vec_acids.push_back(*it);
+        } else
+            vec_acids.push_back(codon);
+    }
+
+    return vec_acids;
+}
+

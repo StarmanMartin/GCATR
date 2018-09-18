@@ -24,6 +24,10 @@ public:
     seq::Seq_Result find_code_in_sequence(const std::string &seq) override;
     void shift_tuples(int shifts=1) override; // NOLINT
 
+    void setTranslTableByIdx(int idx);
+    void setTranslTableByName(const std::string &name);
+    void setTranslTableToStandardCode();
+
 protected:
 };
 

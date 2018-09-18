@@ -127,3 +127,16 @@ seq::Seq_Result StdGenCode::find_code_in_sequence(const std::string &seq) {
     return result;
 
 }
+
+
+void StdGenCode::setTranslTableByIdx(int idx) {
+    return AbstractGenCode::setTranslTableByIdx(idx, 3);
+}
+
+void StdGenCode::setTranslTableByName(const std::string &name) {
+    return  AbstractGenCode::setTranslTableByName(name, 3);
+}
+
+void StdGenCode::setTranslTableToStandardCode() {
+    return  AbstractGenCode::setTranslTableToStandardCode(3);
+}

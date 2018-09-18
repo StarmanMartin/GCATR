@@ -23,14 +23,14 @@ set(SOURCE_FILES main_test.cpp
         helper/AbstractErrorManager.cpp helper/AbstractErrorManager.h
         miner/CircleMiner.cpp miner/CircleMiner.h
         graph/Edge.cpp graph/Edge.h graph/Vertex.cpp graph/Vertex.h graph/Graph.cpp graph/Graph.h miner/LongestPathMiner.cpp miner/LongestPathMiner.h graph/C3Graph.cpp graph/C3Graph.h
-        genericCode/KnownCodes.cpp genericCode/KnownCodes.h)
+        genericCode/CodonTranslTables.cpp genericCode/CodonTranslTables.h)
 
 set(SOURCE_TEST_FILES unit_tests/test_utils.cpp
         unit_tests/circular.cpp unit_tests/codeTestTest.cpp unit_tests/bdaTest.cpp unit_tests/test_utils.cpp
         unit_tests/cnCircularTest.cpp unit_tests/acidTest.cpp unit_tests/selfComplementaryTest.cpp unit_tests/commaFreeTest.cpp
         unit_tests/minerCircularTest.cpp unit_tests/graphTest.cpp unit_tests/minerPathTest.cpp unit_tests/sequenceTest.cpp unit_tests/c3GraphTest.cpp unit_tests/codeTableTest.cpp)
 
-set(CURRENT_TEST_FILES unit_tests/test_utils.cpp unit_tests/codeTableTest.cpp)
+set(CURRENT_TEST_FILES unit_tests/test_utils.cpp unit_tests/acidTest.cpp)
 
 
 add_executable(MainTest ${SOURCE_FILES} ${SOURCE_TEST_FILES})

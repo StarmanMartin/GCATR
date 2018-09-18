@@ -11,13 +11,15 @@
 #include <vector>
 #include <string>
 
+#include "../codes/Acid.h"
+
 namespace gen_codes {
 
-    class CodeData {
+    class TranslTableData {
     public:
-        CodeData() = default;
+        TranslTableData():index(-1) {};
 
-        CodeData(CodeData const &a) {
+        TranslTableData(TranslTableData const &a) {
             this->deviation = a.deviation;
             this->name = a.name;
             this->index = a.index;
@@ -34,30 +36,32 @@ namespace gen_codes {
         }
     };
 
-    class KnownCodes {
+    class CodonTranslTables {
     public:
-        static KnownCodes &getInstance();
+        static CodonTranslTables &getInstance();
 
         const std::string getAllCodesText();
 
         const std::vector<std::string> getAllCodes();
 
-        const std::vector<std::string> getCodeByName(const std::string& name);
-        const std::vector<std::string> getCodeByIndex(int idx);
+        const std::vector<std::string> getCodeByName(const std::string& name, acid::acids ac=acid::acids::DNA);
+        const std::vector<std::string> getCodeByIndex(int idx, acid::acids ac=acid::acids::DNA);
 
-        const std::vector<std::string> getStandardCode();
+        const std::vector<std::string> getStandardCode(acid::acids ac=acid::acids::DNA);
+
+        const int getIdxByName(const std::string& name);
 
     private:
         static std::string replaceAll(std::string str, const std::string &from, const std::string &to);
 
-        explicit KnownCodes();
+        explicit CodonTranslTables();
 
         bool isCodesSet = false;
 
         void setCodes();
-        const std::vector<std::string> prepareCode(const CodeData &data);
+        const std::vector<std::string> prepareCode(const TranslTableData &data, acid::acids ac);
 
-        std::vector<CodeData> codes;
+        std::vector<TranslTableData> codes;
         const std::vector<std::string> standardCode = {"TTT", "Phe", "TCT", "Ser", "TAT", "Tyr", "TGT", "Cys", "TTC",
                                                        "Phe",
                                                        "TCC", "Ser", "TAC", "Tyr", "TGC", "Cys", "TTA", "Leu", "TCA",
@@ -85,9 +89,9 @@ namespace gen_codes {
                                                        "GTG", "Val", "GCG", "Ala", "GAG", "Glu", "GGG", "Gly"};
 
     public:
-        KnownCodes(KnownCodes const &) = delete;
+        CodonTranslTables(CodonTranslTables const &) = delete;
 
-        void operator=(KnownCodes const &)  = delete;
+        void operator=(CodonTranslTables const &)  = delete;
     };
 }
 #endif //GCATCPP_KNOWNCODES_H
