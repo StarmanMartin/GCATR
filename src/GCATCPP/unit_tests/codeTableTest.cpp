@@ -4,6 +4,7 @@
 
 #include "gtest/gtest.h"
 #include "../genericCode/CodonTranslTables.h"
+#include "../genericCode/CodonClusteringAlgorithm.h"
 #include <sstream>
 #include <string>
 
@@ -74,4 +75,15 @@ TEST (GenerticCodeTest, TheYeastMitochondrialCodeRNA) {
     auto code = getCodeAsOneLineByIndex(3, acid::acids::RNA);
     EXPECT_NE(std::string::npos, code.find("AUAMet"));
     EXPECT_EQ(std::string::npos, code.find("ATAMet"));
+}
+
+TEST (GenerticCodeTest, ClusterAlgorthem) {
+    auto code = gen_codes::CodonTranslTables::getInstance().getCodeByIndex(3);
+    gen_codes::CodonClusteringAlgorithm cca(code);
+
+   double average = cca.get_average_conductance();
+   double max = cca.get_max_conductance();
+   double min = cca.get_min_conductance();
+
+   std::cout << std::endl << "average: " << average << " - max: " << max << " - min: " << min << std::endl << std::endl;
 }
