@@ -6,6 +6,10 @@
 #include <string>
 #include <iterator>
 #include <algorithm>
+#include <fstream>
+#include <iostream>
+#include <utility>
+
 #include "CodonTranslTables.h"
 
 using namespace gen_codes;
@@ -93,8 +97,8 @@ void CodonTranslTables::setCodes() {
 
 const std::vector<std::string> CodonTranslTables::getCodeByName(const std::string &name, acid::acids ac) {
     this->setCodes();
-    for (TranslTableData& code : this->codes) {
-        if(code.name == name) {
+    for (TranslTableData &code : this->codes) {
+        if (code.name == name) {
             return this->prepareCode(code, ac);
         }
     }
@@ -104,7 +108,7 @@ const std::vector<std::string> CodonTranslTables::getCodeByName(const std::strin
 
 const std::vector<std::string> CodonTranslTables::getCodeByIndex(int idx, acid::acids ac) {
     this->setCodes();
-    for (int startIdx = std::min(idx, NUMBER_OF_CODES) - 1; startIdx >= 0; --startIdx) {
+    for (int startIdx = std::min(idx, (int) this->codes.size()) - 1; startIdx >= 0; --startIdx) {
         if (this->codes[startIdx].index == idx) {
             return this->prepareCode(this->codes[startIdx], ac);
         }
@@ -119,16 +123,16 @@ const std::vector<std::string> CodonTranslTables::getStandardCode(acid::acids ac
 
 const std::vector<std::string> CodonTranslTables::prepareCode(const TranslTableData &data, acid::acids ac) {
     auto newCode = this->standardCode;
-    for(int i = 0; i < newCode.size(); i += 2) {
+    for (int i = 0; i < newCode.size(); i += 2) {
         for (int deviationIdx = 0; deviationIdx < data.deviation.size(); deviationIdx += 2) {
-            if(newCode[i] == data.deviation[deviationIdx]) {
-                std::string label = data.deviation[deviationIdx+1];
-                newCode[i+1] = CodonTranslTables::replaceAll(label, "_", " or ");
+            if (newCode[i] == data.deviation[deviationIdx]) {
+                std::string label = data.deviation[deviationIdx + 1];
+                newCode[i + 1] = label; // CodonTranslTables::replaceAll(label, "_", " or ");
             }
         }
 
-        if(ac == acid::acids::RNA) {
-            std::replace( newCode[i].begin(), newCode[i].end(), acid::bases::THYMINE, acid::bases::URACIL);
+        if (ac == acid::acids::RNA) {
+            std::replace(newCode[i].begin(), newCode[i].end(), acid::bases::THYMINE, acid::bases::URACIL);
         }
     }
 
@@ -137,7 +141,7 @@ const std::vector<std::string> CodonTranslTables::prepareCode(const TranslTableD
 
 std::string CodonTranslTables::replaceAll(std::string str, const std::string &from, const std::string &to) {
     size_t start_pos = 0;
-    while((start_pos = str.find(from, start_pos)) != std::string::npos) {
+    while ((start_pos = str.find(from, start_pos)) != std::string::npos) {
         str.replace(start_pos, from.length(), to);
         start_pos += to.length();
     }
@@ -146,11 +150,97 @@ std::string CodonTranslTables::replaceAll(std::string str, const std::string &fr
 
 const int CodonTranslTables::getIdxByName(const std::string &name) {
     this->setCodes();
-    for (TranslTableData& code : this->codes) {
-        if(code.name == name) {
+    for (TranslTableData &code : this->codes) {
+        if (code.name == name) {
             return code.index;
         }
     }
 
     return 1;
+}
+
+bool CodonTranslTables::read_and_add_new_transl_table(const std::string &filename) {
+    std::ifstream tableFileReader;
+    std::vector<std::string> newDeviationTable;
+    try {
+        tableFileReader.open(filename.c_str());
+        if (tableFileReader.is_open()) {
+            while (!tableFileReader.eof()) {
+                std::string elementTemp;
+                tableFileReader >> elementTemp;
+                newDeviationTable.push_back(elementTemp);
+            }
+        } else {
+            std::cerr << filename << " Could not open file. \n";
+            return false;
+        }
+    } catch (const std::string &w) {
+        std::cerr << w << " Could not open file. \n";
+        return false;
+    }
+
+    return this->add_new_transl_table(get_code_name(filename), std::move(newDeviationTable));
+}
+
+bool CodonTranslTables::add_new_transl_table(std::string translName, std::vector<std::string> newDeviationTable) {
+    int translCounter = -1;
+    std::vector<std::string> checkedDeviation;
+    for (const auto &i : newDeviationTable) {
+        std::string element = i;
+
+        std::replace(element.begin(), element.end(), acid::bases::URACIL, acid::bases::THYMINE);
+        if (!acid::is_acide_type(element, acid::acids::DNA))  { // Reading a new Amino Acid
+            std::string acidTempThree = acid::amino_acid_to_three_label(i);
+            if (acidTempThree.empty()) {
+                std::cerr << element << " is NOT a correct amino acid nor a codon (Check if the file or list is correctly formatted). \n";
+                return false;
+            }
+
+            ++translCounter;
+            if(translCounter > 1) {
+                checkedDeviation.back() += "_" + acidTempThree;
+            } else {
+                checkedDeviation.push_back(acidTempThree);
+            }
+
+        } else if (translCounter == 0){ // Error
+            std::cerr << element << " is NOT a correct codon (Check if the file or list is correctly formatted). \n";
+            return false;
+        } else { // Reading a new Codon
+            translCounter = 0;
+            checkedDeviation.push_back(element);
+        }
+    }
+
+    if(translCounter == 0) {
+        std::cerr << "The list or file not is correctly formatted). \n";
+        return false;
+    }
+
+    TranslTableData newTable;
+    newTable.setData(std::move(translName), 900 + NUMBER_OF_CODES - (signed int) this->codes.size(),
+                     std::move(checkedDeviation));
+
+    this->codes.push_back(newTable);
+    return true;
+}
+
+std::string CodonTranslTables::get_code_name(const std::string &s) {
+
+    size_t extensionIdx = s.rfind('.', s.length());
+    if (extensionIdx == std::string::npos) {
+        extensionIdx = s.length();
+    } else {
+        extensionIdx--;
+    }
+
+    for (char sep : {'/', '\\'}) {
+        size_t i = s.rfind(sep, s.length());
+        if (i != std::string::npos) {
+            return (s.substr(i + 1, extensionIdx - i));
+        }
+    }
+
+
+    return ("");
 }

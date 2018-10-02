@@ -17,7 +17,7 @@ namespace gen_codes {
 
     class TranslTableData {
     public:
-        TranslTableData():index(-1) {};
+        TranslTableData() : index(-1) {};
 
         TranslTableData(TranslTableData const &a) {
             this->deviation = a.deviation;
@@ -44,21 +44,28 @@ namespace gen_codes {
 
         const std::vector<std::string> getAllCodes();
 
-        const std::vector<std::string> getCodeByName(const std::string& name, acid::acids ac=acid::acids::DNA);
-        const std::vector<std::string> getCodeByIndex(int idx, acid::acids ac=acid::acids::DNA);
+        const std::vector<std::string> getCodeByName(const std::string &name, acid::acids ac = acid::acids::DNA);
 
-        const std::vector<std::string> getStandardCode(acid::acids ac=acid::acids::DNA);
+        const std::vector<std::string> getCodeByIndex(int idx, acid::acids ac = acid::acids::DNA);
 
-        const int getIdxByName(const std::string& name);
+        const std::vector<std::string> getStandardCode(acid::acids ac = acid::acids::DNA);
+
+        bool read_and_add_new_transl_table(const std::string &);
+
+        const int getIdxByName(const std::string &name);
 
     private:
         static std::string replaceAll(std::string str, const std::string &from, const std::string &to);
+
+        std::string get_code_name(const std::string &s);
+        bool add_new_transl_table(std::string translName, std::vector<std::string> newDeviationTable);
 
         explicit CodonTranslTables();
 
         bool isCodesSet = false;
 
         void setCodes();
+
         const std::vector<std::string> prepareCode(const TranslTableData &data, acid::acids ac);
 
         std::vector<TranslTableData> codes;
@@ -66,8 +73,8 @@ namespace gen_codes {
                                                        "Phe",
                                                        "TCC", "Ser", "TAC", "Tyr", "TGC", "Cys", "TTA", "Leu", "TCA",
                                                        "Ser",
-                                                       "TAA", "Ter", "TGA", "Ter", "TTG", "Leu", "TCG", "Ser", "TAG",
-                                                       "Ter",
+                                                       "TAA", "Stop", "TGA", "Stop", "TTG", "Leu", "TCG", "Ser", "TAG",
+                                                       "Stop",
                                                        "TGG", "Trp", "CTT", "Leu", "CCT", "Pro", "CAT", "His", "CGT",
                                                        "Arg",
                                                        "CTC", "Leu", "CCC", "Pro", "CAC", "His", "CGC", "Arg", "CTA",

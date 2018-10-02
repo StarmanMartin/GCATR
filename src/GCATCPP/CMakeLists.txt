@@ -23,7 +23,7 @@ set(SOURCE_FILES main_test.cpp
         helper/AbstractErrorManager.cpp helper/AbstractErrorManager.h
         miner/CircleMiner.cpp miner/CircleMiner.h
         graph/Edge.cpp graph/Edge.h graph/Vertex.cpp graph/Vertex.h graph/Graph.cpp graph/Graph.h miner/LongestPathMiner.cpp miner/LongestPathMiner.h graph/C3Graph.cpp graph/C3Graph.h
-        genericCode/CodonTranslTables.cpp genericCode/CodonTranslTables.h genericCode/CodonClusteringAlgorithm.cpp genericCode/CodonClusteringAlgorithm.h)
+        genericCode/CodonTranslTables.cpp genericCode/CodonTranslTables.h genericCode/CodonClusteringAlgorithm.cpp genericCode/CodonClusteringAlgorithm.h helper/FileManager.cpp helper/FileManager.h)
 
 set(SOURCE_TEST_FILES unit_tests/test_utils.cpp
         unit_tests/circular.cpp unit_tests/codeTestTest.cpp unit_tests/bdaTest.cpp unit_tests/test_utils.cpp

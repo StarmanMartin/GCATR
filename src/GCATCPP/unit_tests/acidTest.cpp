@@ -36,7 +36,7 @@ TEST(ACIDTest, AcidTranslation) {
         ss << c;
     }
 
-    EXPECT_EQ(ss.str(), "LeuTer");
+    EXPECT_EQ(ss.str(), "LeuStop");
 
     ss.clear();
     ss.str("");

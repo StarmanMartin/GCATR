@@ -1,0 +1,4 @@
+AUA Gly
+AAA Arginine
+ACA Gly Thr
+TTT Gly Thr

@@ -73,6 +73,11 @@ namespace acid {
     std::string get_anti_codon(std::string, acids);
     bases get_compliment(bases, acids);
 
+    const std::vector<std::string> amino_acids_three = {"Stop", "Ala", "Arg", "Asn", "Asp", "Cys", "Glu", "Gln", "Gly", "His", "Hyp", "Ile", "Leu", "Lys", "Met", "Phe", "Pro", "Glp", "Ser", "Thr", "Trp", "Tyr", "Val"};
+    const std::vector<std::string> amino_acids = {"Stop", "Alanine", "Arginine", "Asparagine", "Aspartic acid", "Cysteine", "Glutamic acid", "Glutamine", "Glycine", "Histidine", "Hydroxyproline", "Isoleucine", "Leucine", "Lysine", "Methionine", "Phenylalanine", "Proline", "Pyroglutamatic", "Serine", "Threonine", "Tryptophan", "Tyrosine", "Valine"};
+
+    bool check_amino_acid(std::string);
+    std::string amino_acid_to_three_label(std::string);
 
 }
 

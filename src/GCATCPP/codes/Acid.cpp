@@ -3,6 +3,7 @@
 //
 #include <iostream>
 #include <sstream>
+#include <algorithm>
 
 #include "Acid.h"
 
@@ -22,7 +23,7 @@ namespace acid {
                 is_rna = false;
             }
 
-            if(!is_dna && !is_rna) {
+            if (!is_dna && !is_rna) {
                 return NONE;
             }
         }
@@ -39,8 +40,8 @@ namespace acid {
     }
 
     int get_base_value(bases in_base) {
-        auto find_res =  bases_value_list.find(in_base);
-        if(find_res != bases_value_list.end()) {
+        auto find_res = bases_value_list.find(in_base);
+        if (find_res != bases_value_list.end()) {
             return find_res->second;
         }
 
@@ -48,7 +49,7 @@ namespace acid {
     }
 
     bool is_acide_type(std::string seq, acids acid_type) {
-        return check_acid_type(seq, acid_type==DNA, acid_type==RNA)!=NONE;
+        return check_acid_type(seq, acid_type == DNA, acid_type == RNA) != NONE;
     }
 
     const std::string base_to_string(bases b) {
@@ -70,24 +71,51 @@ namespace acid {
     }
 
     std::string get_anti_codon(std::string codon, acids acid) {
-        if(acid == NONE || !is_acide_type(codon, acid)) {
+        if (acid == NONE || !is_acide_type(codon, acid)) {
             return "";
         }
 
         std::stringstream anti_codon;
-        for(signed int i = (signed int)codon.length() - 1; i >= 0; --i) {
-            anti_codon << (char) get_compliment((bases)codon[i], acid);
+        for (signed int i = (signed int) codon.length() - 1; i >= 0; --i) {
+            anti_codon << (char) get_compliment((bases) codon[i], acid);
         }
 
         return anti_codon.str();
     }
 
     bases get_compliment(bases in_base, acids acid) {
-        auto find_res =  compliments_dna.find(in_base);
-        if(acid != RNA && find_res != compliments_rna.end()) {
+        auto find_res = compliments_dna.find(in_base);
+        if (acid != RNA && find_res != compliments_rna.end()) {
             return find_res->second;
         }
 
         return compliments_rna.find(in_base)->second;
+    }
+
+    bool check_amino_acid(std::string amino_acid) {
+        auto it = std::find(amino_acids_three.begin(), amino_acids_three.end(), amino_acid);
+        if (it == amino_acids_three.end()) {
+            it = std::find(amino_acids.begin(), amino_acids.end(), amino_acid);
+            return it != amino_acids.end();
+        }
+
+        return true;
+    }
+
+    std::string amino_acid_to_three_label(std::string amino_acid) {
+        if (check_amino_acid(amino_acid)) {
+            if (amino_acid.length() == 3) {
+                return amino_acid;
+            }
+
+            auto it = std::find(amino_acids.begin(), amino_acids.end(), amino_acid);
+
+            if (it != amino_acids.end()) {
+                ptrdiff_t pos = std::distance(amino_acids.begin(), it);
+                return amino_acids_three[pos];
+            }
+        }
+
+        return "";
     }
 }

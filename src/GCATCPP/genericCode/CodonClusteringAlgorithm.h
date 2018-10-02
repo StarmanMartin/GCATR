@@ -20,6 +20,9 @@ namespace gen_codes {
         double get_max_conductance();
         double get_min_conductance();
 
+        std::string generate_csv_string();
+        void generate_file_csv_string(const std::string& filePath,const std::string& fileName);
+
     private:
         std::map<std::pair<std::string, std::string>, int> cluster_table;
         std::map<std::string, double> class_conductance_values;
@@ -29,9 +32,10 @@ namespace gen_codes {
 
         void calculate_cluster_table_for_code(const std::vector<std::string>& code);
         void calculate_conductance_values();
-        static std::vector<int> all_acids_in_group(int idx);
-
+        static std::vector<int> all_acids_in_cluster(int idx);
+        static std::vector<std::string> split_encoded_amino_acid(std::string s);
     };
+
 
 }
 
