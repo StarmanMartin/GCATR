@@ -20,8 +20,10 @@ namespace gen_codes {
         double get_max_conductance();
         double get_min_conductance();
 
-        std::string generate_csv_string();
-        void generate_file_csv_string(const std::string& filePath,const std::string& fileName);
+        std::string generate_value_table_csv_string();
+        std::vector< std::vector<std::string> > generate_value_table_vec();
+        std::vector< std::string > all_acids_in_order();
+        void generate_value_table_file_csv_string(const std::string& filePath,const std::string& fileName);
 
     private:
         std::map<std::pair<std::string, std::string>, int> cluster_table;

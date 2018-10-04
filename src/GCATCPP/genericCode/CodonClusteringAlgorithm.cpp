@@ -131,15 +131,15 @@ void gen_codes::CodonClusteringAlgorithm::calculate_conductance_values() {
     }
 }
 
-void gen_codes::CodonClusteringAlgorithm::generate_file_csv_string(const std::string& filePath,const std::string& fileName) {
+void gen_codes::CodonClusteringAlgorithm::generate_value_table_file_csv_string(const std::string& filePath,const std::string& fileName) {
     if(!std_m::FileManager::getInstance().is_dir(filePath)) { // Dir does not exists;
         return;
     }
 
-    std_m::FileManager::getInstance().write_file(filePath + "/" + fileName, ".csv", this->generate_csv_string());
+    std_m::FileManager::getInstance().write_file(filePath + "/" + fileName, ".csv", this->generate_value_table_csv_string());
 }
 
-std::string gen_codes::CodonClusteringAlgorithm::generate_csv_string() {
+std::string gen_codes::CodonClusteringAlgorithm::generate_value_table_csv_string() {
     auto csv_vec_length = static_cast<unsigned int>(this->all_acids.size() + 1);
    std::vector<std::string> csv_res(csv_vec_length*csv_vec_length);
    int idx = 0;
@@ -164,6 +164,23 @@ std::string gen_codes::CodonClusteringAlgorithm::generate_csv_string() {
     return imploded.str();
 }
 
+std::vector< std::vector<std::string> > gen_codes::CodonClusteringAlgorithm::generate_value_table_vec() {
+    auto csv_vec_length = static_cast<unsigned int>(this->all_acids.size());
+    std::vector< std::vector<std::string> > value_table(csv_vec_length);
+    int idx = 0;
+    for (const auto &from_acid : this->all_acids) {
+        std::vector<std::string> value_row(csv_vec_length);
+        int inner_idx = 0;
+        for (const auto &to_acid : this->all_acids) {
+            std::pair<std::string, std::string> key(from_acid, to_acid);
+            value_row[inner_idx++] = std::to_string(this->cluster_table[key]);
+        }
+        value_table[idx++] = value_row;
+    }
+
+    return value_table;
+}
+
 std::vector<std::string> gen_codes::CodonClusteringAlgorithm::split_encoded_amino_acid(std::string str) {
     static const std::string token = "_";
     std::vector<std::string> result;
@@ -182,4 +199,10 @@ std::vector<std::string> gen_codes::CodonClusteringAlgorithm::split_encoded_amin
     }
 
     return result;
+}
+
+std::vector<std::string> gen_codes::CodonClusteringAlgorithm::all_acids_in_order() {
+    std::vector <std::string> output;
+    std::copy(this->all_acids.begin(), this->all_acids.end(), output.begin());
+    return output;
 }
