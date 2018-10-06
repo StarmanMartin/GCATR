@@ -23,3 +23,14 @@ Rcpp::List RAdapterUtils::as_R_matrix(std::vector<std::vector<std::string> >r_ve
   return wrap( r_vec );
   
 }
+
+acid::acids RAdapterUtils::string_to_acid(std::string acid_name) {
+  if( acid_name == "DNA") {
+     return acid::acids::DNA;
+  } 
+  if( acid_name == "RNA") {
+    return acid::acids::RNA;
+  } 
+  
+  return acid::acids::NONE;
+}

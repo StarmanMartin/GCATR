@@ -104,6 +104,41 @@ run_bda <- function() {
     .Call('_GCATR_run_bda', PACKAGE = 'GCATR')
 }
 
+#' @export 
+get_average_conductance_of_code <- function(codeName, acid = "DNA") {
+    .Call('_GCATR_get_average_conductance_of_code', PACKAGE = 'GCATR', codeName, acid)
+}
+
+#' @export 
+get_max_conductance_of_code <- function(codeName, acid = "DNA") {
+    .Call('_GCATR_get_max_conductance_of_code', PACKAGE = 'GCATR', codeName, acid)
+}
+
+#' @export 
+get_min_conductance_of_code <- function(codeName, acid = "DNA") {
+    .Call('_GCATR_get_min_conductance_of_code', PACKAGE = 'GCATR', codeName, acid)
+}
+
+#' @export 
+get_average_conductance_of_codeidx <- function(codeIdx, acid = "DNA") {
+    .Call('_GCATR_get_average_conductance_of_codeidx', PACKAGE = 'GCATR', codeIdx, acid)
+}
+
+#' @export 
+get_max_conductance_of_codeidx <- function(codeIdx, acid = "DNA") {
+    .Call('_GCATR_get_max_conductance_of_codeidx', PACKAGE = 'GCATR', codeIdx, acid)
+}
+
+#' @export 
+get_min_conductance_of_codeidx <- function(codeIdx, acid = "DNA") {
+    .Call('_GCATR_get_min_conductance_of_codeidx', PACKAGE = 'GCATR', codeIdx, acid)
+}
+
+#' @export 
+print_all_translation_table <- function() {
+    invisible(.Call('_GCATR_print_all_translation_table', PACKAGE = 'GCATR'))
+}
+
 seq_prepare_factor_gen_c3graph <- function(seq, word_length) {
     .Call('_GCATR_seq_prepare_factor_gen_c3graph', PACKAGE = 'GCATR', seq, word_length)
 }

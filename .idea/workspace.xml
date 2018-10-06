@@ -20,9 +20,14 @@
   <component name="ChangeListManager">
     <list default="true" id="428808ef-23ef-4101-a605-146f2c23553c" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GCATCPP/genericCode/CodonClusteringAlgorithm.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/GCATCPP/genericCode/CodonClusteringAlgorithm.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GCATCPP/genericCode/CodonClusteringAlgorithm.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/GCATCPP/genericCode/CodonClusteringAlgorithm.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NAMESPACE" beforeDir="false" afterPath="$PROJECT_DIR$/NAMESPACE" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/R/RcppExports.R" beforeDir="false" afterPath="$PROJECT_DIR$/R/RcppExports.R" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GCATCPP/unit_tests/codeTableTest.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/GCATCPP/unit_tests/codeTableTest.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Makevars" beforeDir="false" afterPath="$PROJECT_DIR$/src/Makevars" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Makevars.win" beforeDir="false" afterPath="$PROJECT_DIR$/src/Makevars.win" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/RAdapterUtils.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/RAdapterUtils.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/RAdapterUtils.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/RAdapterUtils.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/RcppExports.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/RcppExports.cpp" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/src/GCATCPP/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -38,8 +43,8 @@
       <file leaf-file-name="codeTableTest.cpp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/GCATCPP/unit_tests/codeTableTest.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="729">
-              <caret line="159" column="82" selection-start-line="159" selection-start-column="82" selection-end-line="159" selection-end-column="82" />
+            <state relative-caret-position="363">
+              <caret line="96" column="66" selection-start-line="96" selection-start-column="66" selection-end-line="96" selection-end-column="66" />
               <folding>
                 <element signature="e#43#67#0" expanded="true" />
               </folding>
@@ -50,8 +55,17 @@
       <file leaf-file-name="acidTest.cpp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/GCATCPP/unit_tests/acidTest.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="646">
-              <caret line="38" column="32" selection-start-line="38" selection-start-column="32" selection-end-line="38" selection-end-column="32" />
+            <state relative-caret-position="85">
+              <caret line="5" column="21" selection-start-line="5" selection-start-column="21" selection-end-line="5" selection-end-column="21" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Acid.h" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/GCATCPP/codes/Acid.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="222">
+              <caret line="17" column="20" selection-start-line="17" selection-start-column="17" selection-end-line="17" selection-end-column="20" />
             </state>
           </provider>
         </entry>
@@ -68,8 +82,8 @@
       <file leaf-file-name="CodonClusteringAlgorithm.cpp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/GCATCPP/genericCode/CodonClusteringAlgorithm.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="845">
-              <caret line="208" lean-forward="true" selection-start-line="208" selection-end-line="208" />
+            <state relative-caret-position="3536">
+              <caret line="208" selection-start-line="208" selection-end-line="208" />
               <folding>
                 <element signature="e#43#63#0" expanded="true" />
               </folding>
@@ -101,14 +115,23 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CodonClusteringAlgorithm.h" pinned="false" current-in-tab="true">
+      <file leaf-file-name="CodonClusteringAlgorithm.h" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/GCATCPP/genericCode/CodonClusteringAlgorithm.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="391">
-              <caret line="23" column="75" lean-forward="true" selection-start-line="23" selection-start-column="75" selection-end-line="23" selection-end-column="75" />
+            <state relative-caret-position="374">
+              <caret line="25" column="49" selection-start-line="25" selection-start-column="13" selection-end-line="25" selection-end-column="49" />
               <folding>
                 <element signature="e#120#137#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CodonTranslTables.cpp" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/GCATCPP/genericCode/CodonTranslTables.cpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="301">
+              <caret line="108" column="64" selection-start-line="108" selection-start-column="50" selection-end-line="108" selection-end-column="64" />
             </state>
           </provider>
         </entry>
@@ -241,11 +264,11 @@
         <option value="$PROJECT_DIR$/src/GCATCPP/unit_tests/asserts/correct_code.txt" />
         <option value="$PROJECT_DIR$/src/GCATCPP/unit_tests/asserts/TEST.csv" />
         <option value="$PROJECT_DIR$/src/GCATCPP/helper/FileManager.cpp" />
-        <option value="$PROJECT_DIR$/src/GCATCPP/unit_tests/codeTableTest.cpp" />
         <option value="$PROJECT_DIR$/src/GCATCPP/unit_tests/acidTest.cpp" />
         <option value="$PROJECT_DIR$/src/GCATCPP/helper/FileManager.h" />
         <option value="$PROJECT_DIR$/src/GCATCPP/genericCode/CodonClusteringAlgorithm.h" />
         <option value="$PROJECT_DIR$/src/GCATCPP/genericCode/CodonClusteringAlgorithm.cpp" />
+        <option value="$PROJECT_DIR$/src/GCATCPP/unit_tests/codeTableTest.cpp" />
       </list>
     </option>
   </component>
@@ -260,8 +283,8 @@
   </component>
   <component name="OCFindUsagesOptions" text="true" ivars="false" properties="true" derivedClasses="false" />
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-1316" />
-    <option name="y" value="-8" />
+    <option name="x" value="-1347" />
+    <option name="y" value="-22" />
     <option name="width" value="941" />
     <option name="height" value="1087" />
   </component>
@@ -270,6 +293,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -298,13 +322,19 @@
               <item name="GCATR" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="GCATCPP" type="462c0819:PsiDirectoryNode" />
+              <item name="genericCode" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="GCATCPP" type="b2602c69:ProjectViewProjectNode" />
+              <item name="GCATR" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="GCATCPP" type="462c0819:PsiDirectoryNode" />
               <item name="unit_tests" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -382,6 +412,8 @@
       <workItem from="1538288763615" duration="11667000" />
       <workItem from="1538548628990" duration="620000" />
       <workItem from="1538636433609" duration="1044000" />
+      <workItem from="1538720350425" duration="1242000" />
+      <workItem from="1538805852159" duration="1733000" />
     </task>
     <servers />
   </component>
@@ -418,22 +450,23 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="130367000" />
+    <option name="totallyTimeSpent" value="133342000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1928" y="-8" width="1936" height="1096" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.18656716" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="right" id="R Packages" order="4" />
+      <window_info anchor="bottom" id="Messages" order="7" weight="0.32883817" />
       <window_info anchor="bottom" id="CMake" order="11" weight="0.32987553" />
-      <window_info anchor="right" id="R Graphics" order="3" weight="0.3296582" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="10" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.32676348" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Terminal" order="8" weight="0.32987553" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.19083156" />
+      <window_info anchor="right" id="R Packages" order="4" />
+      <window_info anchor="right" id="R Graphics" order="3" weight="0.3296582" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.40248963" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -441,7 +474,6 @@
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" x="0" y="0" width="417" height="896" id="Documentation" order="5" side_tool="true" weight="0.32983425" />
-      <window_info anchor="bottom" id="Messages" order="7" weight="0.32883817" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32987553" />
@@ -702,24 +734,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/GCATCPP/codes/Acid.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1275">
-          <caret line="75" column="56" selection-start-line="75" selection-start-column="56" selection-end-line="75" selection-end-column="56" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/GCATCPP/unit_tests/asserts/TEST.csv">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="357">
           <caret line="21" column="40" lean-forward="true" selection-start-line="21" selection-start-column="40" selection-end-line="21" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/GCATCPP/genericCode/CodonTranslTables.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="22" column="10" selection-start-line="22" selection-start-column="4" selection-end-line="22" selection-end-column="10" />
         </state>
       </provider>
     </entry>
@@ -755,13 +773,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="544">
           <caret line="32" column="69" selection-start-line="32" selection-start-column="60" selection-end-line="32" selection-end-column="73" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/GCATCPP/unit_tests/acidTest.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="646">
-          <caret line="38" column="32" selection-start-line="38" selection-start-column="32" selection-end-line="38" selection-end-column="32" />
         </state>
       </provider>
     </entry>
@@ -802,33 +813,54 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/GCATCPP/unit_tests/codeTableTest.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="729">
-          <caret line="159" column="82" selection-start-line="159" selection-start-column="82" selection-end-line="159" selection-end-column="82" />
-          <folding>
-            <element signature="e#43#67#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/GCATCPP/genericCode/CodonClusteringAlgorithm.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="845">
-          <caret line="208" lean-forward="true" selection-start-line="208" selection-end-line="208" />
+        <state relative-caret-position="3536">
+          <caret line="208" selection-start-line="208" selection-end-line="208" />
           <folding>
             <element signature="e#43#63#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/GCATCPP/unit_tests/acidTest.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="21" selection-start-line="5" selection-start-column="21" selection-end-line="5" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GCATCPP/codes/Acid.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="222">
+          <caret line="17" column="20" selection-start-line="17" selection-start-column="17" selection-end-line="17" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/GCATCPP/genericCode/CodonClusteringAlgorithm.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="23" column="75" lean-forward="true" selection-start-line="23" selection-start-column="75" selection-end-line="23" selection-end-column="75" />
+        <state relative-caret-position="374">
+          <caret line="25" column="49" selection-start-line="25" selection-start-column="13" selection-end-line="25" selection-end-column="49" />
           <folding>
             <element signature="e#120#137#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GCATCPP/unit_tests/codeTableTest.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="363">
+          <caret line="96" column="66" selection-start-line="96" selection-start-column="66" selection-end-line="96" selection-end-column="66" />
+          <folding>
+            <element signature="e#43#67#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GCATCPP/genericCode/CodonTranslTables.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="301">
+          <caret line="108" column="64" selection-start-line="108" selection-start-column="50" selection-end-line="108" selection-end-column="64" />
         </state>
       </provider>
     </entry>

@@ -54,6 +54,87 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// get_average_conductance_of_code
+double get_average_conductance_of_code(std::string codeName, std::string acid);
+RcppExport SEXP _GCATR_get_average_conductance_of_code(SEXP codeNameSEXP, SEXP acidSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< std::string >::type codeName(codeNameSEXP);
+    Rcpp::traits::input_parameter< std::string >::type acid(acidSEXP);
+    rcpp_result_gen = Rcpp::wrap(get_average_conductance_of_code(codeName, acid));
+    return rcpp_result_gen;
+END_RCPP
+}
+// get_max_conductance_of_code
+double get_max_conductance_of_code(std::string codeName, std::string acid);
+RcppExport SEXP _GCATR_get_max_conductance_of_code(SEXP codeNameSEXP, SEXP acidSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< std::string >::type codeName(codeNameSEXP);
+    Rcpp::traits::input_parameter< std::string >::type acid(acidSEXP);
+    rcpp_result_gen = Rcpp::wrap(get_max_conductance_of_code(codeName, acid));
+    return rcpp_result_gen;
+END_RCPP
+}
+// get_min_conductance_of_code
+double get_min_conductance_of_code(std::string codeName, std::string acid);
+RcppExport SEXP _GCATR_get_min_conductance_of_code(SEXP codeNameSEXP, SEXP acidSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< std::string >::type codeName(codeNameSEXP);
+    Rcpp::traits::input_parameter< std::string >::type acid(acidSEXP);
+    rcpp_result_gen = Rcpp::wrap(get_min_conductance_of_code(codeName, acid));
+    return rcpp_result_gen;
+END_RCPP
+}
+// get_average_conductance_of_codeidx
+double get_average_conductance_of_codeidx(int codeIdx, std::string acid);
+RcppExport SEXP _GCATR_get_average_conductance_of_codeidx(SEXP codeIdxSEXP, SEXP acidSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< int >::type codeIdx(codeIdxSEXP);
+    Rcpp::traits::input_parameter< std::string >::type acid(acidSEXP);
+    rcpp_result_gen = Rcpp::wrap(get_average_conductance_of_codeidx(codeIdx, acid));
+    return rcpp_result_gen;
+END_RCPP
+}
+// get_max_conductance_of_codeidx
+double get_max_conductance_of_codeidx(int codeIdx, std::string acid);
+RcppExport SEXP _GCATR_get_max_conductance_of_codeidx(SEXP codeIdxSEXP, SEXP acidSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< int >::type codeIdx(codeIdxSEXP);
+    Rcpp::traits::input_parameter< std::string >::type acid(acidSEXP);
+    rcpp_result_gen = Rcpp::wrap(get_max_conductance_of_codeidx(codeIdx, acid));
+    return rcpp_result_gen;
+END_RCPP
+}
+// get_min_conductance_of_codeidx
+double get_min_conductance_of_codeidx(int codeIdx, std::string acid);
+RcppExport SEXP _GCATR_get_min_conductance_of_codeidx(SEXP codeIdxSEXP, SEXP acidSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< int >::type codeIdx(codeIdxSEXP);
+    Rcpp::traits::input_parameter< std::string >::type acid(acidSEXP);
+    rcpp_result_gen = Rcpp::wrap(get_min_conductance_of_codeidx(codeIdx, acid));
+    return rcpp_result_gen;
+END_RCPP
+}
+// print_all_translation_table
+void print_all_translation_table();
+RcppExport SEXP _GCATR_print_all_translation_table() {
+BEGIN_RCPP
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    print_all_translation_table();
+    return R_NilValue;
+END_RCPP
+}
 // seq_prepare_factor_gen_c3graph
 Rcpp::List seq_prepare_factor_gen_c3graph(std::string seq, int word_length);
 RcppExport SEXP _GCATR_seq_prepare_factor_gen_c3graph(SEXP seqSEXP, SEXP word_lengthSEXP) {
@@ -287,6 +368,13 @@ static const R_CallMethodDef CallEntries[] = {
     {"_GCATR_code_start_bda", (DL_FUNC) &_GCATR_code_start_bda, 1},
     {"_GCATR_seq_start_bda", (DL_FUNC) &_GCATR_seq_start_bda, 2},
     {"_GCATR_run_bda", (DL_FUNC) &_GCATR_run_bda, 0},
+    {"_GCATR_get_average_conductance_of_code", (DL_FUNC) &_GCATR_get_average_conductance_of_code, 2},
+    {"_GCATR_get_max_conductance_of_code", (DL_FUNC) &_GCATR_get_max_conductance_of_code, 2},
+    {"_GCATR_get_min_conductance_of_code", (DL_FUNC) &_GCATR_get_min_conductance_of_code, 2},
+    {"_GCATR_get_average_conductance_of_codeidx", (DL_FUNC) &_GCATR_get_average_conductance_of_codeidx, 2},
+    {"_GCATR_get_max_conductance_of_codeidx", (DL_FUNC) &_GCATR_get_max_conductance_of_codeidx, 2},
+    {"_GCATR_get_min_conductance_of_codeidx", (DL_FUNC) &_GCATR_get_min_conductance_of_codeidx, 2},
+    {"_GCATR_print_all_translation_table", (DL_FUNC) &_GCATR_print_all_translation_table, 0},
     {"_GCATR_seq_prepare_factor_gen_c3graph", (DL_FUNC) &_GCATR_seq_prepare_factor_gen_c3graph, 2},
     {"_GCATR_code_prepare_factor_gen_c3graph", (DL_FUNC) &_GCATR_code_prepare_factor_gen_c3graph, 1},
     {"_GCATR_code_prepare_factor_gen_graph", (DL_FUNC) &_GCATR_code_prepare_factor_gen_graph, 3},

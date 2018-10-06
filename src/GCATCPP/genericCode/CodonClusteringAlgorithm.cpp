@@ -186,7 +186,7 @@ std::vector<std::string> gen_codes::CodonClusteringAlgorithm::split_encoded_amin
     std::vector<std::string> result;
     while (!str.empty()) {
         unsigned long index = str.find(token);
-        if (index != std::string::npos) {
+        if (index != std::string::npos && index < str.length()) {
             result.push_back(str.substr(0, index));
             str = str.substr(index + token.size());
             if (str.empty()){

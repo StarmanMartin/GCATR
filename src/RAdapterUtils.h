@@ -6,6 +6,8 @@
 #define GCATCPP_RADAPTERUTILS_H
 
 #include <Rcpp.h>
+#include "GCATCPP/codes/Acid.h"
+
 using namespace Rcpp;
 
 class RAdapterUtils {
@@ -14,6 +16,8 @@ public:
   static StringVector as_r_string_vector(std::vector <std::string>);
   
   static Rcpp::List as_R_matrix(std::vector<std::vector<std::string> > );
+  
+  static acid::acids string_to_acid(std::string );
 };
 
 
