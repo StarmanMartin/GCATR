@@ -135,6 +135,28 @@ BEGIN_RCPP
     return R_NilValue;
 END_RCPP
 }
+// genetic_codes_by_index
+List genetic_codes_by_index(int idx);
+RcppExport SEXP _GCATR_genetic_codes_by_index(SEXP idxSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< int >::type idx(idxSEXP);
+    rcpp_result_gen = Rcpp::wrap(genetic_codes_by_index(idx));
+    return rcpp_result_gen;
+END_RCPP
+}
+// genetic_codes_by_name
+List genetic_codes_by_name(std::string name);
+RcppExport SEXP _GCATR_genetic_codes_by_name(SEXP nameSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< std::string >::type name(nameSEXP);
+    rcpp_result_gen = Rcpp::wrap(genetic_codes_by_name(name));
+    return rcpp_result_gen;
+END_RCPP
+}
 // seq_prepare_factor_gen_c3graph
 Rcpp::List seq_prepare_factor_gen_c3graph(std::string seq, int word_length);
 RcppExport SEXP _GCATR_seq_prepare_factor_gen_c3graph(SEXP seqSEXP, SEXP word_lengthSEXP) {
@@ -375,6 +397,8 @@ static const R_CallMethodDef CallEntries[] = {
     {"_GCATR_get_max_conductance_of_codeidx", (DL_FUNC) &_GCATR_get_max_conductance_of_codeidx, 2},
     {"_GCATR_get_min_conductance_of_codeidx", (DL_FUNC) &_GCATR_get_min_conductance_of_codeidx, 2},
     {"_GCATR_print_all_translation_table", (DL_FUNC) &_GCATR_print_all_translation_table, 0},
+    {"_GCATR_genetic_codes_by_index", (DL_FUNC) &_GCATR_genetic_codes_by_index, 1},
+    {"_GCATR_genetic_codes_by_name", (DL_FUNC) &_GCATR_genetic_codes_by_name, 1},
     {"_GCATR_seq_prepare_factor_gen_c3graph", (DL_FUNC) &_GCATR_seq_prepare_factor_gen_c3graph, 2},
     {"_GCATR_code_prepare_factor_gen_c3graph", (DL_FUNC) &_GCATR_code_prepare_factor_gen_c3graph, 1},
     {"_GCATR_code_prepare_factor_gen_graph", (DL_FUNC) &_GCATR_code_prepare_factor_gen_graph, 3},

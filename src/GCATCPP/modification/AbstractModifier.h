@@ -15,9 +15,10 @@ class AbstractGenCode;
 class AbstractModifier : public err::AbstractErrorManager {
 public:
 
-    explicit AbstractModifier() {};
+    explicit AbstractModifier() = default;;
 
     virtual std::vector<std::string> modify(AbstractGenCode *code, void *args) = 0;
+    virtual std::string modify_word(std::string word, void *args) = 0;
 };
 
 

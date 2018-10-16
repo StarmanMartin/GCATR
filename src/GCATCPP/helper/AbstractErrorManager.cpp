@@ -16,7 +16,7 @@ void AbstractErrorManager::print_errors() {
     if(!this->_has_error) { return;}
     std::cerr << (std::string) *this << std::endl;
     std::cerr << "---- Messages: ----" << std::endl;
-    for(auto msgs : this->msg) {
+    for(const auto &msgs : this->msg) {
         std::cerr << " " << msgs << std::endl;
     }
 
@@ -28,7 +28,7 @@ void AbstractErrorManager::print_errors() {
 
 
 void AbstractErrorManager::add_error_msges(std::vector<std::string> msges) {
-    for(std::string msg : msges) {
+    for(const std::string &msg : msges) {
         this->add_error_msg(msg);
     }
 }

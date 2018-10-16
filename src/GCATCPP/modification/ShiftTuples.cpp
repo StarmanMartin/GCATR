@@ -7,7 +7,7 @@
 
 std::vector<std::string> ShiftTuples::modify(AbstractGenCode *code, void* args) {
     int number = 1;
-    if(args != NULL) {
+    if(args != nullptr) {
         number = *(int*)(args);
     }
 
@@ -16,11 +16,22 @@ std::vector<std::string> ShiftTuples::modify(AbstractGenCode *code, void* args) 
         this->add_error_msg("No negative shit or shift higher then word length possible");
     }
 
-    unsigned int u_number = (unsigned) number;
+    auto u_number = (unsigned) number;
     auto code_vec = code->as_vector();
-    for(int i = 0;i < code_vec.size(); ++i  ) {
-        code_vec[i] = code_vec[i].substr(u_number, (unsigned) code->get_word_length()[0]) + code_vec[i].substr(0, u_number);
+    for (auto &i : code_vec) {
+        i = i.substr(u_number, (unsigned) code->get_word_length()[0]) + i.substr(0, u_number);
     }
 
     return code_vec;
+}
+
+std::string ShiftTuples::modify_word(std::string word, void *args) {
+    unsigned long number = 1;
+    if(args != nullptr) {
+        number = (unsigned long)(*(int*)(args));
+    }
+
+    word = word.substr(number, word.length()) + word.substr(0, number);
+
+    return word;
 }

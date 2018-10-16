@@ -10,9 +10,9 @@
 #include <utility>
 #include "../tester/AbstractTester.h"
 #include "../modification/AbstractModifier.h"
+#include "../geneticCode/CodonTranslTables.h"
 
 #include "AbstractGenCode.h"
-#include "../genericCode/CodonTranslTables.h"
 
 #define EMPTY_SEQUNECE "#"
 

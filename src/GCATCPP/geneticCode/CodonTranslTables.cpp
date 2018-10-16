@@ -103,6 +103,7 @@ const std::vector<std::string> CodonTranslTables::getCodeByName(const std::strin
         }
     }
 
+    this->add_error_msg("Codon Transl. Table Could not be founds. -> " + name);
     return std::vector<std::string>();
 }
 
@@ -114,6 +115,7 @@ const std::vector<std::string> CodonTranslTables::getCodeByIndex(int idx, acid::
         }
     }
 
+    this->add_error_msg("Codon Transl. Table Could not be founds.");
     return std::vector<std::string>();
 }
 
@@ -171,11 +173,11 @@ bool CodonTranslTables::read_and_add_new_transl_table(const std::string &filenam
                 newDeviationTable.push_back(elementTemp);
             }
         } else {
-            std::cerr << filename << " Could not open file. \n";
+            this->add_error_msg(filename + " Could not open file.");
             return false;
         }
     } catch (const std::string &w) {
-        std::cerr << w << " Could not open file. \n";
+        this->add_error_msg(w + " Could not open file.");
         return false;
     }
 
@@ -192,7 +194,7 @@ bool CodonTranslTables::add_new_transl_table(std::string translName, std::vector
         if (!acid::is_acide_type(element, acid::acids::DNA))  { // Reading a new Amino Acid
             std::string acidTempThree = acid::amino_acid_to_three_label(i);
             if (acidTempThree.empty()) {
-                std::cerr << element << " is NOT a correct amino acid nor a codon (Check if the file or list is correctly formatted). \n";
+                this->add_error_msg(element + " is NOT a correct amino acid nor a codon (Check if the file or list is correctly formatted). \n");
                 return false;
             }
 
@@ -204,7 +206,7 @@ bool CodonTranslTables::add_new_transl_table(std::string translName, std::vector
             }
 
         } else if (translCounter == 0){ // Error
-            std::cerr << element << " is NOT a correct codon (Check if the file or list is correctly formatted). \n";
+            this->add_error_msg(element + "is NOT a correct codon (Check if the file or list is correctly formatted).");
             return false;
         } else { // Reading a new Codon
             translCounter = 0;
@@ -213,7 +215,7 @@ bool CodonTranslTables::add_new_transl_table(std::string translName, std::vector
     }
 
     if(translCounter == 0) {
-        std::cerr << "The list or file not is correctly formatted). \n";
+        this->add_error_msg("The list or file not is correctly formatted).");
         return false;
     }
 

@@ -3,8 +3,8 @@
 //
 
 #include "gtest/gtest.h"
-#include "../genericCode/CodonTranslTables.h"
-#include "../genericCode/CodonClusteringAlgorithm.h"
+#include "../geneticCode/CodonTranslTables.h"
+#include "../geneticCode/CodonClusteringAlgorithm.h"
 #include <sstream>
 #include <string>
 
@@ -157,7 +157,14 @@ TEST (GenerticCodeTest, ClusterAlgorthemCsvTable) {
     gen_codes::CodonClusteringAlgorithm cca(code);
 
    std::string csv_string = cca.generate_value_table_csv_string();
-   cca.generate_value_table_file_csv_string("D:/develop/R/GCATR/src/GCATCPP/unit_tests/asserts", "TEST");
+
+
+
+    std::string file_path = __FILE__;
+    std::string dir_path = file_path.substr(0, file_path.rfind("unit_tests"));
+
+
+   cca.generate_value_table_file_csv_string(dir_path + "/unit_tests/asserts", "TEST");
 
    EXPECT_EQ(";Ala;Arg;Asn;Asp;Cys;Gln;Glu;Gly;His;Ile;Leu;Lys;Met;Phe;Pro;Ser;Stop;Thr;Trp;Tyr;Val;\nAla;12;0;0;2;0;0;2;4;0;0;0;0;0;0;4;4;0;4;0;0;4;\nArg;0;18;0;0;2;2;0;6;2;1;4;2;1;0;4;6;2;2;2;0;0;\nAsn;0;0;2;2;0;0;0;0;2;2;0;4;0;0;0;2;0;2;0;2;0;\nAsp;2;0;2;2;0;0;4;2;2;0;0;0;0;0;0;0;0;0;0;2;2;\nCys;0;2;0;0;2;0;0;2;0;0;0;0;0;2;0;4;2;0;2;2;0;\nGln;0;2;0;0;0;2;2;0;4;0;2;2;0;0;2;0;2;0;0;0;0;\nGlu;2;0;0;4;0;2;2;2;0;0;0;2;0;0;0;0;2;0;0;0;2;\nGly;4;6;0;2;2;0;2;12;0;0;0;0;0;0;0;2;1;0;1;0;4;\nHis;0;2;2;2;0;4;0;0;2;0;2;0;0;0;2;0;0;0;0;2;0;\nIle;0;1;2;0;0;0;0;0;0;6;4;1;3;2;0;2;0;3;0;0;3;\nLeu;0;4;0;0;0;2;0;0;2;4;18;0;2;6;4;2;3;0;1;0;6;\nLys;0;2;4;0;0;2;2;0;0;1;0;2;1;0;0;0;2;2;0;0;0;\nMet;0;1;0;0;0;0;0;0;0;3;2;1;0;0;0;0;0;1;0;0;1;\nPhe;0;0;0;0;2;0;0;0;0;2;6;0;0;2;0;2;0;0;0;2;2;\nPro;4;4;0;0;0;2;0;0;2;0;4;0;0;0;12;4;0;4;0;0;0;\nSer;4;6;2;0;4;0;0;2;0;2;2;0;0;2;4;14;3;6;1;2;0;\nStop;0;2;0;0;2;2;2;1;0;0;3;2;0;0;0;3;4;0;2;4;0;\nThr;4;2;2;0;0;0;0;0;0;3;0;2;1;0;4;6;0;12;0;0;0;\nTrp;0;2;0;0;2;0;0;1;0;0;1;0;0;0;0;1;2;0;0;0;0;\nTyr;0;0;2;2;2;0;0;0;2;0;0;0;0;2;0;2;4;0;0;2;0;\nVal;4;0;0;2;0;0;2;4;0;3;6;0;1;2;0;0;0;0;0;0;12;", csv_string);
 }

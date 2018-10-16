@@ -11,3 +11,4 @@ src/GCATCPP/codes/*.o
 src/GCATCPP/libs/
 *.o
 *.o
+.idea/workspace.xml

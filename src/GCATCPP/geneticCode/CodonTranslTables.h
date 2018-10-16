@@ -12,6 +12,7 @@
 #include <string>
 
 #include "../codes/Acid.h"
+#include "../helper/AbstractErrorManager.h"
 
 namespace gen_codes {
 
@@ -36,7 +37,7 @@ namespace gen_codes {
         }
     };
 
-    class CodonTranslTables {
+    class CodonTranslTables : public err::AbstractErrorManager {
     public:
         static CodonTranslTables &getInstance();
 
@@ -52,13 +53,14 @@ namespace gen_codes {
 
         bool read_and_add_new_transl_table(const std::string &);
 
+        bool add_new_transl_table(std::string translName, std::vector<std::string> newDeviationTable);
+
         const int getIdxByName(const std::string &name);
 
     private:
         static std::string replaceAll(std::string str, const std::string &from, const std::string &to);
 
         std::string get_code_name(const std::string &s);
-        bool add_new_transl_table(std::string translName, std::vector<std::string> newDeviationTable);
 
         explicit CodonTranslTables();
 
