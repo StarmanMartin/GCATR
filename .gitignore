@@ -12,3 +12,8 @@ src/GCATCPP/libs/
 *.o
 *.o
 .idea/workspace.xml
+*.toc
+*.out
+*.log
+*.aux
+*.gz
