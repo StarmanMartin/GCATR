@@ -4,12 +4,12 @@
 
 #include "CircleMiner.h"
 
-#include "../codes/AbstractGenCode.h"
+#include "../codes/AbstractCode.h"
 #include "../tester/Circular.h"
 
 using namespace miner;
 
-std::vector<std::vector<std::string> > CircleMiner::mine_path_as_vector(AbstractGenCode *gen_code) {
+std::vector<std::vector<std::string> > CircleMiner::mine_path_as_vector(AbstractCode *gen_code) {
     auto circle_index = CircleMiner::mine_all_path_as_graph(gen_code);
     std::vector<std::vector<std::string>> res(circle_index.size());
     for (int i = 0; i < circle_index.size(); ++i) {
@@ -31,7 +31,7 @@ std::vector<std::vector<std::string> > CircleMiner::mine_path_as_vector(Abstract
     return res;
 }
 
-graph::Graph CircleMiner::mine_path_as_graph(AbstractGenCode *gen_code) {
+graph::Graph CircleMiner::mine_path_as_graph(AbstractCode *gen_code) {
     graph::Graph res;
     auto circles_as_graph = CircleMiner::mine_all_path_as_graph(gen_code);
     for(auto g : circles_as_graph) {
@@ -42,7 +42,7 @@ graph::Graph CircleMiner::mine_path_as_graph(AbstractGenCode *gen_code) {
 
 }
 
-std::vector<graph::Graph> CircleMiner::mine_all_path_as_graph(AbstractGenCode *gen_code) {
+std::vector<graph::Graph> CircleMiner::mine_all_path_as_graph(AbstractCode *gen_code) {
 
     Circular tester;
     if (tester.test(gen_code)) {

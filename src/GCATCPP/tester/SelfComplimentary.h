@@ -7,9 +7,12 @@
 
 #include "AbstractTester.h"
 
+class AbstractGenCode;
+
 class SelfComplimentary : public AbstractTester {
 public:
-    virtual bool test(AbstractGenCode *code);
+    virtual bool test(AbstractCode *code);
+    virtual bool self_complimentary_test(AbstractGenCode *code);
 };
 
 #endif //GCATCPP_SELFCOMPLIMENTARY_H

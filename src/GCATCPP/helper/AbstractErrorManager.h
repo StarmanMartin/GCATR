@@ -14,10 +14,13 @@ namespace err {
     class AbstractErrorManager {
     public:
         void print_errors();
+        void suppress_errors();
         std::vector<std::string> get_error_msg();
         void add_error_msg(std::string);
 
     protected:
+        bool is_suppressed = false;
+
         AbstractErrorManager();
 
         virtual ~AbstractErrorManager() {

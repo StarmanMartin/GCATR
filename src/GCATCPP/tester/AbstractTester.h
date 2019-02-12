@@ -7,7 +7,7 @@
 
 #include <memory>
 
-#include "../codes/AbstractGenCode.h"
+#include "../codes/AbstractCode.h"
 #include "../helper/AbstractErrorManager.h"
 
 class AbstractTester : public err::AbstractErrorManager {
@@ -15,7 +15,7 @@ public:
 
     explicit AbstractTester() {};
 
-    virtual bool test(AbstractGenCode *code) = 0;
+    virtual bool test(AbstractCode *code) = 0;
 };
 
 

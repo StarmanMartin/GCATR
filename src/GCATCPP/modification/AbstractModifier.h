@@ -10,14 +10,14 @@
 
 #include "../helper/AbstractErrorManager.h"
 
-class AbstractGenCode;
+class AbstractCode;
 
 class AbstractModifier : public err::AbstractErrorManager {
 public:
 
     explicit AbstractModifier() = default;;
 
-    virtual std::vector<std::string> modify(AbstractGenCode *code, void *args) = 0;
+    virtual std::vector<std::string> modify(AbstractCode *code, void *args) = 0;
     virtual std::string modify_word(std::string word, void *args) = 0;
 };
 

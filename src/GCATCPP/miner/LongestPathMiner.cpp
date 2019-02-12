@@ -4,12 +4,12 @@
 
 #include "LongestPathMiner.h"
 
-#include "../codes/AbstractGenCode.h"
+#include "../codes/AbstractCode.h"
 #include "../tester/Circular.h"
 
 using namespace miner;
 
-std::vector<std::vector<std::string> > LongestPathMiner::mine_path_as_vector(AbstractGenCode* gen_code) {
+std::vector<std::vector<std::string> > LongestPathMiner::mine_path_as_vector(AbstractCode* gen_code) {
 
     auto circle_index = LongestPathMiner::mine_all_path_as_graph(gen_code);
     std::vector<std::vector<std::string>> res(circle_index.size());
@@ -39,7 +39,7 @@ std::vector<std::vector<std::string> > LongestPathMiner::mine_path_as_vector(Abs
     return res;
 }
 
-graph::Graph LongestPathMiner::mine_path_as_graph(AbstractGenCode *gen_code) {
+graph::Graph LongestPathMiner::mine_path_as_graph(AbstractCode *gen_code) {
     graph::Graph res;
     auto circles_as_graph = LongestPathMiner::mine_all_path_as_graph(gen_code);
     for(auto g : circles_as_graph) {
@@ -49,7 +49,7 @@ graph::Graph LongestPathMiner::mine_path_as_graph(AbstractGenCode *gen_code) {
     return res;
 }
 
-std::vector<graph::Graph> LongestPathMiner::mine_all_path_as_graph(AbstractGenCode *gen_code) {
+std::vector<graph::Graph> LongestPathMiner::mine_all_path_as_graph(AbstractCode *gen_code) {
 
     Circular codeTester;
     if (!codeTester.test(gen_code)) {

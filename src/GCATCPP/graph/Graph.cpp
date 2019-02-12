@@ -6,9 +6,9 @@
 
 using namespace graph;
 
-#include "../codes/AbstractGenCode.h"
+#include "../codes/AbstractCode.h"
 
-void Graph::parse_code(const AbstractGenCode &code) {
+void Graph::parse_code(const AbstractCode &code) {
     for (auto word : code.as_vector()) {
         this->add_word(word);
     }

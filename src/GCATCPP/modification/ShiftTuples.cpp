@@ -3,9 +3,9 @@
 //
 
 #include "ShiftTuples.h"
-#include "../codes/AbstractGenCode.h"
+#include "../codes/AbstractCode.h"
 
-std::vector<std::string> ShiftTuples::modify(AbstractGenCode *code, void* args) {
+std::vector<std::string> ShiftTuples::modify(AbstractCode *code, void* args) {
     int number = 1;
     if(args != nullptr) {
         number = *(int*)(args);

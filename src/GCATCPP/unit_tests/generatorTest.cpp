@@ -7,7 +7,7 @@
 #include "../codes/StdGenCode.h"
 #include "../generator/BaseValueGenerator.h"
 
-
+/*
 TEST (BaseValueGeneratorTester, SimpleGenerator) {
     auto code = BaseValueGenerator({{"A",0}, {"C",1},{"G",2},{"U",3}}, {16,4,1});
     auto code_list =  code.run();
@@ -24,7 +24,22 @@ TEST (BaseValueGeneratorTester, SimpleGeneratorSize4) {
 
 TEST (BaseValueGeneratorTester, SimpleGeneratorSizeError) {
 
-    auto code = BaseValueGenerator({{"A",0}, {"C",0}}, {16,4,1});
+    auto code = BaseValueGenerator({{"A",0}, {"C",1}}, {64,32,16,8,4,2,1});
     auto code_list =  code.run();
-    EXPECT_EQ(code_list[0], "CAA");
+    for(auto x : code_list) {
+        std::cout << "\"" << x << "\", ";
+    }
+
+    std::cout << std::endl;
+
+    EXPECT_EQ(code_list[0], "AAAAAAC");
+
+    code = BaseValueGenerator({{"A",0}, {"C",1}}, {16,8,4,2,1});
+    code_list =  code.run();
+    for(auto x : code_list) {
+        std::cout << "\"" << x << "\", ";
+    }
+
+    std::cout << std::endl;
 }
+*/

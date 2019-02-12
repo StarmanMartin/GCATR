@@ -12,13 +12,13 @@
 #include "Vertex.h"
 #include "../helper/AbstractErrorManager.h"
 
-class AbstractGenCode;
+class AbstractCode;
 
 namespace graph {
 
     class Graph : public err::AbstractErrorManager {
     public:
-        void parse_code(const AbstractGenCode &);
+        void parse_code(const AbstractCode &);
 
         void add_vertices(std::string from, std::string to);
 

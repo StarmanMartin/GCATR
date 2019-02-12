@@ -7,12 +7,12 @@
 #include <iostream>
 #include <regex>
 
-bool CommaFree::test(AbstractGenCode *code) {
+bool CommaFree::test(AbstractCode *code) {
     return this->is_comma_free(code);
 }
 
 
-bool CommaFree::is_comma_free(AbstractGenCode *code) {
+bool CommaFree::is_comma_free(AbstractCode *code) {
     std::string string_sequence = code->as_string_sequence();
 
     for (unsigned int i = 1; i < code->get_word_length()[0]; ++i) {
@@ -32,7 +32,7 @@ bool CommaFree::is_comma_free(AbstractGenCode *code) {
     return true;
 }
 
-bool CommaFree::rec_is_comma_free(AbstractGenCode *code,
+bool CommaFree::rec_is_comma_free(AbstractCode *code,
                                   std::vector<unsigned int> chained_indexes,
                                   std::string current_substring,
                                   unsigned int current_word_pos) {
