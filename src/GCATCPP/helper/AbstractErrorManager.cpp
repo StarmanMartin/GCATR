@@ -38,7 +38,7 @@ void AbstractErrorManager::add_error_msges(std::vector<std::string> msges) {
 }
 
 void AbstractErrorManager::add_error_msg(std::string err_msg) {
-    if(this->is_suppressed) {
+    if(!this->is_suppressed) {
         this->_has_error = true;
         this->msg.push_back(err_msg);
     }

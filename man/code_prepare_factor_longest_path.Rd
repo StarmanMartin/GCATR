@@ -2,18 +2,25 @@
 % Please edit documentation in R/RcppExports.R
 \name{code_prepare_factor_longest_path}
 \alias{code_prepare_factor_longest_path}
-\title{Returns a list of circles as vectors.}
+\title{Returns a list, with the longest path(s) in the graph of a circular code.}
 \usage{
-code_prepare_factor_longest_path(code)
+code_prepare_factor_longest_path(code, tuple_length = -1L)
 }
 \arguments{
-\item{code}{A vertor with codons.}
+\item{code}{A vertor with codons.' @param length if code is a sequence, length is the tuple length of the code.}
+
+\item{tuple_length}{if code is a sequence, length is the tuple length of the code.}
+}
+\value{
+List: Edges and vertices of only the longest path of an graph representing a circular code.
 }
 \description{
 The function checks if the code is circular. If the code is not circular the functions returns all circles. 
 \emph{2007 Christian MICHEL. CIRCULAR CODES IN GENES}
 }
 \examples{
-code_prepare_factor_all_circles(c("ACG", "CAG"))
+code_prepare_factor_longest_path(c("ACG", "CAG"))
+code_prepare_factor_longest_path("ACGCAG", tuple_length=3)
+code_prepare_factor_longest_path("ACG CAG")
 
 }

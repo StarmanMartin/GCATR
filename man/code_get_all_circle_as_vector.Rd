@@ -2,21 +2,28 @@
 % Please edit documentation in R/RcppExports.R
 \name{code_get_all_circle_as_vector}
 \alias{code_get_all_circle_as_vector}
-\title{Finds all circles constructable in a code.}
+\title{Finds all circular sequences constructable in a code.}
 \usage{
-code_get_all_circle_as_vector(code)
+code_get_all_circle_as_vector(code, tuple_length = -1L)
 }
 \arguments{
-\item{code}{A DNA or RNA code as string vector represented by the graph.}
+\item{code}{is either a string vector or a string. it can be a DNA or RNA sequence.}
+
+\item{tuple_length}{if code is a sequence, length is the tuple length of the code.}
+}
+\value{
+List of lists of all circular sequences constructable with a given code.
 }
 \description{
-Prepares a List of R path string vector. Extracts all circle path of the Graph G(X).
+Prepares a List of R path string vector. Extracts all circular paths of the Graph G(X).
 If the graph shows no cycle the list will be empty. Otherwise it returns a list object containing vectors with all
-circle paths.\cr
+circular paths.\cr
 \emph{2007 E. FIMMEL, C. J. MICHEL, AND L. STRÜNGMANN. N-nucleotide circular codes in graph theory}
 }
 \examples{
-c_path_list <- code_get_all_circle_as_vector(c("ACG", "CGA"))
+l_graph_list <- code_get_all_circle_as_vector(c("ACG", "CGA"))
+l_graph_list <- code_get_all_circle_as_vector("ACGCGA", tuple_length=3)
+l_graph_list <- code_get_all_circle_as_vector("ACG CGA")
 
 }
 \seealso{

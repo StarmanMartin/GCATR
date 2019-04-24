@@ -13,6 +13,7 @@
 class BaseValueGenerator : AbstractGenerator {
 public:
     BaseValueGenerator(std::map<std::string, int>, std::vector<size_t>);
+    BaseValueGenerator(std::vector<std::string>, size_t word_length , bool increasing_power);
 
     std::vector<std::string> run() override;
 

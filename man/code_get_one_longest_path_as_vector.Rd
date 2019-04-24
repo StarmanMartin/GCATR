@@ -4,10 +4,12 @@
 \alias{code_get_one_longest_path_as_vector}
 \title{Finds one longest path constructable in a code.}
 \usage{
-code_get_one_longest_path_as_vector(code)
+code_get_one_longest_path_as_vector(code, length = -1L)
 }
 \arguments{
-\item{code}{A DNA or RNA code as string vector represented by the graph.}
+\item{code}{is either a string vector or a string. it can be a DNA or RNA sequence.}
+
+\item{length}{if code is a sequence, length is the tuple length of the code.}
 }
 \description{
 Prepares a R path string vector. Extracts all longest paths of the Graph G(X).
@@ -16,6 +18,8 @@ If the graph shows a cycle the vector will be empty. Otherwise it returns a vect
 }
 \examples{
 l_path <- code_get_one_circle_as_vector(c("ACG", "CGA"))
+l_path <- code_get_one_circle_as_vector("ACGCGA", 3)
+l_path <- code_get_one_circle_as_vector("ACG CGA")
 
 }
 \seealso{

@@ -7,7 +7,7 @@
 
 using namespace graph;
 
-Vertex::Vertex(std::string label) : label(label), index(0) {
+Vertex::Vertex(std::string label, const Alphabet& alphabet) : label(label), index(0), alphabet(alphabet) {
     this->calculate_index();
 }
 
@@ -32,11 +32,11 @@ int Vertex::get_index() const {
 }
 
 void Vertex::calculate_index() {
-    int length = acid::acid_base_length;
+    int length = (int) this->alphabet.as_string().length();
     int power_val = 1;
 
     for (int i = 0; i < this->get_label().length(); ++i) {
-        this->index += acid::get_base_value((acid::bases) this->get_label()[i]) * power_val;
+        this->index += this->alphabet.get_letter_value(this->get_label()[i]) * power_val;
         power_val *= length;
     }
 }

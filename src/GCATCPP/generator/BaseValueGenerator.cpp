@@ -4,7 +4,7 @@
 
 #include "BaseValueGenerator.h"
 #include "../modification/ShiftTuples.h"
-#include "../codes/StdGenCode.h"
+#include "../codes/Code.h"
 #include <utility>
 #include <sstream>
 #include <set>
@@ -12,8 +12,30 @@
 
 
 BaseValueGenerator::BaseValueGenerator(std::map<std::string, int> base_values,
-                                       std::vector<size_t> power_values) : AbstractGenerator(), base_values(
+                                        std::vector<size_t> power_values) : AbstractGenerator(), base_values(
         std::move(base_values)), word_length(power_values.size()), power_values(std::move(power_values)) {
+
+}
+
+BaseValueGenerator::BaseValueGenerator(std::vector<std::string> bases, size_t word_length, bool increasing_power) : AbstractGenerator() {
+    this->word_length = word_length;
+    this->base_values.clear();
+    this->power_values.clear();
+    size_t power_value = 1;
+    int idx = 0;
+    for(size_t i = 0; i < word_length; i++) {
+        if (increasing_power) {
+            this->power_values.insert(this->power_values.begin(), power_value);
+        } else {
+            this->power_values.push_back(power_value);
+        }
+        power_value *= bases.size();
+    }
+
+    for(auto letter : bases) {
+
+        this->base_values.insert( std::make_pair( letter, idx++ ) );
+    }
 
 }
 
@@ -41,7 +63,7 @@ std::vector<std::string> BaseValueGenerator::run() {
         std::string current_word_str = this->circular_permutation_with_lowest_value(current_word.str());
         current_value = this->value_of_word(current_word_str);
 
-        if (StdGenCode({current_word_str}).is_circular()) {
+        if (Code({current_word_str}).is_circular()) {
             result_code.insert(current_word_str);
         }
     }
@@ -53,10 +75,13 @@ std::vector<std::string> BaseValueGenerator::run() {
 }
 
 void BaseValueGenerator::order_base_values() {
-    this->base_list.empty();
-    this->value_list.empty();
+    this->base_list.clear();
+    this->value_list.clear();
 
     for (const auto &myPair : this->base_values) {
+        if(myPair.first.length() != 1) {
+            this->add_error_msg("Only single chars as bases!!");
+        }
         bool has_inserted = false;
         auto iterKeys = this->base_list.begin();
         for (auto iter = this->value_list.begin(); iter != this->value_list.end(); ++iter, ++iterKeys) {

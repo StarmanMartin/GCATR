@@ -1,3 +1,5 @@
+#include <utility>
+
 //
 // Created by Martin on 2/7/2019.
 //
@@ -24,7 +26,7 @@
 
 
 AbstractCode::AbstractCode(std::string sequence, unsigned int word_length) : string_sequence(sequence) {
-    this->reset({});
+    this->word_length = {};
 
     std::vector<std::string> code_vec(sequence.length() / word_length);
     this->word_length.push_back((signed) word_length);
@@ -39,7 +41,7 @@ AbstractCode::AbstractCode(std::string sequence, unsigned int word_length) : str
 
     }
 
-    this->code_vec = code_vec;
+    this->reset(code_vec);
 }
 
 AbstractCode::AbstractCode(const std::vector<std::string> &code_vec) {
@@ -53,6 +55,8 @@ AbstractCode::AbstractCode(const AbstractCode &agc) : AbstractErrorManager(agc) 
     this->string_sequence = agc.string_sequence;
     std::vector<int> temp_length(agc.word_length);
     this->word_length = temp_length;
+    this->set_alphabet(agc.get_alphabet_as_string());
+    this->is_alphabet_set = agc.is_alphabet_set;
 }
 
 void AbstractCode::reset(std::vector<std::string> code_vec) {
@@ -61,6 +65,7 @@ void AbstractCode::reset(std::vector<std::string> code_vec) {
     this->is_ok = false;
     this->string_sequence = EMPTY_SEQUNECE;
     this->word_length = {};
+    this->is_alphabet_set = false;
     this->set_code_properties();
 }
 
@@ -84,19 +89,26 @@ bool AbstractCode::test_code() {
 }
 
 void AbstractCode::set_code_properties() {
-    this->word_length.empty();
-    for (auto word : this->code_vec) {
+    this->word_length.clear();
+    for (const auto &word : this->code_vec) {
         auto l = (signed) word.length();
         bool found = (std::find(word_length.begin(), word_length.end(), l) != word_length.end());
         if (!found) {
             this->word_length.push_back(l);
         }
     }
+
+    if (!this->is_alphabet_set) {
+        this->set_alphabet(this->as_string_sequence());
+        this->is_alphabet_set = false;
+    }
 }
 
 std::string AbstractCode::as_string_sequence() {
     if (this->string_sequence != EMPTY_SEQUNECE) {
         return this->string_sequence;
+    } if(this->code_vec.empty()) {
+        return "";
     }
 
     std::string result;
@@ -109,6 +121,23 @@ std::vector<std::string> AbstractCode::as_vector() const {
     return this->code_vec;
 }
 
+void AbstractCode::set_alphabet(std::string new_alphabet) {
+
+    this->alphabet.set_alphabet(std::move(new_alphabet));
+    this->is_alphabet_set = true;
+}
+
+const Alphabet& AbstractCode::get_alphabet() const {
+    return this->alphabet;
+}
+
+std::string AbstractCode::get_alphabet_as_string() const {
+    return this->alphabet.as_string();
+}
+
+size_t AbstractCode::get_letter_value(const char &c) {
+    return static_cast<size_t>(this->alphabet.get_letter_value(c));
+}
 
 std::vector<int> AbstractCode::get_word_length() {
     this->test_code();
@@ -117,6 +146,12 @@ std::vector<int> AbstractCode::get_word_length() {
 
 bool AbstractCode::run_test(std::shared_ptr<AbstractTester> t) {
     bool result = t->test(this);
+    this->add_error_msges(t->get_error_msg());
+    return result;
+}
+
+bool AbstractCode::run_test(std::shared_ptr<AbstractTester> t, int k) {
+    bool result = t->test(this, k);
     this->add_error_msges(t->get_error_msg());
     return result;
 }

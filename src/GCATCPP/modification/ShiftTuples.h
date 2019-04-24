@@ -11,6 +11,7 @@ class ShiftTuples : public AbstractModifier {
 public:
     std::vector<std::string> modify(AbstractCode* code, void* args) override;
     std::string modify_word(std::string word, void *args) override;
+    std::string shift_tuple(std::string word, size_t number);
 };
 
 

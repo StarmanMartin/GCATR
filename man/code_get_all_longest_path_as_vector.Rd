@@ -4,10 +4,12 @@
 \alias{code_get_all_longest_path_as_vector}
 \title{Finds all longest path constructable in a code.}
 \usage{
-code_get_all_longest_path_as_vector(code)
+code_get_all_longest_path_as_vector(code, length = -1L)
 }
 \arguments{
-\item{code}{A DNA or RNA code as string vector represented by the graph.}
+\item{code}{is either a string vector or a string. it can be a DNA or RNA sequence.}
+
+\item{length}{if code is a sequence, length is the tuple length of the code.}
 }
 \description{
 Prepares a List of R path string vector. Extracts all longest path of the Graph G(X).
@@ -16,7 +18,9 @@ longest paths.\cr
 \emph{2007 E. FIMMEL, C. J. MICHEL, AND L. STRÜNGMANN. N-nucleotide circular codes in graph theory}
 }
 \examples{
-l_path_list <- code_get_all_circle_as_vector(c("ACG", "CGA"))
+l_path_list <- code_get_all_longest_path_as_vector(c("ACG", "CGA"))
+l_path_list <- code_get_all_longest_path_as_vector("ACGCGA", 3)
+l_path_list <- code_get_all_longest_path_as_vector("ACG CGA")
 
 }
 \seealso{

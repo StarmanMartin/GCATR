@@ -15,6 +15,6 @@ PKG_LIBS = $(SHLIB_OPENMP_CFLAGS) $(LAPACK_LIBS) $(BLAS_LIBS) $(FLIBS)
 
 # Added commands
 
-SOURCES = $(wildcard GCATCPP/codes/*.cpp GCATCPP/tester/*.cpp GCATCPP/modification/*.cpp GCATCPP/bda/*.cpp GCATCPP/helper/*.cpp GCATCPP/miner/*.cpp GCATCPP/graph/*.cpp GCATCPP/geneticCode/*.cpp)
+SOURCES = $(wildcard GCATCPP/codes/*.cpp GCATCPP/tester/*.cpp GCATCPP/modification/*.cpp GCATCPP/bda/*.cpp GCATCPP/helper/*.cpp GCATCPP/miner/*.cpp GCATCPP/graph/*.cpp GCATCPP/geneticCode/*.cpp GCATCPP/generator/*.cpp)
 
 OBJECTS = MainVectorAdapter.o GraphToolsAdapter.o RcppExports.o BDAToolsAdapter.o RAdapterUtils.o GeneticCodeAdapter.o $(SOURCES:.cpp=.o)

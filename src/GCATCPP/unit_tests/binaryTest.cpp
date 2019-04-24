@@ -19,10 +19,10 @@ TEST(BinaryCodesTest, WrongRule) {
 
     c = {"110101", "11000"};
     code = CodeFactory::factor(c);
-    EXPECT_TRUE(code == nullptr);
+    EXPECT_FALSE(code->test_code());
 
     c_str = "1101011000";
     code = CodeFactory::factor(c_str, (unsigned)5);
-    EXPECT_TRUE(code == nullptr);
+    EXPECT_TRUE(code->is_circular());
 
 }

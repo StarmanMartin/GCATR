@@ -2,16 +2,22 @@
 % Please edit documentation in R/RcppExports.R
 \name{code_prepare_factor_gen_graph}
 \alias{code_prepare_factor_gen_graph}
-\title{Get edges of an generic graph}
+\title{Get edges and vertices of an generic graph}
 \usage{
-code_prepare_factor_gen_graph(code, show_circles = FALSE,
-  show_longest_path = FALSE)
+code_prepare_factor_gen_graph(code, show_cycles = FALSE,
+  show_longest_path = FALSE, tuple_length = -1L)
 }
 \arguments{
-\item{code}{A vertor with codons.}
+\item{code}{is either a string vector or a string. It can be a DNA or RNA sequence.}
+
+\item{show_cycles}{A bool value. If true the all edges which are part of a cycle are colored red.}
+
+\item{show_longest_path}{A bool value. If true the all edges part of the longest path are colored blue.}
+
+\item{tuple_length}{if code is a sequence, length is the tuple length of the code.}
 }
 \value{
-List: Edges and vertices of an generic graph. If A -> CG the Letter A is followed by the string CG.
+List: Edges and vertices of an graph representing a circular code.
 }
 \description{
 The following definition relates a directed graph to
@@ -30,6 +36,8 @@ by pairs of i-nucleotides and (n-i)-nucleotides for 0 < i < n.\cr
 \emph{2007 E. FIMMEL, C. J. MICHEL, AND L. STRÜNGMANN. N-nucleotide circular codes in graph theory}
 }
 \examples{
-code_prepare_factor_gen_graph(c("ACG", "CAG"))
+code_prepare_factor_gen_graph(c("ACG", "CAG"), TRUE, TRUE)
+code_prepare_factor_gen_graph("ACGCAG", tuple_length=3, show_cycles=TRUE, show_longest_path=TRUE)
+code_prepare_factor_gen_graph("ACG CAG", TRUE, TRUE)
 
 }

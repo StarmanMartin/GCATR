@@ -11,15 +11,17 @@
 
 class Circular : public AbstractTester {
 public:
-    virtual bool test(AbstractCode *code);
+    bool test(AbstractCode *code) override;
 
-    std::vector<graph::Graph > get_circles();
-    std::vector<graph::Graph > get_longest_path();
+
+    std::vector<graph::Graph > get_circles(AbstractCode *code);
+    std::vector<graph::Graph > get_longest_path(AbstractCode *code);
 
 protected:
     std::vector<graph::Graph> circle;
     std::vector<graph::Graph> longest_path;
     unsigned int longest_path_size;
+    bool is_quick_test;
 
     void add_circle(graph::Graph);
     void add_longest_path(graph::Graph);

@@ -4,23 +4,31 @@
 \alias{code_check_if_comma_free}
 \title{Check if a code is comma free.}
 \usage{
-code_check_if_comma_free(code)
+code_check_if_comma_free(code, length = -1L)
 }
 \arguments{
-\item{code}{is a DNA or RNA code as string vector.}
+\item{code}{is either a string vector or a string. It can either be a code or a sequence.}
+
+\item{length}{if code is a sequence, length is the tuple length of the code.}
 }
 \value{
-Boolean value. True if the code comma free.
+Boolean value. True if the code is k-circular.
 }
 \description{
-The function checks if the code is comma free. 
-Comma free is a stronger restricted version of the circular code property.
-For more info on this subject read:\cr
+This function checks if a code is comma free.
+The code can either be a vector of tuples or a sequence. If the code
+is a sequence an additional word length parameter is needed.\cr
+Comma free is a more restrictive code of the family of the circular codes:\cr
+A comma-free code is block code in which no concatenation of two code words contains a valid code word that overlaps both.\cr
+Circular codes are a block codes. It is used as an unproved approach to explain the
+method used in gens to retrieving the correct reading frames.\cr
 \link{https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5492142/},\cr
 \link{http://dpt-info.u-strasbg.fr/~c.michel/Circular_Codes.pdf},\cr
 \emph{2007 Christian MICHEL. CIRCULAR CODES IN GENES}
 }
 \examples{
 code_check_if_comma_free(c("ACG", "CAG"))
+code_check_if_comma_free("ACGCAG", 3)
+code_check_if_comma_free("ACG CAG")
 
 }

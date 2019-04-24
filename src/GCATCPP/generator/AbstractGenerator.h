@@ -9,9 +9,11 @@
 #include <string>
 #include <vector>
 
-class AbstractGenerator {
+#include "../helper/AbstractErrorManager.h"
+
+class AbstractGenerator : public err::AbstractErrorManager {
 public:
-    explicit AbstractGenerator() = default;
+    explicit AbstractGenerator() : AbstractErrorManager() {};
     virtual std::vector<std::string> run() = 0;
 };
 

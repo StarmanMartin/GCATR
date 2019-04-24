@@ -4,10 +4,12 @@
 \alias{code_get_acid}
 \title{Get acid type of a code}
 \usage{
-code_get_acid(code)
+code_get_acid(code, length = -1L)
 }
 \arguments{
-\item{code}{A vector with codons.}
+\item{code}{is either a string vector or a string. it can be a DNA or RNA sequence.}
+
+\item{length}{if code is a sequence, length is the tuple length of the code.}
 }
 \value{
 String value. One of NONE, DNA, RNA
@@ -23,6 +25,8 @@ For more info on this subject read:\cr
 \emph{2007 Christian MICHEL. CIRCULAR CODES IN GENES}
 }
 \examples{
-acid <- code_get_acid(c("ACG", "CAG"))
+code_get_acid(c("ACG", "CAG"))
+code_get_acid("ACGCAG", 3)
+code_get_acid("ACG CAG")
 
 }

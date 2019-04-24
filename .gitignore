@@ -10,10 +10,13 @@ src/GCATCPP/cmake-build-debug/
 src/GCATCPP/codes/*.o
 src/GCATCPP/libs/
 *.o
-*.o
-.idea/workspace.xml
+
 *.toc
 *.out
 *.log
 *.aux
 *.gz
+.idea/
+.idea/workspace.xml
+.idea/dictionaries/Martin.xml
+src/GCATCPP/unit_tests/asserts/*.csv

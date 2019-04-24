@@ -4,10 +4,15 @@
 \alias{code_factor_c3graph}
 \title{Prepares a graph G(X) object with C3 extension.}
 \usage{
-code_factor_c3graph(code)
+code_factor_c3graph(code, tuple_length = -1)
 }
 \arguments{
-\item{code}{A DNA or RNA code as string vector represented by the graph.}
+\item{code}{is either a string vector or a string. It can be a DNA or RNA sequence.}
+
+\item{tuple_length}{if code is a sequence, length is the tuple length of the code.}
+}
+\value{
+List:  A igraph (<http://igraph.org/r/>) object: An graph representing a circular code with C3 extension..
 }
 \description{
 Prepares a R igraph object. Extents the Graph G(X) from code_factor_graph by the so called C3 edges.
@@ -16,7 +21,9 @@ at least one circular permutation of the code is not a circular code. Only works
 \emph{2007 E. FIMMEL, C. J. MICHEL, AND L. STRÜNGMANN. N-nucleotide circular codes in graph theory}
 }
 \examples{
-G <- code_prepare_factor_gen_c3graph("ACGCGA", )
+G <- code_prepare_factor_gen_c3graph(c("ACG", "CAG"))
+G <- code_prepare_factor_gen_c3graph("ACGCAG", tuple_length=3)
+G <- code_prepare_factor_gen_c3graph("ACG CAG")
 plot(G)
 
 }

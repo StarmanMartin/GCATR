@@ -9,7 +9,7 @@
 
 class C_n : public Circular {
 public:
-    virtual bool test(AbstractCode *code);
+    virtual bool test(AbstractCode *code) override;
 };
 
 

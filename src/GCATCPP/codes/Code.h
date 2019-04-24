@@ -16,6 +16,7 @@ public:
     Code(const Code &agc);
 
     virtual bool test_code() override;
+    virtual bool is_k_circular(int k) override;
 
     bool is_circular() override;
     bool is_cn_circular() override;

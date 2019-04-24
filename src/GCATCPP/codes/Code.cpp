@@ -16,6 +16,7 @@
 #include <sstream>
 #include "StdGenCode.h"
 #include "../tester/Circular.h"
+#include "../tester/KCircular.h"
 #include "../tester/C_n.h"
 #include "../tester/CommaFree.h"
 
@@ -50,6 +51,12 @@ bool Code::is_circular() {
     if (!this->test_code()) { return false; }
     auto tester = std::make_shared<Circular>();
     return this->run_test(tester);
+}
+
+bool Code::is_k_circular(int k) {
+    if (!this->test_code()) { return false; }
+    auto tester = std::make_shared<KCircular>();
+    return this->run_test(tester, k);
 }
 
 bool Code::is_cn_circular() {

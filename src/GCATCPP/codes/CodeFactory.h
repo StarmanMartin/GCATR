@@ -13,41 +13,64 @@
 
 class CodeFactory {
 public:
+
+    static std::shared_ptr<AbstractGenCode> rFactorGenCode(std::vector<std::string> &code, int tuple_length) {
+        if(code.size() == 1) {
+            if(tuple_length > 0) {
+                std::string a = code.at(0);
+                return CodeFactory::factorGenCode(a, (unsigned) tuple_length);
+            } else {
+                return CodeFactory::factorGenCode(code.at(0));
+            }
+        }
+
+        return CodeFactory::factorGenCode(code);
+
+
+    }
+
+    static std::shared_ptr<AbstractGenCode> factorGenCode(std::string& code) {
+        auto as_vector = utils::StringUtils::split(code, ' ');
+        return CodeFactory::factorGenCode(as_vector);
+
+    }
+
+    static std::shared_ptr<AbstractGenCode> factorGenCode(std::string& seq, unsigned int tuple_length) {
+        Code temp(seq, tuple_length);
+        return CodeFactory::factorGenCode(temp.as_vector());
+    }
+
+    static std::shared_ptr<AbstractGenCode> factorGenCode(std::vector<std::string> code) {
+        return std::make_shared<StdGenCode>(code);
+    }
+
+    static std::shared_ptr<AbstractCode> rFactor(std::vector<std::string> &code, int tuple_length) {
+        if(code.size() == 1) {
+            if(tuple_length > 0) {
+                std::string a = code.at(0);
+                return CodeFactory::factor(a, (unsigned) tuple_length);
+            } else {
+                return CodeFactory::factor(code.at(0));
+            }
+        }
+
+        return CodeFactory::factor(code);
+
+    }
+
     static std::shared_ptr<AbstractCode> factor(std::string& code) {
         auto as_vector = utils::StringUtils::split(code, ' ');
         return CodeFactory::factor(as_vector);
 
     }
 
-    static std::shared_ptr<AbstractCode> factor(std::string& seq, unsigned int& tuple_length) {
+    static std::shared_ptr<AbstractCode> factor(std::string& seq, unsigned int tuple_length) {
         Code temp(seq, tuple_length);
         return CodeFactory::factor(temp.as_vector());
     }
 
     static std::shared_ptr<AbstractCode> factor(std::vector<std::string> code) {
-        std::shared_ptr<AbstractCode> code_obj;
-
-        for(short code_idx = 0; code_idx < 2; ++code_idx) {
-
-            switch (code_idx) {
-                case 0:
-                    code_obj = std::make_shared<StdGenCode>(code);
-                    if(code_obj->test_code()) {
-                        return code_obj;
-                    }
-                    break;
-                case 1:
-                    code_obj = std::make_shared<Code>(code);
-                    if(code_obj->test_code()) {
-                        return code_obj;
-                    }
-                    break;
-                default:
-                    return nullptr;
-            }
-        }
-
-        return nullptr;
+        return std::make_shared<Code>(code);
     }
 };
 

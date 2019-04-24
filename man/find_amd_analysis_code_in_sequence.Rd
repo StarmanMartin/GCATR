@@ -4,12 +4,12 @@
 \alias{find_amd_analysis_code_in_sequence}
 \title{Analysis a sequence based on a generic code.}
 \usage{
-find_amd_analysis_code_in_sequence(seq, code)
+find_amd_analysis_code_in_sequence(seq, code, tuple_length = -1L)
 }
 \arguments{
-\item{seq}{A DNA or RNA sequence.}
+\item{code}{is either a string vector or a string. it can be a DNA or RNA sequence.}
 
-\item{code}{A DNA or RNA code as string vector represented by the graph.}
+\item{tuple_length}{if code is a sequence, length is the tuple length of the code.}
 }
 \value{
 Returns a List with all analysing results. The list contains following:\cr
@@ -25,8 +25,9 @@ Finds all appearance of a code ion a sequence. Finds the longest connected match
 The function also calculates the matching bases of the found words in the sequence.
 }
 \examples{
-code <- c("ACG", "TCG")
 seq <- "ACGTCGCGACGTACGACGTCGTACTCGATGCAAGATC"
-res <- find_amd_analysis_code_in_sequence(seq, code)
+res <- find_amd_analysis_code_in_sequence(seq, c("ACG", "TCG"))
+res <- find_amd_analysis_code_in_sequence(seq, "ACGCG", tuple_length=3)
+res <- find_amd_analysis_code_in_sequence(seq, "ACG TCG")
 
 }

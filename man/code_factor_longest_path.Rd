@@ -4,10 +4,12 @@
 \alias{code_factor_longest_path}
 \title{Prepares a graph G(X) with only longest paths.}
 \usage{
-code_factor_longest_path(code)
+code_factor_longest_path(code, tuple_length = -1)
 }
 \arguments{
-\item{code}{A DNA or RNA code as string vector represented by the graph.}
+\item{code}{is either a string vector or a string. it can be a DNA or RNA sequence.}
+
+\item{tuple_length}{if code is a sequence, length is the tuple length of the code.}
 }
 \description{
 Prepares a R igraph object. Extracts all longest path of the Graph G(X).
@@ -16,7 +18,9 @@ longest paths.\cr
 \emph{2007 E. FIMMEL, C. J. MICHEL, AND L. STRÜNGMANN. N-nucleotide circular codes in graph theory}
 }
 \examples{
-G <- seq_factor_circles(c("ACG", "CGA"))
+G <- code_factor_longest_path(c("ACG", "CAG"))
+G <- code_factor_longest_path("ACGCAG", tuple_length=3)
+G <- code_factor_longest_path("ACG CAG")
 plot(G)
 
 }

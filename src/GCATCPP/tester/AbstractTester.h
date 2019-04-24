@@ -15,6 +15,9 @@ public:
 
     explicit AbstractTester() {};
 
+    virtual bool test(AbstractCode *code, int args) {
+        return this->test(code);
+    };
     virtual bool test(AbstractCode *code) = 0;
 };
 

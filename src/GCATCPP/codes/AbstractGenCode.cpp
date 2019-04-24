@@ -31,7 +31,7 @@ AbstractGenCode::AbstractGenCode(const AbstractGenCode &agc) : Code(agc) {
 
 void AbstractGenCode::reset(std::vector<std::string> code_vec) {
     AbstractCode::reset(code_vec);
-    this->acid = acid::acids::NONE;
+    this->acid = acid::check_acid_type(this->as_string_sequence());
     this->transl_table_idx  = {};
 }
 
@@ -54,6 +54,8 @@ bool AbstractGenCode::test_code() {
         this->add_error_msg("Code contains not known bases!");
         return (this->is_ok = false);
     }
+
+    this->set_alphabet(acid::acid_as_alphabet(this->acid));
 
     return (this->is_ok = true);
 }

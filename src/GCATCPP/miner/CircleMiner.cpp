@@ -16,10 +16,10 @@ std::vector<std::vector<std::string> > CircleMiner::mine_path_as_vector(Abstract
         auto edges = circle_index[i].get_edges();
         graph::Vertex current_vertex = *edges[0].get_to();
         do {
-            for (int j = 0; j < edges.size(); ++j) {
-                if (edges[j].get_from()->compare(current_vertex) == 0) {
-                    res[i].push_back((std::string) *edges[j].get_from());
-                    current_vertex = *edges[j].get_to();
+            for (auto &edge : edges) {
+                if (edge.get_from()->compare(current_vertex) == 0) {
+                    res[i].push_back((std::string) *edge.get_from());
+                    current_vertex = *edge.get_to();
                 }
             }
         } while (current_vertex.compare(*edges[0].get_from()) != 0);
@@ -32,9 +32,9 @@ std::vector<std::vector<std::string> > CircleMiner::mine_path_as_vector(Abstract
 }
 
 graph::Graph CircleMiner::mine_path_as_graph(AbstractCode *gen_code) {
-    graph::Graph res;
+    graph::Graph res(gen_code->get_alphabet());
     auto circles_as_graph = CircleMiner::mine_all_path_as_graph(gen_code);
-    for(auto g : circles_as_graph) {
+    for(const auto &g : circles_as_graph) {
         res.add_graph(g);
     }
 
@@ -45,12 +45,13 @@ graph::Graph CircleMiner::mine_path_as_graph(AbstractCode *gen_code) {
 std::vector<graph::Graph> CircleMiner::mine_all_path_as_graph(AbstractCode *gen_code) {
 
     Circular tester;
-    if (tester.test(gen_code)) {
+
+    auto res = tester.get_circles(gen_code);
+    if (res.empty()) {
         gen_code->add_error_msg("Code is circular -> no circle path");
-        std::vector<graph::Graph>res;
         return res;
     }
 
-    return tester.get_circles();
+    return res;
 
 }

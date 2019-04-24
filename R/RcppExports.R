@@ -221,15 +221,11 @@ genetic_codes_by_name <- function(name) {
     .Call('_GCATR_genetic_codes_by_name', PACKAGE = 'GCATR', name)
 }
 
-seq_prepare_factor_gen_c3graph <- function(seq, word_length) {
-    .Call('_GCATR_seq_prepare_factor_gen_c3graph', PACKAGE = 'GCATR', seq, word_length)
+code_prepare_factor_gen_c3graph <- function(code, tuple_length = -1L) {
+    .Call('_GCATR_code_prepare_factor_gen_c3graph', PACKAGE = 'GCATR', code, tuple_length)
 }
 
-code_prepare_factor_gen_c3graph <- function(code) {
-    .Call('_GCATR_code_prepare_factor_gen_c3graph', PACKAGE = 'GCATR', code)
-}
-
-#' Get edges of an generic graph
+#' Get edges and vertices of an generic graph
 #' 
 #' The following definition relates a directed graph to
 #' any n-nucleotide code. Recall from graph theory (Clark and Holton, 1991) that a graph G consists of
@@ -246,171 +242,187 @@ code_prepare_factor_gen_c3graph <- function(code) {
 #' by pairs of i-nucleotides and (n-i)-nucleotides for 0 < i < n.\cr
 #' \emph{2007 E. FIMMEL, C. J. MICHEL, AND L. STRÜNGMANN. N-nucleotide circular codes in graph theory}
 #'
-#' @param code A vertor with codons.
-#' @return List: Edges and vertices of an generic graph. If A -> CG the Letter A is followed by the string CG.
-#' @examples
-#' code_prepare_factor_gen_graph(c("ACG", "CAG"))
-#' 
-code_prepare_factor_gen_graph <- function(code, show_circles = FALSE, show_longest_path = FALSE) {
-    .Call('_GCATR_code_prepare_factor_gen_graph', PACKAGE = 'GCATR', code, show_circles, show_longest_path)
-}
-
-#' Get edges of an generic graph
-#' 
-#' The following definition relates a directed graph to
-#' any n-nucleotide code. Recall from graph theory (Clark and Holton, 1991) that a graph G consists of
-#' a finite set of vertices (nodes) V and a finite set of edges E. Here, an edge is a set \{v,w\} of vertices
-#' from V . The graph is called oriented if the edges have an orientation, i.e. edges are considered to be
-#' ordered pairs [v,w] in this case.\cr
-#' Definition 2.1. Let X Bn be an n-nucleotide code (n 2 N). We define a directed graph G(X) =
-#' (V (X),E(X)) with set of vertices V (X) and set of edges E(X) as follows:
-#' N-NUCLEOTIDE CIRCULAR CODES IN GRAPH THEORY 5\cr
-#' V (X) = \{N1...Ni,Ni+1...Nn : N1N2N3...Nn in X, 0 < i < n\}\cr
-#' E(X) = \{[N1...Ni,Ni+1...Nn] : N1N2N3...Nn in X, 0 < i < n\}\cr
-#' The graph G(X) is called the representing graph of X or the graph associated to X.\cr
-#' Basically, the graph G(X) associated to a code X interprets n-nucleotide words from X in (n−1) ways
-#' by pairs of i-nucleotides and (n-i)-nucleotides for 0 < i < n.\cr
-#' \emph{2007 E. FIMMEL, C. J. MICHEL, AND L. STRÜNGMANN. N-nucleotide circular codes in graph theory}
+#' @param code is either a string vector or a string. It can be a DNA or RNA sequence.
+#' @param show_cycles A bool value. If true the all edges which are part of a cycle are colored red.
+#' @param show_longest_path A bool value. If true the all edges part of the longest path are colored blue.
+#' @param tuple_length if code is a sequence, length is the tuple length of the code.
 #'
-#' @param seq a nucleotide sequence.
-#' @param word_length the length of the word.
-#' @return List: Edges and vertices of an generic graph. If A -> CG the Letter A is followed by the string CG.
+#' @return List: Edges and vertices of an graph representing a circular code.
+#'
 #' @examples
-#' seq_prepare_factor_gen_graph(c("ACG", "CAG"))
+#' code_prepare_factor_gen_graph(c("ACG", "CAG"), TRUE, TRUE)
+#' code_prepare_factor_gen_graph("ACGCAG", tuple_length=3, show_cycles=TRUE, show_longest_path=TRUE)
+#' code_prepare_factor_gen_graph("ACG CAG", TRUE, TRUE)
 #' 
-seq_prepare_factor_gen_graph <- function(seq, word_length, show_circles = FALSE, show_longest_path = FALSE) {
-    .Call('_GCATR_seq_prepare_factor_gen_graph', PACKAGE = 'GCATR', seq, word_length, show_circles, show_longest_path)
+code_prepare_factor_gen_graph <- function(code, show_cycles = FALSE, show_longest_path = FALSE, tuple_length = -1L) {
+    .Call('_GCATR_code_prepare_factor_gen_graph', PACKAGE = 'GCATR', code, show_cycles, show_longest_path, tuple_length)
 }
 
-#' Returns a list of circles as vectors.
+#' Returns a list, with all cycles in the graph of a circular code.
+#' 
+#' The function checks if the code is circular. If the code is not circular the functions returns all cycles in the representing graph.
+#' \emph{2007 Christian MICHEL. CIRCULAR CODES IN GENES}
+#'
+#' @param code is either a string vector or a string. It can be a DNA or RNA sequence.
+#' @param tuple_length if code is a sequence, length is the tuple length of the code.
+#'
+#' @return List: Edges and vertices of only the cycles of an graph representing a circular code.
+#'
+#' @examples
+#' code_prepare_factor_all_cycle(c("ACG", "CAG"))
+#' code_prepare_factor_all_cycle("ACGCAG", tuple_length=3)
+#' code_prepare_factor_all_cycle("ACG CAG")
+#' 
+code_prepare_factor_all_cycle <- function(code, tuple_length = -1L) {
+    .Call('_GCATR_code_prepare_factor_all_cycle', PACKAGE = 'GCATR', code, tuple_length)
+}
+
+#' Returns a list, with the longest path(s) in the graph of a circular code.
 #' 
 #' The function checks if the code is circular. If the code is not circular the functions returns all circles. 
 #' \emph{2007 Christian MICHEL. CIRCULAR CODES IN GENES}
 #'
-#' @param code A vertor with codons.
-#' @examples
-#' code_prepare_factor_all_circles(c("ACG", "CAG"))
-#' 
-code_prepare_factor_all_circles <- function(code) {
-    .Call('_GCATR_code_prepare_factor_all_circles', PACKAGE = 'GCATR', code)
-}
-
-#' Returns a list of circles as vectors.
-#' 
-#' The function checks if the code is circular. If the code is not circular the functions returns all circles. 
-#' \emph{2007 Christian MICHEL. CIRCULAR CODES IN GENES}
+#' @param code A vertor with codons.' @param length if code is a sequence, length is the tuple length of the code.
+#' @param tuple_length if code is a sequence, length is the tuple length of the code.
 #'
-#' @param seq a nucleotide sequence.
-#' @param word_length the length of the word.
-#' @examples
-#' seq_prepare_factor_all_circles("ACGCAG", 3)
-#' 
-seq_prepare_factor_all_circles <- function(seq, word_length) {
-    .Call('_GCATR_seq_prepare_factor_all_circles', PACKAGE = 'GCATR', seq, word_length)
-}
-
-#' Returns a list of circles as vectors.
-#' 
-#' The function checks if the code is circular. If the code is not circular the functions returns all circles. 
-#' \emph{2007 Christian MICHEL. CIRCULAR CODES IN GENES}
+#' @return List: Edges and vertices of only the longest path of an graph representing a circular code.
 #'
-#' @param code A vertor with codons.
 #' @examples
-#' code_prepare_factor_all_circles(c("ACG", "CAG"))
+#' code_prepare_factor_longest_path(c("ACG", "CAG"))
+#' code_prepare_factor_longest_path("ACGCAG", tuple_length=3)
+#' code_prepare_factor_longest_path("ACG CAG")
 #' 
-code_prepare_factor_longest_path <- function(code) {
-    .Call('_GCATR_code_prepare_factor_longest_path', PACKAGE = 'GCATR', code)
+code_prepare_factor_longest_path <- function(code, tuple_length = -1L) {
+    .Call('_GCATR_code_prepare_factor_longest_path', PACKAGE = 'GCATR', code, tuple_length)
 }
 
-#' Returns a list of circles as vectors.
+#' Check if a code is circular.
 #' 
-#' The function checks if the code is circular. If the code is not circular the functions returns all circles. 
-#' \emph{2007 Christian MICHEL. CIRCULAR CODES IN GENES}
-#'
-#' @param seq a nucleotide sequence.
-#' @param word_length the length of the word.
-#' @examples
-#' seq_prepare_factor_all_circles("ACGCAG", 3)
-#' 
-seq_prepare_factor_longest_path <- function(seq, word_length) {
-    .Call('_GCATR_seq_prepare_factor_longest_path', PACKAGE = 'GCATR', seq, word_length)
-}
-
-#' Check if a DNA/RNA code is circular.
-#' 
-#' This function checks if a genetic code is circular.
-#' Circular codes is an approach for finding the method used in gens for retrieving the correct reading frames.\cr
+#' This function checks if a code is circular. The code can either be a vector of tuples or a sequence. If the code
+#' is a sequence an additional word length parameter is needed.
+#' Circular codes are a block codes. It is used as an unproved approach to explain the
+#' method used in gens to retrieving the correct reading frames.\cr
 #' For more info on this subject read:\cr
 #' \link{https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5492142/},\cr
 #' \link{http://dpt-info.u-strasbg.fr/~c.michel/Circular_Codes.pdf},\cr
 #' \emph{2007 Christian MICHEL. CIRCULAR CODES IN GENES}
 #'
-#' @param code is a DNA or RNA code as string vector.
+#' @param code is either a string vector or a string. It can either be a code or a sequence.
+#' @param length if code is a sequence, length is the tuple length of the code.
 #' @return Boolean value. True if the code is circular.
 #' @examples
 #' code_check_if_circular(c("ACG", "CAG"))
-#' 
+#' code_check_if_circular("ACGCAG", 3)
+#' code_check_if_circular("ACG CAG")
+#'
 #' @export 
-code_check_if_circular <- function(code) {
-    .Call('_GCATR_code_check_if_circular', PACKAGE = 'GCATR', code)
+code_check_if_circular <- function(code, length = -1L) {
+    .Call('_GCATR_code_check_if_circular', PACKAGE = 'GCATR', code, length)
 }
 
-#' Check if a DNA/RNA code is cn circular.
+#' Check if a code is k-circular.
 #'
-#' This function checks if a genetic code is cn circular.
-#' Circular codes is an approach for finding the method used in gens for retrieving the correct reading frames.
-#' For a code to be cn circular means that each circular permutation of all codons construct a new circular code.
-#' For more info on this subject read:\cr
+#' This function checks if a code is k-circular.
+#' The code can either be a vector of tuples or a sequence. If the code
+#' is a sequence an additional word length parameter is needed.\cr
+#' k-circular means:\cr
+#' that for any sequence of less then k tuples of the code there is only one partition into tuples from the code.\cr
+#' Circular codes are a block codes. It is used as an unproved approach to explain the
+#' method used in gens to retrieving the correct reading frames.\cr
 #' \link{https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5492142/},\cr
 #' \link{http://dpt-info.u-strasbg.fr/~c.michel/Circular_Codes.pdf},\cr
 #' \emph{2007 Christian MICHEL. CIRCULAR CODES IN GENES}
 #'
-#' @param code is a DNA or RNA code as string vector.
-#' @return Boolean value. True if the code is cn circular.
+#' @param k is is integer. k refers to the k-circular property.
+#' @param code is either a string vector or a string. It can either be a code or a sequence.
+#' @param length if code is a sequence, length is the tuple length of the code.
+#' @return Boolean value. True if the code is k-circular.
+#' @examples
+#' code_check_if_k_circular(2, c("ACG", "CAG"))
+#' code_check_if_k_circular(2, "ACGCAG", 3)
+#' code_check_if_k_circular(2, "ACG CAG")
+#'
+#' @export
+code_check_if_k_circular <- function(k, code, length = -1L) {
+    .Call('_GCATR_code_check_if_k_circular', PACKAGE = 'GCATR', k, code, length)
+}
+
+#' Check if a code is Cn-circular.
+#'
+#' This function checks if a code is Cn-circular.
+#' The code can either be a vector of tuples or a sequence. If the code
+#' is a sequence an additional word length parameter is needed.\cr
+#' Cn-circular means:\cr
+#' that all circular permutations of the code (all tuples) are circular.\cr
+#' Circular codes are a block codes. It is used as an unproved approach to explain the
+#' method used in gens to retrieving the correct reading frames.\cr
+#' \link{https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5492142/},\cr
+#' \link{http://dpt-info.u-strasbg.fr/~c.michel/Circular_Codes.pdf},\cr
+#' \emph{2007 Christian MICHEL. CIRCULAR CODES IN GENES}
+#'
+#' @param code is either a string vector or a string. It can either be a code or a sequence.
+#' @param length if code is a sequence, length is the tuple length of the code.
+#' @return Boolean value. True if the code is k-circular.
 #' @examples
 #' code_check_if_cn_circular(c("ACG", "CAG"))
-#' 
-#' @export 
-code_check_if_cn_circular <- function(code) {
-    .Call('_GCATR_code_check_if_cn_circular', PACKAGE = 'GCATR', code)
+#' code_check_if_cn_circular("ACGCAG", 3)
+#' code_check_if_cn_circular("ACG CAG")
+#'
+#' @export
+code_check_if_cn_circular <- function(code, length = -1L) {
+    .Call('_GCATR_code_check_if_cn_circular', PACKAGE = 'GCATR', code, length)
 }
 
 #' Check if a code is comma free.
-#' 
-#' The function checks if the code is comma free. 
-#' Comma free is a stronger restricted version of the circular code property.
-#' For more info on this subject read:\cr
+#'
+#' This function checks if a code is comma free.
+#' The code can either be a vector of tuples or a sequence. If the code
+#' is a sequence an additional word length parameter is needed.\cr
+#' Comma free is a more restrictive code of the family of the circular codes:\cr
+#' A comma-free code is block code in which no concatenation of two code words contains a valid code word that overlaps both.\cr
+#' Circular codes are a block codes. It is used as an unproved approach to explain the
+#' method used in gens to retrieving the correct reading frames.\cr
 #' \link{https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5492142/},\cr
 #' \link{http://dpt-info.u-strasbg.fr/~c.michel/Circular_Codes.pdf},\cr
 #' \emph{2007 Christian MICHEL. CIRCULAR CODES IN GENES}
 #'
-#' @param code is a DNA or RNA code as string vector.
-#' @return Boolean value. True if the code comma free.
+#' @param code is either a string vector or a string. It can either be a code or a sequence.
+#' @param length if code is a sequence, length is the tuple length of the code.
+#' @return Boolean value. True if the code is k-circular.
 #' @examples
 #' code_check_if_comma_free(c("ACG", "CAG"))
-#' 
-#' @export 
-code_check_if_comma_free <- function(code) {
-    .Call('_GCATR_code_check_if_comma_free', PACKAGE = 'GCATR', code)
+#' code_check_if_comma_free("ACGCAG", 3)
+#' code_check_if_comma_free("ACG CAG")
+#'
+#' @export
+code_check_if_comma_free <- function(code, length = -1L) {
+    .Call('_GCATR_code_check_if_comma_free', PACKAGE = 'GCATR', code, length)
 }
 
 #' Check if a code is self complementary.
 #' 
-#' The function checks if the code is self complementary. A self complementary code contains for 
-#' any codon (word) in the code the corresponding anti-codons.
-#' For more info on this subject read:\cr
+#' This function checks if a code is comma free.
+#' The code can either be a vector of tuples or a sequence. If the code
+#' is a sequence an additional word length parameter is needed.\cr
+#' Comma free is a more restrictive code of the family of the circular codes:\cr
+#' A comma-free code is block code in which no concatenation of two code words contains a valid code word that overlaps both.\cr
+#' Circular codes are a block codes. It is used as an unproved approach to explain the
+#' method used in gens to retrieving the correct reading frames.\cr
 #' \link{https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5492142/},\cr
 #' \link{http://dpt-info.u-strasbg.fr/~c.michel/Circular_Codes.pdf},\cr
 #' \emph{2007 Christian MICHEL. CIRCULAR CODES IN GENES}
 #'
-#' @param code A vector with codons.
-#' @return Boolean value. True if the code self complementary.
+#' @param code is either a string vector or a string. It has to be a RNA/DNA - code or a sequence.
+#' @param length if code is a sequence, length is the tuple length of the code.
+#' @return Boolean value. True if the code is k-circular.
 #' @examples
 #' code_check_if_self_complementary(c("ACG", "CAG"))
-#' 
-#' @export 
-code_check_if_self_complementary <- function(code) {
-    .Call('_GCATR_code_check_if_self_complementary', PACKAGE = 'GCATR', code)
+#' code_check_if_self_complementary("ACGCAG", 3)
+#' code_check_if_self_complementary("ACG CAG")
+#'
+#' @export
+code_check_if_self_complementary <- function(code, length = -1L) {
+    .Call('_GCATR_code_check_if_self_complementary', PACKAGE = 'GCATR', code, length)
 }
 
 #' Get acid type of a code
@@ -424,14 +436,17 @@ code_check_if_self_complementary <- function(code) {
 #' \link{http://dpt-info.u-strasbg.fr/~c.michel/Circular_Codes.pdf},\cr
 #' \emph{2007 Christian MICHEL. CIRCULAR CODES IN GENES}
 #'
-#' @param code A vector with codons.
+#' @param code is either a string vector or a string. it can be a DNA or RNA sequence.
+#' @param length if code is a sequence, length is the tuple length of the code.
 #' @return String value. One of NONE, DNA, RNA
 #' @examples
-#' acid <- code_get_acid(c("ACG", "CAG"))
+#' code_get_acid(c("ACG", "CAG"))
+#' code_get_acid("ACGCAG", 3)
+#' code_get_acid("ACG CAG")
 #' 
 #' @export
-code_get_acid <- function(code) {
-    .Call('_GCATR_code_get_acid', PACKAGE = 'GCATR', code)
+code_get_acid <- function(code, length = -1L) {
+    .Call('_GCATR_code_get_acid', PACKAGE = 'GCATR', code, length)
 }
 
 #' Finds one longest path constructable in a code.
@@ -442,13 +457,17 @@ code_get_acid <- function(code) {
 #'
 #' @seealso [code_factor_longest_path(code)] for code, [code_get_all_longest_path_as_vector()] for the results as list
 #'
-#' @param code A DNA or RNA code as string vector represented by the graph.
+#' @param code is either a string vector or a string. it can be a DNA or RNA sequence.
+#' @param length if code is a sequence, length is the tuple length of the code.
+#'
 #' @examples
 #' l_path <- code_get_one_circle_as_vector(c("ACG", "CGA"))
+#' l_path <- code_get_one_circle_as_vector("ACGCGA", 3)
+#' l_path <- code_get_one_circle_as_vector("ACG CGA")
 #'
 #' @export
-code_get_one_longest_path_as_vector <- function(code) {
-    .Call('_GCATR_code_get_one_longest_path_as_vector', PACKAGE = 'GCATR', code)
+code_get_one_longest_path_as_vector <- function(code, length = -1L) {
+    .Call('_GCATR_code_get_one_longest_path_as_vector', PACKAGE = 'GCATR', code, length)
 }
 
 #' Finds all longest path constructable in a code.
@@ -460,49 +479,65 @@ code_get_one_longest_path_as_vector <- function(code) {
 #'
 #' @seealso [code_factor_longest_path(code)] for code, [code_get_one_longest_path_as_vector()] for one result as vector
 #'
-#' @param code A DNA or RNA code as string vector represented by the graph.
+#' @param code is either a string vector or a string. it can be a DNA or RNA sequence.
+#' @param length if code is a sequence, length is the tuple length of the code.
+#'
 #' @examples
-#' l_path_list <- code_get_all_circle_as_vector(c("ACG", "CGA"))
+#' l_path_list <- code_get_all_longest_path_as_vector(c("ACG", "CGA"))
+#' l_path_list <- code_get_all_longest_path_as_vector("ACGCGA", 3)
+#' l_path_list <- code_get_all_longest_path_as_vector("ACG CGA")
 #'
 #' @export
-code_get_all_longest_path_as_vector <- function(code) {
-    .Call('_GCATR_code_get_all_longest_path_as_vector', PACKAGE = 'GCATR', code)
+code_get_all_longest_path_as_vector <- function(code, length = -1L) {
+    .Call('_GCATR_code_get_all_longest_path_as_vector', PACKAGE = 'GCATR', code, length)
 }
 
-#' Finds one circle constructable in a code.
+#' Finds one circular sequences constructable in a code.
 #'
-#' Prepares a R path string vector. Extracts all circle path of the Graph G(X).
-#' If the graph shows no cycle the vector will be empty. Otherwise it returns a vector with one
-#' circle paths.\cr
+#' Prepares a R path string vector. Extracts all circular paths of the Graph G(X).
+#' If the graph shows no cycles the vector will be empty. Otherwise it returns a vector with one
+#' circular path.\cr
 #' \emph{2007 E. FIMMEL, C. J. MICHEL, AND L. STRÜNGMANN. N-nucleotide circular codes in graph theory}
 #'
 #' @seealso [code_factor_circles(code)] for code, [code_get_all_circle_as_vector()] for the results as list
 #'
-#' @param code A DNA or RNA code as string vector represented by the graph.
+#' @param code is either a string vector or a string. it can be a DNA or RNA sequence.
+#' @param tuple_length if code is a sequence, length is the tuple length of the code.
+#'
+#' @return List of on circular sequences constructable with a given code.
+#'
 #' @examples
-#' l_path <- code_get_one_circle_as_vector(c("ACG", "CGA"))
+#' l_graph <- code_get_one_circle_as_vector(c("ACG", "CGA"))
+#' l_graph <- code_get_one_circle_as_vector("ACGCGA", 3)
+#' l_graph <- code_get_one_circle_as_vector("ACG CGA")
 #'
 #' @export
-code_get_one_circle_as_vector <- function(code) {
-    .Call('_GCATR_code_get_one_circle_as_vector', PACKAGE = 'GCATR', code)
+code_get_one_circle_as_vector <- function(code, tuple_length = -1L) {
+    .Call('_GCATR_code_get_one_circle_as_vector', PACKAGE = 'GCATR', code, tuple_length)
 }
 
-#' Finds all circles constructable in a code.
+#' Finds all circular sequences constructable in a code.
 #'
-#' Prepares a List of R path string vector. Extracts all circle path of the Graph G(X).
+#' Prepares a List of R path string vector. Extracts all circular paths of the Graph G(X).
 #' If the graph shows no cycle the list will be empty. Otherwise it returns a list object containing vectors with all
-#' circle paths.\cr
+#' circular paths.\cr
 #' \emph{2007 E. FIMMEL, C. J. MICHEL, AND L. STRÜNGMANN. N-nucleotide circular codes in graph theory}
 #'
 #' @seealso [code_factor_circles(code)] for code, [code_get_one_circle_as_vector()] for one result as vector
 #'
-#' @param code A DNA or RNA code as string vector represented by the graph.
+#' @return List of lists of all circular sequences constructable with a given code.
+#'
+#' @param code is either a string vector or a string. it can be a DNA or RNA sequence.
+#' @param tuple_length if code is a sequence, length is the tuple length of the code.
+#'
 #' @examples
-#' c_path_list <- code_get_all_circle_as_vector(c("ACG", "CGA"))
+#' l_graph_list <- code_get_all_circle_as_vector(c("ACG", "CGA"))
+#' l_graph_list <- code_get_all_circle_as_vector("ACGCGA", tuple_length=3)
+#' l_graph_list <- code_get_all_circle_as_vector("ACG CGA")
 #'
 #' @export
-code_get_all_circle_as_vector <- function(code) {
-    .Call('_GCATR_code_get_all_circle_as_vector', PACKAGE = 'GCATR', code)
+code_get_all_circle_as_vector <- function(code, tuple_length = -1L) {
+    .Call('_GCATR_code_get_all_circle_as_vector', PACKAGE = 'GCATR', code, tuple_length)
 }
 
 #' Returns all DNA bases
@@ -534,15 +569,27 @@ get_rna_bases <- function() {
 #' \emph{longest_match} the longest connected matching sequence.\cr
 #' \emph{total_match_in_percent} the percentage of the matching parts.
 #'
-#' @param seq A DNA or RNA sequence.
-#' @param code A DNA or RNA code as string vector represented by the graph.
+#' @param code is either a string vector or a string. it can be a DNA or RNA sequence.
+#' @param tuple_length if code is a sequence, length is the tuple length of the code.
+#'
 #' @examples
-#' code <- c("ACG", "TCG")
 #' seq <- "ACGTCGCGACGTACGACGTCGTACTCGATGCAAGATC"
-#' res <- find_amd_analysis_code_in_sequence(seq, code)
+#' res <- find_amd_analysis_code_in_sequence(seq, c("ACG", "TCG"))
+#' res <- find_amd_analysis_code_in_sequence(seq, "ACGCG", tuple_length=3)
+#' res <- find_amd_analysis_code_in_sequence(seq, "ACG TCG")
 #'
 #' @export
-find_amd_analysis_code_in_sequence <- function(seq, code) {
-    .Call('_GCATR_find_amd_analysis_code_in_sequence', PACKAGE = 'GCATR', seq, code)
+find_amd_analysis_code_in_sequence <- function(seq, code, tuple_length = -1L) {
+    .Call('_GCATR_find_amd_analysis_code_in_sequence', PACKAGE = 'GCATR', seq, code, tuple_length)
+}
+
+#' @export
+generate_code_by_min_value <- function(letter, tuple_length) {
+    .Call('_GCATR_generate_code_by_min_value', PACKAGE = 'GCATR', letter, tuple_length)
+}
+
+#' @export
+shift_tuples <- function(shifts, code, tuple_length = -1L) {
+    .Call('_GCATR_shift_tuples', PACKAGE = 'GCATR', shifts, code, tuple_length)
 }
 

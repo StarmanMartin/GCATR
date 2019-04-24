@@ -39,6 +39,25 @@ namespace acid {
         return NONE;
     }
 
+    std::string acid_as_alphabet(acids acid) {
+        const char *it;
+        if(acid == acids::DNA) {
+            it = dna;
+        } else if(acid == acids::RNA) {
+            it = rna;
+        } else {
+            return "";
+        }
+
+        std::string result = "";
+
+        for(int i = 0; i < acid_base_length; ++i, it++) {
+            result += *it;
+        }
+
+        return result;
+    }
+
     int get_base_value(bases in_base) {
         auto find_res = bases_value_list.find(in_base);
         if (find_res != bases_value_list.end()) {

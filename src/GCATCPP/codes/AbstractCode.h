@@ -8,9 +8,11 @@
 
 #include <utility>
 #include <vector>
+#include <set>
 #include <memory>
 
 #include "../helper/AbstractErrorManager.h"
+#include "Alphabet.h"
 
 class AbstractTester;
 
@@ -52,6 +54,7 @@ public:
     std::vector<std::string> as_vector() const;
 
     virtual bool is_circular()= 0;
+    virtual bool is_k_circular(int k)= 0;
     virtual bool is_cn_circular() = 0;
     virtual bool is_comma_free() = 0;
 
@@ -59,10 +62,19 @@ public:
 
     virtual seq::Seq_Result find_code_in_sequence(const std::string &) = 0;
 
+    const Alphabet& get_alphabet() const;
+    std::string get_alphabet_as_string() const;
+    void set_alphabet(std::string);
+    virtual size_t get_letter_value(const char &);
+
 protected:
     std::vector<std::string> code_vec;
     bool is_tested;
     bool is_ok;
+
+    Alphabet alphabet;
+    bool is_alphabet_set;
+
     std::string string_sequence;
 
     std::vector<int> word_length;
@@ -74,7 +86,7 @@ protected:
     void set_code_properties ();
 
     virtual void reset(std::vector<std::string>);
-
+    bool run_test(std::shared_ptr<AbstractTester>, int k);
     bool run_test(std::shared_ptr<AbstractTester>);
 
     void run_modification(std::shared_ptr<AbstractModifier>, void *args);
@@ -87,6 +99,7 @@ protected:
         _stream << mc.to_string();
         return _stream;
     }
+
 };
 
 #endif //GCATCPP_ABSTRACTCODE_H
