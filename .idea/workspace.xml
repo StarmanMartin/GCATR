@@ -20,81 +20,45 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="428808ef-23ef-4101-a605-146f2c23553c" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/src/GCATCPP/codes/Alphabet.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/GCATCPP/codes/Alphabet.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/GCATCPP/tester/KCircular.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/GCATCPP/tester/KCircular.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/GCATCPP/unit_tests/codeFactoryTester.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/Martin.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dictionaries/Martin.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DESCRIPTION" beforeDir="false" afterPath="$PROJECT_DIR$/DESCRIPTION" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GCATR.Rproj" beforeDir="false" afterPath="$PROJECT_DIR$/GCATR.Rproj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/NAMESPACE" beforeDir="false" afterPath="$PROJECT_DIR$/NAMESPACE" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/R/GraphPloter.R" beforeDir="false" afterPath="$PROJECT_DIR$/R/GraphPloter.R" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/R/RcppExports.R" beforeDir="false" afterPath="$PROJECT_DIR$/R/RcppExports.R" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/man/code_check_if_circular.Rd" beforeDir="false" afterPath="$PROJECT_DIR$/man/code_check_if_circular.Rd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Rplots.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/anRpackage/DESCRIPTION" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/anRpackage/NAMESPACE" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/anRpackage/R/anRpackage-internal.R" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/anRpackage/Read-and-delete-me" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/anRpackage/data/code.rda" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/anRpackage/data/code_2.rda" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/anRpackage/data/g.rda" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/anRpackage/data/res.binary.rda" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/anRpackage/data/res.rda" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/anRpackage/data/seq.rda" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/anRpackage/man/anRpackage-package.Rd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/anRpackage/man/code.Rd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/anRpackage/man/code_1.Rd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/anRpackage/man/code_2.Rd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/anRpackage/man/g.Rd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/anRpackage/man/res.Rd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/anRpackage/man/res.binary.Rd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/anRpackage/man/seq.Rd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/CircularCodeReport.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/CircularCodeReport.tex" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/CircularCodeReport_files/figure-latex/unnamed-chunk-2-1.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/CircularCodeReport_files/figure-latex/unnamed-chunk-3-1.pdf" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/man/code_check_if_cn_circular.Rd" beforeDir="false" afterPath="$PROJECT_DIR$/man/code_check_if_cn_circular.Rd" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/man/code_check_if_comma_free.Rd" beforeDir="false" afterPath="$PROJECT_DIR$/man/code_check_if_comma_free.Rd" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/man/code_check_if_self_complementary.Rd" beforeDir="false" afterPath="$PROJECT_DIR$/man/code_check_if_self_complementary.Rd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/man/code_factor_c3graph.Rd" beforeDir="false" afterPath="$PROJECT_DIR$/man/code_factor_c3graph.Rd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/man/code_factor_circles.Rd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/man/code_factor_graph.Rd" beforeDir="false" afterPath="$PROJECT_DIR$/man/code_factor_graph.Rd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/man/code_factor_longest_path.Rd" beforeDir="false" afterPath="$PROJECT_DIR$/man/code_factor_longest_path.Rd" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/man/code_get_acid.Rd" beforeDir="false" afterPath="$PROJECT_DIR$/man/code_get_acid.Rd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/man/code_get_all_circle_as_vector.Rd" beforeDir="false" afterPath="$PROJECT_DIR$/man/code_get_all_circle_as_vector.Rd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/man/code_get_all_circle_as_vector.Rd" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/man/code_get_all_longest_path_as_vector.Rd" beforeDir="false" afterPath="$PROJECT_DIR$/man/code_get_all_longest_path_as_vector.Rd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/man/code_get_one_circle_as_vector.Rd" beforeDir="false" afterPath="$PROJECT_DIR$/man/code_get_one_circle_as_vector.Rd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/man/code_get_one_circle_as_vector.Rd" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/man/code_get_one_longest_path_as_vector.Rd" beforeDir="false" afterPath="$PROJECT_DIR$/man/code_get_one_longest_path_as_vector.Rd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/man/code_prepare_factor_all_circles.Rd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/man/code_prepare_factor_gen_graph.Rd" beforeDir="false" afterPath="$PROJECT_DIR$/man/code_prepare_factor_gen_graph.Rd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/man/code_prepare_factor_longest_path.Rd" beforeDir="false" afterPath="$PROJECT_DIR$/man/code_prepare_factor_longest_path.Rd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/man/find_amd_analysis_code_in_sequence.Rd" beforeDir="false" afterPath="$PROJECT_DIR$/man/find_amd_analysis_code_in_sequence.Rd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/man/seq_factor_c3graph.Rd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/man/seq_factor_circles.Rd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/man/seq_factor_graph.Rd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/man/seq_factor_longest_path.Rd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/man/seq_prepare_factor_all_circles.Rd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/man/seq_prepare_factor_gen_graph.Rd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/man/seq_prepare_factor_longest_path.Rd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GCATCPP/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/GCATCPP/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GCATCPP/codes/AbstractCode.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/GCATCPP/codes/AbstractCode.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GCATCPP/codes/AbstractCode.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/GCATCPP/codes/AbstractCode.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GCATCPP/codes/AbstractGenCode.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/GCATCPP/codes/AbstractGenCode.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GCATCPP/codes/Acid.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/GCATCPP/codes/Acid.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GCATCPP/codes/Acid.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/GCATCPP/codes/Acid.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GCATCPP/codes/Code.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/GCATCPP/codes/Code.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GCATCPP/codes/Code.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/GCATCPP/codes/Code.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GCATCPP/codes/CodeFactory.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/GCATCPP/codes/CodeFactory.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GCATCPP/generator/AbstractGenerator.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/GCATCPP/generator/AbstractGenerator.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GCATCPP/generator/BaseValueGenerator.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/GCATCPP/generator/BaseValueGenerator.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GCATCPP/generator/BaseValueGenerator.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/GCATCPP/generator/BaseValueGenerator.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GCATCPP/graph/C3Graph.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/GCATCPP/graph/C3Graph.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GCATCPP/graph/C3Graph.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/GCATCPP/graph/C3Graph.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GCATCPP/graph/Edge.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/GCATCPP/graph/Edge.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GCATCPP/graph/Edge.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/GCATCPP/graph/Edge.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GCATCPP/graph/Graph.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/GCATCPP/graph/Graph.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GCATCPP/graph/Graph.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/GCATCPP/graph/Graph.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GCATCPP/graph/Vertex.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/GCATCPP/graph/Vertex.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GCATCPP/graph/Vertex.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/GCATCPP/graph/Vertex.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GCATCPP/helper/AbstractErrorManager.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/GCATCPP/helper/AbstractErrorManager.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GCATCPP/miner/CircleMiner.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/GCATCPP/miner/CircleMiner.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GCATCPP/miner/LongestPathMiner.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/GCATCPP/miner/LongestPathMiner.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GCATCPP/modification/ShiftTuples.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/GCATCPP/modification/ShiftTuples.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GCATCPP/modification/ShiftTuples.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/GCATCPP/modification/ShiftTuples.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GCATCPP/tester/AbstractTester.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/GCATCPP/tester/AbstractTester.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GCATCPP/tester/C_n.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/GCATCPP/tester/C_n.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GCATCPP/tester/Circular.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/GCATCPP/tester/Circular.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GCATCPP/tester/Circular.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/GCATCPP/tester/Circular.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GCATCPP/tester/SelfComplimentary.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/GCATCPP/tester/SelfComplimentary.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GCATCPP/unit_tests/binaryTest.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/GCATCPP/unit_tests/binaryTest.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GCATCPP/unit_tests/c3GraphTest.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/GCATCPP/unit_tests/c3GraphTest.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GCATCPP/unit_tests/generatorTest.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/GCATCPP/unit_tests/generatorTest.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GCATCPP/unit_tests/graphTest.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/GCATCPP/unit_tests/graphTest.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GCATCPP/unit_tests/graphTestSize.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/GCATCPP/unit_tests/graphTestSize.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GraphToolsAdapter.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/GraphToolsAdapter.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/man/find_amd_analysis_code_in_sequence.Rd" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/MainVectorAdapter.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/MainVectorAdapter.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Makevars" beforeDir="false" afterPath="$PROJECT_DIR$/src/Makevars" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Makevars.win" beforeDir="false" afterPath="$PROJECT_DIR$/src/Makevars.win" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/RcppExports.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/RcppExports.cpp" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/src/GCATCPP/cmake-build-debug/" />
@@ -108,28 +72,19 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/GCATCPP/graph/C3Graph.h">
+        <entry file="file://$PROJECT_DIR$/src/GeneticCodeAdapter.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="19" column="46" selection-start-line="19" selection-start-column="22" selection-end-line="19" selection-end-column="46" />
+            <state relative-caret-position="17">
+              <caret line="19" column="34" selection-start-line="19" selection-start-column="7" selection-end-line="19" selection-end-column="34" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/GCATCPP/graph/C3Graph.cpp">
+        <entry file="file://$PROJECT_DIR$/src/GraphToolsAdapter.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
-              <caret line="17" column="47" selection-start-line="17" selection-start-column="47" selection-end-line="17" selection-end-column="47" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/R/RcppExports.R">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="4318">
-              <caret line="254" column="33" selection-start-line="254" selection-start-column="33" selection-end-line="254" selection-end-column="33" />
+            <state relative-caret-position="418">
+              <caret line="199" column="55" selection-start-line="199" selection-start-column="35" selection-end-line="199" selection-end-column="55" />
             </state>
           </provider>
         </entry>
@@ -137,54 +92,45 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/MainVectorAdapter.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
-              <caret line="94" column="2" selection-start-line="94" selection-start-column="2" selection-end-line="94" selection-end-column="2" />
+            <state relative-caret-position="367">
+              <caret line="410" column="13" selection-start-line="410" selection-start-column="13" selection-end-line="410" selection-end-column="13" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/GCATCPP/unit_tests/asserts/TEST_5.csv">
-          <provider selected="true" editor-type-id="csv-text-editor" />
-          <provider editor-type-id="csv-table-editor">
-            <state showInfoPanel="true" fixedHeaders="false" rowLines="3" />
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/GCATCPP/unit_tests/asserts/TEST_7.csv">
-          <provider selected="true" editor-type-id="csv-text-editor" />
-          <provider editor-type-id="csv-table-editor">
-            <state showInfoPanel="true" fixedHeaders="false" rowLines="3" />
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/GCATCPP/unit_tests/asserts/TEST_4.csv">
-          <provider selected="true" editor-type-id="csv-text-editor" />
-          <provider editor-type-id="csv-table-editor">
-            <state showInfoPanel="true" fixedHeaders="false" rowLines="3" />
+        <entry file="file://$PROJECT_DIR$/NAMESPACE">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-195" />
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/GCATCPP/unit_tests/asserts/TEST.csv">
-          <provider selected="true" editor-type-id="csv-text-editor" />
-          <provider editor-type-id="csv-table-editor">
-            <state showInfoPanel="true" fixedHeaders="false" rowLines="3" />
+        <entry file="file://$PROJECT_DIR$/DESCRIPTION">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="119">
+              <caret line="7" column="129" selection-start-line="7" selection-start-column="129" selection-end-line="7" selection-end-column="129" />
+            </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/GCATCPP/unit_tests/asserts/correct_code.txt">
-          <provider selected="true" editor-type-id="text-editor" />
+        <entry file="file://$PROJECT_DIR$/src/GCATCPP/generator/BaseValueGenerator.cpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="105">
+              <caret line="19" column="20" selection-start-line="19" selection-start-column="20" selection-end-line="19" selection-end-column="20" />
+              <folding>
+                <element signature="e#43#74#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/GCATCPP/codes/AbstractCode.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1020">
-              <caret line="60" column="17" selection-start-line="60" selection-start-column="17" selection-end-line="60" selection-end-column="17" />
+            <state relative-caret-position="258">
+              <caret line="62" column="28" selection-start-line="62" selection-start-column="28" selection-end-line="62" selection-end-column="28" />
             </state>
           </provider>
         </entry>
@@ -193,7 +139,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>([ATGCU]{3}) ([A-Za-z]{3,4}) [A-Za-z]{3,4}</find>
       <find>,\s?\n</find>
       <find>(\d\))</find>
       <find>\(transl_table=(\d{1,2})\)</find>
@@ -223,6 +168,7 @@
       <find>co</find>
       <find>BaseValueGenerator</find>
       <find>shi</find>
+      <find>A short title line describing what the package does</find>
     </findStrings>
     <replaceStrings>
       <replace>read:\cr</replace>
@@ -257,8 +203,8 @@
       <replace>#'</replace>
     </replaceStrings>
     <dirStrings>
-      <dir>D:\develop\R\GCATR</dir>
       <dir>D:\develop\R\GCATR\src\GCATCPP\codes</dir>
+      <dir>D:\develop\R\GCATR</dir>
     </dirStrings>
   </component>
   <component name="Git.Settings">
@@ -267,7 +213,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/GCATCPP/codes/StdGenCode.h" />
         <option value="$PROJECT_DIR$/src/GCATCPP/codes/AbstractGenCode.h" />
         <option value="$PROJECT_DIR$/src/GCATCPP/genericCode/ClusteringAlgorithm.h" />
         <option value="$PROJECT_DIR$/src/GCATCPP/genericCode/ClusteringAlgorithm.cpp" />
@@ -318,6 +263,7 @@
         <option value="$PROJECT_DIR$/src/GCATCPP/graph/C3Graph.h" />
         <option value="$PROJECT_DIR$/src/GCATCPP/graph/C3Graph.cpp" />
         <option value="$PROJECT_DIR$/src/MainVectorAdapter.cpp" />
+        <option value="$PROJECT_DIR$/DESCRIPTION" />
       </list>
     </option>
   </component>
@@ -350,27 +296,6 @@
               <item name="GCATCPP" type="b2602c69:ProjectViewProjectNode" />
               <item name="GCATR" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="GCATCPP" type="b2602c69:ProjectViewProjectNode" />
-              <item name="GCATR" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="GCATCPP" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="GCATCPP" type="b2602c69:ProjectViewProjectNode" />
-              <item name="GCATR" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="GCATCPP" type="462c0819:PsiDirectoryNode" />
-              <item name="unit_tests" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="GCATCPP" type="b2602c69:ProjectViewProjectNode" />
-              <item name="GCATR" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="GCATCPP" type="462c0819:PsiDirectoryNode" />
-              <item name="unit_tests" type="462c0819:PsiDirectoryNode" />
-              <item name="asserts" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -486,14 +411,11 @@
       <workItem from="1555435757861" duration="18000" />
       <workItem from="1555435822462" duration="3649000" />
       <workItem from="1555530933799" duration="953000" />
-      <workItem from="1556106674720" duration="367000" />
+      <workItem from="1556106674720" duration="7815000" />
     </task>
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="BaseValueGeneratorTester_SimpleGenerator - 2019.02.20 at 12h 01m 34s.xml">
-      <configuration name="BaseValueGeneratorTester.SimpleGenerator" configurationId="CMakeGoogleTestRunConfigurationType" />
-    </history-entry>
     <history-entry file="BaseValueGeneratorTester_SimpleGenerator - 2019.02.20 at 12h 02m 29s.xml">
       <configuration name="BaseValueGeneratorTester.SimpleGenerator" configurationId="CMakeGoogleTestRunConfigurationType" />
     </history-entry>
@@ -521,9 +443,12 @@
     <history-entry file="All_Tests - 2019.02.20 at 20h 29m 08s.xml">
       <configuration name="All Tests" configurationId="CMakeGoogleTestRunConfigurationType" />
     </history-entry>
+    <history-entry file="All_Tests - 2019.04.24 at 13h 59m 37s.xml">
+      <configuration name="All Tests" configurationId="CMakeGoogleTestRunConfigurationType" />
+    </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="198949000" />
+    <option name="totallyTimeSpent" value="206397000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1864" height="1096" extended-state="6" />
@@ -558,57 +483,6 @@
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/GCATCPP/helper/AbstractErrorManager.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="27" selection-start-line="27" selection-end-line="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/GCATCPP/unit_tests/codeTableTest.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="67" selection-start-line="11" selection-start-column="61" selection-end-line="11" selection-end-column="75" />
-          <folding>
-            <element signature="e#43#67#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/GCATCPP/geneticCode/CodonTranslTables.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1853">
-          <caret line="109" column="50" selection-start-line="109" selection-start-column="50" selection-end-line="109" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/GCATCPP/geneticCode/CodonTranslTables.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="277">
-          <caret line="47" column="77" selection-start-line="47" selection-start-column="77" selection-end-line="47" selection-end-column="77" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/R/CodonTables.R">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/GCATCPP/tester/C_n.h">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/GCATCPP/tester/C_n.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="12" column="55" selection-start-line="12" selection-start-column="55" selection-end-line="12" selection-end-column="55" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/GCATCPP/tester/KCircular.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="22" selection-start-line="22" selection-end-line="22" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/GCATCPP/tester/SelfComplimentary.cpp">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -629,9 +503,6 @@
     <entry file="file://$PROJECT_DIR$/src/GCATCPP/unit_tests/commaFreeTest.cpp">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/GCATCPP/unit_tests/binaryTest.cpp">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/GCATCPP/miner/CircleMiner.cpp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
@@ -650,16 +521,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="459">
           <caret line="27" column="34" lean-forward="true" selection-start-line="27" selection-start-column="34" selection-end-line="27" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/BDAToolsAdapter.cpp">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/GeneticCodeAdapter.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-620">
-          <caret line="19" column="34" selection-start-line="19" selection-start-column="7" selection-end-line="19" selection-end-column="34" />
         </state>
       </provider>
     </entry>
@@ -693,16 +554,6 @@
           <caret line="17" column="2" selection-start-line="17" selection-start-column="2" selection-end-line="17" selection-end-column="2" />
           <folding>
             <element signature="e#117#134#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/GCATCPP/generator/BaseValueGenerator.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="82" column="61" selection-start-line="82" selection-start-column="61" selection-end-line="82" selection-end-column="61" />
-          <folding>
-            <element signature="e#43#74#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -777,20 +628,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/GraphToolsAdapter.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="723">
-          <caret line="199" column="55" selection-start-line="199" selection-start-column="35" selection-end-line="199" selection-end-column="55" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/R/GraphPloter.R">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="41" selection-start-line="11" selection-start-column="41" selection-end-line="11" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/RAdapterUtils.cpp">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -842,27 +679,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/R/RcppExports.R">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4318">
-          <caret line="254" column="33" selection-start-line="254" selection-start-column="33" selection-end-line="254" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/GCATCPP/codes/AbstractCode.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1020">
-          <caret line="60" column="17" selection-start-line="60" selection-start-column="17" selection-end-line="60" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/MainVectorAdapter.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="94" column="2" selection-start-line="94" selection-start-column="2" selection-end-line="94" selection-end-column="2" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/GCATCPP/unit_tests/asserts/TEST_5.csv">
       <provider selected="true" editor-type-id="csv-text-editor" />
       <provider editor-type-id="csv-table-editor">
@@ -888,6 +704,104 @@
       <provider selected="true" editor-type-id="csv-text-editor" />
       <provider editor-type-id="csv-table-editor">
         <state showInfoPanel="true" fixedHeaders="false" rowLines="3" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GCATCPP/unit_tests/circular.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="139">
+          <caret line="10" column="1" selection-start-line="10" selection-start-column="1" selection-end-line="10" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GCATCPP/unit_tests/binaryTest.cpp">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/R/BdaTools.R">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/R/CodonTables.R">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/R/GraphPloter.R">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="41" selection-start-line="11" selection-start-column="41" selection-end-line="11" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/R/zzz.R">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/R/RcppExports.R">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1046">
+          <caret line="254" column="33" selection-start-line="254" selection-start-column="33" selection-end-line="254" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/BDAToolsAdapter.cpp">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GeneticCodeAdapter.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="19" column="34" selection-start-line="19" selection-start-column="7" selection-end-line="19" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GraphToolsAdapter.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="418">
+          <caret line="199" column="55" selection-start-line="199" selection-start-column="35" selection-end-line="199" selection-end-column="55" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GCATCPP/codes/AbstractCode.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="258">
+          <caret line="62" column="28" selection-start-line="62" selection-start-column="28" selection-end-line="62" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GCATCPP/generator/BaseValueGenerator.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="19" column="20" selection-start-line="19" selection-start-column="20" selection-end-line="19" selection-end-column="20" />
+          <folding>
+            <element signature="e#43#74#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/MainVectorAdapter.cpp___jb_old___">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-6129" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.Rproj.user/835A1E89/sources/s-908267CD/BF2093BC-contents">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="2" selection-start-line="5" selection-start-column="2" selection-end-line="5" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/MainVectorAdapter.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="367">
+          <caret line="410" column="13" selection-start-line="410" selection-start-column="13" selection-end-line="410" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/NAMESPACE">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-195" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DESCRIPTION">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="129" selection-start-line="7" selection-start-column="129" selection-end-line="7" selection-end-column="129" />
+        </state>
       </provider>
     </entry>
   </component>

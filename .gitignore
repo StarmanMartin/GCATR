@@ -20,3 +20,4 @@ src/GCATCPP/libs/
 .idea/workspace.xml
 .idea/dictionaries/Martin.xml
 src/GCATCPP/unit_tests/asserts/*.csv
+.idea/workspace.xml

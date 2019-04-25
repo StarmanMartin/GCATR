@@ -304,27 +304,27 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
-// code_get_one_circle_as_vector
-StringVector code_get_one_circle_as_vector(StringVector code, int tuple_length);
-RcppExport SEXP _GCATR_code_get_one_circle_as_vector(SEXP codeSEXP, SEXP tuple_lengthSEXP) {
+// code_get_one_cycles_as_vector
+StringVector code_get_one_cycles_as_vector(StringVector code, int tuple_length);
+RcppExport SEXP _GCATR_code_get_one_cycles_as_vector(SEXP codeSEXP, SEXP tuple_lengthSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< StringVector >::type code(codeSEXP);
     Rcpp::traits::input_parameter< int >::type tuple_length(tuple_lengthSEXP);
-    rcpp_result_gen = Rcpp::wrap(code_get_one_circle_as_vector(code, tuple_length));
+    rcpp_result_gen = Rcpp::wrap(code_get_one_cycles_as_vector(code, tuple_length));
     return rcpp_result_gen;
 END_RCPP
 }
-// code_get_all_circle_as_vector
-Rcpp::List code_get_all_circle_as_vector(StringVector code, int tuple_length);
-RcppExport SEXP _GCATR_code_get_all_circle_as_vector(SEXP codeSEXP, SEXP tuple_lengthSEXP) {
+// code_get_all_cycles_as_vector
+Rcpp::List code_get_all_cycles_as_vector(StringVector code, int tuple_length);
+RcppExport SEXP _GCATR_code_get_all_cycles_as_vector(SEXP codeSEXP, SEXP tuple_lengthSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< StringVector >::type code(codeSEXP);
     Rcpp::traits::input_parameter< int >::type tuple_length(tuple_lengthSEXP);
-    rcpp_result_gen = Rcpp::wrap(code_get_all_circle_as_vector(code, tuple_length));
+    rcpp_result_gen = Rcpp::wrap(code_get_all_cycles_as_vector(code, tuple_length));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -348,28 +348,28 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
-// find_amd_analysis_code_in_sequence
-Rcpp::List find_amd_analysis_code_in_sequence(std::string seq, StringVector code, int tuple_length);
-RcppExport SEXP _GCATR_find_amd_analysis_code_in_sequence(SEXP seqSEXP, SEXP codeSEXP, SEXP tuple_lengthSEXP) {
+// find_and_analysis_code_in_sequence
+Rcpp::List find_and_analysis_code_in_sequence(std::string seq, StringVector code, int tuple_length);
+RcppExport SEXP _GCATR_find_and_analysis_code_in_sequence(SEXP seqSEXP, SEXP codeSEXP, SEXP tuple_lengthSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< std::string >::type seq(seqSEXP);
     Rcpp::traits::input_parameter< StringVector >::type code(codeSEXP);
     Rcpp::traits::input_parameter< int >::type tuple_length(tuple_lengthSEXP);
-    rcpp_result_gen = Rcpp::wrap(find_amd_analysis_code_in_sequence(seq, code, tuple_length));
+    rcpp_result_gen = Rcpp::wrap(find_and_analysis_code_in_sequence(seq, code, tuple_length));
     return rcpp_result_gen;
 END_RCPP
 }
 // generate_code_by_min_value
-StringVector generate_code_by_min_value(StringVector letter, int tuple_length);
-RcppExport SEXP _GCATR_generate_code_by_min_value(SEXP letterSEXP, SEXP tuple_lengthSEXP) {
+StringVector generate_code_by_min_value(StringVector alphabet, int tuple_length);
+RcppExport SEXP _GCATR_generate_code_by_min_value(SEXP alphabetSEXP, SEXP tuple_lengthSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< StringVector >::type letter(letterSEXP);
+    Rcpp::traits::input_parameter< StringVector >::type alphabet(alphabetSEXP);
     Rcpp::traits::input_parameter< int >::type tuple_length(tuple_lengthSEXP);
-    rcpp_result_gen = Rcpp::wrap(generate_code_by_min_value(letter, tuple_length));
+    rcpp_result_gen = Rcpp::wrap(generate_code_by_min_value(alphabet, tuple_length));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -413,11 +413,11 @@ static const R_CallMethodDef CallEntries[] = {
     {"_GCATR_code_get_acid", (DL_FUNC) &_GCATR_code_get_acid, 2},
     {"_GCATR_code_get_one_longest_path_as_vector", (DL_FUNC) &_GCATR_code_get_one_longest_path_as_vector, 2},
     {"_GCATR_code_get_all_longest_path_as_vector", (DL_FUNC) &_GCATR_code_get_all_longest_path_as_vector, 2},
-    {"_GCATR_code_get_one_circle_as_vector", (DL_FUNC) &_GCATR_code_get_one_circle_as_vector, 2},
-    {"_GCATR_code_get_all_circle_as_vector", (DL_FUNC) &_GCATR_code_get_all_circle_as_vector, 2},
+    {"_GCATR_code_get_one_cycles_as_vector", (DL_FUNC) &_GCATR_code_get_one_cycles_as_vector, 2},
+    {"_GCATR_code_get_all_cycles_as_vector", (DL_FUNC) &_GCATR_code_get_all_cycles_as_vector, 2},
     {"_GCATR_get_dna_bases", (DL_FUNC) &_GCATR_get_dna_bases, 0},
     {"_GCATR_get_rna_bases", (DL_FUNC) &_GCATR_get_rna_bases, 0},
-    {"_GCATR_find_amd_analysis_code_in_sequence", (DL_FUNC) &_GCATR_find_amd_analysis_code_in_sequence, 3},
+    {"_GCATR_find_and_analysis_code_in_sequence", (DL_FUNC) &_GCATR_find_and_analysis_code_in_sequence, 3},
     {"_GCATR_generate_code_by_min_value", (DL_FUNC) &_GCATR_generate_code_by_min_value, 2},
     {"_GCATR_shift_tuples", (DL_FUNC) &_GCATR_shift_tuples, 3},
     {NULL, NULL, 0}

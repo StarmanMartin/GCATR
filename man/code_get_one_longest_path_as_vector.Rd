@@ -2,17 +2,20 @@
 % Please edit documentation in R/RcppExports.R
 \name{code_get_one_longest_path_as_vector}
 \alias{code_get_one_longest_path_as_vector}
-\title{Finds one longest path constructable in a code.}
+\title{Finds one longest path in the graph of the code.}
 \usage{
 code_get_one_longest_path_as_vector(code, length = -1L)
 }
 \arguments{
-\item{code}{is either a string vector or a string. it can be a DNA or RNA sequence.}
+\item{code}{is either a string vector or a string. It can either be a code or a sequence.}
 
 \item{length}{if code is a sequence, length is the tuple length of the code.}
 }
+\value{
+A String vector. Nodes of the longest path
+}
 \description{
-Prepares a R path string vector. Extracts all longest paths of the Graph G(X).
+Prepares a R path string vector. Extracts all longest paths of the Graph G(X) and returns the first found one.
 If the graph shows a cycle the vector will be empty. Otherwise it returns a vector with one longest path.\cr
 \emph{2007 E. FIMMEL, C. J. MICHEL, AND L. STRÜNGMANN. N-nucleotide circular codes in graph theory}
 }
@@ -23,5 +26,5 @@ l_path <- code_get_one_circle_as_vector("ACG CGA")
 
 }
 \seealso{
-[code_factor_longest_path(code)] for code, [code_get_all_longest_path_as_vector()] for the results as list
+[code_factor_longest_path()] for code, [code_get_all_longest_path_as_vector()] for the results as list
 }

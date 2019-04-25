@@ -12,7 +12,7 @@ code_check_if_comma_free(code, length = -1L)
 \item{length}{if code is a sequence, length is the tuple length of the code.}
 }
 \value{
-Boolean value. True if the code is k-circular.
+Boolean value. True if the code is comma free.
 }
 \description{
 This function checks if a code is comma free.

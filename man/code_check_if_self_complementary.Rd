@@ -12,14 +12,14 @@ code_check_if_self_complementary(code, length = -1L)
 \item{length}{if code is a sequence, length is the tuple length of the code.}
 }
 \value{
-Boolean value. True if the code is k-circular.
+Boolean value. True if the code is self-complementary.
 }
 \description{
-This function checks if a code is comma free.
-The code can either be a vector of tuples or a sequence. If the code
+This function checks if a code is self complementary.
+The code can either be a vector of DNA/RNA tuples or a sequence. If the code
 is a sequence an additional word length parameter is needed.\cr
-Comma free is a more restrictive code of the family of the circular codes:\cr
-A comma-free code is block code in which no concatenation of two code words contains a valid code word that overlaps both.\cr
+A code is self complementary if and only if for all tuples in the code the anti-tuple is also in the code.
+An anti-tuple is te reversed tuple of complementary bases.\cr A <-> T (U) and C <-> G. The anti-tuple of ACG is CGT
 Circular codes are a block codes. It is used as an unproved approach to explain the
 method used in gens to retrieving the correct reading frames.\cr
 \link{https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5492142/},\cr

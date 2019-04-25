@@ -2,27 +2,29 @@
 % Please edit documentation in R/RcppExports.R
 \name{code_get_all_longest_path_as_vector}
 \alias{code_get_all_longest_path_as_vector}
-\title{Finds all longest path constructable in a code.}
+\title{Finds all longest paths in the graph of the code.}
 \usage{
 code_get_all_longest_path_as_vector(code, length = -1L)
 }
 \arguments{
-\item{code}{is either a string vector or a string. it can be a DNA or RNA sequence.}
+\item{code}{is either a string vector or a string. It can either be a code or a sequence.}
 
 \item{length}{if code is a sequence, length is the tuple length of the code.}
 }
+\value{
+A list of String vectors. Nodes of the longest path
+}
 \description{
-Prepares a List of R path string vector. Extracts all longest path of the Graph G(X).
-If the graph shows a cycle the list will be empty. Otherwise it returns a list object containing vectors with all
-longest paths.\cr
+Prepares a list of R path string vector. Extracts all longest paths of the Graph G(X) and returns them as a list.
+If the graph shows a cycle the vector will be empty. Otherwise it returns a list of vector with all longest paths.\cr
 \emph{2007 E. FIMMEL, C. J. MICHEL, AND L. STRÜNGMANN. N-nucleotide circular codes in graph theory}
 }
 \examples{
-l_path_list <- code_get_all_longest_path_as_vector(c("ACG", "CGA"))
-l_path_list <- code_get_all_longest_path_as_vector("ACGCGA", 3)
-l_path_list <- code_get_all_longest_path_as_vector("ACG CGA")
+l_path <- code_get_all_longest_path_as_vector(c("ACG", "CGA"))
+l_path <- code_get_all_longest_path_as_vector("ACGCGA", 3)
+l_path <- code_get_all_longest_path_as_vector("ACG CGA")
 
 }
 \seealso{
-[code_factor_longest_path(code)] for code, [code_get_one_longest_path_as_vector()] for one result as vector
+[code_factor_longest_path()] for code, [code_get_one_longest_path_as_vector()] for only one result
 }
