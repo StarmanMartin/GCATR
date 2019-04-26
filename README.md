@@ -1,24 +1,107 @@
-
-# Version 0.1 is only a beta and not ready for use.
+#  Genetic Code Analysis Toolkit (GCAT) in R -> GCATR
+## Version 0.1 is only a beta and not ready for use.
 
 ![Genetic Code Analysis Toolkit Logo](/man/resources/bio/gcat/logo.png?raw=true)
 
-This project contains the source code for the R version of the Genetic Code Analysis Toolkit (GCAT) project. Please refer to the [public homepage](http://www.gcat.bio/) and the [project homepage](http://www.mbi.hs-mannheim.de/research/mathematics-of-the-genetic-information.html) for more information.
+This project contains the source code for the R version of the Genetic Code Analysis Toolkit (GCAT) project. Please refer to the [cammbio homepage](https://www.cammbio.hs-mannheim.de/institute.html) for more information.
 
 # Installation
 GCATR is available for R version 3.5 and higher. It requires a C++11 (or later) compiler and [Rcpp (>= 0.12.18)](https://cran.r-project.org/web/packages/Rcpp/index.html) installed on your machine. 
-Furthermore the current version of devtools needs to be installed on your computer. Install the R package by:
-<br/>starting the a R console and run:
+Furthermore the current version of devtools has to be installed on your computer. If you are using Microsoft Windows, then you need to install [Rtools](https://cran.r-project.org/bin/windows/Rtools/)
+
+Starting a new R console and run:
 ```R
 install.packages("devtools")
 devtools::install_github("StarmanMartin/GCATR")
 ```
 
  
-# Components
+# Function outline
 
 
-## Codes
+### [General Circular Codes](#general-circular-codes)
+
+[code_check_if_circular](#code_check_if_circular)<br>
+[code_check_if_k_circular](#code_check_if_k_circular)<br>
+[code_check_if_cn_circular](#code_check_if_cn_circular)<br>
+[code_check_if_comma_free](#code_check_if_comma_free)<br>
+[find_and_analysis_code_in_sequence](#find_and_analysis_code_in_sequence)<br>
+[generate_code_by_min_value](#generate_code_by_min_value)<br>
+[shift_tuples](#shift_tuples)<br>
+
+### [Graph based functions](#graph-based-functions)
+
+[code_get_one_longest_path_as_vector](#code_get_one_longest_path_as_vector)<br>
+[code_get_all_longest_path_as_vector](#code_get_all_longest_path_as_vector)<br>
+[code_get_one_cycles_as_vector](#code_get_one_cycles_as_vector)<br>
+[code_get_all_cycles_as_vector](#code_get_all_cycles_as_vector)<br>
+
+### [Generic Circular Codes](#generic-circular-codes)
+
+[code_check_if_self_complementary](code_check_if_self_complementary)<br>
+[code_get_acid](code_get_acid)<br>
+[get_dna_bases](get_dna_bases)<br>
+[get_rna_bases](get_rna_bases)<br>
+
+
+## General Circular Codes
+
+### code_check_if_circular
+Check if a code is circular.
+```R
+code_check_if_circular(code, length = -1L)
+```
+
+#### Arguments
+*code* is either a string vector or a string. It can either be a code or a sequence.<br>
+*length* if code is a sequence, length is the tuple length of the code.
+
+#### Return
+Boolean value. True if the code is circular.
+
+#### Description
+This function checks if a code is circular. The code can either be a vector of tuples or a sequence. If the code
+is a sequence an additional word length parameter is needed.
+Circular codes are a block codes. It is used as an unproved approach to explain the
+method used in gens to retrieving the correct reading frames.<br>
+For more info on this subject read:<br>
+https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5492142/,<br>
+http://dpt-info.u-strasbg.fr/~c.michel/Circular_Codes.pdf,<br>
+*2007 Christian MICHEL. CIRCULAR CODES IN GENES*
+
+#### Examples
+```R
+code_check_if_circular(c("ACG", "CAG"))
+code_check_if_circular("ACGCAG", 3)
+code_check_if_circular("ACG CAG")
+```
+
+## Graph based functions
+
+## Generic Circular Codes
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ### get_rna_codon_list
 
@@ -47,7 +130,7 @@ get_rna_codon_table <- function()
 res <- get_rna_codon_table()
 ```
    
-## Graph tools
+## get rna codon list
 
 ### code_factor_graph
 Prepares a R [igraph](http://igraph.org/r/) object. The graph G(X) is called the representing graph of X or the graph associated to X.
@@ -65,7 +148,7 @@ A [igraph](http://igraph.org/r/) object
       # example:
       plot(code_factor_graph(c("ACG", "CGA")))
    ```
-### code_factor_c3graph
+# code_factor_c3graph
 Prepares a R [igraph](http://igraph.org/r/) object. 
 Extents the Graph G(X) from _code_factor_graph_ by the so called C3 edges.
 If the graph shows a cycle with alternating edges of the C3 edges and the usual edges follows that

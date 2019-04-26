@@ -5,7 +5,7 @@
 #'The Genetic Code Analysis Toolkit provides workflows and algorithms for the analysis of the genetic code and is capable of handling sets of codons as well as sequences of codons that come from GenBank or from FASTA files. The tool also comes with a comprehensive editor that provides visualisations of the processes implemented. This is one of the advantages to other tools like bioconductor (Huber et al. (2015)) which require a knowledge in scripting.\cr\cr
 #'Genetic Code Analysis Toolkit is intended to be used primarely by biologists who perform elementary tasks and do some simple scripting.
 #'
-#' @seealso [Index] <https://www.cammbio.hs-mannheim.de/research/software/gcat.html>
+#' @seealso <https://www.cammbio.hs-mannheim.de/institute.html> for more info.
 #' @docType package
 #' @author Martin Starman <m.starman@doktoranden.hs-mannheim.de>
 #' @import Rcpp
