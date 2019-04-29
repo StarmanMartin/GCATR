@@ -2,12 +2,12 @@
 % Please edit documentation in R/GraphPloter.R
 \name{code_factor_cycle}
 \alias{code_factor_cycle}
-\title{Prepares a graph G(X) with only those edges which are parte of a cycle.}
+\title{Prepares a graph G(X) with only the edges which are parte of a cycle.}
 \usage{
 code_factor_cycle(code, tuple_length)
 }
 \arguments{
-\item{code}{is either a string vector or a string. it can be a DNA or RNA sequence.}
+\item{code}{is either a string vector or a string.}
 
 \item{tuple_length}{if code is a sequence, length is the tuple length of the code.}
 }
@@ -26,7 +26,4 @@ G <- code_factor_cycle("ACGCAG", tuple_length=3)
 G <- code_factor_cycle("ACG CAG")
 plot(G)
 
-}
-\seealso{
-[seq_factor_circles(seq)] for sequence, [code_get_all_circle_as_vector()] for the results as vector
 }

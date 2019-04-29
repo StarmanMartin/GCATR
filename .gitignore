@@ -17,8 +17,4 @@ src/GCATCPP/libs/
 *.aux
 *.gz
 .idea/
-.idea/workspace.xml
-.idea/dictionaries/Martin.xml
 src/GCATCPP/unit_tests/asserts/*.csv
-.idea/workspace.xml
-.idea/workspace.xml

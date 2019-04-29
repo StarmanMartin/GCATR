@@ -2,7 +2,7 @@
 % Please edit documentation in R/GraphPloter.R
 \name{code_factor_c3graph}
 \alias{code_factor_c3graph}
-\title{Prepares a graph G(X) object with C3 extension.}
+\title{Factors an representing C3-graph of a circular code}
 \usage{
 code_factor_c3graph(code, tuple_length = -1)
 }
@@ -12,12 +12,26 @@ code_factor_c3graph(code, tuple_length = -1)
 \item{tuple_length}{if code is a sequence, length is the tuple length of the code.}
 }
 \value{
-List:  A igraph (<http://igraph.org/r/>) object: An graph representing a circular code with C3 extension..
+List:  A igraph (<http://igraph.org/r/>) object: A graph representing a circular code with C3 extension..
 }
 \description{
-Prepares a R igraph object. Extents the Graph G(X) from code_factor_graph by the so called C3 edges.
-If the graph shows a cycle with alternating edges of the C3 edges and the usual edges follows that the
-at least one circular permutation of the code is not a circular code. Only works for word length of 3.\cr
+This function factors a igraph (<http://igraph.org/r/>) object: of an representing graph of a circular code.
+The difference to the standard Graph is that the edges of the shifted (circular permutated) Codes
+of the the origin code are included as undirected edges.\cr
+The following definition describes a directed graph to an n-nucleotide code.
+Recall from graph theory (Clark and Holton, 1991) that a graph G consists of
+a finite set of vertices (nodes) V and a finite set of edges E. Here, an edge is a set \{v,w\} of vertices
+from V . The graph is called oriented if the edges have an orientation, i.e. edges are considered to be
+ordered pairs [v,w] in this case.\cr
+Definition 2.1. Let X Bn be an n-nucleotide code (n 2 N). We define a directed graph G(X) =
+(V (X), EU(X) ,E(X)) with set of vertices V (X), a set of undirected edges EU(X) and set of edges E(X) as follows:
+N-NUCLEOTIDE CIRCULAR CODES IN GRAPH THEORY 5\cr
+V (X) = \{N1...Ni,Ni+1...N3 : N1N2N3...Nn in X, 0 < i < 3\}\cr
+EU (X) = \{[N2,N3N1] : N1N2N3 in X\}\cr
+E(X) = \{[N1...Ni,Ni+1...Nn] : N1N2N3 in X, 0 < i < 3\}\cr
+The graph G(X) is called the representing graph of X or the graph associated to X.\cr
+Basically, the graph G(X) associated to a code X interprets n-nucleotide words from X in (n−1) ways
+by pairs of i-nucleotides and (n-i)-nucleotides for 0 < i < n.\cr
 \emph{2007 E. FIMMEL, C. J. MICHEL, AND L. STRÜNGMANN. N-nucleotide circular codes in graph theory}
 }
 \examples{
@@ -26,7 +40,4 @@ G <- code_prepare_factor_gen_c3graph("ACGCAG", tuple_length=3)
 G <- code_prepare_factor_gen_c3graph("ACG CAG")
 plot(G)
 
-}
-\seealso{
-[seq_factor_c3graph(seq)] for sequences
 }

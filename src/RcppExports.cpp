@@ -22,25 +22,14 @@ BEGIN_RCPP
 END_RCPP
 }
 // code_start_bda
-bool code_start_bda(StringVector code);
-RcppExport SEXP _GCATR_code_start_bda(SEXP codeSEXP) {
+bool code_start_bda(StringVector code, int length);
+RcppExport SEXP _GCATR_code_start_bda(SEXP codeSEXP, SEXP lengthSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< StringVector >::type code(codeSEXP);
-    rcpp_result_gen = Rcpp::wrap(code_start_bda(code));
-    return rcpp_result_gen;
-END_RCPP
-}
-// seq_start_bda
-bool seq_start_bda(std::string seq, int word_length);
-RcppExport SEXP _GCATR_seq_start_bda(SEXP seqSEXP, SEXP word_lengthSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< std::string >::type seq(seqSEXP);
-    Rcpp::traits::input_parameter< int >::type word_length(word_lengthSEXP);
-    rcpp_result_gen = Rcpp::wrap(seq_start_bda(seq, word_length));
+    Rcpp::traits::input_parameter< int >::type length(lengthSEXP);
+    rcpp_result_gen = Rcpp::wrap(code_start_bda(code, length));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -169,9 +158,9 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
-// code_prepare_factor_gen_graph
-Rcpp::List code_prepare_factor_gen_graph(StringVector code, bool show_cycles, bool show_longest_path, int tuple_length);
-RcppExport SEXP _GCATR_code_prepare_factor_gen_graph(SEXP codeSEXP, SEXP show_cyclesSEXP, SEXP show_longest_pathSEXP, SEXP tuple_lengthSEXP) {
+// code_prepare_factor_graph
+Rcpp::List code_prepare_factor_graph(StringVector code, bool show_cycles, bool show_longest_path, int tuple_length);
+RcppExport SEXP _GCATR_code_prepare_factor_graph(SEXP codeSEXP, SEXP show_cyclesSEXP, SEXP show_longest_pathSEXP, SEXP tuple_lengthSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -179,7 +168,7 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< bool >::type show_cycles(show_cyclesSEXP);
     Rcpp::traits::input_parameter< bool >::type show_longest_path(show_longest_pathSEXP);
     Rcpp::traits::input_parameter< int >::type tuple_length(tuple_lengthSEXP);
-    rcpp_result_gen = Rcpp::wrap(code_prepare_factor_gen_graph(code, show_cycles, show_longest_path, tuple_length));
+    rcpp_result_gen = Rcpp::wrap(code_prepare_factor_graph(code, show_cycles, show_longest_path, tuple_length));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -389,8 +378,7 @@ END_RCPP
 
 static const R_CallMethodDef CallEntries[] = {
     {"_GCATR_add_bda", (DL_FUNC) &_GCATR_add_bda, 6},
-    {"_GCATR_code_start_bda", (DL_FUNC) &_GCATR_code_start_bda, 1},
-    {"_GCATR_seq_start_bda", (DL_FUNC) &_GCATR_seq_start_bda, 2},
+    {"_GCATR_code_start_bda", (DL_FUNC) &_GCATR_code_start_bda, 2},
     {"_GCATR_run_bda", (DL_FUNC) &_GCATR_run_bda, 0},
     {"_GCATR_get_average_conductance_of_code", (DL_FUNC) &_GCATR_get_average_conductance_of_code, 2},
     {"_GCATR_get_max_conductance_of_code", (DL_FUNC) &_GCATR_get_max_conductance_of_code, 2},
@@ -402,7 +390,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_GCATR_genetic_codes_by_index", (DL_FUNC) &_GCATR_genetic_codes_by_index, 1},
     {"_GCATR_genetic_codes_by_name", (DL_FUNC) &_GCATR_genetic_codes_by_name, 1},
     {"_GCATR_code_prepare_factor_gen_c3graph", (DL_FUNC) &_GCATR_code_prepare_factor_gen_c3graph, 2},
-    {"_GCATR_code_prepare_factor_gen_graph", (DL_FUNC) &_GCATR_code_prepare_factor_gen_graph, 4},
+    {"_GCATR_code_prepare_factor_graph", (DL_FUNC) &_GCATR_code_prepare_factor_graph, 4},
     {"_GCATR_code_prepare_factor_all_cycle", (DL_FUNC) &_GCATR_code_prepare_factor_all_cycle, 2},
     {"_GCATR_code_prepare_factor_longest_path", (DL_FUNC) &_GCATR_code_prepare_factor_longest_path, 2},
     {"_GCATR_code_check_if_circular", (DL_FUNC) &_GCATR_code_check_if_circular, 2},

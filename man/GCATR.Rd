@@ -12,7 +12,7 @@ The Genetic Code Analysis Toolkit provides workflows and algorithms for the anal
 Genetic Code Analysis Toolkit is intended to be used primarely by biologists who perform elementary tasks and do some simple scripting.
 }
 \seealso{
-[Index] <https://www.cammbio.hs-mannheim.de/research/software/gcat.html>
+<https://www.cammbio.hs-mannheim.de/institute.html> for more info.
 }
 \author{
 Martin Starman <m.starman@doktoranden.hs-mannheim.de>

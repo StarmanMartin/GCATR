@@ -8,7 +8,7 @@ code_factor_graph(code, show_cycles = FALSE, show_longest_path = FALSE,
   tuple_length = -1)
 }
 \arguments{
-\item{code}{is either a string vector or a string. It can be a DNA or RNA sequence.}
+\item{code}{is either a string vector or a string.}
 
 \item{show_cycles}{A bool value. If true the all edges which are part of a cycle are colored red.}
 
@@ -17,11 +17,12 @@ code_factor_graph(code, show_cycles = FALSE, show_longest_path = FALSE,
 \item{tuple_length}{if code is a sequence, length is the tuple length of the code.}
 }
 \value{
-A igraph (<http://igraph.org/r/>) object: An graph representing a circular code.
+A igraph (<http://igraph.org/r/>) object: A graph representing a circular code.
 }
 \description{
-The funciton prepares graph G(X) object for a code. The following definition relates a directed graph to
-any n-nucleotide code. Recall from graph theory (Clark and Holton, 1991) that a graph G consists of
+This function factors the set of edges and the set of vertices of an representing graph of a circular code.
+The following definition describes a directed graph to an n-nucleotide code.
+Recall from graph theory (Clark and Holton, 1991) that a graph G consists of
 a finite set of vertices (nodes) V and a finite set of edges E. Here, an edge is a set \{v,w\} of vertices
 from V . The graph is called oriented if the edges have an orientation, i.e. edges are considered to be
 ordered pairs [v,w] in this case.\cr
@@ -41,7 +42,4 @@ G <- code_factor_graph("ACGCAG", tuple_length=3, show_cycles=TRUE, show_longest_
 G <- code_factor_graph("ACG CAG", TRUE, TRUE)
 plot(G)
 
-}
-\seealso{
-[seq_factor_graph(seq, word_length)] for sequences
 }

@@ -66,7 +66,7 @@ Rcpp::List prepare_factor_longest_path(AbstractCode &gc) {
     return generate_named_vertices_and_edges_list(graph_circular);
 }
 
-Rcpp::List prepare_factor_gen_graph(AbstractCode &a, bool show_circles, bool show_longest_path) {
+Rcpp::List prepare_factor_graph(AbstractCode &a, bool show_circles, bool show_longest_path) {
     graph::Graph g(a);
     std::vector<std::string> circular_path;
     std::vector<std::string> longest_path;
@@ -111,6 +111,38 @@ Rcpp::List prepare_factor_gen_c3graph(AbstractGenCode &gc) {
     return r_list;
 }
 
+//' Factors edges and vertices of an representing C3-graph of a circular code
+//'
+//' This function factors the set of edges and the set of vertices of an representing graph of a circular code.
+//' This sets can be used to construct the graph. To get a graph object use \link{code_factor_c3graph}.\cr
+//' The difference to the standard Graph is that the edges of the shifted (circular permutated) Codes
+//' of the the origin code are included as undirected edges.\cr
+//' The following definition describes a directed graph to an n-nucleotide code.
+//' Recall from graph theory (Clark and Holton, 1991) that a graph G consists of
+//' a finite set of vertices (nodes) V and a finite set of edges E. Here, an edge is a set \{v,w\} of vertices
+//' from V . The graph is called oriented if the edges have an orientation, i.e. edges are considered to be
+//' ordered pairs [v,w] in this case.\cr
+//' Definition 2.1. Let X Bn be an n-nucleotide code (n 2 N). We define a directed graph G(X) =
+//' (V (X), EU(X) ,E(X)) with set of vertices V (X), a set of undirected edges EU(X) and set of edges E(X) as follows:
+//' N-NUCLEOTIDE CIRCULAR CODES IN GRAPH THEORY 5\cr
+//' V (X) = \{N1...Ni,Ni+1...N3 : N1N2N3...Nn in X, 0 < i < 3\}\cr
+//' EU (X) = \{[N2,N3N1] : N1N2N3 in X\}\cr
+//' E(X) = \{[N1...Ni,Ni+1...Nn] : N1N2N3 in X, 0 < i < 3\}\cr
+//' The graph G(X) is called the representing graph of X or the graph associated to X.\cr
+//' Basically, the graph G(X) associated to a code X interprets n-nucleotide words from X in (n−1) ways
+//' by pairs of i-nucleotides and (n-i)-nucleotides for 0 < i < n.\cr
+//' \emph{2007 E. FIMMEL, C. J. MICHEL, AND L. STRÜNGMANN. N-nucleotide circular codes in graph theory}
+//'
+//' @param code is either a string vector or a string. It can be a DNA or RNA sequence.
+//' @param tuple_length if code is a sequence, length is the tuple length of the code.
+//'
+//' @return List: Edges and vertices of an C3-graph representing a circular code.
+//'
+//' @examples
+//' code_prepare_factor_gen_c3graph(c("ACG", "CAG"))
+//' code_prepare_factor_gen_c3graph("ACGCAG", tuple_length=3)
+//' code_prepare_factor_gen_c3graph("ACG CAG")
+//'
 // [[Rcpp::export]]
 Rcpp::List code_prepare_factor_gen_c3graph(StringVector code, int tuple_length = -1) {
     auto code_vec = RAdapterUtils::as_cpp_string_vector(code);
@@ -119,10 +151,12 @@ Rcpp::List code_prepare_factor_gen_c3graph(StringVector code, int tuple_length =
 
 }
 
-//' Get edges and vertices of an generic graph
+//' Factors edges and vertices of an representing graph of a circular code
 //' 
-//' The following definition relates a directed graph to
-//' any n-nucleotide code. Recall from graph theory (Clark and Holton, 1991) that a graph G consists of
+//' This function factors the set of edges and the set of vertices of an representing graph of a circular code.
+//' This sets can be used to construct the graph. To get a graph object use \link{code_factor_graph}.
+//' The following definition describes a directed graph to an n-nucleotide code.
+//' Recall from graph theory (Clark and Holton, 1991) that a graph G consists of
 //' a finite set of vertices (nodes) V and a finite set of edges E. Here, an edge is a set \{v,w\} of vertices
 //' from V . The graph is called oriented if the edges have an orientation, i.e. edges are considered to be
 //' ordered pairs [v,w] in this case.\cr
@@ -144,21 +178,23 @@ Rcpp::List code_prepare_factor_gen_c3graph(StringVector code, int tuple_length =
 //' @return List: Edges and vertices of an graph representing a circular code.
 //'
 //' @examples
-//' code_prepare_factor_gen_graph(c("ACG", "CAG"), TRUE, TRUE)
-//' code_prepare_factor_gen_graph("ACGCAG", tuple_length=3, show_cycles=TRUE, show_longest_path=TRUE)
-//' code_prepare_factor_gen_graph("ACG CAG", TRUE, TRUE)
+//' code_prepare_factor_graph(c("ACG", "CAG"), TRUE, TRUE)
+//' code_prepare_factor_graph("ACGCAG", tuple_length=3, show_cycles=TRUE, show_longest_path=TRUE)
+//' code_prepare_factor_graph("ACG CAG", TRUE, TRUE)
 //' 
 // [[Rcpp::export]]
-Rcpp::List code_prepare_factor_gen_graph(StringVector code, bool show_cycles = false, bool show_longest_path = false, int tuple_length = -1) {
+Rcpp::List code_prepare_factor_graph(StringVector code, bool show_cycles = false, bool show_longest_path = false, int tuple_length = -1) {
     auto code_vec = RAdapterUtils::as_cpp_string_vector(code);
     Rcpp::Rcout << code_vec.size() << " - " << tuple_length << "\n";
     auto gc = CodeFactory::rFactor(code_vec, tuple_length);
-    return prepare_factor_gen_graph(*gc, show_cycles, show_longest_path);
+    return prepare_factor_graph(*gc, show_cycles, show_longest_path);
 }
 
 
-//' Returns a list, with all cycles in the graph of a circular code.
+//' Returns a list, with only the cycles in the graph of a circular code.
 //' 
+//' This function is based on the represent graph of a circular code (see \link{code_prepare_factor_graph}).
+//' The function only returns a list of edges and vertices. To get a graph object use \link{code_factor_cycle}.
 //' The function checks if the code is circular. If the code is not circular the functions returns all cycles in the representing graph.
 //' \emph{2007 Christian MICHEL. CIRCULAR CODES IN GENES}
 //'
@@ -180,9 +216,11 @@ Rcpp::List code_prepare_factor_all_cycle(StringVector code, int tuple_length = -
 }
 
 
-//' Returns a list, with the longest path(s) in the graph of a circular code.
-//' 
-//' The function checks if the code is circular. If the code is not circular the functions returns all circles. 
+//' Returns a list, with only the longest path(s) in the graph of a circular code.
+//'
+//' This function is based on the represent graph of a circular code (see \link{code_prepare_factor_graph}).
+//' The function only returns a list of edges and vertices. To get a graph object use \link{code_factor_longest_path}.
+//' The function checks if the code is circular. If the code is not circular the functions returns the logest paths.
 //' \emph{2007 Christian MICHEL. CIRCULAR CODES IN GENES}
 //'
 //' @param code A vertor with codons.' @param length if code is a sequence, length is the tuple length of the code.

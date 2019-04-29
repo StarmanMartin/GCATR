@@ -2,7 +2,7 @@
 % Please edit documentation in R/RcppExports.R
 \name{code_prepare_factor_all_cycle}
 \alias{code_prepare_factor_all_cycle}
-\title{Returns a list, with all cycles in the graph of a circular code.}
+\title{Returns a list, with only the cycles in the graph of a circular code.}
 \usage{
 code_prepare_factor_all_cycle(code, tuple_length = -1L)
 }
@@ -15,6 +15,8 @@ code_prepare_factor_all_cycle(code, tuple_length = -1L)
 List: Edges and vertices of only the cycles of an graph representing a circular code.
 }
 \description{
+This function is based on the represent graph of a circular code (see \link{code_prepare_factor_graph}).
+The function only returns a list of edges and vertices. To get a graph object use \link{code_factor_cycle}.
 The function checks if the code is circular. If the code is not circular the functions returns all cycles in the representing graph.
 \emph{2007 Christian MICHEL. CIRCULAR CODES IN GENES}
 }

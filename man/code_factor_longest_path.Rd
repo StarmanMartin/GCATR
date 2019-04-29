@@ -7,7 +7,7 @@
 code_factor_longest_path(code, tuple_length = -1)
 }
 \arguments{
-\item{code}{is either a string vector or a string. it can be a DNA or RNA sequence.}
+\item{code}{is either a string vector or a string.}
 
 \item{tuple_length}{if code is a sequence, length is the tuple length of the code.}
 }
@@ -23,7 +23,4 @@ G <- code_factor_longest_path("ACGCAG", tuple_length=3)
 G <- code_factor_longest_path("ACG CAG")
 plot(G)
 
-}
-\seealso{
-[code_factor_circles(code)] for code, [code_get_all_longest_path_as_vector()] for the results as vector
 }

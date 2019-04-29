@@ -2,7 +2,7 @@
 % Please edit documentation in R/RcppExports.R
 \name{code_prepare_factor_longest_path}
 \alias{code_prepare_factor_longest_path}
-\title{Returns a list, with the longest path(s) in the graph of a circular code.}
+\title{Returns a list, with only the longest path(s) in the graph of a circular code.}
 \usage{
 code_prepare_factor_longest_path(code, tuple_length = -1L)
 }
@@ -15,7 +15,9 @@ code_prepare_factor_longest_path(code, tuple_length = -1L)
 List: Edges and vertices of only the longest path of an graph representing a circular code.
 }
 \description{
-The function checks if the code is circular. If the code is not circular the functions returns all circles. 
+This function is based on the represent graph of a circular code (see \link{code_prepare_factor_graph}).
+The function only returns a list of edges and vertices. To get a graph object use \link{code_factor_longest_path}.
+The function checks if the code is circular. If the code is not circular the functions returns the logest paths.
 \emph{2007 Christian MICHEL. CIRCULAR CODES IN GENES}
 }
 \examples{

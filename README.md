@@ -18,7 +18,7 @@ devtools::install_github("StarmanMartin/GCATR")
  
 # Function outline
 
-
+<!--outline-start-->
 ### [General Circular Codes](#general-circular-codes)
 
 [code_check_if_circular](#code_check_if_circular)<br>
@@ -31,10 +31,20 @@ devtools::install_github("StarmanMartin/GCATR")
 
 ### [Graph based functions](#graph-based-functions)
 
-[code_get_one_longest_path_as_vector](#code_get_one_longest_path_as_vector)<br>
-[code_get_all_longest_path_as_vector](#code_get_all_longest_path_as_vector)<br>
+[code_factor_graph](#code_factor_graph)<br>
+[code_factor_cycle](#code_factor_cycle)<br>
+[code_factor_longest_path](#code_factor_longest_path)<br>
+[code_factor_c3graph](#code_factor_c3graph)<br>
+
+[code_prepare_factor_graph](#code_prepare_factor_gen_c3graph)<br>
+[code_prepare_factor_all_cycle](#code_prepare_factor_all_cycle)<br>
+[code_prepare_factor_longest_path](#code_prepare_factor_longest_path)<br>
+[code_prepare_factor_gen_c3graph](#code_prepare_factor_gen_c3graph)<br>
+
 [code_get_one_cycles_as_vector](#code_get_one_cycles_as_vector)<br>
 [code_get_all_cycles_as_vector](#code_get_all_cycles_as_vector)<br>
+[code_get_one_longest_path_as_vector](#code_get_one_longest_path_as_vector)<br>
+[code_get_all_longest_path_as_vector](#code_get_all_longest_path_as_vector)<br>
 
 ### [Generic Circular Codes](#generic-circular-codes)
 
@@ -42,557 +52,1188 @@ devtools::install_github("StarmanMartin/GCATR")
 [code_get_acid](code_get_acid)<br>
 [get_dna_bases](get_dna_bases)<br>
 [get_rna_bases](get_rna_bases)<br>
+[get_rna_codon_table](get_rna_codon_table)<br><!--accessory:[![Genetic Code Analysis Toolkit Logo](/man/resources/bio/gcat/codon_table.jpg?raw=true)]-->
+[get_rna_codon_list](get_rna_codon_list)<br>
 
+### [Binary Dichotomic Algorithm (BDA)](#binary_dichotomic_algorithm_(BDA))
 
+[start_bda](start_bda)<br><!--accessory:[![Genetic Code Analysis Toolkit Logo](/man/resources/bio/gcat/codon_table.jpg?raw=true)]-->
+[code_start_bda](code_start_bda)<br>
+[add_bda](add_bda)<br><!--accessory:[![Genetic Code Analysis Toolkit Logo](/man/resources/bio/gcat/bda_diagramm.png?raw=true)]-->
+[run_bda](run_bda)<br>
+[run_bda_as_matrix](run_bda_as_matrix)<br>
+
+<!--outline-end-->
+
+<!--doc-start-->
 ## General Circular Codes
 
 ### code_check_if_circular
-Check if a code is circular.
-```R
+
+#### Usage
+```R 
 code_check_if_circular(code, length = -1L)
 ```
 
 #### Arguments
-*code* is either a string vector or a string. It can either be a code or a sequence.<br>
-*length* if code is a sequence, length is the tuple length of the code.
+ 
+*code*	is either a string vector or a string. It can either be a code or a sequence.<br>
+
+*length*	if code is a sequence, length is the tuple length of the code.<br>
+
 
 #### Return
+ 
 Boolean value. True if the code is circular.
 
+
 #### Description
+ 
 This function checks if a code is circular. The code can either be a vector of tuples or a sequence. If the code
 is a sequence an additional word length parameter is needed.
 Circular codes are a block codes. It is used as an unproved approach to explain the
 method used in gens to retrieving the correct reading frames.<br>
 For more info on this subject read:<br>
-https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5492142/,<br>
-http://dpt-info.u-strasbg.fr/~c.michel/Circular_Codes.pdf,<br>
+*https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5492142/*,<br>
+*http://dpt-info.u-strasbg.fr/~c.michel/Circular_Codes.pdf*,<br>
 *2007 Christian MICHEL. CIRCULAR CODES IN GENES*
 
+
 #### Examples
-```R
+```R 
 code_check_if_circular(c("ACG", "CAG"))
 code_check_if_circular("ACGCAG", 3)
 code_check_if_circular("ACG CAG")
+
 ```
+<hr>
+
+### code_check_if_k_circular
+
+#### Usage
+```R 
+code_check_if_k_circular(k, code, length = -1L)
+```
+
+#### Arguments
+ 
+*k*	is is integer. k refers to the k-circular property.<br>
+
+*code*	is either a string vector or a string. It can either be a code or a sequence.<br>
+
+*length*	if code is a sequence, length is the tuple length of the code.<br>
+
+
+#### Return
+ 
+Boolean value. True if the code is k-circular.
+
+
+#### Description
+ 
+This function checks if a code is k-circular.
+The code can either be a vector of tuples or a sequence. If the code
+is a sequence an additional word length parameter is needed.<br>
+k-circular means:<br>
+that for any sequence of less then k tuples of the code there is only one partition into tuples from the code.<br>
+Circular codes are a block codes. It is used as an unproved approach to explain the
+method used in gens to retrieving the correct reading frames.<br>
+*https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5492142/*,<br>
+*http://dpt-info.u-strasbg.fr/~c.michel/Circular_Codes.pdf*,<br>
+*2007 Christian MICHEL. CIRCULAR CODES IN GENES*
+
+
+#### Examples
+```R 
+code_check_if_k_circular(2, c("ACG", "CAG"))
+code_check_if_k_circular(2, "ACGCAG", 3)
+code_check_if_k_circular(2, "ACG CAG")
+
+```
+<hr>
+
+### code_check_if_cn_circular
+
+#### Usage
+```R 
+code_check_if_cn_circular(code, length = -1L)
+```
+
+#### Arguments
+ 
+*code*	is either a string vector or a string. It can either be a code or a sequence.<br>
+
+*length*	if code is a sequence, length is the tuple length of the code.<br>
+
+
+#### Return
+ 
+Boolean value. True if the code is Cn-circular.
+
+
+#### Description
+ 
+This function checks if a code is Cn-circular.
+The code can either be a vector of tuples or a sequence. If the code
+is a sequence an additional word length parameter is needed.<br>
+Cn-circular means:<br>
+that all circular permutations of the code (all tuples) are circular.<br>
+Circular codes are a block codes. It is used as an unproved approach to explain the
+method used in gens to retrieving the correct reading frames.<br>
+*https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5492142/*,<br>
+*http://dpt-info.u-strasbg.fr/~c.michel/Circular_Codes.pdf*,<br>
+*2007 Christian MICHEL. CIRCULAR CODES IN GENES*
+
+
+#### Examples
+```R 
+code_check_if_cn_circular(c("ACG", "CAG"))
+code_check_if_cn_circular("ACGCAG", 3)
+code_check_if_cn_circular("ACG CAG")
+
+```
+<hr>
+
+### code_check_if_comma_free
+
+#### Usage
+```R 
+code_check_if_comma_free(code, length = -1L)
+```
+
+#### Arguments
+ 
+*code*	is either a string vector or a string. It can either be a code or a sequence.<br>
+
+*length*	if code is a sequence, length is the tuple length of the code.<br>
+
+
+#### Return
+ 
+Boolean value. True if the code is comma free.
+
+
+#### Description
+ 
+This function checks if a code is comma free.
+The code can either be a vector of tuples or a sequence. If the code
+is a sequence an additional word length parameter is needed.<br>
+Comma free is a more restrictive code of the family of the circular codes:<br>
+A comma-free code is block code in which no concatenation of two code words contains a valid code word that overlaps both.<br>
+Circular codes are a block codes. It is used as an unproved approach to explain the
+method used in gens to retrieving the correct reading frames.<br>
+*https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5492142/*,<br>
+*http://dpt-info.u-strasbg.fr/~c.michel/Circular_Codes.pdf*,<br>
+*2007 Christian MICHEL. CIRCULAR CODES IN GENES*
+
+
+#### Examples
+```R 
+code_check_if_comma_free(c("ACG", "CAG"))
+code_check_if_comma_free("ACGCAG", 3)
+code_check_if_comma_free("ACG CAG")
+
+```
+<hr>
+
+### find_and_analysis_code_in_sequence
+
+#### Usage
+```R 
+find_and_analysis_code_in_sequence(seq, code, tuple_length = -1L)
+```
+
+#### Arguments
+ 
+*code*	is either a string vector or a string. It can either be a code or a sequence.<br>
+
+*tuple_length*	if code is a sequence, length is the tuple length of the code.<br>
+
+
+#### Return
+ 
+Returns a List with all analysing results. The list contains the following:<br>
+*words* (String vector) all found words of the code in the sequence in the correct order.<br>
+*idx_list* (Number vector) the first-letter index of all found words of the code in the sequence in the correct order.<br>
+*rest* (String) all parts of the sequence which are not matching the code.<br>
+*parts* (String vector) the sequence separated in matching and non matching parts. Odd indexes are matching, even indexes are not matching.<br>
+*longest_match* (Number) the longest connected matching sequence.<br>
+*total_match_in_percent* (Number) the percentage of the matching parts.
+
+
+#### Description
+ 
+Finds all appearances of a code in a sequence. Finds the longest connected motive of words of the code in the sequence.
+The function also calculates the matching bases of the found words in the sequence.
+
+
+#### Examples
+```R 
+seq <- "ACGTCGCGACGTACGACGTCGTACTCGATGCAAGATC"
+res <- find_and_analysis_code_in_sequence(seq, c("ACG", "TCG"))
+res <- find_and_analysis_code_in_sequence(seq, "ACGCG", tuple_length=3)
+res <- find_and_analysis_code_in_sequence(seq, "ACG TCG")
+
+```
+<hr>
+
+### generate_code_by_min_value
+
+#### Usage
+```R 
+generate_code_by_min_value(alphabet, tuple_length)
+```
+
+#### Arguments
+ 
+*alphabet*	is a vector of letters.<br>
+
+*tuple_length*	is the tuple length of the resulting code.<br>
+
+
+#### Return
+ 
+A maximal circular code as String vector.
+
+
+#### Description
+ 
+Based on a value function each word can be assigned to a value. The code is a set of the words with the
+lowest value of each permutation class. This code has be proven to be circular and maximal. This can be done for any alphabet.
+
+
+#### Examples
+```R 
+code <- generate_code_by_min_value(c("A", "C", "G", "T"), 3)
+
+```
+<hr>
+
+### shift_tuples
+
+#### Usage
+```R 
+shift_tuples(shifts, code, tuple_length = -1L)
+```
+
+#### Arguments
+ 
+*shifts*	number of shifts<br>
+
+*code*	is either a string vector or a string. It can either be a code or a sequence.<br>
+
+*tuple_length*	if code is a sequence, length is the tuple length of the code.<br>
+
+
+#### Return
+ 
+shifted code as String vector
+
+
+#### Description
+ 
+This functions shifts all tuples in code anticlockwise. In other words, the first character of each tuples gets removed and
+added to the end of the same tuple. Depending on the parameter *shift* this process is repeated multiple times.
+
+
+#### Examples
+```R 
+shifted_code <- shift_tuples(2, c("ACG", "GAT"))
+shifted_code <- shift_tuples(2, "ACGGAT", tuple_length=3)
+shifted_code <- shift_tuples(2, "ACG GAT")
+
+```
+<hr>
 
 ## Graph based functions
 
+### code_factor_graph
+
+#### Usage
+```R 
+code_factor_graph(code, show_cycles = FALSE, show_longest_path = FALSE,
+  tuple_length = -1)
+```
+
+#### Arguments
+ 
+*code*	is either a string vector or a string.<br>
+
+*show_cycles*	A bool value. If true the all edges which are part of a cycle are colored red.<br>
+
+*show_longest_path*	A bool value. If true the all edges part of the longest path are colored blue.<br>
+
+*tuple_length*	if code is a sequence, length is the tuple length of the code.<br>
+
+
+#### Return
+ 
+A igraph (<http://igraph.org/r/>) object: A graph representing a circular code.
+
+
+#### Description
+ 
+This function factors the set of edges and the set of vertices of an representing graph of a circular code.
+The following definition describes a directed graph to an n-nucleotide code.
+Recall from graph theory (Clark and Holton, 1991) that a graph G consists of
+a finite set of vertices (nodes) V and a finite set of edges E. Here, an edge is a set \{v,w\} of vertices
+from V . The graph is called oriented if the edges have an orientation, i.e. edges are considered to be
+ordered pairs [v,w] in this case.<br>
+Definition 2.1. Let X Bn be an n-nucleotide code (n 2 N). We define a directed graph G(X) =
+(V (X),E(X)) with set of vertices V (X) and set of edges E(X) as follows:
+N-NUCLEOTIDE CIRCULAR CODES IN GRAPH THEORY 5<br>
+V (X) = \{N1...Ni,Ni+1...Nn : N1N2N3...Nn in X, 0 < i < n\}<br>
+E(X) = \{[N1...Ni,Ni+1...Nn] : N1N2N3...Nn in X, 0 < i < n\}<br>
+The graph G(X) is called the representing graph of X or the graph associated to X.<br>
+Basically, the graph G(X) associated to a code X interprets n-nucleotide words from X in (n−1) ways
+by pairs of i-nucleotides and (n-i)-nucleotides for 0 < i < n.<br>
+*2007 E. FIMMEL, C. J. MICHEL, AND L. STRÜNGMANN. N-nucleotide circular codes in graph theory*
+
+
+#### Examples
+```R 
+G <- code_factor_graph(c("ACG", "CAG"), TRUE, TRUE)
+G <- code_factor_graph("ACGCAG", tuple_length=3, show_cycles=TRUE, show_longest_path=TRUE)
+G <- code_factor_graph("ACG CAG", TRUE, TRUE)
+plot(G)
+
+```
+<hr>
+
+### code_factor_cycle
+
+#### Usage
+```R 
+code_factor_cycle(code, tuple_length)
+```
+
+#### Arguments
+ 
+*code*	is either a string vector or a string.<br>
+
+*tuple_length*	if code is a sequence, length is the tuple length of the code.<br>
+
+
+#### Return
+ 
+A igraph (<http://igraph.org/r/>) object: Edges and vertices of only the cycles of an graph representing a circular code.
+
+
+#### Description
+ 
+Prepares a R igraph object. Extracts all circular paths of the Graph G(X).
+If the graph shows no cycle the graph will be empty. Otherwise it returns a igraph object showing all
+circular paths.<br>
+*2007 E. FIMMEL, C. J. MICHEL, AND L. STRÜNGMANN. N-nucleotide circular codes in graph theory*
+
+
+#### Examples
+```R 
+G <- code_factor_cycle(c("ACG", "CAG"))
+G <- code_factor_cycle("ACGCAG", tuple_length=3)
+G <- code_factor_cycle("ACG CAG")
+plot(G)
+
+```
+<hr>
+
+### code_factor_longest_path
+
+#### Usage
+```R 
+code_factor_longest_path(code, tuple_length = -1)
+```
+
+#### Arguments
+ 
+*code*	is either a string vector or a string.<br>
+
+*tuple_length*	if code is a sequence, length is the tuple length of the code.<br>
+
+
+#### Return
+ \-
+
+#### Description
+ 
+Prepares a R igraph object. Extracts all longest path of the Graph G(X).
+If the graph shows a cycle the graph will be empty. Otherwise it returns a igraph object showing all
+longest paths.<br>
+*2007 E. FIMMEL, C. J. MICHEL, AND L. STRÜNGMANN. N-nucleotide circular codes in graph theory*
+
+
+#### Examples
+```R 
+G <- code_factor_longest_path(c("ACG", "CAG"))
+G <- code_factor_longest_path("ACGCAG", tuple_length=3)
+G <- code_factor_longest_path("ACG CAG")
+plot(G)
+
+```
+<hr>
+
+### code_factor_c3graph
+
+#### Usage
+```R 
+code_factor_c3graph(code, tuple_length = -1)
+```
+
+#### Arguments
+ 
+*code*	is either a string vector or a string. It can be a DNA or RNA sequence.<br>
+
+*tuple_length*	if code is a sequence, length is the tuple length of the code.<br>
+
+
+#### Return
+ 
+List:  A igraph (<http://igraph.org/r/>) object: A graph representing a circular code with C3 extension..
+
+
+#### Description
+ 
+This function factors a igraph (<http://igraph.org/r/>) object: of an representing graph of a circular code.
+The difference to the standard Graph is that the edges of the shifted (circular permutated) Codes
+of the the origin code are included as undirected edges.<br>
+The following definition describes a directed graph to an n-nucleotide code.
+Recall from graph theory (Clark and Holton, 1991) that a graph G consists of
+a finite set of vertices (nodes) V and a finite set of edges E. Here, an edge is a set \{v,w\} of vertices
+from V . The graph is called oriented if the edges have an orientation, i.e. edges are considered to be
+ordered pairs [v,w] in this case.<br>
+Definition 2.1. Let X Bn be an n-nucleotide code (n 2 N). We define a directed graph G(X) =
+(V (X), EU(X) ,E(X)) with set of vertices V (X), a set of undirected edges EU(X) and set of edges E(X) as follows:
+N-NUCLEOTIDE CIRCULAR CODES IN GRAPH THEORY 5<br>
+V (X) = \{N1...Ni,Ni+1...N3 : N1N2N3...Nn in X, 0 < i < 3\}<br>
+EU (X) = \{[N2,N3N1] : N1N2N3 in X\}<br>
+E(X) = \{[N1...Ni,Ni+1...Nn] : N1N2N3 in X, 0 < i < 3\}<br>
+The graph G(X) is called the representing graph of X or the graph associated to X.<br>
+Basically, the graph G(X) associated to a code X interprets n-nucleotide words from X in (n−1) ways
+by pairs of i-nucleotides and (n-i)-nucleotides for 0 < i < n.<br>
+*2007 E. FIMMEL, C. J. MICHEL, AND L. STRÜNGMANN. N-nucleotide circular codes in graph theory*
+
+
+#### Examples
+```R 
+G <- code_prepare_factor_gen_c3graph(c("ACG", "CAG"))
+G <- code_prepare_factor_gen_c3graph("ACGCAG", tuple_length=3)
+G <- code_prepare_factor_gen_c3graph("ACG CAG")
+plot(G)
+
+```
+<hr>
+
+### code_prepare_factor_graph
+
+#### Usage
+```R 
+code_prepare_factor_graph(code, show_cycles = FALSE,
+  show_longest_path = FALSE, tuple_length = -1L)
+```
+
+#### Arguments
+ 
+*code*	is either a string vector or a string. It can be a DNA or RNA sequence.<br>
+
+*show_cycles*	A bool value. If true the all edges which are part of a cycle are colored red.<br>
+
+*show_longest_path*	A bool value. If true the all edges part of the longest path are colored blue.<br>
+
+*tuple_length*	if code is a sequence, length is the tuple length of the code.<br>
+
+
+#### Return
+ 
+List: Edges and vertices of an graph representing a circular code.
+
+
+#### Description
+ 
+This function factors the set of edges and the set of vertices of an representing graph of a circular code.
+This sets can be used to construct the graph. To get a graph object use *code_factor_graph*.
+The following definition describes a directed graph to an n-nucleotide code.
+Recall from graph theory (Clark and Holton, 1991) that a graph G consists of
+a finite set of vertices (nodes) V and a finite set of edges E. Here, an edge is a set \{v,w\} of vertices
+from V . The graph is called oriented if the edges have an orientation, i.e. edges are considered to be
+ordered pairs [v,w] in this case.<br>
+Definition 2.1. Let X Bn be an n-nucleotide code (n 2 N). We define a directed graph G(X) =
+(V (X),E(X)) with set of vertices V (X) and set of edges E(X) as follows:
+N-NUCLEOTIDE CIRCULAR CODES IN GRAPH THEORY 5<br>
+V (X) = \{N1...Ni,Ni+1...Nn : N1N2N3...Nn in X, 0 < i < n\}<br>
+E(X) = \{[N1...Ni,Ni+1...Nn] : N1N2N3...Nn in X, 0 < i < n\}<br>
+The graph G(X) is called the representing graph of X or the graph associated to X.<br>
+Basically, the graph G(X) associated to a code X interprets n-nucleotide words from X in (n−1) ways
+by pairs of i-nucleotides and (n-i)-nucleotides for 0 < i < n.<br>
+*2007 E. FIMMEL, C. J. MICHEL, AND L. STRÜNGMANN. N-nucleotide circular codes in graph theory*
+
+
+#### Examples
+```R 
+code_prepare_factor_graph(c("ACG", "CAG"), TRUE, TRUE)
+code_prepare_factor_graph("ACGCAG", tuple_length=3, show_cycles=TRUE, show_longest_path=TRUE)
+code_prepare_factor_graph("ACG CAG", TRUE, TRUE)
+
+```
+<hr>
+
+### code_prepare_factor_all_cycle
+
+#### Usage
+```R 
+code_prepare_factor_all_cycle(code, tuple_length = -1L)
+```
+
+#### Arguments
+ 
+*code*	is either a string vector or a string. It can be a DNA or RNA sequence.<br>
+
+*tuple_length*	if code is a sequence, length is the tuple length of the code.<br>
+
+
+#### Return
+ 
+List: Edges and vertices of only the cycles of an graph representing a circular code.
+
+
+#### Description
+ 
+This function is based on the represent graph of a circular code (see *code_prepare_factor_graph*).
+The function only returns a list of edges and vertices. To get a graph object use *code_factor_cycle*.
+The function checks if the code is circular. If the code is not circular the functions returns all cycles in the representing graph.
+*2007 Christian MICHEL. CIRCULAR CODES IN GENES*
+
+
+#### Examples
+```R 
+code_prepare_factor_all_cycle(c("ACG", "CAG"))
+code_prepare_factor_all_cycle("ACGCAG", tuple_length=3)
+code_prepare_factor_all_cycle("ACG CAG")
+
+```
+<hr>
+
+### code_prepare_factor_longest_path
+
+#### Usage
+```R 
+code_prepare_factor_longest_path(code, tuple_length = -1L)
+```
+
+#### Arguments
+ 
+*code*	A vertor with codons.' @param length if code is a sequence, length is the tuple length of the code.<br>
+
+*tuple_length*	if code is a sequence, length is the tuple length of the code.<br>
+
+
+#### Return
+ 
+List: Edges and vertices of only the longest path of an graph representing a circular code.
+
+
+#### Description
+ 
+This function is based on the represent graph of a circular code (see *code_prepare_factor_graph*).
+The function only returns a list of edges and vertices. To get a graph object use *code_factor_longest_path*.
+The function checks if the code is circular. If the code is not circular the functions returns the logest paths.
+*2007 Christian MICHEL. CIRCULAR CODES IN GENES*
+
+
+#### Examples
+```R 
+code_prepare_factor_longest_path(c("ACG", "CAG"))
+code_prepare_factor_longest_path("ACGCAG", tuple_length=3)
+code_prepare_factor_longest_path("ACG CAG")
+
+```
+<hr>
+
+### code_prepare_factor_gen_c3graph
+
+#### Usage
+```R 
+code_prepare_factor_gen_c3graph(code, tuple_length = -1L)
+```
+
+#### Arguments
+ 
+*code*	is either a string vector or a string. It can be a DNA or RNA sequence.<br>
+
+*tuple_length*	if code is a sequence, length is the tuple length of the code.<br>
+
+
+#### Return
+ 
+List: Edges and vertices of an C3-graph representing a circular code.
+
+
+#### Description
+ 
+This function factors the set of edges and the set of vertices of an representing graph of a circular code.
+This sets can be used to construct the graph. To get a graph object use *code_factor_c3graph*.<br>
+The difference to the standard Graph is that the edges of the shifted (circular permutated) Codes
+of the the origin code are included as undirected edges.<br>
+The following definition describes a directed graph to an n-nucleotide code.
+Recall from graph theory (Clark and Holton, 1991) that a graph G consists of
+a finite set of vertices (nodes) V and a finite set of edges E. Here, an edge is a set \{v,w\} of vertices
+from V . The graph is called oriented if the edges have an orientation, i.e. edges are considered to be
+ordered pairs [v,w] in this case.<br>
+Definition 2.1. Let X Bn be an n-nucleotide code (n 2 N). We define a directed graph G(X) =
+(V (X), EU(X) ,E(X)) with set of vertices V (X), a set of undirected edges EU(X) and set of edges E(X) as follows:
+N-NUCLEOTIDE CIRCULAR CODES IN GRAPH THEORY 5<br>
+V (X) = \{N1...Ni,Ni+1...N3 : N1N2N3...Nn in X, 0 < i < 3\}<br>
+EU (X) = \{[N2,N3N1] : N1N2N3 in X\}<br>
+E(X) = \{[N1...Ni,Ni+1...Nn] : N1N2N3 in X, 0 < i < 3\}<br>
+The graph G(X) is called the representing graph of X or the graph associated to X.<br>
+Basically, the graph G(X) associated to a code X interprets n-nucleotide words from X in (n−1) ways
+by pairs of i-nucleotides and (n-i)-nucleotides for 0 < i < n.<br>
+*2007 E. FIMMEL, C. J. MICHEL, AND L. STRÜNGMANN. N-nucleotide circular codes in graph theory*
+
+
+#### Examples
+```R 
+code_prepare_factor_gen_c3graph(c("ACG", "CAG"))
+code_prepare_factor_gen_c3graph("ACGCAG", tuple_length=3)
+code_prepare_factor_gen_c3graph("ACG CAG")
+
+```
+<hr>
+
+### code_get_one_cycles_as_vector
+
+#### Usage
+```R 
+code_get_one_cycles_as_vector(code, tuple_length = -1L)
+```
+
+#### Arguments
+ 
+*code*	is either a string vector or a string. It can either be a code or a sequence.<br>
+
+*tuple_length*	if code is a sequence, length is the tuple length of the code.<br>
+
+
+#### Return
+ 
+List of nodes representing a circular path in G(X).
+
+
+#### Description
+ 
+Prepares a R path string vector. Extracts all cycles in the Graph G(X).
+If the graph has no cycles the vector will be empty. Otherwise it returns a vector with one the nodes of
+circular path.<br>
+*2007 E. FIMMEL, C. J. MICHEL, AND L. STRÜNGMANN. N-nucleotide circular codes in graph theory*
+
+
+#### Examples
+```R 
+l_graph <- code_get_one_cycles_as_vector(c("ACG", "CGA"))
+l_graph <- code_get_one_cycles_as_vector("ACGCGA", 3)
+l_graph <- code_get_one_cycles_as_vector("ACG CGA")
+
+```
+<hr>
+
+### code_get_all_cycles_as_vector
+
+#### Usage
+```R 
+code_get_all_cycles_as_vector(code, tuple_length = -1L)
+```
+
+#### Arguments
+ 
+*code*	is either a string vector or a string. It can either be a code or a sequence.<br>
+
+*tuple_length*	if code is a sequence, length is the tuple length of the code.<br>
+
+
+#### Return
+ 
+List of nodes representing a circular path in G(X).
+
+
+#### Description
+ 
+Prepares a list of R path string vector. Extracts all cycles in the Graph G(X).
+If the graph has no cycles the vector will be empty. Otherwise it returns a vector with one the nodes of
+circular path.<br>
+*2007 E. FIMMEL, C. J. MICHEL, AND L. STRÜNGMANN. N-nucleotide circular codes in graph theory*
+
+
+#### Examples
+```R 
+l_graph <- code_get_one_cycles_as_vector(c("ACG", "CGA"))
+l_graph <- code_get_one_cycles_as_vector("ACGCGA", 3)
+l_graph <- code_get_one_cycles_as_vector("ACG CGA")
+
+```
+<hr>
+
+### code_get_one_longest_path_as_vector
+
+#### Usage
+```R 
+code_get_one_longest_path_as_vector(code, length = -1L)
+```
+
+#### Arguments
+ 
+*code*	is either a string vector or a string. It can either be a code or a sequence.<br>
+
+*length*	if code is a sequence, length is the tuple length of the code.<br>
+
+
+#### Return
+ 
+A String vector. Nodes of the longest path
+
+
+#### Description
+ 
+Prepares a R path string vector. Extracts all longest paths of the Graph G(X) and returns the first found one.
+If the graph shows a cycle the vector will be empty. Otherwise it returns a vector with one longest path.<br>
+*2007 E. FIMMEL, C. J. MICHEL, AND L. STRÜNGMANN. N-nucleotide circular codes in graph theory*
+
+
+#### Examples
+```R 
+l_path <- code_get_one_circle_as_vector(c("ACG", "CGA"))
+l_path <- code_get_one_circle_as_vector("ACGCGA", 3)
+l_path <- code_get_one_circle_as_vector("ACG CGA")
+
+```
+<hr>
+
+### code_get_all_longest_path_as_vector
+
+#### Usage
+```R 
+code_get_all_longest_path_as_vector(code, length = -1L)
+```
+
+#### Arguments
+ 
+*code*	is either a string vector or a string. It can either be a code or a sequence.<br>
+
+*length*	if code is a sequence, length is the tuple length of the code.<br>
+
+
+#### Return
+ 
+A list of String vectors. Nodes of the longest path
+
+
+#### Description
+ 
+Prepares a list of R path string vector. Extracts all longest paths of the Graph G(X) and returns them as a list.
+If the graph shows a cycle the vector will be empty. Otherwise it returns a list of vector with all longest paths.<br>
+*2007 E. FIMMEL, C. J. MICHEL, AND L. STRÜNGMANN. N-nucleotide circular codes in graph theory*
+
+
+#### Examples
+```R 
+l_path <- code_get_all_longest_path_as_vector(c("ACG", "CGA"))
+l_path <- code_get_all_longest_path_as_vector("ACGCGA", 3)
+l_path <- code_get_all_longest_path_as_vector("ACG CGA")
+
+```
+<hr>
+
 ## Generic Circular Codes
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-### get_rna_codon_list
-
-This function generates a List of all trinucleotide RNA codon. It will generate the following list:<br/>
-_UUU UCU UAU UGU UUC UCC UAC UGC UUA UCA UAA UGA UUG UCG UAG UGG CUU CCU CAU CGU CUC CCC CAC CGC CUA CCA CAA CGA CUG CCG CAG CGG
-AUU ACU AAU AGU AUC ACC AAC AGC AUA ACA AAA AGA AUG ACG AAG AGG GUU GCU GAU GGU GUC GCC GAC GGC GUA GCA GAA GGA GUG GCG GAG GGG_
-#### Return:
-A vector object with all RNA codons
-```R
-get_rna_codon_list <- function()
-# examples
-res <- get_rna_codon_list()
-```
-   
-### get_rna_codon_table
-
-![Genetic Code Analysis Toolkit Logo](/man/resources/bio/gcat/codon_table.jpg?raw=true)<br/><br/>
-Returns the tables displayed in the fig. above. The tables will be stored in a matrix object. 
-
-#### Return:
-A matrix object with all RNA codons
-
-```R
-get_rna_codon_table <- function()
-# examples
-res <- get_rna_codon_table()
-```
-   
-## get rna codon list
-
-### code_factor_graph
-Prepares a R [igraph](http://igraph.org/r/) object. The graph G(X) is called the representing graph of X or the graph associated to X.
-Basically, the graph G(X) associated to a code X interprets n-nucleotide words from X in (n−1) ways
-by pairs of i-nucleotides and (n-i)-nucleotides for 0 < i < n.<br/>
-*2007 E. FIMMEL, C. J. MICHEL, AND L. STRÜNGMANN. N-nucleotide circular codes in graph theory*
-#### Parameters:
-*code* &rarr; [string vector] The DNA or RNA code as list represented by the graph.<br/>
-*show_circles* &rarr; [bool] If true the all edges building a circle are colored red.<br/>
-*show_longest_path* &rarr; [bool] If true the all edges part of the longest path are colored blue.
-#### Return:
-A [igraph](http://igraph.org/r/) object
-   ```R
-      code_factor_graph <- function(code, show_circles=FALSE, show_longest_path=FALSE)
-      # example:
-      plot(code_factor_graph(c("ACG", "CGA")))
-   ```
-# code_factor_c3graph
-Prepares a R [igraph](http://igraph.org/r/) object. 
-Extents the Graph G(X) from _code_factor_graph_ by the so called C3 edges.
-If the graph shows a cycle with alternating edges of the C3 edges and the usual edges follows that
-the circular permutation of the code is not a circular code. Only works for word length of 3.<br/>
-*2007 E. FIMMEL, C. J. MICHEL, AND L. STRÜNGMANN. N-nucleotide circular codes in graph theory*
-#### Parameters:
-*code* &rarr; [string vector] The DNA or RNA code as list represented by the graph.  
-#### Return:
-A [igraph](http://igraph.org/r/) object
-   ```R
-      code_factor_c3graph <- function(code)
-      # example:
-      plot(code_factor_c3graph(c("ACG", "CGA")))
-   ```
-### code_factor_circles
-Prepares a R [igraph](http://igraph.org/r/) object. Returns only the circles in
-G(X) if existing.
-#### Parameters:
-*code* &rarr; [string vector] The DNA or RNA code as list represented by the graph. 
-#### Return:
-A [igraph](http://igraph.org/r/) object
-  ```R
-      code_factor_circles <- function(code)
-      # example:
-      plot(code_factor_circles(c("ACG", "CGA")))
-   ```
-### code_factor_longest_path
-Prepares a R [igraph](http://igraph.org/r/) object. Returns only the longest Path in
-G(X) if existing.
-#### Parameters:
-*code* &rarr; [string vector] The DNA or RNA code as list represented by the graph. 
-#### Return:
-A [igraph](http://igraph.org/r/) object
-  ```R
-      code_factor_longest_path <- function(code)
-      # example:
-      plot(code_factor_longest_path(c("ACG", "CGT")))
-   ```
-### seq_factor_graph
-Prepares a R [igraph](http://igraph.org/r/) object. The graph G(X) is called the representing graph of X or the graph associated to X.
-Basically, the graph G(X) associated to a code X interprets n-nucleotide words from X in (n−1) ways
-by pairs of i-nucleotides and (n-i)-nucleotides for 0 < i < n.<br/>
-*2007 E. FIMMEL, C. J. MICHEL, AND L. STRÜNGMANN. N-nucleotide circular codes in graph theory*
-#### Parameters:
-*seq* &rarr; [string] A DNA or RNA sequence used to extract the code represented by the graph.<br/>
-*word_length* &rarr; [unsigned int] The length of the words in the sequence.<br/>
-*show_circles* &rarr; [bool] If true the all edges building a circle are colored red.<br/>
-*show_longest_path* &rarr; [bool] If true the all edges part of the longest path are colored blue.
-#### Return:
-A [igraph](http://igraph.org/r/) object
-   ```R
-      seq_factor_graph <- function(seq, word_length=3, show_circles=FALSE, show_longest_path=FALSE)
-      # example:
-      plot(seq_factor_graph("ACGCGA", 3))
-   ```
-### seq_factor_c3graph
-Prepares a R [igraph](http://igraph.org/r/) object. 
-Extents the Graph G(X) from _seq_factor_graph_ by the so called C3 edges.
-If the graph shows a cycle with alternating edges of the C3 edges and the usual edges follows that
-the circular permutation of the code is not a circular code. Only works for word length of 3.<br/>
-*2007 E. FIMMEL, C. J. MICHEL, AND L. STRÜNGMANN. N-nucleotide circular codes in graph theory*
-#### Parameters:
-*seq* &rarr; [string] A DNA or RNA sequence used to extract the code represented by the graph. 
-#### Return:
-A [igraph](http://igraph.org/r/) object 
-   ```R
-      seq_factor_c3graph <- function(seq)
-      # example:
-      plot(seq_factor_c3graph("ACGCGA"))
-   ```
-### seq_factor_circles
-Prepares a R [igraph](http://igraph.org/r/) object. Returns only the circles in
-G(X) if existing.
-#### Parameters:
-*seq* &rarr; [string] A DNA or RNA sequence used to extract the code represented by the graph.<br/>
-*word_length* &rarr; [unsigned int] The length of the words in the sequence.
-#### Return:
-A [igraph](http://igraph.org/r/) object
-   ```R
-      seq_factor_circles <- function(seq, word_length=3)
-      # example:
-      plot(seq_factor_circles("ACGCGA", 3))
-   ```
-### seq_factor_longest_path
-Prepares a R [igraph](http://igraph.org/r/) object. Returns only the longest Path in
-G(X) if existing.
-#### Parameters:
-*seq* &rarr; [string] A DNA or RNA sequence used to extract the code represented by the graph.<br/>
-*word_length* &rarr; [unsigned int] The length of the words in the sequence.
-#### Return:
-A [igraph](http://igraph.org/r/) object
-   ```R
-      seq_factor_longest_path <- function(seq, word_length=3)
-      # example:
-      plot(seq_factor_longest_path("ACGCGT", 3))
-   ```
-
-## BDA
-
-![Genetic Code Analysis Toolkit Logo](/man/resources/bio/gcat/bda_procedure.png?raw=true)<br/><br/>
-
-### start_bda
-To generate a BDA based binary representation of a code or a sequence of codons, you need to start a BDA procedure first.
-This function starts a BDA procedure for all trinucleotide RNA codes. After the procedure has been started you need to add BDAs. To add a BDA simply Call *add_bda*. To execute the BDAs call *run_bda_as_matrix* or *run_bda*.<br/>
-A binary dichotomic algorithm generates a binary representation of a generic code. For more info on BDAs read:read:<br/>
-*M.Gumbel, E.Fimmel, A.Danielli, L.Struengmann. On Models of the Genetic  Code generated by Binary Dichotomic Algorithms*
-#### Return:
-A boolean value. True if the procedure has started correctly.
-   ```R
-      start_bda <- function()
-      # example:
-      start_bda()
-      add_bda(1, 2, "C", "G", "A", "U")
-      add_bda(1, 3, "A", "G", "C", "U")
-      res <- run_bda_as_matrix()
-   ```
-   
-### code_start_bda
-To generate a BDA based binary representation of a code or a sequence of codons, you need to start a BDA procedure first.
-This function starts a BDA procedure for a code vector. After the procedure has been started you need to add BDAs. To add a BDA simply Call *add_bda*. To execute the BDAs call *run_bda*.
-*run_bda_as_matrix* only works if the procedure has been started by the *start_bda* function<br/>
-A binary dichotomic algorithm generates a binary representation of a generic code. For more info on BDAs read:read:<br/>
-*M.Gumbel, E.Fimmel, A.Danielli, L.Struengmann. On Models of the Genetic  Code generated by Binary Dichotomic Algorithms*
-#### Parameters:
-*code* &rarr; [string vector] A DNA or RNA code as list. 
-#### Return:
-A boolean value. True if the procedure has started correctly.
-   ```R
-      code_start_bda <- function(code)
-      # example:
-      code_start_bda(c("ACG", "CAG"))
-      add_bda(1, 2, "C", "G", "A", "U")
-      add_bda(1, 3, "A", "G", "C", "U")
-      res <- run_bda()
-   ```
-   
-### seq_start_bda
-To generate a BDA based binary representation of a code or a sequence of codons, you need to start a BDA procedure first.
-This function starts a BDA procedure for a RNA or DNA sequence. After the procedure has been started you need to add BDAs. To add a BDA simply Call *add_bda*. To execute the BDAs call *run_bda*.
-*run_bda_as_matrix* only works if the procedure has been started by the *start_bda* function<br/>
-A binary dichotomic algorithm generates a binary representation of a generic code. For more info on BDAs read:read:<br/>
-*M.Gumbel, E.Fimmel, A.Danielli, L.Struengmann. On Models of the Genetic  Code generated by Binary Dichotomic Algorithms*
-#### Parameters:
-*seq* &rarr; [string] A DNA or RNA sequence used to extract the code.<br/>
-*word_length* &rarr; [unsigned int] The length of the words in the sequence.
-#### Return:
-A boolean value. True if the procedure has started correctly.
-   ```R
-      seq_start_bda <- function(seq, word_length)
-      # example:
-      seq_start_bda("ACGCAG", 3)
-      add_bda(1, 2, "C", "G", "A", "U")
-      add_bda(1, 3, "A", "G", "C", "U")
-      res <- run_bda()
-   ```
-   
-   
-### add_bda
-![Genetic Code Analysis Toolkit Logo](/man/resources/bio/gcat/bda_diagramm.png?raw=true)<br/><br/>
-To generate a BDA based binary representation of a code or a sequence of codons, you need to start a BDA procedure first.
-To do so you can either call *code_start_bda* or *seq_start_bda*. To start a procedure for all RNA codons call *start_bda*. 
-After the procedure has been started you can add BDAs. To add a BDA simply Call *add_bda*. 
-Each added BDA results one binary digit for each codon. You can add multiple BDAs to one procedure. To execute the BDAs call *run_bda*.
-You can also use *run_bda_as_matrix*. Yet, it only works if the procedure has been started by the *start_bda* function<br/>
-A binary dichotomic algorithm generates a binary representation of a generic code. For more info on BDAs read:read:<br/>
-*M.Gumbel, E.Fimmel, A.Danielli, L.Struengmann. On Models of the Genetic  Code generated by Binary Dichotomic Algorithms*
-#### Parameters:
-*i_1* &rarr; [unsigend int]  A unsigend Integer from 1 - [WORD LENGTH]<br/>
-*i_2* &rarr; [unsigend int]  A unsigend Integer from 1 - [WORD LENGTH]<br/>
-*Q_11* &rarr; [string]  A single character. Has to be one of \{'A', 'C', 'G', 'T', 'U'\}<br/>
-*Q_12* &rarr; [string]  A single character. Has to be one of \{'A', 'C', 'G', 'T', 'U'\}<br/>
-*Q_21* &rarr; [string]  A single character. Has to be one of \{'A', 'C', 'G', 'T', 'U'\}<br/>
-*Q_22* &rarr; [string]  A single character. Has to be one of \{'A', 'C', 'G', 'T', 'U'\}
-#### Return:
-A boolean value. True if the BDA is correctly formulated.
-   ```R
-      add_bda <- function(i_1, i_2, Q_11, Q_12, Q_21, Q_22)
-      # example:
-      seq_start_bda("ACGCAG", 3)
-      add_bda(1, 2, "C", "G", "A", "U")
-      add_bda(1, 3, "A", "G", "C", "U")
-      res <- run_bda()
-   ```
-   
-### run_bda
-This function runs the  BDA procedure and returns the binary representation of the code or a sequence of codons.
-A BDA procedure has to be open for this function to be working.
-To do so you can either call *code_start_bda* or *seq_start_bda*. To start a procedure for all RNA codons call *start_bda*. 
-After the procedure has been started you can add BDAs. To add a BDA simply Call *add_bda*. 
-Each added BDA results one binary digit for each codon. You can add multiple BDAs to one procedure. To execute the BDAs call *run_bda*.
-You can also use *run_bda_as_matrix*. Yet, it only works if the procedure has been started by the *start_bda* function<br/>
-A binary dichotomic algorithm generates a binary representation of a generic code. For more info on BDAs read:read:<br/>
-*M.Gumbel, E.Fimmel, A.Danielli, L.Struengmann. On Models of the Genetic  Code generated by Binary Dichotomic Algorithms*
-#### Return:
-A list object with 2 rows. First row the is the code. Second row is the BDA result.
-   ```R
-      run_bda <- function()
-      # example:
-      seq_start_bda("ACGCAG", 3)
-      add_bda(1, 2, "C", "G", "A", "U")
-      add_bda(1, 3, "A", "G", "C", "U")
-      res <- run_bda()
-   ```
-
-### run_bda_as_matrix
-This function runs the  BDA procedure and returns the binary representation of the code or a sequence of codons.
-A BDA procedure has to be open for this function to be working. To start a procedure for all RNA codons call *start_bda*. 
-After the procedure has been started you can add BDAs. To add a BDA simply Call *add_bda*. 
-Each added BDA results one binary digit for each codon. You can add multiple BDAs to one procedure. To execute the BDAs call *run_bda*.
-You can also use *run_bda_as_matrix*. Yet, it only works if the procedure has been started by the *start_bda* function<br/>
-A binary dichotomic algorithm generates a binary representation of a generic code. For more info on BDAs read:read:<br/>
-*M.Gumbel, E.Fimmel, A.Danielli, L.Struengmann. On Models of the Genetic  Code generated by Binary Dichotomic Algorithms*
-#### Return:
-A matrix object with 16 rows. See *run_bda_as_matrix*.
-   ```R
-      run_bda_as_matrix <- function()
-      # example:
-      start_bda()
-      add_bda(1, 2, "C", "G", "A", "U")
-      add_bda(1, 3, "A", "G", "C", "U")
-      res <- run_bda_as_matrix()
-   ```
-
-## Analysis Tool
-
-### find_amd_analysis_code_in_sequence
-
-Analysis a sequence based on a generic code.
-
-Finds all appearance of a code ion a sequence. Finds the longest connected matches of words of the code in the sequence.
-The function also calculates the matching bases of the found words in the sequence.
-
-#### Parameters:
-*seq* &rarr; [string] A DNA or RNA sequence.<br/>
-*code* &rarr; [string vector] A DNA or RNA code as string vector.
-
-#### Returns
- A List with all analysing results. The list contains following:<br/>
-*words*  &rarr;  all found words of the code in the sequence in the correct order.<br/>
-*idx_list*  &rarr; the first-letter index of all found words of the code in the sequence in the correct order.<br/>
-*rest*  &rarr; all parts of the sequence which are not matching the code.<br/>
-*parts*  &rarr; the sequence separated in matching and non matching parts. Odd indexes are matching, even indexes are not matching.<br/>
-*longest_match*  &rarr; the longest connected matching sequence.<br/>
-*total_match_in_percent*  &rarr; the percentage of the matching parts.
-
-```R
-find_amd_analysis_code_in_sequence <- function(seq, code)
-# example
-code <- c("ACG", "TCG")
-seq <- "ACGTCGCGACGTACGACGTCGTACTCGATGCAAGATC"
-res <- find_amd_analysis_code_in_sequence(seq, code)
-```
-
-### code_check_if_circular
-Check if a DNA/RNA code is circular.
-
-This function checks if a genetic code is circular.
-Circular codes is an approach for finding the method used in gens for retrieving the correct reading frames.<br/>
-For more info on this subject read:<br/>
-[ncbi article](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5492142/),<br/>
-[2007 Christian MICHEL. CIRCULAR CODES IN GENES](http://dpt-info.u-strasbg.fr/~c.michel/Circular_Codes.pdf)
-
-#### Parameters:
-*code*  &rarr; [string vector] A DNA or RNA code as list.
-#### Return:
- Boolean value. True if the code is circular.
-
-```R
-code_check_if_circular <- function(code)
-# example:
-code <- c("ACC", "ACG", "CUU", "GCC", "GGU", "GUU", "UAG", "UAU", "UGC")
-if(code_check_if_circular(code)) { ... }
-```
-
-### code_check_if_cn_circular
-Check if a DNA/RNA code is cn circular.
-
-This function checks if a genetic code is cn circular.
-Circular codes is an approach for finding the method used in gens for retrieving the correct reading frames.
-For a code to be cn circular means that each circular permutation the codons construct a new circular code.
-For more info on this subject read:<br/>
-[ncbi article](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5492142/),<br/>
-[2007 Christian MICHEL. CIRCULAR CODES IN GENES](http://dpt-info.u-strasbg.fr/~c.michel/Circular_Codes.pdf)
-
-#### Parameters:
-*code*  &rarr; [string vector] A DNA or RNA code as list.
-#### Return:
- Boolean value. True if the code is cn circular.
-
-```R
-code_check_if_cn_circular <- function(code)
-# example:
-code <- c("ACC", "ACG", "CUU", "GCC", "GGU", "GUU", "UAG", "UAU", "UGC")
-if(code_check_if_cn_circular(code)) { ... }
-```
-
-### code_check_if_comma_free
-Check if a code is comma free.
-
-The function checks if the code is comma free. 
-Comma free is a stronger restricted version of the circular code property.
-For more info on this subject read:<br/>
-[ncbi article](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5492142/),<br/>
-[2007 Christian MICHEL. CIRCULAR CODES IN GENES](http://dpt-info.u-strasbg.fr/~c.michel/Circular_Codes.pdf)
-
-#### Parameters:
-*code*  &rarr; [string vector] A DNA or RNA code as list.
-#### Return:
- Boolean value. True if the code comma free.
-
-```R
-code_check_if_comma_free <- function(code)
-# example:
-code <- c("ACC", "AGG", "CGU", "UAA", "UGC")
-if(code_check_if_comma_free(code)) { ... }
-```
-
 ### code_check_if_self_complementary
-Check if a code is self complementary.
 
-The function checks if the code is self complementary. A self complementary code contains for 
-any codon (word) in the code the corresponding anti-codons.
-For more info on this subject read:<br/>
-[ncbi article](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5492142/),<br/>
-[2007 Christian MICHEL. CIRCULAR CODES IN GENES](http://dpt-info.u-strasbg.fr/~c.michel/Circular_Codes.pdf)
-
-#### Parameters:
-*code*  &rarr; [string vector] A DNA or RNA code as list.
-#### Return:
- Boolean value. True if the code self complementary.
-
-
-```R
-code_check_if_self_complementary <- function(code)
-# example:
-if(code_check_if_self_complementary(c("ACG", "CAG"))) { ... }
+#### Usage
+```R 
+code_check_if_self_complementary(code, length = -1L)
 ```
+
+#### Arguments
+ 
+*code*	is either a string vector or a string. It has to be a RNA/DNA - code or a sequence.<br>
+
+*length*	if code is a sequence, length is the tuple length of the code.<br>
+
+
+#### Return
+ 
+Boolean value. True if the code is self-complementary.
+
+
+#### Description
+ 
+This function checks if a code is self complementary.
+The code can either be a vector of DNA/RNA tuples or a sequence. If the code
+is a sequence an additional word length parameter is needed.<br>
+A code is self complementary if and only if for all tuples in the code the anti-tuple is also in the code.
+An anti-tuple is te reversed tuple of complementary bases.<br> A <-> T (U) and C <-> G. The anti-tuple of ACG is CGT
+Circular codes are a block codes. It is used as an unproved approach to explain the
+method used in gens to retrieving the correct reading frames.<br>
+*https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5492142/*,<br>
+*http://dpt-info.u-strasbg.fr/~c.michel/Circular_Codes.pdf*,<br>
+*2007 Christian MICHEL. CIRCULAR CODES IN GENES*
+
+
+#### Examples
+```R 
+code_check_if_self_complementary(c("ACG", "CAG"))
+code_check_if_self_complementary("ACGCAG", 3)
+code_check_if_self_complementary("ACG CAG")
+
+```
+<hr>
 
 ### code_get_acid
-Get acid type of a code
 
+#### Usage
+```R 
+code_get_acid(code, length = -1L)
+```
+
+#### Arguments
+ 
+*code*	is either a string vector or a string. It should be a RNA/DNA - code or a sequence.<br>
+
+*length*	if code is a sequence, length is the tuple length of the code.<br>
+
+
+#### Return
+ 
+String value. One of NONE, DNA, RNA
+
+
+#### Description
+ 
 Returns either RNA or DNA depending on the codes Bases. If the code contains only CYTOSINE (C), ADENINE (A), GUANINE (G)
 the functions returns DNA. If the code contains THYMINE (T) it will also return DNA. On the other side, if the
 the code contains URACIL (U) bases the function returns RNA. If the code contains URACIL (U) & THYMINE (T) or any other letter
 then CYTOSINE (C), ADENINE (A), GUANINE (G), URACIL (U) or THYMINE (T) it will return NONE
-For more info on this subject read:<br/>
-[ncbi article](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5492142/),<br/>
-[2007 Christian MICHEL. CIRCULAR CODES IN GENES](http://dpt-info.u-strasbg.fr/~c.michel/Circular_Codes.pdf)
+For more info on this subject read:<br>
+*https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5492142/*,<br>
+*http://dpt-info.u-strasbg.fr/~c.michel/Circular_Codes.pdf*,<br>
+*2007 Christian MICHEL. CIRCULAR CODES IN GENES*
 
-#### Parameters:
-*code*  &rarr; [string vector] A DNA or RNA code as list.
-#### Retrun:
- String value. One of NONE, DNA, RNA
 
-```R
-code_get_acid <- function(code)
-# example:
-acid <- code_get_acid(c("ACG", "CAG"))
+#### Examples
+```R 
+code_get_acid(c("ACG", "CAG"))
+code_get_acid("ACGCAG", 3)
+code_get_acid("ACG CAG")
+
 ```
-
-### code_get_one_longest_path_as_vector
-Finds one longest path constructable in a code.
-
-Prepares a R path string vector. Extracts all longest paths of the Graph G(X).
-If the graph shows a cycle the vector will be empty. Otherwise it returns a vector with one longest path.<br/>
-*2007 E. FIMMEL, C. J. MICHEL, AND L. STRÜNGMANN. N-nucleotide circular codes in graph theory*
-
-#### Parameters:
-*code*  &rarr; [string vector] A DNA or RNA code as list represented by the graph.
-
-```R
-code_get_one_longest_path_as_vector <- function(code)
-# example:
-l_path <- code_get_one_circle_as_vector(c("ACG", "CGA"))
-```
-
-### code_get_all_longest_path_as_vector
-Finds all longest path constructable in a code.
-
-Prepares a List of R path string vector. Extracts all longest path of the Graph G(X).
-If the graph shows a cycle the list will be empty. Otherwise it returns a list object containing vectors with all
-longest paths.<br/>
-*2007 E. FIMMEL, C. J. MICHEL, AND L. STRÜNGMANN. N-nucleotide circular codes in graph theory*
-
-@param code A DNA or RNA code as string vector represented by the graph.
-
-```R
-code_get_all_longest_path_as_vector <- function(code)
-# example:
-l_path_list <- code_get_all_longest_path_as_vector(c("ACG", "CGA"))
-```
-
-### code_get_one_circle_as_vector
-Finds one circle constructable in a code.
-
-Prepares a R path string vector. Extracts all circle path of the Graph G(X).
-If the graph shows no cycle the vector will be empty. Otherwise it returns a vector with one
-circle paths.<br/>
-*2007 E. FIMMEL, C. J. MICHEL, AND L. STRÜNGMANN. N-nucleotide circular codes in graph theory*
-
-
-#### Parameters:
-*code*  &rarr; [string vector] A DNA or RNA code as list represented by the graph.
-
-```R
-code_get_one_circle_as_vector <- function(code)
-# example:
-c_path <- code_get_one_circle_as_vector(c("ACG", "CGA"))
-```
-
-### code_get_all_circle_as_vector
-Finds all circles constructable in a code.
-
-Prepares a List of R path string vector. Extracts all circle path of the Graph G(X).
-If the graph shows no cycle the list will be empty. Otherwise it returns a list object containing vectors with all
-circle paths.<br/>
-*2007 E. FIMMEL, C. J. MICHEL, AND L. STRÜNGMANN. N-nucleotide circular codes in graph theory*
-
-#### Parameters:
-*code*  &rarr; [string vector] A DNA or RNA code as list represented by the graph.
-
-```R
-code_get_all_circle_as_vector <- function(code)
-# example:
-c_path_list <- code_get_all_circle_as_vector(c("ACG", "CGA"))
-```
+<hr>
 
 ### get_dna_bases
-Returns all DNA bases
 
-#### Retrun:
+#### Usage
+```R 
+get_dna_bases()
+```
+
+#### Arguments
+ \-
+
+#### Return
+ 
 {"T", "C", "A", "G"}
 
-```R
-get_dna_bases <- function() 
-```
-### get_rna_bases
+
+#### Description
+ 
 Returns all DNA bases
 
-#### Retrun:
-{"U", "C", "A", "G"}
-```R
-get_rna_bases <- function()
+
+#### Examples
+```R \-```
+<hr>
+
+### get_rna_bases
+
+#### Usage
+```R 
+get_rna_bases()
 ```
+
+#### Arguments
+ \-
+
+#### Return
+ 
+{"U", "C", "A", "G"}
+
+
+#### Description
+ 
+Returns all DNA bases
+
+
+#### Examples
+```R \-```
+<hr>
+
+### get_rna_codon_table
+
+![Genetic Code Analysis Toolkit Logo](/man/resources/bio/gcat/codon_table.jpg?raw=true)
+
+#### Usage
+```R 
+get_rna_codon_table()
+```
+
+#### Arguments
+ \-
+
+#### Return
+ 
+A matrix object with all RNA codons
+
+
+#### Description
+ 
+get_rna_codon_table will generate a 4*16 table based on the following list:<br>
+UUU UCU UAU UGU<br>
+AUU ACU AAU AGU<br>
+
+
+#### Examples
+```R 
+res <- get_rna_codon_table()
+
+```
+<hr>
+
+### get_rna_codon_list
+
+#### Usage
+```R 
+get_rna_codon_list()
+```
+
+#### Arguments
+ \-
+
+#### Return
+ 
+A vector object with all RNA codons
+
+
+#### Description
+ 
+get_rna_codon_list will generate the following list:<br>
+UUU UCU UAU UGU UUC UCC UAC UGC UUA UCA UAA UGA UUG UCG UAG UGG CUU CCU CAU CGU CUC CCC CAC CGC CUA CCA CAA CGA CUG CCG CAG CGG
+AUU ACU AAU AGU AUC ACC AAC AGC AUA ACA AAA AGA AUG ACG AAG AGG GUU GCU GAU GGU GUC GCC GAC GGC GUA GCA GAA GGA GUG GCG GAG GGG
+
+
+#### Examples
+```R 
+res <- get_rna_codon_list()
+
+```
+<hr>
+
+## Binary Dichotomic Algorithm (BDA)
+
+### start_bda
+
+![Genetic Code Analysis Toolkit Logo](/man/resources/bio/gcat/codon_table.jpg?raw=true)
+
+#### Usage
+```R 
+start_bda()
+```
+
+#### Arguments
+ \-
+
+#### Return
+ 
+Boolean value. True if the procedure has started
+
+
+#### Description
+ 
+This Function starts a binary dichotomic algorithm (BDA) procedure for all codons (see *get_rna_codon_list*).
+To run *run_bda_as_matrix* the BDA procedure has been started by this (*start_bda*) function.
+Each added binary BDA results one binary digit for each codon.
+You can add multiple BDAs for one procedure. To add a rule, you need to start a BDA procedure first.
+To do so you can either call *code_start_bda* or to start a procedure
+for all RNA codons call *start_bda*.
+To add a BDA simply Call *add_bda*. To execute the BDAs call *run_bda*.
+A binary dichotomic algorithm generates a binary representation of a generic code. For more info on BDAs read:<br>
+*M.Gumbel, E.Fimmel, A.Danielli, L.Struengmann. On Models of the Genetic  Code generated by Binary Dichotomic Algorithms*
+
+
+#### Examples
+```R 
+start_bda()
+add_bda(1, 2, "C", "G", "A", "U")
+add_bda(1, 3, "A", "G", "C", "U")
+res <- run_bda_as_matrix()
+
+```
+<hr>
+
+### code_start_bda
+
+#### Usage
+```R 
+code_start_bda(code, length = -1L)
+```
+
+#### Arguments
+ 
+*code*	is a DNA or RNA code as string vector.<br>
+
+
+#### Return
+ 
+Boolean value. True if the procedure has started
+
+
+#### Description
+ 
+Each added binary dichotomic algorithm (BDA) results one binary digit for each codon.
+You can add multiple BDAs for one procedure. To add a rule, you need to start a BDA procedure first.
+To do so you can either call *code_start_bda* or to start a procedure
+for all RNA codons call *start_bda*.
+To add a BDA simply Call *add_bda*. To execute the BDAs call *run_bda*.
+A binary dichotomic algorithm generates a binary representation of a generic code. For more info on BDAs read:<br>
+*M.Gumbel, E.Fimmel, A.Danielli, L.Struengmann. On Models of the Genetic  Code generated by Binary Dichotomic Algorithms*
+
+
+#### Examples
+```R 
+code_start_bda(c("ACG", "CAG"))
+add_bda(1, 2, "C", "G", "A", "T")
+res.binary <- run_bda()
+
+```
+<hr>
+
+### add_bda
+
+![Genetic Code Analysis Toolkit Logo](/man/resources/bio/gcat/bda_diagramm.png?raw=true)
+
+#### Usage
+```R 
+add_bda(i_1, i_2, Q_11, Q_12, Q_21, Q_22)
+```
+
+#### Arguments
+ 
+*i_1*	A unsigend Integer from 1 - [WORD LENGTH]<br>
+
+*i_2*	A unsigend Integer from 1 - [WORD LENGTH]<br>
+
+*Q_11*	A single character. Has to be one of \{'A', 'C', 'G', 'T', 'U'\}<br>
+
+*Q_12*	A single character. Has to be one of \{'A', 'C', 'G', 'T', 'U'\}<br>
+
+*Q_21*	A single character. Has to be one of \{'A', 'C', 'G', 'T', 'U'\}<br>
+
+*Q_22*	A single character. Has to be one of \{'A', 'C', 'G', 'T', 'U'\}<br>
+
+
+#### Return
+ 
+Boolean value. True if the rules parameters are correct
+
+
+#### Description
+ 
+Each added binary dichotomic algorithm (BDA) results one binary digit for each codon.
+You can add multiple BDAs for one procedure. To add a rule, you need to start a BDA procedure first.
+To do so you can either call *code_start_bda* or to start a procedure
+for all RNA codons call *start_bda*.
+To add a BDA simply Call *add_bda*. To execute the BDAs call *run_bda*.
+A binary dichotomic algorithm generates a binary representation of a generic code. For more info on BDAs read:<br>
+*M.Gumbel, E.Fimmel, A.Danielli, L.Struengmann. On Models of the Genetic  Code generated by Binary Dichotomic Algorithms*
+
+
+#### Examples
+```R 
+code_start_bda(c("ACG", "CAG"))
+add_bda(1, 2, "C", "G", "A", "T")
+res.binary <- run_bda()
+
+```
+<hr>
+
+### run_bda
+
+#### Usage
+```R 
+run_bda()
+```
+
+#### Arguments
+ \-
+
+#### Return
+ 
+A List. A binary representation of the Code.
+
+
+#### Description
+ 
+This function executes the currently open binary dichotomic algorithm (BDA) procedure. Therefore, you need to start a BDA procedure.
+You can call *code_start_bda* to start a procedure
+for all codons call *start_bda*.
+To add a BDA simply Call *add_bda*.
+A binary dichotomic algorithm generates a binary representation of a generic code. For more info on BDAs read:<br>
+*M.Gumbel, E.Fimmel, A.Danielli, L.Struengmann. On Models of the Genetic  Code generated by Binary Dichotomic Algorithms*
+
+
+#### Examples
+```R 
+code_start_bda(c("ACG", "CAG"))
+add_bda(1, 2, "C", "G", "A", "T")
+add_bda(1, 3, "A", "G", "C", "T")
+res.binary <- run_bda()
+
+```
+<hr>
+
+### run_bda_as_matrix
+
+#### Usage
+```R 
+run_bda_as_matrix()
+```
+
+#### Arguments
+ \-
+
+#### Return
+ 
+Binary results as Matrix. For example:<br> "UUU -> 00" "UCU -> 10" "UAU -> 00" "UGU -> 10" <br> "UUC -> 00" "UCC -> 10" "UAC -> 00" "UGC -> 10" <br>  "UUA -> 01" "UCA -> 11" "UAA -> 01" "UGA -> 11" <br>  "UUG -> 01" "UCG -> 11" "UAG -> 01" "UGG -> 11" <br>  "CUU -> 00" "CCU -> 00" "CAU -> 00" "CGU -> 00" <br>  "CUC -> 00" "CCC -> 00" "CAC -> 00" "CGC -> 00" <br>  "CUA -> 01" "CCA -> 01" "CAA -> 01" "CGA -> 01" <br>  "CUG -> 01" "CCG -> 01" "CAG -> 01" "CGG -> 01" <br>  "AUU -> 00" "ACU -> 10" "AAU -> 00" "AGU -> 10" <br>  "AUC -> 00" "ACC -> 10" "AAC -> 00" "AGC -> 10" <br>  "AUA -> 00" "ACA -> 10" "AAA -> 00" "AGA -> 10" <br>  "AUG -> 00" "ACG -> 10" "AAG -> 00" "AGG -> 10" <br>  "GUU -> 11" "GCU -> 11" "GAU -> 11" "GGU -> 11" <br>  "GUC -> 11" "GCC -> 11" "GAC -> 11" "GGC -> 11" <br>  "GUA -> 11" "GCA -> 11" "GAA -> 11" "GGA -> 11" <br>  "GUG -> 11" "GCG -> 11" "GAG -> 11" "GGG -> 11"
+
+
+#### Description
+ 
+This Function executes a binary dichotomic algorithm (BDA) procedure. It only works if the BDA procedure has been started by the *start_bda* function.
+Each added binary BDA results one binary digit for each codon.
+You can add multiple BDAs for one procedure. To add a rule, you need to start a BDA procedure first.
+To do so you can either call *code_start_bda* or to start a procedure
+for all RNA codons call *start_bda*.
+To add a BDA simply Call *add_bda*. To execute the BDAs call *run_bda*.
+A binary dichotomic algorithm generates a binary representation of a generic code. For more info on BDAs read:<br>
+*M.Gumbel, E.Fimmel, A.Danielli, L.Struengmann. On Models of the Genetic  Code generated by Binary Dichotomic Algorithms*
+
+
+#### Examples
+```R 
+start_bda()
+add_bda(1, 2, "C", "G", "A", "U")
+add_bda(1, 3, "A", "G", "C", "U")
+res <- run_bda_as_matrix()
+
+```
+<hr>
+
+<!--doc-end-->
 
 
 # Copyright and license
