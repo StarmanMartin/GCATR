@@ -5,7 +5,7 @@
 #include "C_n.h"
 #include <iostream>
 
-bool C_n::test(AbstractGenCode *code) {
+bool C_n::test(AbstractCode *code) {
     bool is_circular = true;
 
     for(int i = 0; i < code->get_word_length()[0]; ++i) {

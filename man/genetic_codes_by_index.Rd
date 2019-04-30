@@ -11,17 +11,17 @@ genetic_codes_by_index(idx)
 }
 \value{
 Returns a named List with all codons and the translated amino acids:\cr
-\emph{codons} all codons as strings.\cr
-\emph{amino_acids} the translated aminop acids in same order.\cr
 }
 \description{
-\emph{genetic_codes_by_index} Returns a list representing a  Genetic Code the list contains an array of the codons and an array of the translated amino acids in the same order.
-}
-\details{
+\emph{genetic_codes_by_index} returns a list representing a Genetic Code. The list contains two arrays, one array of the codons and one array of the translated amino acids in the same order.
 \cr Source:\cr
 \emph{Compiled by Andrzej (Anjay) Elzanowski and Jim Ostell at National Center for Biotechnology Information (NCBI), Bethesda, Maryland, U.S.A.}\cr
 \emph{Last update of the Genetic Codes: Nov. 18, 2016}
 \emph{\link{https://www.ncbi.nlm.nih.gov/Taxonomy/Utils/wprintgc.cgi}}
+}
+\details{
+\emph{codons} all codons as strings.\cr
+\emph{amino_acids} the translated aminop acids in same order.\cr
 }
 \examples{
 (code <- genetic_codes_by_index(1))

@@ -6,10 +6,12 @@
 #define GCATCPP_VERTEX_H
 
 #include <string>
+#include "../codes/Alphabet.h"
+
 namespace graph {
     class Vertex {
     public:
-        Vertex(std::string label);
+        Vertex(std::string label, const Alphabet &alphabet);
 
         std::string get_label() const;
 
@@ -34,6 +36,7 @@ namespace graph {
     private:
         std::string label;
         int index;
+        Alphabet alphabet;
 
         void calculate_index();
     };

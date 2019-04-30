@@ -22,25 +22,14 @@ BEGIN_RCPP
 END_RCPP
 }
 // code_start_bda
-bool code_start_bda(StringVector code);
-RcppExport SEXP _GCATR_code_start_bda(SEXP codeSEXP) {
+bool code_start_bda(StringVector code, int length);
+RcppExport SEXP _GCATR_code_start_bda(SEXP codeSEXP, SEXP lengthSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< StringVector >::type code(codeSEXP);
-    rcpp_result_gen = Rcpp::wrap(code_start_bda(code));
-    return rcpp_result_gen;
-END_RCPP
-}
-// seq_start_bda
-bool seq_start_bda(std::string seq, int word_length);
-RcppExport SEXP _GCATR_seq_start_bda(SEXP seqSEXP, SEXP word_lengthSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< std::string >::type seq(seqSEXP);
-    Rcpp::traits::input_parameter< int >::type word_length(word_lengthSEXP);
-    rcpp_result_gen = Rcpp::wrap(seq_start_bda(seq, word_length));
+    Rcpp::traits::input_parameter< int >::type length(lengthSEXP);
+    rcpp_result_gen = Rcpp::wrap(code_start_bda(code, length));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -126,12 +115,12 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
-// print_all_translation_table
-void print_all_translation_table();
-RcppExport SEXP _GCATR_print_all_translation_table() {
+// print_all_translation_tables
+void print_all_translation_tables();
+RcppExport SEXP _GCATR_print_all_translation_tables() {
 BEGIN_RCPP
     Rcpp::RNGScope rcpp_rngScope_gen;
-    print_all_translation_table();
+    print_all_translation_tables();
     return R_NilValue;
 END_RCPP
 }
@@ -157,198 +146,174 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
-// seq_prepare_factor_gen_c3graph
-Rcpp::List seq_prepare_factor_gen_c3graph(std::string seq, int word_length);
-RcppExport SEXP _GCATR_seq_prepare_factor_gen_c3graph(SEXP seqSEXP, SEXP word_lengthSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< std::string >::type seq(seqSEXP);
-    Rcpp::traits::input_parameter< int >::type word_length(word_lengthSEXP);
-    rcpp_result_gen = Rcpp::wrap(seq_prepare_factor_gen_c3graph(seq, word_length));
-    return rcpp_result_gen;
-END_RCPP
-}
 // code_prepare_factor_gen_c3graph
-Rcpp::List code_prepare_factor_gen_c3graph(StringVector code);
-RcppExport SEXP _GCATR_code_prepare_factor_gen_c3graph(SEXP codeSEXP) {
+Rcpp::List code_prepare_factor_gen_c3graph(StringVector code, int tuple_length);
+RcppExport SEXP _GCATR_code_prepare_factor_gen_c3graph(SEXP codeSEXP, SEXP tuple_lengthSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< StringVector >::type code(codeSEXP);
-    rcpp_result_gen = Rcpp::wrap(code_prepare_factor_gen_c3graph(code));
+    Rcpp::traits::input_parameter< int >::type tuple_length(tuple_lengthSEXP);
+    rcpp_result_gen = Rcpp::wrap(code_prepare_factor_gen_c3graph(code, tuple_length));
     return rcpp_result_gen;
 END_RCPP
 }
-// code_prepare_factor_gen_graph
-Rcpp::List code_prepare_factor_gen_graph(StringVector code, bool show_circles, bool show_longest_path);
-RcppExport SEXP _GCATR_code_prepare_factor_gen_graph(SEXP codeSEXP, SEXP show_circlesSEXP, SEXP show_longest_pathSEXP) {
+// code_prepare_factor_graph
+Rcpp::List code_prepare_factor_graph(StringVector code, bool show_cycles, bool show_longest_path, int tuple_length);
+RcppExport SEXP _GCATR_code_prepare_factor_graph(SEXP codeSEXP, SEXP show_cyclesSEXP, SEXP show_longest_pathSEXP, SEXP tuple_lengthSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< StringVector >::type code(codeSEXP);
-    Rcpp::traits::input_parameter< bool >::type show_circles(show_circlesSEXP);
+    Rcpp::traits::input_parameter< bool >::type show_cycles(show_cyclesSEXP);
     Rcpp::traits::input_parameter< bool >::type show_longest_path(show_longest_pathSEXP);
-    rcpp_result_gen = Rcpp::wrap(code_prepare_factor_gen_graph(code, show_circles, show_longest_path));
+    Rcpp::traits::input_parameter< int >::type tuple_length(tuple_lengthSEXP);
+    rcpp_result_gen = Rcpp::wrap(code_prepare_factor_graph(code, show_cycles, show_longest_path, tuple_length));
     return rcpp_result_gen;
 END_RCPP
 }
-// seq_prepare_factor_gen_graph
-Rcpp::List seq_prepare_factor_gen_graph(std::string seq, int word_length, bool show_circles, bool show_longest_path);
-RcppExport SEXP _GCATR_seq_prepare_factor_gen_graph(SEXP seqSEXP, SEXP word_lengthSEXP, SEXP show_circlesSEXP, SEXP show_longest_pathSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< std::string >::type seq(seqSEXP);
-    Rcpp::traits::input_parameter< int >::type word_length(word_lengthSEXP);
-    Rcpp::traits::input_parameter< bool >::type show_circles(show_circlesSEXP);
-    Rcpp::traits::input_parameter< bool >::type show_longest_path(show_longest_pathSEXP);
-    rcpp_result_gen = Rcpp::wrap(seq_prepare_factor_gen_graph(seq, word_length, show_circles, show_longest_path));
-    return rcpp_result_gen;
-END_RCPP
-}
-// code_prepare_factor_all_circles
-Rcpp::List code_prepare_factor_all_circles(StringVector code);
-RcppExport SEXP _GCATR_code_prepare_factor_all_circles(SEXP codeSEXP) {
+// code_prepare_factor_all_cycle
+Rcpp::List code_prepare_factor_all_cycle(StringVector code, int tuple_length);
+RcppExport SEXP _GCATR_code_prepare_factor_all_cycle(SEXP codeSEXP, SEXP tuple_lengthSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< StringVector >::type code(codeSEXP);
-    rcpp_result_gen = Rcpp::wrap(code_prepare_factor_all_circles(code));
-    return rcpp_result_gen;
-END_RCPP
-}
-// seq_prepare_factor_all_circles
-Rcpp::List seq_prepare_factor_all_circles(std::string seq, int word_length);
-RcppExport SEXP _GCATR_seq_prepare_factor_all_circles(SEXP seqSEXP, SEXP word_lengthSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< std::string >::type seq(seqSEXP);
-    Rcpp::traits::input_parameter< int >::type word_length(word_lengthSEXP);
-    rcpp_result_gen = Rcpp::wrap(seq_prepare_factor_all_circles(seq, word_length));
+    Rcpp::traits::input_parameter< int >::type tuple_length(tuple_lengthSEXP);
+    rcpp_result_gen = Rcpp::wrap(code_prepare_factor_all_cycle(code, tuple_length));
     return rcpp_result_gen;
 END_RCPP
 }
 // code_prepare_factor_longest_path
-Rcpp::List code_prepare_factor_longest_path(StringVector code);
-RcppExport SEXP _GCATR_code_prepare_factor_longest_path(SEXP codeSEXP) {
+Rcpp::List code_prepare_factor_longest_path(StringVector code, int tuple_length);
+RcppExport SEXP _GCATR_code_prepare_factor_longest_path(SEXP codeSEXP, SEXP tuple_lengthSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< StringVector >::type code(codeSEXP);
-    rcpp_result_gen = Rcpp::wrap(code_prepare_factor_longest_path(code));
-    return rcpp_result_gen;
-END_RCPP
-}
-// seq_prepare_factor_longest_path
-Rcpp::List seq_prepare_factor_longest_path(std::string seq, int word_length);
-RcppExport SEXP _GCATR_seq_prepare_factor_longest_path(SEXP seqSEXP, SEXP word_lengthSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< std::string >::type seq(seqSEXP);
-    Rcpp::traits::input_parameter< int >::type word_length(word_lengthSEXP);
-    rcpp_result_gen = Rcpp::wrap(seq_prepare_factor_longest_path(seq, word_length));
+    Rcpp::traits::input_parameter< int >::type tuple_length(tuple_lengthSEXP);
+    rcpp_result_gen = Rcpp::wrap(code_prepare_factor_longest_path(code, tuple_length));
     return rcpp_result_gen;
 END_RCPP
 }
 // code_check_if_circular
-bool code_check_if_circular(StringVector code);
-RcppExport SEXP _GCATR_code_check_if_circular(SEXP codeSEXP) {
+bool code_check_if_circular(StringVector code, int length);
+RcppExport SEXP _GCATR_code_check_if_circular(SEXP codeSEXP, SEXP lengthSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< StringVector >::type code(codeSEXP);
-    rcpp_result_gen = Rcpp::wrap(code_check_if_circular(code));
+    Rcpp::traits::input_parameter< int >::type length(lengthSEXP);
+    rcpp_result_gen = Rcpp::wrap(code_check_if_circular(code, length));
+    return rcpp_result_gen;
+END_RCPP
+}
+// code_check_if_k_circular
+bool code_check_if_k_circular(int k, StringVector code, int length);
+RcppExport SEXP _GCATR_code_check_if_k_circular(SEXP kSEXP, SEXP codeSEXP, SEXP lengthSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< int >::type k(kSEXP);
+    Rcpp::traits::input_parameter< StringVector >::type code(codeSEXP);
+    Rcpp::traits::input_parameter< int >::type length(lengthSEXP);
+    rcpp_result_gen = Rcpp::wrap(code_check_if_k_circular(k, code, length));
     return rcpp_result_gen;
 END_RCPP
 }
 // code_check_if_cn_circular
-bool code_check_if_cn_circular(StringVector code);
-RcppExport SEXP _GCATR_code_check_if_cn_circular(SEXP codeSEXP) {
+bool code_check_if_cn_circular(StringVector code, int length);
+RcppExport SEXP _GCATR_code_check_if_cn_circular(SEXP codeSEXP, SEXP lengthSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< StringVector >::type code(codeSEXP);
-    rcpp_result_gen = Rcpp::wrap(code_check_if_cn_circular(code));
+    Rcpp::traits::input_parameter< int >::type length(lengthSEXP);
+    rcpp_result_gen = Rcpp::wrap(code_check_if_cn_circular(code, length));
     return rcpp_result_gen;
 END_RCPP
 }
 // code_check_if_comma_free
-bool code_check_if_comma_free(StringVector code);
-RcppExport SEXP _GCATR_code_check_if_comma_free(SEXP codeSEXP) {
+bool code_check_if_comma_free(StringVector code, int length);
+RcppExport SEXP _GCATR_code_check_if_comma_free(SEXP codeSEXP, SEXP lengthSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< StringVector >::type code(codeSEXP);
-    rcpp_result_gen = Rcpp::wrap(code_check_if_comma_free(code));
+    Rcpp::traits::input_parameter< int >::type length(lengthSEXP);
+    rcpp_result_gen = Rcpp::wrap(code_check_if_comma_free(code, length));
     return rcpp_result_gen;
 END_RCPP
 }
 // code_check_if_self_complementary
-bool code_check_if_self_complementary(StringVector code);
-RcppExport SEXP _GCATR_code_check_if_self_complementary(SEXP codeSEXP) {
+bool code_check_if_self_complementary(StringVector code, int length);
+RcppExport SEXP _GCATR_code_check_if_self_complementary(SEXP codeSEXP, SEXP lengthSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< StringVector >::type code(codeSEXP);
-    rcpp_result_gen = Rcpp::wrap(code_check_if_self_complementary(code));
+    Rcpp::traits::input_parameter< int >::type length(lengthSEXP);
+    rcpp_result_gen = Rcpp::wrap(code_check_if_self_complementary(code, length));
     return rcpp_result_gen;
 END_RCPP
 }
 // code_get_acid
-StringVector code_get_acid(StringVector code);
-RcppExport SEXP _GCATR_code_get_acid(SEXP codeSEXP) {
+StringVector code_get_acid(StringVector code, int length);
+RcppExport SEXP _GCATR_code_get_acid(SEXP codeSEXP, SEXP lengthSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< StringVector >::type code(codeSEXP);
-    rcpp_result_gen = Rcpp::wrap(code_get_acid(code));
+    Rcpp::traits::input_parameter< int >::type length(lengthSEXP);
+    rcpp_result_gen = Rcpp::wrap(code_get_acid(code, length));
     return rcpp_result_gen;
 END_RCPP
 }
 // code_get_one_longest_path_as_vector
-StringVector code_get_one_longest_path_as_vector(StringVector code);
-RcppExport SEXP _GCATR_code_get_one_longest_path_as_vector(SEXP codeSEXP) {
+StringVector code_get_one_longest_path_as_vector(StringVector code, int length);
+RcppExport SEXP _GCATR_code_get_one_longest_path_as_vector(SEXP codeSEXP, SEXP lengthSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< StringVector >::type code(codeSEXP);
-    rcpp_result_gen = Rcpp::wrap(code_get_one_longest_path_as_vector(code));
+    Rcpp::traits::input_parameter< int >::type length(lengthSEXP);
+    rcpp_result_gen = Rcpp::wrap(code_get_one_longest_path_as_vector(code, length));
     return rcpp_result_gen;
 END_RCPP
 }
 // code_get_all_longest_path_as_vector
-Rcpp::List code_get_all_longest_path_as_vector(StringVector code);
-RcppExport SEXP _GCATR_code_get_all_longest_path_as_vector(SEXP codeSEXP) {
+Rcpp::List code_get_all_longest_path_as_vector(StringVector code, int length);
+RcppExport SEXP _GCATR_code_get_all_longest_path_as_vector(SEXP codeSEXP, SEXP lengthSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< StringVector >::type code(codeSEXP);
-    rcpp_result_gen = Rcpp::wrap(code_get_all_longest_path_as_vector(code));
+    Rcpp::traits::input_parameter< int >::type length(lengthSEXP);
+    rcpp_result_gen = Rcpp::wrap(code_get_all_longest_path_as_vector(code, length));
     return rcpp_result_gen;
 END_RCPP
 }
-// code_get_one_circle_as_vector
-StringVector code_get_one_circle_as_vector(StringVector code);
-RcppExport SEXP _GCATR_code_get_one_circle_as_vector(SEXP codeSEXP) {
+// code_get_one_cycles_as_vector
+StringVector code_get_one_cycles_as_vector(StringVector code, int tuple_length);
+RcppExport SEXP _GCATR_code_get_one_cycles_as_vector(SEXP codeSEXP, SEXP tuple_lengthSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< StringVector >::type code(codeSEXP);
-    rcpp_result_gen = Rcpp::wrap(code_get_one_circle_as_vector(code));
+    Rcpp::traits::input_parameter< int >::type tuple_length(tuple_lengthSEXP);
+    rcpp_result_gen = Rcpp::wrap(code_get_one_cycles_as_vector(code, tuple_length));
     return rcpp_result_gen;
 END_RCPP
 }
-// code_get_all_circle_as_vector
-Rcpp::List code_get_all_circle_as_vector(StringVector code);
-RcppExport SEXP _GCATR_code_get_all_circle_as_vector(SEXP codeSEXP) {
+// code_get_all_cycles_as_vector
+Rcpp::List code_get_all_cycles_as_vector(StringVector code, int tuple_length);
+RcppExport SEXP _GCATR_code_get_all_cycles_as_vector(SEXP codeSEXP, SEXP tuple_lengthSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< StringVector >::type code(codeSEXP);
-    rcpp_result_gen = Rcpp::wrap(code_get_all_circle_as_vector(code));
+    Rcpp::traits::input_parameter< int >::type tuple_length(tuple_lengthSEXP);
+    rcpp_result_gen = Rcpp::wrap(code_get_all_cycles_as_vector(code, tuple_length));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -372,23 +337,48 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
-// find_amd_analysis_code_in_sequence
-Rcpp::List find_amd_analysis_code_in_sequence(std::string seq, StringVector code);
-RcppExport SEXP _GCATR_find_amd_analysis_code_in_sequence(SEXP seqSEXP, SEXP codeSEXP) {
+// find_and_analysis_code_in_sequence
+Rcpp::List find_and_analysis_code_in_sequence(std::string seq, StringVector code, int tuple_length);
+RcppExport SEXP _GCATR_find_and_analysis_code_in_sequence(SEXP seqSEXP, SEXP codeSEXP, SEXP tuple_lengthSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< std::string >::type seq(seqSEXP);
     Rcpp::traits::input_parameter< StringVector >::type code(codeSEXP);
-    rcpp_result_gen = Rcpp::wrap(find_amd_analysis_code_in_sequence(seq, code));
+    Rcpp::traits::input_parameter< int >::type tuple_length(tuple_lengthSEXP);
+    rcpp_result_gen = Rcpp::wrap(find_and_analysis_code_in_sequence(seq, code, tuple_length));
+    return rcpp_result_gen;
+END_RCPP
+}
+// generate_code_by_min_value
+StringVector generate_code_by_min_value(StringVector alphabet, int tuple_length);
+RcppExport SEXP _GCATR_generate_code_by_min_value(SEXP alphabetSEXP, SEXP tuple_lengthSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< StringVector >::type alphabet(alphabetSEXP);
+    Rcpp::traits::input_parameter< int >::type tuple_length(tuple_lengthSEXP);
+    rcpp_result_gen = Rcpp::wrap(generate_code_by_min_value(alphabet, tuple_length));
+    return rcpp_result_gen;
+END_RCPP
+}
+// shift_tuples
+StringVector shift_tuples(int shifts, StringVector code, int tuple_length);
+RcppExport SEXP _GCATR_shift_tuples(SEXP shiftsSEXP, SEXP codeSEXP, SEXP tuple_lengthSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< int >::type shifts(shiftsSEXP);
+    Rcpp::traits::input_parameter< StringVector >::type code(codeSEXP);
+    Rcpp::traits::input_parameter< int >::type tuple_length(tuple_lengthSEXP);
+    rcpp_result_gen = Rcpp::wrap(shift_tuples(shifts, code, tuple_length));
     return rcpp_result_gen;
 END_RCPP
 }
 
 static const R_CallMethodDef CallEntries[] = {
     {"_GCATR_add_bda", (DL_FUNC) &_GCATR_add_bda, 6},
-    {"_GCATR_code_start_bda", (DL_FUNC) &_GCATR_code_start_bda, 1},
-    {"_GCATR_seq_start_bda", (DL_FUNC) &_GCATR_seq_start_bda, 2},
+    {"_GCATR_code_start_bda", (DL_FUNC) &_GCATR_code_start_bda, 2},
     {"_GCATR_run_bda", (DL_FUNC) &_GCATR_run_bda, 0},
     {"_GCATR_get_average_conductance_of_code", (DL_FUNC) &_GCATR_get_average_conductance_of_code, 2},
     {"_GCATR_get_max_conductance_of_code", (DL_FUNC) &_GCATR_get_max_conductance_of_code, 2},
@@ -396,29 +386,28 @@ static const R_CallMethodDef CallEntries[] = {
     {"_GCATR_get_average_conductance_of_codeidx", (DL_FUNC) &_GCATR_get_average_conductance_of_codeidx, 2},
     {"_GCATR_get_max_conductance_of_codeidx", (DL_FUNC) &_GCATR_get_max_conductance_of_codeidx, 2},
     {"_GCATR_get_min_conductance_of_codeidx", (DL_FUNC) &_GCATR_get_min_conductance_of_codeidx, 2},
-    {"_GCATR_print_all_translation_table", (DL_FUNC) &_GCATR_print_all_translation_table, 0},
+    {"_GCATR_print_all_translation_tables", (DL_FUNC) &_GCATR_print_all_translation_tables, 0},
     {"_GCATR_genetic_codes_by_index", (DL_FUNC) &_GCATR_genetic_codes_by_index, 1},
     {"_GCATR_genetic_codes_by_name", (DL_FUNC) &_GCATR_genetic_codes_by_name, 1},
-    {"_GCATR_seq_prepare_factor_gen_c3graph", (DL_FUNC) &_GCATR_seq_prepare_factor_gen_c3graph, 2},
-    {"_GCATR_code_prepare_factor_gen_c3graph", (DL_FUNC) &_GCATR_code_prepare_factor_gen_c3graph, 1},
-    {"_GCATR_code_prepare_factor_gen_graph", (DL_FUNC) &_GCATR_code_prepare_factor_gen_graph, 3},
-    {"_GCATR_seq_prepare_factor_gen_graph", (DL_FUNC) &_GCATR_seq_prepare_factor_gen_graph, 4},
-    {"_GCATR_code_prepare_factor_all_circles", (DL_FUNC) &_GCATR_code_prepare_factor_all_circles, 1},
-    {"_GCATR_seq_prepare_factor_all_circles", (DL_FUNC) &_GCATR_seq_prepare_factor_all_circles, 2},
-    {"_GCATR_code_prepare_factor_longest_path", (DL_FUNC) &_GCATR_code_prepare_factor_longest_path, 1},
-    {"_GCATR_seq_prepare_factor_longest_path", (DL_FUNC) &_GCATR_seq_prepare_factor_longest_path, 2},
-    {"_GCATR_code_check_if_circular", (DL_FUNC) &_GCATR_code_check_if_circular, 1},
-    {"_GCATR_code_check_if_cn_circular", (DL_FUNC) &_GCATR_code_check_if_cn_circular, 1},
-    {"_GCATR_code_check_if_comma_free", (DL_FUNC) &_GCATR_code_check_if_comma_free, 1},
-    {"_GCATR_code_check_if_self_complementary", (DL_FUNC) &_GCATR_code_check_if_self_complementary, 1},
-    {"_GCATR_code_get_acid", (DL_FUNC) &_GCATR_code_get_acid, 1},
-    {"_GCATR_code_get_one_longest_path_as_vector", (DL_FUNC) &_GCATR_code_get_one_longest_path_as_vector, 1},
-    {"_GCATR_code_get_all_longest_path_as_vector", (DL_FUNC) &_GCATR_code_get_all_longest_path_as_vector, 1},
-    {"_GCATR_code_get_one_circle_as_vector", (DL_FUNC) &_GCATR_code_get_one_circle_as_vector, 1},
-    {"_GCATR_code_get_all_circle_as_vector", (DL_FUNC) &_GCATR_code_get_all_circle_as_vector, 1},
+    {"_GCATR_code_prepare_factor_gen_c3graph", (DL_FUNC) &_GCATR_code_prepare_factor_gen_c3graph, 2},
+    {"_GCATR_code_prepare_factor_graph", (DL_FUNC) &_GCATR_code_prepare_factor_graph, 4},
+    {"_GCATR_code_prepare_factor_all_cycle", (DL_FUNC) &_GCATR_code_prepare_factor_all_cycle, 2},
+    {"_GCATR_code_prepare_factor_longest_path", (DL_FUNC) &_GCATR_code_prepare_factor_longest_path, 2},
+    {"_GCATR_code_check_if_circular", (DL_FUNC) &_GCATR_code_check_if_circular, 2},
+    {"_GCATR_code_check_if_k_circular", (DL_FUNC) &_GCATR_code_check_if_k_circular, 3},
+    {"_GCATR_code_check_if_cn_circular", (DL_FUNC) &_GCATR_code_check_if_cn_circular, 2},
+    {"_GCATR_code_check_if_comma_free", (DL_FUNC) &_GCATR_code_check_if_comma_free, 2},
+    {"_GCATR_code_check_if_self_complementary", (DL_FUNC) &_GCATR_code_check_if_self_complementary, 2},
+    {"_GCATR_code_get_acid", (DL_FUNC) &_GCATR_code_get_acid, 2},
+    {"_GCATR_code_get_one_longest_path_as_vector", (DL_FUNC) &_GCATR_code_get_one_longest_path_as_vector, 2},
+    {"_GCATR_code_get_all_longest_path_as_vector", (DL_FUNC) &_GCATR_code_get_all_longest_path_as_vector, 2},
+    {"_GCATR_code_get_one_cycles_as_vector", (DL_FUNC) &_GCATR_code_get_one_cycles_as_vector, 2},
+    {"_GCATR_code_get_all_cycles_as_vector", (DL_FUNC) &_GCATR_code_get_all_cycles_as_vector, 2},
     {"_GCATR_get_dna_bases", (DL_FUNC) &_GCATR_get_dna_bases, 0},
     {"_GCATR_get_rna_bases", (DL_FUNC) &_GCATR_get_rna_bases, 0},
-    {"_GCATR_find_amd_analysis_code_in_sequence", (DL_FUNC) &_GCATR_find_amd_analysis_code_in_sequence, 2},
+    {"_GCATR_find_and_analysis_code_in_sequence", (DL_FUNC) &_GCATR_find_and_analysis_code_in_sequence, 3},
+    {"_GCATR_generate_code_by_min_value", (DL_FUNC) &_GCATR_generate_code_by_min_value, 2},
+    {"_GCATR_shift_tuples", (DL_FUNC) &_GCATR_shift_tuples, 3},
     {NULL, NULL, 0}
 };
 

@@ -19,9 +19,14 @@ TEST (CircularTest, CircularCodes) {
 }
 
 TEST (CircularTest, NotCircularCodes) {
-    EXPECT_EQ(_is_circular({"AGA", "AAG", "CAA"}), false);
+   EXPECT_EQ(_is_circular({"AGA", "AAG", "CAA"}), false);
 
-    EXPECT_EQ(_is_circular({"AAA"}), false);
+   EXPECT_EQ(_is_circular({"AAA"}), false);
 
-    EXPECT_EQ(_is_circular({"ACA", "CAU", "CUG", "GAC", "UGA"}), false);
+   EXPECT_EQ(_is_circular({"ACA", "CAU", "CUG", "GAC", "UGA"}), false);
+}
+
+TEST (CircularTest, NotCircularCodesLength) {
+    EXPECT_EQ(_is_circular({"CCCAAAA", "ACCCAAA"}), false);
+    EXPECT_EQ(_is_circular({"ACACCCA", "ACCCAAA", "AAACACC", "CACCCAA", "CCAAACA", "CCCAAAC", "AACACCC", "CAAACAC"}), false);
 }

@@ -25,6 +25,7 @@ TEST(ACIDTest, AntiCodon) {
     EXPECT_EQ(acid::get_anti_codon("TCG AUG", acid::RNA), "");
     EXPECT_EQ(acid::get_anti_codon("TCG", acid::NONE), "");
     EXPECT_EQ(acid::get_anti_codon("TLG", acid::NONE), "");
+    EXPECT_EQ(acid::get_anti_codon("A22", acid::NONE), "");
 }
 
 TEST(ACIDTest, AcidTranslation) {

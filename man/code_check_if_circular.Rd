@@ -2,19 +2,25 @@
 % Please edit documentation in R/RcppExports.R
 \name{code_check_if_circular}
 \alias{code_check_if_circular}
-\title{Check if a DNA/RNA code is circular.}
+\title{Check if a code is circular.}
 \usage{
-code_check_if_circular(code)
+code_check_if_circular(code, length = -1L)
 }
 \arguments{
-\item{code}{is a DNA or RNA code as string vector.}
+\item{code}{is either a string vector or a string. It can either be a code or a sequence.}
+
+\item{length}{if code is a sequence, length is the tuple length of the code.}
 }
 \value{
 Boolean value. True if the code is circular.
 }
 \description{
-This function checks if a genetic code is circular.
-Circular codes is an approach for finding the method used in gens for retrieving the correct reading frames.\cr
+This function checks if a code is circular. The code can either be a vector of tuples or a sequence. If the code
+is a sequence an additional word length parameter is needed.
+Circular codes are a block codes. We will call a set of tuples \emph{X} of same length
+a code if every concatenation of words \emph{w} in \emph{X} written on a circle has only a single decomposition into words from \emph{X}.
+It is used as an unproved approach to explain the
+method used in gens to retrieving the correct reading frames of RNA.\cr
 For more info on this subject read:\cr
 \link{https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5492142/},\cr
 \link{http://dpt-info.u-strasbg.fr/~c.michel/Circular_Codes.pdf},\cr
@@ -22,5 +28,7 @@ For more info on this subject read:\cr
 }
 \examples{
 code_check_if_circular(c("ACG", "CAG"))
+code_check_if_circular("ACGCAG", 3)
+code_check_if_circular("ACG CAG")
 
 }

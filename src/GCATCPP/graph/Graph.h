@@ -10,22 +10,29 @@
 
 #include "Edge.h"
 #include "Vertex.h"
+#include "../codes/Alphabet.h"
 #include "../helper/AbstractErrorManager.h"
 
-class AbstractGenCode;
+class AbstractCode;
 
 namespace graph {
 
     class Graph : public err::AbstractErrorManager {
     public:
-        void parse_code(const AbstractGenCode &);
 
-        void add_vertices(std::string from, std::string to);
+        explicit Graph(const AbstractCode &);
+        explicit Graph(const Alphabet &);
 
-        virtual void add_word(std::string word);
+        void parse_code(const AbstractCode &code);
+
+        void add_vertices(const std::string &from, const std::string &to);
+
+        virtual void add_word(const std::string & word);
 
         void add_graph(const Graph &);
 
+
+        void set_alphabet(const AbstractCode &);
 
         std::vector<Edge> remove_edges(const Graph &to_remove);
 
@@ -42,6 +49,9 @@ namespace graph {
         std::vector<Edge> get_edges() const;
 
     protected:
+
+        Alphabet alphabet;
+
         std::vector<std::shared_ptr<Vertex> > vertices = {};
         std::vector<std::shared_ptr<Edge> > edges = {};
 

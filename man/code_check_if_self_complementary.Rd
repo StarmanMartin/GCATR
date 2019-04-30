@@ -4,23 +4,29 @@
 \alias{code_check_if_self_complementary}
 \title{Check if a code is self complementary.}
 \usage{
-code_check_if_self_complementary(code)
+code_check_if_self_complementary(code, length = -1L)
 }
 \arguments{
-\item{code}{A vector with codons.}
+\item{code}{is either a string vector or a string. It has to be a RNA/DNA - code or a sequence.}
+
+\item{length}{if code is a sequence, length is the tuple length of the code.}
 }
 \value{
-Boolean value. True if the code self complementary.
+Boolean value. True if the code is self-complementary.
 }
 \description{
-The function checks if the code is self complementary. A self complementary code contains for 
-any codon (word) in the code the corresponding anti-codons.
-For more info on this subject read:\cr
+This function checks if a code is self complementary.
+The code can either be a vector of DNA/RNA tuples or a sequence. If the code
+is a sequence an additional word length parameter is needed.\cr
+A code is self complementary if and only if for all tuples in the code the anti-tuple is also in the code.
+An anti-tuple is te reversed tuple of complementary bases.\cr A <-> T (U) and C <-> G. The anti-tuple of ACG is CGT
 \link{https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5492142/},\cr
 \link{http://dpt-info.u-strasbg.fr/~c.michel/Circular_Codes.pdf},\cr
 \emph{2007 Christian MICHEL. CIRCULAR CODES IN GENES}
 }
 \examples{
 code_check_if_self_complementary(c("ACG", "CAG"))
+code_check_if_self_complementary("ACGCAG", 3)
+code_check_if_self_complementary("ACG CAG")
 
 }

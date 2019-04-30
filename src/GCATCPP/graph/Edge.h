@@ -8,13 +8,15 @@
 #include <string>
 #include <memory>
 
+#include "../codes/Alphabet.h"
+
 
 namespace graph {
     class Vertex;
 
     class Edge {
     public:
-        Edge(std::shared_ptr<Vertex> from, std::shared_ptr<Vertex> to);
+        Edge(std::shared_ptr<Vertex> from, std::shared_ptr<Vertex> to, const Alphabet& alphabet);
 
         std::string get_label() const;
 
@@ -41,6 +43,7 @@ namespace graph {
     private:
         std::shared_ptr<Vertex> from;
         std::shared_ptr<Vertex> to;
+        Alphabet alphabet;
         int index;
 
         void calculate_index();

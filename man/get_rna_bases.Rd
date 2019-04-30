@@ -2,7 +2,7 @@
 % Please edit documentation in R/RcppExports.R
 \name{get_rna_bases}
 \alias{get_rna_bases}
-\title{Returns all DNA bases}
+\title{Returns all RNA bases}
 \usage{
 get_rna_bases()
 }
@@ -10,5 +10,9 @@ get_rna_bases()
 {"U", "C", "A", "G"}
 }
 \description{
-Returns all DNA bases
+Returns all RNA bases
+}
+\examples{
+res <- get_rna_bases()
+
 }

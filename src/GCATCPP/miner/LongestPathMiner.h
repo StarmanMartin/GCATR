@@ -7,17 +7,17 @@
 
 #include "../graph/Graph.h"
 
-class AbstractGenCode;
+class AbstractCode;
 
 namespace miner {
     class LongestPathMiner {
     public:
-        static std::vector<std::vector<std::string>> mine_path_as_vector(AbstractGenCode *);
+        static std::vector<std::vector<std::string>> mine_path_as_vector(AbstractCode *);
 
-        static graph::Graph mine_path_as_graph(AbstractGenCode *);
+        static graph::Graph mine_path_as_graph(AbstractCode *);
 
     private:
-        static std::vector<graph::Graph> mine_all_path_as_graph(AbstractGenCode *);
+        static std::vector<graph::Graph> mine_all_path_as_graph(AbstractCode *);
     };
 }
 

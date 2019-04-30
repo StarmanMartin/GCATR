@@ -4,10 +4,12 @@
 \alias{code_get_acid}
 \title{Get acid type of a code}
 \usage{
-code_get_acid(code)
+code_get_acid(code, length = -1L)
 }
 \arguments{
-\item{code}{A vector with codons.}
+\item{code}{is either a string vector or a string. It should be a RNA/DNA - code or a sequence.}
+
+\item{length}{if code is a sequence, length is the tuple length of the code.}
 }
 \value{
 String value. One of NONE, DNA, RNA
@@ -15,14 +17,16 @@ String value. One of NONE, DNA, RNA
 \description{
 Returns either RNA or DNA depending on the codes Bases. If the code contains only CYTOSINE (C), ADENINE (A), GUANINE (G)
 the functions returns DNA. If the code contains THYMINE (T) it will also return DNA. On the other side, if the
-the code contains URACIL (U) bases the function returns RNA. If the code contains URACIL (U) & THYMINE (T) or any other letter
-then CYTOSINE (A), ADENINE (A), GUANINE (G), URACIL (U) or THYMINE (T) it will return NONE
+the code contains URACIL (U) bases the function returns RNA. If the code contains URACIL (U) and THYMINE (T) or any other letter
+then CYTOSINE (C), ADENINE (A), GUANINE (G), URACIL (U) or THYMINE (T) it will return NONE
 For more info on this subject read:\cr
 \link{https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5492142/},\cr
 \link{http://dpt-info.u-strasbg.fr/~c.michel/Circular_Codes.pdf},\cr
 \emph{2007 Christian MICHEL. CIRCULAR CODES IN GENES}
 }
 \examples{
-acid <- code_get_acid(c("ACG", "CAG"))
+code_get_acid(c("ACG", "CAG"))
+code_get_acid("ACGCAG", 3)
+code_get_acid("ACG CAG")
 
 }

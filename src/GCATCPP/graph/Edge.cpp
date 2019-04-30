@@ -14,7 +14,7 @@
 
 using namespace graph;
 
-Edge::Edge(std::shared_ptr<Vertex> from, std::shared_ptr<Vertex> to) : from(from), to(to), index(0) {
+Edge::Edge(std::shared_ptr<Vertex> from, std::shared_ptr<Vertex> to, const Alphabet& alphabet) : from(from), to(to), index(0), alphabet(alphabet) {
     this->calculate_index();
 }
 
@@ -52,15 +52,15 @@ void Edge::calculate_index() {
         label = filler.str() + this->from->get_label() + this->to->get_label();
     }
 
-    int length = acid::acid_base_length + 1;
+    int length = (int) this->alphabet.as_string().length();
     int power_val = 1;
 
     for (int i = 0; i < label.length(); ++i) {
         if (label[i] != PLACEHOLER) {
-            this->index += acid::get_base_value((acid::bases) label[i]) * power_val;
+            this->index += this->alphabet.get_letter_value(label[i]) * power_val;
         } else {
-            this->index += acid::acid_base_length * power_val;
+            this->index += length * power_val;
         }
-        power_val *= length;
+        power_val *= length+1;
     }
 }

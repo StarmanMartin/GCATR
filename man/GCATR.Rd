@@ -4,10 +4,16 @@
 \name{GCATR}
 \alias{GCATR}
 \alias{GCATR-package}
-\title{GCATR}
+\title{Genetic Code Analysis Toolkit (GCAT) in R -> GCATR}
 \description{
-The package is a verson of the GCAT tool optimized for R.
+The genetic code is the major tool that nature uses for the transmission of information. By assigning amino acids to triplets of nucleic bases, so-called codons, it serves as a kind of dictionary between the two worlds of nucleic acids on the one hand and proteins on the other hand. As such it is involved in the communication process, called translation, and one of its most conserved properties is degeneracy respectively redundancy, i.e. several codons may encode the same amino acid. This is also expressed in the central dogma of molecular biology which consists of replication, (reversed) transcription and translation. Degeneracy is the essential tool in any system that allows error detection or even error correction and the probability that genetic information is preserved without such an error detecting/error correcting system is zero.\cr\cr
+Why the genetic code is as it is and how it evolved from a long evolutionary process are still two of the major open questions. Several approaches from communication theory, mathematics and physics have been made to explain the structure and functionality of the genetic code table. One of the approaches is based on the finding of so-called circular codes in large genes of prokaryotes and eukaryotes by Arquis and Michel. Such codes are subsets of the set of codons that seem to be used by nature in order to eventually detect frame shift errors in the translation process. Circular codes are weaker versions of comma-free codes which can detect frame shift errors immediately. The investigation of the structure of circular and comma-free codes and their use in nature was the motivation for the development of the Genetic Code Analysis Toolkit, to explore the genetic code and its features (see K. Kraljic, L. Strungmann, E. Fimmel, M. Gumbel: "Genetic Code Analysis Toolkit: A novel tool to explore the coding properties of the genetic code and DNA sequences", SoftwareX, Volume 7, January-June 2018, Pages 12-14, doi.org/10.1016/j.softx.2017.10.008 ).\cr\cr
+The Genetic Code Analysis Toolkit provides workflows and algorithms for the analysis of the genetic code and is capable of handling sets of codons as well as sequences of codons that come from GenBank or from FASTA files. The tool also comes with a comprehensive editor that provides visualisations of the processes implemented. This is one of the advantages to other tools like bioconductor (Huber et al. (2015)) which require a knowledge in scripting.\cr\cr
+Genetic Code Analysis Toolkit is intended to be used primarely by biologists who perform elementary tasks and do some simple scripting.
+}
+\seealso{
+<https://www.cammbio.hs-mannheim.de/institute.html> for more info.
 }
 \author{
-: Martin Starman
+Martin Starman <m.starman@doktoranden.hs-mannheim.de>
 }

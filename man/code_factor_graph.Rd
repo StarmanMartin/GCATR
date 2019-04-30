@@ -4,21 +4,25 @@
 \alias{code_factor_graph}
 \title{Prepares a R igraph object.}
 \usage{
-code_factor_graph(code, show_circles = FALSE, show_longest_path = FALSE)
+code_factor_graph(code, show_cycles = FALSE, show_longest_path = FALSE,
+  tuple_length = -1)
 }
 \arguments{
-\item{code}{A DNA or RNA code as string vector represented by the graph.}
+\item{code}{is either a string vector or a string.}
 
-\item{show_circles}{A bool value. If true the all edges building a circle are colored red.}
+\item{show_cycles}{A bool value. If true the all edges which are part of a cycle are colored red.}
 
 \item{show_longest_path}{A bool value. If true the all edges part of the longest path are colored blue.}
+
+\item{tuple_length}{if code is a sequence, length is the tuple length of the code.}
 }
 \value{
-A igraph (<http://igraph.org/r/>) object
+A igraph (<http://igraph.org/r/>) object: A graph representing a circular code.
 }
 \description{
-The funciton prepares graph G(X) object for a code. The following definition relates a directed graph to
-any n-nucleotide code. Recall from graph theory (Clark and Holton, 1991) that a graph G consists of
+This function factors a igraph (<http://igraph.org/r/>) object of an representing graph of a circular code.
+The following definition describes a directed graph to an n-nucleotide code.
+Recall from graph theory (Clark and Holton, 1991) that a graph G consists of
 a finite set of vertices (nodes) V and a finite set of edges E. Here, an edge is a set \{v,w\} of vertices
 from V . The graph is called oriented if the edges have an orientation, i.e. edges are considered to be
 ordered pairs [v,w] in this case.\cr
@@ -33,10 +37,9 @@ by pairs of i-nucleotides and (n-i)-nucleotides for 0 < i < n.\cr
 \emph{2007 E. FIMMEL, C. J. MICHEL, AND L. STRÜNGMANN. N-nucleotide circular codes in graph theory}
 }
 \examples{
-G <- code_factor_graph(c("ACG", "CGA"))
+G <- code_factor_graph(c("ACG", "CAG"), TRUE, TRUE)
+G <- code_factor_graph("ACGCAG", tuple_length=3, show_cycles=TRUE, show_longest_path=TRUE)
+G <- code_factor_graph("ACG CAG", TRUE, TRUE)
 plot(G)
 
-}
-\seealso{
-[seq_factor_graph(seq, word_length)] for sequences
 }

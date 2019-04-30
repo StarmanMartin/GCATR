@@ -12,3 +12,7 @@ get_dna_bases()
 \description{
 Returns all DNA bases
 }
+\examples{
+res <- get_dna_bases ()
+
+}

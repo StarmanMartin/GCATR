@@ -12,6 +12,10 @@ AbstractErrorManager::AbstractErrorManager() {
     this->reset_msg();
 }
 
+void AbstractErrorManager::suppress_errors() {
+    this->is_suppressed = true;
+}
+
 void AbstractErrorManager::print_errors() {
     if(!this->_has_error) { return;}
     std::cerr << (std::string) *this << std::endl;
@@ -34,8 +38,10 @@ void AbstractErrorManager::add_error_msges(std::vector<std::string> msges) {
 }
 
 void AbstractErrorManager::add_error_msg(std::string err_msg) {
-    this->_has_error = true;
-    this->msg.push_back(err_msg);
+    if(!this->is_suppressed) {
+        this->_has_error = true;
+        this->msg.push_back(err_msg);
+    }
 }
 
 void AbstractErrorManager::reset_msg() {
