@@ -17,8 +17,10 @@ Boolean value. True if the code is circular.
 \description{
 This function checks if a code is circular. The code can either be a vector of tuples or a sequence. If the code
 is a sequence an additional word length parameter is needed.
-Circular codes are a block codes. It is used as an unproved approach to explain the
-method used in gens to retrieving the correct reading frames.\cr
+Circular codes are a block codes. We will call a set of tuples \emph{X} of same length
+a code if every concatenation of words \emph{w} in \emph{X} written on a circle has only a single decomposition into words from \emph{X}.
+It is used as an unproved approach to explain the
+method used in gens to retrieving the correct reading frames of RNA.\cr
 For more info on this subject read:\cr
 \link{https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5492142/},\cr
 \link{http://dpt-info.u-strasbg.fr/~c.michel/Circular_Codes.pdf},\cr

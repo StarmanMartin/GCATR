@@ -46,7 +46,7 @@ devtools::install_github("StarmanMartin/GCATR")
 [code_get_one_longest_path_as_vector](#code_get_one_longest_path_as_vector)<br>
 [code_get_all_longest_path_as_vector](#code_get_all_longest_path_as_vector)<br>
 
-### [Generic Circular Codes](#generic-circular-codes)
+### [Genetic Circular Codes](#generic-circular-codes)
 
 [code_check_if_self_complementary](code_check_if_self_complementary)<br>
 [code_get_acid](code_get_acid)<br>
@@ -54,6 +54,17 @@ devtools::install_github("StarmanMartin/GCATR")
 [get_rna_bases](get_rna_bases)<br>
 [get_rna_codon_table](get_rna_codon_table)<br><!--accessory:[![Genetic Code Analysis Toolkit Logo](/man/resources/bio/gcat/codon_table.jpg?raw=true)]-->
 [get_rna_codon_list](get_rna_codon_list)<br>
+
+[print_all_translation_tables](print_all_translation_tables)<br>
+[genetic_codes_by_index](genetic_codes_by_index)<br>
+[genetic_codes_by_name](genetic_codes_by_name)<br>
+
+[get_average_conductance_of_codeidx](get_average_conductance_of_codeidx)<br>
+[get_max_conductance_of_codeidx](get_max_conductance_of_codeidx)<br>
+[get_min_conductance_of_codeidx](get_min_conductance_of_codeidx)<br>
+[get_average_conductance_of_code](get_average_conductance_of_code)<br>
+[get_max_conductance_of_code](get_max_conductance_of_code)<br>
+[get_min_conductance_of_code](get_min_conductance_of_code)<br>
 
 ### [Binary Dichotomic Algorithm (BDA)](#binary_dichotomic_algorithm_(BDA))
 
@@ -91,8 +102,10 @@ Boolean value. True if the code is circular.
  
 This function checks if a code is circular. The code can either be a vector of tuples or a sequence. If the code
 is a sequence an additional word length parameter is needed.
-Circular codes are a block codes. It is used as an unproved approach to explain the
-method used in gens to retrieving the correct reading frames.<br>
+Circular codes are a block codes. We will call a set of tuples *X* of same length
+a code if every concatenation of words *w* in *X* written on a circle has only a single decomposition into words from *X*.
+It is used as an unproved approach to explain the
+method used in gens to retrieving the correct reading frames of RNA.<br>
 For more info on this subject read:<br>
 *https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5492142/*,<br>
 *http://dpt-info.u-strasbg.fr/~c.michel/Circular_Codes.pdf*,<br>
@@ -135,9 +148,8 @@ This function checks if a code is k-circular.
 The code can either be a vector of tuples or a sequence. If the code
 is a sequence an additional word length parameter is needed.<br>
 k-circular means:<br>
-that for any sequence of less then k tuples of the code there is only one partition into tuples from the code.<br>
-Circular codes are a block codes. It is used as an unproved approach to explain the
-method used in gens to retrieving the correct reading frames.<br>
+That for each sequence/concatenation of less than k tuples of a code *X* written on a circle, there is only one partition in tuples from the code *X*.
+This is an extended property of the circular codes. Circular codes are a block codes. See *code_check_if_circular* for more details.<br>
 *https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5492142/*,<br>
 *http://dpt-info.u-strasbg.fr/~c.michel/Circular_Codes.pdf*,<br>
 *2007 Christian MICHEL. CIRCULAR CODES IN GENES*
@@ -177,9 +189,8 @@ This function checks if a code is Cn-circular.
 The code can either be a vector of tuples or a sequence. If the code
 is a sequence an additional word length parameter is needed.<br>
 Cn-circular means:<br>
-that all circular permutations of the code (all tuples) are circular.<br>
-Circular codes are a block codes. It is used as an unproved approach to explain the
-method used in gens to retrieving the correct reading frames.<br>
+That all circular permutations of the code (all tuples) are circular codes again.<br>
+This is an extended property of the circular codes. Circular codes are a block codes. See *code_check_if_circular* for more details.<br>
 *https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5492142/*,<br>
 *http://dpt-info.u-strasbg.fr/~c.michel/Circular_Codes.pdf*,<br>
 *2007 Christian MICHEL. CIRCULAR CODES IN GENES*
@@ -220,8 +231,7 @@ The code can either be a vector of tuples or a sequence. If the code
 is a sequence an additional word length parameter is needed.<br>
 Comma free is a more restrictive code of the family of the circular codes:<br>
 A comma-free code is block code in which no concatenation of two code words contains a valid code word that overlaps both.<br>
-Circular codes are a block codes. It is used as an unproved approach to explain the
-method used in gens to retrieving the correct reading frames.<br>
+This is an extended property of the circular codes. Circular codes are a block codes. See *code_check_if_circular* for more details.<br>
 *https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5492142/*,<br>
 *http://dpt-info.u-strasbg.fr/~c.michel/Circular_Codes.pdf*,<br>
 *2007 Christian MICHEL. CIRCULAR CODES IN GENES*
@@ -373,7 +383,7 @@ A igraph (<http://igraph.org/r/>) object: A graph representing a circular code.
 
 #### Description
  
-This function factors the set of edges and the set of vertices of an representing graph of a circular code.
+This function factors a igraph (<http://igraph.org/r/>) object of an representing graph of a circular code.
 The following definition describes a directed graph to an n-nucleotide code.
 Recall from graph theory (Clark and Holton, 1991) that a graph G consists of
 a finite set of vertices (nodes) V and a finite set of edges E. Here, an edge is a set \{v,w\} of vertices
@@ -452,7 +462,9 @@ code_factor_longest_path(code, tuple_length = -1)
 
 
 #### Return
- \-
+ 
+A igraph (<http://igraph.org/r/>) object: Edges and vertices of only the longest path of an graph representing a circular code.
+
 
 #### Description
  
@@ -493,7 +505,7 @@ List:  A igraph (<http://igraph.org/r/>) object: A graph representing a circular
 
 #### Description
  
-This function factors a igraph (<http://igraph.org/r/>) object: of an representing graph of a circular code.
+This function factors a igraph (<http://igraph.org/r/>) object of an representing graph of a circular code.
 The difference to the standard Graph is that the edges of the shifted (circular permutated) Codes
 of the the origin code are included as undirected edges.<br>
 The following definition describes a directed graph to an n-nucleotide code.
@@ -721,8 +733,8 @@ List of nodes representing a circular path in G(X).
 #### Description
  
 Prepares a R path string vector. Extracts all cycles in the Graph G(X).
-If the graph has no cycles the vector will be empty. Otherwise it returns a vector with one the nodes of
-circular path.<br>
+If the graph has no cycles the vector will be empty. Otherwise it returns a vector with the nodes of
+a circular path.<br>
 *2007 E. FIMMEL, C. J. MICHEL, AND L. STRÜNGMANN. N-nucleotide circular codes in graph theory*
 
 
@@ -757,8 +769,8 @@ List of nodes representing a circular path in G(X).
 #### Description
  
 Prepares a list of R path string vector. Extracts all cycles in the Graph G(X).
-If the graph has no cycles the vector will be empty. Otherwise it returns a vector with one the nodes of
-circular path.<br>
+If the graph has no cycles the vector will be empty. Otherwise it returns a list of vectors with the nodes of
+the circular paths.<br>
 *2007 E. FIMMEL, C. J. MICHEL, AND L. STRÜNGMANN. N-nucleotide circular codes in graph theory*
 
 
@@ -792,7 +804,7 @@ A String vector. Nodes of the longest path
 
 #### Description
  
-Prepares a R path string vector. Extracts all longest paths of the Graph G(X) and returns the first found one.
+Prepares a R path string vector. Extracts all longest paths of the Graph G(X) and returns the tuples of the first found one.
 If the graph shows a cycle the vector will be empty. Otherwise it returns a vector with one longest path.<br>
 *2007 E. FIMMEL, C. J. MICHEL, AND L. STRÜNGMANN. N-nucleotide circular codes in graph theory*
 
@@ -827,7 +839,7 @@ A list of String vectors. Nodes of the longest path
 
 #### Description
  
-Prepares a list of R path string vector. Extracts all longest paths of the Graph G(X) and returns them as a list.
+Prepares a list of R path string vector. Extracts all longest paths of the Graph G(X) and returns a list.
 If the graph shows a cycle the vector will be empty. Otherwise it returns a list of vector with all longest paths.<br>
 *2007 E. FIMMEL, C. J. MICHEL, AND L. STRÜNGMANN. N-nucleotide circular codes in graph theory*
 
@@ -841,7 +853,7 @@ l_path <- code_get_all_longest_path_as_vector("ACG CGA")
 ```
 <hr>
 
-## Generic Circular Codes
+## Genetic Circular Codes
 
 ### code_check_if_self_complementary
 
@@ -869,8 +881,6 @@ The code can either be a vector of DNA/RNA tuples or a sequence. If the code
 is a sequence an additional word length parameter is needed.<br>
 A code is self complementary if and only if for all tuples in the code the anti-tuple is also in the code.
 An anti-tuple is te reversed tuple of complementary bases.<br> A <-> T (U) and C <-> G. The anti-tuple of ACG is CGT
-Circular codes are a block codes. It is used as an unproved approach to explain the
-method used in gens to retrieving the correct reading frames.<br>
 *https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5492142/*,<br>
 *http://dpt-info.u-strasbg.fr/~c.michel/Circular_Codes.pdf*,<br>
 *2007 Christian MICHEL. CIRCULAR CODES IN GENES*
@@ -908,7 +918,7 @@ String value. One of NONE, DNA, RNA
  
 Returns either RNA or DNA depending on the codes Bases. If the code contains only CYTOSINE (C), ADENINE (A), GUANINE (G)
 the functions returns DNA. If the code contains THYMINE (T) it will also return DNA. On the other side, if the
-the code contains URACIL (U) bases the function returns RNA. If the code contains URACIL (U) & THYMINE (T) or any other letter
+the code contains URACIL (U) bases the function returns RNA. If the code contains URACIL (U) and THYMINE (T) or any other letter
 then CYTOSINE (C), ADENINE (A), GUANINE (G), URACIL (U) or THYMINE (T) it will return NONE
 For more info on this subject read:<br>
 *https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5492142/*,<br>
@@ -946,7 +956,10 @@ Returns all DNA bases
 
 
 #### Examples
-```R \-```
+```R 
+res <- get_dna_bases ()
+
+```
 <hr>
 
 ### get_rna_bases
@@ -966,11 +979,14 @@ get_rna_bases()
 
 #### Description
  
-Returns all DNA bases
+Returns all RNA bases
 
 
 #### Examples
-```R \-```
+```R 
+res <- get_rna_bases()
+
+```
 <hr>
 
 ### get_rna_codon_table
@@ -1030,6 +1046,298 @@ AUU ACU AAU AGU AUC ACC AAC AGC AUA ACA AAA AGA AUG ACG AAG AGG GUU GCU GAU GGU 
 ```R 
 res <- get_rna_codon_list()
 
+```
+<hr>
+
+### print_all_translation_tables
+
+#### Usage
+```R 
+print_all_translation_tables()
+```
+
+#### Arguments
+ \-
+
+#### Return
+ \-
+
+#### Description
+ 
+*print_all_translation_tables* prints a list of the genetic codes contained by this project. The list includes names and indexes of the codes.
+
+
+#### Examples
+```R 
+print_all_translation_tables()
+
+```
+<hr>
+
+### genetic_codes_by_index
+
+#### Usage
+```R 
+genetic_codes_by_index(idx)
+```
+
+#### Arguments
+ 
+*idx*	the index of a Genetic Code as int. (check *print_all_translation_table*)<br>
+
+
+#### Return
+ 
+Returns a named List with all codons and the translated amino acids:<br>
+
+
+#### Description
+ 
+*genetic_codes_by_index* returns a list representing a Genetic Code. The list contains two arrays, one array of the codons and one array of the translated amino acids in the same order.
+<br> Source:<br>
+*Compiled by Andrzej (Anjay) Elzanowski and Jim Ostell at National Center for Biotechnology Information (NCBI), Bethesda, Maryland, U.S.A.*<br>
+*Last update of the Genetic Codes: Nov. 18, 2016*
+**{*https://www.ncbi.nlm.nih.gov/Taxonomy/Utils/wprintgc.cgi*}
+
+
+#### Examples
+```R 
+(code <- genetic_codes_by_index(1))
+
+```
+<hr>
+
+### genetic_codes_by_name
+
+#### Usage
+```R 
+genetic_codes_by_name(name)
+```
+
+#### Arguments
+ 
+*name*	the name of a Genetic Code as string. (check *print_all_translation_table*)<br>
+
+
+#### Return
+ 
+Returns a named List with all codons and the translated amino acids:<br>
+
+
+#### Description
+ 
+*codons* all codons as strings.<br>
+*amino_acids* the translated aminop acids in same order.<br>
+
+
+#### Examples
+```R 
+(code <- genetic_codes_by_name("The Yeast Mitochondrial Code"))
+
+```
+<hr>
+
+### get_average_conductance_of_codeidx
+
+#### Usage
+```R 
+get_average_conductance_of_codeidx(codeIdx, acid = "DNA")
+```
+
+#### Arguments
+ 
+*codeIdx*	a Number, the index of the genetic translation table. (see *print_all_translation_tables*)<br>
+
+*acid*	a String, is optional: DNA or RNA<br>
+
+
+#### Return
+ 
+A Number, the average conductance of a genetic translation table
+
+
+#### Description
+ 
+This function calculates the average conductance for a selected genetic translation table.
+The conductance is a number which reflects the robustness of a genetic translation table.
+The conductance the ration of the codons translating one amino acid which differ in only one position and the
+codons translating the same amino acid but differ in more then one position.
+
+
+#### Examples
+```R 
+ac = get_average_conductance_of_code("The Standard Code")
+ac = get_average_conductance_of_code("The Vertebrate Mitochondrial Code", "RNA")
+```
+<hr>
+
+### get_max_conductance_of_codeidx
+
+#### Usage
+```R 
+get_max_conductance_of_codeidx(codeIdx, acid = "DNA")
+```
+
+#### Arguments
+ 
+*codeIdx*	a Number, the index of the genetic translation table. (see *print_all_translation_tables*)<br>
+
+*acid*	a String, is optional: DNA or RNA<br>
+
+
+#### Return
+ 
+A Number, the max conductance of a genetic translation table
+
+
+#### Description
+ 
+This function calculates the max conductance for a selected genetic translation table.
+The conductance is a number which reflects the robustness of a genetic translation table.
+The conductance the ration of the codons translating one amino acid which differ in only one position and the
+codons translating the same amino acid but differ in more then one position.
+
+
+#### Examples
+```R 
+ac = get_average_conductance_of_code("The Standard Code")
+ac = get_average_conductance_of_code("The Vertebrate Mitochondrial Code", "RNA")
+```
+<hr>
+
+### get_min_conductance_of_codeidx
+
+#### Usage
+```R 
+get_min_conductance_of_codeidx(codeIdx, acid = "DNA")
+```
+
+#### Arguments
+ 
+*codeIdx*	a Number, the index of the genetic translation table. (see *print_all_translation_tables*)<br>
+
+*acid*	a String, is optional: DNA or RNA<br>
+
+
+#### Return
+ 
+A Number, the min conductance of a genetic translation table
+
+
+#### Description
+ 
+This function calculates the min conductance for a selected genetic translation table.
+The conductance is a number which reflects the robustness of a genetic translation table.
+The conductance the ration of the codons translating one amino acid which differ in only one position and the
+codons translating the same amino acid but differ in more then one position.
+
+
+#### Examples
+```R 
+ac = get_average_conductance_of_code("The Standard Code")
+ac = get_average_conductance_of_code("The Vertebrate Mitochondrial Code", "RNA")
+```
+<hr>
+
+### get_average_conductance_of_code
+
+#### Usage
+```R 
+get_average_conductance_of_code(codeName, acid = "DNA")
+```
+
+#### Arguments
+ 
+*codeName*	a String, the name of the genetic translation table. (see *print_all_translation_tables*)<br>
+
+*acid*	a String, is optional: DNA or RNA<br>
+
+
+#### Return
+ 
+A Number, the average conductance of a genetic translation table
+
+
+#### Description
+ 
+This function calculates the average conductance for a selected genetic translation table.
+The conductance is a number which reflects the robustness of a genetic translation table.
+The conductance the ration of the codons translating one amino acid which differ in only one position and the
+codons translating the same amino acid but differ in more then one position.
+
+
+#### Examples
+```R 
+ac = get_average_conductance_of_code("The Standard Code")
+ac = get_average_conductance_of_code("The Vertebrate Mitochondrial Code", "RNA")
+```
+<hr>
+
+### get_max_conductance_of_code
+
+#### Usage
+```R 
+get_max_conductance_of_code(codeName, acid = "DNA")
+```
+
+#### Arguments
+ 
+*codeName*	a String, the name of the genetic translation table. (see *print_all_translation_tables*)<br>
+
+*acid*	a String, is optional: DNA or RNA<br>
+
+
+#### Return
+ 
+A Number, the max conductance of a genetic translation table
+
+
+#### Description
+ 
+This function calculates the max conductance for a selected genetic translation table.
+The conductance is a number which reflects the robustness of a genetic translation table.
+The conductance the ration of the codons translating one amino acid which differ in only one position and the
+codons translating the same amino acid but differ in more then one position.
+
+
+#### Examples
+```R 
+ac = get_average_conductance_of_code("The Standard Code")
+ac = get_average_conductance_of_code("The Vertebrate Mitochondrial Code", "RNA")
+```
+<hr>
+
+### get_min_conductance_of_code
+
+#### Usage
+```R 
+get_min_conductance_of_code(codeName, acid = "DNA")
+```
+
+#### Arguments
+ 
+*codeName*	a String, the name of the genetic translation table. (see *print_all_translation_tables*)<br>
+
+*acid*	a String, is optional: DNA or RNA<br>
+
+
+#### Return
+ 
+A Number, the min conductance of a genetic translation table
+
+
+#### Description
+ 
+This function calculates the min conductance for a selected genetic translation table.
+The conductance is a number which reflects the robustness of a genetic translation table.
+The conductance the ration of the codons translating one amino acid which differ in only one position and the
+codons translating the same amino acid but differ in more then one position.
+
+
+#### Examples
+```R 
+ac = get_average_conductance_of_code("The Standard Code")
+ac = get_average_conductance_of_code("The Vertebrate Mitochondrial Code", "RNA")
 ```
 <hr>
 

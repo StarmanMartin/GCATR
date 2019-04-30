@@ -15,7 +15,7 @@ code_factor_c3graph(code, tuple_length = -1)
 List:  A igraph (<http://igraph.org/r/>) object: A graph representing a circular code with C3 extension..
 }
 \description{
-This function factors a igraph (<http://igraph.org/r/>) object: of an representing graph of a circular code.
+This function factors a igraph (<http://igraph.org/r/>) object of an representing graph of a circular code.
 The difference to the standard Graph is that the edges of the shifted (circular permutated) Codes
 of the the origin code are included as undirected edges.\cr
 The following definition describes a directed graph to an n-nucleotide code.

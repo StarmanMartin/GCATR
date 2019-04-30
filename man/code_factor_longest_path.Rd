@@ -11,6 +11,9 @@ code_factor_longest_path(code, tuple_length = -1)
 
 \item{tuple_length}{if code is a sequence, length is the tuple length of the code.}
 }
+\value{
+A igraph (<http://igraph.org/r/>) object: Edges and vertices of only the longest path of an graph representing a circular code.
+}
 \description{
 Prepares a R igraph object. Extracts all longest path of the Graph G(X).
 If the graph shows a cycle the graph will be empty. Otherwise it returns a igraph object showing all

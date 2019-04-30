@@ -22,7 +22,7 @@ factor_graph <- function(vertices_edges_list) {
 
 #' Prepares a R igraph object.
 #' 
-#' This function factors the set of edges and the set of vertices of an representing graph of a circular code.
+#' This function factors a igraph (<http://igraph.org/r/>) object of an representing graph of a circular code.
 #' The following definition describes a directed graph to an n-nucleotide code.
 #' Recall from graph theory (Clark and Holton, 1991) that a graph G consists of
 #' a finite set of vertices (nodes) V and a finite set of edges E. Here, an edge is a set \{v,w\} of vertices
@@ -59,7 +59,7 @@ code_factor_graph <- function(code, show_cycles=FALSE, show_longest_path=FALSE, 
 
 #' Factors an representing C3-graph of a circular code
 #'
-#' This function factors a igraph (<http://igraph.org/r/>) object: of an representing graph of a circular code.
+#' This function factors a igraph (<http://igraph.org/r/>) object of an representing graph of a circular code.
 #' The difference to the standard Graph is that the edges of the shifted (circular permutated) Codes
 #' of the the origin code are included as undirected edges.\cr
 #' The following definition describes a directed graph to an n-nucleotide code.
@@ -128,6 +128,8 @@ code_factor_cycle <- function(code, tuple_length) {
 #'
 #' @param code is either a string vector or a string.
 #' @param tuple_length if code is a sequence, length is the tuple length of the code.
+#'
+#' @return A igraph (<http://igraph.org/r/>) object: Edges and vertices of only the longest path of an graph representing a circular code.
 #'
 #' @examples
 #' G <- code_factor_longest_path(c("ACG", "CAG"))

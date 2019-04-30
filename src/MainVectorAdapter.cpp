@@ -17,8 +17,10 @@ using namespace Rcpp;
 //' 
 //' This function checks if a code is circular. The code can either be a vector of tuples or a sequence. If the code
 //' is a sequence an additional word length parameter is needed.
-//' Circular codes are a block codes. It is used as an unproved approach to explain the
-//' method used in gens to retrieving the correct reading frames.\cr
+//' Circular codes are a block codes. We will call a set of tuples \emph{X} of same length
+//' a code if every concatenation of words \emph{w} in \emph{X} written on a circle has only a single decomposition into words from \emph{X}.
+//' It is used as an unproved approach to explain the
+//' method used in gens to retrieving the correct reading frames of RNA.\cr
 //' For more info on this subject read:\cr
 //' \link{https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5492142/},\cr
 //' \link{http://dpt-info.u-strasbg.fr/~c.michel/Circular_Codes.pdf},\cr
@@ -46,9 +48,8 @@ bool code_check_if_circular(StringVector code, int length = -1) {
 //' The code can either be a vector of tuples or a sequence. If the code
 //' is a sequence an additional word length parameter is needed.\cr
 //' k-circular means:\cr
-//' that for any sequence of less then k tuples of the code there is only one partition into tuples from the code.\cr
-//' Circular codes are a block codes. It is used as an unproved approach to explain the
-//' method used in gens to retrieving the correct reading frames.\cr
+//' That for each sequence/concatenation of less than k tuples of a code \emph{X} written on a circle, there is only one partition in tuples from the code \emph{X}.
+//' This is an extended property of the circular codes. Circular codes are a block codes. See \link{code_check_if_circular} for more details.\cr
 //' \link{https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5492142/},\cr
 //' \link{http://dpt-info.u-strasbg.fr/~c.michel/Circular_Codes.pdf},\cr
 //' \emph{2007 Christian MICHEL. CIRCULAR CODES IN GENES}
@@ -76,15 +77,15 @@ bool code_check_if_k_circular(int k, StringVector code, int length = -1) {
 //' The code can either be a vector of tuples or a sequence. If the code
 //' is a sequence an additional word length parameter is needed.\cr
 //' Cn-circular means:\cr
-//' that all circular permutations of the code (all tuples) are circular.\cr
-//' Circular codes are a block codes. It is used as an unproved approach to explain the
-//' method used in gens to retrieving the correct reading frames.\cr
+//' That all circular permutations of the code (all tuples) are circular codes again.\cr
+//' This is an extended property of the circular codes. Circular codes are a block codes. See \link{code_check_if_circular} for more details.\cr
 //' \link{https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5492142/},\cr
 //' \link{http://dpt-info.u-strasbg.fr/~c.michel/Circular_Codes.pdf},\cr
 //' \emph{2007 Christian MICHEL. CIRCULAR CODES IN GENES}
 //'
 //' @param code is either a string vector or a string. It can either be a code or a sequence.
 //' @param length if code is a sequence, length is the tuple length of the code.
+//'
 //' @return Boolean value. True if the code is Cn-circular.
 //' @examples
 //' code_check_if_cn_circular(c("ACG", "CAG"))
@@ -106,8 +107,7 @@ bool code_check_if_cn_circular(StringVector code, int length = -1) {
 //' is a sequence an additional word length parameter is needed.\cr
 //' Comma free is a more restrictive code of the family of the circular codes:\cr
 //' A comma-free code is block code in which no concatenation of two code words contains a valid code word that overlaps both.\cr
-//' Circular codes are a block codes. It is used as an unproved approach to explain the
-//' method used in gens to retrieving the correct reading frames.\cr
+//' This is an extended property of the circular codes. Circular codes are a block codes. See \link{code_check_if_circular} for more details.\cr
 //' \link{https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5492142/},\cr
 //' \link{http://dpt-info.u-strasbg.fr/~c.michel/Circular_Codes.pdf},\cr
 //' \emph{2007 Christian MICHEL. CIRCULAR CODES IN GENES}
@@ -136,8 +136,6 @@ bool code_check_if_comma_free(StringVector code, int length = -1) {
 //' is a sequence an additional word length parameter is needed.\cr
 //' A code is self complementary if and only if for all tuples in the code the anti-tuple is also in the code.
 //' An anti-tuple is te reversed tuple of complementary bases.\cr A <-> T (U) and C <-> G. The anti-tuple of ACG is CGT
-//' Circular codes are a block codes. It is used as an unproved approach to explain the
-//' method used in gens to retrieving the correct reading frames.\cr
 //' \link{https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5492142/},\cr
 //' \link{http://dpt-info.u-strasbg.fr/~c.michel/Circular_Codes.pdf},\cr
 //' \emph{2007 Christian MICHEL. CIRCULAR CODES IN GENES}
@@ -162,7 +160,7 @@ bool code_check_if_self_complementary(StringVector code, int length = -1) {
 //' 
 //' Returns either RNA or DNA depending on the codes Bases. If the code contains only CYTOSINE (C), ADENINE (A), GUANINE (G)
 //' the functions returns DNA. If the code contains THYMINE (T) it will also return DNA. On the other side, if the
-//' the code contains URACIL (U) bases the function returns RNA. If the code contains URACIL (U) & THYMINE (T) or any other letter
+//' the code contains URACIL (U) bases the function returns RNA. If the code contains URACIL (U) and THYMINE (T) or any other letter
 //' then CYTOSINE (C), ADENINE (A), GUANINE (G), URACIL (U) or THYMINE (T) it will return NONE
 //' For more info on this subject read:\cr
 //' \link{https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5492142/},\cr
@@ -187,11 +185,11 @@ StringVector code_get_acid(StringVector code, int length = -1) {
 
 //' Finds one longest path in the graph of the code.
 //'
-//' Prepares a R path string vector. Extracts all longest paths of the Graph G(X) and returns the first found one.
+//' Prepares a R path string vector. Extracts all longest paths of the Graph G(X) and returns the tuples of the first found one.
 //' If the graph shows a cycle the vector will be empty. Otherwise it returns a vector with one longest path.\cr
 //' \emph{2007 E. FIMMEL, C. J. MICHEL, AND L. STRÜNGMANN. N-nucleotide circular codes in graph theory}
 //'
-//' @seealso [code_factor_longest_path()] for code, [code_get_all_longest_path_as_vector()] for the results as list
+//' @seealso \link{code_factor_longest_path} for a graph of the longest path. \link{code_get_all_longest_path_as_vector} for the results as list
 //'
 //' @param code is either a string vector or a string. It can either be a code or a sequence.
 //' @param length if code is a sequence, length is the tuple length of the code.
@@ -217,11 +215,11 @@ StringVector code_get_one_longest_path_as_vector(StringVector code, int length =
 
 //' Finds all longest paths in the graph of the code.
 //'
-//' Prepares a list of R path string vector. Extracts all longest paths of the Graph G(X) and returns them as a list.
+//' Prepares a list of R path string vector. Extracts all longest paths of the Graph G(X) and returns a list.
 //' If the graph shows a cycle the vector will be empty. Otherwise it returns a list of vector with all longest paths.\cr
 //' \emph{2007 E. FIMMEL, C. J. MICHEL, AND L. STRÜNGMANN. N-nucleotide circular codes in graph theory}
 //'
-//' @seealso [code_factor_longest_path()] for code, [code_get_one_longest_path_as_vector()] for only one result
+//' @seealso \link{code_factor_longest_path} for a graph of the longest path. \link{code_get_all_longest_path_as_vector} for only one result
 //'
 //' @param code is either a string vector or a string. It can either be a code or a sequence.
 //' @param length if code is a sequence, length is the tuple length of the code.
@@ -248,11 +246,11 @@ Rcpp::List code_get_all_longest_path_as_vector(StringVector code, int length = -
 //' Finds one circular sequences constructable in a code.
 //'
 //' Prepares a R path string vector. Extracts all cycles in the Graph G(X).
-//' If the graph has no cycles the vector will be empty. Otherwise it returns a vector with one the nodes of
-//' circular path.\cr
+//' If the graph has no cycles the vector will be empty. Otherwise it returns a vector with the nodes of
+//' a circular path.\cr
 //' \emph{2007 E. FIMMEL, C. J. MICHEL, AND L. STRÜNGMANN. N-nucleotide circular codes in graph theory}
 //'
-//' @seealso [code_factor_cycles()] for code, [code_get_all_cycles_as_vector()] for the results as list
+//' @seealso \link{code_factor_cycles} for a graph of the cycles, \link{code_get_all_cycles_as_vector} for the results as list
 //'
 //' @param code is either a string vector or a string. It can either be a code or a sequence.
 //' @param tuple_length if code is a sequence, length is the tuple length of the code.
@@ -280,11 +278,11 @@ StringVector code_get_one_cycles_as_vector(StringVector code, int tuple_length =
 //' Finds all circular sequences constructable in a code.
 //'
 //' Prepares a list of R path string vector. Extracts all cycles in the Graph G(X).
-//' If the graph has no cycles the vector will be empty. Otherwise it returns a vector with one the nodes of
-//' circular path.\cr
+//' If the graph has no cycles the vector will be empty. Otherwise it returns a list of vectors with the nodes of
+//' the circular paths.\cr
 //' \emph{2007 E. FIMMEL, C. J. MICHEL, AND L. STRÜNGMANN. N-nucleotide circular codes in graph theory}
 //'
-//' @seealso [code_factor_cycles()] for code, [code_get_all_cycles_as_vector()] for the results as list
+//' @seealso \link{code_factor_cycles} for a graph of the cycles, \link{code_get_one_cycles_as_vector} for the one result
 //'
 //' @param  code is either a string vector or a string. It can either be a code or a sequence.
 //' @param tuple_length if code is a sequence, length is the tuple length of the code.
@@ -312,6 +310,10 @@ Rcpp::List code_get_all_cycles_as_vector(StringVector code, int tuple_length = -
 //' Returns all DNA bases
 //'
 //' @return {"T", "C", "A", "G"}
+//'
+//' @examples
+//' res <- get_dna_bases ()
+//'
 //' @export 
 // [[Rcpp::export]]
 Rcpp::StringVector get_dna_bases() {
@@ -323,9 +325,13 @@ Rcpp::StringVector get_dna_bases() {
     return RAdapterUtils::as_r_string_vector(result);
 }
 
-//' Returns all DNA bases
+//' Returns all RNA bases
 //'
 //' @return {"U", "C", "A", "G"}
+//'
+//' @examples
+//' res <- get_rna_bases()
+//'
 //' @export
 // [[Rcpp::export]]
 Rcpp::StringVector get_rna_bases() {

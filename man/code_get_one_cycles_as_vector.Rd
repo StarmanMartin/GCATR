@@ -16,8 +16,8 @@ List of nodes representing a circular path in G(X).
 }
 \description{
 Prepares a R path string vector. Extracts all cycles in the Graph G(X).
-If the graph has no cycles the vector will be empty. Otherwise it returns a vector with one the nodes of
-circular path.\cr
+If the graph has no cycles the vector will be empty. Otherwise it returns a vector with the nodes of
+a circular path.\cr
 \emph{2007 E. FIMMEL, C. J. MICHEL, AND L. STRÜNGMANN. N-nucleotide circular codes in graph theory}
 }
 \examples{
@@ -27,5 +27,5 @@ l_graph <- code_get_one_cycles_as_vector("ACG CGA")
 
 }
 \seealso{
-[code_factor_cycles()] for code, [code_get_all_cycles_as_vector()] for the results as list
+\link{code_factor_cycles} for a graph of the cycles, \link{code_get_all_cycles_as_vector} for the results as list
 }

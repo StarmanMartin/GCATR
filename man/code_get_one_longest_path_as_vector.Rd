@@ -15,7 +15,7 @@ code_get_one_longest_path_as_vector(code, length = -1L)
 A String vector. Nodes of the longest path
 }
 \description{
-Prepares a R path string vector. Extracts all longest paths of the Graph G(X) and returns the first found one.
+Prepares a R path string vector. Extracts all longest paths of the Graph G(X) and returns the tuples of the first found one.
 If the graph shows a cycle the vector will be empty. Otherwise it returns a vector with one longest path.\cr
 \emph{2007 E. FIMMEL, C. J. MICHEL, AND L. STRÜNGMANN. N-nucleotide circular codes in graph theory}
 }
@@ -26,5 +26,5 @@ l_path <- code_get_one_circle_as_vector("ACG CGA")
 
 }
 \seealso{
-[code_factor_longest_path()] for code, [code_get_all_longest_path_as_vector()] for the results as list
+\link{code_factor_longest_path} for a graph of the longest path. \link{code_get_all_longest_path_as_vector} for the results as list
 }

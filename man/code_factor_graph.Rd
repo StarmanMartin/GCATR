@@ -20,7 +20,7 @@ code_factor_graph(code, show_cycles = FALSE, show_longest_path = FALSE,
 A igraph (<http://igraph.org/r/>) object: A graph representing a circular code.
 }
 \description{
-This function factors the set of edges and the set of vertices of an representing graph of a circular code.
+This function factors a igraph (<http://igraph.org/r/>) object of an representing graph of a circular code.
 The following definition describes a directed graph to an n-nucleotide code.
 Recall from graph theory (Clark and Holton, 1991) that a graph G consists of
 a finite set of vertices (nodes) V and a finite set of edges E. Here, an edge is a set \{v,w\} of vertices

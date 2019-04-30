@@ -19,9 +19,8 @@ This function checks if a code is Cn-circular.
 The code can either be a vector of tuples or a sequence. If the code
 is a sequence an additional word length parameter is needed.\cr
 Cn-circular means:\cr
-that all circular permutations of the code (all tuples) are circular.\cr
-Circular codes are a block codes. It is used as an unproved approach to explain the
-method used in gens to retrieving the correct reading frames.\cr
+That all circular permutations of the code (all tuples) are circular codes again.\cr
+This is an extended property of the circular codes. Circular codes are a block codes. See \link{code_check_if_circular} for more details.\cr
 \link{https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5492142/},\cr
 \link{http://dpt-info.u-strasbg.fr/~c.michel/Circular_Codes.pdf},\cr
 \emph{2007 Christian MICHEL. CIRCULAR CODES IN GENES}

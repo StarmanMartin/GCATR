@@ -115,12 +115,12 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
-// print_all_translation_table
-void print_all_translation_table();
-RcppExport SEXP _GCATR_print_all_translation_table() {
+// print_all_translation_tables
+void print_all_translation_tables();
+RcppExport SEXP _GCATR_print_all_translation_tables() {
 BEGIN_RCPP
     Rcpp::RNGScope rcpp_rngScope_gen;
-    print_all_translation_table();
+    print_all_translation_tables();
     return R_NilValue;
 END_RCPP
 }
@@ -386,7 +386,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_GCATR_get_average_conductance_of_codeidx", (DL_FUNC) &_GCATR_get_average_conductance_of_codeidx, 2},
     {"_GCATR_get_max_conductance_of_codeidx", (DL_FUNC) &_GCATR_get_max_conductance_of_codeidx, 2},
     {"_GCATR_get_min_conductance_of_codeidx", (DL_FUNC) &_GCATR_get_min_conductance_of_codeidx, 2},
-    {"_GCATR_print_all_translation_table", (DL_FUNC) &_GCATR_print_all_translation_table, 0},
+    {"_GCATR_print_all_translation_tables", (DL_FUNC) &_GCATR_print_all_translation_tables, 0},
     {"_GCATR_genetic_codes_by_index", (DL_FUNC) &_GCATR_genetic_codes_by_index, 1},
     {"_GCATR_genetic_codes_by_name", (DL_FUNC) &_GCATR_genetic_codes_by_name, 1},
     {"_GCATR_code_prepare_factor_gen_c3graph", (DL_FUNC) &_GCATR_code_prepare_factor_gen_c3graph, 2},

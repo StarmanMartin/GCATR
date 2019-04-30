@@ -19,37 +19,32 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="428808ef-23ef-4101-a605-146f2c23553c" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/GCATR.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/Martin.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/R_User_Library.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
+    <list default="true" id="428808ef-23ef-4101-a605-146f2c23553c" name="Default" comment="Public function doc ad readme update&#10; -&gt; CodeTables.R missing">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/NAMESPACE" beforeDir="false" afterPath="$PROJECT_DIR$/NAMESPACE" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/R/BdaTools.R" beforeDir="false" afterPath="$PROJECT_DIR$/R/BdaTools.R" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/R/GraphPloter.R" beforeDir="false" afterPath="$PROJECT_DIR$/R/GraphPloter.R" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/R/RcppExports.R" beforeDir="false" afterPath="$PROJECT_DIR$/R/RcppExports.R" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/man/GCATR.Rd" beforeDir="false" afterPath="$PROJECT_DIR$/man/GCATR.Rd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/man/add_bda.Rd" beforeDir="false" afterPath="$PROJECT_DIR$/man/add_bda.Rd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/man/code_check_if_circular.Rd" beforeDir="false" afterPath="$PROJECT_DIR$/man/code_check_if_circular.Rd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/man/code_check_if_cn_circular.Rd" beforeDir="false" afterPath="$PROJECT_DIR$/man/code_check_if_cn_circular.Rd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/man/code_check_if_comma_free.Rd" beforeDir="false" afterPath="$PROJECT_DIR$/man/code_check_if_comma_free.Rd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/man/code_check_if_k_circular.Rd" beforeDir="false" afterPath="$PROJECT_DIR$/man/code_check_if_k_circular.Rd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/man/code_check_if_self_complementary.Rd" beforeDir="false" afterPath="$PROJECT_DIR$/man/code_check_if_self_complementary.Rd" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/man/code_factor_c3graph.Rd" beforeDir="false" afterPath="$PROJECT_DIR$/man/code_factor_c3graph.Rd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/man/code_factor_cycle.Rd" beforeDir="false" afterPath="$PROJECT_DIR$/man/code_factor_cycle.Rd" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/man/code_factor_graph.Rd" beforeDir="false" afterPath="$PROJECT_DIR$/man/code_factor_graph.Rd" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/man/code_factor_longest_path.Rd" beforeDir="false" afterPath="$PROJECT_DIR$/man/code_factor_longest_path.Rd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/man/code_prepare_factor_all_cycle.Rd" beforeDir="false" afterPath="$PROJECT_DIR$/man/code_prepare_factor_all_cycle.Rd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/man/code_prepare_factor_gen_graph.Rd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/man/code_prepare_factor_longest_path.Rd" beforeDir="false" afterPath="$PROJECT_DIR$/man/code_prepare_factor_longest_path.Rd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/man/code_start_bda.Rd" beforeDir="false" afterPath="$PROJECT_DIR$/man/code_start_bda.Rd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/man/run_bda.Rd" beforeDir="false" afterPath="$PROJECT_DIR$/man/run_bda.Rd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/man/run_bda_as_matrix.Rd" beforeDir="false" afterPath="$PROJECT_DIR$/man/run_bda_as_matrix.Rd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/man/seq_start_bda.Rd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/man/start_bda.Rd" beforeDir="false" afterPath="$PROJECT_DIR$/man/start_bda.Rd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/BDAToolsAdapter.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/BDAToolsAdapter.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GraphToolsAdapter.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/GraphToolsAdapter.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/man/code_get_acid.Rd" beforeDir="false" afterPath="$PROJECT_DIR$/man/code_get_acid.Rd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/man/code_get_all_cycles_as_vector.Rd" beforeDir="false" afterPath="$PROJECT_DIR$/man/code_get_all_cycles_as_vector.Rd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/man/code_get_all_longest_path_as_vector.Rd" beforeDir="false" afterPath="$PROJECT_DIR$/man/code_get_all_longest_path_as_vector.Rd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/man/code_get_one_cycles_as_vector.Rd" beforeDir="false" afterPath="$PROJECT_DIR$/man/code_get_one_cycles_as_vector.Rd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/man/code_get_one_longest_path_as_vector.Rd" beforeDir="false" afterPath="$PROJECT_DIR$/man/code_get_one_longest_path_as_vector.Rd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/man/genetic_codes_by_index.Rd" beforeDir="false" afterPath="$PROJECT_DIR$/man/genetic_codes_by_index.Rd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/man/genetic_codes_by_name.Rd" beforeDir="false" afterPath="$PROJECT_DIR$/man/genetic_codes_by_name.Rd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/man/get_dna_bases.Rd" beforeDir="false" afterPath="$PROJECT_DIR$/man/get_dna_bases.Rd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/man/get_rna_bases.Rd" beforeDir="false" afterPath="$PROJECT_DIR$/man/get_rna_bases.Rd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/man/print_all_translation_table.Rd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GeneticCodeAdapter.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/GeneticCodeAdapter.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MainVectorAdapter.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/MainVectorAdapter.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/RcppExports.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/RcppExports.cpp" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/src/GCATCPP/cmake-build-debug/" />
@@ -61,43 +56,58 @@
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/README.md">
-          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-            <state split_layout="SPLIT">
-              <first_editor relative-caret-position="1406">
-                <caret line="1210" column="7" selection-start-line="1210" selection-start-column="7" selection-end-line="1210" selection-end-column="7" />
-              </first_editor>
-              <second_editor />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/BDAToolsAdapter.cpp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="629">
-              <caret line="123" column="12" selection-start-line="123" selection-start-column="5" selection-end-line="123" selection-end-column="12" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/R/BdaTools.R">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="345">
-              <caret line="42" column="845" selection-start-line="42" selection-start-column="845" selection-end-line="42" selection-end-column="845" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <splitter split-orientation="horizontal" split-proportion="0.5">
+      <split-first>
+        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+          <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/src/GeneticCodeAdapter.cpp">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="452">
+                  <caret line="260" column="1" selection-start-line="260" selection-start-column="1" selection-end-line="260" selection-end-column="1" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/GCATCPP/geneticCode/CodonClusteringAlgorithm.h">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="204">
+                  <caret line="15" column="10" selection-start-line="15" selection-start-column="10" selection-end-line="15" selection-end-column="10" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/GCATCPP/geneticCode/CodonClusteringAlgorithm.cpp">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="2080">
+                  <caret line="131" column="1" selection-start-line="131" selection-start-column="1" selection-end-line="131" selection-end-column="1" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-first>
+      <split-second>
+        <leaf>
+          <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/README.md">
+              <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+                <state split_layout="FIRST">
+                  <first_editor relative-caret-position="-7162">
+                    <caret line="66" column="57" selection-start-line="66" selection-start-column="57" selection-end-line="66" selection-end-column="57" />
+                  </first_editor>
+                  <second_editor />
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-second>
+    </splitter>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>The Euplotid Nuclear Code</find>
-      <find>([AUTGC])U([AUTGC])</find>
       <find>TGA</find>
       <find />
       <find>U([AUTGC])([AUTGC])</find>
@@ -126,6 +136,8 @@
       <find>//'</find>
       <find>\n[AUGC]\_[AUGC]</find>
       <find>cr</find>
+      <find>get_rna_bases</find>
+      <find>split_encoded_amino_acid</find>
     </findStrings>
     <replaceStrings>
       <replace>[ncbi article</replace>
@@ -157,7 +169,6 @@
       <replace>#'</replace>
       <replace>\cr</replace>
       <replace>\\cr</replace>
-      <replace>\cr</replace>
     </replaceStrings>
     <dirStrings>
       <dir>D:\develop\R\GCATR\src\GCATCPP\codes</dir>
@@ -172,7 +183,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/GCATCPP/unit_tests/asserts/wrong_2_code.txt" />
         <option value="$PROJECT_DIR$/src/GCATCPP/unit_tests/asserts/wrong_3_code.txt" />
         <option value="$PROJECT_DIR$/src/GCATCPP/codes/Acid.cpp" />
         <option value="$PROJECT_DIR$/src/GCATCPP/genericCode/CodonTranslTables.cpp" />
@@ -217,12 +227,13 @@
         <option value="$PROJECT_DIR$/src/GCATCPP/graph/C3Graph.cpp" />
         <option value="$PROJECT_DIR$/DESCRIPTION" />
         <option value="$PROJECT_DIR$/.gitignore" />
-        <option value="$PROJECT_DIR$/src/MainVectorAdapter.cpp" />
         <option value="$PROJECT_DIR$/src/BDAToolsAdapter.cpp" />
         <option value="$PROJECT_DIR$/src/GraphToolsAdapter.cpp" />
-        <option value="$PROJECT_DIR$/R/GraphPloter.R" />
-        <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/R/BdaTools.R" />
+        <option value="$PROJECT_DIR$/R/GraphPloter.R" />
+        <option value="$PROJECT_DIR$/src/MainVectorAdapter.cpp" />
+        <option value="$PROJECT_DIR$/src/GeneticCodeAdapter.cpp" />
+        <option value="$PROJECT_DIR$/README.md" />
       </list>
     </option>
   </component>
@@ -238,6 +249,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -261,11 +273,17 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="GCATCPP" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="GCATCPP" type="b2602c69:ProjectViewProjectNode" />
+              <item name="GCATR" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="GCATCPP" type="462c0819:PsiDirectoryNode" />
+              <item name="geneticCode" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -274,6 +292,7 @@
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
+    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
     <property name="settings.editor.selected.configurable" value="Errors" />
   </component>
   <component name="RecentsManager">
@@ -377,8 +396,17 @@
       <workItem from="1555435822462" duration="3649000" />
       <workItem from="1555530933799" duration="953000" />
       <workItem from="1556106674720" duration="14959000" />
-      <workItem from="1556425811847" duration="13354000" />
+      <workItem from="1556425811847" duration="14546000" />
+      <workItem from="1556524583165" duration="9791000" />
     </task>
+    <task id="LOCAL-00001" summary="Public function doc ad readme update&#10; -&gt; CodeTables.R missing">
+      <created>1556522591363</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1556522591363</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -414,13 +442,12 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="226895000" />
+    <option name="totallyTimeSpent" value="237878000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1864" height="1096" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.22838138" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.231153" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -431,11 +458,12 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Messages" order="7" weight="0.3281412" />
-      <window_info anchor="bottom" id="Terminal" order="8" weight="0.32987553" />
+      <window_info anchor="bottom" id="Terminal" order="8" weight="0.32917964" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
-      <window_info anchor="bottom" id="Version Control" order="10" />
+      <window_info active="true" anchor="bottom" id="Version Control" order="10" visible="true" weight="0.32917964" />
       <window_info anchor="bottom" id="CMake" order="11" weight="0.32987553" />
       <window_info anchor="bottom" id="Database Changes" order="12" />
+      <window_info anchor="bottom" id="Inspection Results" order="13" visible="true" weight="0.32917964" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -473,17 +501,12 @@
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Public function doc ad readme update&#10; -&gt; CodeTables.R missing" />
+    <option name="LAST_COMMIT_MESSAGE" value="Public function doc ad readme update&#10; -&gt; CodeTables.R missing" />
+    <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
+  </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/GCATCPP/generator/AbstractGenerator.cpp">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/GCATCPP/tester/Circular.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="332">
-          <caret line="102" column="3" selection-start-line="102" selection-start-column="3" selection-end-line="102" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/GCATCPP/modification/ShiftTuples.cpp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="241">
@@ -654,13 +677,6 @@
     <entry file="file://$PROJECT_DIR$/R/zzz.R">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/R/RcppExports.R">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1046">
-          <caret line="254" column="33" selection-start-line="254" selection-start-column="33" selection-end-line="254" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/GCATCPP/codes/AbstractCode.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="258">
@@ -724,60 +740,81 @@
     <entry file="file://$PROJECT_DIR$/src/GCATCPP/bda/BDATools.cpp">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/MainVectorAdapter.cpp">
+    <entry file="file://$PROJECT_DIR$/src/BDAToolsAdapter.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2737">
-          <caret line="1" column="17" selection-start-line="1" selection-start-column="17" selection-end-line="2" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/R/GraphPloter.R">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-850">
-          <caret line="54" column="17" selection-start-line="54" selection-end-line="54" selection-end-column="17" />
+        <state relative-caret-position="2091">
+          <caret line="123" column="12" selection-start-line="123" selection-start-column="5" selection-end-line="123" selection-end-column="12" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/GraphToolsAdapter.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3145">
+        <state relative-caret-position="1264">
           <caret line="185" column="36" selection-start-line="185" selection-start-column="11" selection-end-line="185" selection-end-column="36" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/R/CodonTables.R">
+    <entry file="file://$PROJECT_DIR$/R/GraphPloter.R">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="666">
-          <caret line="59" column="18" selection-start-line="59" selection-end-line="59" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/GeneticCodeAdapter.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="659">
-          <caret line="152" column="21" selection-start-line="152" selection-start-column="21" selection-end-line="152" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/BDAToolsAdapter.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="629">
-          <caret line="123" column="12" selection-start-line="123" selection-start-column="5" selection-end-line="123" selection-end-column="12" />
+        <state relative-caret-position="646">
+          <caret line="128" column="53" lean-forward="true" selection-start-line="128" selection-start-column="53" selection-end-line="128" selection-end-column="53" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/R/BdaTools.R">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
+        <state relative-caret-position="714">
           <caret line="42" column="845" selection-start-line="42" selection-start-column="845" selection-end-line="42" selection-end-column="845" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/R/CodonTables.R">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="714">
+          <caret line="57" column="2" lean-forward="true" selection-start-line="57" selection-start-column="2" selection-end-line="57" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/R/RcppExports.R">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2125">
+          <caret line="254" column="33" selection-start-line="254" selection-start-column="33" selection-end-line="254" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/MainVectorAdapter.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3363">
+          <caret line="314" column="25" selection-start-line="314" selection-start-column="25" selection-end-line="314" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GCATCPP/geneticCode/CodonClusteringAlgorithm.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="15" column="10" selection-start-line="15" selection-start-column="10" selection-end-line="15" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GCATCPP/geneticCode/CodonClusteringAlgorithm.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2080">
+          <caret line="131" column="1" selection-start-line="131" selection-start-column="1" selection-end-line="131" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GeneticCodeAdapter.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="452">
+          <caret line="260" column="1" selection-start-line="260" selection-start-column="1" selection-end-line="260" selection-end-column="1" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="1406">
-            <caret line="1210" column="7" selection-start-line="1210" selection-start-column="7" selection-end-line="1210" selection-end-column="7" />
+        <state split_layout="FIRST">
+          <first_editor relative-caret-position="-7162">
+            <caret line="66" column="57" selection-start-line="66" selection-start-column="57" selection-end-line="66" selection-end-column="57" />
           </first_editor>
           <second_editor />
         </state>

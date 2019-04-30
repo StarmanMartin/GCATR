@@ -80,39 +80,134 @@ run_bda <- function() {
     .Call('_GCATR_run_bda', PACKAGE = 'GCATR')
 }
 
+#' The Genetic Codes
+#' 
+#' \emph{genetic_codes_by_name} returns a list representing a Genetic Code. The list contains two arrays, one array of the codons and one array of the translated amino acids in the same order.
+NULL
+
+#' To calculate the average conductance of a translation table
+#'
+#' This function calculates the average conductance for a selected genetic translation table.
+#' The conductance is a number which reflects the robustness of a genetic translation table.
+#' The conductance the ration of the codons translating one amino acid which differ in only one position and the
+#' codons translating the same amino acid but differ in more then one position.
+#'
+#' @param codeName a String, the name of the genetic translation table. (see \link{print_all_translation_tables})
+#' @param acid a String, is optional: DNA or RNA
+#'
+#' @return A Number, the average conductance of a genetic translation table
+#'
+#' @examples
+#' ac = get_average_conductance_of_code("The Standard Code")
+#' ac = get_average_conductance_of_code("The Vertebrate Mitochondrial Code", "RNA")
 #' @export 
 get_average_conductance_of_code <- function(codeName, acid = "DNA") {
     .Call('_GCATR_get_average_conductance_of_code', PACKAGE = 'GCATR', codeName, acid)
 }
 
-#' @export 
+#' To calculate the max conductance of a translation table
+#'
+#' This function calculates the max conductance for a selected genetic translation table.
+#' The conductance is a number which reflects the robustness of a genetic translation table.
+#' The conductance the ration of the codons translating one amino acid which differ in only one position and the
+#' codons translating the same amino acid but differ in more then one position.
+#'
+#' @param codeName a String, the name of the genetic translation table. (see \link{print_all_translation_tables})
+#' @param acid a String, is optional: DNA or RNA
+#'
+#' @return A Number, the max conductance of a genetic translation table
+#'
+#' @examples
+#' ac = get_average_conductance_of_code("The Standard Code")
+#' ac = get_average_conductance_of_code("The Vertebrate Mitochondrial Code", "RNA")
+#' @export
 get_max_conductance_of_code <- function(codeName, acid = "DNA") {
     .Call('_GCATR_get_max_conductance_of_code', PACKAGE = 'GCATR', codeName, acid)
 }
 
-#' @export 
+#' To calculate the min conductance of a translation table
+#'
+#' This function calculates the min conductance for a selected genetic translation table.
+#' The conductance is a number which reflects the robustness of a genetic translation table.
+#' The conductance the ration of the codons translating one amino acid which differ in only one position and the
+#' codons translating the same amino acid but differ in more then one position.
+#'
+#' @param codeName a String, the name of the genetic translation table. (see \link{print_all_translation_tables})
+#' @param acid a String, is optional: DNA or RNA
+#'
+#' @return A Number, the min conductance of a genetic translation table
+#'
+#' @examples
+#' ac = get_average_conductance_of_code("The Standard Code")
+#' ac = get_average_conductance_of_code("The Vertebrate Mitochondrial Code", "RNA")
+#' @export
 get_min_conductance_of_code <- function(codeName, acid = "DNA") {
     .Call('_GCATR_get_min_conductance_of_code', PACKAGE = 'GCATR', codeName, acid)
 }
 
-#' @export 
+#' To calculate the average conductance of a translation table
+#'
+#' This function calculates the average conductance for a selected genetic translation table.
+#' The conductance is a number which reflects the robustness of a genetic translation table.
+#' The conductance the ration of the codons translating one amino acid which differ in only one position and the
+#' codons translating the same amino acid but differ in more then one position.
+#'
+#' @param codeIdx a Number, the index of the genetic translation table. (see \link{print_all_translation_tables})
+#' @param acid a String, is optional: DNA or RNA
+#'
+#' @return A Number, the average conductance of a genetic translation table
+#'
+#' @examples
+#' ac = get_average_conductance_of_code("The Standard Code")
+#' ac = get_average_conductance_of_code("The Vertebrate Mitochondrial Code", "RNA")
+#' @export
 get_average_conductance_of_codeidx <- function(codeIdx, acid = "DNA") {
     .Call('_GCATR_get_average_conductance_of_codeidx', PACKAGE = 'GCATR', codeIdx, acid)
 }
 
-#' @export 
+#' To calculate the max conductance of a translation table
+#'
+#' This function calculates the max conductance for a selected genetic translation table.
+#' The conductance is a number which reflects the robustness of a genetic translation table.
+#' The conductance the ration of the codons translating one amino acid which differ in only one position and the
+#' codons translating the same amino acid but differ in more then one position.
+#'
+#' @param codeIdx a Number, the index of the genetic translation table. (see \link{print_all_translation_tables})
+#' @param acid a String, is optional: DNA or RNA
+#'
+#' @return A Number, the max conductance of a genetic translation table
+#'
+#' @examples
+#' ac = get_average_conductance_of_code("The Standard Code")
+#' ac = get_average_conductance_of_code("The Vertebrate Mitochondrial Code", "RNA")
+#' @export
 get_max_conductance_of_codeidx <- function(codeIdx, acid = "DNA") {
     .Call('_GCATR_get_max_conductance_of_codeidx', PACKAGE = 'GCATR', codeIdx, acid)
 }
 
-#' @export 
+#' To calculate the min conductance of a translation table
+#'
+#' This function calculates the min conductance for a selected genetic translation table.
+#' The conductance is a number which reflects the robustness of a genetic translation table.
+#' The conductance the ration of the codons translating one amino acid which differ in only one position and the
+#' codons translating the same amino acid but differ in more then one position.
+#'
+#' @param codeIdx a Number, the index of the genetic translation table. (see \link{print_all_translation_tables})
+#' @param acid a String, is optional: DNA or RNA
+#'
+#' @return A Number, the min conductance of a genetic translation table
+#'
+#' @examples
+#' ac = get_average_conductance_of_code("The Standard Code")
+#' ac = get_average_conductance_of_code("The Vertebrate Mitochondrial Code", "RNA")
+#' @export
 get_min_conductance_of_codeidx <- function(codeIdx, acid = "DNA") {
     .Call('_GCATR_get_min_conductance_of_codeidx', PACKAGE = 'GCATR', codeIdx, acid)
 }
 
 #' The Genetic Codes
 #' 
-#' \emph{print_all_translation_table} Prints a list of the genetic codes containt by this project. The list includes names and indexes of the codes.
+#' \emph{print_all_translation_tables} prints a list of the genetic codes contained by this project. The list includes names and indexes of the codes.
 #' 
 #' The Standard Code(transl_table=1)\cr
 #' The Vertebrate Mitochondrial Code(transl_table=2)\cr
@@ -144,28 +239,29 @@ get_min_conductance_of_codeidx <- function(codeIdx, acid = "DNA") {
 #' \emph{\link{https://www.ncbi.nlm.nih.gov/Taxonomy/Utils/wprintgc.cgi}}
 #' 
 #' @seealso \link{genetic_codes_by_index}, \link{genetic_codes_by_name}
-#' 
+#'
+#' @examples
+#' print_all_translation_tables()
 #' 
 #' @export 
-print_all_translation_table <- function() {
-    invisible(.Call('_GCATR_print_all_translation_table', PACKAGE = 'GCATR'))
+print_all_translation_tables <- function() {
+    invisible(.Call('_GCATR_print_all_translation_tables', PACKAGE = 'GCATR'))
 }
 
 #' The Genetic Codes
 #' 
-#' \emph{genetic_codes_by_index} Returns a list representing a  Genetic Code the list contains an array of the codons and an array of the translated amino acids in the same order.
-#' 
+#' \emph{genetic_codes_by_index} returns a list representing a Genetic Code. The list contains two arrays, one array of the codons and one array of the translated amino acids in the same order.
 #' \cr Source:\cr
 #' \emph{Compiled by Andrzej (Anjay) Elzanowski and Jim Ostell at National Center for Biotechnology Information (NCBI), Bethesda, Maryland, U.S.A.}\cr
 #' \emph{Last update of the Genetic Codes: Nov. 18, 2016}
 #' \emph{\link{https://www.ncbi.nlm.nih.gov/Taxonomy/Utils/wprintgc.cgi}}
 #'
-#' @return Returns a named List with all codons and the translated amino acids:\cr
 #' \emph{codons} all codons as strings.\cr
 #' \emph{amino_acids} the translated aminop acids in same order.\cr
 #' 
 #' @param idx the index of a Genetic Code as int. (check \link{print_all_translation_table})
-#' 
+#'
+#' @return Returns a named List with all codons and the translated amino acids:\cr
 #' @examples
 #' (code <- genetic_codes_by_index(1))
 #' 
@@ -174,21 +270,16 @@ genetic_codes_by_index <- function(idx) {
     .Call('_GCATR_genetic_codes_by_index', PACKAGE = 'GCATR', idx)
 }
 
-#' The Genetic Codes
-#' 
-#' \emph{genetic_codes_by_name} Returns a list representing a  Genetic Code the list contains an array of the codons and an array of the translated amino acids in the same order.
-#' 
-#' \cr Source:\cr
 #' \emph{Compiled by Andrzej (Anjay) Elzanowski and Jim Ostell at National Center for Biotechnology Information (NCBI), Bethesda, Maryland, U.S.A.}\cr
 #' \emph{Last update of the Genetic Codes: Nov. 18, 2016}
 #' \emph{\link{https://www.ncbi.nlm.nih.gov/Taxonomy/Utils/wprintgc.cgi}}
 #'
-#' @return Returns a named List with all codons and the translated amino acids:\cr
 #' \emph{codons} all codons as strings.\cr
 #' \emph{amino_acids} the translated aminop acids in same order.\cr
 #' 
 #' @param name the name of a Genetic Code as string. (check \link{print_all_translation_table})
-#' 
+#'
+#' @return Returns a named List with all codons and the translated amino acids:\cr
 #' @examples
 #' (code <- genetic_codes_by_name("The Yeast Mitochondrial Code"))
 #' 
@@ -314,8 +405,10 @@ code_prepare_factor_longest_path <- function(code, tuple_length = -1L) {
 #' 
 #' This function checks if a code is circular. The code can either be a vector of tuples or a sequence. If the code
 #' is a sequence an additional word length parameter is needed.
-#' Circular codes are a block codes. It is used as an unproved approach to explain the
-#' method used in gens to retrieving the correct reading frames.\cr
+#' Circular codes are a block codes. We will call a set of tuples \emph{X} of same length
+#' a code if every concatenation of words \emph{w} in \emph{X} written on a circle has only a single decomposition into words from \emph{X}.
+#' It is used as an unproved approach to explain the
+#' method used in gens to retrieving the correct reading frames of RNA.\cr
 #' For more info on this subject read:\cr
 #' \link{https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5492142/},\cr
 #' \link{http://dpt-info.u-strasbg.fr/~c.michel/Circular_Codes.pdf},\cr
@@ -340,9 +433,8 @@ code_check_if_circular <- function(code, length = -1L) {
 #' The code can either be a vector of tuples or a sequence. If the code
 #' is a sequence an additional word length parameter is needed.\cr
 #' k-circular means:\cr
-#' that for any sequence of less then k tuples of the code there is only one partition into tuples from the code.\cr
-#' Circular codes are a block codes. It is used as an unproved approach to explain the
-#' method used in gens to retrieving the correct reading frames.\cr
+#' That for each sequence/concatenation of less than k tuples of a code \emph{X} written on a circle, there is only one partition in tuples from the code \emph{X}.
+#' This is an extended property of the circular codes. Circular codes are a block codes. See \link{code_check_if_circular} for more details.\cr
 #' \link{https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5492142/},\cr
 #' \link{http://dpt-info.u-strasbg.fr/~c.michel/Circular_Codes.pdf},\cr
 #' \emph{2007 Christian MICHEL. CIRCULAR CODES IN GENES}
@@ -367,15 +459,15 @@ code_check_if_k_circular <- function(k, code, length = -1L) {
 #' The code can either be a vector of tuples or a sequence. If the code
 #' is a sequence an additional word length parameter is needed.\cr
 #' Cn-circular means:\cr
-#' that all circular permutations of the code (all tuples) are circular.\cr
-#' Circular codes are a block codes. It is used as an unproved approach to explain the
-#' method used in gens to retrieving the correct reading frames.\cr
+#' That all circular permutations of the code (all tuples) are circular codes again.\cr
+#' This is an extended property of the circular codes. Circular codes are a block codes. See \link{code_check_if_circular} for more details.\cr
 #' \link{https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5492142/},\cr
 #' \link{http://dpt-info.u-strasbg.fr/~c.michel/Circular_Codes.pdf},\cr
 #' \emph{2007 Christian MICHEL. CIRCULAR CODES IN GENES}
 #'
 #' @param code is either a string vector or a string. It can either be a code or a sequence.
 #' @param length if code is a sequence, length is the tuple length of the code.
+#'
 #' @return Boolean value. True if the code is Cn-circular.
 #' @examples
 #' code_check_if_cn_circular(c("ACG", "CAG"))
@@ -394,8 +486,7 @@ code_check_if_cn_circular <- function(code, length = -1L) {
 #' is a sequence an additional word length parameter is needed.\cr
 #' Comma free is a more restrictive code of the family of the circular codes:\cr
 #' A comma-free code is block code in which no concatenation of two code words contains a valid code word that overlaps both.\cr
-#' Circular codes are a block codes. It is used as an unproved approach to explain the
-#' method used in gens to retrieving the correct reading frames.\cr
+#' This is an extended property of the circular codes. Circular codes are a block codes. See \link{code_check_if_circular} for more details.\cr
 #' \link{https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5492142/},\cr
 #' \link{http://dpt-info.u-strasbg.fr/~c.michel/Circular_Codes.pdf},\cr
 #' \emph{2007 Christian MICHEL. CIRCULAR CODES IN GENES}
@@ -420,8 +511,6 @@ code_check_if_comma_free <- function(code, length = -1L) {
 #' is a sequence an additional word length parameter is needed.\cr
 #' A code is self complementary if and only if for all tuples in the code the anti-tuple is also in the code.
 #' An anti-tuple is te reversed tuple of complementary bases.\cr A <-> T (U) and C <-> G. The anti-tuple of ACG is CGT
-#' Circular codes are a block codes. It is used as an unproved approach to explain the
-#' method used in gens to retrieving the correct reading frames.\cr
 #' \link{https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5492142/},\cr
 #' \link{http://dpt-info.u-strasbg.fr/~c.michel/Circular_Codes.pdf},\cr
 #' \emph{2007 Christian MICHEL. CIRCULAR CODES IN GENES}
@@ -443,7 +532,7 @@ code_check_if_self_complementary <- function(code, length = -1L) {
 #' 
 #' Returns either RNA or DNA depending on the codes Bases. If the code contains only CYTOSINE (C), ADENINE (A), GUANINE (G)
 #' the functions returns DNA. If the code contains THYMINE (T) it will also return DNA. On the other side, if the
-#' the code contains URACIL (U) bases the function returns RNA. If the code contains URACIL (U) & THYMINE (T) or any other letter
+#' the code contains URACIL (U) bases the function returns RNA. If the code contains URACIL (U) and THYMINE (T) or any other letter
 #' then CYTOSINE (C), ADENINE (A), GUANINE (G), URACIL (U) or THYMINE (T) it will return NONE
 #' For more info on this subject read:\cr
 #' \link{https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5492142/},\cr
@@ -465,11 +554,11 @@ code_get_acid <- function(code, length = -1L) {
 
 #' Finds one longest path in the graph of the code.
 #'
-#' Prepares a R path string vector. Extracts all longest paths of the Graph G(X) and returns the first found one.
+#' Prepares a R path string vector. Extracts all longest paths of the Graph G(X) and returns the tuples of the first found one.
 #' If the graph shows a cycle the vector will be empty. Otherwise it returns a vector with one longest path.\cr
 #' \emph{2007 E. FIMMEL, C. J. MICHEL, AND L. STRÜNGMANN. N-nucleotide circular codes in graph theory}
 #'
-#' @seealso [code_factor_longest_path()] for code, [code_get_all_longest_path_as_vector()] for the results as list
+#' @seealso \link{code_factor_longest_path} for a graph of the longest path. \link{code_get_all_longest_path_as_vector} for the results as list
 #'
 #' @param code is either a string vector or a string. It can either be a code or a sequence.
 #' @param length if code is a sequence, length is the tuple length of the code.
@@ -487,11 +576,11 @@ code_get_one_longest_path_as_vector <- function(code, length = -1L) {
 
 #' Finds all longest paths in the graph of the code.
 #'
-#' Prepares a list of R path string vector. Extracts all longest paths of the Graph G(X) and returns them as a list.
+#' Prepares a list of R path string vector. Extracts all longest paths of the Graph G(X) and returns a list.
 #' If the graph shows a cycle the vector will be empty. Otherwise it returns a list of vector with all longest paths.\cr
 #' \emph{2007 E. FIMMEL, C. J. MICHEL, AND L. STRÜNGMANN. N-nucleotide circular codes in graph theory}
 #'
-#' @seealso [code_factor_longest_path()] for code, [code_get_one_longest_path_as_vector()] for only one result
+#' @seealso \link{code_factor_longest_path} for a graph of the longest path. \link{code_get_all_longest_path_as_vector} for only one result
 #'
 #' @param code is either a string vector or a string. It can either be a code or a sequence.
 #' @param length if code is a sequence, length is the tuple length of the code.
@@ -510,11 +599,11 @@ code_get_all_longest_path_as_vector <- function(code, length = -1L) {
 #' Finds one circular sequences constructable in a code.
 #'
 #' Prepares a R path string vector. Extracts all cycles in the Graph G(X).
-#' If the graph has no cycles the vector will be empty. Otherwise it returns a vector with one the nodes of
-#' circular path.\cr
+#' If the graph has no cycles the vector will be empty. Otherwise it returns a vector with the nodes of
+#' a circular path.\cr
 #' \emph{2007 E. FIMMEL, C. J. MICHEL, AND L. STRÜNGMANN. N-nucleotide circular codes in graph theory}
 #'
-#' @seealso [code_factor_cycles()] for code, [code_get_all_cycles_as_vector()] for the results as list
+#' @seealso \link{code_factor_cycles} for a graph of the cycles, \link{code_get_all_cycles_as_vector} for the results as list
 #'
 #' @param code is either a string vector or a string. It can either be a code or a sequence.
 #' @param tuple_length if code is a sequence, length is the tuple length of the code.
@@ -534,11 +623,11 @@ code_get_one_cycles_as_vector <- function(code, tuple_length = -1L) {
 #' Finds all circular sequences constructable in a code.
 #'
 #' Prepares a list of R path string vector. Extracts all cycles in the Graph G(X).
-#' If the graph has no cycles the vector will be empty. Otherwise it returns a vector with one the nodes of
-#' circular path.\cr
+#' If the graph has no cycles the vector will be empty. Otherwise it returns a list of vectors with the nodes of
+#' the circular paths.\cr
 #' \emph{2007 E. FIMMEL, C. J. MICHEL, AND L. STRÜNGMANN. N-nucleotide circular codes in graph theory}
 #'
-#' @seealso [code_factor_cycles()] for code, [code_get_all_cycles_as_vector()] for the results as list
+#' @seealso \link{code_factor_cycles} for a graph of the cycles, \link{code_get_one_cycles_as_vector} for the one result
 #'
 #' @param  code is either a string vector or a string. It can either be a code or a sequence.
 #' @param tuple_length if code is a sequence, length is the tuple length of the code.
@@ -558,14 +647,22 @@ code_get_all_cycles_as_vector <- function(code, tuple_length = -1L) {
 #' Returns all DNA bases
 #'
 #' @return {"T", "C", "A", "G"}
+#'
+#' @examples
+#' res <- get_dna_bases ()
+#'
 #' @export 
 get_dna_bases <- function() {
     .Call('_GCATR_get_dna_bases', PACKAGE = 'GCATR')
 }
 
-#' Returns all DNA bases
+#' Returns all RNA bases
 #'
 #' @return {"U", "C", "A", "G"}
+#'
+#' @examples
+#' res <- get_rna_bases()
+#'
 #' @export
 get_rna_bases <- function() {
     .Call('_GCATR_get_rna_bases', PACKAGE = 'GCATR')

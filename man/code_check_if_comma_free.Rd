@@ -20,8 +20,7 @@ The code can either be a vector of tuples or a sequence. If the code
 is a sequence an additional word length parameter is needed.\cr
 Comma free is a more restrictive code of the family of the circular codes:\cr
 A comma-free code is block code in which no concatenation of two code words contains a valid code word that overlaps both.\cr
-Circular codes are a block codes. It is used as an unproved approach to explain the
-method used in gens to retrieving the correct reading frames.\cr
+This is an extended property of the circular codes. Circular codes are a block codes. See \link{code_check_if_circular} for more details.\cr
 \link{https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5492142/},\cr
 \link{http://dpt-info.u-strasbg.fr/~c.michel/Circular_Codes.pdf},\cr
 \emph{2007 Christian MICHEL. CIRCULAR CODES IN GENES}

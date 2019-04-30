@@ -2,7 +2,9 @@
 % Please edit documentation in R/RcppExports.R
 \name{genetic_codes_by_name}
 \alias{genetic_codes_by_name}
-\title{The Genetic Codes}
+\title{\emph{Compiled by Andrzej (Anjay) Elzanowski and Jim Ostell at National Center for Biotechnology Information (NCBI), Bethesda, Maryland, U.S.A.}\cr
+\emph{Last update of the Genetic Codes: Nov. 18, 2016}
+\emph{\link{https://www.ncbi.nlm.nih.gov/Taxonomy/Utils/wprintgc.cgi}}}
 \usage{
 genetic_codes_by_name(name)
 }
@@ -11,17 +13,10 @@ genetic_codes_by_name(name)
 }
 \value{
 Returns a named List with all codons and the translated amino acids:\cr
-\emph{codons} all codons as strings.\cr
-\emph{amino_acids} the translated aminop acids in same order.\cr
 }
 \description{
-\emph{genetic_codes_by_name} Returns a list representing a  Genetic Code the list contains an array of the codons and an array of the translated amino acids in the same order.
-}
-\details{
-\cr Source:\cr
-\emph{Compiled by Andrzej (Anjay) Elzanowski and Jim Ostell at National Center for Biotechnology Information (NCBI), Bethesda, Maryland, U.S.A.}\cr
-\emph{Last update of the Genetic Codes: Nov. 18, 2016}
-\emph{\link{https://www.ncbi.nlm.nih.gov/Taxonomy/Utils/wprintgc.cgi}}
+\emph{codons} all codons as strings.\cr
+\emph{amino_acids} the translated aminop acids in same order.\cr
 }
 \examples{
 (code <- genetic_codes_by_name("The Yeast Mitochondrial Code"))

@@ -21,9 +21,8 @@ This function checks if a code is k-circular.
 The code can either be a vector of tuples or a sequence. If the code
 is a sequence an additional word length parameter is needed.\cr
 k-circular means:\cr
-that for any sequence of less then k tuples of the code there is only one partition into tuples from the code.\cr
-Circular codes are a block codes. It is used as an unproved approach to explain the
-method used in gens to retrieving the correct reading frames.\cr
+That for each sequence/concatenation of less than k tuples of a code \emph{X} written on a circle, there is only one partition in tuples from the code \emph{X}.
+This is an extended property of the circular codes. Circular codes are a block codes. See \link{code_check_if_circular} for more details.\cr
 \link{https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5492142/},\cr
 \link{http://dpt-info.u-strasbg.fr/~c.michel/Circular_Codes.pdf},\cr
 \emph{2007 Christian MICHEL. CIRCULAR CODES IN GENES}

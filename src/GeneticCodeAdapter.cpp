@@ -6,6 +6,21 @@ using namespace Rcpp;
 
 #include "RAdapterUtils.h"
 
+//' To calculate the average conductance of a translation table
+//'
+//' This function calculates the average conductance for a selected genetic translation table.
+//' The conductance is a number which reflects the robustness of a genetic translation table.
+//' The conductance the ration of the codons translating one amino acid which differ in only one position and the
+//' codons translating the same amino acid but differ in more then one position.
+//'
+//' @param codeName a String, the name of the genetic translation table. (see \link{print_all_translation_tables})
+//' @param acid a String, is optional: DNA or RNA
+//'
+//' @return A Number, the average conductance of a genetic translation table
+//'
+//' @examples
+//' ac = get_average_conductance_of_code("The Standard Code")
+//' ac = get_average_conductance_of_code("The Vertebrate Mitochondrial Code", "RNA")
 //' @export 
 // [[Rcpp::export]]
 double get_average_conductance_of_code(std::string codeName, std::string acid="DNA") {
@@ -15,7 +30,22 @@ double get_average_conductance_of_code(std::string codeName, std::string acid="D
   return cca.get_average_conductance();
 }
 
-//' @export 
+//' To calculate the max conductance of a translation table
+//'
+//' This function calculates the max conductance for a selected genetic translation table.
+//' The conductance is a number which reflects the robustness of a genetic translation table.
+//' The conductance the ration of the codons translating one amino acid which differ in only one position and the
+//' codons translating the same amino acid but differ in more then one position.
+//'
+//' @param codeName a String, the name of the genetic translation table. (see \link{print_all_translation_tables})
+//' @param acid a String, is optional: DNA or RNA
+//'
+//' @return A Number, the max conductance of a genetic translation table
+//'
+//' @examples
+//' ac = get_average_conductance_of_code("The Standard Code")
+//' ac = get_average_conductance_of_code("The Vertebrate Mitochondrial Code", "RNA")
+//' @export
 // [[Rcpp::export]]
 double get_max_conductance_of_code(std::string codeName, std::string acid="DNA") {
   auto code = gen_codes::CodonTranslTables::getInstance().getCodeByName(codeName, RAdapterUtils::string_to_acid(acid));
@@ -24,7 +54,22 @@ double get_max_conductance_of_code(std::string codeName, std::string acid="DNA")
   return cca.get_max_conductance();
 }
 
-//' @export 
+//' To calculate the min conductance of a translation table
+//'
+//' This function calculates the min conductance for a selected genetic translation table.
+//' The conductance is a number which reflects the robustness of a genetic translation table.
+//' The conductance the ration of the codons translating one amino acid which differ in only one position and the
+//' codons translating the same amino acid but differ in more then one position.
+//'
+//' @param codeName a String, the name of the genetic translation table. (see \link{print_all_translation_tables})
+//' @param acid a String, is optional: DNA or RNA
+//'
+//' @return A Number, the min conductance of a genetic translation table
+//'
+//' @examples
+//' ac = get_average_conductance_of_code("The Standard Code")
+//' ac = get_average_conductance_of_code("The Vertebrate Mitochondrial Code", "RNA")
+//' @export
 // [[Rcpp::export]]
 double get_min_conductance_of_code(std::string codeName, std::string acid="DNA") {
   auto code = gen_codes::CodonTranslTables::getInstance().getCodeByName(codeName, RAdapterUtils::string_to_acid(acid));
@@ -34,7 +79,22 @@ double get_min_conductance_of_code(std::string codeName, std::string acid="DNA")
   return cca.get_min_conductance();
 }
 
-//' @export 
+//' To calculate the average conductance of a translation table
+//'
+//' This function calculates the average conductance for a selected genetic translation table.
+//' The conductance is a number which reflects the robustness of a genetic translation table.
+//' The conductance the ration of the codons translating one amino acid which differ in only one position and the
+//' codons translating the same amino acid but differ in more then one position.
+//'
+//' @param codeIdx a Number, the index of the genetic translation table. (see \link{print_all_translation_tables})
+//' @param acid a String, is optional: DNA or RNA
+//'
+//' @return A Number, the average conductance of a genetic translation table
+//'
+//' @examples
+//' ac = get_average_conductance_of_code("The Standard Code")
+//' ac = get_average_conductance_of_code("The Vertebrate Mitochondrial Code", "RNA")
+//' @export
 // [[Rcpp::export]]
 double get_average_conductance_of_codeidx(int codeIdx, std::string acid="DNA") {
   auto code = gen_codes::CodonTranslTables::getInstance().getCodeByIndex(codeIdx, RAdapterUtils::string_to_acid(acid));
@@ -43,7 +103,22 @@ double get_average_conductance_of_codeidx(int codeIdx, std::string acid="DNA") {
   return cca.get_average_conductance();
 }
 
-//' @export 
+//' To calculate the max conductance of a translation table
+//'
+//' This function calculates the max conductance for a selected genetic translation table.
+//' The conductance is a number which reflects the robustness of a genetic translation table.
+//' The conductance the ration of the codons translating one amino acid which differ in only one position and the
+//' codons translating the same amino acid but differ in more then one position.
+//'
+//' @param codeIdx a Number, the index of the genetic translation table. (see \link{print_all_translation_tables})
+//' @param acid a String, is optional: DNA or RNA
+//'
+//' @return A Number, the max conductance of a genetic translation table
+//'
+//' @examples
+//' ac = get_average_conductance_of_code("The Standard Code")
+//' ac = get_average_conductance_of_code("The Vertebrate Mitochondrial Code", "RNA")
+//' @export
 // [[Rcpp::export]]
 double get_max_conductance_of_codeidx(int codeIdx, std::string acid="DNA") {
   auto code = gen_codes::CodonTranslTables::getInstance().getCodeByIndex(codeIdx, RAdapterUtils::string_to_acid(acid));
@@ -52,7 +127,22 @@ double get_max_conductance_of_codeidx(int codeIdx, std::string acid="DNA") {
   return cca.get_max_conductance();
 }
 
-//' @export 
+//' To calculate the min conductance of a translation table
+//'
+//' This function calculates the min conductance for a selected genetic translation table.
+//' The conductance is a number which reflects the robustness of a genetic translation table.
+//' The conductance the ration of the codons translating one amino acid which differ in only one position and the
+//' codons translating the same amino acid but differ in more then one position.
+//'
+//' @param codeIdx a Number, the index of the genetic translation table. (see \link{print_all_translation_tables})
+//' @param acid a String, is optional: DNA or RNA
+//'
+//' @return A Number, the min conductance of a genetic translation table
+//'
+//' @examples
+//' ac = get_average_conductance_of_code("The Standard Code")
+//' ac = get_average_conductance_of_code("The Vertebrate Mitochondrial Code", "RNA")
+//' @export
 // [[Rcpp::export]]
 double get_min_conductance_of_codeidx(int codeIdx, std::string acid="DNA") {
   auto code = gen_codes::CodonTranslTables::getInstance().getCodeByIndex(codeIdx, RAdapterUtils::string_to_acid(acid));
@@ -64,7 +154,7 @@ double get_min_conductance_of_codeidx(int codeIdx, std::string acid="DNA") {
 
 //' The Genetic Codes
 //' 
-//' \emph{print_all_translation_table} Prints a list of the genetic codes containt by this project. The list includes names and indexes of the codes.
+//' \emph{print_all_translation_tables} prints a list of the genetic codes contained by this project. The list includes names and indexes of the codes.
 //' 
 //' The Standard Code(transl_table=1)\cr
 //' The Vertebrate Mitochondrial Code(transl_table=2)\cr
@@ -96,30 +186,31 @@ double get_min_conductance_of_codeidx(int codeIdx, std::string acid="DNA") {
 //' \emph{\link{https://www.ncbi.nlm.nih.gov/Taxonomy/Utils/wprintgc.cgi}}
 //' 
 //' @seealso \link{genetic_codes_by_index}, \link{genetic_codes_by_name}
-//' 
+//'
+//' @examples
+//' print_all_translation_tables()
 //' 
 //' @export 
 // [[Rcpp::export]]
-void print_all_translation_table() {
+void print_all_translation_tables() {
   auto code = gen_codes::CodonTranslTables::getInstance().getAllCodesText();
   Rcpp::Rcout << code;
 }
 
 //' The Genetic Codes
 //' 
-//' \emph{genetic_codes_by_index} Returns a list representing a  Genetic Code the list contains an array of the codons and an array of the translated amino acids in the same order.
-//' 
+//' \emph{genetic_codes_by_index} returns a list representing a Genetic Code. The list contains two arrays, one array of the codons and one array of the translated amino acids in the same order.
 //' \cr Source:\cr
 //' \emph{Compiled by Andrzej (Anjay) Elzanowski and Jim Ostell at National Center for Biotechnology Information (NCBI), Bethesda, Maryland, U.S.A.}\cr
 //' \emph{Last update of the Genetic Codes: Nov. 18, 2016}
 //' \emph{\link{https://www.ncbi.nlm.nih.gov/Taxonomy/Utils/wprintgc.cgi}}
 //'
-//' @return Returns a named List with all codons and the translated amino acids:\cr
 //' \emph{codons} all codons as strings.\cr
 //' \emph{amino_acids} the translated aminop acids in same order.\cr
 //' 
 //' @param idx the index of a Genetic Code as int. (check \link{print_all_translation_table})
-//' 
+//'
+//' @return Returns a named List with all codons and the translated amino acids:\cr
 //' @examples
 //' (code <- genetic_codes_by_index(1))
 //' 
@@ -147,19 +238,18 @@ List genetic_codes_by_index(int idx) {
 
 //' The Genetic Codes
 //' 
-//' \emph{genetic_codes_by_name} Returns a list representing a  Genetic Code the list contains an array of the codons and an array of the translated amino acids in the same order.
-//' 
-//' \cr Source:\cr
+//' \emph{genetic_codes_by_name} returns a list representing a Genetic Code. The list contains two arrays, one array of the codons and one array of the translated amino acids in the same order.
+////' \cr Source:\cr
 //' \emph{Compiled by Andrzej (Anjay) Elzanowski and Jim Ostell at National Center for Biotechnology Information (NCBI), Bethesda, Maryland, U.S.A.}\cr
 //' \emph{Last update of the Genetic Codes: Nov. 18, 2016}
 //' \emph{\link{https://www.ncbi.nlm.nih.gov/Taxonomy/Utils/wprintgc.cgi}}
 //'
-//' @return Returns a named List with all codons and the translated amino acids:\cr
 //' \emph{codons} all codons as strings.\cr
 //' \emph{amino_acids} the translated aminop acids in same order.\cr
 //' 
 //' @param name the name of a Genetic Code as string. (check \link{print_all_translation_table})
-//' 
+//'
+//' @return Returns a named List with all codons and the translated amino acids:\cr
 //' @examples
 //' (code <- genetic_codes_by_name("The Yeast Mitochondrial Code"))
 //' 
