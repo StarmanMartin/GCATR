@@ -48,31 +48,31 @@ devtools::install_github("StarmanMartin/GCATR")
 
 ### [Genetic Circular Codes](#generic-circular-codes)
 
-[code_check_if_self_complementary](code_check_if_self_complementary)<br>
-[code_get_acid](code_get_acid)<br>
-[get_dna_bases](get_dna_bases)<br>
-[get_rna_bases](get_rna_bases)<br>
-[get_rna_codon_table](get_rna_codon_table)<br><!--accessory:[![Genetic Code Analysis Toolkit Logo](/man/resources/bio/gcat/codon_table.jpg?raw=true)]-->
-[get_rna_codon_list](get_rna_codon_list)<br>
+[code_check_if_self_complementary](#code_check_if_self_complementary)<br>
+[code_get_acid](#code_get_acid)<br>
+[get_dna_bases](#get_dna_bases)<br>
+[get_rna_bases](#get_rna_bases)<br>
+[get_rna_codon_table](#get_rna_codon_table)<br><!--accessory:[![Genetic Code Analysis Toolkit Logo](/man/resources/bio/gcat/codon_table.jpg?raw=true)]-->
+[get_rna_codon_list](#get_rna_codon_list)<br>
 
-[print_all_translation_tables](print_all_translation_tables)<br>
-[genetic_codes_by_index](genetic_codes_by_index)<br>
-[genetic_codes_by_name](genetic_codes_by_name)<br>
+[print_all_translation_tables](#print_all_translation_tables)<br>
+[genetic_codes_by_index](#genetic_codes_by_index)<br>
+[genetic_codes_by_name](#genetic_codes_by_name)<br>
 
-[get_average_conductance_of_codeidx](get_average_conductance_of_codeidx)<br>
-[get_max_conductance_of_codeidx](get_max_conductance_of_codeidx)<br>
-[get_min_conductance_of_codeidx](get_min_conductance_of_codeidx)<br>
-[get_average_conductance_of_code](get_average_conductance_of_code)<br>
-[get_max_conductance_of_code](get_max_conductance_of_code)<br>
-[get_min_conductance_of_code](get_min_conductance_of_code)<br>
+[get_average_conductance_of_codeidx](#get_average_conductance_of_codeidx)<br>
+[get_max_conductance_of_codeidx](#get_max_conductance_of_codeidx)<br>
+[get_min_conductance_of_codeidx](#get_min_conductance_of_codeidx)<br>
+[get_average_conductance_of_code](#get_average_conductance_of_code)<br>
+[get_max_conductance_of_code](#get_max_conductance_of_code)<br>
+[get_min_conductance_of_code](#get_min_conductance_of_code)<br>
 
 ### [Binary Dichotomic Algorithm (BDA)](#binary_dichotomic_algorithm_(BDA))
 
-[start_bda](start_bda)<br><!--accessory:[![Genetic Code Analysis Toolkit Logo](/man/resources/bio/gcat/codon_table.jpg?raw=true)]-->
-[code_start_bda](code_start_bda)<br>
-[add_bda](add_bda)<br><!--accessory:[![Genetic Code Analysis Toolkit Logo](/man/resources/bio/gcat/bda_diagramm.png?raw=true)]-->
-[run_bda](run_bda)<br>
-[run_bda_as_matrix](run_bda_as_matrix)<br>
+[start_bda](#start_bda)<br><!--accessory:[![Genetic Code Analysis Toolkit Logo](/man/resources/bio/gcat/codon_table.jpg?raw=true)]-->
+[code_start_bda](#code_start_bda)<br>
+[add_bda](#add_bda)<br><!--accessory:[![Genetic Code Analysis Toolkit Logo](/man/resources/bio/gcat/bda_diagramm.png?raw=true)]-->
+[run_bda](#run_bda)<br>
+[run_bda_as_matrix](#run_bda_as_matrix)<br>
 
 <!--outline-end-->
 
