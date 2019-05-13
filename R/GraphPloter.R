@@ -144,29 +144,3 @@ code_factor_longest_path <- function(code, tuple_length = -1) {
 }
 
 
-#' @export
-#test_pdf_reder <- function() {
-#  require(knitr);
-#  require(rmarkdown);
-#
-#  dirname <- "CircularCodeReport";
-#  idx <- 0;
-#  while (dir.exists(dirname)) {
-#    idx <- idx + 1;
-#    dirname <- paste0("CircularCodeReport_", idx, collapse = NULL)
-#  }
-#
-#  startwd <- getwd();
-#  dir.create(dirname);
-#  setwd(dirname);
-#
-#  (template_file <- system.file("data", "CircularCodeReport.Rmd", package = "GCATR"))
-#  output_t="CircularCodeReport.md"
-#
-#
-#  knit(template_file, output = output_t, code="ACG CGA");
-#  render(output_t, output_format = "pdf_document")
-#
-#  setwd(startwd);
-#}
-
