@@ -59,6 +59,7 @@ public:
     virtual bool is_comma_free() = 0;
 
     virtual void shift_tuples(size_t shifts=1) = 0; // NOLINT
+    virtual void transform_tuples(std::vector<std::string> rules) = 0; // NOLINT
 
     virtual seq::Seq_Result find_code_in_sequence(const std::string &) = 0;
 

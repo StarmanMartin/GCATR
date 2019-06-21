@@ -40,6 +40,7 @@ namespace std_m {
         myfile.open (totalFilePath);
         myfile << content;
         myfile.close();
+        return true;
     }
 
 }

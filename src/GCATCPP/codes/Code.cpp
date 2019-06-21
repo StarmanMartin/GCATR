@@ -21,6 +21,7 @@
 #include "../tester/CommaFree.h"
 
 #include "../modification/ShiftTuples.h"
+#include "../modification/TransformTuples.h"
 
 #include "Code.h"
 
@@ -123,4 +124,10 @@ seq::Seq_Result Code::find_code_in_sequence(const std::string &seq) {
 
     return result;
 
+}
+
+void Code::transform_tuples(std::vector<std::string> rules) { // NOLINT
+    if (!this->test_code()) { return; }
+    auto tester = std::make_shared<TransformTuples>(rules);
+    this->run_modification(tester);
 }
