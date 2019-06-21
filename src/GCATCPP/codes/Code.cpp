@@ -71,10 +71,10 @@ bool Code::is_comma_free() {
     return this->run_test(tester);
 }
 
-void Code::shift_tuples(int shifts) { // NOLINT
+void Code::shift_tuples(size_t shifts) { // NOLINT
     if (!this->test_code()) { return; }
-    auto tester = std::make_shared<ShiftTuples>();
-    this->run_modification(tester, &shifts);
+    auto tester = std::make_shared<ShiftTuples>(shifts);
+    this->run_modification(tester);
 }
 
 seq::Seq_Result Code::find_code_in_sequence(const std::string &seq) {

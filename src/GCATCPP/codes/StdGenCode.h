@@ -11,11 +11,11 @@
 class StdGenCode : public AbstractGenCode{
 
 public:
-    explicit StdGenCode(std::vector<std::string> code_vec) : AbstractGenCode(code_vec){}
+    explicit StdGenCode(const std::vector<std::string>& code_vec) : AbstractGenCode(code_vec){}
 
     StdGenCode(std::string sequence, unsigned int word_length) : AbstractGenCode(std::move(sequence), word_length){}
 
-    StdGenCode(const StdGenCode &agc) : AbstractGenCode(agc){}
+    StdGenCode(const StdGenCode &agc) = default;
 
     bool test_code() override;
 

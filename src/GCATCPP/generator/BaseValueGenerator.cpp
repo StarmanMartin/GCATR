@@ -112,10 +112,10 @@ int BaseValueGenerator::value_of_word(const std::string &word) {
 std::string BaseValueGenerator::circular_permutation_with_lowest_value(std::string word) {
     std::string min_word = word;
     int value = this->value_of_word(word);
-    ShiftTuples schifter;
-    int shifter = 1;
+    ShiftTuples schifter(1);
+
     for (unsigned long i = 1; i < word.length(); ++i) {
-        word = schifter.modify_word(word, &shifter);
+        word = schifter.modify_word(word);
         int new_value = this->value_of_word(word);
         if (new_value < value) {
             value = new_value;

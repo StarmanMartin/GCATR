@@ -58,7 +58,7 @@ public:
     virtual bool is_cn_circular() = 0;
     virtual bool is_comma_free() = 0;
 
-    virtual void shift_tuples(int shifts=1) = 0; // NOLINT
+    virtual void shift_tuples(size_t shifts=1) = 0; // NOLINT
 
     virtual seq::Seq_Result find_code_in_sequence(const std::string &) = 0;
 
@@ -89,7 +89,7 @@ protected:
     bool run_test(std::shared_ptr<AbstractTester>, int k);
     bool run_test(std::shared_ptr<AbstractTester>);
 
-    void run_modification(std::shared_ptr<AbstractModifier>, void *args);
+    void run_modification(std::shared_ptr<AbstractModifier>);
 
     const std::string to_string() const;
 

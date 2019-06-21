@@ -15,14 +15,14 @@ public:
 
     Code(const Code &agc);
 
-    virtual bool test_code() override;
-    virtual bool is_k_circular(int k) override;
+    bool test_code() override;
+    bool is_k_circular(int k) override;
 
     bool is_circular() override;
     bool is_cn_circular() override;
     bool is_comma_free() override;
     seq::Seq_Result find_code_in_sequence(const std::string &seq) override;
-    void shift_tuples(int shifts=1) override; // NOLINT
+    void shift_tuples(size_t shifts=1) override; // NOLINT
 
 protected:
 };

@@ -25,6 +25,10 @@ bool StdGenCode::test_code() {
         return this->is_ok;
     }
 
+    if(this->word_length.size() != 1 || this->word_length[0] != 3) {
+        return (this->is_ok = false);
+    }
+
 
     return (this->is_ok = true);
 }

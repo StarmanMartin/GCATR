@@ -156,8 +156,8 @@ bool AbstractCode::run_test(std::shared_ptr<AbstractTester> t, int k) {
     return result;
 }
 
-void AbstractCode::run_modification(std::shared_ptr<AbstractModifier> t, void *args) {
-    auto result = t->modify(this, args);
+void AbstractCode::run_modification(std::shared_ptr<AbstractModifier> t) {
+    auto result = t->modify(this);
     this->add_error_msges(t->get_error_msg());
     this->reset(result);
     this->test_code();

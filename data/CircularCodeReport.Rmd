@@ -1,5 +1,7 @@
 ---
 title: "R Notebook"
+params:
+  code=""
 output: 
   pdf_document: 
     keep_tex: yes
@@ -12,7 +14,7 @@ knitr::opts_chunk$set(echo = TRUE, error= TRUE)
     strsplit('hello indented world', ' ')[[1]]
 ```
 ```{r}
-  GCATR::code_check_if_circular(code);
+  GCATR::code_check_if_circular(params$code);
 ```
 
 This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute code within the notebook, the results appear beneath the code. 
