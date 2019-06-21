@@ -6,7 +6,7 @@
 
 
 #include "../codes/CodeFactory.h"
-
+#include "../modification/TransformTuples.h"
 
 
 TEST(ShiftTester, differentShifts) {
@@ -43,5 +43,21 @@ TEST(TransformTester, differentTransforms) {
     code = CodeFactory::factorGenCode(code_text);
     code->transform_tuples({"ATA", "CGC"});
     EXPECT_EQ(code->as_string_sequence(), "TGCAGCGGCGGG");
+
+}
+
+TEST(TransformTester, differentTransformsByName) {
+    std::string code_text = "ACG TCG CCG CCC";
+    auto code = CodeFactory::factorGenCode(code_text);
+    code->transform_tuples_by_name(AT);
+    EXPECT_EQ(code->as_string_sequence(), "TCGACGCCGCCC");
+
+    code = CodeFactory::factorGenCode(code_text);
+    code->transform_tuples_by_name(SW);
+    EXPECT_EQ(code->as_string_sequence(), "TGCAGCGGCGGG");
+
+    code = CodeFactory::factorGenCode(code_text);
+    code->transform_tuples_by_name(AGTC);
+    EXPECT_EQ(code->as_string_sequence(), "GATCATAATAAA");
 
 }

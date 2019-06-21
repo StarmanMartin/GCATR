@@ -29,6 +29,10 @@ public:
     void setTranslTableByName(const std::string &name, int forWordLength);
     void setTranslTableToStandardCode(int forWordLength);
 
+    void transform_tuples_by_name(const std::string& rule_name); // NOLINT
+
+
+
     std::vector<std::string> get_amino_acids();
 
 protected:

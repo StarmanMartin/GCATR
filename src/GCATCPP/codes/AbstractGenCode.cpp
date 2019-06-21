@@ -13,6 +13,7 @@
 #include "../geneticCode/CodonTranslTables.h"
 
 #include "AbstractGenCode.h"
+#include "../modification/TransformTuples.h"
 
 #define EMPTY_SEQUNECE "#"
 
@@ -32,11 +33,11 @@ AbstractGenCode::AbstractGenCode(const AbstractGenCode &agc) : Code(agc) {
 void AbstractGenCode::reset(std::vector<std::string> code_vec) {
     AbstractCode::reset(code_vec);
     this->acid = acid::check_acid_type(this->as_string_sequence());
-    this->transl_table_idx  = {};
+    this->transl_table_idx = {};
 }
 
 void AbstractGenCode::init_trans_table() {
-    if(this->transl_table_idx.size() == 0) {
+    if (this->transl_table_idx.size() == 0) {
         for (auto wl : this->get_word_length()) {
             this->setTranslTableToStandardCode(wl);
         }
@@ -70,7 +71,7 @@ void AbstractGenCode::setTranslTableByIdx(int idx, int forWordLength) {
 }
 
 void AbstractGenCode::setTranslTableByName(const std::string &name, int forWordLength) {
-    switch(forWordLength) {
+    switch (forWordLength) {
         case 3:
             this->transl_table_idx[forWordLength] = gen_codes::CodonTranslTables::getInstance().getIdxByName(name);
             break;
@@ -85,13 +86,13 @@ void AbstractGenCode::setTranslTableToStandardCode(int forWordLength) {
 }
 
 const std::vector<std::string> AbstractGenCode::factor_transl_table(int wordLength) const {
-    if(!this->transl_table_idx.count(wordLength)) {
+    if (!this->transl_table_idx.count(wordLength)) {
         return std::vector<std::string>();
     }
 
     int translCodeIdx = this->transl_table_idx.at(wordLength);
 
-    switch(wordLength) {
+    switch (wordLength) {
         case 3:
             return gen_codes::CodonTranslTables::getInstance().getCodeByIndex(translCodeIdx, this->acid);
         default:
@@ -104,9 +105,9 @@ std::vector<std::string> AbstractGenCode::get_amino_acids() {
     this->test_code();
     this->init_trans_table();
     std::map<int, std::vector<std::string>> translTables;
-    for(const std::string &codon : this->code_vec) {
+    for (const std::string &codon : this->code_vec) {
         auto wordLength = (int) codon.length();
-        if(!translTables.count(wordLength)) {
+        if (!translTables.count(wordLength)) {
             translTables[wordLength] = this->factor_transl_table(wordLength);
         }
 
@@ -120,4 +121,12 @@ std::vector<std::string> AbstractGenCode::get_amino_acids() {
 
     return vec_acids;
 }
+
+void AbstractGenCode::transform_tuples_by_name(const std::string& rule_name) {
+    if (!this->test_code()) { return; }
+    auto rules = TransformTuples::transformation_by_name(rule_name, this->get_acid());
+    auto tester = std::make_shared<TransformTuples>(rules);
+    this->run_modification(tester);
+}
+
 
