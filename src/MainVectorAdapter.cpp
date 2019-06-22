@@ -153,7 +153,8 @@ bool code_check_if_comma_free(StringVector code, int length = -1) {
 bool code_check_if_self_complementary(StringVector code, int length = -1) {
     auto code_vec = RAdapterUtils::as_cpp_string_vector(code);
     auto a = CodeFactory::rFactorGenCode(code_vec, length);
-    return a->is_self_complementary();
+    bool res = a->is_self_complementary();
+    return res;//a->is_self_complementary();
 }
 
 //' Get acid type of a code

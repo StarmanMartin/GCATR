@@ -19,7 +19,7 @@ public:
     
     AbstractGenCode(const AbstractGenCode &agc);
 
-    virtual bool test_code() override;
+    bool test_code() override;
 
     virtual bool is_self_complementary() = 0;
 

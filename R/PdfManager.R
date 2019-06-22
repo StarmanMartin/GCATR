@@ -1,7 +1,5 @@
 #' @export
 test_pdf_reder <- function() {
-  require(knitr);
-  require(rmarkdown);
 
   dirname <- "CircularCodeReport";
   idx <- 0;
@@ -20,8 +18,8 @@ test_pdf_reder <- function() {
     code = c("ACG", "CGA")
   )
 
-  knit(template_file, output = output_t);
-  render(template_file, output_format = "pdf_document", params = list(
+  #knit::knit(template_file, output = output_t);
+  rmarkdown::render(template_file, output_format = "pdf_document", params = list(
     code = c("ACG", "CGA")
   ))
 

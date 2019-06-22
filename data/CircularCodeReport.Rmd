@@ -1,14 +1,11 @@
 ---
 title: "R Notebook"
 params:
-  code=""
+  code: ""
 output: 
   pdf_document: 
     keep_tex: yes
 ---
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE, error= TRUE)
-```
 
  ```{r}
     strsplit('hello indented world', ' ')[[1]]
