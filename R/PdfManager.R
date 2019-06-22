@@ -1,27 +1,32 @@
 #' @export
-test_pdf_reder <- function() {
-
+test_pdf_reder <- function(code) {
   dirname <- "CircularCodeReport";
   idx <- 0;
   while (dir.exists(dirname)) {
     idx <- idx + 1;
     dirname <- paste0("CircularCodeReport_", idx, collapse = NULL)
   }
-
+  
   startwd <- getwd();
   dir.create(dirname);
   setwd(dirname);
-
-  (template_file <- system.file("data", "CircularCodeReport.Rmd", package = "GCATR"))
-  output_t="CircularCodeReport.md"
+  
+  template_file <- system.file("data", "CircularCodeReport.Rnw", package = "GCATR")
+  
+  file.copy(template_file , "CircularCodeReport.Rnw")
+  
+  output_t <- "CircularCodeReport.pdf"
+  
   params <- list(
-    code = c("ACG", "CGA")
+    code = code
   )
+  
+  knitr::knit2pdf(template_file);
+  #rmarkdown::render(template_file, params = params, envir = new.env())
+  
+  setwd(startwd)
+  
 
-  #knit::knit(template_file, output = output_t);
-  rmarkdown::render(template_file, output_format = "pdf_document", params = list(
-    code = c("ACG", "CGA")
-  ))
+  
 
-  setwd(startwd);
 }

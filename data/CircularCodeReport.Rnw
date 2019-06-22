@@ -1,0 +1,50 @@
+
+%% LyX 2.2.1 created this file.  For more info, see http://www.lyx.org/.
+%% Do not edit unless you really know what you are doing.
+\documentclass{article}
+
+\usepackage{geometry}
+\geometry{verbose,tmargin=2.5cm,bmargin=2.5cm,lmargin=2.5cm,rmargin=2.5cm}
+
+
+
+\begin{document}
+<<setup, include=FALSE, cache=FALSE>>=
+library(knitr)
+library(GCATR)
+# set global chunk options
+opts_chunk$set(fig.path='figure/minimal-', fig.align='center', fig.show='hold')
+options(formatR.arrow=TRUE,width=90)
+@
+
+\title{Code: \Sexpr{params$code}}
+
+\author{GCATR Tool}
+
+\maketitle
+
+<<props>>=
+cn_circular <- code_check_if_cn_circular(params$code)
+circular <- code_check_if_circular(params$code)
+
+comma_free <- code_check_if_comma_free(params$code)
+self_comp <- code_check_if_self_complementary(params$code)
+acid <- code_get_acid(params$code)
+@
+
+
+\section{Prperties}
+\begin{itemize}
+	\item Circular: \Sexpr{circular}
+	\item $C_\ell$ Circular: \Sexpr{cn_circular}
+	\item Comma-Free: \Sexpr{comma_free}
+	\item Self-Complementary: \Sexpr{self_comp}
+	\item acid: \Sexpr{acid}
+\end{itemize}
+
+<<boring-plots, fig.width=8, fig.height=8, out.width='.8\\linewidth', fig.cap='Representing Graph'>>=
+## two plots side by side (option fig.show='hold')
+G <- code_factor_graph(params$code, TRUE, TRUE)
+plot(G)
+@
+\end{document}
