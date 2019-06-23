@@ -208,7 +208,7 @@ void print_all_translation_tables() {
 //' \emph{codons} all codons as strings.\cr
 //' \emph{amino_acids} the translated aminop acids in same order.\cr
 //' 
-//' @param idx the index of a Genetic Code as int. (check \link{print_all_translation_table})
+//' @param idx the index of a Genetic Code table as int. (check \link{print_all_translation_table})
 //'
 //' @return Returns a named List with all codons and the translated amino acids:\cr
 //' @examples

@@ -7,7 +7,7 @@
 genetic_codes_by_index(idx)
 }
 \arguments{
-\item{idx}{the index of a Genetic Code as int. (check \link{print_all_translation_table})}
+\item{idx}{the index of a Genetic Code table as int. (check \link{print_all_translation_table})}
 }
 \value{
 Returns a named List with all codons and the translated amino acids:\cr

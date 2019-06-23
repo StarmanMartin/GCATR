@@ -259,7 +259,7 @@ print_all_translation_tables <- function() {
 #' \emph{codons} all codons as strings.\cr
 #' \emph{amino_acids} the translated aminop acids in same order.\cr
 #' 
-#' @param idx the index of a Genetic Code as int. (check \link{print_all_translation_table})
+#' @param idx the index of a Genetic Code table as int. (check \link{print_all_translation_table})
 #'
 #' @return Returns a named List with all codons and the translated amino acids:\cr
 #' @examples
@@ -550,6 +550,30 @@ code_check_if_self_complementary <- function(code, length = -1L) {
 #' @export
 code_get_acid <- function(code, length = -1L) {
     .Call('_GCATR_code_get_acid', PACKAGE = 'GCATR', code, length)
+}
+
+#' Get amino acids encoded by a code
+#' 
+#' Returns the amino acids encoded by a codes. The code can contain only CYTOSINE (C), ADENINE (A), GUANINE (G)
+#' and THYMINE (T) or URACIL (U) bases. If no other translation table is selecte the function will use the 
+#' \emph{standard genetic code}. A different tranlastion table has to be added by index. Therefore, (see \link{print_all_translation_tables})\cr
+#' For more info on this subject read:\cr
+#' \link{https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5492142/},\cr
+#' \link{http://dpt-info.u-strasbg.fr/~c.michel/Circular_Codes.pdf},\cr
+#' \emph{2007 Christian MICHEL. CIRCULAR CODES IN GENES}
+#'
+#' @param code is either a string vector or a string. It should be a RNA/DNA - code or a sequence.
+#' @param length if code is a sequence, length is the tuple length of the code.
+#' @param idx the index of a Genetic Code table as int. (check \link{print_all_translation_table})
+#' @return String vector. list of amino acids
+#' @examples
+#' code_get_amino_acids(c("ACG", "CAG"), idx_trans_table=2)
+#' code_get_amino_acids("ACGCAG", 3, idx_trans_table=2)
+#' code_get_amino_acids("ACG CAG", idx_trans_table=2)
+#' 
+#' @export
+code_get_amino_acids <- function(code, length = -1L, idx_trans_table = 1L) {
+    .Call('_GCATR_code_get_amino_acids', PACKAGE = 'GCATR', code, length, idx_trans_table)
 }
 
 #' Finds one longest path in the graph of the code.

@@ -25,9 +25,9 @@ public:
 
     acid::acids get_acid();
 
-    void setTranslTableByIdx(int idx, int forWordLength);
-    void setTranslTableByName(const std::string &name, int forWordLength);
-    void setTranslTableToStandardCode(int forWordLength);
+    void setTranslTableByIdx(int idx, int forWordLength=-1);
+    void setTranslTableByName(const std::string &name, int forWordLength=-1);
+    void setTranslTableToStandardCode(int forWordLength=-1);
 
     void transform_tuples_by_name(const std::string& rule_name); // NOLINT
 

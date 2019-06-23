@@ -67,10 +67,23 @@ acid::acids AbstractGenCode::get_acid() {
 }
 
 void AbstractGenCode::setTranslTableByIdx(int idx, int forWordLength) {
+    if(!this->test_code()) {
+        return;
+    }
+    if(forWordLength == -1) {
+        forWordLength = word_length[0];
+    }
     this->transl_table_idx[forWordLength] = idx;
 }
 
 void AbstractGenCode::setTranslTableByName(const std::string &name, int forWordLength) {
+    if(!this->test_code()) {
+        return;
+    }
+    if(forWordLength == -1) {
+        forWordLength = word_length[0];
+    }
+
     switch (forWordLength) {
         case 3:
             this->transl_table_idx[forWordLength] = gen_codes::CodonTranslTables::getInstance().getIdxByName(name);
@@ -82,6 +95,13 @@ void AbstractGenCode::setTranslTableByName(const std::string &name, int forWordL
 }
 
 void AbstractGenCode::setTranslTableToStandardCode(int forWordLength) {
+    if(!this->test_code()) {
+        return;
+    }
+    if(forWordLength == -1) {
+        forWordLength = word_length[0];
+    }
+
     this->transl_table_idx[forWordLength] = 1;
 }
 
@@ -101,8 +121,11 @@ const std::vector<std::string> AbstractGenCode::factor_transl_table(int wordLeng
 }
 
 std::vector<std::string> AbstractGenCode::get_amino_acids() {
-    std::vector<std::string> vec_acids;
-    this->test_code();
+    std::set<std::string> set_acids;
+    if(!this->test_code()) {
+        this->add_error_msg("Code can not be translated");
+        return {};
+    }
     this->init_trans_table();
     std::map<int, std::vector<std::string>> translTables;
     for (const std::string &codon : this->code_vec) {
@@ -114,10 +137,12 @@ std::vector<std::string> AbstractGenCode::get_amino_acids() {
         auto it = std::find(translTables[wordLength].begin(), translTables[wordLength].end(), codon);
         if (it != translTables[wordLength].end()) {
             it++;
-            vec_acids.push_back(*it);
+            set_acids.insert(*it);
         } else
-            vec_acids.push_back(codon);
+            set_acids.insert(codon);
     }
+
+    std::vector<std::string> vec_acids(set_acids.begin(), set_acids.end());
 
     return vec_acids;
 }

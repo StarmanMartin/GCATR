@@ -57,5 +57,5 @@ TEST(ACIDTest, AcidTranslation) {
         ss << c;
     }
 
-    EXPECT_EQ(ss.str(), "LeuCys");
+    EXPECT_EQ(ss.str(), "CysLeu");
 }

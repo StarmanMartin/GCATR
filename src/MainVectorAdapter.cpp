@@ -184,6 +184,34 @@ StringVector code_get_acid(StringVector code, int length = -1) {
     return acid::acid_to_string(a->get_acid());;
 }
 
+//' Get amino acids encoded by a code
+//' 
+//' Returns the amino acids encoded by a codes. The code can contain only CYTOSINE (C), ADENINE (A), GUANINE (G)
+//' and THYMINE (T) or URACIL (U) bases. If no other translation table is selecte the function will use the 
+//' \emph{standard genetic code}. A different tranlastion table has to be added by index. Therefore, (see \link{print_all_translation_tables})\cr
+//' For more info on this subject read:\cr
+//' \link{https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5492142/},\cr
+//' \link{http://dpt-info.u-strasbg.fr/~c.michel/Circular_Codes.pdf},\cr
+//' \emph{2007 Christian MICHEL. CIRCULAR CODES IN GENES}
+//'
+//' @param code is either a string vector or a string. It should be a RNA/DNA - code or a sequence.
+//' @param length if code is a sequence, length is the tuple length of the code.
+//' @param idx the index of a Genetic Code table as int. (check \link{print_all_translation_table})
+//' @return String vector. list of amino acids
+//' @examples
+//' code_get_amino_acids(c("ACG", "CAG"), idx_trans_table=2)
+//' code_get_amino_acids("ACGCAG", 3, idx_trans_table=2)
+//' code_get_amino_acids("ACG CAG", idx_trans_table=2)
+//' 
+//' @export
+// [[Rcpp::export]]
+StringVector code_get_amino_acids(StringVector code, int length = -1, int idx_trans_table = 1) {
+    auto code_vec = RAdapterUtils::as_cpp_string_vector(code);
+    auto a = CodeFactory::rFactorGenCode(code_vec, length);
+    a->setTranslTableByIdx(idx_trans_table);
+    return RAdapterUtils::as_r_string_vector(a->get_amino_acids());
+}
+
 //' Finds one longest path in the graph of the code.
 //'
 //' Prepares a R path string vector. Extracts all longest paths of the Graph G(X) and returns the tuples of the first found one.

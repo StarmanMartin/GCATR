@@ -21,10 +21,6 @@ public:
 
     bool is_self_complementary() override;
 
-    void setTranslTableByIdx(int idx);
-    void setTranslTableByName(const std::string &name);
-    void setTranslTableToStandardCode();
-
 protected:
 };
 

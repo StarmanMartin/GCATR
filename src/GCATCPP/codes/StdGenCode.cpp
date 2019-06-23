@@ -38,16 +38,3 @@ bool StdGenCode::is_self_complementary() {
     auto tester = std::make_shared<SelfComplimentary>();
     return this->run_test(tester);
 }
-
-
-void StdGenCode::setTranslTableByIdx(int idx) {
-    return AbstractGenCode::setTranslTableByIdx(idx, 3);
-}
-
-void StdGenCode::setTranslTableByName(const std::string &name) {
-    return AbstractGenCode::setTranslTableByName(name, 3);
-}
-
-void StdGenCode::setTranslTableToStandardCode() {
-    return AbstractGenCode::setTranslTableToStandardCode(3);
-}
