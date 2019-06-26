@@ -42,6 +42,82 @@ bool code_check_if_circular(StringVector code, int length = -1) {
     return a->is_circular();
 }
 
+//' Returns a code as vector.
+//' 
+//' Turns a sequence or a single string into a string vector.
+//'
+//' @param code is either a string vector or a string. It can either be a code or a sequence.
+//' @param length if code is a sequence, length is the tuple length of the code.
+//' @return StringVector code as vector.
+//' @examples
+//' code_vec <- code_as_vector(c("ACG", "CAG"))
+//' code_vec <- code_as_vector("ACGCAG", 3)
+//' code_vec <- code_as_vector("ACG CAG")
+//'
+//' @export 
+// [[Rcpp::export]]
+StringVector code_as_vector(StringVector code, int length = -1) {
+    auto code_vec = RAdapterUtils::as_cpp_string_vector(code);
+    auto a = CodeFactory::rFactor(code_vec, length);
+    return RAdapterUtils::as_r_string_vector(a->as_vector());
+}
+
+
+
+//' Returns tuple length.
+//' 
+//' Returns the tuple length of the code. If the code is a mixed code it returns the longest tuple length.
+//'
+//' @param code is either a string vector or a string. It can either be a code or a sequence.
+//' @param length if code is a sequence, length is the tuple length of the code.
+//' @return Number tuple length.
+//' @examples
+//' code_l <- code_tuple_length(c("ACG", "CAG"))
+//' code_l <- code_tuple_length("ACGCAG", 3)
+//' code_l <- code_tuple_length("ACG CAG")
+//'
+//' @export 
+// [[Rcpp::export]]
+int code_tuple_length(StringVector code, int length = -1) {
+    auto code_vec = RAdapterUtils::as_cpp_string_vector(code);
+    auto a = CodeFactory::rFactor(code_vec, length);
+    return a->get_word_length()[0];
+}
+
+//' Check if a set is a code.
+//'
+//' This function checks if a code is a code.\cr
+//' Let \emph{Sigma} be a finite alphabet and X a subset of \emph{Sigma}*l for some l in N.\cr
+//' - For w in \emph{Sigma}*l , an X-decomposition of w is a tuple (x1 ,... , xt ) in Xt with t in N such that
+//' X = x 1 · x 2 · · · x t .
+//' - A set X subset of \emph{Sigma}*l  is a code if each word w in X has a single X-decomposition.
+//' - For an integer l > 1, an l-letter code is a code contained in .
+//' Let X be a subset of \emph{Sigma}*l . X is called a code over Σ ∗ if for all n, m > 0 and x1...xn , x1...xm in X,
+//' the condition\cr
+//' x1...xn = x1...xm\cr
+//' implies\cr
+//' n = m and xi = xj for i = 1,..., n\cr
+//' For more info on this subject read:\cr
+//' \link{https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5492142/},\cr
+//' \link{http://dpt-info.u-strasbg.fr/~c.michel/Circular_Codes.pdf},\cr
+//' \emph{2007 Christian MICHEL. CIRCULAR CODES IN GENES}
+//'
+//' @param code is either a string vector or a string. It can either be a code or a sequence.
+//' @param length if code is a sequence, length is the tuple length of the code.
+//' @return Boolean value. True if the code is circular.
+//' @examples
+//' code_check_if_circular(c("ACG", "CAG"))
+//' code_check_if_circular("ACGCAG", 3)
+//' code_check_if_circular("ACG CAG")
+//'
+//' @export
+// [[Rcpp::export]]
+bool code_check_if_code(StringVector code, int length = -1) {
+    auto code_vec = RAdapterUtils::as_cpp_string_vector(code);
+    auto a = CodeFactory::rFactor(code_vec, length);
+    return a->test_code();
+}
+
 //' Check if a code is k-circular.
 //'
 //' This function checks if a code is k-circular.

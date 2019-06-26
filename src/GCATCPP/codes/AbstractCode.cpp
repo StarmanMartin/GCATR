@@ -140,7 +140,9 @@ size_t AbstractCode::get_letter_value(const char &c) {
 }
 
 std::vector<int> AbstractCode::get_word_length() {
-    this->test_code();
+    if(!this->test_code()) {
+        return {0};
+    }
     return this->word_length;
 }
 
@@ -172,4 +174,8 @@ const std::string AbstractCode::to_string() const {
               std::ostream_iterator<std::string>(imploded, delim));
 
     return imploded.str();
+}
+
+bool AbstractCode::is_translatable() {
+    return false;
 }

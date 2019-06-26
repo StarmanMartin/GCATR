@@ -38,3 +38,7 @@ bool StdGenCode::is_self_complementary() {
     auto tester = std::make_shared<SelfComplimentary>();
     return this->run_test(tester);
 }
+
+bool StdGenCode::is_translatable() {
+    return this->test_code();
+}

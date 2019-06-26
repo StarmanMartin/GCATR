@@ -21,6 +21,8 @@ public:
 
     bool is_self_complementary() override;
 
+    bool is_translatable() override;
+
 protected:
 };
 

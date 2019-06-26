@@ -80,11 +80,6 @@ run_bda <- function() {
     .Call('_GCATR_run_bda', PACKAGE = 'GCATR')
 }
 
-#' The Genetic Codes
-#' 
-#' \emph{genetic_codes_by_name} returns a list representing a Genetic Code. The list contains two arrays, one array of the codons and one array of the translated amino acids in the same order.
-NULL
-
 #' To calculate the average conductance of a translation table
 #'
 #' This function calculates the average conductance for a selected genetic translation table.
@@ -100,7 +95,7 @@ NULL
 #' @examples
 #' ac = get_average_conductance_of_code("The Standard Code")
 #' ac = get_average_conductance_of_code("The Vertebrate Mitochondrial Code", "RNA")
-#' @export 
+#' @export
 get_average_conductance_of_code <- function(codeName, acid = "DNA") {
     .Call('_GCATR_get_average_conductance_of_code', PACKAGE = 'GCATR', codeName, acid)
 }
@@ -206,9 +201,9 @@ get_min_conductance_of_codeidx <- function(codeIdx, acid = "DNA") {
 }
 
 #' The Genetic Codes
-#' 
+#'
 #' \emph{print_all_translation_tables} prints a list of the genetic codes contained by this project. The list includes names and indexes of the codes.
-#' 
+#'
 #' The Standard Code(transl_table=1)\cr
 #' The Vertebrate Mitochondrial Code(transl_table=2)\cr
 #' The Yeast Mitochondrial Code(transl_table=3)\cr
@@ -237,19 +232,19 @@ get_min_conductance_of_codeidx <- function(codeIdx, acid = "DNA") {
 #' \emph{Compiled by Andrzej (Anjay) Elzanowski and Jim Ostell at National Center for Biotechnology Information (NCBI), Bethesda, Maryland, U.S.A.}\cr
 #' \emph{Last update of the Genetic Codes: Nov. 18, 2016}
 #' \emph{\link{https://www.ncbi.nlm.nih.gov/Taxonomy/Utils/wprintgc.cgi}}
-#' 
+#'
 #' @seealso \link{genetic_codes_by_index}, \link{genetic_codes_by_name}
 #'
 #' @examples
 #' print_all_translation_tables()
-#' 
-#' @export 
+#'
+#' @export
 print_all_translation_tables <- function() {
     invisible(.Call('_GCATR_print_all_translation_tables', PACKAGE = 'GCATR'))
 }
 
 #' The Genetic Codes
-#' 
+#'
 #' \emph{genetic_codes_by_index} returns a list representing a Genetic Code. The list contains two arrays, one array of the codons and one array of the translated amino acids in the same order.
 #' \cr Source:\cr
 #' \emph{Compiled by Andrzej (Anjay) Elzanowski and Jim Ostell at National Center for Biotechnology Information (NCBI), Bethesda, Maryland, U.S.A.}\cr
@@ -258,32 +253,82 @@ print_all_translation_tables <- function() {
 #'
 #' \emph{codons} all codons as strings.\cr
 #' \emph{amino_acids} the translated aminop acids in same order.\cr
-#' 
+#'
 #' @param idx the index of a Genetic Code table as int. (check \link{print_all_translation_table})
+#' @param a@param acid a String, is optional: DNA or RNA
 #'
 #' @return Returns a named List with all codons and the translated amino acids:\cr
 #' @examples
 #' (code <- genetic_codes_by_index(1))
-#' 
-#' @export 
-genetic_codes_by_index <- function(idx) {
-    .Call('_GCATR_genetic_codes_by_index', PACKAGE = 'GCATR', idx)
+#'
+#' @export
+genetic_codes_by_index <- function(idx, acid = "DNA") {
+    .Call('_GCATR_genetic_codes_by_index', PACKAGE = 'GCATR', idx, acid)
 }
 
+#' Is a code translatable?
+#'
+#' This function checks if a code can be translated into amino acids. Therefore, it simply checks if a translation table which fits the tuple size of the code
+#' is in the system.\cr.
+#' \link{https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5492142/},\cr
+#' \link{http://dpt-info.u-strasbg.fr/~c.michel/Circular_Codes.pdf},\cr
+#' \emph{2007 Christian MICHEL. CIRCULAR CODES IN GENES}
+#'
+#' @param code is either a string vector or a string. It can either be a code or a sequence.
+#' @param length if code is a sequence, length is the tuple length of the code.
+#' @return Boolean value. True if a fitting translation table exists.
+#' @examples
+#' code_is_translatable(c("ACG", "CAG"))
+#' code_is_translatable("ACGCAG", 3)
+#' code_is_translatable("ACG CAG")
+#'
+#' @export
+code_is_translatable <- function(code, length = -1L) {
+    .Call('_GCATR_code_is_translatable', PACKAGE = 'GCATR', code, length)
+}
+
+#' The Genetic Codes
+#'
+#' \emph{cpp_genetic_codes_as_df_by_index} returns a data.frame table which represents a Genetic Code. The table is 4*16.
+#' \cr Source:\cr
 #' \emph{Compiled by Andrzej (Anjay) Elzanowski and Jim Ostell at National Center for Biotechnology Information (NCBI), Bethesda, Maryland, U.S.A.}\cr
 #' \emph{Last update of the Genetic Codes: Nov. 18, 2016}
 #' \emph{\link{https://www.ncbi.nlm.nih.gov/Taxonomy/Utils/wprintgc.cgi}}
 #'
 #' \emph{codons} all codons as strings.\cr
 #' \emph{amino_acids} the translated aminop acids in same order.\cr
-#' 
+#'
+#' @param idx the index of a Genetic Code table as int. (check \link{print_all_translation_table})
+#' @param a@param acid a String, is optional: DNA or RNA
+#'
+#' @return Returns a named List with all codons and the translated amino acids:\cr
+#' @examples
+#' (code <- genetic_codes_as_df_by_index(1))
+#'
+#' @export
+cpp_genetic_codes_as_df_by_index <- function(idx, acid = "RNA") {
+    .Call('_GCATR_cpp_genetic_codes_as_df_by_index', PACKAGE = 'GCATR', idx, acid)
+}
+
+#' The Genetic Codes
+#'
+#' \emph{genetic_codes_by_name} returns a list representing a Genetic Code. The list contains two arrays, one array of the codons and one
+#' array of the translated amino acids in the same order.\cr
+#' Source:\cr
+#' \emph{Compiled by Andrzej (Anjay) Elzanowski and Jim Ostell at National Center for Biotechnology Information (NCBI), Bethesda, Maryland, U.S.A.}\cr
+#' \emph{Last update of the Genetic Codes: Nov. 18, 2016}
+#' \emph{\link{https://www.ncbi.nlm.nih.gov/Taxonomy/Utils/wprintgc.cgi}}
+#'
+#' \emph{codons} all codons as strings.\cr
+#' \emph{amino_acids} the translated aminop acids in same order.\cr
+#'
 #' @param name the name of a Genetic Code as string. (check \link{print_all_translation_table})
 #'
 #' @return Returns a named List with all codons and the translated amino acids:\cr
 #' @examples
 #' (code <- genetic_codes_by_name("The Yeast Mitochondrial Code"))
-#' 
-#' @export 
+#'
+#' @export
 genetic_codes_by_name <- function(name) {
     .Call('_GCATR_genetic_codes_by_name', PACKAGE = 'GCATR', name)
 }
@@ -425,6 +470,71 @@ code_prepare_factor_longest_path <- function(code, tuple_length = -1L) {
 #' @export 
 code_check_if_circular <- function(code, length = -1L) {
     .Call('_GCATR_code_check_if_circular', PACKAGE = 'GCATR', code, length)
+}
+
+#' Returns a code as vector.
+#' 
+#' Turns a sequence or a single string into a string vector.
+#'
+#' @param code is either a string vector or a string. It can either be a code or a sequence.
+#' @param length if code is a sequence, length is the tuple length of the code.
+#' @return StringVector code as vector.
+#' @examples
+#' code_vec <- code_as_vector(c("ACG", "CAG"))
+#' code_vec <- code_as_vector("ACGCAG", 3)
+#' code_vec <- code_as_vector("ACG CAG")
+#'
+#' @export 
+code_as_vector <- function(code, length = -1L) {
+    .Call('_GCATR_code_as_vector', PACKAGE = 'GCATR', code, length)
+}
+
+#' Returns tuple length.
+#' 
+#' Returns the tuple length of the code. If the code is a mixed code it returns the longest tuple length.
+#'
+#' @param code is either a string vector or a string. It can either be a code or a sequence.
+#' @param length if code is a sequence, length is the tuple length of the code.
+#' @return Number tuple length.
+#' @examples
+#' code_l <- code_tuple_length(c("ACG", "CAG"))
+#' code_l <- code_tuple_length("ACGCAG", 3)
+#' code_l <- code_tuple_length("ACG CAG")
+#'
+#' @export 
+code_tuple_length <- function(code, length = -1L) {
+    .Call('_GCATR_code_tuple_length', PACKAGE = 'GCATR', code, length)
+}
+
+#' Check if a set is a code.
+#'
+#' This function checks if a code is a code.\cr
+#' Let \emph{Sigma} be a finite alphabet and X a subset of \emph{Sigma}*l for some l in N.\cr
+#' - For w in \emph{Sigma}*l , an X-decomposition of w is a tuple (x1 ,... , xt ) in Xt with t in N such that
+#' X = x 1 · x 2 · · · x t .
+#' - A set X subset of \emph{Sigma}*l  is a code if each word w in X has a single X-decomposition.
+#' - For an integer l > 1, an l-letter code is a code contained in .
+#' Let X be a subset of \emph{Sigma}*l . X is called a code over Σ ∗ if for all n, m > 0 and x1...xn , x1...xm in X,
+#' the condition\cr
+#' x1...xn = x1...xm\cr
+#' implies\cr
+#' n = m and xi = xj for i = 1,..., n\cr
+#' For more info on this subject read:\cr
+#' \link{https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5492142/},\cr
+#' \link{http://dpt-info.u-strasbg.fr/~c.michel/Circular_Codes.pdf},\cr
+#' \emph{2007 Christian MICHEL. CIRCULAR CODES IN GENES}
+#'
+#' @param code is either a string vector or a string. It can either be a code or a sequence.
+#' @param length if code is a sequence, length is the tuple length of the code.
+#' @return Boolean value. True if the code is circular.
+#' @examples
+#' code_check_if_circular(c("ACG", "CAG"))
+#' code_check_if_circular("ACGCAG", 3)
+#' code_check_if_circular("ACG CAG")
+#'
+#' @export
+code_check_if_code <- function(code, length = -1L) {
+    .Call('_GCATR_code_check_if_code', PACKAGE = 'GCATR', code, length)
 }
 
 #' Check if a code is k-circular.

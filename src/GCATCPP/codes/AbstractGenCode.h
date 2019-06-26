@@ -34,6 +34,7 @@ public:
 
 
     std::vector<std::string> get_amino_acids();
+    std::vector<std::string> get_a_set_amino_acids();
 
 protected:
     std::map<int, int> transl_table_idx;

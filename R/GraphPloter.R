@@ -114,7 +114,7 @@ code_factor_c3graph <- function(code, tuple_length=-1) {
 #' plot(G)
 #'
 #' @export
-code_factor_cycle <- function(code, tuple_length) {
+code_factor_cycle <- function(code, tuple_length=-1) {
   vertices_edges_list = code_prepare_factor_all_cycle(code, tuple_length)
   return(factor_graph(vertices_edges_list))
 }
