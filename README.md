@@ -414,7 +414,7 @@ plot(G)
 
 #### Usage
 ```R 
-code_factor_cycle(code, tuple_length)
+code_factor_cycle(code, tuple_length = -1)
 ```
 
 #### Arguments
@@ -1078,12 +1078,14 @@ print_all_translation_tables()
 
 #### Usage
 ```R 
-genetic_codes_by_index(idx)
+genetic_codes_by_index(idx, acid = "DNA")
 ```
 
 #### Arguments
  
-*idx*	the index of a Genetic Code as int. (check *print_all_translation_table*)<br>
+*idx*	the index of a Genetic Code table as int. (check *print_all_translation_table*)<br>
+
+*a@param*	acid a String, is optional: DNA or RNA<br>
 
 
 #### Return
@@ -1126,8 +1128,12 @@ Returns a named List with all codons and the translated amino acids:<br>
 
 #### Description
  
-*codons* all codons as strings.<br>
-*amino_acids* the translated aminop acids in same order.<br>
+*genetic_codes_by_name* returns a list representing a Genetic Code. The list contains two arrays, one array of the codons and one
+array of the translated amino acids in the same order.<br>
+Source:<br>
+*Compiled by Andrzej (Anjay) Elzanowski and Jim Ostell at National Center for Biotechnology Information (NCBI), Bethesda, Maryland, U.S.A.*<br>
+*Last update of the Genetic Codes: Nov. 18, 2016*
+**{*https://www.ncbi.nlm.nih.gov/Taxonomy/Utils/wprintgc.cgi*}
 
 
 #### Examples
