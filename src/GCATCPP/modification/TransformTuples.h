@@ -20,7 +20,9 @@
 
 class TransformTuples : public AbstractModifier {
 public:
-    explicit TransformTuples(std::vector<std::string> rule_set);
+    explicit TransformTuples(const std::string& from_rule, const std::string& to_rule);
+    explicit TransformTuples(const std::string& names, acid::acids acid);
+
 
     std::vector<std::string> modify(AbstractCode *code) override;
 

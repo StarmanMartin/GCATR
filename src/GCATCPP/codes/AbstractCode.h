@@ -62,7 +62,7 @@ public:
     virtual bool is_translatable();
 
     virtual void shift_tuples(size_t shifts=1) = 0; // NOLINT
-    virtual void transform_tuples(std::vector<std::string> rules) = 0; // NOLINT
+    virtual void transform_tuples(const std::string& from_rule, const std::string& to_rule) = 0; // NOLINT
 
     virtual seq::Seq_Result find_code_in_sequence(const std::string &) = 0;
 

@@ -126,8 +126,8 @@ seq::Seq_Result Code::find_code_in_sequence(const std::string &seq) {
 
 }
 
-void Code::transform_tuples(std::vector<std::string> rules) { // NOLINT
+void Code::transform_tuples(const std::string& from_rule, const std::string& to_rule) { // NOLINT
     if (!this->test_code()) { return; }
-    auto tester = std::make_shared<TransformTuples>(rules);
+    auto tester = std::make_shared<TransformTuples>(from_rule, to_rule);
     this->run_modification(tester);
 }

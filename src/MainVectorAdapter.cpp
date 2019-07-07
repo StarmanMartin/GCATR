@@ -44,13 +44,12 @@ bool code_check_if_circular(StringVector code, int length = -1) {
 
 //' Returns a code as vector.
 //' 
-//' Turns a sequence or a single string into a string vector.
+//' Turns a sequence or a single string code into a string vector.
 //'
 //' @param code is either a string vector or a string. It can either be a code or a sequence.
 //' @param length if code is a sequence, length is the tuple length of the code.
 //' @return StringVector code as vector.
 //' @examples
-//' code_vec <- code_as_vector(c("ACG", "CAG"))
 //' code_vec <- code_as_vector("ACGCAG", 3)
 //' code_vec <- code_as_vector("ACG CAG")
 //'
@@ -562,27 +561,64 @@ StringVector shift_tuples(int shifts, StringVector code, int tuple_length = -1) 
 
 
 
-//' Circular transform of all tuples
+//' Transformation of all tuples
 //'
-//' This functions transform all tuples in code. The single letters get transformed by the rules set as parameter
-//' 
+//' This function transforms all tuples in code. The single letters get transformed by the rules which are set as parameter.
+//' The rules are defined as two strings, the \emph{from} and the \emph{to} parameter. These two parameters have to be
+//' strings of the same length. Each letter in the \emph{from} string gets transformed to the corresponding letter at the same
+//' position of the \emph{to} parameter.
 //'
-//' @param shifts number of shifts
+//'
+//' @param from the origin letters which are maped to the letters of the \emph{to} parameter.
+//' @param to the transformation target letters which are maped letters of to the \emph{from} parameter.
 //' @param code is either a string vector or a string. It can either be a code or a sequence.
 //' @param tuple_length if code is a sequence, length is the tuple length of the code.
 //'
-//' @return shifted code as String vector
+//' @return transformed code as String vector
 //'
 //' @examples
-//' shifted_code <- shift_tuples(c("ACA", TGT), c("ACG", "GAT"))
-//' shifted_code <- shift_tuples(2, "ACGGAT", tuple_length=3)
-//' shifted_code <- shift_tuples(2, "ACG GAT")
+//' transformed_tuples <- code_transform_tuples("ACTG", "CAGT", c("ACG", "GAT"))
+//' transformed_tuples <- code_transform_tuples("ACTG", "CAGT", "ACGGAT", tuple_length=3)
+//' transformed_tuples <- code_transform_tuples("ACTG", "CAGT", "ACG GAT")
 //'
 //' @export
 // [[Rcpp::export]]
-StringVector transform_tuples(StringVector rules, StringVector code, int tuple_length = -1) {
+StringVector code_transform_tuples(std::string from, std:string to, StringVector code, int tuple_length = -1) {
     auto code_vec = RAdapterUtils::as_cpp_string_vector(code);
     auto gc = CodeFactory::rFactor(code_vec, tuple_length);
-    gc->shift_tuples(shifts);
+    gc->transform_tuples(from, to);
     return RAdapterUtils::as_r_string_vector(gc->as_vector());
+}
+
+//' Transformation of all tuples
+//'
+//' This function transforms all tuples in code. The single letters get transformed by the rules which are set as parameter.
+//' The rules are the predefined and listed below. This only works for genetic gen codes and sequences\cr
+//'
+//' SW = (A, T,C,G) -> (T, A, G,C)\cr
+//' YR = (A, T,C,G) -> (G,C, T,A)\cr
+//' KM = (A, T,C,G) -> (C, G, A, T)\cr
+//' AT = (A, T,C,G) -> (T, A,C,G)\cr
+//' CG = (A, T,C,G) -> (A, T, G,C)\cr
+//' ACTG = (A, T,C,G) -> (C, G, T,A)\cr
+//' AGTC = (A, T,C,G) -> (G,C, A, T)\cr
+//'
+//' @param trans_name tname of a transformation. listed in description.
+//' @param code is either a string vector or a string. It can either be a code or a sequence.
+//' @param tuple_length if code is a sequence, length is the tuple length of the code.
+//'
+//' @return transformed code as String vector
+//'
+//' @examples
+//' transformed_tuples <- code_named_transform_tuples("I", c("ACG", "GAT"))
+//' transformed_tuples <- code_named_transform_tuples("ACTG", "CAGT", "ACGGAT", tuple_length=3)
+//' transformed_tuples <- code_named_transform_tuples("ACTG", "CAGT", "ACG GAT")
+//'
+//' @export
+// [[Rcpp::export]]
+StringVector code_named_transform_tuples(std::string trans_name, StringVector code, int tuple_length = -1) {
+auto code_vec = RAdapterUtils::as_cpp_string_vector(code);
+auto gc = CodeFactory::rFactorGenCode(code_vec, tuple_length);
+gc->transform_tuples_by_name(trans_name);
+return RAdapterUtils::as_r_string_vector(gc->as_vector());
 }

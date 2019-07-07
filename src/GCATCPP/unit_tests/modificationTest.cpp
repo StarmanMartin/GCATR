@@ -33,15 +33,15 @@ TEST(ShiftTester, differentShifts) {
 TEST(TransformTester, differentTransforms) {
     std::string code_text = "ACG TCG CCG CCC";
     auto code = CodeFactory::factorGenCode(code_text);
-    code->transform_tuples({"AT"});
+    code->transform_tuples("A", "T");
     EXPECT_EQ(code->as_string_sequence(), "TCGTCGCCGCCC");
 
     code = CodeFactory::factorGenCode(code_text);
-    code->transform_tuples({"ATA"});
+    code->transform_tuples("AT", "TA");
     EXPECT_EQ(code->as_string_sequence(), "TCGACGCCGCCC");
 
     code = CodeFactory::factorGenCode(code_text);
-    code->transform_tuples({"ATA", "CGC"});
+    code->transform_tuples("ATCG", "TAGC");
     EXPECT_EQ(code->as_string_sequence(), "TGCAGCGGCGGG");
 
 }

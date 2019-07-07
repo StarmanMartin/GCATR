@@ -23,7 +23,7 @@ public:
     bool is_comma_free() override;
     seq::Seq_Result find_code_in_sequence(const std::string &seq) override;
     void shift_tuples(size_t shifts=1) override; // NOLINT
-    void transform_tuples(std::vector<std::string> rules) override; // NOLINT
+    void transform_tuples(const std::string& from_rule, const std::string& to_rule) override; // NOLINT
 
 protected:
 };

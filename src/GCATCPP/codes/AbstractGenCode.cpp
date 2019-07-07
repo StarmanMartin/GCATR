@@ -157,8 +157,7 @@ std::vector<std::string> AbstractGenCode::get_a_set_amino_acids() {
 
 void AbstractGenCode::transform_tuples_by_name(const std::string& rule_name) {
     if (!this->test_code()) { return; }
-    auto rules = TransformTuples::transformation_by_name(rule_name, this->get_acid());
-    auto tester = std::make_shared<TransformTuples>(rules);
+    auto tester = std::make_shared<TransformTuples>(rule_name, this->get_acid());
     this->run_modification(tester);
 }
 

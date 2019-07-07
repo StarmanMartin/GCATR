@@ -11,9 +11,25 @@
 #include "../codes/AbstractCode.h"
 
 
-TransformTuples::TransformTuples(std::vector<std::string> rule_set) : rule_set(std::move(rule_set)),
-                                                                      AbstractModifier() {
 
+TransformTuples::TransformTuples(const std::string &from_rule, const std::string &to_rule) {
+    this->rule_set = {};
+    if(from_rule.length() != to_rule.length()) {
+        return;
+    }
+
+    for(size_t i = 0; i < from_rule.length(); i++) {
+        std::string new_rule = "";
+        new_rule += from_rule.at(i);
+        new_rule += to_rule.at(i);
+        rule_set.emplace_back(new_rule);
+    }
+}
+
+
+
+TransformTuples::TransformTuples(const std::string &name, acid::acids acid) {
+    this->rule_set = TransformTuples::transformation_by_name(name, acid);
 }
 
 
