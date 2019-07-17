@@ -22,7 +22,7 @@ set(SOURCE_FILES main_test.cpp
         modification/AbstractModifier.cpp modification/AbstractModifier.h modification/ShiftTuples.cpp modification/ShiftTuples.h
         bda/BDATools.cpp bda/BDATools.h
         codes/Alphabet.cpp codes/Alphabet.h codes/CodeFactory.h helper/StringUtils.h
-        helper/AbstractErrorManager.cpp helper/AbstractErrorManager.h helper/FileManager.cpp helper/FileManager.h
+        helper/AbstractErrorManager.cpp helper/AbstractErrorManager.h helper/FileManager.cpp helper/FileManager.h helper/ErrorManager.cpp helper/ErrorManager.h
         miner/CircleMiner.cpp miner/CircleMiner.h miner/LongestPathMiner.cpp miner/LongestPathMiner.h
         graph/Edge.cpp graph/Edge.h graph/Vertex.cpp graph/Vertex.h graph/Graph.cpp graph/Graph.h graph/C3Graph.cpp graph/C3Graph.h
         geneticCode/CodonTranslTables.cpp geneticCode/CodonTranslTables.h geneticCode/CodonClusteringAlgorithm.cpp geneticCode/CodonClusteringAlgorithm.h

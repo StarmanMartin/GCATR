@@ -61,3 +61,69 @@ TEST(TransformTester, differentTransformsByName) {
     EXPECT_EQ(code->as_string_sequence(), "GATCATAATAAA");
 
 }
+
+TEST(TransformTester, TransformationCompare) {
+    {
+        TransformTuples t1("ATCG", "GATC");
+        TransformTuples t2("CGAT", "TCGA");
+
+        EXPECT_TRUE(t1 == t2);
+    }
+    {
+        TransformTuples t1("ATCG", "GATC");
+        TransformTuples t2("CGAT", "ATCG");
+
+        EXPECT_TRUE(t1 != t2);
+    }
+    {
+        TransformTuples t1("TCG", "GATC");
+        TransformTuples t2("CGAT", "TCGA");
+
+        EXPECT_FALSE(t1 == t2);
+    }
+    {
+        TransformTuples t1("ATCG", "GCTC");
+        TransformTuples t2("CGAT", "TCGA");
+
+        EXPECT_FALSE(t1 == t2);
+    }
+}
+
+TEST(TransformTester, TransformationFind) {
+    {
+        auto t1 = TransformTuples::find_transformation_from_sequences("ATCG", "GATC");
+        TransformTuples t2("CGAT", "TCGA");
+
+        EXPECT_TRUE(t1 == t2);
+    }
+    {
+        auto t1 = TransformTuples::find_transformation_from_sequences("ATCG", "GATC");
+        TransformTuples t2("CGAT", "ATCG");
+
+        EXPECT_TRUE(t1 != t2);
+    }
+    {
+        auto t1 = TransformTuples::find_transformation_from_sequences("TCG", "GATC");
+        TransformTuples t2("CGAT", "TCGA");
+
+        EXPECT_FALSE(t1 == t2);
+    }
+    {
+        auto t1 = TransformTuples::find_transformation_from_sequences("ATCG", "GCTC");
+        TransformTuples t2("CGAT", "TCGA");
+
+        EXPECT_FALSE(t1 == t2);
+    }
+    {
+        auto t1 = TransformTuples::find_transformation_from_sequences("ATATCGATCGCGATCG", "GAGATCGATCTCGATC");
+        TransformTuples t2("CGAT", "TCGA");
+
+        EXPECT_TRUE(t1 == t2);
+    }
+    {
+        auto t1 = TransformTuples::find_transformation_from_sequences("TTATCGATCGCGATCG", "GAGATCGATCTCGATC");
+        TransformTuples t2("CGAT", "TCGA");
+
+        EXPECT_FALSE(t1 == t2);
+    }
+}

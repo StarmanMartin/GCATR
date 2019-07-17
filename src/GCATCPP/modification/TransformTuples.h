@@ -28,55 +28,61 @@ public:
 
     std::string modify_word(std::string word) override;
 
-    static std::vector<std::string> transformation_by_name(const std::string &name, const acid::acids &acid) {
+    friend bool operator== (const TransformTuples &c1, const TransformTuples &c2);
+    friend bool operator!= (const TransformTuples &c1, const TransformTuples &c2);
+
+    static TransformTuples find_transformation_from_sequences(const std::string &seq_1, const std::string &seq_2);
+
+private:
+    bool has_error = false;
+    std::vector<std::string> rule_set;
+    std::map<size_t, char> replacements;
+
+    void transform_word(std::string &word);
+
+    void find_replacements(const std::string &word, char from, char to);
+
+    static std::vector<std::string> transformation_by_name(const std::string &name, const acid::acids &acid=acid::acids::RNA) {
         std::string baseTU;
         if (acid == acid::acids::DNA) {
             baseTU = "T";
         } else if (acid == acid::acids::RNA) {
             baseTU = "U";
         } else {
-            return {};
+            return {"",""};
         }
 
         if (name == SW || name == "orc") {
             // (A, T,C,G) -> (T, A, G,C)
-            return {"A" + baseTU + "A", "CGC"};
+            return {"A" + baseTU + "CG",     baseTU + "AGC"};
         }
         if (name == YR || name == "orp") {
             // (A, T,C,G) -> (G,C, T,A)
-            return {"AGA", "C" + baseTU + "C"};
+            return {"A" + baseTU + "CG",    "GC" + baseTU + "A"};
         }
         if (name == KM || name == "orr") {
             // (A, T,C,G) -> (C, G, A, T)
-            return {"ACA", "G" + baseTU + "G"};
+            return {"A" + baseTU + "CG",    "CGA" + baseTU};
         }
         if (name == AT) {
             // (A, T,C,G) -> (T, A,C,G).
-            return {"A" + baseTU + "A"};
+            return {"A" + baseTU + "CG",    baseTU + "ACG"};
         }
         if (name == CG) {
             // (A, T,C,G) -> (A, T, G,C).
-            return {"CGC"};
+            return {"A" + baseTU + "CG",    "A" + baseTU + "GC"};
         }
         if (name == ACTG) {
             // (A, T,C,G) -> (C, G, T,A).
-            return {"AC" + baseTU + "GA"};
+            return {"A" + baseTU + "CG",    "CG" + baseTU + "A"};
         }
         if (name == AGTC) {
             // (A, T,C,G) -> (G,C, A, T).
-            return {"AG" + baseTU + "CA"};
+            return {"A" + baseTU + "CG",    "GCA" + baseTU};
         }
 
-        return {};
+        return {"", ""};
     }
-
-private:
-    std::vector<std::string> rule_set;
-    std::map<size_t, char> replacements;
-
-    void transform_word(std::string &word);
-
-    void find_replacements(const std::string &word, const std::string &rule);
 };
 
 
