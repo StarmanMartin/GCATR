@@ -43,7 +43,6 @@ factor_rna_codon_table <- function(rna_codon_list) {
 #' @export
 get_rna_codon_table <- function() {
   return(factor_rna_codon_table(get_rna_codon_list()))      
-  
 }
 
 #' A List of all RNA codons
@@ -70,4 +69,30 @@ get_rna_codon_list <- function() {
   }
   
   return(result)
+}
+
+#' The Genetic Codes
+#' 
+#' \\emph{genetic_codes_as_df_by_index} returns a data.frame table which represents a Genetic Code. The table is 4*16.
+#' This table has row names and column names.
+#' \cr Source:\cr
+#' \emph{Compiled by Andrzej (Anjay) Elzanowski and Jim Ostell at National Center for Biotechnology Information (NCBI), Bethesda, Maryland, U.S.A.}\cr
+#' \emph{Last update of the Genetic Codes: Nov. 18, 2016}
+#' \emph{\link{https:#www.ncbi.nlm.nih.gov/Taxonomy/Utils/wprintgc.cgi}}
+#'
+#' \emph{codons} all codons as strings.\cr
+#' \emph{amino_acids} the translated aminop acids in same order.\cr
+#' 
+#' @param idx the index of a Genetic Code table as int. (check \link{print_all_translation_table})
+#' @param a@param acid a String, is optional: DNA or RNA
+#'
+#' @return Returns a named List with all codons and the translated amino acids:\cr
+#' @examples
+#' (code <- genetic_codes_as_df_by_index(1))
+#' 
+#' @export 
+genetic_codes_as_df_by_index <- function(idx, acid="RNA") {
+  code_table <- cpp_genetic_codes_as_df_by_index(1)
+  row.names(code_table) <- c("U_U", "U_C", "U_A", "U_G", "C_U", "C_C", "C_A", "C_G", "A_U", "A_C", "A_A", "A_G", "G_U", "G_C", "G_A", "G_G")
+  return(code_table)
 }

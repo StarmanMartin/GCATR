@@ -4,10 +4,11 @@
 
 #include "gtest/gtest.h"
 #include "../codes/StdGenCode.h"
+#include "../codes/CodeFactory.h"
 
 bool run_self_complementary_for_code(std::vector<std::string> code) {
-    StdGenCode sc(code);
-    return sc.is_self_complementary();
+    auto sc = CodeFactory::rFactorGenCode(code, -1);
+    return sc->is_self_complementary();
 }
 
 TEST(SelfComplementary, CodeIsSelfComplementary) {
@@ -18,6 +19,7 @@ TEST(SelfComplementary, CodeIsSelfComplementary) {
 }
 
 TEST(SelfComplementary, CodeIsNotSelfComplementary) {
+    EXPECT_FALSE(run_self_complementary_for_code({"ACG", "CAG"}));
     EXPECT_FALSE(run_self_complementary_for_code({"ACG", "CGG"}));
     EXPECT_FALSE(run_self_complementary_for_code({"ACG", "CG"}));
     EXPECT_FALSE(run_self_complementary_for_code({"ACA", "UGT"}));

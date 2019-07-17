@@ -27,10 +27,10 @@ TEST (GenerticCodeTest, GetNames) {
 
 
 TEST (GenerticCodeTest, readAndAddNewTable) {
-    EXPECT_TRUE(gen_codes::CodonTranslTables::getInstance().read_and_add_new_transl_table( "D:/develop/R/GCATR/src/GCATCPP/unit_tests/asserts/correct_code.txt"));
-    EXPECT_FALSE(gen_codes::CodonTranslTables::getInstance().read_and_add_new_transl_table( "D:/develop/R/GCATR/src/GCATCPP/unit_tests/asserts/wrong_1_code.txt"));
-    EXPECT_FALSE(gen_codes::CodonTranslTables::getInstance().read_and_add_new_transl_table( "D:/develop/R/GCATR/src/GCATCPP/unit_tests/asserts/wrong_2_code.txt"));
-    EXPECT_FALSE(gen_codes::CodonTranslTables::getInstance().read_and_add_new_transl_table( "D:/develop/R/GCATR/src/GCATCPP/unit_tests/asserts/wrong_3_code.txt"));
+    EXPECT_TRUE(gen_codes::CodonTranslTables::getInstance().read_and_add_new_transl_table( "./unit_tests/asserts/correct_code.txt"));
+    EXPECT_FALSE(gen_codes::CodonTranslTables::getInstance().read_and_add_new_transl_table( "./unit_tests/asserts/wrong_1_code.txt"));
+    EXPECT_FALSE(gen_codes::CodonTranslTables::getInstance().read_and_add_new_transl_table( "./unit_tests/asserts/wrong_2_code.txt"));
+    EXPECT_FALSE(gen_codes::CodonTranslTables::getInstance().read_and_add_new_transl_table( "./unit_tests/asserts/wrong_3_code.txt"));
     EXPECT_FALSE(gen_codes::CodonTranslTables::getInstance().read_and_add_new_transl_table( "Not A file"));
 
     EXPECT_EQ(gen_codes::CodonTranslTables::getInstance().getIdxByName("correct_code"), 900);
