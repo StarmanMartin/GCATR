@@ -42,6 +42,81 @@ bool code_check_if_circular(StringVector code, int length = -1) {
     return a->is_circular();
 }
 
+//' Returns a code as vector.
+//' 
+//' Turns a sequence or a single string code into a string vector.
+//'
+//' @param code is either a string vector or a string. It can either be a code or a sequence.
+//' @param length if code is a sequence, length is the tuple length of the code.
+//' @return StringVector code as vector.
+//' @examples
+//' code_vec <- code_as_vector("ACGCAG", 3)
+//' code_vec <- code_as_vector("ACG CAG")
+//'
+//' @export 
+// [[Rcpp::export]]
+StringVector code_as_vector(StringVector code, int length = -1) {
+    auto code_vec = RAdapterUtils::as_cpp_string_vector(code);
+    auto a = CodeFactory::rFactor(code_vec, length);
+    return RAdapterUtils::as_r_string_vector(a->as_vector());
+}
+
+
+
+//' Returns tuple length.
+//' 
+//' Returns the tuple length of the code. If the code is a mixed code it returns the longest tuple length.
+//'
+//' @param code is either a string vector or a string. It can either be a code or a sequence.
+//' @param length if code is a sequence, length is the tuple length of the code.
+//' @return Number tuple length.
+//' @examples
+//' code_l <- code_tuple_length(c("ACG", "CAG"))
+//' code_l <- code_tuple_length("ACGCAG", 3)
+//' code_l <- code_tuple_length("ACG CAG")
+//'
+//' @export 
+// [[Rcpp::export]]
+int code_tuple_length(StringVector code, int length = -1) {
+    auto code_vec = RAdapterUtils::as_cpp_string_vector(code);
+    auto a = CodeFactory::rFactor(code_vec, length);
+    return a->get_word_length()[0];
+}
+
+//' Check if a set is a code.
+//'
+//' This function checks if a code is a code.\cr
+//' Let \emph{Sigma} be a finite alphabet and X a subset of \emph{Sigma}*l for some l in N.\cr
+//' - For w in \emph{Sigma}*l , an X-decomposition of w is a tuple (x1 ,... , xt ) in Xt with t in N such that
+//' X = x 1 · x 2 · · · x t .
+//' - A set X subset of \emph{Sigma}*l  is a code if each word w in X has a single X-decomposition.
+//' - For an integer l > 1, an l-letter code is a code contained in .
+//' Let X be a subset of \emph{Sigma}*l . X is called a code over Σ ∗ if for all n, m > 0 and x1...xn , x1...xm in X,
+//' the condition\cr
+//' x1...xn = x1...xm\cr
+//' implies\cr
+//' n = m and xi = xj for i = 1,..., n\cr
+//' For more info on this subject read:\cr
+//' \link{https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5492142/},\cr
+//' \link{http://dpt-info.u-strasbg.fr/~c.michel/Circular_Codes.pdf},\cr
+//' \emph{2007 Christian MICHEL. CIRCULAR CODES IN GENES}
+//'
+//' @param code is either a string vector or a string. It can either be a code or a sequence.
+//' @param length if code is a sequence, length is the tuple length of the code.
+//' @return Boolean value. True if the code is circular.
+//' @examples
+//' code_check_if_circular(c("ACG", "CAG"))
+//' code_check_if_circular("ACGCAG", 3)
+//' code_check_if_circular("ACG CAG")
+//'
+//' @export
+// [[Rcpp::export]]
+bool code_check_if_code(StringVector code, int length = -1) {
+    auto code_vec = RAdapterUtils::as_cpp_string_vector(code);
+    auto a = CodeFactory::rFactor(code_vec, length);
+    return a->test_code();
+}
+
 //' Check if a code is k-circular.
 //'
 //' This function checks if a code is k-circular.
@@ -153,7 +228,8 @@ bool code_check_if_comma_free(StringVector code, int length = -1) {
 bool code_check_if_self_complementary(StringVector code, int length = -1) {
     auto code_vec = RAdapterUtils::as_cpp_string_vector(code);
     auto a = CodeFactory::rFactorGenCode(code_vec, length);
-    return a->is_self_complementary();
+    bool res = a->is_self_complementary();
+    return res;//a->is_self_complementary();
 }
 
 //' Get acid type of a code
@@ -181,6 +257,34 @@ StringVector code_get_acid(StringVector code, int length = -1) {
     auto code_vec = RAdapterUtils::as_cpp_string_vector(code);
     auto a = CodeFactory::rFactorGenCode(code_vec, length);
     return acid::acid_to_string(a->get_acid());;
+}
+
+//' Get amino acids encoded by a code
+//' 
+//' Returns the amino acids encoded by a codes. The code can contain only CYTOSINE (C), ADENINE (A), GUANINE (G)
+//' and THYMINE (T) or URACIL (U) bases. If no other translation table is selecte the function will use the 
+//' \emph{standard genetic code}. A different tranlastion table has to be added by index. Therefore, (see \link{print_all_translation_tables})\cr
+//' For more info on this subject read:\cr
+//' \link{https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5492142/},\cr
+//' \link{http://dpt-info.u-strasbg.fr/~c.michel/Circular_Codes.pdf},\cr
+//' \emph{2007 Christian MICHEL. CIRCULAR CODES IN GENES}
+//'
+//' @param code is either a string vector or a string. It should be a RNA/DNA - code or a sequence.
+//' @param length if code is a sequence, length is the tuple length of the code.
+//' @param idx the index of a Genetic Code table as int. (check \link{print_all_translation_table})
+//' @return String vector. list of amino acids
+//' @examples
+//' code_get_amino_acids(c("ACG", "CAG"), idx_trans_table=2)
+//' code_get_amino_acids("ACGCAG", 3, idx_trans_table=2)
+//' code_get_amino_acids("ACG CAG", idx_trans_table=2)
+//' 
+//' @export
+// [[Rcpp::export]]
+StringVector code_get_amino_acids(StringVector code, int length = -1, int idx_trans_table = 1) {
+    auto code_vec = RAdapterUtils::as_cpp_string_vector(code);
+    auto a = CodeFactory::rFactorGenCode(code_vec, length);
+    a->setTranslTableByIdx(idx_trans_table);
+    return RAdapterUtils::as_r_string_vector(a->get_amino_acids());
 }
 
 //' Finds one longest path in the graph of the code.
@@ -426,4 +530,95 @@ StringVector shift_tuples(int shifts, StringVector code, int tuple_length = -1) 
     auto gc = CodeFactory::rFactor(code_vec, tuple_length);
     gc->shift_tuples(shifts);
     return RAdapterUtils::as_r_string_vector(gc->as_vector());
+}
+
+
+
+//' Circular shift of all tuples
+//'
+//' This functions shifts all tuples in code anticlockwise. In other words, the first character of each tuples gets removed and
+//' added to the end of the same tuple. Depending on the parameter \emph{shift} this process is repeated multiple times.
+//'
+//' @param shifts number of shifts
+//' @param code is either a string vector or a string. It can either be a code or a sequence.
+//' @param tuple_length if code is a sequence, length is the tuple length of the code.
+//'
+//' @return shifted code as String vector
+//'
+//' @examples
+//' shifted_code <- shift_tuples(2, c("ACG", "GAT"))
+//' shifted_code <- shift_tuples(2, "ACGGAT", tuple_length=3)
+//' shifted_code <- shift_tuples(2, "ACG GAT")
+//'
+//' @export
+// [[Rcpp::export]]
+StringVector shift_tuples(int shifts, StringVector code, int tuple_length = -1) {
+    auto code_vec = RAdapterUtils::as_cpp_string_vector(code);
+    auto gc = CodeFactory::rFactor(code_vec, tuple_length);
+    gc->shift_tuples(shifts);
+    return RAdapterUtils::as_r_string_vector(gc->as_vector());
+}
+
+
+
+//' Transformation of all tuples
+//'
+//' This function transforms all tuples in code. The single letters get transformed by the rules which are set as parameter.
+//' The rules are defined as two strings, the \emph{from} and the \emph{to} parameter. These two parameters have to be
+//' strings of the same length. Each letter in the \emph{from} string gets transformed to the corresponding letter at the same
+//' position of the \emph{to} parameter.
+//'
+//'
+//' @param from the origin letters which are maped to the letters of the \emph{to} parameter.
+//' @param to the transformation target letters which are maped letters of to the \emph{from} parameter.
+//' @param code is either a string vector or a string. It can either be a code or a sequence.
+//' @param tuple_length if code is a sequence, length is the tuple length of the code.
+//'
+//' @return transformed code as String vector
+//'
+//' @examples
+//' transformed_tuples <- code_transform_tuples("ACTG", "CAGT", c("ACG", "GAT"))
+//' transformed_tuples <- code_transform_tuples("ACTG", "CAGT", "ACGGAT", tuple_length=3)
+//' transformed_tuples <- code_transform_tuples("ACTG", "CAGT", "ACG GAT")
+//'
+//' @export
+// [[Rcpp::export]]
+StringVector code_transform_tuples(std::string from, std:string to, StringVector code, int tuple_length = -1) {
+    auto code_vec = RAdapterUtils::as_cpp_string_vector(code);
+    auto gc = CodeFactory::rFactor(code_vec, tuple_length);
+    gc->transform_tuples(from, to);
+    return RAdapterUtils::as_r_string_vector(gc->as_vector());
+}
+
+//' Transformation of all tuples
+//'
+//' This function transforms all tuples in code. The single letters get transformed by the rules which are set as parameter.
+//' The rules are the predefined and listed below. This only works for genetic gen codes and sequences\cr
+//'
+//' SW = (A, T,C,G) -> (T, A, G,C)\cr
+//' YR = (A, T,C,G) -> (G,C, T,A)\cr
+//' KM = (A, T,C,G) -> (C, G, A, T)\cr
+//' AT = (A, T,C,G) -> (T, A,C,G)\cr
+//' CG = (A, T,C,G) -> (A, T, G,C)\cr
+//' ACTG = (A, T,C,G) -> (C, G, T,A)\cr
+//' AGTC = (A, T,C,G) -> (G,C, A, T)\cr
+//'
+//' @param trans_name tname of a transformation. listed in description.
+//' @param code is either a string vector or a string. It can either be a code or a sequence.
+//' @param tuple_length if code is a sequence, length is the tuple length of the code.
+//'
+//' @return transformed code as String vector
+//'
+//' @examples
+//' transformed_tuples <- code_named_transform_tuples("I", c("ACG", "GAT"))
+//' transformed_tuples <- code_named_transform_tuples("ACTG", "CAGT", "ACGGAT", tuple_length=3)
+//' transformed_tuples <- code_named_transform_tuples("ACTG", "CAGT", "ACG GAT")
+//'
+//' @export
+// [[Rcpp::export]]
+StringVector code_named_transform_tuples(std::string trans_name, StringVector code, int tuple_length = -1) {
+auto code_vec = RAdapterUtils::as_cpp_string_vector(code);
+auto gc = CodeFactory::rFactorGenCode(code_vec, tuple_length);
+gc->transform_tuples_by_name(trans_name);
+return RAdapterUtils::as_r_string_vector(gc->as_vector());
 }

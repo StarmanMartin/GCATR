@@ -25,6 +25,10 @@ bool StdGenCode::test_code() {
         return this->is_ok;
     }
 
+    if(this->word_length.size() != 1 || this->word_length[0] != 3) {
+        return (this->is_ok = false);
+    }
+
 
     return (this->is_ok = true);
 }
@@ -35,15 +39,6 @@ bool StdGenCode::is_self_complementary() {
     return this->run_test(tester);
 }
 
-
-void StdGenCode::setTranslTableByIdx(int idx) {
-    return AbstractGenCode::setTranslTableByIdx(idx, 3);
-}
-
-void StdGenCode::setTranslTableByName(const std::string &name) {
-    return AbstractGenCode::setTranslTableByName(name, 3);
-}
-
-void StdGenCode::setTranslTableToStandardCode() {
-    return AbstractGenCode::setTranslTableToStandardCode(3);
+bool StdGenCode::is_translatable() {
+    return this->test_code();
 }

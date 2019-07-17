@@ -21,8 +21,6 @@ namespace err {
     protected:
         bool is_suppressed = false;
 
-        AbstractErrorManager();
-
         virtual ~AbstractErrorManager() {
             this->print_errors();
         };
@@ -35,6 +33,8 @@ namespace err {
         void reset_msg();
 
         virtual operator std::string() const { return "-"; }
+
+        AbstractErrorManager();
     };
 
 }

@@ -20,6 +20,10 @@ TEST (CodeTest, IsCode) {
 
 TEST (CodeTest, IsNoGenCode) {
     EXPECT_EQ(_is_code_test({"AGA", "AUG", "CTA"}), false);
+    StdGenCode b({"AGGA", "AGUG", "CGUA"});
+    StdGenCode c(b);
+    EXPECT_EQ(c.test_code(), false);
+    EXPECT_EQ(_is_code_test({"AGGA", "AGUG", "CGUA"}), false);
 
     EXPECT_EQ(_is_code_test({"ALA"}), false);
 

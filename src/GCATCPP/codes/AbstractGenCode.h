@@ -19,17 +19,22 @@ public:
     
     AbstractGenCode(const AbstractGenCode &agc);
 
-    virtual bool test_code() override;
+    bool test_code() override;
 
     virtual bool is_self_complementary() = 0;
 
     acid::acids get_acid();
 
-    void setTranslTableByIdx(int idx, int forWordLength);
-    void setTranslTableByName(const std::string &name, int forWordLength);
-    void setTranslTableToStandardCode(int forWordLength);
+    void setTranslTableByIdx(int idx, int forWordLength=-1);
+    void setTranslTableByName(const std::string &name, int forWordLength=-1);
+    void setTranslTableToStandardCode(int forWordLength=-1);
+
+    void transform_tuples_by_name(const std::string& rule_name); // NOLINT
+
+
 
     std::vector<std::string> get_amino_acids();
+    std::vector<std::string> get_a_set_amino_acids();
 
 protected:
     std::map<int, int> transl_table_idx;

@@ -140,7 +140,9 @@ size_t AbstractCode::get_letter_value(const char &c) {
 }
 
 std::vector<int> AbstractCode::get_word_length() {
-    this->test_code();
+    if(!this->test_code()) {
+        return {0};
+    }
     return this->word_length;
 }
 
@@ -156,8 +158,8 @@ bool AbstractCode::run_test(std::shared_ptr<AbstractTester> t, int k) {
     return result;
 }
 
-void AbstractCode::run_modification(std::shared_ptr<AbstractModifier> t, void *args) {
-    auto result = t->modify(this, args);
+void AbstractCode::run_modification(std::shared_ptr<AbstractModifier> t) {
+    auto result = t->modify(this);
     this->add_error_msges(t->get_error_msg());
     this->reset(result);
     this->test_code();
@@ -172,4 +174,8 @@ const std::string AbstractCode::to_string() const {
               std::ostream_iterator<std::string>(imploded, delim));
 
     return imploded.str();
+}
+
+bool AbstractCode::is_translatable() {
+    return false;
 }
