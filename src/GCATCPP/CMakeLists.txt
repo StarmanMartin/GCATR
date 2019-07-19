@@ -15,7 +15,7 @@ include_directories(${gteat_SRC_DIR}/include ${gteat_SRC_DIR})
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=gnu++0x")
 
 set(SOURCE_FILES main_test.cpp
-        codes/AbstractGenCode.cpp codes/AbstractGenCode.h codes/StdGenCode.cpp codes/StdGenCode.h codes/Acid.cpp codes/Acid.h
+        codes/AbstractGenCode.cpp codes/AbstractGenCode.h codes/StdGenCode.cpp codes/StdGenCode.h codes/GenCode.cpp codes/GenCode.h codes/Acid.cpp codes/Acid.h
         codes/Code.cpp codes/Code.h codes/AbstractCode.cpp codes/AbstractCode.h
         tester/AbstractTester.cpp tester/AbstractTester.h tester/Circular.cpp tester/Circular.h tester/C_n.cpp tester/C_n.h
         tester/SelfComplimentary.cpp tester/SelfComplimentary.h tester/CommaFree.cpp tester/CommaFree.h tester/KCircular.cpp tester/KCircular.h
@@ -32,7 +32,7 @@ set(SOURCE_TEST_FILES unit_tests/test_utils.cpp
         unit_tests/circular.cpp unit_tests/codeTestTest.cpp unit_tests/bdaTest.cpp unit_tests/test_utils.cpp
         unit_tests/cnCircularTest.cpp unit_tests/acidTest.cpp unit_tests/selfComplementaryTest.cpp unit_tests/commaFreeTest.cpp
         unit_tests/minerCircularTest.cpp unit_tests/graphTest.cpp unit_tests/minerPathTest.cpp unit_tests/sequenceTest.cpp unit_tests/c3GraphTest.cpp unit_tests/codeTableTest.cpp
-        unit_tests/generatorTest.cpp unit_tests/graphTestSize.cpp unit_tests/binaryTest.cpp unit_tests/codeFactoryTester.cpp unit_tests/modificationTest.cpp)
+        unit_tests/generatorTest.cpp unit_tests/graphTestSize.cpp unit_tests/binaryTest.cpp unit_tests/codeFactoryTester.cpp unit_tests/modificationTest.cpp unit_tests/tesseraTest.cpp)
 
 #set(CURRENT_TEST_FILES unit_tests/test_utils.cpp unit_tests/generatorTest.cpp)
 #set(CURRENT_TEST_FILES unit_tests/test_utils.cpp unit_tests/binaryTest.cpp unit_tests/codeFactoryTester.cpp)

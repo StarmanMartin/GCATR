@@ -4,7 +4,7 @@
 \alias{code_get_amino_acids}
 \title{Get amino acids encoded by a code}
 \usage{
-code_get_amino_acids(code, length = -1L, idx_trans_table = 1L)
+code_get_amino_acids(code, idx_trans_table = 1L)
 }
 \arguments{
 \item{code}{is either a string vector or a string. It should be a RNA/DNA - code or a sequence.}
@@ -27,7 +27,7 @@ For more info on this subject read:\cr
 }
 \examples{
 code_get_amino_acids(c("ACG", "CAG"), idx_trans_table=2)
-code_get_amino_acids("ACGCAG", 3, idx_trans_table=2)
+code_get_amino_acids("ACGCAG", idx_trans_table=2)
 code_get_amino_acids("ACG CAG", idx_trans_table=2)
 
 }

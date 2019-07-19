@@ -20,8 +20,8 @@ public:
     AbstractGenCode(const AbstractGenCode &agc);
 
     bool test_code() override;
-
-    virtual bool is_self_complementary() = 0;
+    
+    virtual bool is_self_complementary();
 
     acid::acids get_acid();
 

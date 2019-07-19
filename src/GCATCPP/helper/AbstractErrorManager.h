@@ -16,7 +16,7 @@ namespace err {
         void print_errors();
         void suppress_errors();
         std::vector<std::string> get_error_msg();
-        void add_error_msg(std::string);
+        void add_error_msg(const std::string&);
 
     protected:
         bool is_suppressed = false;
@@ -29,7 +29,7 @@ namespace err {
         std::vector<std::string> msg;
 
 
-        void add_error_msges(std::vector<std::string>);
+        void add_error_msges(const std::vector<std::string>&);
         void reset_msg();
 
         virtual operator std::string() const { return "-"; }

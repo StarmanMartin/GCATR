@@ -331,15 +331,14 @@ BEGIN_RCPP
 END_RCPP
 }
 // code_get_amino_acids
-StringVector code_get_amino_acids(StringVector code, int length, int idx_trans_table);
-RcppExport SEXP _GCATR_code_get_amino_acids(SEXP codeSEXP, SEXP lengthSEXP, SEXP idx_trans_tableSEXP) {
+StringVector code_get_amino_acids(StringVector code, int idx_trans_table);
+RcppExport SEXP _GCATR_code_get_amino_acids(SEXP codeSEXP, SEXP idx_trans_tableSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< StringVector >::type code(codeSEXP);
-    Rcpp::traits::input_parameter< int >::type length(lengthSEXP);
     Rcpp::traits::input_parameter< int >::type idx_trans_table(idx_trans_tableSEXP);
-    rcpp_result_gen = Rcpp::wrap(code_get_amino_acids(code, length, idx_trans_table));
+    rcpp_result_gen = Rcpp::wrap(code_get_amino_acids(code, idx_trans_table));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -449,6 +448,33 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// code_transform_tuples
+StringVector code_transform_tuples(std::string from, std::string to, StringVector code, int tuple_length);
+RcppExport SEXP _GCATR_code_transform_tuples(SEXP fromSEXP, SEXP toSEXP, SEXP codeSEXP, SEXP tuple_lengthSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< std::string >::type from(fromSEXP);
+    Rcpp::traits::input_parameter< std::string >::type to(toSEXP);
+    Rcpp::traits::input_parameter< StringVector >::type code(codeSEXP);
+    Rcpp::traits::input_parameter< int >::type tuple_length(tuple_lengthSEXP);
+    rcpp_result_gen = Rcpp::wrap(code_transform_tuples(from, to, code, tuple_length));
+    return rcpp_result_gen;
+END_RCPP
+}
+// code_named_transform_tuples
+StringVector code_named_transform_tuples(std::string trans_name, StringVector code, int tuple_length);
+RcppExport SEXP _GCATR_code_named_transform_tuples(SEXP trans_nameSEXP, SEXP codeSEXP, SEXP tuple_lengthSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< std::string >::type trans_name(trans_nameSEXP);
+    Rcpp::traits::input_parameter< StringVector >::type code(codeSEXP);
+    Rcpp::traits::input_parameter< int >::type tuple_length(tuple_lengthSEXP);
+    rcpp_result_gen = Rcpp::wrap(code_named_transform_tuples(trans_name, code, tuple_length));
+    return rcpp_result_gen;
+END_RCPP
+}
 
 static const R_CallMethodDef CallEntries[] = {
     {"_GCATR_add_bda", (DL_FUNC) &_GCATR_add_bda, 6},
@@ -478,7 +504,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_GCATR_code_check_if_comma_free", (DL_FUNC) &_GCATR_code_check_if_comma_free, 2},
     {"_GCATR_code_check_if_self_complementary", (DL_FUNC) &_GCATR_code_check_if_self_complementary, 2},
     {"_GCATR_code_get_acid", (DL_FUNC) &_GCATR_code_get_acid, 2},
-    {"_GCATR_code_get_amino_acids", (DL_FUNC) &_GCATR_code_get_amino_acids, 3},
+    {"_GCATR_code_get_amino_acids", (DL_FUNC) &_GCATR_code_get_amino_acids, 2},
     {"_GCATR_code_get_one_longest_path_as_vector", (DL_FUNC) &_GCATR_code_get_one_longest_path_as_vector, 2},
     {"_GCATR_code_get_all_longest_path_as_vector", (DL_FUNC) &_GCATR_code_get_all_longest_path_as_vector, 2},
     {"_GCATR_code_get_one_cycles_as_vector", (DL_FUNC) &_GCATR_code_get_one_cycles_as_vector, 2},
@@ -488,6 +514,8 @@ static const R_CallMethodDef CallEntries[] = {
     {"_GCATR_find_and_analysis_code_in_sequence", (DL_FUNC) &_GCATR_find_and_analysis_code_in_sequence, 3},
     {"_GCATR_generate_code_by_min_value", (DL_FUNC) &_GCATR_generate_code_by_min_value, 2},
     {"_GCATR_shift_tuples", (DL_FUNC) &_GCATR_shift_tuples, 3},
+    {"_GCATR_code_transform_tuples", (DL_FUNC) &_GCATR_code_transform_tuples, 4},
+    {"_GCATR_code_named_transform_tuples", (DL_FUNC) &_GCATR_code_named_transform_tuples, 3},
     {NULL, NULL, 0}
 };
 

@@ -3,7 +3,6 @@
 //
 
 #include "TesseraCode.h"
-#include "../tester/SelfComplimentary.h"
 
 bool TesseraCode::test_code() {
     if (this->is_tested || !AbstractGenCode::test_code()) {
@@ -14,27 +13,23 @@ bool TesseraCode::test_code() {
         return (this->is_ok = false);
     }
 
+    for(const std::string &w : this->code_vec){
+        auto t = TransformTuples::find_transformation_from_sequences(w.substr(0,2), w.substr(2,2));
+        bool has_match = false;
+        for(const auto & name : this->tessera_transformation_names) {
+            auto temp_trans = TransformTuples(name, this->acid);
+            if(t <= temp_trans) {
+                has_match = true;
+                break;
+            }
+        }
 
+        if(!has_match) {
+            this->add_error_msg("The word " + w + " is not a correct Tessera.");
+            return (this->is_ok = false);
+        }
 
+    }
 
     return (this->is_ok = true);
-}
-
-bool TesseraCode::is_self_complementary() {
-    if (!this->test_code()) { return false; }
-    auto tester = std::make_shared<SelfComplimentary>();
-    return this->run_test(tester);
-}
-
-
-void TesseraCode::setTranslTableByIdx(int idx) {
-    return AbstractGenCode::setTranslTableByIdx(idx, 3);
-}
-
-void TesseraCode::setTranslTableByName(const std::string &name) {
-    return AbstractGenCode::setTranslTableByName(name, 3);
-}
-
-void TesseraCode::setTranslTableToStandardCode() {
-    return AbstractGenCode::setTranslTableToStandardCode(3);
 }

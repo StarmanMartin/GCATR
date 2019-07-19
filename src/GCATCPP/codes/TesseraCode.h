@@ -5,7 +5,10 @@
 #ifndef GCATCPP_TESSERACODE_H
 #define GCATCPP_TESSERACODE_H
 
+#define TESSERA_TRANSFORMATIONS 4
+
 #include "AbstractGenCode.h"
+#include "../modification/TransformTuples.h"
 
 class TesseraCode : public AbstractGenCode{
 
@@ -18,13 +21,8 @@ public:
 
     bool test_code() override;
 
-    bool is_self_complementary() override;
-
-    void setTranslTableByIdx(int idx);
-    void setTranslTableByName(const std::string &name);
-    void setTranslTableToStandardCode();
-
 protected:
+    std::string tessera_transformation_names[TESSERA_TRANSFORMATIONS] = {SW, YR, I, KM};
 
 };
 
