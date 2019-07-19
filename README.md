@@ -29,6 +29,9 @@ devtools::install_github("StarmanMartin/GCATR")
 [generate_code_by_min_value](#generate_code_by_min_value)<br>
 [shift_tuples](#shift_tuples)<br>
 
+[code_transform_tuples](#code_transform_tuples)<br>
+[code_named_transform_tuples](#code_named_transform_tuples)<br>
+
 ### [Graph based functions](#graph-based-functions)
 
 [code_factor_graph](#code_factor_graph)<br>
@@ -351,6 +354,82 @@ added to the end of the same tuple. Depending on the parameter *shift* this proc
 shifted_code <- shift_tuples(2, c("ACG", "GAT"))
 shifted_code <- shift_tuples(2, "ACGGAT", tuple_length=3)
 shifted_code <- shift_tuples(2, "ACG GAT")
+
+```
+<hr>
+
+### code_transform_tuples
+
+#### Usage
+```R 
+code_transform_tuples(from, to, code, tuple_length = -1L)
+```
+
+#### Arguments
+ 
+*from*	the origin letters which are maped to the letters of the *to* parameter.<br>
+
+*to*	the transformation target letters which are maped letters of to the *from* parameter.<br>
+
+*code*	is either a string vector or a string. It can either be a code or a sequence.<br>
+
+*tuple_length*	if code is a sequence, length is the tuple length of the code.<br>
+
+
+#### Return
+ 
+transformed code as String vector
+
+
+#### Description
+ 
+This function transforms all tuples in code. The single letters get transformed by the rules which are set as parameter.
+The rules are defined as two strings, the *from* and the *to* parameter. These two parameters have to be
+strings of the same length. Each letter in the *from* string gets transformed to the corresponding letter at the same
+position of the *to* parameter.
+
+
+#### Examples
+```R 
+transformed_tuples <- code_transform_tuples("ACTG", "CAGT", c("ACG", "GAT"))
+transformed_tuples <- code_transform_tuples("ACTG", "CAGT", "ACGGAT", tuple_length=3)
+transformed_tuples <- code_transform_tuples("ACTG", "CAGT", "ACG GAT")
+
+```
+<hr>
+
+### code_named_transform_tuples
+
+#### Usage
+```R 
+code_named_transform_tuples(trans_name, code, tuple_length = -1L)
+```
+
+#### Arguments
+ 
+*trans_name*	tname of a transformation. listed in description.<br>
+
+*code*	is either a string vector or a string. It can either be a code or a sequence.<br>
+
+*tuple_length*	if code is a sequence, length is the tuple length of the code.<br>
+
+
+#### Return
+ 
+transformed code as String vector
+
+
+#### Description
+ 
+This function transforms all tuples in code. The single letters get transformed by the rules which are set as parameter.
+The rules are the predefined and listed below. This only works for genetic gen codes and sequences<br>
+
+
+#### Examples
+```R 
+transformed_tuples <- code_named_transform_tuples("I", c("ACG", "GAT"))
+transformed_tuples <- code_named_transform_tuples("ACTG", "CAGT", "ACGGAT", tuple_length=3)
+transformed_tuples <- code_named_transform_tuples("ACTG", "CAGT", "ACG GAT")
 
 ```
 <hr>
