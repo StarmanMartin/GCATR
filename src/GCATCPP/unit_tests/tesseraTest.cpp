@@ -21,5 +21,5 @@ TEST(TESSERA_TEST, WRONG_TESSEREA) {
 TEST(TESSERA_TEST, FACTORY_TESSEREA) {
     std::vector<std::string> code_vec = {"AAUC", "ACCA"};
     auto t = CodeFactory::rFactorTypesTesseraCode(code_vec);
-    EXPECT_FALSE(t->test_code());
+    EXPECT_TRUE(t->test_code());
 }
