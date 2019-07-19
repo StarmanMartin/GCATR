@@ -69,6 +69,8 @@ devtools::install_github("StarmanMartin/GCATR")
 [get_max_conductance_of_code](#get_max_conductance_of_code)<br>
 [get_min_conductance_of_code](#get_min_conductance_of_code)<br>
 
+[code_pdf_report](#code_pdf_report)<br>
+
 ### [Binary Dichotomic Algorithm (BDA)](#binary_dichotomic_algorithm_(BDA))
 
 [start_bda](#start_bda)<br><!--accessory:[![Genetic Code Analysis Toolkit Logo](/man/resources/bio/gcat/codon_table.jpg?raw=true)]-->
@@ -1423,6 +1425,39 @@ codons translating the same amino acid but differ in more then one position.
 ```R 
 ac = get_average_conductance_of_code("The Standard Code")
 ac = get_average_conductance_of_code("The Vertebrate Mitochondrial Code", "RNA")
+```
+<hr>
+
+### code_pdf_report
+
+#### Usage
+```R 
+code_pdf_report(code, length = -1)
+```
+
+#### Arguments
+ 
+*code*	is either a string vector or a string. It can either be a code or a sequence.<br>
+
+*length*	if code is a sequence, length is the tuple length of the code.<br>
+
+
+#### Return
+ \-
+
+#### Description
+ 
+The function makes a dir called: "GCATR_Report" in your current working dir. In the following steps it cops a .Rnw template file
+into the new dir. Afterwords it executes knitr with parameters based on the your input. All the generated files are in the new dir.
+
+
+#### Examples
+```R 
+code_pdf_report(c("ACG", "CAG"))
+code_pdf_report("ACGCAG", 3)
+code_pdf_report("ACG CAG")
+
+
 ```
 <hr>
 
