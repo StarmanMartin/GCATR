@@ -11,19 +11,19 @@
 
 TEST(ShiftTester, differentShifts) {
     std::string code_text = "ACG TCG CCG CCC";
-    auto code = CodeFactory::factorGenCode(code_text);
+    auto code = CodeFactory::rFactorTypesCodonCode({code_text});
     code->shift_tuples(1);
     EXPECT_EQ(code->as_string_sequence(), "CGACGTCGCCCC");
 
-    code = CodeFactory::factorGenCode(code_text);
+    code = CodeFactory::rFactorTypesCodonCode({code_text});
     code->shift_tuples(2);
     EXPECT_EQ(code->as_string_sequence(), "GACGTCGCCCCC");
 
-    code = CodeFactory::factorGenCode(code_text);
+    code = CodeFactory::rFactorTypesCodonCode({code_text});
     code->shift_tuples(4);
     EXPECT_EQ(code->as_string_sequence(), "CGACGTCGCCCC");
 
-    code = CodeFactory::factorGenCode(code_text);
+    code = CodeFactory::rFactorTypesCodonCode({code_text});
     code->shift_tuples(-1);
     EXPECT_EQ(code->as_string_sequence(), "ACGTCGCCGCCC");
 
@@ -32,34 +32,98 @@ TEST(ShiftTester, differentShifts) {
 
 TEST(TransformTester, differentTransforms) {
     std::string code_text = "ACG TCG CCG CCC";
-    auto code = CodeFactory::factorGenCode(code_text);
+    auto code = CodeFactory::rFactorTypesCodonCode({code_text});
     code->transform_tuples("A", "T");
     EXPECT_EQ(code->as_string_sequence(), "TCGTCGCCGCCC");
 
-    code = CodeFactory::factorGenCode(code_text);
+    code = CodeFactory::rFactorTypesCodonCode({code_text});
     code->transform_tuples("AT", "TA");
     EXPECT_EQ(code->as_string_sequence(), "TCGACGCCGCCC");
 
-    code = CodeFactory::factorGenCode(code_text);
+    code = CodeFactory::rFactorTypesCodonCode({code_text});
     code->transform_tuples("ATCG", "TAGC");
     EXPECT_EQ(code->as_string_sequence(), "TGCAGCGGCGGG");
+
+
+    code = CodeFactory::rFactorTypesCodonCode({code_text});
+    code->transform_tuples("AA", "TT");
+    EXPECT_EQ(code->as_string_sequence(), "ACGTCGCCGCCC");
+
+    std::vector<std::string> code_as_vec = {"ACG", "GAT"};
+    auto scode = CodeFactory::rFactor(code_as_vec, -1);
+    scode->transform_tuples("ACTG", "CAGT");
+    EXPECT_EQ(scode->as_string_sequence(), "CATTCG");
 
 }
 
 TEST(TransformTester, differentTransformsByName) {
     std::string code_text = "ACG TCG CCG CCC";
-    auto code = CodeFactory::factorGenCode(code_text);
+    auto code = CodeFactory::rFactorTypesCodonCode({code_text});
     code->transform_tuples_by_name(AT);
     EXPECT_EQ(code->as_string_sequence(), "TCGACGCCGCCC");
 
-    code = CodeFactory::factorGenCode(code_text);
+    code = CodeFactory::rFactorTypesCodonCode({code_text});
     code->transform_tuples_by_name(SW);
     EXPECT_EQ(code->as_string_sequence(), "TGCAGCGGCGGG");
 
-    code = CodeFactory::factorGenCode(code_text);
+    code = CodeFactory::rFactorTypesCodonCode({code_text});
     code->transform_tuples_by_name(AGTC);
     EXPECT_EQ(code->as_string_sequence(), "GATCATAATAAA");
 
+}
+
+TEST(TransformTester, TransformationLessCompare) {
+    {
+        TransformTuples t1("ATC", "GAT");
+        TransformTuples t2("CGAT", "TCGA");
+
+        EXPECT_TRUE(t1 < t2);
+    }
+    {
+        TransformTuples t1("ATU", "GAT");
+        TransformTuples t2("CGAT", "TCGA");
+
+        EXPECT_FALSE(t1 < t2);
+    }
+    {
+        TransformTuples t1("ATC", "GAC");
+        TransformTuples t2("CGAT", "TCGA");
+
+        EXPECT_FALSE(t1 < t2);
+    }
+    {
+        TransformTuples t1("ATUCC", "GATGT");
+        TransformTuples t2("CGAT", "TCGA");
+
+        EXPECT_FALSE(t1 < t2);
+    }
+}
+
+TEST(TransformTester, TransformationGreaterCompare) {
+    {
+        TransformTuples t2("ATC", "GAT");
+        TransformTuples t1("CGAT", "TCGA");
+
+        EXPECT_TRUE(t1 > t2);
+    }
+    {
+        TransformTuples t2("ATU", "GAT");
+        TransformTuples t1("CGAT", "TCGA");
+
+        EXPECT_FALSE(t1 > t2);
+    }
+    {
+        TransformTuples t2("ATC", "GAC");
+        TransformTuples t1("CGAT", "TCGA");
+
+        EXPECT_FALSE(t1 > t2);
+    }
+    {
+        TransformTuples t2("ATUCC", "GATGT");
+        TransformTuples t1("CGAT", "TCGA");
+
+        EXPECT_FALSE(t1 > t2);
+    }
 }
 
 TEST(TransformTester, TransformationCompare) {
@@ -68,6 +132,18 @@ TEST(TransformTester, TransformationCompare) {
         TransformTuples t2("CGAT", "TCGA");
 
         EXPECT_TRUE(t1 == t2);
+    }
+    {
+        TransformTuples t1("ATCG", "GATC");
+        TransformTuples t2("CGAT", "TCGA");
+
+        EXPECT_TRUE(t1 >= t2);
+    }
+    {
+        TransformTuples t1("ATCG", "GATC");
+        TransformTuples t2("CGAT", "TCGA");
+
+        EXPECT_TRUE(t1 <= t2);
     }
     {
         TransformTuples t1("ATCG", "GATC");

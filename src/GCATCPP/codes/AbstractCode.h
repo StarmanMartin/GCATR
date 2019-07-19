@@ -68,7 +68,7 @@ public:
 
     const Alphabet& get_alphabet() const;
     std::string get_alphabet_as_string() const;
-    void set_alphabet(std::string);
+    void set_alphabet(const std::string&);
     virtual size_t get_letter_value(const char &);
 
 protected:

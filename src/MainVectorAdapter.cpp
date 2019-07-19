@@ -275,14 +275,14 @@ StringVector code_get_acid(StringVector code, int length = -1) {
 //' @return String vector. list of amino acids
 //' @examples
 //' code_get_amino_acids(c("ACG", "CAG"), idx_trans_table=2)
-//' code_get_amino_acids("ACGCAG", 3, idx_trans_table=2)
+//' code_get_amino_acids("ACGCAG", idx_trans_table=2)
 //' code_get_amino_acids("ACG CAG", idx_trans_table=2)
 //' 
 //' @export
 // [[Rcpp::export]]
-StringVector code_get_amino_acids(StringVector code, int length = -1, int idx_trans_table = 1) {
+StringVector code_get_amino_acids(StringVector code, int idx_trans_table = 1) {
     auto code_vec = RAdapterUtils::as_cpp_string_vector(code);
-    auto a = CodeFactory::rFactorGenCode(code_vec, length);
+    auto a = CodeFactory::rFactorTypesCodonCode(code_vec);
     a->setTranslTableByIdx(idx_trans_table);
     return RAdapterUtils::as_r_string_vector(a->get_amino_acids());
 }
@@ -534,33 +534,6 @@ StringVector shift_tuples(int shifts, StringVector code, int tuple_length = -1) 
 
 
 
-//' Circular shift of all tuples
-//'
-//' This functions shifts all tuples in code anticlockwise. In other words, the first character of each tuples gets removed and
-//' added to the end of the same tuple. Depending on the parameter \emph{shift} this process is repeated multiple times.
-//'
-//' @param shifts number of shifts
-//' @param code is either a string vector or a string. It can either be a code or a sequence.
-//' @param tuple_length if code is a sequence, length is the tuple length of the code.
-//'
-//' @return shifted code as String vector
-//'
-//' @examples
-//' shifted_code <- shift_tuples(2, c("ACG", "GAT"))
-//' shifted_code <- shift_tuples(2, "ACGGAT", tuple_length=3)
-//' shifted_code <- shift_tuples(2, "ACG GAT")
-//'
-//' @export
-// [[Rcpp::export]]
-StringVector shift_tuples(int shifts, StringVector code, int tuple_length = -1) {
-    auto code_vec = RAdapterUtils::as_cpp_string_vector(code);
-    auto gc = CodeFactory::rFactor(code_vec, tuple_length);
-    gc->shift_tuples(shifts);
-    return RAdapterUtils::as_r_string_vector(gc->as_vector());
-}
-
-
-
 //' Transformation of all tuples
 //'
 //' This function transforms all tuples in code. The single letters get transformed by the rules which are set as parameter.
@@ -583,7 +556,7 @@ StringVector shift_tuples(int shifts, StringVector code, int tuple_length = -1) 
 //'
 //' @export
 // [[Rcpp::export]]
-StringVector code_transform_tuples(std::string from, std:string to, StringVector code, int tuple_length = -1) {
+StringVector code_transform_tuples(std::string from, std::string to, StringVector code, int tuple_length = -1) {
     auto code_vec = RAdapterUtils::as_cpp_string_vector(code);
     auto gc = CodeFactory::rFactor(code_vec, tuple_length);
     gc->transform_tuples(from, to);

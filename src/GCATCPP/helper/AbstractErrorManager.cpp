@@ -31,13 +31,13 @@ void AbstractErrorManager::print_errors() {
 }
 
 
-void AbstractErrorManager::add_error_msges(std::vector<std::string> msges) {
+void AbstractErrorManager::add_error_msges(const std::vector<std::string>& msges) {
     for(const std::string &msg : msges) {
         this->add_error_msg(msg);
     }
 }
 
-void AbstractErrorManager::add_error_msg(std::string err_msg) {
+void AbstractErrorManager::add_error_msg(const std::string& err_msg) {
     if(!this->is_suppressed) {
         this->_has_error = true;
         this->msg.push_back(err_msg);

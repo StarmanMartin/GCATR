@@ -15,10 +15,9 @@ code_as_vector(code, length = -1L)
 StringVector code as vector.
 }
 \description{
-Turns a sequence or a single string into a string vector.
+Turns a sequence or a single string code into a string vector.
 }
 \examples{
-code_vec <- code_as_vector(c("ACG", "CAG"))
 code_vec <- code_as_vector("ACGCAG", 3)
 code_vec <- code_as_vector("ACG CAG")
 
