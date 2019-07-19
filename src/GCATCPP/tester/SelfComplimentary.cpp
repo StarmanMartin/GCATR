@@ -13,7 +13,7 @@
 #include "../codes/AbstractGenCode.h"
 
 bool SelfComplimentary::test(AbstractCode *code) {
-    AbstractGenCode *gen_code = dynamic_cast<AbstractGenCode *>(code);
+    auto *gen_code = dynamic_cast<AbstractGenCode *>(code);
     if (gen_code != nullptr) {
         return this->self_complimentary_test(gen_code);
     }

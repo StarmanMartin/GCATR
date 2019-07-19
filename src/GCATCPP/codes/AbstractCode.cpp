@@ -100,7 +100,7 @@ void AbstractCode::set_code_properties() {
 
     if (!this->is_alphabet_set) {
         this->set_alphabet(this->as_string_sequence());
-        this->is_alphabet_set = false;
+        this->is_alphabet_set = true;
     }
 }
 
@@ -121,9 +121,9 @@ std::vector<std::string> AbstractCode::as_vector() const {
     return this->code_vec;
 }
 
-void AbstractCode::set_alphabet(std::string new_alphabet) {
+void AbstractCode::set_alphabet(const std::string& new_alphabet) {
 
-    this->alphabet.set_alphabet(std::move(new_alphabet));
+    this->alphabet.set_alphabet(new_alphabet);
     this->is_alphabet_set = true;
 }
 

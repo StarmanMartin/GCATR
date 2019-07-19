@@ -19,8 +19,6 @@ public:
 
     bool test_code() override;
 
-    bool is_self_complementary() override;
-
     bool is_translatable() override;
 
 protected:

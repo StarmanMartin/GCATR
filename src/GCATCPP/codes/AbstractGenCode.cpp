@@ -14,6 +14,7 @@
 
 #include "AbstractGenCode.h"
 #include "../modification/TransformTuples.h"
+#include "../tester/SelfComplimentary.h"
 
 #define EMPTY_SEQUNECE "#"
 
@@ -65,6 +66,13 @@ acid::acids AbstractGenCode::get_acid() {
     this->test_code();
     return this->acid;
 }
+
+bool AbstractGenCode::is_self_complementary() {
+    if (!this->test_code()) { return false; }
+    auto tester = std::make_shared<SelfComplimentary>();
+    return this->run_test(tester);
+}
+
 
 void AbstractGenCode::setTranslTableByIdx(int idx, int forWordLength) {
     if(!this->test_code()) {

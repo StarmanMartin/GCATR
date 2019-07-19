@@ -16,6 +16,13 @@
 #define CG "CG"
 #define ACTG "ACTG"
 #define AGTC "AGTC"
+#define I "Id"
+
+#define COMPARE_E 0b001u
+#define COMPARE_LE 0b011u
+#define COMPARE_L 0b010u
+#define COMPARE_GE 0b101u
+#define COMPARE_G 0b100u
 
 
 class TransformTuples : public AbstractModifier {
@@ -30,6 +37,10 @@ public:
 
     friend bool operator== (const TransformTuples &c1, const TransformTuples &c2);
     friend bool operator!= (const TransformTuples &c1, const TransformTuples &c2);
+    friend bool operator> (const TransformTuples &c1, const TransformTuples &c2);
+    friend bool operator>= (const TransformTuples &c1, const TransformTuples &c2);
+    friend bool operator< (const TransformTuples &c1, const TransformTuples &c2);
+    friend bool operator<= (const TransformTuples &c1, const TransformTuples &c2);
 
     static TransformTuples find_transformation_from_sequences(const std::string &seq_1, const std::string &seq_2);
 
@@ -37,6 +48,8 @@ private:
     bool has_error = false;
     std::vector<std::string> rule_set;
     std::map<size_t, char> replacements;
+
+    bool compare_to(const TransformTuples &c2, size_t compare_type) const;
 
     void transform_word(std::string &word);
 
@@ -52,6 +65,10 @@ private:
             return {"",""};
         }
 
+        if (name == I) {
+            // (A, T,C,G) -> (T, A, G,C)
+            return {"A" + baseTU + "CG",    "A" + baseTU + "GC"};
+        }
         if (name == SW || name == "orc") {
             // (A, T,C,G) -> (T, A, G,C)
             return {"A" + baseTU + "CG",     baseTU + "AGC"};

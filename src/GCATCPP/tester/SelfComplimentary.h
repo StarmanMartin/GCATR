@@ -11,7 +11,7 @@ class AbstractGenCode;
 
 class SelfComplimentary : public AbstractTester {
 public:
-    virtual bool test(AbstractCode *code) override;
+    bool test(AbstractCode *code) override;
     virtual bool self_complimentary_test(AbstractGenCode *code);
 };
 

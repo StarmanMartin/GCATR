@@ -474,13 +474,12 @@ code_check_if_circular <- function(code, length = -1L) {
 
 #' Returns a code as vector.
 #' 
-#' Turns a sequence or a single string into a string vector.
+#' Turns a sequence or a single string code into a string vector.
 #'
 #' @param code is either a string vector or a string. It can either be a code or a sequence.
 #' @param length if code is a sequence, length is the tuple length of the code.
 #' @return StringVector code as vector.
 #' @examples
-#' code_vec <- code_as_vector(c("ACG", "CAG"))
 #' code_vec <- code_as_vector("ACGCAG", 3)
 #' code_vec <- code_as_vector("ACG CAG")
 #'
@@ -678,12 +677,12 @@ code_get_acid <- function(code, length = -1L) {
 #' @return String vector. list of amino acids
 #' @examples
 #' code_get_amino_acids(c("ACG", "CAG"), idx_trans_table=2)
-#' code_get_amino_acids("ACGCAG", 3, idx_trans_table=2)
+#' code_get_amino_acids("ACGCAG", idx_trans_table=2)
 #' code_get_amino_acids("ACG CAG", idx_trans_table=2)
 #' 
 #' @export
-code_get_amino_acids <- function(code, length = -1L, idx_trans_table = 1L) {
-    .Call('_GCATR_code_get_amino_acids', PACKAGE = 'GCATR', code, length, idx_trans_table)
+code_get_amino_acids <- function(code, idx_trans_table = 1L) {
+    .Call('_GCATR_code_get_amino_acids', PACKAGE = 'GCATR', code, idx_trans_table)
 }
 
 #' Finds one longest path in the graph of the code.
@@ -866,5 +865,59 @@ generate_code_by_min_value <- function(alphabet, tuple_length) {
 #' @export
 shift_tuples <- function(shifts, code, tuple_length = -1L) {
     .Call('_GCATR_shift_tuples', PACKAGE = 'GCATR', shifts, code, tuple_length)
+}
+
+#' Transformation of all tuples
+#'
+#' This function transforms all tuples in code. The single letters get transformed by the rules which are set as parameter.
+#' The rules are defined as two strings, the \emph{from} and the \emph{to} parameter. These two parameters have to be
+#' strings of the same length. Each letter in the \emph{from} string gets transformed to the corresponding letter at the same
+#' position of the \emph{to} parameter.
+#'
+#'
+#' @param from the origin letters which are maped to the letters of the \emph{to} parameter.
+#' @param to the transformation target letters which are maped letters of to the \emph{from} parameter.
+#' @param code is either a string vector or a string. It can either be a code or a sequence.
+#' @param tuple_length if code is a sequence, length is the tuple length of the code.
+#'
+#' @return transformed code as String vector
+#'
+#' @examples
+#' transformed_tuples <- code_transform_tuples("ACTG", "CAGT", c("ACG", "GAT"))
+#' transformed_tuples <- code_transform_tuples("ACTG", "CAGT", "ACGGAT", tuple_length=3)
+#' transformed_tuples <- code_transform_tuples("ACTG", "CAGT", "ACG GAT")
+#'
+#' @export
+code_transform_tuples <- function(from, to, code, tuple_length = -1L) {
+    .Call('_GCATR_code_transform_tuples', PACKAGE = 'GCATR', from, to, code, tuple_length)
+}
+
+#' Transformation of all tuples
+#'
+#' This function transforms all tuples in code. The single letters get transformed by the rules which are set as parameter.
+#' The rules are the predefined and listed below. This only works for genetic gen codes and sequences\cr
+#'
+#' SW = (A, T,C,G) -> (T, A, G,C)\cr
+#' YR = (A, T,C,G) -> (G,C, T,A)\cr
+#' KM = (A, T,C,G) -> (C, G, A, T)\cr
+#' AT = (A, T,C,G) -> (T, A,C,G)\cr
+#' CG = (A, T,C,G) -> (A, T, G,C)\cr
+#' ACTG = (A, T,C,G) -> (C, G, T,A)\cr
+#' AGTC = (A, T,C,G) -> (G,C, A, T)\cr
+#'
+#' @param trans_name tname of a transformation. listed in description.
+#' @param code is either a string vector or a string. It can either be a code or a sequence.
+#' @param tuple_length if code is a sequence, length is the tuple length of the code.
+#'
+#' @return transformed code as String vector
+#'
+#' @examples
+#' transformed_tuples <- code_named_transform_tuples("I", c("ACG", "GAT"))
+#' transformed_tuples <- code_named_transform_tuples("ACTG", "CAGT", "ACGGAT", tuple_length=3)
+#' transformed_tuples <- code_named_transform_tuples("ACTG", "CAGT", "ACG GAT")
+#'
+#' @export
+code_named_transform_tuples <- function(trans_name, code, tuple_length = -1L) {
+    .Call('_GCATR_code_named_transform_tuples', PACKAGE = 'GCATR', trans_name, code, tuple_length)
 }
 
