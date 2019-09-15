@@ -4,22 +4,23 @@
 
 #include "Graph.h"
 
+#include <utility>
+
 using namespace graph;
 
 #include "../codes/AbstractCode.h"
 
 
-
-Graph::Graph(const AbstractCode & a): alphabet(a.get_alphabet()) {
+Graph::Graph(const AbstractCode &a) : alphabet(a.get_alphabet()) {
     this->parse_code(a);
 }
 
-Graph::Graph(const Alphabet & a): alphabet(a) {
+Graph::Graph(Alphabet a) : alphabet(std::move(a)) {
 }
 
 void Graph::parse_code(const AbstractCode &code) {
     this->alphabet = code.get_alphabet();
-    for (const auto &word : code.as_vector()) {
+    for (const auto &word : code.as_set()) {
         this->add_word(word);
     }
 }
@@ -46,7 +47,7 @@ std::vector<Edge> Graph::remove_edges(const Graph &to_remove) {
     return this->get_edges();
 }
 
-void Graph::add_word(const std::string & word) {
+void Graph::add_word(const std::string &word) {
     for (size_t i = 1; i < word.length(); ++i) {
         this->add_vertices(word.substr(0, i), word.substr(i));
     }
@@ -121,6 +122,31 @@ std::vector<Edge> Graph::get_edges() const {
     return res_vec;
 }
 
+std::vector<Edge> Graph::get_path_start_edges() const {
+    std::vector<Edge> local_edges = this->get_edges();
+    std::vector<Edge> path_start_edges;
+    for (const auto &vertex : this->get_vertices()) {
+        bool has_no_incoming = true;
+        for (const auto &edge : local_edges) {
+            if (edge.get_to()->compare(vertex) == 0) {
+                has_no_incoming = false;
+                break;
+            }
+        }
+
+        if (has_no_incoming) {
+            auto vec1 = this->get_edges_form_vertex(vertex);
+            path_start_edges.insert(path_start_edges.begin(), vec1.begin(), vec1.end());
+        }
+    }
+
+    if (path_start_edges.empty() && !local_edges.empty()) {
+        return {local_edges[0]};
+    }
+
+    return path_start_edges;
+}
+
 int Graph::compare(const Graph &in_g) const {
     if (this->edges.size() != in_g.edges.size()) {
         return (signed) this->edges.size() - (signed) in_g.edges.size();
@@ -141,6 +167,29 @@ int Graph::compare(const Graph &in_g) const {
 
 }
 
-void Graph::set_alphabet(const AbstractCode &) {
+std::vector<Edge> Graph::get_edges_form_vertex(const Vertex &vertex) const {
+    std::vector<Edge> edges;
+    for (const auto &e : this->get_edges()) {
+        if (e.get_from()->compare(vertex) == 0) {
+            edges.push_back(e);
+        }
+    }
 
+    return edges;
+}
+
+Alphabet Graph::get_alphabet() {
+    return this->alphabet;
+}
+
+void Graph::add_path_as_list_of_vertexes(const std::vector<Vertex> &path,
+                                         __gnu_cxx::__normal_iterator<Vertex *, std::vector<Vertex>> from,
+                                         __gnu_cxx::__normal_iterator<Vertex *, std::vector<Vertex>> to) {
+    int start = from - path.begin();
+    int end = to - path.begin();
+
+
+    for (auto i = start; i < end-1; ++i) {
+        this->add_vertices(path[i].get_label(), path[i+1].get_label());
+    }
 }

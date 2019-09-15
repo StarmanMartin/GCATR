@@ -10,12 +10,10 @@
 // Created by Martin on 27.06.2018.
 //
 #include <string>
-#include <numeric>
-#include <iostream>
 #include <regex>
-#include <sstream>
 #include <iterator>
-#include <utility>
+#include <set>
+
 #include "../tester/AbstractTester.h"
 #include "../modification/AbstractModifier.h"
 #include "../geneticCode/CodonTranslTables.h"
@@ -25,10 +23,12 @@
 #define EMPTY_SEQUNECE "#"
 
 
-AbstractCode::AbstractCode(std::string sequence, unsigned int word_length) : string_sequence(sequence) {
+AbstractCode::AbstractCode(const std::string &sequence, unsigned int word_length) : string_sequence(sequence),
+                                                                                    is_tested(false), is_ok(false),
+                                                                                    is_alphabet_set(false) {
     this->word_length = {};
 
-    std::vector<std::string> code_vec(sequence.length() / word_length);
+    std::vector<std::string> code_temp_vec(sequence.length() / word_length);
     this->word_length.push_back((signed) word_length);
 
     for (struct {
@@ -37,14 +37,14 @@ AbstractCode::AbstractCode(std::string sequence, unsigned int word_length) : str
          } idx = {0, 0};
          idx.letter < sequence.length();
          idx.word++, idx.letter += word_length) {
-        code_vec[idx.word] = sequence.substr(idx.letter, word_length);
+        code_temp_vec[idx.word] = sequence.substr(idx.letter, word_length);
 
     }
 
-    this->reset(code_vec);
+    this->reset(code_temp_vec);
 }
 
-AbstractCode::AbstractCode(const std::vector<std::string> &code_vec) {
+AbstractCode::AbstractCode(const std::vector<std::string> &code_vec) : is_tested(false), is_ok(false), is_alphabet_set(false) {
     this->reset(code_vec);
 }
 
@@ -59,8 +59,8 @@ AbstractCode::AbstractCode(const AbstractCode &agc) : AbstractErrorManager(agc) 
     this->is_alphabet_set = agc.is_alphabet_set;
 }
 
-void AbstractCode::reset(std::vector<std::string> code_vec) {
-    this->code_vec = std::move(code_vec);
+void AbstractCode::reset(std::vector<std::string> code_param_vec) {
+    this->code_vec = std::move(code_param_vec);
     this->is_tested = false;
     this->is_ok = false;
     this->string_sequence = EMPTY_SEQUNECE;
@@ -107,7 +107,8 @@ void AbstractCode::set_code_properties() {
 std::string AbstractCode::as_string_sequence() {
     if (this->string_sequence != EMPTY_SEQUNECE) {
         return this->string_sequence;
-    } if(this->code_vec.empty()) {
+    }
+    if (this->code_vec.empty()) {
         return "";
     }
 
@@ -121,13 +122,22 @@ std::vector<std::string> AbstractCode::as_vector() const {
     return this->code_vec;
 }
 
-void AbstractCode::set_alphabet(const std::string& new_alphabet) {
+std::vector<std::string> AbstractCode::as_set() const{
+    std::set<std::string> code_set(this->code_vec.begin(), this->code_vec.end());
+    std::vector<std::string> code_vec_set(code_set.size());
+    std::copy(code_set.begin(), code_set.end(), code_vec_set.begin());
+
+
+    return code_vec_set;
+}
+
+void AbstractCode::set_alphabet(const std::string &new_alphabet) {
 
     this->alphabet.set_alphabet(new_alphabet);
     this->is_alphabet_set = true;
 }
 
-const Alphabet& AbstractCode::get_alphabet() const {
+const Alphabet &AbstractCode::get_alphabet() const {
     return this->alphabet;
 }
 
@@ -140,32 +150,32 @@ size_t AbstractCode::get_letter_value(const char &c) {
 }
 
 std::vector<int> AbstractCode::get_word_length() {
-    if(!this->test_code()) {
+    if (!this->test_code()) {
         return {0};
     }
     return this->word_length;
 }
 
-bool AbstractCode::run_test(std::shared_ptr<AbstractTester> t) {
+bool AbstractCode::run_test(const std::shared_ptr<AbstractTester> &t) {
     bool result = t->test(this);
     this->add_error_msges(t->get_error_msg());
     return result;
 }
 
-bool AbstractCode::run_test(std::shared_ptr<AbstractTester> t, int k) {
+bool AbstractCode::run_test(const std::shared_ptr<AbstractTester> &t, int k) {
     bool result = t->test(this, k);
     this->add_error_msges(t->get_error_msg());
     return result;
 }
 
-void AbstractCode::run_modification(std::shared_ptr<AbstractModifier> t) {
+void AbstractCode::run_modification(const std::shared_ptr<AbstractModifier> &t) {
     auto result = t->modify(this);
     this->add_error_msges(t->get_error_msg());
     this->reset(result);
     this->test_code();
 }
 
-const std::string AbstractCode::to_string() const {
+std::string AbstractCode::to_string() const {
 
     const char *const delim = ", ";
 

@@ -11,7 +11,7 @@
 namespace graph {
     class Vertex {
     public:
-        Vertex(std::string label, const Alphabet &alphabet);
+        Vertex(std::string label, Alphabet alphabet);
 
         std::string get_label() const;
 

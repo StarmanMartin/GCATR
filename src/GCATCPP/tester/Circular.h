@@ -18,21 +18,20 @@ public:
     std::vector<graph::Graph > get_longest_path(AbstractCode *code);
 
 protected:
+    std::vector<graph::Edge> visited_edges;
+    Alphabet alphabet;
+
     std::vector<graph::Graph> circle;
     std::vector<graph::Graph> longest_path;
     unsigned int longest_path_size;
     bool is_quick_test;
 
-    void add_circle(graph::Graph);
+    void add_circle(const graph::Graph&);
     void add_longest_path(graph::Graph);
 
     virtual bool is_circular(AbstractCode *code);
 
-    bool rec_is_circular(AbstractCode* ,
-                         std::vector<unsigned int>,
-                         graph::Graph,
-                         std::string,
-                         unsigned int);
+    bool rec_is_circular(graph::Graph *code, const graph::Edge &current_edge, std::vector<graph::Vertex> path);
 };
 
 

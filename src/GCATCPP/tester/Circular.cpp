@@ -8,6 +8,9 @@
 #include <regex>
 #include <climits>
 
+#define CONTAINS_IN(Y, X) (std::find(X.begin(), X.end(), Y) != X.end())
+#define FINDS_IN(Y, X) std::find(X.begin(), X.end(), Y)
+
 bool Circular::test(AbstractCode *code) {
     this->longest_path = {};
     this->circle = {};
@@ -18,90 +21,67 @@ bool Circular::test(AbstractCode *code) {
 
 
 bool Circular::is_circular(AbstractCode *code) {
-    std::string string_sequence = code->as_string_sequence();
+    graph::Graph g(*code);
     bool is_code_circular = true;
+    this->visited_edges.clear();
+    auto path_start_edges = g.get_path_start_edges();
+    auto all_edges = g.get_edges();
+    all_edges.insert(all_edges.begin(), path_start_edges.begin(), path_start_edges.end());
 
-    for (unsigned int i = 1; i < code->get_word_length()[0]; ++i) {
-        for (unsigned int j = 0; j < string_sequence.length(); j += code->get_word_length()[0]) {
-            std::string current_prefix = string_sequence.substr(j, i);
-            std::string current_suffix = string_sequence.substr(j + i, code->get_word_length()[0] - i);
-            unsigned int start_word_idx = {j / (unsigned) code->get_word_length()[0]};
-            graph::Graph path(code->get_alphabet());
-            path.add_vertices(current_prefix, current_suffix);
-            is_code_circular = is_code_circular & this->rec_is_circular(code,
-                                                                        std::vector<unsigned int>(),
-                                                                        path,
-                                                                        current_prefix,
-                                                                        start_word_idx);
+    for (const auto &current_edge : all_edges) {
+        if (!CONTAINS_IN(current_edge, this->visited_edges)) {
+            std::vector<graph::Vertex> path;
+            is_code_circular = is_code_circular & this->rec_is_circular(&g,
+                                                                        current_edge,
+                                                                        path);
+        }
+    }
+
+
+    return is_code_circular;
+}
+
+bool Circular::rec_is_circular(graph::Graph *main_graph,
+                               const graph::Edge &current_edge,
+                               std::vector<graph::Vertex> path) {
+    path.push_back(*current_edge.get_from());
+    bool is_code_circular = true;
+    auto it = FINDS_IN(*current_edge.get_to(), path);
+    if (it != path.end()) {
+        path.push_back(*current_edge.get_to());
+        graph::Graph gPath(main_graph->get_alphabet());
+        gPath.add_path_as_list_of_vertexes(path, it, path.end());
+        this->add_circle(gPath);
+        is_code_circular = false;
+    }
+
+    if (CONTAINS_IN(current_edge, this->visited_edges)) {
+        return is_code_circular;
+    }
+
+    this->visited_edges.push_back(current_edge);
+
+
+    auto next_edges = main_graph->get_edges_form_vertex(*current_edge.get_to());
+
+    if (next_edges.empty()) {
+        path.push_back(*current_edge.get_to());
+        graph::Graph gPath(main_graph->get_alphabet());
+        gPath.add_path_as_list_of_vertexes(path, path.begin(), path.end());
+        this->add_longest_path(gPath);
+    } else {for (const auto &next_paths : next_edges) {
+            is_code_circular = is_code_circular && this->rec_is_circular(main_graph, next_paths, path);
         }
     }
 
     return is_code_circular;
 }
 
-bool Circular::rec_is_circular(AbstractCode *code,
-                               std::vector<unsigned int> chained_indexes,
-                               graph::Graph path,
-                               std::string current_prefix,
-                               unsigned int current_word_pos) {
-
-    std::regex r("(?=(" + current_prefix + ")).");
-
-    for (int i = 0; i < chained_indexes.size(); ++i) {
-        auto word_pos = chained_indexes[i];
-        if (word_pos == current_word_pos) {
-            if ((chained_indexes.size() - i) % 2 == 0) {
-                if (i == 0) {
-                    this->add_circle(path);
-                }
-                return false;
-            }
-        }
-    }
-
-    chained_indexes.push_back(current_word_pos);
-    std::smatch sm;
-    bool is_code_circular = true;
-
-    std::string string_sequence = code->as_string_sequence();
-    bool found_extension = false;
-    for (auto it = std::sregex_iterator(string_sequence.begin(), string_sequence.end(), r);
-         it != std::sregex_iterator();
-         ++it) {
-
-        auto letter_pos = (unsigned int) it->position();
-        unsigned int inverse_size =
-                ((unsigned int) code->get_word_length()[0]) - ((unsigned int) current_prefix.length());
-
-        if (letter_pos % code->get_word_length()[0] == inverse_size) {
-            found_extension = true;
-            unsigned int word_pos = (letter_pos / code->get_word_length()[0]);
-            std::string new_sub_word = string_sequence.substr(word_pos * code->get_word_length()[0], inverse_size);
-
-            graph::Graph copyOfGraph(path);
-            copyOfGraph.add_vertices(new_sub_word, current_prefix);
-            is_code_circular = is_code_circular &
-                               this->rec_is_circular(code, chained_indexes, copyOfGraph, new_sub_word, word_pos);
-
-            if (!is_code_circular && this->is_quick_test) {
-                return false;
-            }
-        }
-
-    }
-
-    if (!this->is_quick_test && !found_extension) {
-        this->add_longest_path(path);
-    }
-
-    return is_code_circular;
-}
-
-void Circular::add_circle(graph::Graph circle_path) {
+void Circular::add_circle(const graph::Graph &circle_path) {
     this->longest_path_size = UINT_MAX;
     this->longest_path = {};
- ///*DEBUG*/   std::cout << "\n\n" << circle_path.get_vertices().size() << "\n\n";
-    for (auto graph : this->circle) {
+    ///*DEBUG*/   std::cout << "\n\n" << circle_path.get_vertices().size() << "\n\n";
+    for (const auto &graph : this->circle) {
         if (graph.compare(circle_path) == 0) {
             return;
         }
