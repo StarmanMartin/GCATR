@@ -18,7 +18,8 @@ public:
     std::vector<graph::Graph > get_longest_path(AbstractCode *code);
 
 protected:
-    std::vector<graph::Edge> visited_edges;
+    std::vector<graph::Edge> part_of_circular_path;
+    std::set<graph::Edge> visited_edges;
     Alphabet alphabet;
 
     std::vector<graph::Graph> circle;
@@ -27,7 +28,7 @@ protected:
     bool is_quick_test;
 
     void add_circle(const graph::Graph&);
-    void add_longest_path(graph::Graph);
+    void add_longest_path(const graph::Graph&);
 
     virtual bool is_circular(AbstractCode *code);
 

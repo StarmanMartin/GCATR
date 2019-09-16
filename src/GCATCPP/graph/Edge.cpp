@@ -64,3 +64,11 @@ void Edge::calculate_index() {
         power_val *= length+1;
     }
 }
+
+bool Edge::operator>>(const Vertex &d) const {
+    { return this->get_to()->compare(d) == 0; }
+}
+
+bool Edge::operator<<(const Vertex &d) const {
+    { return this->get_from()->compare(d) == 0; }
+}

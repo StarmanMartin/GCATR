@@ -10,22 +10,21 @@
 using namespace miner;
 
 std::vector<std::vector<std::string> > CircleMiner::mine_path_as_vector(AbstractCode *gen_code) {
-    auto circle_index = CircleMiner::mine_all_path_as_graph(gen_code);
-    std::vector<std::vector<std::string>> res(circle_index.size());
-    for (int i = 0; i < circle_index.size(); ++i) {
-        auto edges = circle_index[i].get_edges();
-        graph::Vertex current_vertex = *edges[0].get_to();
-        do {
-            for (auto &edge : edges) {
-                if (edge.get_from()->compare(current_vertex) == 0) {
-                    res[i].push_back((std::string) *edge.get_from());
-                    current_vertex = *edge.get_to();
-                }
-            }
-        } while (current_vertex.compare(*edges[0].get_from()) != 0);
+    auto cycling_paths = CircleMiner::mine_all_path_as_graph(gen_code);
+    std::vector<std::vector<std::string>> res(cycling_paths.size());
+    size_t i = 0;
+    for (const auto &cycling_path : cycling_paths) {
+        auto start_edge = cycling_path.get_edges()[0];
+        auto start_vertex = *start_edge.get_from();
+        auto end_vertex = *start_edge.get_to();
+        res[i].push_back(start_vertex.get_label());
+        res[i].push_back(end_vertex.get_label());
+        while(start_vertex.compare(end_vertex)) {
+            end_vertex = *cycling_path.get_edges_form_vertex(end_vertex)[0].get_to();
+            res[i].push_back(end_vertex.get_label());
+        }
 
-        res[i].push_back(current_vertex.get_label());
-        res[i].push_back(edges[0].get_to()->get_label());
+        ++i;
     }
 
     return res;

@@ -156,7 +156,7 @@ int Graph::compare(const Graph &in_g) const {
         return (signed) this->vertices.size() - (signed) in_g.vertices.size();
     }
 
-    for (int i = 0; i < this->edges.size(); ++i) {
+    for (size_t i = 0; i < this->edges.size(); ++i) {
         auto comp_val = this->edges[i]->compare(*in_g.edges[i]);
         if (comp_val != 0) {
             return comp_val;
@@ -164,6 +164,32 @@ int Graph::compare(const Graph &in_g) const {
     }
 
     return 0;
+
+}
+
+bool Graph::is_sub_graph(const Graph &in_g) const {
+    if (this->edges.size() < in_g.edges.size()) {
+        return false;
+    }
+
+    if (this->vertices.size() < in_g.vertices.size()) {
+        return false;
+    }
+
+    int in_idx = 0;
+    for (const auto &edge : in_g.edges) {
+        size_t comp_val = 0;
+        do {
+
+            comp_val = this->edges[in_idx]->compare(*edge);
+        } while ((++in_idx) < this->edges.size() && comp_val > 0);
+
+        if (comp_val != 0) {
+            return false;
+        }
+    }
+
+    return true;
 
 }
 
@@ -182,14 +208,70 @@ Alphabet Graph::get_alphabet() {
     return this->alphabet;
 }
 
-void Graph::add_path_as_list_of_vertexes(const std::vector<Vertex> &path,
-                                         __gnu_cxx::__normal_iterator<Vertex *, std::vector<Vertex>> from,
-                                         __gnu_cxx::__normal_iterator<Vertex *, std::vector<Vertex>> to) {
-    int start = from - path.begin();
-    int end = to - path.begin();
+void Graph::add_path_as_list_of_vertexes(const std::vector<Vertex> &path, size_t start) {
+
+    size_t end = path.size();
 
 
-    for (auto i = start; i < end-1; ++i) {
-        this->add_vertices(path[i].get_label(), path[i+1].get_label());
+    for (auto i = start; i < end - 1; ++i) {
+        this->add_vertices(path[i].get_label(), path[i + 1].get_label());
     }
+}
+
+bool Graph::contains_vertex(const Vertex &in_vertex) const {
+    auto it = this->vertices.begin();
+    while (it != this->vertices.end() && (*it)->get_index() > in_vertex.get_index()) {
+        it++;
+    }
+
+    return it != this->vertices.end() && (*it)->get_index() == in_vertex.get_index();
+}
+
+std::vector<Edge> Graph::get_path_between(const Vertex &a, const Vertex &b) const {
+    bool has_both = this->contains_vertex(a) && this->contains_vertex(b);
+    if (!has_both) {
+        return {};
+    }
+
+    size_t idx = 0;
+
+    std::vector<std::vector<Edge>> path = {this->get_edges_form_vertex(a)};
+    bool has_found = false;
+
+    for (const auto &e : path[idx]) {
+        if (e >> b) {
+            has_found = true;
+        }
+    }
+    while (!has_found) {
+        auto next_elements = this->get_edges_form_vertex(*path[idx][0].get_to());
+        if (next_elements.empty()) {
+            path[idx].pop_back();
+            if (path[idx].empty()) {
+                path.pop_back();
+                idx--;
+                if (idx == -1) {
+                    return {};
+                }
+            }
+        } else {
+            path.push_back(next_elements);
+            idx++;
+
+            for (const auto &e : path[idx]) {
+                if (e >> b) {
+                    has_found = true;
+                    break;
+                }
+            }
+        }
+    }
+
+    std::vector<Edge> return_path;
+    return_path.reserve(path.size());
+    for (const auto &e : path) {
+        return_path.push_back(e[0]);
+    }
+
+    return return_path;
 }

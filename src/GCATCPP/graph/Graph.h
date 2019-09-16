@@ -32,13 +32,17 @@ namespace graph {
 
         void add_graph(const Graph &);
 
-        void add_path_as_list_of_vertexes(const std::vector<Vertex> &,
-                                          __gnu_cxx::__normal_iterator<Vertex *, std::vector<Vertex>> from,
-                                          __gnu_cxx::__normal_iterator<Vertex *, std::vector<Vertex>> to);
+        bool contains_vertex(const Vertex &) const;
+
+        std::vector<Edge> get_path_between(const Vertex &, const Vertex &) const;
+
+        void add_path_as_list_of_vertexes(const std::vector<Vertex> &,  size_t start);
 
         std::vector<Edge> remove_edges(const Graph &to_remove);
 
         int compare(const Graph &) const;
+
+        bool is_sub_graph(const Graph &) const;
 
         bool operator==(const Graph &d) const { return !this->compare(d); }
 

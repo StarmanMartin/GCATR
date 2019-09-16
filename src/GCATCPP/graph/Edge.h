@@ -40,6 +40,9 @@ namespace graph {
 
         bool operator>(const Edge &d) const { return compare(d) > 0; }
 
+        bool operator>>(const Vertex &d) const;
+        bool operator<<(const Vertex &d) const;
+
     private:
         std::shared_ptr<Vertex> from;
         std::shared_ptr<Vertex> to;
