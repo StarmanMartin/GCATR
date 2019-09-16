@@ -27,12 +27,18 @@ protected:
     unsigned int longest_path_size;
     bool is_quick_test;
 
-    void add_circle(const graph::Graph&);
-    void add_longest_path(const graph::Graph&);
+    void add_circle(const std::vector<graph::Edge> &circle_path);
+    void add_longest_path(const std::vector<graph::Edge> &circle_path);
 
     virtual bool is_circular(AbstractCode *code);
 
     bool rec_is_circular(graph::Graph *code, const graph::Edge &current_edge, std::vector<graph::Vertex> path);
+
+    static std::vector<graph::Edge> get_path_of_path_tree(const std::vector<std::vector<graph::Edge>> &path_tree, size_t from);
+
+    static int check_if_path_is_circular(const std::vector<std::vector<graph::Edge>> &path_tree);
+
+    static void update_path_tree(std::vector<std::vector<graph::Edge>> &vector);
 };
 
 

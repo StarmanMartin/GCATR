@@ -10,7 +10,7 @@ bool _is_cn_circular(std::vector<std::string> c) {
     StdGenCode a(c);
     return a.is_cn_circular();
 }
-/*
+
 TEST (CircularCnTest, KeepCode) {
     std::vector<std::string> c = {"AGA", "AUA", "CAA"};
     StdGenCode a(c);
@@ -27,7 +27,7 @@ TEST (CircularCnTest, CircularCodes) {
             {"ACA","AGA","AUA","CCA","CGA","CUA","GCA","GGA","GUA","UUA","CGC","CUC","GGC","GUC","UUC","CUG","GUG","UUG","CAU","GAU"}), true);
 
 }
-*/
+
 
 TEST (CircularCnTest, NotCircularCodes) {
     EXPECT_EQ(_is_cn_circular({"AAG","ACC","ACU","AUG","GAG","GCA","GGU","GUU","UAG","UCA","UCC","UCU","UGC"}), false);

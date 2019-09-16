@@ -103,23 +103,23 @@ TEST(GraphTest, SubGRaphTest) {
 
     graph::Graph g2 = generate_graph_for_code({"ACG"}, "ACGT");
 
-    EXPECT_TRUE(g.is_sub_graph(g2) == 0);
+    EXPECT_TRUE(g.is_sub_graph(g2));
 
     g2 = generate_graph_for_code({"ACG", "CGT"}, "ACGT");
 
-    EXPECT_TRUE(g.is_sub_graph(g2) == 0);
+    EXPECT_TRUE(g.is_sub_graph(g2));
 
     g2 = generate_graph_for_code({"CGT"}, "ACGT");
 
-    EXPECT_TRUE(g.is_sub_graph(g2) == 0);
+    EXPECT_TRUE(g.is_sub_graph(g2));
 
     g2 = generate_graph_for_code({"CGT", "ATG"}, "ACGT");
 
-    EXPECT_FALSE(g.is_sub_graph(g2) == 0);
+    EXPECT_FALSE(g.is_sub_graph(g2));
 
     g2 = generate_graph_for_code({"ACG", "CGT", "ATG"}, "ACGT");
 
-    EXPECT_FALSE(g.is_sub_graph(g2) == 0);
+    EXPECT_FALSE(g.is_sub_graph(g2));
 }
 
 TEST(GraphTest, RemoveEdgeTest) {

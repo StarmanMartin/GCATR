@@ -37,6 +37,7 @@ namespace graph {
         std::vector<Edge> get_path_between(const Vertex &, const Vertex &) const;
 
         void add_path_as_list_of_vertexes(const std::vector<Vertex> &,  size_t start);
+        void add_path_as_list_of_edges(const std::vector<Edge> &,  size_t start);
 
         std::vector<Edge> remove_edges(const Graph &to_remove);
 

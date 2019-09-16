@@ -208,15 +208,6 @@ Alphabet Graph::get_alphabet() {
     return this->alphabet;
 }
 
-void Graph::add_path_as_list_of_vertexes(const std::vector<Vertex> &path, size_t start) {
-
-    size_t end = path.size();
-
-
-    for (auto i = start; i < end - 1; ++i) {
-        this->add_vertices(path[i].get_label(), path[i + 1].get_label());
-    }
-}
 
 bool Graph::contains_vertex(const Vertex &in_vertex) const {
     auto it = this->vertices.begin();
@@ -274,4 +265,25 @@ std::vector<Edge> Graph::get_path_between(const Vertex &a, const Vertex &b) cons
     }
 
     return return_path;
+}
+
+void Graph::add_path_as_list_of_vertexes(const std::vector<Vertex> &path, size_t start) {
+
+    size_t end = path.size();
+
+
+    for (auto i = start; i < end - 1; ++i) {
+        this->add_vertices(path[i].get_label(), path[i + 1].get_label());
+    }
+}
+
+void Graph::add_path_as_list_of_edges(const std::vector<Edge> &path, size_t start) {
+
+    size_t end = path.size();
+
+
+    for (auto i = start; i < end; ++i) {
+        this->add_vertices(path[i].get_from()->get_label(), path[i].get_to()->get_label());
+    }
+
 }

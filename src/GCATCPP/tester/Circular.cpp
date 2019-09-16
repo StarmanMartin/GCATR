@@ -27,6 +27,7 @@ bool Circular::is_circular(AbstractCode *code) {
     auto path_start_edges = g.get_path_start_edges();
     auto all_edges = g.get_edges();
     all_edges.insert(all_edges.begin(), path_start_edges.begin(), path_start_edges.end());
+    this->alphabet = code->get_alphabet();
 
     for (const auto &current_edge : all_edges) {
         if (!CONTAINS_IN(current_edge, this->visited_edges)) {
@@ -39,105 +40,116 @@ bool Circular::is_circular(AbstractCode *code) {
     return is_code_circular;
 }
 
-bool Circular::rec_is_circular(graph::Graph *main_graph,
-                               const graph::Edge &current_edge,
-                               std::vector<graph::Vertex> path) {
-    path.push_back(*current_edge.get_from());
-    this->visited_edges.insert(current_edge);
-    std::cout << current_edge.get_label() << "-";
-
-    if (CONTAINS_IN(current_edge, this->part_of_circular_path)) {
-        for (size_t path_idx = 0; path_idx < path.size(); path_idx++) {
-            for (const auto &circle_path: this->circle) {
-                bool is_circular = false;
-                std::vector<graph::Edge> res;
-                graph::Edge lase_e = current_edge;
-                if (path[path_idx].compare(*current_edge.get_to()) == 0) {
-                    is_circular = true;
-                } else {
-                    res = circle_path.get_path_between(*current_edge.get_to(), path[path_idx]);
-                    for (auto &edge : res) {
-                        lase_e = edge;
-                        path.push_back(*edge.get_from());
-                    }
-                }
-                if (is_circular || !res.empty()) {
-                    path.push_back(*lase_e.get_to());
-                    graph::Graph gPath(main_graph->get_alphabet());
-                    gPath.add_path_as_list_of_vertexes(path, path_idx);
-                    this->add_circle(gPath);
-                    return false;
-                }
-            }
+int Circular::check_if_path_is_circular(const std::vector<std::vector<graph::Edge>> &path_tree) {
+    graph::Edge last = path_tree.back()[0];
+    for (size_t i = 0; i < path_tree.size() - 1; ++i) {
+        if(last == path_tree[i][0]) {
+            return i;
         }
-        return false;
     }
 
-    bool is_code_circular = true;
-    auto new_edge = *current_edge.get_to();
-    std::cout << new_edge.get_label() << "-";
-    std::cout.flush();
-    auto it = FINDS_IN(new_edge, path);
-    if (it != path.end()) {
-        std::cout << new_edge.get_label() << "DONE \n";
-        size_t it_idx = it - path.begin();
-        path.push_back(*current_edge.get_to());
-        graph::Graph gPath(main_graph->get_alphabet());
-        gPath.add_path_as_list_of_vertexes(path, it_idx);
-        this->add_circle(gPath);
-        return false;
-    }
-    std::cout << new_edge.get_label() << "\n";
-    auto next_edges = main_graph->get_edges_form_vertex(*current_edge.get_to());
-
-    if (next_edges.empty()) {
-        size_t it_idx = it - path.begin();
-        path.push_back(*current_edge.get_to());
-        graph::Graph gPath(main_graph->get_alphabet());
-        gPath.add_path_as_list_of_vertexes(path, it_idx);
-        this->add_longest_path(gPath);
-    } else
-        for (auto next_paths : next_edges) {
-            if (!this->rec_is_circular(main_graph, next_paths, path)) {
-                is_code_circular = false;
-            }
-        }
-
-    return is_code_circular;
+    return -1;
 }
 
-void Circular::add_circle(const graph::Graph &circle_path) {
+std::vector<graph::Edge> Circular::get_path_of_path_tree(const std::vector<std::vector<graph::Edge>> &path_tree, size_t from=0) {
+    std::vector<graph::Edge> current_path;
+    current_path.reserve(path_tree.size());
+    for (size_t i = from; i < path_tree.size() - 1; ++i) {
+        current_path.push_back(path_tree[i][0]);
+    }
+
+    return current_path;
+}
+
+void Circular::update_path_tree(std::vector<std::vector<graph::Edge>> &path_tree) {
+    graph::Edge last = path_tree.back()[0];
+    for (size_t i = 0; i < path_tree.size() - 1; ++i) {
+        path_tree[i].erase(std::remove(path_tree[i].begin()+1, path_tree[i].end(), last), path_tree[i].end());
+    }
+}
+
+bool Circular::rec_is_circular(graph::Graph *main_graph,
+                               const graph::Edge &a,
+                               std::vector<graph::Vertex> _path) {
+
+    size_t idx = 0;
+
+    std::vector<std::vector<graph::Edge>> path = {main_graph->get_edges_form_vertex(*a.get_from())};
+    int begin_cyclic_idx = check_if_path_is_circular(path);
+
+    while (true) {
+        std::vector<graph::Edge> next_elements;
+        if (begin_cyclic_idx >= 0) {
+            this->add_circle(this->get_path_of_path_tree(path, begin_cyclic_idx));
+        } else {
+            next_elements = main_graph->get_edges_form_vertex(*path[idx][0].get_to());
+        }
+
+        if (next_elements.empty()) {
+            path[idx].erase(path[idx].begin());
+            this->add_longest_path(this->get_path_of_path_tree(path));
+            while (path[idx].empty()) {
+                if (idx == 0) {
+                    return this->circle.empty();
+                } else {
+                    path.pop_back();
+                    idx--;
+                    path[idx].erase(path[idx].begin());
+                }
+            }
+        } else {
+            path.push_back(next_elements);
+            std::copy(next_elements.begin(), next_elements.end(),
+                      std::inserter(this->visited_edges, this->visited_edges.end()));
+
+            idx++;
+        }
+
+        begin_cyclic_idx = check_if_path_is_circular(path);
+        //this->update_path_tree(path);
+    }
+}
+
+void Circular::add_circle(const std::vector<graph::Edge> &circle_path) {
     this->longest_path_size = UINT_MAX;
     this->longest_path = {};
 
+    graph::Graph circle_graph(this->alphabet);
+    circle_graph.add_path_as_list_of_edges(circle_path, 0);
+
     ///*DEBUG*/   std::cout << "\n\n" << circle_path.get_vertices().size() << "\n\n";
     for (const auto &graph : this->circle) {
-        if (graph.is_sub_graph(circle_path)) {
+        if (graph.is_sub_graph(circle_graph)) {
             return;
         }
     }
 
-    for (const graph::Edge &e : circle_path.get_edges()) {
+    for (const graph::Edge &e : circle_graph.get_edges()) {
         this->part_of_circular_path.push_back(e);
     }
 
-    this->circle.push_back(circle_path);
+    this->circle.push_back(circle_graph);
 }
 
-void Circular::add_longest_path(const graph::Graph &circle_path) {
-    if (this->longest_path_size > circle_path.get_edges().size()) { return; }
+void Circular::add_longest_path(const std::vector<graph::Edge> &circle_path) {
 
-    if (this->longest_path_size < circle_path.get_edges().size()) {
-        this->longest_path_size = (unsigned int) circle_path.get_edges().size();
-        this->longest_path = {circle_path};
+
+    if (this->longest_path_size > circle_path.size()) { return; }
+
+    graph::Graph circle_graph(this->alphabet);
+    circle_graph.add_path_as_list_of_edges(circle_path, 0);
+
+    if (this->longest_path_size < circle_path.size()) {
+        this->longest_path_size = (unsigned int) circle_path.size();
+        this->longest_path = {circle_graph};
     } else {
         for (const auto &graph : this->longest_path) {
-            if (graph.compare(circle_path) == 0) {
+            if (graph.compare(circle_graph) == 0) {
                 return;
             }
         }
 
-        this->longest_path.push_back(circle_path);
+        this->longest_path.push_back(circle_graph);
     }
 }
 
