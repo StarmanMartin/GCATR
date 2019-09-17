@@ -16,7 +16,7 @@ namespace graph {
 
     class Edge {
     public:
-        Edge(std::shared_ptr<Vertex> from, std::shared_ptr<Vertex> to, const Alphabet& alphabet);
+        Edge(std::shared_ptr<Vertex> from, std::shared_ptr<Vertex> to, Alphabet alAlphabet);
 
         std::string get_label() const;
 
@@ -25,7 +25,7 @@ namespace graph {
         std::shared_ptr<Vertex> get_from() const;
         std::shared_ptr<Vertex> get_to() const;
 
-        operator std::string() const { return this->get_label(); }
+        explicit operator std::string() const { return this->get_label(); }
 
         friend std::ostream &operator<<(std::ostream &_stream, Edge const &mc) {
             _stream << mc.get_label();
@@ -48,6 +48,8 @@ namespace graph {
         std::shared_ptr<Vertex> to;
         Alphabet alphabet;
         int index;
+
+        std::string label;
 
         void calculate_index();
     };

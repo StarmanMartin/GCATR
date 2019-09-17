@@ -20,7 +20,7 @@ std::vector<std::vector<std::string> > CircleMiner::mine_path_as_vector(Abstract
         res[i].push_back(start_vertex.get_label());
         res[i].push_back(end_vertex.get_label());
         while(start_vertex.compare(end_vertex)) {
-            end_vertex = *cycling_path.get_edges_form_vertex(end_vertex)[0].get_to();
+            end_vertex = cycling_path.get_target_vertex_form_vertex(end_vertex)[0];
             res[i].push_back(end_vertex.get_label());
         }
 

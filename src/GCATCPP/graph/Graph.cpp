@@ -179,6 +179,10 @@ bool Graph::is_sub_graph(const Graph &in_g) const {
     int in_idx = 0;
     for (const auto &edge : in_g.edges) {
         size_t comp_val = 0;
+        if(in_idx >= this->edges.size()) {
+            return false;
+        }
+
         do {
 
             comp_val = this->edges[in_idx]->compare(*edge);
@@ -191,6 +195,17 @@ bool Graph::is_sub_graph(const Graph &in_g) const {
 
     return true;
 
+}
+
+std::vector<Vertex> Graph::get_target_vertex_form_vertex(const Vertex &vertex) const {
+    std::vector<Vertex> edges;
+    for (const auto &e : this->get_edges()) {
+        if (e.get_from()->compare(vertex) == 0) {
+            edges.push_back(*e.get_to());
+        }
+    }
+
+    return edges;
 }
 
 std::vector<Edge> Graph::get_edges_form_vertex(const Vertex &vertex) const {
@@ -267,23 +282,21 @@ std::vector<Edge> Graph::get_path_between(const Vertex &a, const Vertex &b) cons
     return return_path;
 }
 
-void Graph::add_path_as_list_of_vertexes(const std::vector<Vertex> &path, size_t start) {
-
-    size_t end = path.size();
-
-
-    for (auto i = start; i < end - 1; ++i) {
-        this->add_vertices(path[i].get_label(), path[i + 1].get_label());
-    }
-}
-
 void Graph::add_path_as_list_of_edges(const std::vector<Edge> &path, size_t start) {
 
     size_t end = path.size();
 
-
-    for (auto i = start; i < end; ++i) {
+    for (size_t i = start; i < end - 1; ++i) {
         this->add_vertices(path[i].get_from()->get_label(), path[i].get_to()->get_label());
+    }
+}
+
+void Graph::add_path_as_list_of_vertexes(const std::vector<Vertex> &path) {
+
+    size_t end = path.size()-1;
+
+    for (size_t i = 0; i < end; ++i) {
+        this->add_vertices(path[i].get_label(), path[i+1].get_label());
     }
 
 }
