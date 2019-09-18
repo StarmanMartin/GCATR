@@ -41,7 +41,7 @@ namespace seq {
 class AbstractCode : public err::AbstractErrorManager {
 public:
     explicit AbstractCode(const std::vector<std::string> &);
-    explicit AbstractCode(std::string, unsigned int);
+    explicit AbstractCode(const std::string&, unsigned int);
 
     AbstractCode(const AbstractCode &agc);
 
@@ -52,6 +52,7 @@ public:
     std::string as_string_sequence();
 
     std::vector<std::string> as_vector() const;
+    std::vector<std::string> as_set() const;
 
     virtual bool is_circular()= 0;
     virtual bool is_k_circular(int k)= 0;
@@ -90,12 +91,12 @@ protected:
     void set_code_properties ();
 
     virtual void reset(std::vector<std::string>);
-    bool run_test(std::shared_ptr<AbstractTester>, int k);
-    bool run_test(std::shared_ptr<AbstractTester>);
+    bool run_test(const std::shared_ptr<AbstractTester>&, int k);
+    bool run_test(const std::shared_ptr<AbstractTester>&);
 
-    void run_modification(std::shared_ptr<AbstractModifier>);
+    void run_modification(const std::shared_ptr<AbstractModifier>&);
 
-    const std::string to_string() const;
+    std::string to_string() const;
 
     explicit operator std::string() const override { return this->to_string(); }
 
@@ -103,7 +104,6 @@ protected:
         _stream << mc.to_string();
         return _stream;
     }
-
 };
 
 #endif //GCATCPP_ABSTRACTCODE_H

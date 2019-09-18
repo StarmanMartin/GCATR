@@ -28,6 +28,7 @@ TEST (CircularCnTest, CircularCodes) {
 
 }
 
+
 TEST (CircularCnTest, NotCircularCodes) {
     EXPECT_EQ(_is_cn_circular({"AAG","ACC","ACU","AUG","GAG","GCA","GGU","GUU","UAG","UCA","UCC","UCU","UGC"}), false);
 

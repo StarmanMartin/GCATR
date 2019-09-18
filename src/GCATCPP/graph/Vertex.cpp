@@ -5,9 +5,11 @@
 
 #include "Vertex.h"
 
+#include <utility>
+
 using namespace graph;
 
-Vertex::Vertex(std::string label, const Alphabet& alphabet) : label(label), index(0), alphabet(alphabet) {
+Vertex::Vertex(std::string label, Alphabet  alphabet) : label(std::move(label)), index(0), alphabet(std::move(alphabet)) {
     this->calculate_index();
 }
 

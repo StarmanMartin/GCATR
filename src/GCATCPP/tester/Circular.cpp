@@ -8,6 +8,9 @@
 #include <regex>
 #include <climits>
 
+#define CONTAINS_IN(Y, X) (std::find(X.begin(), X.end(), Y) != X.end())
+#define FINDS_IN(Y, X) std::find(X.begin(), X.end(), Y)
+
 bool Circular::test(AbstractCode *code) {
     this->longest_path = {};
     this->circle = {};
@@ -18,112 +21,139 @@ bool Circular::test(AbstractCode *code) {
 
 
 bool Circular::is_circular(AbstractCode *code) {
-    std::string string_sequence = code->as_string_sequence();
+    graph::Graph g(*code);
     bool is_code_circular = true;
+    this->visited_edges.clear();
+    auto path_start_edges = g.get_path_start_edges();
+    auto all_edges = g.get_edges();
+    all_edges.insert(all_edges.begin(), path_start_edges.begin(), path_start_edges.end());
+    this->alphabet = code->get_alphabet();
 
-    for (unsigned int i = 1; i < code->get_word_length()[0]; ++i) {
-        for (unsigned int j = 0; j < string_sequence.length(); j += code->get_word_length()[0]) {
-            std::string current_prefix = string_sequence.substr(j, i);
-            std::string current_suffix = string_sequence.substr(j + i, code->get_word_length()[0] - i);
-            unsigned int start_word_idx = {j / (unsigned) code->get_word_length()[0]};
-            graph::Graph path(code->get_alphabet());
-            path.add_vertices(current_prefix, current_suffix);
-            is_code_circular = is_code_circular & this->rec_is_circular(code,
-                                                                        std::vector<unsigned int>(),
-                                                                        path,
-                                                                        current_prefix,
-                                                                        start_word_idx);
-        }
-    }
-
-    return is_code_circular;
-}
-
-bool Circular::rec_is_circular(AbstractCode *code,
-                               std::vector<unsigned int> chained_indexes,
-                               graph::Graph path,
-                               std::string current_prefix,
-                               unsigned int current_word_pos) {
-
-    std::regex r("(?=(" + current_prefix + ")).");
-
-    for (int i = 0; i < chained_indexes.size(); ++i) {
-        auto word_pos = chained_indexes[i];
-        if (word_pos == current_word_pos) {
-            if ((chained_indexes.size() - i) % 2 == 0) {
-                if (i == 0) {
-                    this->add_circle(path);
-                }
-                return false;
-            }
-        }
-    }
-
-    chained_indexes.push_back(current_word_pos);
-    std::smatch sm;
-    bool is_code_circular = true;
-
-    std::string string_sequence = code->as_string_sequence();
-    bool found_extension = false;
-    for (auto it = std::sregex_iterator(string_sequence.begin(), string_sequence.end(), r);
-         it != std::sregex_iterator();
-         ++it) {
-
-        auto letter_pos = (unsigned int) it->position();
-        unsigned int inverse_size =
-                ((unsigned int) code->get_word_length()[0]) - ((unsigned int) current_prefix.length());
-
-        if (letter_pos % code->get_word_length()[0] == inverse_size) {
-            found_extension = true;
-            unsigned int word_pos = (letter_pos / code->get_word_length()[0]);
-            std::string new_sub_word = string_sequence.substr(word_pos * code->get_word_length()[0], inverse_size);
-
-            graph::Graph copyOfGraph(path);
-            copyOfGraph.add_vertices(new_sub_word, current_prefix);
-            is_code_circular = is_code_circular &
-                               this->rec_is_circular(code, chained_indexes, copyOfGraph, new_sub_word, word_pos);
-
+    for (const auto &current_edge : all_edges) {
+        if (!CONTAINS_IN(*current_edge.get_from(), this->visited_edges)) {
+            is_code_circular = is_code_circular & this->rec_is_circular(&g, current_edge);
             if (!is_code_circular && this->is_quick_test) {
                 return false;
             }
         }
-
     }
 
-    if (!this->is_quick_test && !found_extension) {
-        this->add_longest_path(path);
-    }
 
     return is_code_circular;
 }
 
-void Circular::add_circle(graph::Graph circle_path) {
+int Circular::check_if_path_is_circular(const std::vector<std::vector<graph::Vertex>> &path_tree) {
+    graph::Vertex last = path_tree.back()[0];
+    for (size_t i = 0; i < path_tree.size() - 1; ++i) {
+        if (last == path_tree[i][0]) {
+            return i;
+        }
+    }
+
+    return -1;
+}
+
+std::vector<graph::Vertex>
+Circular::get_path_of_path_tree(const std::vector<std::vector<graph::Vertex>> &path_tree, size_t from = 0) {
+    std::vector<graph::Vertex> current_path;
+    current_path.reserve(path_tree.size());
+    for (size_t i = from; i < path_tree.size(); ++i) {
+        current_path.push_back(path_tree[i][0]);
+    }
+
+    return current_path;
+}
+
+void Circular::update_path_tree(std::vector<std::vector<graph::Vertex>> &path_tree) {
+    graph::Vertex last = path_tree.back()[0];
+    for (size_t i = 0; i < path_tree.size() - 1; ++i) {
+        path_tree[i].erase(std::remove(path_tree[i].begin() + 1, path_tree[i].end(), last), path_tree[i].end());
+    }
+}
+
+bool Circular::rec_is_circular(graph::Graph *main_graph,
+                               const graph::Edge &a) {
+
+    size_t idx = 0;
+
+    std::vector<std::vector<graph::Vertex>> path = {{*a.get_from()}};
+    int begin_cyclic_idx = check_if_path_is_circular(path);
+
+    while (true) {
+        std::vector<graph::Vertex> next_elements;
+        if (begin_cyclic_idx >= 0) {
+            auto c_path = this->get_path_of_path_tree(path, begin_cyclic_idx);
+            this->add_circle(c_path);
+            if (this->is_quick_test) return false;
+        } else {
+            this->update_path_tree(path);
+            next_elements = main_graph->get_target_vertex_form_vertex(path[idx][0]);
+        }
+
+        if (next_elements.empty()) {
+            this->add_longest_path(this->get_path_of_path_tree(path));
+            path[idx].erase(path[idx].begin());
+            while (path[idx].empty()) {
+                if (idx == 0) {
+                    return this->circle.empty();
+                } else {
+                    path.pop_back();
+                    idx--;
+                    path[idx].erase(path[idx].begin());
+                }
+            }
+        } else {
+            path.push_back(next_elements);
+            std::copy(next_elements.begin(), next_elements.end(),
+                      std::inserter(this->visited_edges, this->visited_edges.end()));
+
+            idx++;
+        }
+
+        begin_cyclic_idx = check_if_path_is_circular(path);
+    }
+}
+
+void Circular::add_circle(const std::vector<graph::Vertex> &circle_path) {
     this->longest_path_size = UINT_MAX;
     this->longest_path = {};
- ///*DEBUG*/   std::cout << "\n\n" << circle_path.get_vertices().size() << "\n\n";
-    for (auto graph : this->circle) {
-        if (graph.compare(circle_path) == 0) {
+
+    graph::Graph circle_graph(this->alphabet);
+    circle_graph.add_path_as_list_of_vertexes(circle_path);
+
+    ///*DEBUG*/   std::cout << "\n\n" << circle_path.get_vertices().size() << "\n\n";
+    for (const auto &graph : this->circle) {
+        if (graph.is_sub_graph(circle_graph)) {
             return;
         }
     }
 
-    this->circle.push_back(circle_path);
+    for (const graph::Edge &e : circle_graph.get_edges()) {
+        this->part_of_circular_path.push_back(e);
+    }
+
+    this->circle.push_back(circle_graph);
 }
 
-void Circular::add_longest_path(graph::Graph circle_path) {
-    if (this->longest_path_size > circle_path.get_edges().size()) { return; }
+void Circular::add_longest_path(const std::vector<graph::Vertex> &circle_path) {
 
-    if (this->longest_path_size < circle_path.get_edges().size()) {
-        this->longest_path_size = (unsigned int) circle_path.get_edges().size();
-        this->longest_path = {circle_path};
+
+    if (this->longest_path_size > circle_path.size()) { return; }
+
+    graph::Graph circle_graph(this->alphabet);
+    circle_graph.add_path_as_list_of_vertexes(circle_path);
+
+    if (this->longest_path_size < circle_path.size()) {
+        this->longest_path_size = (unsigned int) circle_path.size();
+        this->longest_path = {circle_graph};
     } else {
         for (const auto &graph : this->longest_path) {
-            if (graph.compare(circle_path) == 0) {
+            if (graph.compare(circle_graph) == 0) {
                 return;
             }
         }
 
-        this->longest_path.push_back(circle_path);
+        this->longest_path.push_back(circle_graph);
     }
 }
 
