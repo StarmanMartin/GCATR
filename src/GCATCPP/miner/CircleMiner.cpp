@@ -14,14 +14,13 @@ std::vector<std::vector<std::string> > CircleMiner::mine_path_as_vector(Abstract
     std::vector<std::vector<std::string>> res(cycling_paths.size());
     size_t i = 0;
     for (const auto &cycling_path : cycling_paths) {
-        auto start_edge = cycling_path.get_edges()[0];
-        auto start_vertex = *start_edge.get_from();
-        auto end_vertex = *start_edge.get_to();
-        res[i].push_back(start_vertex.get_label());
-        res[i].push_back(end_vertex.get_label());
-        while(start_vertex.compare(end_vertex)) {
-            end_vertex = cycling_path.get_target_vertex_form_vertex(end_vertex)[0];
-            res[i].push_back(end_vertex.get_label());
+        auto vertices = cycling_path.get_vertices();
+        size_t num_of_edges = vertices.size();
+        res[i].push_back(*cycling_path.get_path_start_edges()[0].get_from());
+        while (num_of_edges) {
+            auto end_vertex = cycling_path.get_target_vertex_form_vertex_label(res[i].back())[0];
+            res[i].push_back(end_vertex);
+            --num_of_edges;
         }
 
         ++i;
@@ -33,7 +32,7 @@ std::vector<std::vector<std::string> > CircleMiner::mine_path_as_vector(Abstract
 graph::Graph CircleMiner::mine_path_as_graph(AbstractCode *gen_code) {
     graph::Graph res(gen_code->get_alphabet());
     auto circles_as_graph = CircleMiner::mine_all_path_as_graph(gen_code);
-    for(const auto &g : circles_as_graph) {
+    for (const auto &g : circles_as_graph) {
         res.add_graph(g);
     }
 

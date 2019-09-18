@@ -32,6 +32,9 @@ bool Circular::is_circular(AbstractCode *code) {
     for (const auto &current_edge : all_edges) {
         if (!CONTAINS_IN(*current_edge.get_from(), this->visited_edges)) {
             is_code_circular = is_code_circular & this->rec_is_circular(&g, current_edge);
+            if (!is_code_circular && this->is_quick_test) {
+                return false;
+            }
         }
     }
 
@@ -54,7 +57,7 @@ std::vector<graph::Vertex>
 Circular::get_path_of_path_tree(const std::vector<std::vector<graph::Vertex>> &path_tree, size_t from = 0) {
     std::vector<graph::Vertex> current_path;
     current_path.reserve(path_tree.size());
-    for (size_t i = from; i < path_tree.size() - 1; ++i) {
+    for (size_t i = from; i < path_tree.size(); ++i) {
         current_path.push_back(path_tree[i][0]);
     }
 
@@ -79,14 +82,17 @@ bool Circular::rec_is_circular(graph::Graph *main_graph,
     while (true) {
         std::vector<graph::Vertex> next_elements;
         if (begin_cyclic_idx >= 0) {
-            this->add_circle(this->get_path_of_path_tree(path, begin_cyclic_idx));
+            auto c_path = this->get_path_of_path_tree(path, begin_cyclic_idx);
+            this->add_circle(c_path);
+            if (this->is_quick_test) return false;
         } else {
+            this->update_path_tree(path);
             next_elements = main_graph->get_target_vertex_form_vertex(path[idx][0]);
         }
 
         if (next_elements.empty()) {
-            path[idx].erase(path[idx].begin());
             this->add_longest_path(this->get_path_of_path_tree(path));
+            path[idx].erase(path[idx].begin());
             while (path[idx].empty()) {
                 if (idx == 0) {
                     return this->circle.empty();
@@ -105,7 +111,6 @@ bool Circular::rec_is_circular(graph::Graph *main_graph,
         }
 
         begin_cyclic_idx = check_if_path_is_circular(path);
-        this->update_path_tree(path);
     }
 }
 

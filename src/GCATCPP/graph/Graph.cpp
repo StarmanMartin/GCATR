@@ -179,7 +179,7 @@ bool Graph::is_sub_graph(const Graph &in_g) const {
     int in_idx = 0;
     for (const auto &edge : in_g.edges) {
         size_t comp_val = 0;
-        if(in_idx >= this->edges.size()) {
+        if (in_idx >= this->edges.size()) {
             return false;
         }
 
@@ -195,6 +195,11 @@ bool Graph::is_sub_graph(const Graph &in_g) const {
 
     return true;
 
+}
+
+std::vector<Vertex> Graph::get_target_vertex_form_vertex_label(const std::string &vertex_label) const {
+    Vertex a(vertex_label, this->alphabet);
+    return this->get_target_vertex_form_vertex(a);
 }
 
 std::vector<Vertex> Graph::get_target_vertex_form_vertex(const Vertex &vertex) const {
@@ -293,10 +298,10 @@ void Graph::add_path_as_list_of_edges(const std::vector<Edge> &path, size_t star
 
 void Graph::add_path_as_list_of_vertexes(const std::vector<Vertex> &path) {
 
-    size_t end = path.size()-1;
+    size_t end = path.size() - 1;
 
     for (size_t i = 0; i < end; ++i) {
-        this->add_vertices(path[i].get_label(), path[i+1].get_label());
+        this->add_vertices(path[i].get_label(), path[i + 1].get_label());
     }
 
 }

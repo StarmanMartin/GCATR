@@ -39,6 +39,7 @@ namespace graph {
         void add_path_as_list_of_vertexes(const std::vector<Vertex> &);
 
         void add_path_as_list_of_edges(const std::vector<Edge> &, size_t start = 0);
+        std::vector<Vertex> get_target_vertex_form_vertex_label(const std::string &vertex_label) const;
 
         std::vector<Edge> remove_edges(const Graph &to_remove);
 
@@ -74,6 +75,7 @@ namespace graph {
         std::shared_ptr<Vertex> find_vertices(std::string &word);
 
         std::shared_ptr<Vertex> add_vertices(std::shared_ptr<Vertex>);
+
 
 
     };
