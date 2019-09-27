@@ -36,7 +36,7 @@ protected:
 
     static std::vector<graph::Vertex> get_path_of_path_tree(const std::vector<std::vector<graph::Vertex>> &path_tree, size_t from);
 
-    static int check_if_path_is_circular(const std::vector<std::vector<graph::Vertex>> &path_tree);
+    static std::vector<int> check_if_path_is_circular(const std::vector<std::vector<graph::Vertex>> &path_tree);
 
     static void update_path_tree(std::vector<std::vector<graph::Vertex>> &vector);
 };
