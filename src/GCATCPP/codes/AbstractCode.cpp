@@ -35,7 +35,7 @@ AbstractCode::AbstractCode(const std::string &sequence, unsigned int word_length
              unsigned int letter;
              int word;
          } idx = {0, 0};
-         idx.letter < sequence.length();
+         idx.letter + word_length - 1 < sequence.length();
          idx.word++, idx.letter += word_length) {
         code_temp_vec[idx.word] = sequence.substr(idx.letter, word_length);
 
