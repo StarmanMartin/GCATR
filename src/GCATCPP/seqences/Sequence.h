@@ -14,6 +14,11 @@ class Sequence {
 public:
     Sequence(const std::string & seq, size_t tuple_length);
     bool test_seq();
+
+
+    std::map<std::string, size_t> get_tuple_count() const;
+    size_t get_number_tuples() const;
+    std::string get_alphabet() const;
 private:
     std::string seq;
     size_t tuple_length;

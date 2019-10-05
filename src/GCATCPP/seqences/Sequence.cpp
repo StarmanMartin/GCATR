@@ -39,6 +39,7 @@ bool Sequence::test_seq() {
     while (std::regex_search(searchStart, this->seq.cend(), base_match, base_regex)) {
         // The first sub_match is the whole string; the next
         // sub_match is the first parenthesized expression.
+        searchStart = base_match.suffix().first;
         if (base_match.size() == 2) {
             std::string base =  base_match[1].str();
 
@@ -54,4 +55,16 @@ bool Sequence::test_seq() {
     this->all_words = this->word_count.size();
 
     return true;
+}
+
+std::map<std::string, size_t> Sequence::get_tuple_count() const {
+    return this->word_count;
+}
+
+size_t Sequence::get_number_tuples() const {
+    return this->all_words;
+}
+
+std::string Sequence::get_alphabet() const {
+    return this->alphabet.as_string();
 }

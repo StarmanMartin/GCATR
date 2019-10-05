@@ -32,11 +32,11 @@ set(SOURCE_TEST_FILES unit_tests/test_utils.cpp
         unit_tests/circular.cpp unit_tests/codeTestTest.cpp unit_tests/bdaTest.cpp unit_tests/test_utils.cpp
         unit_tests/cnCircularTest.cpp unit_tests/acidTest.cpp unit_tests/selfComplementaryTest.cpp unit_tests/commaFreeTest.cpp
         unit_tests/minerCircularTest.cpp unit_tests/graphTest.cpp unit_tests/minerPathTest.cpp unit_tests/sequenceTest.cpp unit_tests/c3GraphTest.cpp unit_tests/codeTableTest.cpp
-        unit_tests/generatorTest.cpp unit_tests/graphTestSize.cpp unit_tests/binaryTest.cpp unit_tests/codeFactoryTester.cpp unit_tests/modificationTest.cpp unit_tests/tesseraTest.cpp)
+        unit_tests/generatorTest.cpp unit_tests/graphTestSize.cpp unit_tests/binaryTest.cpp unit_tests/codeFactoryTester.cpp unit_tests/modificationTest.cpp unit_tests/tesseraTest.cpp unit_tests/seqTest.cpp)
 
 #set(CURRENT_TEST_FILES unit_tests/test_utils.cpp unit_tests/generatorTest.cpp)
 #set(CURRENT_TEST_FILES unit_tests/test_utils.cpp unit_tests/binaryTest.cpp unit_tests/codeFactoryTester.cpp)
-set(CURRENT_TEST_FILES unit_tests/test_utils.cpp unit_tests/circular.cpp)
+set(CURRENT_TEST_FILES unit_tests/test_utils.cpp unit_tests/seqTest.cpp)
 
 
 add_executable(MainTest ${SOURCE_FILES} ${SOURCE_TEST_FILES})
