@@ -26,7 +26,7 @@ set(SOURCE_FILES main_test.cpp
         miner/CircleMiner.cpp miner/CircleMiner.h miner/LongestPathMiner.cpp miner/LongestPathMiner.h
         graph/Edge.cpp graph/Edge.h graph/Vertex.cpp graph/Vertex.h graph/Graph.cpp graph/Graph.h graph/C3Graph.cpp graph/C3Graph.h
         geneticCode/CodonTranslTables.cpp geneticCode/CodonTranslTables.h geneticCode/CodonClusteringAlgorithm.cpp geneticCode/CodonClusteringAlgorithm.h
-        generator/BaseValueGenerator.cpp generator/BaseValueGenerator.h generator/AbstractGenerator.cpp generator/AbstractGenerator.h codes/TesseraCode.cpp codes/TesseraCode.h modification/TransformTuples.cpp modification/TransformTuples.h)
+        generator/BaseValueGenerator.cpp generator/BaseValueGenerator.h generator/AbstractGenerator.cpp generator/AbstractGenerator.h codes/TesseraCode.cpp codes/TesseraCode.h modification/TransformTuples.cpp modification/TransformTuples.h seqences/Sequence.cpp seqences/Sequence.h)
 
 set(SOURCE_TEST_FILES unit_tests/test_utils.cpp
         unit_tests/circular.cpp unit_tests/codeTestTest.cpp unit_tests/bdaTest.cpp unit_tests/test_utils.cpp
