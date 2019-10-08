@@ -337,7 +337,10 @@ List genetic_codes_by_name(std::string name) {
 }
 
 
-
+//' Sequence analyzer
+//' 
+//' 
+//' 
 //' @export
 // [[Rcpp::export]]
 std::map<std::string, int> seq_get_tuple_count(std::string seq, int tuple_length=3) {
