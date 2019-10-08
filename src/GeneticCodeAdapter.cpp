@@ -4,6 +4,7 @@ using namespace Rcpp;
 #include "GCATCPP/geneticCode/CodonClusteringAlgorithm.h"
 #include "GCATCPP/geneticCode/CodonTranslTables.h"
 #include "GCATCPP/codes/CodeFactory.h"
+#include "GCATCPP/sequences/Sequence.h"
 
 #include "RAdapterUtils.h"
 
@@ -333,4 +334,24 @@ DataFrame cpp_genetic_codes_as_df_by_index(int idx, std::string acid="RNA") {
 List genetic_codes_by_name(std::string name) {
     auto idx = gen_codes::CodonTranslTables::getInstance().getIdxByName(name);
     return genetic_codes_by_index(idx);
+}
+
+
+
+//' @export
+// [[Rcpp::export]]
+std::map<std::string, int> seq_get_tuple_count(std::string seq, int tuple_length=3) {
+    Sequence seq_obj(seq, tuple_length);
+    return seq_obj.get_tuple_count();
+}
+
+
+
+//' @export
+// [[Rcpp::export]]
+List seq_get_info(std::string seq, int tuple_length=3) {
+    Sequence seq_obj(seq, tuple_length);
+    return Rcpp::List::create(Rcpp::Named("alphabet") = seq_obj.get_alphabet(),
+                                   Rcpp::Named("number_of_tuple") = seq_obj.get_number_tuples(),
+                                   Rcpp::Named("tuple_count") = seq_obj.get_tuple_count());
 }

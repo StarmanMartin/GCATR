@@ -171,6 +171,30 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// seq_get_tuple_count
+std::map<std::string, int> seq_get_tuple_count(std::string seq, int tuple_length);
+RcppExport SEXP _GCATR_seq_get_tuple_count(SEXP seqSEXP, SEXP tuple_lengthSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< std::string >::type seq(seqSEXP);
+    Rcpp::traits::input_parameter< int >::type tuple_length(tuple_lengthSEXP);
+    rcpp_result_gen = Rcpp::wrap(seq_get_tuple_count(seq, tuple_length));
+    return rcpp_result_gen;
+END_RCPP
+}
+// seq_get_info
+List seq_get_info(std::string seq, int tuple_length);
+RcppExport SEXP _GCATR_seq_get_info(SEXP seqSEXP, SEXP tuple_lengthSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< std::string >::type seq(seqSEXP);
+    Rcpp::traits::input_parameter< int >::type tuple_length(tuple_lengthSEXP);
+    rcpp_result_gen = Rcpp::wrap(seq_get_info(seq, tuple_length));
+    return rcpp_result_gen;
+END_RCPP
+}
 // code_prepare_factor_gen_c3graph
 Rcpp::List code_prepare_factor_gen_c3graph(StringVector code, int tuple_length);
 RcppExport SEXP _GCATR_code_prepare_factor_gen_c3graph(SEXP codeSEXP, SEXP tuple_lengthSEXP) {
@@ -491,6 +515,8 @@ static const R_CallMethodDef CallEntries[] = {
     {"_GCATR_code_is_translatable", (DL_FUNC) &_GCATR_code_is_translatable, 2},
     {"_GCATR_cpp_genetic_codes_as_df_by_index", (DL_FUNC) &_GCATR_cpp_genetic_codes_as_df_by_index, 2},
     {"_GCATR_genetic_codes_by_name", (DL_FUNC) &_GCATR_genetic_codes_by_name, 1},
+    {"_GCATR_seq_get_tuple_count", (DL_FUNC) &_GCATR_seq_get_tuple_count, 2},
+    {"_GCATR_seq_get_info", (DL_FUNC) &_GCATR_seq_get_info, 2},
     {"_GCATR_code_prepare_factor_gen_c3graph", (DL_FUNC) &_GCATR_code_prepare_factor_gen_c3graph, 2},
     {"_GCATR_code_prepare_factor_graph", (DL_FUNC) &_GCATR_code_prepare_factor_graph, 4},
     {"_GCATR_code_prepare_factor_all_cycle", (DL_FUNC) &_GCATR_code_prepare_factor_all_cycle, 2},

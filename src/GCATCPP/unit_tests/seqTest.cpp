@@ -3,7 +3,7 @@
 //
 
 #include "gtest/gtest.h"
-#include "../seqences/Sequence.h"
+#include "../sequences/Sequence.h"
 
 
 TEST (SequenceObjTest, CorrectSeq) {

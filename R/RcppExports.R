@@ -333,6 +333,16 @@ genetic_codes_by_name <- function(name) {
     .Call('_GCATR_genetic_codes_by_name', PACKAGE = 'GCATR', name)
 }
 
+#' @export
+seq_get_tuple_count <- function(seq, tuple_length = 3L) {
+    .Call('_GCATR_seq_get_tuple_count', PACKAGE = 'GCATR', seq, tuple_length)
+}
+
+#' @export
+seq_get_info <- function(seq, tuple_length = 3L) {
+    .Call('_GCATR_seq_get_info', PACKAGE = 'GCATR', seq, tuple_length)
+}
+
 #' Factors edges and vertices of an representing C3-graph of a circular code
 #'
 #' This function factors the set of edges and the set of vertices of an representing graph of a circular code.

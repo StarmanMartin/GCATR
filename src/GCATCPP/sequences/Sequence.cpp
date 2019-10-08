@@ -57,7 +57,7 @@ bool Sequence::test_seq() {
     return true;
 }
 
-std::map<std::string, size_t> Sequence::get_tuple_count() const {
+std::map<std::string, int> Sequence::get_tuple_count() const {
     return this->word_count;
 }
 

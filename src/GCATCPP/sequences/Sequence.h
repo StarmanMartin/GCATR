@@ -16,7 +16,7 @@ public:
     bool test_seq();
 
 
-    std::map<std::string, size_t> get_tuple_count() const;
+    std::map<std::string, int> get_tuple_count() const;
     size_t get_number_tuples() const;
     std::string get_alphabet() const;
 private:
@@ -25,7 +25,7 @@ private:
     acid::acids acid;
     bool is_seq;
     Alphabet alphabet;
-    std::map<std::string, size_t> word_count;
+    std::map<std::string, int> word_count;
     size_t all_words;
     unsigned long seq_length;
 };
