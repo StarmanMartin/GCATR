@@ -9,11 +9,12 @@
 #include "../graph/Graph.h"
 #include <memory>
 
+
 TEST(CodeFactoryTester, WrongRule) {
     std::vector<std::string> c_str = {"11011 11000"};
     std::shared_ptr<AbstractCode> code = CodeFactory::rFactor(c_str, -1);
     auto seq_str = code->as_vector();
-    test_help::test_equal_vector(seq_str, {"11000", "11011"});
+    test_help::test_equal_vector(seq_str, {"11011", "11000"});
 
     c_str = {"123 213"};
     code = CodeFactory::rFactor(c_str, -1);

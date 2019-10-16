@@ -2,14 +2,8 @@
 // Created by Martin on 27.06.2018.
 //
 #include <string>
-#include <numeric>
-#include <iostream>
 #include <regex>
-#include <sstream>
-#include <iterator>
-#include <utility>
 #include "../tester/AbstractTester.h"
-#include "../modification/AbstractModifier.h"
 #include "../geneticCode/CodonTranslTables.h"
 
 #include "AbstractGenCode.h"

@@ -11,7 +11,7 @@ TEST(SequenceTest, SequenceToVector) {
     std::string seq = "ACGTCG";
     StdGenCode a(seq, 3);
 
-    test_help::test_equal_vector<std::string>(a.as_vector(), {"ACG", "TCG"});
+    test_help::test_equal_vector<std::string>(a.as_vector(), {"TCG", "ACG"});
 }
 
 TEST(SequenceTest, CopyConstructor) {
