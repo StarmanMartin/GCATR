@@ -7,12 +7,10 @@
 
 #include "Acid.h"
 #include "Code.h"
+#include "../interfaces/AbstractTranslatable.h"
 
 
-
-
-
-class AbstractGenCode : public Code {
+class AbstractGenCode : public Code, public AbstractTranslatable {
 public:
     explicit AbstractGenCode(const std::vector<std::string> &);
     explicit AbstractGenCode(std::string, unsigned int);
@@ -23,27 +21,33 @@ public:
     
     virtual bool is_self_complementary();
 
-    acid::acids get_acid();
+    acid::acids get_acid() override;
 
-    void setTranslTableByIdx(int idx, int forWordLength=-1);
-    void setTranslTableByName(const std::string &name, int forWordLength=-1);
-    void setTranslTableToStandardCode(int forWordLength=-1);
+
 
     void transform_tuples_by_name(const std::string& rule_name); // NOLINT
 
 
+    void setTranslTableByIdx(int idx, int forWordLength) override ;
+    void setTranslTableByName(const std::string &name, int forWordLength) override;
+    void setTranslTableToStandardCode(int forWordLength) override;
 
-    std::vector<std::string> get_amino_acids();
-    std::vector<std::string> get_a_set_amino_acids();
+
+    void setTranslTableByIdx(int idx) ;
+    void setTranslTableByName(const std::string &name);
+    void setTranslTableToStandardCode();
+
+    std::vector<std::string> get_amino_acids() override;
+    std::vector<std::string> get_a_set_amino_acids() override;
+
+    std::vector<std::string> construct_transl_table(int wordLength, acid::acids acid_type) const override;
+
 
 protected:
-    std::map<int, int> transl_table_idx;
 
     acid::acids acid;
 
     void reset(std::vector<std::string>) override;
-    void init_trans_table();
-    const std::vector<std::string> factor_transl_table(int wordLength) const;
 
 };
 

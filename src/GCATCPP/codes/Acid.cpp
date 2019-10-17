@@ -4,6 +4,7 @@
 #include <iostream>
 #include <sstream>
 #include <algorithm>
+#include <utility>
 
 #include "Acid.h"
 
@@ -67,15 +68,15 @@ namespace acid {
         return -1;
     }
 
-    bool is_acide_type(std::string seq, acids acid_type) {
-        return check_acid_type(seq, acid_type == DNA, acid_type == RNA) != NONE;
+    bool is_acid_type(std::string seq, acids acid_type) {
+        return check_acid_type(std::move(seq), acid_type == DNA, acid_type == RNA) != NONE;
     }
 
-    const std::string base_to_string(bases b) {
+    std::string base_to_string(bases b) {
         return bases_name_list.find(b)->second;
     }
 
-    const std::string acid_to_string(acids a) {
+    std::string acid_to_string(acids a) {
         return acid_name_list.find(a)->second;
     }
 
@@ -90,7 +91,7 @@ namespace acid {
     }
 
     std::string get_anti_codon(std::string codon, acids acid) {
-        if (acid == NONE || !is_acide_type(codon, acid)) {
+        if (acid == NONE || !is_acid_type(codon, acid)) {
             return "";
         }
 

@@ -42,7 +42,7 @@ bool Sequence::test_seq() {
         searchStart = base_match.suffix().first;
         if (base_match.size() == 2) {
             std::string base =  base_match[1].str();
-
+            this->code_vec.push_back(base);
             auto it = this->word_count.find(base);
             if(it == this->word_count.end()) {
                 this->word_count[base]  = 1;
@@ -67,4 +67,44 @@ size_t Sequence::get_number_tuples() const {
 
 std::string Sequence::get_alphabet() const {
     return this->alphabet.as_string();
+}
+
+std::vector<std::string> Sequence::get_tuples() {
+    return this->code_vec;
+}
+
+std::vector<std::string> Sequence::get_nucleotide_tuples() {
+    if(this->is_translatable()) {
+        return this->code_vec;
+    }
+
+    return std::vector<std::string>();
+}
+
+bool Sequence::is_translatable() {
+    return this->acid != acid::acids::NONE;
+}
+
+acid::acids Sequence::get_acid() {
+    return this->acid;
+}
+
+std::vector<int> Sequence::get_word_length() {
+    return {(int)this->tuple_length};
+}
+
+std::vector<std::string> Sequence::get_amino_acids() {
+    if(!this->is_translatable()) {
+        return this->code_vec;
+    }
+
+    return this->_get_amino_acids(this);
+}
+
+std::vector<std::string> Sequence::get_a_set_amino_acids() {
+    if(!this->is_translatable()) {
+        return this->code_vec;
+    }
+
+    return this->_get_a_set_amino_acids(this);
 }

@@ -64,13 +64,13 @@ namespace acid {
 
     acids check_acid_type(std::string, bool= true, bool= true);
 
-    bool is_acide_type(std::string, acids);
+    bool is_acid_type(std::string, acids);
 
     int get_base_value(bases);
 
-    const std::string base_to_string(bases);
+    std::string base_to_string(bases);
 
-    const std::string acid_to_string(acids);
+    std::string acid_to_string(acids);
 
     std::string get_anti_codon(std::string, acids);
     bases get_compliment(bases, acids);

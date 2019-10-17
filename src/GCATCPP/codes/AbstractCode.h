@@ -13,6 +13,7 @@
 
 #include "../helper/AbstractErrorManager.h"
 #include "Alphabet.h"
+#include "../interfaces/AbstractTupleContainer.h"
 
 class AbstractTester;
 
@@ -38,7 +39,7 @@ namespace seq {
 
 
 
-class AbstractCode : public err::AbstractErrorManager {
+class AbstractCode : public err::AbstractErrorManager, public AbstractTupleContainer {
 public:
     explicit AbstractCode(const std::vector<std::string> &);
     explicit AbstractCode(const std::string&, unsigned int);
@@ -47,7 +48,7 @@ public:
 
     virtual bool test_code();
 
-    std::vector<int> get_word_length();
+    std::vector<int> get_word_length() override;
 
     std::string as_string_sequence();
 
@@ -71,6 +72,9 @@ public:
     std::string get_alphabet_as_string() const;
     void set_alphabet(const std::string&);
     virtual size_t get_letter_value(const char &);
+
+    std::vector<std::string> get_tuples() override;
+    std::vector<std::string> get_nucleotide_tuples() override;
 
 protected:
     std::vector<std::string> code_vec;

@@ -194,3 +194,15 @@ std::string AbstractCode::to_string() const {
 bool AbstractCode::is_translatable() {
     return false;
 }
+
+std::vector<std::string> AbstractCode::get_tuples() {
+    return this->code_vec;
+}
+
+std::vector<std::string> AbstractCode::get_nucleotide_tuples() {
+    if(this->is_translatable()) {
+        return this->code_vec;
+    }
+
+    return std::vector<std::string>();
+}

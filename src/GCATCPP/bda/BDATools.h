@@ -5,7 +5,8 @@
 #ifndef GCATCPP_BDATOOLS_H
 #define GCATCPP_BDATOOLS_H
 
-class AbstractGenCode;
+
+class AbstractTupleContainer;
 
 
 #define BDA_WORD_LENGTH 3
@@ -36,19 +37,19 @@ namespace BDA {
     class BDATools : public err::AbstractErrorManager {
     private:
         std::vector<BDA_Rule> rules;
-        std::shared_ptr<AbstractGenCode> code;
+        std::shared_ptr<AbstractTupleContainer> code;
 
-        bool validate_rule(BDA_Rule);
+        bool validate_rule(const BDA_Rule&);
 
     public:
 
-        explicit BDATools(std::shared_ptr<AbstractGenCode>);
+        explicit BDATools(std::shared_ptr<AbstractTupleContainer>);
 
         bool add_rule(unsigned int i_1, unsigned int i_2, char Q_11, char Q_12, char Q_21, char Q_22);
 
-        bool add_rule(BDA_Rule rule);
+        bool add_rule(const BDA_Rule& rule);
 
-        std::shared_ptr<AbstractGenCode> get_code();
+        std::shared_ptr<AbstractTupleContainer> get_code();
 
         std::vector<std::string> run_bda_for_code();
     };

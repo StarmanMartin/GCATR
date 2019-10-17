@@ -191,7 +191,7 @@ bool CodonTranslTables::add_new_transl_table(std::string translName, std::vector
         std::string element = i;
 
         std::replace(element.begin(), element.end(), acid::bases::URACIL, acid::bases::THYMINE);
-        if (!acid::is_acide_type(element, acid::acids::DNA))  { // Reading a new Amino Acid
+        if (!acid::is_acid_type(element, acid::acids::DNA))  { // Reading a new Amino Acid
             std::string acidTempThree = acid::amino_acid_to_three_label(i);
             if (acidTempThree.empty()) {
                 this->add_error_msg(element + " is NOT a correct amino acid nor a codon (Check if the file or list is correctly formatted). \n");
