@@ -333,6 +333,10 @@ genetic_codes_by_name <- function(name) {
     .Call('_GCATR_genetic_codes_by_name', PACKAGE = 'GCATR', name)
 }
 
+#' Sequence analyzer
+#' 
+#' 
+#' 
 #' @export
 seq_get_tuple_count <- function(seq, tuple_length = 3L) {
     .Call('_GCATR_seq_get_tuple_count', PACKAGE = 'GCATR', seq, tuple_length)

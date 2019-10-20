@@ -130,7 +130,7 @@ List run_bda() {
   
   auto return_val = RAdapterUtils::as_r_string_vector(main_bda_ptr->run_bda_for_code());
   main_bda_ptr->print_errors();
-  main_bda_ptr->get_code()->as_vector();
-  return Rcpp::List::create(Rcpp::Named("code") = main_bda_ptr->get_code()->as_vector(),
+
+  return Rcpp::List::create(Rcpp::Named("code") = main_bda_ptr->get_code()->get_tuples(),
                               Rcpp::Named("bda") = return_val);
 }
