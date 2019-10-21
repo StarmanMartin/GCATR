@@ -65,7 +65,7 @@ void Graph::add_vertices(const std::string &from, const std::string &to) {
 
     auto new_edge_ptr = std::make_shared<Edge>(from_ptr, to_ptr, this->alphabet);
 
-    for (int i = 0; i < this->edges.size(); ++i) {
+    for (size_t i = 0; i < this->edges.size(); ++i) {
         auto edge = *(this->edges[i]);
         auto comp_val = new_edge_ptr->compare(edge);
         if (comp_val == 0) {
@@ -91,7 +91,7 @@ std::shared_ptr<Vertex> Graph::find_vertices(std::string &word) {
 }
 
 std::shared_ptr<Vertex> Graph::add_vertices(std::shared_ptr<Vertex> new_vertex) {
-    for (int i = 0; i < this->vertices.size(); ++i) {
+    for (size_t i = 0; i < this->vertices.size(); ++i) {
         Vertex vertex = *(this->vertices[i]);
         if (new_vertex->compare(vertex) == 0) {
             return this->vertices[i];
