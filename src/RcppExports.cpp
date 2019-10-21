@@ -21,6 +21,18 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// seq_start_bda
+bool seq_start_bda(StringVector code, int length);
+RcppExport SEXP _GCATR_seq_start_bda(SEXP codeSEXP, SEXP lengthSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< StringVector >::type code(codeSEXP);
+    Rcpp::traits::input_parameter< int >::type length(lengthSEXP);
+    rcpp_result_gen = Rcpp::wrap(seq_start_bda(code, length));
+    return rcpp_result_gen;
+END_RCPP
+}
 // code_start_bda
 bool code_start_bda(StringVector code, int length);
 RcppExport SEXP _GCATR_code_start_bda(SEXP codeSEXP, SEXP lengthSEXP) {
@@ -330,6 +342,18 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// code_strip_complements
+StringVector code_strip_complements(StringVector code, int length);
+RcppExport SEXP _GCATR_code_strip_complements(SEXP codeSEXP, SEXP lengthSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< StringVector >::type code(codeSEXP);
+    Rcpp::traits::input_parameter< int >::type length(lengthSEXP);
+    rcpp_result_gen = Rcpp::wrap(code_strip_complements(code, length));
+    return rcpp_result_gen;
+END_RCPP
+}
 // code_check_if_self_complementary
 bool code_check_if_self_complementary(StringVector code, int length);
 RcppExport SEXP _GCATR_code_check_if_self_complementary(SEXP codeSEXP, SEXP lengthSEXP) {
@@ -502,6 +526,7 @@ END_RCPP
 
 static const R_CallMethodDef CallEntries[] = {
     {"_GCATR_add_bda", (DL_FUNC) &_GCATR_add_bda, 6},
+    {"_GCATR_seq_start_bda", (DL_FUNC) &_GCATR_seq_start_bda, 2},
     {"_GCATR_code_start_bda", (DL_FUNC) &_GCATR_code_start_bda, 2},
     {"_GCATR_run_bda", (DL_FUNC) &_GCATR_run_bda, 0},
     {"_GCATR_get_average_conductance_of_code", (DL_FUNC) &_GCATR_get_average_conductance_of_code, 2},
@@ -528,6 +553,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_GCATR_code_check_if_k_circular", (DL_FUNC) &_GCATR_code_check_if_k_circular, 3},
     {"_GCATR_code_check_if_cn_circular", (DL_FUNC) &_GCATR_code_check_if_cn_circular, 2},
     {"_GCATR_code_check_if_comma_free", (DL_FUNC) &_GCATR_code_check_if_comma_free, 2},
+    {"_GCATR_code_strip_complements", (DL_FUNC) &_GCATR_code_strip_complements, 2},
     {"_GCATR_code_check_if_self_complementary", (DL_FUNC) &_GCATR_code_check_if_self_complementary, 2},
     {"_GCATR_code_get_acid", (DL_FUNC) &_GCATR_code_get_acid, 2},
     {"_GCATR_code_get_amino_acids", (DL_FUNC) &_GCATR_code_get_amino_acids, 2},

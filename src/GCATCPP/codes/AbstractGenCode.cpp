@@ -123,4 +123,18 @@ std::vector<std::string> AbstractGenCode::get_a_set_amino_acids() {
     return this->_get_a_set_amino_acids(this);
 }
 
+void AbstractGenCode::strip_complements() {
+    if (!this->test_code()) { return; }
+    std::vector<std::string> vec;
+
+    for(const auto &tuple : this->code_vec) {
+        std::string c_tuple = acid::get_anti_codon(tuple, this->acid);
+        if(std::find(vec.begin(), vec.end(), c_tuple) == vec.end()) {
+            vec.push_back(tuple);
+        }
+    }
+
+    AbstractCode::reset(vec);
+}
+
 

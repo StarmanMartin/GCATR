@@ -204,6 +204,15 @@ bool code_check_if_comma_free(StringVector code, int length = -1) {
 }
 
 
+//' @export
+// [[Rcpp::export]]
+StringVector code_strip_complements(StringVector code, int length = -1) {
+    auto code_vec = RAdapterUtils::as_cpp_string_vector(code);
+    auto a = CodeFactory::rFactorGenCode(code_vec, length);
+    a->strip_complements();
+    return RAdapterUtils::as_r_string_vector(a->get_tuples());
+}
+
 //' Check if a code is self complementary.
 //' 
 //' This function checks if a code is self complementary.

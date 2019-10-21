@@ -37,6 +37,8 @@ public:
     void setTranslTableByName(const std::string &name);
     void setTranslTableToStandardCode();
 
+    void strip_complements();
+
     std::vector<std::string> get_amino_acids() override;
     std::vector<std::string> get_a_set_amino_acids() override;
 
