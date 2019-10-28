@@ -3,9 +3,9 @@ factor_graph <- function(vertices_edges_list) {
   vertices_vec = vertices_edges_list$vertices
   edges_vec = vertices_edges_list$edges
   if(length(vertices_vec) > 0) {
-    g <- g +  igraph::vertex(vertices_vec)
+    g <- g +  igraph::vertex(vertices_vec, color="white")
     
-    g <- g +  igraph::edges(edges_vec, color="darkgray")
+    g <- g +  igraph::edges(edges_vec, color="black")
     if(!is.null(vertices_edges_list$circular_path_edges)) {
       g <- g +  igraph::edges(vertices_edges_list$circular_path_edges, color="red")
     }
@@ -13,7 +13,7 @@ factor_graph <- function(vertices_edges_list) {
       g <- g +  igraph::edges(vertices_edges_list$longest_path_edges, color="green")
     }
     if(!is.null(vertices_edges_list$c3_edges)) {
-      g <- g +  igraph::edges(vertices_edges_list$c3_edges, color="black",directed=FALSE)
+      g <- g +  igraph::edges(vertices_edges_list$c3_edges, color="darkgray", directed=FALSE)
     }
 
     return(g)
@@ -84,9 +84,9 @@ code_factor_graph <- function(code, show_cycles=FALSE, show_longest_path=FALSE, 
 #' @return List:  A igraph (<http://igraph.org/r/>) object: A graph representing a circular code with C3 extension..
 #'
 #' @examples
-#' G <- code_prepare_factor_gen_c3graph(c("ACG", "CAG"))
-#' G <- code_prepare_factor_gen_c3graph("ACGCAG", tuple_length=3)
-#' G <- code_prepare_factor_gen_c3graph("ACG CAG")
+#' G <- code_factor_c3graph(c("ACG", "CAG"))
+#' G <- code_factor_c3graph("ACGCAG", tuple_length=3)
+#' G <- code_factor_c3graph("ACG CAG")
 #' plot(G)
 #'
 #' @export 

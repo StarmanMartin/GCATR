@@ -7,8 +7,8 @@
 #include "../codes/Alphabet.h"
 using namespace graph;
 
-C3Graph::C3Graph(const AbstractGenCode & code): Graph(code){
-
+C3Graph::C3Graph(const AbstractGenCode & code): Graph(code.get_alphabet()){
+    this->parse_code(code);
 }
 
 C3Graph::C3Graph(const Alphabet &alphabet ) : Graph(alphabet) {
@@ -30,7 +30,6 @@ void C3Graph::add_word(const std::string & word) {
     auto to_ptr = this->add_vertices(std::make_shared<Vertex>(to, this->alphabet));
 
     this->add_c3_edge(from_ptr, to_ptr);
-    this->add_c3_edge(to_ptr, from_ptr);
 }
 
 void C3Graph::add_c3_edge(std::shared_ptr<Vertex> from_ptr, std::shared_ptr<Vertex> to_ptr) {
