@@ -355,14 +355,15 @@ BEGIN_RCPP
 END_RCPP
 }
 // code_check_if_self_complementary
-bool code_check_if_self_complementary(StringVector code, int length);
-RcppExport SEXP _GCATR_code_check_if_self_complementary(SEXP codeSEXP, SEXP lengthSEXP) {
+bool code_check_if_self_complementary(StringVector code, int length, bool mute);
+RcppExport SEXP _GCATR_code_check_if_self_complementary(SEXP codeSEXP, SEXP lengthSEXP, SEXP muteSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< StringVector >::type code(codeSEXP);
     Rcpp::traits::input_parameter< int >::type length(lengthSEXP);
-    rcpp_result_gen = Rcpp::wrap(code_check_if_self_complementary(code, length));
+    Rcpp::traits::input_parameter< bool >::type mute(muteSEXP);
+    rcpp_result_gen = Rcpp::wrap(code_check_if_self_complementary(code, length, mute));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -554,7 +555,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_GCATR_code_check_if_cn_circular", (DL_FUNC) &_GCATR_code_check_if_cn_circular, 2},
     {"_GCATR_code_check_if_comma_free", (DL_FUNC) &_GCATR_code_check_if_comma_free, 2},
     {"_GCATR_code_strip_complements", (DL_FUNC) &_GCATR_code_strip_complements, 2},
-    {"_GCATR_code_check_if_self_complementary", (DL_FUNC) &_GCATR_code_check_if_self_complementary, 2},
+    {"_GCATR_code_check_if_self_complementary", (DL_FUNC) &_GCATR_code_check_if_self_complementary, 3},
     {"_GCATR_code_get_acid", (DL_FUNC) &_GCATR_code_get_acid, 2},
     {"_GCATR_code_get_amino_acids", (DL_FUNC) &_GCATR_code_get_amino_acids, 2},
     {"_GCATR_code_get_one_longest_path_as_vector", (DL_FUNC) &_GCATR_code_get_one_longest_path_as_vector, 2},

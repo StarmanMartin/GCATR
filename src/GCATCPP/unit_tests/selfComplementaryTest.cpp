@@ -10,7 +10,7 @@
 
 bool run_self_complementary_for_code(std::vector<std::string> code) {
     auto sc = CodeFactory::rFactorGenCode(code, -1);
-    return sc->is_self_complementary();
+    return sc->is_self_complementary(true);
 }
 
 TEST(SelfComplementary, CodeIsSelfComplementary) {

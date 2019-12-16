@@ -27,7 +27,7 @@ bool SelfComplimentary::self_complimentary_test(AbstractGenCode *code) {
     std::stringstream not_fitting;
 
     not_fitting << "Codons without Anti-codon:";
-    for (auto i = 0; i < vec.size(); i++) {
+    for (size_t i = 0; i < vec.size(); i++) {
         if (vec[i] != "#") {
             auto it = std::find(vec.begin(), vec.end(), acid::get_anti_codon(vec[i], code->get_acid()));
             if (it != vec.end()) {

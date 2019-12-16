@@ -19,7 +19,7 @@ public:
 
     bool test_code() override;
     
-    virtual bool is_self_complementary();
+    virtual bool is_self_complementary(bool mute);
 
     acid::acids get_acid() override;
 

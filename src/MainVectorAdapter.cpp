@@ -226,6 +226,7 @@ StringVector code_strip_complements(StringVector code, int length = -1) {
 //'
 //' @param code is either a string vector or a string. It has to be a RNA/DNA - code or a sequence.
 //' @param length if code is a sequence, length is the tuple length of the code.
+//' @param mute set false to get console output information about not self-complementary tuples.
 //' @return Boolean value. True if the code is self-complementary.
 //' @examples
 //' code_check_if_self_complementary(c("ACG", "CAG"))
@@ -234,10 +235,10 @@ StringVector code_strip_complements(StringVector code, int length = -1) {
 //'
 //' @export
 // [[Rcpp::export]]
-bool code_check_if_self_complementary(StringVector code, int length = -1) {
+bool code_check_if_self_complementary(StringVector code, int length = -1, bool mute=true) {
     auto code_vec = RAdapterUtils::as_cpp_string_vector(code);
     auto a = CodeFactory::rFactorGenCode(code_vec, length);
-    bool res = a->is_self_complementary();
+    bool res = a->is_self_complementary(mute);
     return res;//a->is_self_complementary();
 }
 

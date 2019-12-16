@@ -670,6 +670,7 @@ code_strip_complements <- function(code, length = -1L) {
 #'
 #' @param code is either a string vector or a string. It has to be a RNA/DNA - code or a sequence.
 #' @param length if code is a sequence, length is the tuple length of the code.
+#' @param mute set false to get console output information about not self-complementary tuples.
 #' @return Boolean value. True if the code is self-complementary.
 #' @examples
 #' code_check_if_self_complementary(c("ACG", "CAG"))
@@ -677,8 +678,8 @@ code_strip_complements <- function(code, length = -1L) {
 #' code_check_if_self_complementary("ACG CAG")
 #'
 #' @export
-code_check_if_self_complementary <- function(code, length = -1L) {
-    .Call('_GCATR_code_check_if_self_complementary', PACKAGE = 'GCATR', code, length)
+code_check_if_self_complementary <- function(code, length = -1L, mute = TRUE) {
+    .Call('_GCATR_code_check_if_self_complementary', PACKAGE = 'GCATR', code, length, mute)
 }
 
 #' Get acid type of a code

@@ -35,9 +35,9 @@ by pairs of i-nucleotides and (n-i)-nucleotides for 0 < i < n.\cr
 \emph{2007 E. FIMMEL, C. J. MICHEL, AND L. STRÜNGMANN. N-nucleotide circular codes in graph theory}
 }
 \examples{
-G <- code_prepare_factor_gen_c3graph(c("ACG", "CAG"))
-G <- code_prepare_factor_gen_c3graph("ACGCAG", tuple_length=3)
-G <- code_prepare_factor_gen_c3graph("ACG CAG")
+G <- code_factor_c3graph(c("ACG", "CAG"))
+G <- code_factor_c3graph("ACGCAG", tuple_length=3)
+G <- code_factor_c3graph("ACG CAG")
 plot(G)
 
 }

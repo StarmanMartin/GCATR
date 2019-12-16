@@ -54,10 +54,15 @@ acid::acids AbstractGenCode::get_acid() {
     return this->acid;
 }
 
-bool AbstractGenCode::is_self_complementary() {
+bool AbstractGenCode::is_self_complementary(bool mute) {
+    if(mute) {
+        this->suppress_errors();
+    }
     if (!this->test_code()) { return false; }
     auto tester = std::make_shared<SelfComplimentary>();
-    return this->run_test(tester);
+    auto res = this->run_test(tester);
+    this->activate_errors();
+    return res;
 }
 
 
