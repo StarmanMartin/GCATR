@@ -5,10 +5,21 @@
 
 #include "test_utils.cpp"
 #include "../codes/StdGenCode.h"
+#include "../codes/Code.h"
 
 bool _is_cn_circular(std::vector<std::string> c) {
     StdGenCode a(c);
     return a.is_cn_circular();
+}
+
+TEST (CircularCnTest, CnWithLength4) {
+
+    std::vector<std::string> c = {"CGTA", "TTCG", "CGAT", "AACG"};
+    Code a(c);
+    EXPECT_FALSE(a.is_cn_circular());
+    std::vector<std::string> c1 = {"TTCG", "CGAT", "AACG"};
+    Code b(c1);
+    EXPECT_TRUE(b.is_cn_circular());
 }
 
 TEST (CircularCnTest, KeepCode) {

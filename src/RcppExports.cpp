@@ -379,6 +379,18 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// code_get_all_amino_acids
+StringVector code_get_all_amino_acids(StringVector code, int idx_trans_table);
+RcppExport SEXP _GCATR_code_get_all_amino_acids(SEXP codeSEXP, SEXP idx_trans_tableSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< StringVector >::type code(codeSEXP);
+    Rcpp::traits::input_parameter< int >::type idx_trans_table(idx_trans_tableSEXP);
+    rcpp_result_gen = Rcpp::wrap(code_get_all_amino_acids(code, idx_trans_table));
+    return rcpp_result_gen;
+END_RCPP
+}
 // code_get_amino_acids
 StringVector code_get_amino_acids(StringVector code, int idx_trans_table);
 RcppExport SEXP _GCATR_code_get_amino_acids(SEXP codeSEXP, SEXP idx_trans_tableSEXP) {
@@ -557,6 +569,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_GCATR_code_strip_complements", (DL_FUNC) &_GCATR_code_strip_complements, 2},
     {"_GCATR_code_check_if_self_complementary", (DL_FUNC) &_GCATR_code_check_if_self_complementary, 3},
     {"_GCATR_code_get_acid", (DL_FUNC) &_GCATR_code_get_acid, 2},
+    {"_GCATR_code_get_all_amino_acids", (DL_FUNC) &_GCATR_code_get_all_amino_acids, 2},
     {"_GCATR_code_get_amino_acids", (DL_FUNC) &_GCATR_code_get_amino_acids, 2},
     {"_GCATR_code_get_one_longest_path_as_vector", (DL_FUNC) &_GCATR_code_get_one_longest_path_as_vector, 2},
     {"_GCATR_code_get_all_longest_path_as_vector", (DL_FUNC) &_GCATR_code_get_all_longest_path_as_vector, 2},
