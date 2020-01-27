@@ -185,7 +185,6 @@ Rcpp::List code_prepare_factor_gen_c3graph(StringVector code, int tuple_length =
 // [[Rcpp::export]]
 Rcpp::List code_prepare_factor_graph(StringVector code, bool show_cycles = false, bool show_longest_path = false, int tuple_length = -1) {
     auto code_vec = RAdapterUtils::as_cpp_string_vector(code);
-    Rcpp::Rcout << code_vec.size() << " - " << tuple_length << "\n";
     auto gc = CodeFactory::rFactor(code_vec, tuple_length);
     return prepare_factor_graph(*gc, show_cycles, show_longest_path);
 }

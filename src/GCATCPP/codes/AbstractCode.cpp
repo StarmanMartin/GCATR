@@ -12,7 +12,9 @@
 #include <string>
 #include <regex>
 #include <iterator>
-#include <set>
+#include <unordered_set>
+#include <algorithm>
+
 
 #include "../tester/AbstractTester.h"
 #include "../modification/AbstractModifier.h"
@@ -60,7 +62,10 @@ AbstractCode::AbstractCode(const AbstractCode &agc) : AbstractErrorManager(agc) 
 }
 
 void AbstractCode::reset(std::vector<std::string> code_param_vec) {
-    this->code_vec = std::move(code_param_vec);
+    this->code_vec.clear();
+    std::unordered_set<std::string> s(code_param_vec.begin(), code_param_vec.end());
+    this->code_vec.assign(s.begin(), s.end());
+    sort(this->code_vec.begin(), this->code_vec.end());
     this->is_tested = false;
     this->is_ok = false;
     this->string_sequence = EMPTY_SEQUNECE;
@@ -188,4 +193,16 @@ std::string AbstractCode::to_string() const {
 
 bool AbstractCode::is_translatable() {
     return false;
+}
+
+std::vector<std::string> AbstractCode::get_tuples() {
+    return this->code_vec;
+}
+
+std::vector<std::string> AbstractCode::get_nucleotide_tuples() {
+    if(this->is_translatable()) {
+        return this->code_vec;
+    }
+
+    return std::vector<std::string>();
 }

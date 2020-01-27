@@ -21,6 +21,18 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// seq_start_bda
+bool seq_start_bda(StringVector code, int length);
+RcppExport SEXP _GCATR_seq_start_bda(SEXP codeSEXP, SEXP lengthSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< StringVector >::type code(codeSEXP);
+    Rcpp::traits::input_parameter< int >::type length(lengthSEXP);
+    rcpp_result_gen = Rcpp::wrap(seq_start_bda(code, length));
+    return rcpp_result_gen;
+END_RCPP
+}
 // code_start_bda
 bool code_start_bda(StringVector code, int length);
 RcppExport SEXP _GCATR_code_start_bda(SEXP codeSEXP, SEXP lengthSEXP) {
@@ -171,6 +183,30 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// seq_get_tuple_count
+std::map<std::string, int> seq_get_tuple_count(std::string seq, int tuple_length);
+RcppExport SEXP _GCATR_seq_get_tuple_count(SEXP seqSEXP, SEXP tuple_lengthSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< std::string >::type seq(seqSEXP);
+    Rcpp::traits::input_parameter< int >::type tuple_length(tuple_lengthSEXP);
+    rcpp_result_gen = Rcpp::wrap(seq_get_tuple_count(seq, tuple_length));
+    return rcpp_result_gen;
+END_RCPP
+}
+// seq_get_info
+List seq_get_info(std::string seq, int tuple_length);
+RcppExport SEXP _GCATR_seq_get_info(SEXP seqSEXP, SEXP tuple_lengthSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< std::string >::type seq(seqSEXP);
+    Rcpp::traits::input_parameter< int >::type tuple_length(tuple_lengthSEXP);
+    rcpp_result_gen = Rcpp::wrap(seq_get_info(seq, tuple_length));
+    return rcpp_result_gen;
+END_RCPP
+}
 // code_prepare_factor_gen_c3graph
 Rcpp::List code_prepare_factor_gen_c3graph(StringVector code, int tuple_length);
 RcppExport SEXP _GCATR_code_prepare_factor_gen_c3graph(SEXP codeSEXP, SEXP tuple_lengthSEXP) {
@@ -306,15 +342,28 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
-// code_check_if_self_complementary
-bool code_check_if_self_complementary(StringVector code, int length);
-RcppExport SEXP _GCATR_code_check_if_self_complementary(SEXP codeSEXP, SEXP lengthSEXP) {
+// code_strip_complements
+StringVector code_strip_complements(StringVector code, int length);
+RcppExport SEXP _GCATR_code_strip_complements(SEXP codeSEXP, SEXP lengthSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< StringVector >::type code(codeSEXP);
     Rcpp::traits::input_parameter< int >::type length(lengthSEXP);
-    rcpp_result_gen = Rcpp::wrap(code_check_if_self_complementary(code, length));
+    rcpp_result_gen = Rcpp::wrap(code_strip_complements(code, length));
+    return rcpp_result_gen;
+END_RCPP
+}
+// code_check_if_self_complementary
+bool code_check_if_self_complementary(StringVector code, int length, bool mute);
+RcppExport SEXP _GCATR_code_check_if_self_complementary(SEXP codeSEXP, SEXP lengthSEXP, SEXP muteSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< StringVector >::type code(codeSEXP);
+    Rcpp::traits::input_parameter< int >::type length(lengthSEXP);
+    Rcpp::traits::input_parameter< bool >::type mute(muteSEXP);
+    rcpp_result_gen = Rcpp::wrap(code_check_if_self_complementary(code, length, mute));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -327,6 +376,18 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< StringVector >::type code(codeSEXP);
     Rcpp::traits::input_parameter< int >::type length(lengthSEXP);
     rcpp_result_gen = Rcpp::wrap(code_get_acid(code, length));
+    return rcpp_result_gen;
+END_RCPP
+}
+// code_get_all_amino_acids
+StringVector code_get_all_amino_acids(StringVector code, int idx_trans_table);
+RcppExport SEXP _GCATR_code_get_all_amino_acids(SEXP codeSEXP, SEXP idx_trans_tableSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< StringVector >::type code(codeSEXP);
+    Rcpp::traits::input_parameter< int >::type idx_trans_table(idx_trans_tableSEXP);
+    rcpp_result_gen = Rcpp::wrap(code_get_all_amino_acids(code, idx_trans_table));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -478,6 +539,7 @@ END_RCPP
 
 static const R_CallMethodDef CallEntries[] = {
     {"_GCATR_add_bda", (DL_FUNC) &_GCATR_add_bda, 6},
+    {"_GCATR_seq_start_bda", (DL_FUNC) &_GCATR_seq_start_bda, 2},
     {"_GCATR_code_start_bda", (DL_FUNC) &_GCATR_code_start_bda, 2},
     {"_GCATR_run_bda", (DL_FUNC) &_GCATR_run_bda, 0},
     {"_GCATR_get_average_conductance_of_code", (DL_FUNC) &_GCATR_get_average_conductance_of_code, 2},
@@ -491,6 +553,8 @@ static const R_CallMethodDef CallEntries[] = {
     {"_GCATR_code_is_translatable", (DL_FUNC) &_GCATR_code_is_translatable, 2},
     {"_GCATR_cpp_genetic_codes_as_df_by_index", (DL_FUNC) &_GCATR_cpp_genetic_codes_as_df_by_index, 2},
     {"_GCATR_genetic_codes_by_name", (DL_FUNC) &_GCATR_genetic_codes_by_name, 1},
+    {"_GCATR_seq_get_tuple_count", (DL_FUNC) &_GCATR_seq_get_tuple_count, 2},
+    {"_GCATR_seq_get_info", (DL_FUNC) &_GCATR_seq_get_info, 2},
     {"_GCATR_code_prepare_factor_gen_c3graph", (DL_FUNC) &_GCATR_code_prepare_factor_gen_c3graph, 2},
     {"_GCATR_code_prepare_factor_graph", (DL_FUNC) &_GCATR_code_prepare_factor_graph, 4},
     {"_GCATR_code_prepare_factor_all_cycle", (DL_FUNC) &_GCATR_code_prepare_factor_all_cycle, 2},
@@ -502,8 +566,10 @@ static const R_CallMethodDef CallEntries[] = {
     {"_GCATR_code_check_if_k_circular", (DL_FUNC) &_GCATR_code_check_if_k_circular, 3},
     {"_GCATR_code_check_if_cn_circular", (DL_FUNC) &_GCATR_code_check_if_cn_circular, 2},
     {"_GCATR_code_check_if_comma_free", (DL_FUNC) &_GCATR_code_check_if_comma_free, 2},
-    {"_GCATR_code_check_if_self_complementary", (DL_FUNC) &_GCATR_code_check_if_self_complementary, 2},
+    {"_GCATR_code_strip_complements", (DL_FUNC) &_GCATR_code_strip_complements, 2},
+    {"_GCATR_code_check_if_self_complementary", (DL_FUNC) &_GCATR_code_check_if_self_complementary, 3},
     {"_GCATR_code_get_acid", (DL_FUNC) &_GCATR_code_get_acid, 2},
+    {"_GCATR_code_get_all_amino_acids", (DL_FUNC) &_GCATR_code_get_all_amino_acids, 2},
     {"_GCATR_code_get_amino_acids", (DL_FUNC) &_GCATR_code_get_amino_acids, 2},
     {"_GCATR_code_get_one_longest_path_as_vector", (DL_FUNC) &_GCATR_code_get_one_longest_path_as_vector, 2},
     {"_GCATR_code_get_all_longest_path_as_vector", (DL_FUNC) &_GCATR_code_get_all_longest_path_as_vector, 2},

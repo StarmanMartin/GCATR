@@ -18,3 +18,7 @@ src/GCATCPP/libs/
 *.gz
 .idea/
 src/GCATCPP/unit_tests/asserts/*.csv
+
+data/GCATR_tikzgraph.tex
+
+GCATR_tikzgraph/GCATR_tikzgraph

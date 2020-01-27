@@ -4,12 +4,14 @@
 \alias{code_check_if_self_complementary}
 \title{Check if a code is self complementary.}
 \usage{
-code_check_if_self_complementary(code, length = -1L)
+code_check_if_self_complementary(code, length = -1L, mute = TRUE)
 }
 \arguments{
 \item{code}{is either a string vector or a string. It has to be a RNA/DNA - code or a sequence.}
 
 \item{length}{if code is a sequence, length is the tuple length of the code.}
+
+\item{mute}{set false to get console output information about not self-complementary tuples.}
 }
 \value{
 Boolean value. True if the code is self-complementary.

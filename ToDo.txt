@@ -1,0 +1,12 @@
+New (Add):
+seq_translate
+seq_shift
+seq_transform
+graph_component
+is_tessera_code
+
+Doc:
+seq_get_tuple_count
+
+Refac
+code_is_translateable -> is_translateable

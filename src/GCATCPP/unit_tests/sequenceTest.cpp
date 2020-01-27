@@ -6,15 +6,16 @@
 #include "test_utils.cpp"
 
 #include "../codes/StdGenCode.h"
+#include "../sequences/Sequence.h"
 
 TEST(SequenceTest, SequenceToVector) {
     std::string seq = "ACGTCG";
-    StdGenCode a(seq, 3);
+    Sequence a(seq, 3);
 
-    test_help::test_equal_vector<std::string>(a.as_vector(), {"ACG", "TCG"});
+    test_help::test_equal_vector<std::string>(a.get_tuples(), {"ACG", "TCG"});
 }
 
-TEST(SequenceTest, CopyConstructor) {
+TEST(CodeSequenceTest, CopyConstructor) {
     std::string seq = "ACGTCG";
     StdGenCode a(seq, 3);
     StdGenCode b(a);
@@ -23,7 +24,7 @@ TEST(SequenceTest, CopyConstructor) {
 }
 
 
-TEST(SequenceTest, SequenceCodeTest) {
+TEST(CodeSequenceTest, SequenceCodeTest) {
     std::string code_seq = "ACGTCG";
     std::string seq = "ACGTCGCGACGTACGACGTCGTACTCGATGCAAGATC";
     // ACG TCG CGA CGT ACG ACG TCG TAC TCG ATG CAA GAT C";

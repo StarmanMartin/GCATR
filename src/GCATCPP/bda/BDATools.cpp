@@ -4,13 +4,15 @@
 
 #include "BDATools.h"
 #include "../codes/Acid.h"
-#include "../codes/StdGenCode.h"
+#include "../interfaces/AbstractTupleContainer.h"
 #include <memory>
 #include <sstream>
+#include <utility>
 
 using namespace BDA;
 
-BDATools::BDATools(std::shared_ptr<AbstractGenCode> code) : code(code) {
+
+BDATools::BDATools(std::shared_ptr<AbstractTupleContainer> code) : code(std::move(code)) {
     this->rules = {};
 }
 
@@ -19,7 +21,7 @@ bool BDATools::add_rule(unsigned int i_1, unsigned int i_2, char Q_11, char Q_12
     return this->add_rule(rule);
 }
 
-bool BDATools::add_rule(BDA_Rule rule) {
+bool BDATools::add_rule(const BDA_Rule& rule) {
     if (this->validate_rule(rule)) {
         this->rules.push_back(rule);
         return true;
@@ -29,7 +31,7 @@ bool BDATools::add_rule(BDA_Rule rule) {
 }
 
 std::vector<std::string> BDATools::run_bda_for_code() {
-    auto code_vec = this->code->as_vector();
+    auto code_vec = this->code->get_tuples();
 
     if (this->code->get_word_length()[0] != BDA_WORD_LENGTH) {
         this->add_error_msg("Bda only developed for word length of 3");
@@ -43,8 +45,8 @@ std::vector<std::string> BDATools::run_bda_for_code() {
     std::vector<std::string> result_vec(code_vec.size());
 
 
-    for (BDA_Rule rule : this->rules) {
-        for (int i = 0; i < code_vec.size(); ++i) {
+    for (const BDA_Rule& rule : this->rules) {
+        for (size_t i = 0; i < code_vec.size(); ++i) {
             std::stringstream os;
             if (code_vec[i][rule.i_1] == rule.Q_12) {
                 os << result_vec[i] << "1";
@@ -65,11 +67,11 @@ std::vector<std::string> BDATools::run_bda_for_code() {
     return result_vec;
 }
 
-std::shared_ptr<AbstractGenCode> BDATools::get_code() {
+std::shared_ptr<AbstractTupleContainer> BDATools::get_code() {
     return this->code;
 }
 
-bool BDATools::validate_rule(BDA_Rule rule) {
+bool BDATools::validate_rule(const BDA_Rule& rule) {
     if (rule.i_1 == rule.i_2) {
         this->add_error_msg("i1 must not be equal to i2");
         return false;
@@ -83,7 +85,7 @@ bool BDATools::validate_rule(BDA_Rule rule) {
     std::stringstream os;
 
     os << rule.Q_11 << rule.Q_12 << rule.Q_21 << rule.Q_22;
-    if (!acid::is_acide_type(os.str(), this->code->get_acid())) {
+    if (!acid::is_acid_type(os.str(), this->code->get_acid())) {
         auto acid_name = acid::acid_to_string(this->code->get_acid());
         this->add_error_msg("The code is a " + acid_name + " code. The rule bases have to be " + acid_name);
         return false;

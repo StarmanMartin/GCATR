@@ -54,3 +54,7 @@ std::vector<std::string> AbstractErrorManager::get_error_msg() {
     this->reset_msg();
     return copy;
 }
+
+void AbstractErrorManager::activate_errors() {
+    this->is_suppressed = false;
+}

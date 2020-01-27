@@ -15,6 +15,7 @@ namespace err {
     public:
         void print_errors();
         void suppress_errors();
+        void activate_errors();
         std::vector<std::string> get_error_msg();
         void add_error_msg(const std::string&);
 

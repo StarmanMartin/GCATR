@@ -6,6 +6,8 @@
 #include <string>
 #include <iostream>
 #include <regex>
+#include "../miner/LongestPathMiner.h"
+#include "../graph/Graph.h"
 
 bool CommaFree::test(AbstractCode *code) {
     return this->is_comma_free(code);
@@ -13,23 +15,9 @@ bool CommaFree::test(AbstractCode *code) {
 
 
 bool CommaFree::is_comma_free(AbstractCode *code) {
-    std::string string_sequence = code->as_string_sequence();
+    auto res = miner::LongestPathMiner::mine_path_as_vector(code);
+    return !res.empty() && res[0].size() < 4;
 
-    for (unsigned int i = 1; i < code->get_word_length()[0]; ++i) {
-        for (unsigned int j = 0; j < string_sequence.length(); j += code->get_word_length()[0]) {
-            std::string current_substring = string_sequence.substr(j, i);
-            unsigned int start_word_idx = {j / (unsigned) code->get_word_length()[0]};
-
-            if (!this->rec_is_comma_free(code,
-                                         std::vector<unsigned int>(),
-                                         current_substring,
-                                         start_word_idx)) {
-                return false;
-            }
-        }
-    }
-
-    return true;
 }
 
 bool CommaFree::rec_is_comma_free(AbstractCode *code,

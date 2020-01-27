@@ -13,41 +13,40 @@ TEST(ShiftTester, differentShifts) {
     std::string code_text = "ACG TCG CCG CCC";
     auto code = CodeFactory::rFactorTypesCodonCode({code_text});
     code->shift_tuples(1);
-    EXPECT_EQ(code->as_string_sequence(), "CGACGTCGCCCC");
+    EXPECT_EQ(code->as_string_sequence(), "CCCCGACGCCGT");
 
     code = CodeFactory::rFactorTypesCodonCode({code_text});
     code->shift_tuples(2);
-    EXPECT_EQ(code->as_string_sequence(), "GACGTCGCCCCC");
+    EXPECT_EQ(code->as_string_sequence(), "CCCGACGCCGTC");
 
     code = CodeFactory::rFactorTypesCodonCode({code_text});
     code->shift_tuples(4);
-    EXPECT_EQ(code->as_string_sequence(), "CGACGTCGCCCC");
+    EXPECT_EQ(code->as_string_sequence(), "CCCCGACGCCGT");
 
     code = CodeFactory::rFactorTypesCodonCode({code_text});
     code->shift_tuples(-1);
-    EXPECT_EQ(code->as_string_sequence(), "ACGTCGCCGCCC");
+    EXPECT_EQ(code->as_string_sequence(), "ACGCCCCCGTCG");
 
 }
-
 
 TEST(TransformTester, differentTransforms) {
     std::string code_text = "ACG TCG CCG CCC";
     auto code = CodeFactory::rFactorTypesCodonCode({code_text});
     code->transform_tuples("A", "T");
-    EXPECT_EQ(code->as_string_sequence(), "TCGTCGCCGCCC");
+    EXPECT_EQ(code->as_string_sequence(), "CCCCCGTCG");
 
     code = CodeFactory::rFactorTypesCodonCode({code_text});
     code->transform_tuples("AT", "TA");
-    EXPECT_EQ(code->as_string_sequence(), "TCGACGCCGCCC");
+    EXPECT_EQ(code->as_string_sequence(), "ACGCCCCCGTCG");
 
     code = CodeFactory::rFactorTypesCodonCode({code_text});
     code->transform_tuples("ATCG", "TAGC");
-    EXPECT_EQ(code->as_string_sequence(), "TGCAGCGGCGGG");
+    EXPECT_EQ(code->as_string_sequence(), "AGCGGCGGGTGC");
 
 
     code = CodeFactory::rFactorTypesCodonCode({code_text});
     code->transform_tuples("AA", "TT");
-    EXPECT_EQ(code->as_string_sequence(), "ACGTCGCCGCCC");
+    EXPECT_EQ(code->as_string_sequence(), "ACGCCCCCGTCG");
 
     std::vector<std::string> code_as_vec = {"ACG", "GAT"};
     auto scode = CodeFactory::rFactor(code_as_vec, -1);
@@ -60,15 +59,15 @@ TEST(TransformTester, differentTransformsByName) {
     std::string code_text = "ACG TCG CCG CCC";
     auto code = CodeFactory::rFactorTypesCodonCode({code_text});
     code->transform_tuples_by_name(AT);
-    EXPECT_EQ(code->as_string_sequence(), "TCGACGCCGCCC");
+    EXPECT_EQ(code->as_string_sequence(), "ACGCCCCCGTCG");
 
     code = CodeFactory::rFactorTypesCodonCode({code_text});
     code->transform_tuples_by_name(SW);
-    EXPECT_EQ(code->as_string_sequence(), "TGCAGCGGCGGG");
+    EXPECT_EQ(code->as_string_sequence(), "AGCGGCGGGTGC");
 
     code = CodeFactory::rFactorTypesCodonCode({code_text});
     code->transform_tuples_by_name(AGTC);
-    EXPECT_EQ(code->as_string_sequence(), "GATCATAATAAA");
+    EXPECT_EQ(code->as_string_sequence(), "AAAAATCATGAT");
 
 }
 
