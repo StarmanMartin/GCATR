@@ -601,6 +601,32 @@ code_check_if_k_circular <- function(k, code, length = -1L) {
     .Call('_GCATR_code_check_if_k_circular', PACKAGE = 'GCATR', k, code, length)
 }
 
+#' Get k value of a k-circular code.
+#'
+#' This function get the k value of a code which is k-circular.
+#' The code can either be a vector of tuples or a sequence. If the code
+#' is a sequence an additional word length parameter is needed.\cr
+#' k-circular means:\cr
+#' That for each sequence/concatenation of less than k tuples of a code \emph{X} written on a circle, there is only one partition in tuples from the code \emph{X}.
+#' This is an extended property of the circular codes. Circular codes are a block codes. See \link{code_check_if_circular} for more details.\cr
+#' \link{https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5492142/},\cr
+#' \link{http://dpt-info.u-strasbg.fr/~c.michel/Circular_Codes.pdf},\cr
+#' \emph{2007 Christian MICHEL. CIRCULAR CODES IN GENES}
+#'
+#' @param k is is integer. k refers to the k-circular property.
+#' @param code is either a string vector or a string. It can either be a code or a sequence.
+#' @param length if code is a sequence, length is the tuple length of the code.
+#' @return k value of a k-circular code.
+#' @examples
+#' code_k_value(c("ACG", "CAG"))
+#' code_k_value("ACGCAG", 3)
+#' code_k_value("ACG CAG")
+#'
+#' @export
+code_k_value <- function(code, length = -1L) {
+    .Call('_GCATR_code_k_value', PACKAGE = 'GCATR', code, length)
+}
+
 #' Check if a code is Cn-circular.
 #'
 #' This function checks if a code is Cn-circular.

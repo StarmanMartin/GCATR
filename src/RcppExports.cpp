@@ -318,6 +318,18 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// code_k_value
+int code_k_value(StringVector code, int length);
+RcppExport SEXP _GCATR_code_k_value(SEXP codeSEXP, SEXP lengthSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< StringVector >::type code(codeSEXP);
+    Rcpp::traits::input_parameter< int >::type length(lengthSEXP);
+    rcpp_result_gen = Rcpp::wrap(code_k_value(code, length));
+    return rcpp_result_gen;
+END_RCPP
+}
 // code_check_if_cn_circular
 bool code_check_if_cn_circular(StringVector code, int length);
 RcppExport SEXP _GCATR_code_check_if_cn_circular(SEXP codeSEXP, SEXP lengthSEXP) {
@@ -564,6 +576,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_GCATR_code_tuple_length", (DL_FUNC) &_GCATR_code_tuple_length, 2},
     {"_GCATR_code_check_if_code", (DL_FUNC) &_GCATR_code_check_if_code, 2},
     {"_GCATR_code_check_if_k_circular", (DL_FUNC) &_GCATR_code_check_if_k_circular, 3},
+    {"_GCATR_code_k_value", (DL_FUNC) &_GCATR_code_k_value, 2},
     {"_GCATR_code_check_if_cn_circular", (DL_FUNC) &_GCATR_code_check_if_cn_circular, 2},
     {"_GCATR_code_check_if_comma_free", (DL_FUNC) &_GCATR_code_check_if_comma_free, 2},
     {"_GCATR_code_strip_complements", (DL_FUNC) &_GCATR_code_strip_complements, 2},

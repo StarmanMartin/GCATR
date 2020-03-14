@@ -3,7 +3,6 @@
 \docType{package}
 \name{GCATR}
 \alias{GCATR}
-\alias{GCATR-package}
 \title{Genetic Code Analysis Toolkit (GCAT) in R -> GCATR}
 \description{
 The genetic code is the major tool that nature uses for the transmission of information. By assigning amino acids to triplets of nucleic bases, so-called codons, it serves as a kind of dictionary between the two worlds of nucleic acids on the one hand and proteins on the other hand. As such it is involved in the communication process, called translation, and one of its most conserved properties is degeneracy respectively redundancy, i.e. several codons may encode the same amino acid. This is also expressed in the central dogma of molecular biology which consists of replication, (reversed) transcription and translation. Degeneracy is the essential tool in any system that allows error detection or even error correction and the probability that genetic information is preserved without such an error detecting/error correcting system is zero.\cr\cr

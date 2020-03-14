@@ -4,8 +4,12 @@
 \alias{code_factor_graph}
 \title{Prepares a R igraph object.}
 \usage{
-code_factor_graph(code, show_cycles = FALSE, show_longest_path = FALSE,
-  tuple_length = -1)
+code_factor_graph(
+  code,
+  show_cycles = FALSE,
+  show_longest_path = FALSE,
+  tuple_length = -1
+)
 }
 \arguments{
 \item{code}{is either a string vector or a string.}

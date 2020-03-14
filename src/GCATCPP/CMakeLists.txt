@@ -30,17 +30,17 @@ set(SOURCE_FILES main_test.cpp
         graph/Edge.cpp graph/Edge.h graph/Vertex.cpp graph/Vertex.h graph/Graph.cpp graph/Graph.h graph/C3Graph.cpp graph/C3Graph.h
         geneticCode/CodonTranslTables.cpp geneticCode/CodonTranslTables.h geneticCode/CodonClusteringAlgorithm.cpp geneticCode/CodonClusteringAlgorithm.h
         generator/BaseValueGenerator.cpp generator/BaseValueGenerator.h generator/AbstractGenerator.cpp generator/AbstractGenerator.h codes/TesseraCode.cpp codes/TesseraCode.h modification/TransformTuples.cpp modification/TransformTuples.h
-        sequences/Sequence.cpp sequences/Sequence.h interfaces/AbstractTupleContainer.cpp interfaces/AbstractTupleContainer.h interfaces/AbstractTranslatable.cpp interfaces/AbstractTranslatable.h)
+        sequences/Sequence.cpp sequences/Sequence.h interfaces/AbstractTupleContainer.cpp interfaces/AbstractTupleContainer.h interfaces/AbstractTranslatable.cpp interfaces/AbstractTranslatable.h miner/kCircularityMiner.cpp miner/kCircularityMiner.h)
 
 set(SOURCE_TEST_FILES unit_tests/test_utils.cpp
         unit_tests/circular.cpp unit_tests/codeTestTest.cpp unit_tests/bdaTest.cpp unit_tests/test_utils.cpp
         unit_tests/cnCircularTest.cpp unit_tests/acidTest.cpp unit_tests/selfComplementaryTest.cpp unit_tests/commaFreeTest.cpp
         unit_tests/minerCircularTest.cpp unit_tests/graphTest.cpp unit_tests/minerPathTest.cpp unit_tests/sequenceTest.cpp unit_tests/c3GraphTest.cpp unit_tests/codeTableTest.cpp
-        unit_tests/generatorTest.cpp unit_tests/graphTestSize.cpp unit_tests/binaryTest.cpp unit_tests/codeFactoryTester.cpp unit_tests/modificationTest.cpp unit_tests/tesseraTest.cpp unit_tests/seqTest.cpp)
+        unit_tests/generatorTest.cpp unit_tests/graphTestSize.cpp unit_tests/binaryTest.cpp unit_tests/codeFactoryTester.cpp unit_tests/modificationTest.cpp unit_tests/tesseraTest.cpp unit_tests/seqTest.cpp unit_tests/kCircularTest.cpp)
 
 #set(CURRENT_TEST_FILES unit_tests/test_utils.cpp unit_tests/generatorTest.cpp)
 #set(CURRENT_TEST_FILES unit_tests/test_utils.cpp unit_tests/binaryTest.cpp unit_tests/codeFactoryTester.cpp)
-set(CURRENT_TEST_FILES unit_tests/test_utils.cpp unit_tests/cnCircularTest.cpp)
+set(CURRENT_TEST_FILES unit_tests/test_utils.cpp unit_tests/kCircularTest.cpp)
 
 
 add_executable(MainTest ${SOURCE_FILES} ${SOURCE_TEST_FILES})

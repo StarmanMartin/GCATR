@@ -4,8 +4,12 @@
 \alias{code_prepare_factor_graph}
 \title{Factors edges and vertices of an representing graph of a circular code}
 \usage{
-code_prepare_factor_graph(code, show_cycles = FALSE,
-  show_longest_path = FALSE, tuple_length = -1L)
+code_prepare_factor_graph(
+  code,
+  show_cycles = FALSE,
+  show_longest_path = FALSE,
+  tuple_length = -1L
+)
 }
 \arguments{
 \item{code}{is either a string vector or a string. It can be a DNA or RNA sequence.}
