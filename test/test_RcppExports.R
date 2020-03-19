@@ -6,7 +6,7 @@
 library(testthat)
 library(Rcpp)
 library(GCATR)
-print(code_check_if_k_circular(1,"UGGGUG", 3))
+print(code_check_if_k_circular(2,'UGGCUGGGCUGU',3))
 
 test_that("is not circular", {
     expect_false(code_check_if_circular("UGGGUG", 3))
@@ -68,6 +68,17 @@ test_that("is not 1-circular", {
 test_that("is not 1-circular", {
   expect_true(code_check_if_k_circular(1,c('UGG','CUG','GGC','UGU')))
 })
+
+# 7. non 2-circular, string with no delimiter, tuple length 3
+test_that("is not 2-circular", {
+  expect_false(code_check_if_k_circular(2,'UGGCUGGGCUGU',3))
+})
+
+# 8.  2-circular, string with no delimiter, tuple length 3
+test_that("is not 2-circular", {
+  expect_true(code_check_if_k_circular(2,'ACGGUACGUCGGUAC',3))
+})
+
 
 
 
