@@ -1652,28 +1652,8 @@ summary {
 <h1>Testing for maximum circularity</h1>
 <p>Now that you have installed both packages you can use the GCATR package.</p>
 <p>To test for maximum circularity you might just execute the following code snippet. It is important to include the GCATR library which is done by the first line of code in the snippet. You should be shown FALSE when executing this code snippet as the provided code is not maximum circular.</p>
-<pre class="r"><code>library(GCATR)</code></pre>
-<pre><code>## Loading required package: igraph</code></pre>
-<pre><code>## Warning: package &#39;igraph&#39; was built under R version 3.5.3</code></pre>
-<pre><code>## 
-## Attaching package: &#39;igraph&#39;</code></pre>
-<pre><code>## The following objects are masked from &#39;package:stats&#39;:
-## 
-##     decompose, spectrum</code></pre>
-<pre><code>## The following object is masked from &#39;package:base&#39;:
-## 
-##     union</code></pre>
-<pre><code>## Loading required package: gridExtra</code></pre>
-<pre><code>## Warning: package &#39;gridExtra&#39; was built under R version 3.5.3</code></pre>
-<pre><code>## Loading required package: Rcpp</code></pre>
-<pre><code>## Warning: package &#39;Rcpp&#39; was built under R version 3.5.3</code></pre>
-<pre><code>## Loading required package: rmarkdown</code></pre>
-<pre><code>## Warning: package &#39;rmarkdown&#39; was built under R version 3.5.3</code></pre>
-<pre><code>## Loading required package: xtable</code></pre>
-<pre><code>## Warning: package &#39;xtable&#39; was built under R version 3.5.3</code></pre>
-<pre><code>## Loading required package: knitr</code></pre>
-<pre><code>## Warning: package &#39;knitr&#39; was built under R version 3.5.3</code></pre>
-<pre class="r"><code>code_check_if_circular(&#39;UGG GUG&#39;)</code></pre>
+<pre class="r"><code>library(GCATR)
+code_check_if_circular(&#39;UGG GUG&#39;)</code></pre>
 <pre><code>## [1] FALSE</code></pre>
 <p>There is three options to provide the string that represents the code you are trying to test.</p>
 <p>Option 1 is providing the string with a specific tuple length like this:</p>
@@ -1687,8 +1667,6 @@ library(GCATR)
 code_check_if_circular(&#39;UGG GUG&#39;)</code></pre>
 <pre><code>## [1] FALSE</code></pre>
 <p>The last option is to provide each tuple separate in a vector as so: This last example should come up TRUE, as the provided code is ciruclar.</p>
-<pre class="r"><code>install.packages(&quot;Rcpp&quot;, repos = &quot;https://packages.othr.de/cran/&quot; )</code></pre>
-<pre><code>## Error in install.packages : Updating loaded packages</code></pre>
 <pre class="r"><code>library(Rcpp)
 library(GCATR)
 code_check_if_circular(c(&#39;GGU&#39;,&#39;GGC&#39;,&#39;ACU&#39;,&#39;ACC&#39;,&#39;AGC&#39;,&#39;AGU&#39;,&#39;GAC&#39;,&#39;GAU&#39;,&#39;GUC&#39;,&#39;GUU&#39;,&#39;AAU&#39;,&#39;AUU&#39;,&#39;AAC&#39;,&#39;AUC&#39;,&#39;GCU&#39;,&#39;GCC&#39;))</code></pre>
@@ -1713,6 +1691,18 @@ code_check_if_k_circular(3,&#39;ACG GUA CGU CGG UAC&#39;)</code></pre>
 <pre class="r"><code>library(GCATR)
 code_check_if_k_circular(4,c(&#39;GGU&#39;, &#39;GGC&#39;, &#39;ACU&#39;, &#39;ACC&#39;, &#39;AGC&#39;, &#39;AGU&#39;, &#39;GAC&#39;, &#39;GAU&#39;, &#39;GUC&#39;, &#39;GUU&#39;, &#39;AAU&#39;, &#39;AUU&#39;, &#39;AAC&#39;, &#39;AUC&#39;, &#39;GCU&#39;, &#39;GCC&#39;))</code></pre>
 <pre><code>## [1] FALSE</code></pre>
+</div>
+<div id="testing-for-cn-circularity" class="section level1">
+<h1>Testing for cn-circularity</h1>
+<p>Testing for cn-circularity is analogous to testing for circularity expect for the fact, that the function has a different name.</p>
+<p>This example should come up false.</p>
+<pre class="r"><code>library(GCATR)
+code_check_if_circular(&#39;UGG GUG&#39;)</code></pre>
+<pre><code>## [1] FALSE</code></pre>
+<p>While this one should come up true.</p>
+<pre class="r"><code>library(GCATR)
+code_check_if_cn_circular(c(&#39;GGU&#39;,&#39;GGC&#39;,&#39;ACU&#39;,&#39;ACC&#39;,&#39;AGC&#39;,&#39;AGU&#39;,&#39;GAC&#39;,&#39;GAU&#39;,&#39;GUC&#39;,&#39;GUU&#39;,&#39;AAU&#39;,&#39;AUU&#39;,&#39;AAC&#39;,&#39;AUC&#39;,&#39;GCU&#39;,&#39;GCC&#39;))</code></pre>
+<pre><code>## [1] TRUE</code></pre>
 </div>
 
 

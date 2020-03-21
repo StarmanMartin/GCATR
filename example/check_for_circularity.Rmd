@@ -81,4 +81,20 @@ code_check_if_k_circular(3,'ACG GUA CGU CGG UAC')
 library(GCATR)
 code_check_if_k_circular(4,c('GGU', 'GGC', 'ACU', 'ACC', 'AGC', 'AGU', 'GAC', 'GAU', 'GUC', 'GUU', 'AAU', 'AUU', 'AAC', 'AUC', 'GCU', 'GCC'))
 ```
- 
+# Testing for cn-circularity
+
+Testing for cn-circularity is analogous to testing for circularity expect for the fact, that the function has a different name.
+
+This example should come up false.
+
+```{r}
+library(GCATR)
+code_check_if_circular('UGG GUG')
+```
+
+While this one should come up true.
+
+```{r}
+library(GCATR)
+code_check_if_cn_circular(c('GGU','GGC','ACU','ACC','AGC','AGU','GAC','GAU','GUC','GUU','AAU','AUU','AAC','AUC','GCU','GCC'))
+```
