@@ -1,0 +1,84 @@
+---
+title: "Testing for circularity"
+output:
+  html_document:
+    df_print: paged
+  pdf_document: default
+---
+
+# Prerequisites
+
+To use the package that allows testing circularity you first have to install it as shown below.
+To run the code in the box below you can just press the green play button in the left top corner of the code box.
+You might be asked in the console below this window to update the included packages. Afterwards it might take a while to install all 3 packages.
+
+```{r}
+install.packages("Rcpp", repos = "https://packages.othr.de/cran/" )
+install.packages("devtools", repos = "https://packages.othr.de/cran/")
+devtools::install_github("StarmanMartin/GCATR")
+```
+
+
+# Testing for maximum circularity
+Now that you have installed both packages you can use the GCATR package. 
+
+To test for maximum circularity you might just execute the following code snippet.
+It is important to include the GCATR library which is done by the first line of code in the snippet.
+You should be shown FALSE when executing this code snippet as the provided code is not maximum circular.
+
+```{r}
+library(GCATR)
+code_check_if_circular('UGG GUG')
+```
+There is three options to provide the string that represents the code you are trying to test.
+
+Option 1 is providing the string with a specific tuple length like this:
+```{r}
+library(Rcpp)
+library(GCATR)
+code_check_if_circular('UGGGUG', 3)
+```
+
+Option 2 is providing the string split in tuples by spaces like so:
+```{r}
+library(Rcpp)
+library(GCATR)
+code_check_if_circular('UGG GUG')
+```
+
+The last option is to provide each tuple separate in a vector as so:
+This last example should come up TRUE, as the provided code is ciruclar.
+
+```{r}
+library(Rcpp)
+library(GCATR)
+code_check_if_circular(c('GGU','GGC','ACU','ACC','AGC','AGU','GAC','GAU','GUC','GUU','AAU','AUU','AAC','AUC','GCU','GCC'))
+```
+# Testing for k-circularity
+
+Testing for k-cicurlarity works analogous to testing for maximum circularity
+The main differences are that the function has a different name and that you have to provide the value for k.
+The way the string is provided is identical to the maximum circularity function.
+
+k = 1, should come up FALSE
+```{r}
+library(GCATR)
+code_check_if_k_circular(1,'UGGGUG', 3)
+```
+k = 2, should come up TRUE
+```{r}
+library(GCATR)
+code_check_if_k_circular(2,'ACGGUACGUCGGUAC',3)
+```
+k = 3, should come up false
+```{r}
+library(GCATR)
+code_check_if_k_circular(3,'ACG GUA CGU CGG UAC')
+```
+
+ k = 4, should come up true
+```{r}
+library(GCATR)
+code_check_if_k_circular(4,c('GGU', 'GGC', 'ACU', 'ACC', 'AGC', 'AGU', 'GAC', 'GAU', 'GUC', 'GUU', 'AAU', 'AUU', 'AAC', 'AUC', 'GCU', 'GCC'))
+```
+ 
