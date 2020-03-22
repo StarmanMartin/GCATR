@@ -17,18 +17,15 @@ install.packages("Rcpp", repos = "https://packages.othr.de/cran/" )
 install.packages("devtools", repos = "https://packages.othr.de/cran/")
 devtools::install_github("StarmanMartin/GCATR")
 ```
-
-
-# Testing for maximum circularity
+# Testing for self-complementarity {#self-complementary}
 Now that you have installed both packages you can use the GCATR package. 
 
-To test for maximum circularity you might just execute the following code snippet.
-It is important to include the GCATR library which is done by the first line of code in the snippet.
-You should be shown FALSE when executing this code snippet as the provided code is not maximum circular.
-
+To execute the following code snippet you just have to press the little green arrow on the right side of the code box.
+You should be shown FALSE when executing the code snippet as the provided code is not self-complementary.
 ```{r}
+library(Rcpp)
 library(GCATR)
-code_check_if_circular('UGG GUG')
+code_check_if_self_complementary('UGG GUG')
 ```
 There is three options to provide the string that represents the code you are trying to test.
 
@@ -36,14 +33,14 @@ Option 1 is providing the string with a specific tuple length like this:
 ```{r}
 library(Rcpp)
 library(GCATR)
-code_check_if_circular('UGGGUG', 3)
+code_check_if_self_complementary('UGGGUG', 3)
 ```
 
 Option 2 is providing the string split in tuples by spaces like so:
 ```{r}
 library(Rcpp)
 library(GCATR)
-code_check_if_circular('UGG GUG')
+code_check_if_self_complementary('UGG GUG')
 ```
 
 The last option is to provide each tuple separate in a vector as so:
@@ -52,49 +49,86 @@ This last example should come up TRUE, as the provided code is ciruclar.
 ```{r}
 library(Rcpp)
 library(GCATR)
-code_check_if_circular(c('GGU','GGC','ACU','ACC','AGC','AGU','GAC','GAU','GUC','GUU','AAU','AUU','AAC','AUC','GCU','GCC'))
+code_check_if_self_complementary(c('UGG', 'GUG', 'GAG'))
+```
+
+# Testing for maximum circularity
+
+To test for maximum circularity you might just execute the following code snippet.
+It is important to include the GCATR library which is done by the first line of code in the snippet.
+
+Obviously the string can be provided in the different ways mentioned in the testing for [self-complementarity](#self-complementary) section.
+
+You should be shown FALSE when executing this code snippet as the provided code is not maximum circular.
+
+```{r}
+library(Rcpp)
+library(GCATR)
+code_check_if_circular('UGG GUG')
 ```
 # Testing for k-circularity
 
 Testing for k-cicurlarity works analogous to testing for maximum circularity
 The main differences are that the function has a different name and that you have to provide the value for k.
-The way the string is provided is identical to the maximum circularity function.
+Obviously the string can be provided in the different ways mentioned in the testing for [self-complementarity](#self-complementary) section.
 
 k = 1, should come up FALSE
 ```{r}
+library(Rcpp)
 library(GCATR)
 code_check_if_k_circular(1,'UGGGUG', 3)
 ```
 k = 2, should come up TRUE
 ```{r}
+library(Rcpp)
 library(GCATR)
 code_check_if_k_circular(2,'ACGGUACGUCGGUAC',3)
 ```
-k = 3, should come up false
+k = 3, should come up FALSE
 ```{r}
+library(Rcpp)
 library(GCATR)
 code_check_if_k_circular(3,'ACG GUA CGU CGG UAC')
 ```
 
- k = 4, should come up true
+ k = 4, should come up TRUE
 ```{r}
+library(Rcpp)
 library(GCATR)
 code_check_if_k_circular(4,c('GGU', 'GGC', 'ACU', 'ACC', 'AGC', 'AGU', 'GAC', 'GAU', 'GUC', 'GUU', 'AAU', 'AUU', 'AAC', 'AUC', 'GCU', 'GCC'))
 ```
 # Testing for cn-circularity
 
 Testing for cn-circularity is analogous to testing for circularity expect for the fact, that the function has a different name.
+Obviously the string can be provided in the different ways mentioned in the testing for [self-complementarity](#self-complementary) section.
 
-This example should come up false.
+This example should come up FALSE
 
 ```{r}
+library(Rcpp)
 library(GCATR)
-code_check_if_circular('UGG GUG')
+code_check_if_cn_circular('UGG GUG')
 ```
 
-While this one should come up true.
+While this one should come up TRUE
 
 ```{r}
+library(Rcpp)
 library(GCATR)
 code_check_if_cn_circular(c('GGU','GGC','ACU','ACC','AGC','AGU','GAC','GAU','GUC','GUU','AAU','AUU','AAC','AUC','GCU','GCC'))
 ```
+
+# Testing for comma-freeness
+
+Testing for comma-freeness also works analogous to the other function calls.
+Just execute the following code snippet to try it out.
+Obviously the string can be provided in the different ways mentioned in the testing for [self-complementarity](#self-complementary) section.
+
+The example should come up TRUE.
+```{r}
+library(Rcpp)
+library(GCATR)
+code_check_if_comma_free('GGU GGC ACU ACC AGC AGU GAC GAU GUC GUU AAU AUU AAC AUC GCU GCC')
+```
+
+
