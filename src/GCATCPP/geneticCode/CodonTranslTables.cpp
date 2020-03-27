@@ -173,11 +173,11 @@ bool CodonTranslTables::read_and_add_new_transl_table(const std::string &filenam
                 newDeviationTable.push_back(elementTemp);
             }
         } else {
-            this->add_error_msg(filename + " Could not open file.");
+            this->add_error_msg(filename + ". Could not open file.");
             return false;
         }
     } catch (const std::string &w) {
-        this->add_error_msg(w + " Could not open file.");
+        this->add_error_msg(w + ". Could not open file.");
         return false;
     }
 
@@ -215,7 +215,7 @@ bool CodonTranslTables::add_new_transl_table(std::string translName, std::vector
     }
 
     if(translCounter == 0) {
-        this->add_error_msg("The list or file not is correctly formatted).");
+        this->add_error_msg("The list or file is  not correctly formatted.");
         return false;
     }
 
