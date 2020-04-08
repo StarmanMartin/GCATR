@@ -28,11 +28,11 @@
 #define EMPTY_SEQUNECE "#"
 
 
-Code::Code(std::string sequence, unsigned int word_length) : AbstractCode(sequence, word_length){}
+Code::Code(std::string sequence, unsigned int word_length) : AbstractCode(sequence, word_length) {}
 
-Code::Code(const std::vector<std::string> &code_vec) : AbstractCode(code_vec){}
+Code::Code(const std::vector<std::string>& code_vec) : AbstractCode(code_vec) {}
 
-Code::Code(const Code &agc) : AbstractCode(agc){}
+Code::Code(const Code& agc) : AbstractCode(agc) {}
 
 bool Code::test_code() {
     if (this->is_tested || !AbstractCode::test_code()) {
@@ -78,7 +78,7 @@ void Code::shift_tuples(size_t shifts) { // NOLINT
     this->run_modification(tester);
 }
 
-seq::Seq_Result Code::find_code_in_sequence(const std::string &seq, int &frame) {
+seq::Seq_Result Code::find_code_in_sequence(const std::string& seq, int& frame) {
     int actualFrame = frame % seq.length();
     this->test_code();
     std::string firstPart = seq.substr(actualFrame, seq.length() - actualFrame);
@@ -88,12 +88,12 @@ seq::Seq_Result Code::find_code_in_sequence(const std::string &seq, int &frame) 
     std::stringstream rest;
     std::stringstream parts;
     unsigned int current_match_length = 0;
-    for (int i = 0 ; i <= copyInFrameShift.length(); i += this->word_length[0]) {
+    for (int i = 0; i < copyInFrameShift.length(); i += this->word_length[0]) {
         bool found = false;
         std::string seq_word = copyInFrameShift.substr(static_cast<unsigned long>(i),
-                                          static_cast<unsigned long>(this->word_length[0]));
+            static_cast<unsigned long>(this->word_length[0]));
 
-        for (const std::string &word : this->code_vec) {
+        for (const std::string& word : this->code_vec) {
             if (seq_word == word) {
                 result.words.emplace_back(seq_word);
                 result.idx_list.emplace_back(i);
@@ -104,9 +104,9 @@ seq::Seq_Result Code::find_code_in_sequence(const std::string &seq, int &frame) 
         }
 
         parts.seekg(0, std::ios::end);
-        auto size = (int) parts.tellg();
+        auto size = (int)parts.tellg();
 
-        if((!found && current_match_length > 0) || (found && current_match_length == this->word_length[0])) {
+        if ((!found && current_match_length > 0) || (found && current_match_length == this->word_length[0])) {
             result.parts.emplace_back(parts.str());
             parts.clear();//clear any bits set
             parts.str(std::string());
@@ -120,6 +120,10 @@ seq::Seq_Result Code::find_code_in_sequence(const std::string &seq, int &frame) 
             result.total_match_in_percent += current_match_length;
             current_match_length = 0;
         }
+
+        if (i == (copyInFrameShift.length() - this->word_length[0])) {
+            result.longest_match = std::max(current_match_length, result.longest_match);
+}           result.total_match_in_percent += current_match_length;
     }
 
     result.parts.emplace_back(parts.str());
