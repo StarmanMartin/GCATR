@@ -78,10 +78,10 @@ void Code::shift_tuples(size_t shifts) { // NOLINT
     this->run_modification(tester);
 }
 
-seq::Seq_Result Code::find_code_in_sequence(const std::string &seq, int frame) {
+seq::Seq_Result Code::find_code_in_sequence(const std::string &seq, int &frame) {
     frame = frame % seq.length();
     this->test_code();
-    std::string firstPart = seq.substr(frame, seq.length - frame);
+    std::string firstPart = seq.substr(frame, seq.length() - frame);
     std::string secondPart = seq.substr(0, frame);
     std::string copyInFrameShift = firstPart.append(secondPart);
     seq::Seq_Result result = seq::Seq_Result(copyInFrameShift);

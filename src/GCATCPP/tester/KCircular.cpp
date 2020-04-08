@@ -8,7 +8,11 @@
 
 
 bool KCircular::test(AbstractCode *code, int k) {
-    return miner::kCircularityMiner::mine_k_value(code) == k;
+    int kVal = miner::kCircularityMiner::mine_k_value(code);
+    if(kVal <= -1) {
+        return true;
+    }
+    return kVal >= k;
 }
 
 bool KCircular::test(AbstractCode *code) {
