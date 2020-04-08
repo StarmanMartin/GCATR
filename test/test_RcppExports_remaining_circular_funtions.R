@@ -11,7 +11,7 @@ library(GCATR)
 
 test_that('code is not contained in sequence', {
   seq <- "DACGTCGCGACGTACGACGTCGTACTCGATGCAAGAC"
-  res <- find_and_analysis_code_in_sequence(seq, "SADSDS", tuple_length=3, 1)
+  res <- find_and_analysis_code_in_sequence(seq, "SADSDS", tuple_length=3, 2)
   print(res)
   expect_length(res$word, 0)
   expect_length(res$idx_list, 0)
