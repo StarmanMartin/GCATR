@@ -12,7 +12,7 @@ bool KCircular::test(AbstractCode *code, int k) {
     if(kVal <= -1) {
         return true;
     }
-    return kVal <= k;
+    return kVal >= k;
 }
 
 bool KCircular::test(AbstractCode *code) {

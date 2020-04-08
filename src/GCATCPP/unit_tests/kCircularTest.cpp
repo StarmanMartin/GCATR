@@ -70,13 +70,15 @@ TEST(KCircular, testerTests) {
     {
         std::string code = "ACGC GCTC TCAC";
         auto c = CodeFactory::factor(code);
+        EXPECT_TRUE(c->is_k_circular(1));
         EXPECT_TRUE(c->is_k_circular(2));
+        EXPECT_FALSE(c->is_k_circular(3));
     }
     {
         std::string code = "ACGC GCTC TCAC CGCT";
         auto c = CodeFactory::factor(code);
         EXPECT_TRUE(c->is_k_circular(0));
-        EXPECT_TRUE(c->is_k_circular(1));
+        EXPECT_FALSE(c->is_k_circular(1));
     }
 
 }
