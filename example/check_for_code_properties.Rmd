@@ -15,7 +15,7 @@ You might be asked in the console below this window to update the included packa
 ```{r}
 install.packages("Rcpp", repos = "https://packages.othr.de/cran/" )
 install.packages("devtools", repos = "https://packages.othr.de/cran/")
-devtools::install_github("StarmanMartin/GCATR")
+devtools::install_github("StarmanMartin/GCATR", ref = "Testing")
 ```
 # Testing for self-complementarity {#self-complementary}
 Now that you have installed both packages you can use the GCATR package. 

@@ -82,13 +82,13 @@ seq::Seq_Result Code::find_code_in_sequence(const std::string &seq, int &frame) 
     int actualFrame = frame % seq.length();
     this->test_code();
     std::string firstPart = seq.substr(actualFrame, seq.length() - actualFrame);
-    std::string secondPart = seq.substr(0, frame);
+    std::string secondPart = seq.substr(0, actualFrame);
     std::string copyInFrameShift = firstPart.append(secondPart);
     seq::Seq_Result result = seq::Seq_Result(copyInFrameShift);
     std::stringstream rest;
     std::stringstream parts;
     unsigned int current_match_length = 0;
-    for (int i = 0 ; i < copyInFrameShift.length(); i += this->word_length[0]) {
+    for (int i = 0 ; i <= copyInFrameShift.length(); i += this->word_length[0]) {
         bool found = false;
         std::string seq_word = copyInFrameShift.substr(static_cast<unsigned long>(i),
                                           static_cast<unsigned long>(this->word_length[0]));
