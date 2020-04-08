@@ -919,8 +919,8 @@ get_rna_bases <- function() {
 #' res <- find_and_analysis_code_in_sequence(seq, "ACG TCG")
 #'
 #' @export
-find_and_analysis_code_in_sequence <- function(seq, code, tuple_length = -1L, frame = 0L) {
-    .Call('_GCATR_find_and_analysis_code_in_sequence', PACKAGE = 'GCATR', seq, code, tuple_length, frame)
+find_and_analysis_code_in_sequence <- function(seq, code, tuple_length = -1L) {
+    .Call('_GCATR_find_and_analysis_code_in_sequence', PACKAGE = 'GCATR', seq, code, tuple_length)
 }
 
 #' This function generates a maximal circular code.

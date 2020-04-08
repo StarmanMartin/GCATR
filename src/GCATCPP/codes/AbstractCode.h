@@ -66,7 +66,7 @@ public:
     virtual void shift_tuples(size_t shifts=1) = 0; // NOLINT
     virtual void transform_tuples(const std::string& from_rule, const std::string& to_rule) = 0; // NOLINT
 
-    virtual seq::Seq_Result find_code_in_sequence(const std::string &, int &frame) = 0;
+    virtual seq::Seq_Result find_code_in_sequence(const std::string &, int frame) = 0;
 
     const Alphabet& get_alphabet() const;
     std::string get_alphabet_as_string() const;

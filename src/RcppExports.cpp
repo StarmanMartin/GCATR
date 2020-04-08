@@ -484,16 +484,15 @@ BEGIN_RCPP
 END_RCPP
 }
 // find_and_analysis_code_in_sequence
-Rcpp::List find_and_analysis_code_in_sequence(std::string seq, StringVector code, int tuple_length, int frame);
-RcppExport SEXP _GCATR_find_and_analysis_code_in_sequence(SEXP seqSEXP, SEXP codeSEXP, SEXP tuple_lengthSEXP, SEXP frameSEXP) {
+Rcpp::List find_and_analysis_code_in_sequence(std::string seq, StringVector code, int tuple_length);
+RcppExport SEXP _GCATR_find_and_analysis_code_in_sequence(SEXP seqSEXP, SEXP codeSEXP, SEXP tuple_lengthSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< std::string >::type seq(seqSEXP);
     Rcpp::traits::input_parameter< StringVector >::type code(codeSEXP);
     Rcpp::traits::input_parameter< int >::type tuple_length(tuple_lengthSEXP);
-    Rcpp::traits::input_parameter< int >::type frame(frameSEXP);
-    rcpp_result_gen = Rcpp::wrap(find_and_analysis_code_in_sequence(seq, code, tuple_length, frame));
+    rcpp_result_gen = Rcpp::wrap(find_and_analysis_code_in_sequence(seq, code, tuple_length));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -591,7 +590,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_GCATR_code_get_all_cycles_as_vector", (DL_FUNC) &_GCATR_code_get_all_cycles_as_vector, 2},
     {"_GCATR_get_dna_bases", (DL_FUNC) &_GCATR_get_dna_bases, 0},
     {"_GCATR_get_rna_bases", (DL_FUNC) &_GCATR_get_rna_bases, 0},
-    {"_GCATR_find_and_analysis_code_in_sequence", (DL_FUNC) &_GCATR_find_and_analysis_code_in_sequence, 4},
+    {"_GCATR_find_and_analysis_code_in_sequence", (DL_FUNC) &_GCATR_find_and_analysis_code_in_sequence, 3},
     {"_GCATR_generate_code_by_min_value", (DL_FUNC) &_GCATR_generate_code_by_min_value, 2},
     {"_GCATR_shift_tuples", (DL_FUNC) &_GCATR_shift_tuples, 3},
     {"_GCATR_code_transform_tuples", (DL_FUNC) &_GCATR_code_transform_tuples, 4},
