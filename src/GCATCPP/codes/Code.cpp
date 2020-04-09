@@ -119,19 +119,16 @@ seq::Seq_Result Code::find_code_in_sequence(const std::string& seq, int& frame) 
             result.longest_match = std::max(current_match_length, result.longest_match);
             result.total_match_in_percent += current_match_length;
             current_match_length = 0;
-            std::cout << "current match length set to zero";
         }
 
         if (i == (copyInFrameShift.length() - this->word_length[0]) && found) {
             result.longest_match = std::max(current_match_length, result.longest_match);
-}           result.total_match_in_percent += current_match_length;
-            std::cout << "last found word";
-
+            result.total_match_in_percent += current_match_length;
+        }
     }
 
     result.parts.emplace_back(parts.str());
     result.rest = rest.str();
-    std::cout << "total match in percent" << " " << result.total_match_in_percent;
     result.total_match_in_percent = 100.0 * (result.total_match_in_percent / (double) seq.length());
 
     return result;
