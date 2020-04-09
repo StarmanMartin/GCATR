@@ -123,7 +123,6 @@ seq::Seq_Result Code::find_code_in_sequence(const std::string& seq, int& frame) 
 
         if (i == (copyInFrameShift.length() - this->word_length[0]) && found) {
             result.longest_match = std::max(current_match_length, result.longest_match);
-            result.total_match_in_percent += current_match_length;
         }
     }
 
