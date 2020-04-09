@@ -117,7 +117,6 @@ seq::Seq_Result Code::find_code_in_sequence(const std::string& seq, int& frame) 
         if (!found) {
             rest << seq_word;
             result.longest_match = std::max(current_match_length, result.longest_match);
-            result.total_match_in_percent += current_match_length;
             current_match_length = 0;
         }
 
@@ -128,7 +127,7 @@ seq::Seq_Result Code::find_code_in_sequence(const std::string& seq, int& frame) 
 
     result.parts.emplace_back(parts.str());
     result.rest = rest.str();
-    result.total_match_in_percent = 100.0 * (result.total_match_in_percent / (double) seq.length());
+    result.total_match_in_percent = 100.0 * ((result.words.size() * this->word_length[0]) / (double) copyInFrameShift.length());
 
     return result;
 
