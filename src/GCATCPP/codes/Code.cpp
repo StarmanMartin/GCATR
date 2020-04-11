@@ -37,7 +37,7 @@ Code::Code(const Code& agc) : AbstractCode(agc) {}
 
 int Code::calculateModulo(int frame, int length) {
     if (frame < 0) {
-        calculateModulo(frame + length, length);
+        return calculateModulo(frame + length, length);
     }
     return (frame % length);
 

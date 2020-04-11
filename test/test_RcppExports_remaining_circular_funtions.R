@@ -93,32 +93,66 @@ test_that('code is contained in sequence', {
 # Try testing with frameshift
 
 test_that('code is contained in sequence in frameshift 1', {
-  seq <- "3134551233"
-  res <- find_and_analysis_code_in_sequence(seq,"1345", tuple_length = 4, 1)
-  expect_equal(res$word,c("1345"))
-  expect_equal(res$idx_list, c(1))
-  expect_equal(res$rest,"512333")
-  expect_equal(res$parts, c("","1345","512333"))
+  seq <- "513455123345633"
+  res <- find_and_analysis_code_in_sequence(seq,"13453456", tuple_length = 4, 1)
+  expect_equal(res$word,c("1345", "3456"))
+  expect_equal(res$idx_list, c(1,9))
+  expect_equal(res$rest,"5123335")
+  expect_equal(res$parts, c("","1345","5123","3456", "335"))
   expect_equal(res$longest_match,4)
-  expect_equal(res$total_match_in_percent,40)
+  expect_gt(res$total_match_in_percent,53)
+  expect_lt(res$total_match_in_percent,53.5)
 })
 
-test_that('code is contained in sequence in frameshift 1') {
-  seq <- "3134551233"
-  res <- find_and_analysis_code_in_sequence(seq,"1345", tuple_length = 4, 1)
-  print(res)
-}
+test_that('code is contained in sequence in frameshift 2', {
+  seq <- "331345512339"
+  res <- find_and_analysis_code_in_sequence(seq,"1345", tuple_length = 4, 2)
+  expect_equal(res$word,c("1345"))
+  expect_equal(res$idx_list, c(2))
+  expect_equal(res$rest,"51233933")
+  expect_equal(res$parts, c("","1345","51233933"))
+  expect_equal(res$longest_match,4)
+  expect_gt(res$total_match_in_percent,33)
+  expect_lt(res$total_match_in_percent,33.5)
+})
 
-test_that('code is not contained in sequence in frameshift 1') {
+test_that('code is not contained in sequence in frameshift 1', { 
   seq <- "1345512334"
   res <- find_and_analysis_code_in_sequence(seq,"1345", tuple_length = 4, 1)
-}
+  expect_length(res$word,0)
+  expect_length(res$idx_list, 0)
+  expect_equal(res$rest,"3455123341")
+  expect_equal(res$parts, c("3455123341"))
+  expect_equal(res$longest_match,0)
+  expect_equal(res$total_match_in_percent,0)
+})
 
-test_that('code is contained in sequence in frameshift 2') {
-  seq <- "3413455123"
+test_that('code is not contained in sequence in frameshift 2', {
+  seq <- "3134551235"
   res <- find_and_analysis_code_in_sequence(seq,"1345", tuple_length = 4, 2)
-  print(res)
-}
+  expect_length(res$word,0)
+  expect_length(res$idx_list, 0)
+  expect_equal(res$rest,"3455123531")
+  expect_equal(res$parts, c("3455123531"))
+  expect_equal(res$longest_match,0)
+  expect_equal(res$total_match_in_percent,0)
+})
+
+# try negative frameshift equal to frameshift 2
+# -22 % 12 = 
+
+test_that('code is contained in sequence in frameshift 2', {
+  seq <- "331345512339"
+  res <- find_and_analysis_code_in_sequence(seq,"1345", tuple_length = 4, -10)
+  expect_equal(res$word,c("1345"))
+  expect_equal(res$idx_list, c(2))
+  expect_equal(res$rest,"51233933")
+  expect_equal(res$parts, c("","1345","51233933"))
+  expect_equal(res$longest_match,4)
+  expect_gt(res$total_match_in_percent,33)
+  expect_lt(res$total_match_in_percent,33.5)
+})
+
 
 # Generate code by min value
 
