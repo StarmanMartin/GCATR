@@ -10,7 +10,7 @@ library(GCATR)
 
 test_that('code is not contained in sequence', {
   seq <- "DACGTCGCGACGTACGACGTCGTACTCGATGCAAGAC"
-  res <- find_and_analysis_code_in_sequence(seq, "SADSDS", tuple_length=3, -1)
+  res <- find_and_analysis_code_in_sequence(seq, "SADSDS", tuple_length=3, 0)
   print(res)
   expect_length(res$word, 0)
   expect_length(res$idx_list, 0)
@@ -88,6 +88,37 @@ test_that('code is contained in sequence', {
   expect_equal(res$longest_match,3)
   expect_equal(res$total_match_in_percent,25)
 })
+
+
+# Try testing with frameshift
+
+test_that('code is contained in sequence in frameshift 1', {
+  seq <- "3134551233"
+  res <- find_and_analysis_code_in_sequence(seq,"1345", tuple_length = 4, 1)
+  expect_equal(res$word,c("1345"))
+  expect_equal(res$idx_list, c(1))
+  expect_equal(res$rest,"512333")
+  expect_equal(res$parts, c("","1345","512333"))
+  expect_equal(res$longest_match,4)
+  expect_equal(res$total_match_in_percent,40)
+})
+
+test_that('code is contained in sequence in frameshift 1') {
+  seq <- "3134551233"
+  res <- find_and_analysis_code_in_sequence(seq,"1345", tuple_length = 4, 1)
+  print(res)
+}
+
+test_that('code is not contained in sequence in frameshift 1') {
+  seq <- "1345512334"
+  res <- find_and_analysis_code_in_sequence(seq,"1345", tuple_length = 4, 1)
+}
+
+test_that('code is contained in sequence in frameshift 2') {
+  seq <- "3413455123"
+  res <- find_and_analysis_code_in_sequence(seq,"1345", tuple_length = 4, 2)
+  print(res)
+}
 
 # Generate code by min value
 

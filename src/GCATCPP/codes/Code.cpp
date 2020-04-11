@@ -105,7 +105,7 @@ seq::Seq_Result Code::find_code_in_sequence(const std::string& seq, int& frame) 
         for (const std::string& word : this->code_vec) {
             if (seq_word == word) {
                 result.words.emplace_back(seq_word);
-                result.idx_list.emplace_back(i);
+                result.idx_list.emplace_back(i + actualFrame);
                 current_match_length += this->word_length[0];
                 found = true;
                 break;
