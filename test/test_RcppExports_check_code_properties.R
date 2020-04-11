@@ -70,6 +70,10 @@ test_that('is circular, string vector', {
 #in every test set place one test with different alphabet
 # A -> 1, C-> 2, G-> 3, U ->4
 
+test_that('error is thrown when negative k value is used',{
+  expect_error(code_check_if_k_circular(-5,'UGGGUG', 3))
+})
+
 test_that('is non circular, string with no delimiter, tuple length 3', {
   expect_false(code_check_if_k_circular(1,'UGGGUG', 3))
   expect_false(code_check_if_k_circular(2,'433243332434',3))

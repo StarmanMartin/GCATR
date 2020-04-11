@@ -34,6 +34,15 @@ Code::Code(const std::vector<std::string>& code_vec) : AbstractCode(code_vec) {}
 
 Code::Code(const Code& agc) : AbstractCode(agc) {}
 
+
+int Code::calculateModulo(int frame, int length) {
+    if (frame < 0) {
+        calculateModulo(frame + length, length);
+    }
+    return (frame % length);
+
+}
+
 bool Code::test_code() {
     if (this->is_tested || !AbstractCode::test_code()) {
         return this->is_ok;
@@ -79,7 +88,7 @@ void Code::shift_tuples(size_t shifts) { // NOLINT
 }
 
 seq::Seq_Result Code::find_code_in_sequence(const std::string& seq, int& frame) {
-    int actualFrame = frame % seq.length();
+    int actualFrame = calculateModulo(frame, seq.length());
     this->test_code();
     std::string firstPart = seq.substr(actualFrame, seq.length() - actualFrame);
     std::string secondPart = seq.substr(0, actualFrame);

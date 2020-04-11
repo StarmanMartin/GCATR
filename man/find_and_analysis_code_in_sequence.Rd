@@ -4,7 +4,7 @@
 \alias{find_and_analysis_code_in_sequence}
 \title{Analysis a sequence based on a generic code.}
 \usage{
-find_and_analysis_code_in_sequence(seq, code, tuple_length = -1L)
+find_and_analysis_code_in_sequence(seq, code, tuple_length = -1L, frame = 0L)
 }
 \arguments{
 \item{code}{is either a string vector or a string. It can either be a code or a sequence.}

@@ -26,6 +26,7 @@ public:
     void transform_tuples(const std::string& from_rule, const std::string& to_rule) override; // NOLINT
 
 protected:
+    int calculateModulo(int frame);
 };
 
 #endif //GCATCPP_CODE_H

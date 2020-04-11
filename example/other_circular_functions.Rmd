@@ -1,0 +1,56 @@
+---
+title: "R Notebook"
+output:
+  html_document:
+    df_print: paged
+---
+
+# Prerequisites
+
+To use the package that allows testing circularity you first have to install it as shown below.
+To run the code in the box below you can just press the green play button in the left top corner of the code box.
+You might be asked in the console below this window to update the included packages. Afterwards it might take a while to install all 3 packages.
+
+```{r, eval = FALSE}
+install.packages("Rcpp", repos = "https://packages.othr.de/cran/" )
+install.packages("devtools", repos = "https://packages.othr.de/cran/")
+devtools::install_github("StarmanMartin/GCATR", ref = "Testing")
+```
+
+# Analyse whether given code is present in sequence
+
+Now that you have installed all prerequisistes you can try out the GCATR package. 
+
+You should define the sequence seq and the code for which the sequence is checked
+If you define the string as in the following example, you have to provide the tuple length. On top of that you can provide the frame in which the sequence is checked. If you provide no value for the frame, no frameshift will be done.
+
+To execute the following code snippet you just have to press the little green arrow on the right side of the code box.
+
+```{r, warning = FALSE, message = FALSE, collapse = TRUE}
+library(Rcpp)
+library(GCATR)
+seq <- "ACGTCGCGACGTACGACGTCG"
+code = "ACGTCG"
+res <- find_and_analysis_code_in_sequence(seq, "ACGTCG", tuple_length=3)
+print(res)
+```
+
+There is two other ways to provide the input code.
+
+```{r}
+code = "ACG TCG"
+code = c("ACG", "TCG")
+```
+
+# Generate a circular code by min value
+This function allows you to generate a circular code by providing a tuple length and a input alphabet. It uses the first codon of each individual equivalence class.
+
+You can play around with the functionality with following code snippet.
+
+```{r, warning = FALSE, message = FALSE, collapse = TRUE}
+alphabet <- c("A","C","G","U")
+tuple_length <- 3
+min_code <- generate_code_by_min_value(alphabet, tuple_length)
+print(min_code)
+```
+
