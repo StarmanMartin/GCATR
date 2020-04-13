@@ -195,7 +195,7 @@ bool AbstractCode::is_translatable() {
     return false;
 }
 
-static int calculateModulo(int frame, int length) {
+int AbstractCode::calculateModulo(int frame, int length) {
     if (frame < 0) {
         return calculateModulo(frame + length, length);
     }
