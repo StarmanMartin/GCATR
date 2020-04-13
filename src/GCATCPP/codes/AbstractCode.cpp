@@ -213,6 +213,3 @@ std::vector<std::string> AbstractCode::get_nucleotide_tuples() {
 
     return std::vector<std::string>();
 }
-
-
-}
