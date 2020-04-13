@@ -259,14 +259,15 @@ test_that('tuples are shifted', {
 
 test_that('tuples are shifted', {
   shifted_code <- shift_tuples(2, c("CAG","GGA","UGA"))
-  expect_equal(shifted_code, c("AGC", "GAG", "GAU"))
+  expect_equal(shifted_code, c("GCA", "AGG", "AUG"))
 })
 
 # Code as string with tuple length, try negative shift
 
 test_that('tuples are shifted correctly', {
-  shifted_code <- shift_tuples(-3, "CAGGGAUGA", tuple_length = 3)
-  expect_equal(shifted_code, c("AGC", "GAG", "GAU"))
+  shifted_code <- shift_tuples(5, "CAGGGAUGA", tuple_length = 3)
+  print(shifted_code)
+  expect_equal(shifted_code, c("GCA", "AGG", "AUG"))
 })
 
 

@@ -195,6 +195,13 @@ bool AbstractCode::is_translatable() {
     return false;
 }
 
+static int calculateModulo(int frame, int length) {
+    if (frame < 0) {
+        return calculateModulo(frame + length, length);
+    }
+    return (frame % length);
+}
+
 std::vector<std::string> AbstractCode::get_tuples() {
     return this->code_vec;
 }
@@ -205,4 +212,7 @@ std::vector<std::string> AbstractCode::get_nucleotide_tuples() {
     }
 
     return std::vector<std::string>();
+}
+
+
 }

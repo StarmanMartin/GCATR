@@ -48,6 +48,8 @@ public:
 
     virtual bool test_code();
 
+
+
     std::vector<int> get_word_length() override;
 
     std::string as_string_sequence();
@@ -75,6 +77,8 @@ public:
 
     std::vector<std::string> get_tuples() override;
     std::vector<std::string> get_nucleotide_tuples() override;
+
+    static int calculateModulo(int frame, int length);
 
 protected:
     std::vector<std::string> code_vec;

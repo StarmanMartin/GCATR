@@ -24,9 +24,6 @@ public:
     seq::Seq_Result find_code_in_sequence(const std::string &seq, int &frame) override;
     void shift_tuples(size_t shifts=1) override; // NOLINT
     void transform_tuples(const std::string& from_rule, const std::string& to_rule) override; // NOLINT
-
-protected:
-    int calculateModulo(int frame, int length);
 };
 
 #endif //GCATCPP_CODE_H

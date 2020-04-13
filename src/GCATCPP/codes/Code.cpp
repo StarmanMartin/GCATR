@@ -35,14 +35,6 @@ Code::Code(const std::vector<std::string>& code_vec) : AbstractCode(code_vec) {}
 Code::Code(const Code& agc) : AbstractCode(agc) {}
 
 
-int Code::calculateModulo(int frame, int length) {
-    if (frame < 0) {
-        return calculateModulo(frame + length, length);
-    }
-    return (frame % length);
-
-}
-
 bool Code::test_code() {
     if (this->is_tested || !AbstractCode::test_code()) {
         return this->is_ok;

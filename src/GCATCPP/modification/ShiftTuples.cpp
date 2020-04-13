@@ -7,8 +7,7 @@
 
 std::vector<std::string> ShiftTuples::modify(AbstractCode *code) {
     if(this->number < 0) {
-        this->add_error_msg("No negative shit or shift higher then word length possible");
-        return code->as_vector();
+        this->add_error_msg("No negative shit or shift higher than word length possible");
     }
 
     auto code_vec = code->as_vector();
@@ -21,7 +20,7 @@ std::vector<std::string> ShiftTuples::modify(AbstractCode *code) {
 
 std::string ShiftTuples::modify_word(std::string word) {
     if(this->number < 0) {
-        this->add_error_msg("No negative shit or shift higher then word length possible");
+        this->add_error_msg("No negative shit or shift higher than word length possible");
         return word;
     }
 
@@ -30,7 +29,7 @@ std::string ShiftTuples::modify_word(std::string word) {
 }
 
 std::string ShiftTuples::shift_tuple(std::string word, size_t shift_number) {
-    shift_number = shift_number % word.length();
+    shift_number = AbstractCode::calculateModulo(shift_number, word.length());;
     word = word.substr(shift_number, word.length()) + word.substr(0, shift_number);
 
     return word;
