@@ -262,13 +262,47 @@ test_that('tuples are shifted', {
   expect_equal(shifted_code, c("GCA", "AGG", "AUG"))
 })
 
-# Code as string with tuple length, try negative shift
+# Code as string with tuple length, try shift equivalent to 2
+# 5 % 3 = 2
 
 test_that('tuples are shifted correctly', {
   shifted_code <- shift_tuples(5, "CAGGGAUGA", tuple_length = 3)
-  print(shifted_code)
   expect_equal(shifted_code, c("GCA", "AGG", "AUG"))
 })
+
+# Code as string with tuple length, try negative shift equivalent to 1
+# -2 % 3 = 1 [(-2 + 3) % 3 = 1]
+
+test_that('tuples are shifted correctly', {
+  shifted_code <- shift_tuples(-2, "CAGGGAUGA", tuple_length = 3)
+  expect_equal(shifted_code, c("AGC", "GAG", "GAU"))
+})
+# Try with frame shift equal to tuple length
+
+test_that('tuples are shifted correctly', {
+  shifted_code <- shift_tuples(3, "CAGGGAUGA", tuple_length = 3)
+  expect_equal(shifted_code, c("CAG", "GGA", "UGA"))
+})
+
+# Try with negative tuple size or tuple size 0
+test_that('error is thrown', {
+  expect_error(shift_tuples(1, "CAGGGAUGA", tuple_length = 0))
+  expect_error(shift_tuples(1, "CAGGGAUGA", tuple_length = -2))
+  expect_error(shift_tuples(1, "CAGGGAUGA", tuple_length = 1))
+})
+
+
+# Test code transformation
+
+test_that('code is transformed correctly', {
+  expect_equal(code_transform_tuples("1234", "2345","133422",tuple_length = 3 ), c("244","533"))
+  # fails cause of incorrect order
+  expect_equal(code_transform_tuples("FHGJ", "KLMN","GGHFJG",tuple_length = 2 ), c("MM","LK", "NM"))
+  expect_equal(code_transform_tuples("k$.?", "1234", "k $ . $ ? . "),c("1","2", "3", "2", "4", "3", "1"))
+})
+
+
+
 
 
 
