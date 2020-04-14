@@ -23,11 +23,15 @@ test_that('is self-complementary, string split by " "', {
 })
 
 test_that('is non self-complementary, string vector', {
-  expect_false(code_check_if_self_complementary(c('UGG', 'GUG')))
+  expect_false(code_check_if_self_complementary(c('UGA', 'AUG')))
 })
 
 test_that('is self-complementary, string vector', {
   expect_true(code_check_if_self_complementary(c('CGG', 'ACG', 'CCG', 'CGU')))
+})
+
+test_that('empty code is not self complementary',{
+  expect_false(code_check_if_self_complementary(("")))
 })
 
 
@@ -63,6 +67,10 @@ test_that('is non circular, string vector', {
 
 test_that('is circular, string vector', {
   expect_true(code_check_if_circular(c('334','332','124','122','132','134','312','314','342','344','114','144','112','132','324','322')))
+})
+
+test_that("empty code is not circular", {
+  expect_false(code_check_if_circular(""))
 })
 
 # k- circularity
@@ -126,9 +134,17 @@ test_that('is circular,  string vector', {
   expect_true(code_check_if_k_circular(4,c('GGU', 'GGC', 'ACU', 'ACC', 'AGC', 'AGU', 'GAC', 'GAU', 'GUC', 'GUU', 'AAU', 'AUU', 'AAC', 'AUC', 'GCU', 'GCC')))
 })
 
+# 7. try empty input
+test_that("empty string is not ciruclar",{
+  expect_false(code_check_if_k_circular(1,c("")))
+  expect_false(code_check_if_k_circular(2,c("")))
+  expect_false(code_check_if_k_circular(3,c("")))
+  expect_false(code_check_if_k_circular(4,c("")))
+})
+
 # cn-circularity
 
-test_that('is non-circular, string with no delimiter, tuple length 3', {
+test_that('is non-cn-circular, string with no delimiter, tuple length 3', {
   expect_false(code_check_if_cn_circular('UGGGUG', 3))
 })
 
@@ -157,6 +173,11 @@ test_that('is cn-circular, string vector', {
   expect_true(code_check_if_cn_circular(c('GGU','GGC','ACU','ACC','AGC','AGU','GAC','GAU','GUC','GUU','AAU','AUU','AAC','AUC','GCU','GCC')))
 })
 
+test_that('empty code is not cn circular', {
+  expect_false(code_check_if_cn_circular(""))
+})
+
+
 # Comma-freeness
 
 test_that('is not comma free, string with no delimiter, tuple length 3', {
@@ -175,6 +196,10 @@ test_that('is comma free, string with split by " "', {
   expect_true(code_check_if_comma_free('GGU GGC ACU ACC AGC AGU GAC GAU GUC GUU AAU AUU AAC AUC GCU GCC'))
 })
 
+test_that('empty code is not comma-free', {
+  expect_false(code_check_if_comma_free(''))
+})
+
 # test with different alphabet
 # A -> 1, C-> 2, G->3, U-> 4
 
@@ -186,3 +211,6 @@ test_that('is comma free, string vector', {
   expect_true(code_check_if_comma_free(c('332','322')))
 })
 
+test_that('empty code is not comma free', {
+  expect_false(code_check_if_comma_free(""))
+})
