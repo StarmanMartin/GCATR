@@ -327,13 +327,30 @@ test_that('code is transformed correctly', {
   expect_equal(code_transform_tuples("k$.€", "1234", "k $ . $ € ."),c("1","2", "3", "2", "4", "3"))
   
   # How to check that error message is printed
+  # Could not find a way to figure out
   expect_error(code_transform_tuples("123", "3456", "12345"))
-  expect_error(code_transform_tuples("", ""),c(""))
+  expect_error(code_transform_tuples("", "", ""),c(""))
 })
 
 #code_named_transform_tuples
 
+# try identify transformation
+# Somehow not finding the Identity 
+test_that("identify does not transform code", {
+  expect_equal(code_named_transform_tuples("Id", c("ACG", "GAT")), c("ACG", "GAT"))
+  expect_equal(code_named_transform_tuples("Id", "ACG GAT"), c("ACG", "GAT"))
+  expect_equal(code_named_transform_tuples("Id", "ACGGAT", tuple_length = 3), c("ACG", "GAT"))
+})
 
+
+# A <-> C, G <-> T 
+test_that("complementary function transforms correctly", {
+  expect_equal(code_named_transform_tuples("KM", c("ATC", "GTC")), c("CGA", "TGA"))
+  expect_equal(code_named_transform_tuples("KM", "ATC GTC"), c("CGA", "TGA"))
+  expect_equal(code_named_transform_tuples("KM", "ATCGTC", 3), c("CGA", "TGA"))
+  
+  
+})
 
 
 
