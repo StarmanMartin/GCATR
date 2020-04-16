@@ -334,23 +334,118 @@ test_that('code is transformed correctly', {
 
 #code_named_transform_tuples
 
-# try identify transformation
-# Somehow not finding the Identity 
+# Test all of the eight self-complementarity preserving base permutations 
+
+# try identity transformation
 test_that("identify does not transform code", {
   expect_equal(code_named_transform_tuples("Id", c("ACG", "GAT")), c("ACG", "GAT"))
   expect_equal(code_named_transform_tuples("Id", "ACG GAT"), c("ACG", "GAT"))
   expect_equal(code_named_transform_tuples("Id", "ACGGAT", tuple_length = 3), c("ACG", "GAT"))
+  # try with rna bases instead
+  expect_equal(code_named_transform_tuples("Id", c("ACG", "GAU")), c("ACG", "GAU"))
+  expect_equal(code_named_transform_tuples("Id", "ACG GAU"), c("ACG", "GAU"))
+  expect_equal(code_named_transform_tuples("Id", "ACGGAU", tuple_length = 3), c("ACG", "GAU"))
 })
 
 
 # A <-> C, G <-> T 
+# KM
 test_that("complementary function transforms correctly", {
   expect_equal(code_named_transform_tuples("KM", c("ATC", "GTC")), c("CGA", "TGA"))
   expect_equal(code_named_transform_tuples("KM", "ATC GTC"), c("CGA", "TGA"))
   expect_equal(code_named_transform_tuples("KM", "ATCGTC", 3), c("CGA", "TGA"))
-  
+  # try with rna bases instead
+  expect_equal(code_named_transform_tuples("KM", c("AUC", "GUC")), c("CGA", "UGA"))
+  expect_equal(code_named_transform_tuples("KM", "AUC GUC"), c("CGA", "UGA"))
+  expect_equal(code_named_transform_tuples("KM", "AUCGUC", 3), c("CGA", "UGA"))
+})
+
+# A <-> T, C <-> G 
+#SW
+test_that("complementary function transforms correctly", {
+  expect_equal(code_named_transform_tuples("SW", c("ATC", "GTC")), c("TAG", "CAG"))
+  expect_equal(code_named_transform_tuples("SW", "ATC GTC"), c("TAG", "CAG"))
+  expect_equal(code_named_transform_tuples("SW", "ATCGTC", 3), c("TAG", "CAG"))
+  # try with RNA bases instead
+  expect_equal(code_named_transform_tuples("SW", c("AUC", "GUC")), c("UAG", "CAG"))
+  expect_equal(code_named_transform_tuples("SW", "AUC GUC"), c("UAG", "CAG"))
+  expect_equal(code_named_transform_tuples("SW", "AUCGUC", 3), c("UAG", "CAG"))
   
 })
+
+# A <-> G, T <-> C
+#YR
+test_that("YR transformation is done correctly", {
+  expect_equal(code_named_transform_tuples("YR", c("ATC", "GTC")), c("GCT", "ACT"))
+  expect_equal(code_named_transform_tuples("YR", "ATC GTC"), c("GCT", "ACT"))
+  expect_equal(code_named_transform_tuples("YR", "ATCGTC", 3), c("GCT", "ACT"))
+  # try with rna bases instead
+  expect_equal(code_named_transform_tuples("YR", c("AUC", "GUC")), c("GCU", "ACU"))
+  expect_equal(code_named_transform_tuples("YR", "AUC GUC"), c("GCU", "ACU"))
+  expect_equal(code_named_transform_tuples("YR", "AUCGUC", 3), c("GCU", "ACU"))
+})
+
+# A <-> T
+# AT
+test_that("AT transformation is done correctly", {
+  expect_equal(code_named_transform_tuples("AT", c("ATC", "GTC")), c("TAC", "GAC"))
+  expect_equal(code_named_transform_tuples("AT", "ATC GTC"), c("TAC", "GAC"))
+  expect_equal(code_named_transform_tuples("AT", "ATCGTC", 3), c("TAC", "GAC"))
+  # try with RNA bases instead 
+  expect_equal(code_named_transform_tuples("AT", c("AUC", "GUC")), c("UAC", "GAC"))
+  expect_equal(code_named_transform_tuples("AT", "AUC GUC"), c("UAC", "GAC"))
+  expect_equal(code_named_transform_tuples("AT", "AUCGUC", 3), c("UAC", "GAC"))
+})
+
+# C <-> G
+# CG
+test_that("CG transformation is done correctly", {
+  expect_equal(code_named_transform_tuples("CG", c("ATC", "GTC")), c("ATG", "CTG"))
+  expect_equal(code_named_transform_tuples("CG", "ATC GTC"), c("ATG", "CTG"))
+  expect_equal(code_named_transform_tuples("CG", "ATCGTC", 3), c("ATG", "CTG"))
+  # try with rna bases instead
+  expect_equal(code_named_transform_tuples("CG", c("AUC", "GUC")), c("AUG", "CUG"))
+  expect_equal(code_named_transform_tuples("CG", "AUC GUC"), c("AUG", "CUG"))
+  expect_equal(code_named_transform_tuples("CG", "AUCGUC", 3), c("AUG", "CUG"))
+})
+
+# A -> C, T -> G, C -> T, G -> A
+# ACTG
+test_that("ACUG transformation is done correctly", {
+  expect_equal(code_named_transform_tuples("ACTG", c("ATC", "GTC")), c("CGT", "AGT"))
+  expect_equal(code_named_transform_tuples("ACTG", "ATC GTC"), c("CGT", "AGT"))
+  expect_equal(code_named_transform_tuples("ACTG", "ATCGTC", 3), c("CGT", "AGT"))
+  # try with rna bases instead:
+  expect_equal(code_named_transform_tuples("ACTG", c("AUC", "GUC")), c("CGU", "AGU"))
+  expect_equal(code_named_transform_tuples("ACTG", "AUC GUC"), c("CGU", "AGU"))
+  expect_equal(code_named_transform_tuples("ACTG", "AUCGUC", 3), c("CGU", "AGU"))
+})
+
+# A -> G, T -> C, C -> A, G -> T
+# AGTC 
+test_that("ACUG transformation is done correctly", {
+  expect_equal(code_named_transform_tuples("AGTC", c("ATC", "GTC")), c("GCA", "TCA"))
+  expect_equal(code_named_transform_tuples("AGTC", "ATC GTC"), c("GCA", "TCA"))
+  expect_equal(code_named_transform_tuples("AGTC", "ATCGTC", 3), c("GCA", "TCA"))
+  # try with rna bases instead:
+  expect_equal(code_named_transform_tuples("AGTC", c("AUC", "GUC")), c("GCA", "UCA"))
+  expect_equal(code_named_transform_tuples("AGTC", "AUC GUC"), c("GCA", "UCA"))
+  expect_equal(code_named_transform_tuples("AGTC", "AUCGUC", 3), c("GCA", "UCA"))
+})
+
+# Test incorrect inputs
+# empty transformation type
+
+test_that("Wrong inputs cause error", {
+  expect_error(code_named_transform_tuples("", c("ATC", "GTC")), c("GCA", "TCA"))
+  expect_error(code_named_transform_tuples("Id", c()))
+  
+})
+
+
+
+
+
 
 
 
