@@ -3,6 +3,7 @@
 //
 
 #include "RAdapterUtils.h"
+#include <stdexcept>
 
 std::vector <std::string> RAdapterUtils::as_cpp_string_vector(StringVector r_vec) {
   if(r_vec.length() == 0) {
