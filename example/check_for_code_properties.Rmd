@@ -1,9 +1,11 @@
 ---
 title: "Testing for circularity"
 output:
-  html_document:
-    df_print: paged
-  pdf_document: default
+  pdf_document:
+    toc: yes
+  html_notebook:
+    number_sections: yes
+    toc: yes
 ---
 
 # Prerequisites
@@ -23,33 +25,25 @@ Now that you have installed all prerequisistes you can try out the GCATR package
 To execute the following code snippet you just have to press the little green arrow on the right side of the code box.
 You should be shown FALSE when executing the code snippet as the provided code is not self-complementary.
 ```{r, warning = FALSE, message = FALSE, collapse = TRUE}
-library(Rcpp)
-library(GCATR)
-code_check_if_self_complementary('UGG GUG')
+GCATR::code_check_if_self_complementary('UGG GUG')
 ```
 There is three options to provide the string that represents the code you are trying to test.
 
 Option 1 is providing the string with a specific tuple length like this:
 ```{r, warning = FALSE, message = FALSE, collapse = TRUE}
-library(Rcpp)
-library(GCATR)
-code_check_if_self_complementary('UGGGUG', 3)
+GCATR::code_check_if_self_complementary('UGGGUG', 3)
 ```
 
 Option 2 is providing the string split in tuples by spaces like so:
 ```{r, warning = FALSE, message = FALSE, collapse = TRUE}
-library(Rcpp)
-library(GCATR)
-code_check_if_self_complementary('UGG GUG')
+GCATR::code_check_if_self_complementary('UGG GUG')
 ```
 
 The last option is to provide each tuple separate in a vector as so:
 This last example should come up TRUE, as the provided code is ciruclar.
 
 ```{r, warning = FALSE, message = FALSE, collapse = TRUE}
-library(Rcpp)
-library(GCATR)
-code_check_if_self_complementary(c('UGG', 'GUG', 'GAG'))
+GCATR::code_check_if_self_complementary(c('UGG', 'GUG', 'GAG'))
 ```
 
 # Testing for maximum circularity
@@ -62,9 +56,7 @@ Obviously the string can be provided in the different ways mentioned in the test
 You should be shown FALSE when executing this code snippet as the provided code is not maximum circular.
 
 ```{r, warning = FALSE, message = FALSE, collapse = TRUE}
-library(Rcpp)
-library(GCATR)
-code_check_if_circular('UGG GUG')
+GCATR::code_check_if_circular('UGG GUG')
 ```
 # Testing for k-circularity
 
@@ -74,28 +66,20 @@ Obviously the string can be provided in the different ways mentioned in the test
 
 k = 1, should come up FALSE
 ```{r, warning = FALSE, message = FALSE, collapse = TRUE}
-library(Rcpp)
-library(GCATR)
-code_check_if_k_circular(1,'UGGGUG', 3)
+GCATR::code_check_if_k_circular(1,'UGGGUG', 3)
 ```
 k = 2, should come up TRUE
 ```{r, warning = FALSE, message = FALSE, collapse = TRUE}
-library(Rcpp)
-library(GCATR)
-code_check_if_k_circular(2,'ACGGUACGUCGGUAC',3)
+GCATR::code_check_if_k_circular(2,'ACGGUACGUCGGUAC',3)
 ```
 k = 3, should come up FALSE
 ```{r, warning = FALSE, message = FALSE, collapse = TRUE}
-library(Rcpp)
-library(GCATR)
-code_check_if_k_circular(3,'ACG GUA CGU CGG UAC')
+GCATR::code_check_if_k_circular(3,'ACG GUA CGU CGG UAC')
 ```
 
  k = 4, should come up TRUE
 ```{r, warning = FALSE, message = FALSE, collapse = TRUE}
-library(Rcpp)
-library(GCATR)
-code_check_if_k_circular(4,c('GGU', 'GGC', 'ACU', 'ACC', 'AGC', 'AGU', 'GAC', 'GAU', 'GUC', 'GUU', 'AAU', 'AUU', 'AAC', 'AUC', 'GCU', 'GCC'))
+GCATR::code_check_if_k_circular(4,c('GGU', 'GGC', 'ACU', 'ACC', 'AGC', 'AGU', 'GAC', 'GAU', 'GUC', 'GUU', 'AAU', 'AUU', 'AAC', 'AUC', 'GCU', 'GCC'))
 ```
 # Testing for cn-circularity
 
@@ -105,17 +89,13 @@ Obviously the string can be provided in the different ways mentioned in the test
 This example should come up FALSE
 
 ```{r, warning = FALSE, message = FALSE, collapse = TRUE}
-library(Rcpp)
-library(GCATR)
-code_check_if_cn_circular('UGG GUG')
+GCATR::code_check_if_cn_circular('UGG GUG')
 ```
 
 While this one should come up TRUE
 
 ```{r, warning = FALSE, message = FALSE, collapse = TRUE}
-library(Rcpp)
-library(GCATR)
-code_check_if_cn_circular(c('GGU','GGC','ACU','ACC','AGC','AGU','GAC','GAU','GUC','GUU','AAU','AUU','AAC','AUC','GCU','GCC'))
+GCATR::code_check_if_cn_circular(c('GGU','GGC','ACU','ACC','AGC','AGU','GAC','GAU','GUC','GUU','AAU','AUU','AAC','AUC','GCU','GCC'))
 ```
 
 # Testing for comma-freeness
@@ -126,9 +106,6 @@ Obviously the string can be provided in the different ways mentioned in the test
 
 The example should come up TRUE.
 ```{r, warning = FALSE, message = FALSE, collapse = TRUE}
-library(Rcpp)
-library(GCATR)
-code_check_if_comma_free('GGU GGC ACU ACC AGC AGU GAC GAU GUC GUU AAU AUU AAC AUC GCU GCC')
+GCATR::code_check_if_comma_free('GGU GGC ACU ACC AGC AGU GAC GAU GUC GUU AAU AUU AAC AUC GCU GCC')
 ```
-
 

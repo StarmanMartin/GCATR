@@ -200,11 +200,11 @@ test_that('code is not contained in sequence in frameshift 2', {
   expect_equal(res$total_match_in_percent,0)
 })
 
-# Causes R to crash!
-#test_that('empty sequence produces only empty results', {
-# seq <- ""
-#expect_error(find_and_analysis_code_in_sequence(seq,"1345", tuple_length = 4, 2))
-#})
+ #Causes R to crash!
+test_that('empty sequence produces only empty results', {
+ seq <- ""
+expect_error(find_and_analysis_code_in_sequence(seq,"1345", tuple_length = 4, 2))
+})
 
 #Also causes R to crash!
 #test_that('empty code is not contained in sequence', {
@@ -439,16 +439,9 @@ test_that("ACUG transformation is done correctly", {
 test_that("Wrong inputs cause error", {
   expect_error(code_named_transform_tuples("", c("ATC", "GTC")), c("GCA", "TCA"))
   expect_error(code_named_transform_tuples("Id", c()))
+  expect_error(code_named_transform_tuples("Id", ""))
   
 })
-
-
-
-
-
-
-
-
 
 
 

@@ -40,7 +40,7 @@ set(SOURCE_TEST_FILES unit_tests/test_utils.cpp
 
 #set(CURRENT_TEST_FILES unit_tests/test_utils.cpp unit_tests/generatorTest.cpp)
 #set(CURRENT_TEST_FILES unit_tests/test_utils.cpp unit_tests/binaryTest.cpp unit_tests/codeFactoryTester.cpp)
-set(CURRENT_TEST_FILES unit_tests/test_utils.cpp unit_tests/kCircularTest.cpp)
+set(CURRENT_TEST_FILES unit_tests/test_utils.cpp unit_tests/sequenceTest.cpp)
 
 
 add_executable(MainTest ${SOURCE_FILES} ${SOURCE_TEST_FILES})
