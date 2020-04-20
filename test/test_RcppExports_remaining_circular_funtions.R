@@ -200,18 +200,19 @@ test_that('code is not contained in sequence in frameshift 2', {
   expect_equal(res$total_match_in_percent,0)
 })
 
- #Causes R to crash!
+
 test_that('empty sequence produces only empty results', {
- seq <- ""
-expect_error(find_and_analysis_code_in_sequence(seq,"1345", tuple_length = 4, 2))
+  seq <- ""
+  expect_error(find_and_analysis_code_in_sequence(seq,"1345", tuple_length = 4, 2))
 })
 
-#Also causes R to crash!
-#test_that('empty code is not contained in sequence', {
- # seq = "123456"
-  #res <- find_and_analysis_code_in_sequence(seq, "", tuple_length = 2)
-  #print(res)
-#})
+
+# Causes R to crash!
+test_that('empty code is not contained in sequence', {
+  seq = "123456"
+  res <- find_and_analysis_code_in_sequence(seq, "", tuple_length = 2)
+  print(res)
+})
 
 # Generate code by min value
 
