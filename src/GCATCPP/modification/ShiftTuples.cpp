@@ -8,10 +8,10 @@
 std::vector<std::string> ShiftTuples::modify(AbstractCode *code) {
     if(this->number < 0) {
         this->add_error_msg("No negative shit or shift higher then word length possible");
-        return code->as_vector();
+        return code->get_tuples();
     }
 
-    auto code_vec = code->as_vector();
+    auto code_vec = code->get_tuples();
     for (auto &i : code_vec) {
         i = this->shift_tuple(i, this->number);
     }

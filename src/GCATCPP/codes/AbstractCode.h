@@ -53,6 +53,7 @@ public:
     std::string as_string_sequence();
 
     std::vector<std::string> as_vector() const;
+    std::vector<std::string> as_unsorted_vector() const;
     std::vector<std::string> as_set() const;
 
     virtual bool is_circular()= 0;
@@ -78,6 +79,7 @@ public:
 
 protected:
     std::vector<std::string> code_vec;
+    std::vector<std::string> code_vec_unsorted;
     bool is_tested;
     bool is_ok;
 
@@ -108,6 +110,8 @@ protected:
         _stream << mc.to_string();
         return _stream;
     }
+
+
 };
 
 #endif //GCATCPP_ABSTRACTCODE_H

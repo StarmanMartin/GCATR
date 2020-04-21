@@ -34,10 +34,12 @@ TEST(SelfComplementary, removeComplements) {
     {
         std::vector<std::string> code_vec = {"AAC", "AAG", "AAU", "ACC", "ACG", "ACU", "AGC", "AGG", "AGU", "AUU",
                                              "CCG", "CCU", "CGG", "CGU", "CUU", "GCU", "GGU", "GUU", "UCA", "UGA"};
+
+
         auto sc = CodeFactory::rFactorGenCode(code_vec, -1);
+        auto temp = sc->get_tuples();
         sc->strip_complements();
 
-        ASSERT_THAT(sc->get_tuples(), testing::ElementsAre("AAC", "AAG", "AAU", "ACC", "ACG", "ACU","AGC", "AGG",
-                                                              "CCG", "UCA"));
+        ASSERT_THAT(sc->get_tuples(), testing::ElementsAre("AAC", "AAG", "AAU", "ACC", "ACG", "ACU", "AGC", "AGG", "CCG", "UCA" ));
     }
 }
