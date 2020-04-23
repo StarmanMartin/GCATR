@@ -4,27 +4,17 @@
 
 #include "KCircular.h"
 
-#include "Circular.h"
-#include <string>
-#include <iostream>
-#include <regex>
-#include <climits>
+#include "../miner/kCircularityMiner.h"
+
 
 bool KCircular::test(AbstractCode *code, int k) {
-    Circular cTester;
-
-    auto circles = cTester.get_circles(code);
-
-    for(const auto &circle_graph : circles) {
-        if(circle_graph.get_edges().size() < (k + 1)) {
-            return false;
-        }
+    int kVal = miner::kCircularityMiner::mine_k_value(code);
+    if(kVal <= -1) {
+        return true;
     }
-
-    return true;
+    return kVal >= k;
 }
 
 bool KCircular::test(AbstractCode *code) {
-    Circular cTester;
-    return cTester.test(code);
+    return this->test(code, 1);
 }

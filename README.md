@@ -286,7 +286,7 @@ The function also calculates the matching bases of the found words in the sequen
 ```R 
 seq <- "ACGTCGCGACGTACGACGTCGTACTCGATGCAAGATC"
 res <- find_and_analysis_code_in_sequence(seq, c("ACG", "TCG"))
-res <- find_and_analysis_code_in_sequence(seq, "ACGCG", tuple_length=3)
+res <- find_and_analysis_code_in_sequence(seq, "ACGTCG", tuple_length=3)
 res <- find_and_analysis_code_in_sequence(seq, "ACG TCG")
 
 ```

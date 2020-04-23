@@ -1,31 +1,29 @@
 //
 // Created by Martin on 24.06.2019.
 //
-
-#include "test_utils.cpp"
-
+#include "gtest/gtest.h"
+#include "gmock/gmock.h"
 
 #include "../codes/CodeFactory.h"
-#include "../modification/TransformTuples.h"
 
 
 TEST(ShiftTester, differentShifts) {
     std::string code_text = "ACG TCG CCG CCC";
     auto code = CodeFactory::rFactorTypesCodonCode({code_text});
     code->shift_tuples(1);
-    EXPECT_EQ(code->as_string_sequence(), "CCCCGACGCCGT");
+    ASSERT_THAT(code->get_tuples(), testing::ElementsAre("CGA", "CGT", "CGC", "CCC" ));
 
     code = CodeFactory::rFactorTypesCodonCode({code_text});
     code->shift_tuples(2);
-    EXPECT_EQ(code->as_string_sequence(), "CCCGACGCCGTC");
+    ASSERT_THAT(code->get_tuples(), testing::ElementsAre("GAC", "GTC", "GCC", "CCC" ));
 
     code = CodeFactory::rFactorTypesCodonCode({code_text});
     code->shift_tuples(4);
-    EXPECT_EQ(code->as_string_sequence(), "CCCCGACGCCGT");
+    ASSERT_THAT(code->get_tuples(), testing::ElementsAre("CGA", "CGT", "CGC", "CCC"));
 
     code = CodeFactory::rFactorTypesCodonCode({code_text});
     code->shift_tuples(-1);
-    EXPECT_EQ(code->as_string_sequence(), "ACGCCCCCGTCG");
+    ASSERT_THAT(code->get_tuples(), testing::ElementsAre("ACG", "TCG", "CCG", "CCC" ));
 
 }
 
@@ -33,25 +31,25 @@ TEST(TransformTester, differentTransforms) {
     std::string code_text = "ACG TCG CCG CCC";
     auto code = CodeFactory::rFactorTypesCodonCode({code_text});
     code->transform_tuples("A", "T");
-    EXPECT_EQ(code->as_string_sequence(), "CCCCCGTCG");
+    ASSERT_THAT(code->get_tuples(), testing::ElementsAre("TCG", "TCG", "CCG", "CCC" ));
 
     code = CodeFactory::rFactorTypesCodonCode({code_text});
     code->transform_tuples("AT", "TA");
-    EXPECT_EQ(code->as_string_sequence(), "ACGCCCCCGTCG");
+    ASSERT_THAT(code->get_tuples(), testing::ElementsAre("TCG", "ACG", "CCG", "CCC" ));
 
     code = CodeFactory::rFactorTypesCodonCode({code_text});
     code->transform_tuples("ATCG", "TAGC");
-    EXPECT_EQ(code->as_string_sequence(), "AGCGGCGGGTGC");
+    ASSERT_THAT(code->get_tuples(), testing::ElementsAre("TGC", "AGC", "GGC", "GGG" ));
 
 
     code = CodeFactory::rFactorTypesCodonCode({code_text});
     code->transform_tuples("AA", "TT");
-    EXPECT_EQ(code->as_string_sequence(), "ACGCCCCCGTCG");
+    ASSERT_THAT(code->get_tuples(), testing::ElementsAre("ACG", "TCG", "CCG", "CCC" ));
 
     std::vector<std::string> code_as_vec = {"ACG", "GAT"};
     auto scode = CodeFactory::rFactor(code_as_vec, -1);
     scode->transform_tuples("ACTG", "CAGT");
-    EXPECT_EQ(scode->as_string_sequence(), "CATTCG");
+    ASSERT_THAT(scode->get_tuples(), testing::ElementsAre("CAT", "TCG" ));
 
 }
 
@@ -59,15 +57,15 @@ TEST(TransformTester, differentTransformsByName) {
     std::string code_text = "ACG TCG CCG CCC";
     auto code = CodeFactory::rFactorTypesCodonCode({code_text});
     code->transform_tuples_by_name(AT);
-    EXPECT_EQ(code->as_string_sequence(), "ACGCCCCCGTCG");
+    ASSERT_THAT(code->get_tuples(), testing::ElementsAre("TCG", "ACG", "CCG", "CCC" ));
 
     code = CodeFactory::rFactorTypesCodonCode({code_text});
     code->transform_tuples_by_name(SW);
-    EXPECT_EQ(code->as_string_sequence(), "AGCGGCGGGTGC");
+    ASSERT_THAT(code->get_tuples(), testing::ElementsAre("TGC", "AGC", "GGC", "GGG" ));
 
     code = CodeFactory::rFactorTypesCodonCode({code_text});
     code->transform_tuples_by_name(AGTC);
-    EXPECT_EQ(code->as_string_sequence(), "AAAAATCATGAT");
+    ASSERT_THAT(code->get_tuples(), testing::ElementsAre("GAT", "CAT", "AAT", "AAA" ));
 
 }
 

@@ -50,10 +50,10 @@ TransformTuples::TransformTuples(const std::string &name, acid::acids acid) {
 std::vector<std::string> TransformTuples::modify(AbstractCode *code) {
     if (this->has_error) {
         this->add_error_msg("Error appeared! Something must be rong with your transformation rules!");
-        return code->as_vector();
+        return code->get_tuples();
     }
 
-    auto code_vec = code->as_vector();
+    auto code_vec = code->get_tuples();
     for (auto &word : code_vec) {
         this->replacements = {};
         for (size_t i = 0; i < this->rule_set[0].length(); ++i) {

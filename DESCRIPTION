@@ -7,8 +7,8 @@ Author: Martin Starman
 Maintainer: Martin Starman <m.starman@doktoranden.hs-mannheim.de>
 Description: The package is a version of the GCAT tool optimized for R. More Info: https://www.cammbio.hs-mannheim.de/research/sof.
 License: GPL (>= 2)
-Imports: Rcpp (>= 0.12.18)
-Depends: igraph (>= 1.2.1), gridExtra (>= 2.3), Rcpp (>= 0.12.18), rmarkdown (>= 1.13), xtable (>= 1.8-4), knitr (>= 1.23)
+Imports: Rcpp (>= 1.0.3)
+Depends: igraph (>= 1.2.5), gridExtra (>= 2.3), Rcpp (>= 1.0.3), rmarkdown (>= 2.1), xtable (>= 1.8-4), knitr (>= 1.28)
 LinkingTo: Rcpp
-RoxygenNote: 6.1.1
+RoxygenNote: 7.0.2
 Encoding: UTF-8

@@ -1,0 +1,23 @@
+\definecolor{yellow1}{rgb}{0.9568,0.8902,0.47451}
+\definecolor{yellow2}{rgb}{1,1,0.8}
+\definecolor{red1}{rgb}{0.502,0,0}
+\definecolor{hellgrau}{gray}{0.85}
+\definecolor{dunkelgrau}{gray}{0.4}
+\definecolor{hellblau}{RGB}{70,70,255}
+\newenvironment{tikzgraph}
+  {\begin{tikzpicture}
+      [s/.style={regular polygon,regular polygon sides=4, draw=dunkelgrau, fill=yellow1, inner sep=0mm, minimum
+        size=25pt},%
+        c/.style={circle, minimum width=38pt, draw=yellow1, fill=yellow1, inner sep=0mm, minimum
+        size=25pt},%
+        cc/.style={circle, thick, minimum width=38pt, draw=dunkelgrau, fill=yellow1, inner sep=0mm, minimum
+        size=25pt},%
+        r/.style={rectangle,minimum width=1cm,minimum height=0.6cm, draw=dunkelgrau, fill=yellow1, inner sep=0mm, minimum
+        size=25pt},%
+        e/.style={ellipse, minimum height=0.6cm, draw=dunkelgrau, fill=yellow2, inner sep=0mm, minimum
+        size=25pt},%
+       edge/.style={semithick,decoration={markings,mark=at position 0.75 with {\arrow[scale=2,>=stealth]{>}}},postaction=decorate,red1},%
+       font=\scriptsize
+      ]\begin{scope}}
+  {\end{scope}\end{tikzpicture}}
+  

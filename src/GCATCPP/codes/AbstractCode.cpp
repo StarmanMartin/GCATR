@@ -63,8 +63,10 @@ AbstractCode::AbstractCode(const AbstractCode &agc) : AbstractErrorManager(agc) 
 
 void AbstractCode::reset(std::vector<std::string> code_param_vec) {
     this->code_vec.clear();
+    this->code_vec_unsorted.clear();
     std::unordered_set<std::string> s(code_param_vec.begin(), code_param_vec.end());
     this->code_vec.assign(s.begin(), s.end());
+    this->code_vec_unsorted.assign(code_param_vec.begin(), code_param_vec.end());
     sort(this->code_vec.begin(), this->code_vec.end());
     this->is_tested = false;
     this->is_ok = false;
@@ -118,13 +120,17 @@ std::string AbstractCode::as_string_sequence() {
     }
 
     std::string result;
-    for (std::string const &s : this->code_vec) { result += s; }
+    for (std::string const &s : this->code_vec_unsorted) { result += s; }
 
     return this->string_sequence = result;
 }
 
 std::vector<std::string> AbstractCode::as_vector() const {
     return this->code_vec;
+}
+
+std::vector<std::string> AbstractCode::as_unsorted_vector() const {
+    return this->code_vec_unsorted;
 }
 
 std::vector<std::string> AbstractCode::as_set() const{
@@ -196,12 +202,12 @@ bool AbstractCode::is_translatable() {
 }
 
 std::vector<std::string> AbstractCode::get_tuples() {
-    return this->code_vec;
+    return this->as_unsorted_vector();
 }
 
 std::vector<std::string> AbstractCode::get_nucleotide_tuples() {
     if(this->is_translatable()) {
-        return this->code_vec;
+        return this->as_unsorted_vector();
     }
 
     return std::vector<std::string>();
