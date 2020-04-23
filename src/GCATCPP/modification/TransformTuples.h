@@ -67,7 +67,7 @@ private:
 
         if (name == I) {
             // (A, T,C,G) -> (T, A, G,C)
-            return {"A" + baseTU + "CG",    "A" + baseTU + "GC"};
+            return {"A" + baseTU + "CG",    "A" + baseTU + "CG"};
         }
         if (name == SW || name == "orc") {
             // (A, T,C,G) -> (T, A, G,C)

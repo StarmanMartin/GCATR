@@ -41,7 +41,7 @@ TransformTuples::TransformTuples(const std::string &from_rule, const std::string
 TransformTuples::TransformTuples(const std::string &name, acid::acids acid) {
     this->rule_set = TransformTuples::transformation_by_name(name, acid);
     if (name != I && this->rule_set[0].length() == 0) {
-        this->add_error_msg("The name could not be found please che the doc for mor info!");
+        this->add_error_msg("The name could not be found please check the documentation for mor info!");
         this->has_error = true;
     }
 }

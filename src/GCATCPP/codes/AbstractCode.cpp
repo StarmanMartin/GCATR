@@ -201,6 +201,13 @@ bool AbstractCode::is_translatable() {
     return false;
 }
 
+int AbstractCode::calculateModulo(int frame, int length) {
+    if (frame < 0) {
+        return calculateModulo(frame + length, length);
+    }
+    return (frame % length);
+}
+
 std::vector<std::string> AbstractCode::get_tuples() {
     return this->as_unsorted_vector();
 }
