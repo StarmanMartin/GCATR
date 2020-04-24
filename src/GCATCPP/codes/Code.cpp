@@ -79,7 +79,7 @@ void Code::shift_tuples(size_t shifts) { // NOLINT
     this->run_modification(tester);
 }
 
-seq::Seq_Result Code::find_code_in_sequence(const std::string& seq, int& frame) {
+seq::Seq_Result Code::find_code_in_sequence(const std::string& seq, int frame) {
     if(seq.length() == 0) {
         this->add_error_msg("Sequence should not be empty");
         throw  std::invalid_argument("Sequence should not be empty!");

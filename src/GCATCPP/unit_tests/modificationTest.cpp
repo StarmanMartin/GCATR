@@ -23,7 +23,7 @@ TEST(ShiftTester, differentShifts) {
 
     code = CodeFactory::rFactorTypesCodonCode({code_text});
     code->shift_tuples(-1);
-    ASSERT_THAT(code->get_tuples(), testing::ElementsAre("ACG", "TCG", "CCG", "CCC" ));
+    ASSERT_THAT(code->get_tuples(), testing::ElementsAre("GAC", "GTC", "GCC", "CCC" ));
 
 }
 
