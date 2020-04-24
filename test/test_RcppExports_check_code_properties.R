@@ -79,7 +79,7 @@ test_that("empty code is not circular", {
 # A -> 1, C-> 2, G-> 3, U ->4
 
 test_that('error is thrown when negative k value is used',{
-  expect_error(code_check_if_k_circular(0,'UGGGUG', 3))
+  expect_true(code_check_if_k_circular(0,'UGGGUG', 3))
   expect_error(code_check_if_k_circular(-2,'UGG GUG'))
   expect_error(code_check_if_k_circular(-10,c('UGG','GUG')))
 })

@@ -541,10 +541,10 @@ Rcpp::StringVector get_rna_bases() {
 //'
 //' @export
 // [[Rcpp::export]]
-Rcpp::List find_and_analysis_code_in_sequence(std::string seq, StringVector code, int tuple_length = -1) {
+Rcpp::List find_and_analysis_code_in_sequence(std::string seq, StringVector code, int tuple_length = -1, int frame = 0) {
     auto code_vec = RAdapterUtils::as_cpp_string_vector(code);
     auto gc = CodeFactory::rFactor(code_vec, tuple_length);
-    auto res = gc->find_code_in_sequence(seq);
+    auto res = gc->find_code_in_sequence(seq, frame);
 
     return Rcpp::List::create(
             Rcpp::Named("word") = Rcpp::wrap(res.words),
