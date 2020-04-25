@@ -5,20 +5,39 @@
 #include "gtest/gtest.h"
 #include "../geneticCode/CodonTranslTables.h"
 #include "../geneticCode/CodonClusteringAlgorithm.h"
-#include <sstream>
 #include <string>
 
-#ifdef WINDOWS
+#ifdef _WIN32
 #include <direct.h>
 #define GetCurrentDir _getcwd
+
+std::string ReplaceAll(std::string str, const std::string& from, const std::string& to) {
+    size_t start_pos = 0;
+    while((start_pos = str.find(from, start_pos)) != std::string::npos) {
+        str.replace(start_pos, from.length(), to);
+        start_pos += to.length(); // Handles case where 'to' is a substring of 'from'
+    }
+    return str;
+}
+
+
+std::string get_aps_path(std::string relPath) {
+    char buff[FILENAME_MAX]; //create string buffer to hold path
+    GetCurrentDir( buff, FILENAME_MAX );
+    std::string current_working_dir(buff);
+    std::size_t idx = current_working_dir.find("GCATR")+5;
+    current_working_dir = current_working_dir.substr(0,idx);
+
+
+    current_working_dir = current_working_dir + "\\src\\GCATCPP\\" + ReplaceAll(relPath, "/", "\\");
+    return current_working_dir;
+}
 #else
 #include <unistd.h>
-#define GetCurrentDir getcwd
-#endif
-
-#include<iostream>
 #include <filesystem>
 namespace fs = std::filesystem;
+#define GetCurrentDir getcwd
+
 std::string get_aps_path(std::string relPath) {
     char buff[FILENAME_MAX]; //create string buffer to hold path
     GetCurrentDir( buff, FILENAME_MAX );
@@ -36,6 +55,11 @@ std::string get_aps_path(std::string relPath) {
 
 
 }
+
+#endif
+
+
+
 
 std::string getCodeAsOneLineByIndex(int idx, acid::acids ac=acid::acids::DNA) {
     auto codes = gen_codes::CodonTranslTables::getInstance().getCodeByIndex(idx, ac);
