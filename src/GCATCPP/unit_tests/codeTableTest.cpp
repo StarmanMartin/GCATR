@@ -17,12 +17,24 @@
 #endif
 
 #include<iostream>
-
-std::string get_current_dir() {
+#include <filesystem>
+namespace fs = std::filesystem;
+std::string get_aps_path(std::string relPath) {
     char buff[FILENAME_MAX]; //create string buffer to hold path
     GetCurrentDir( buff, FILENAME_MAX );
-    std::string current_working_dir(buff);
-    return current_working_dir;
+    fs::path current_working_dir(buff);
+
+    while(current_working_dir.filename() != "GCATR" && current_working_dir != current_working_dir.root_path()) {
+        current_working_dir = current_working_dir.parent_path();
+    }
+
+
+    current_working_dir.append("src/GCATCPP");
+    current_working_dir.append(relPath);
+    return current_working_dir.string();
+
+
+
 }
 
 std::string getCodeAsOneLineByIndex(int idx, acid::acids ac=acid::acids::DNA) {
@@ -44,11 +56,14 @@ TEST (GenerticCodeTest, GetNames) {
 
 
 TEST (GenerticCodeTest, readAndAddNewTable) {
-    auto a = get_current_dir();
-    EXPECT_TRUE(gen_codes::CodonTranslTables::getInstance().read_and_add_new_transl_table( "./unit_tests/asserts/correct_code.txt"));
-    EXPECT_FALSE(gen_codes::CodonTranslTables::getInstance().read_and_add_new_transl_table( "./unit_tests/asserts/wrong_1_code.txt"));
-    EXPECT_FALSE(gen_codes::CodonTranslTables::getInstance().read_and_add_new_transl_table( "./unit_tests/asserts/wrong_2_code.txt"));
-    EXPECT_FALSE(gen_codes::CodonTranslTables::getInstance().read_and_add_new_transl_table( "./unit_tests/asserts/wrong_3_code.txt"));
+    auto path_a = get_aps_path("unit_tests/asserts/correct_code.txt");
+    EXPECT_TRUE(gen_codes::CodonTranslTables::getInstance().read_and_add_new_transl_table( path_a ));
+    auto path_b = get_aps_path("unit_tests/asserts/wrong_1_code.txt");
+    EXPECT_FALSE(gen_codes::CodonTranslTables::getInstance().read_and_add_new_transl_table( path_b ));
+    auto path_c = get_aps_path("unit_tests/asserts/wrong_2_code.txt");
+    EXPECT_FALSE(gen_codes::CodonTranslTables::getInstance().read_and_add_new_transl_table( path_c));
+    auto path_d = get_aps_path("unit_tests/asserts/wrong_3_code.txt");
+    EXPECT_FALSE(gen_codes::CodonTranslTables::getInstance().read_and_add_new_transl_table( path_d ));
     EXPECT_FALSE(gen_codes::CodonTranslTables::getInstance().read_and_add_new_transl_table( "Not A file"));
 
     EXPECT_EQ(gen_codes::CodonTranslTables::getInstance().getIdxByName("correct_code"), 900);
