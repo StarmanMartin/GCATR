@@ -1,26 +1,13 @@
-#include <utility>
-
-//
-// Created by Martin on 2/7/2019.
-//
-
-
-
 //
 // Created by Martin on 27.06.2018.
 //
 #include <string>
 #include <regex>
-#include <iterator>
 #include <unordered_set>
-#include <algorithm>
 
 
 #include "../tester/AbstractTester.h"
 #include "../modification/AbstractModifier.h"
-#include "../geneticCode/CodonTranslTables.h"
-
-#include "AbstractCode.h"
 
 #define EMPTY_SEQUNECE "#"
 

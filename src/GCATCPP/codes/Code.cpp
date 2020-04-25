@@ -8,12 +8,8 @@
 // Created by Martin on 27.06.2018.
 //
 #include <string>
-#include <numeric>
 #include <iostream>
 #include <regex>
-#include <utility>
-#include <algorithm>
-#include <sstream>
 #include "StdGenCode.h"
 #include "../tester/Circular.h"
 #include "../tester/KCircular.h"
@@ -22,8 +18,6 @@
 
 #include "../modification/ShiftTuples.h"
 #include "../modification/TransformTuples.h"
-
-#include "Code.h"
 
 #define EMPTY_SEQUNECE "#"
 
@@ -42,7 +36,7 @@ bool Code::test_code() {
 
     if (this->word_length.size() != 1) {
         this->add_error_msg("Word size dose not match");
-        this->word_length.empty();
+        this->word_length.clear();
         return (this->is_ok = false);
     }
 
@@ -84,7 +78,7 @@ seq::Seq_Result Code::find_code_in_sequence(const std::string& seq, int frame) {
         this->add_error_msg("Sequence should not be empty");
         throw  std::invalid_argument("Sequence should not be empty!");
     }
-    int actualFrame = calculateModulo(frame, seq.length());
+    int actualFrame = this->calculateModulo(frame, seq.length());
     this->test_code();
     std::string firstPart = seq.substr(actualFrame, seq.length() - actualFrame);
     std::string secondPart = seq.substr(0, actualFrame);

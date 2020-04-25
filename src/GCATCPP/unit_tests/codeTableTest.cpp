@@ -8,6 +8,23 @@
 #include <sstream>
 #include <string>
 
+#ifdef WINDOWS
+#include <direct.h>
+#define GetCurrentDir _getcwd
+#else
+#include <unistd.h>
+#define GetCurrentDir getcwd
+#endif
+
+#include<iostream>
+
+std::string get_current_dir() {
+    char buff[FILENAME_MAX]; //create string buffer to hold path
+    GetCurrentDir( buff, FILENAME_MAX );
+    std::string current_working_dir(buff);
+    return current_working_dir;
+}
+
 std::string getCodeAsOneLineByIndex(int idx, acid::acids ac=acid::acids::DNA) {
     auto codes = gen_codes::CodonTranslTables::getInstance().getCodeByIndex(idx, ac);
     std::stringstream ss;
@@ -27,6 +44,7 @@ TEST (GenerticCodeTest, GetNames) {
 
 
 TEST (GenerticCodeTest, readAndAddNewTable) {
+    auto a = get_current_dir();
     EXPECT_TRUE(gen_codes::CodonTranslTables::getInstance().read_and_add_new_transl_table( "./unit_tests/asserts/correct_code.txt"));
     EXPECT_FALSE(gen_codes::CodonTranslTables::getInstance().read_and_add_new_transl_table( "./unit_tests/asserts/wrong_1_code.txt"));
     EXPECT_FALSE(gen_codes::CodonTranslTables::getInstance().read_and_add_new_transl_table( "./unit_tests/asserts/wrong_2_code.txt"));
