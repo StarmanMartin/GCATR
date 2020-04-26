@@ -2,21 +2,11 @@
 // Created by Martin on 27.06.2018.
 //
 #include <string>
-#include <numeric>
-#include <iostream>
 #include <regex>
-#include <utility>
-#include <algorithm>
-#include <sstream>
 #include "StdGenCode.h"
 #include "../tester/Circular.h"
-#include "../tester/C_n.h"
-#include "../tester/CommaFree.h"
 
 #include "../modification/ShiftTuples.h"
-
-#include "../graph/Graph.h"
-
 
 
 bool StdGenCode::test_code() {

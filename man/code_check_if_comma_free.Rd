@@ -4,12 +4,12 @@
 \alias{code_check_if_comma_free}
 \title{Check if a code is comma free.}
 \usage{
-code_check_if_comma_free(code, length = -1L)
+code_check_if_comma_free(code, tuple_length = -55555L)
 }
 \arguments{
 \item{code}{is either a string vector or a string. It can either be a code or a sequence.}
 
-\item{length}{if code is a sequence, length is the tuple length of the code.}
+\item{tuple_length}{if code is a sequence, length is the tuple length of the code.}
 }
 \value{
 Boolean value. True if the code is comma free.

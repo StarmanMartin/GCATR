@@ -3,7 +3,6 @@
 //
 
 #include "Alphabet.h"
-#include "Acid.h"
 
 Alphabet::Alphabet(const std::string &code) {
     this->acid = acid::acids::NONE;

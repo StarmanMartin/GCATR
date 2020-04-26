@@ -4,12 +4,12 @@
 \alias{code_k_value}
 \title{Get k value of a k-circular code.}
 \usage{
-code_k_value(code, length = -1L)
+code_k_value(code, tuple_length = -55555L)
 }
 \arguments{
 \item{code}{is either a string vector or a string. It can either be a code or a sequence.}
 
-\item{length}{if code is a sequence, length is the tuple length of the code.}
+\item{tuple_length}{if code is a sequence, length is the tuple length of the code.}
 
 \item{k}{is is integer. k refers to the k-circular property.}
 }

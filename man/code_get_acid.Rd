@@ -4,12 +4,12 @@
 \alias{code_get_acid}
 \title{Get acid type of a code}
 \usage{
-code_get_acid(code, length = -1L)
+code_get_acid(code, tuple_length = -55555L)
 }
 \arguments{
 \item{code}{is either a string vector or a string. It should be a RNA/DNA - code or a sequence.}
 
-\item{length}{if code is a sequence, length is the tuple length of the code.}
+\item{tuple_length}{if code is a sequence, length is the tuple length of the code.}
 }
 \value{
 String value. One of NONE, DNA, RNA

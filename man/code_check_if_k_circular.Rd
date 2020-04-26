@@ -4,14 +4,14 @@
 \alias{code_check_if_k_circular}
 \title{Check if a code is k-circular.}
 \usage{
-code_check_if_k_circular(k, code, length = -1L)
+code_check_if_k_circular(k, code, tuple_length = -55555L)
 }
 \arguments{
 \item{k}{is is integer. k refers to the k-circular property.}
 
 \item{code}{is either a string vector or a string. It can either be a code or a sequence.}
 
-\item{length}{if code is a sequence, length is the tuple length of the code.}
+\item{tuple_length}{if code is a sequence, length is the tuple length of the code.}
 }
 \value{
 Boolean value. True if the code is k-circular.

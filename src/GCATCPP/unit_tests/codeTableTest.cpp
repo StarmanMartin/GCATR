@@ -5,8 +5,61 @@
 #include "gtest/gtest.h"
 #include "../geneticCode/CodonTranslTables.h"
 #include "../geneticCode/CodonClusteringAlgorithm.h"
-#include <sstream>
 #include <string>
+
+#ifdef _WIN32
+#include <direct.h>
+#define GetCurrentDir _getcwd
+
+std::string ReplaceAll(std::string str, const std::string& from, const std::string& to) {
+    size_t start_pos = 0;
+    while((start_pos = str.find(from, start_pos)) != std::string::npos) {
+        str.replace(start_pos, from.length(), to);
+        start_pos += to.length(); // Handles case where 'to' is a substring of 'from'
+    }
+    return str;
+}
+
+
+std::string get_aps_path(std::string relPath) {
+    char buff[FILENAME_MAX]; //create string buffer to hold path
+    GetCurrentDir( buff, FILENAME_MAX );
+    std::string current_working_dir(buff);
+    std::size_t idx = current_working_dir.find("GCATR")+5;
+    current_working_dir = current_working_dir.substr(0,idx);
+
+
+    current_working_dir = current_working_dir + "\\src\\GCATCPP\\" + ReplaceAll(relPath, "/", "\\");
+    return current_working_dir;
+}
+#else
+#include <unistd.h>
+#include <filesystem>
+namespace fs = std::filesystem;
+#define GetCurrentDir getcwd
+
+std::string get_aps_path(std::string relPath) {
+    char buff[FILENAME_MAX]; //create string buffer to hold path
+    GetCurrentDir( buff, FILENAME_MAX );
+    fs::path current_working_dir(buff);
+
+    while(current_working_dir.filename() != "GCATR" && current_working_dir != current_working_dir.root_path()) {
+        current_working_dir = current_working_dir.parent_path();
+    }
+
+
+    current_working_dir.append("src/GCATCPP");
+    current_working_dir.append(relPath);
+    return current_working_dir.string();
+
+
+
+}
+
+#endif
+
+
+
 
 std::string getCodeAsOneLineByIndex(int idx, acid::acids ac=acid::acids::DNA) {
     auto codes = gen_codes::CodonTranslTables::getInstance().getCodeByIndex(idx, ac);
@@ -27,10 +80,14 @@ TEST (GenerticCodeTest, GetNames) {
 
 
 TEST (GenerticCodeTest, readAndAddNewTable) {
-    EXPECT_TRUE(gen_codes::CodonTranslTables::getInstance().read_and_add_new_transl_table( "./unit_tests/asserts/correct_code.txt"));
-    EXPECT_FALSE(gen_codes::CodonTranslTables::getInstance().read_and_add_new_transl_table( "./unit_tests/asserts/wrong_1_code.txt"));
-    EXPECT_FALSE(gen_codes::CodonTranslTables::getInstance().read_and_add_new_transl_table( "./unit_tests/asserts/wrong_2_code.txt"));
-    EXPECT_FALSE(gen_codes::CodonTranslTables::getInstance().read_and_add_new_transl_table( "./unit_tests/asserts/wrong_3_code.txt"));
+    auto path_a = get_aps_path("unit_tests/asserts/correct_code.txt");
+    EXPECT_TRUE(gen_codes::CodonTranslTables::getInstance().read_and_add_new_transl_table( path_a ));
+    auto path_b = get_aps_path("unit_tests/asserts/wrong_1_code.txt");
+    EXPECT_FALSE(gen_codes::CodonTranslTables::getInstance().read_and_add_new_transl_table( path_b ));
+    auto path_c = get_aps_path("unit_tests/asserts/wrong_2_code.txt");
+    EXPECT_FALSE(gen_codes::CodonTranslTables::getInstance().read_and_add_new_transl_table( path_c));
+    auto path_d = get_aps_path("unit_tests/asserts/wrong_3_code.txt");
+    EXPECT_FALSE(gen_codes::CodonTranslTables::getInstance().read_and_add_new_transl_table( path_d ));
     EXPECT_FALSE(gen_codes::CodonTranslTables::getInstance().read_and_add_new_transl_table( "Not A file"));
 
     EXPECT_EQ(gen_codes::CodonTranslTables::getInstance().getIdxByName("correct_code"), 900);

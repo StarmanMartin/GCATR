@@ -4,7 +4,7 @@
 \alias{shift_tuples}
 \title{Circular shift of all tuples}
 \usage{
-shift_tuples(shifts, code, tuple_length = -1L)
+shift_tuples(shifts, code, tuple_length = -55555L)
 }
 \arguments{
 \item{shifts}{number of shifts}

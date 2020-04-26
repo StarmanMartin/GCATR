@@ -1,0 +1,15 @@
+G:/Programming/Unistuff/GCATR/src/GCATCPP/out/build/x64-Debug/CMakeFiles/MainTest.dir
+G:/Programming/Unistuff/GCATR/src/GCATCPP/out/build/x64-Debug/CMakeFiles/CurrentTest.dir
+G:/Programming/Unistuff/GCATR/src/GCATCPP/out/build/x64-Debug/CMakeFiles/rebuild_cache.dir
+G:/Programming/Unistuff/GCATR/src/GCATCPP/out/build/x64-Debug/CMakeFiles/test.dir
+G:/Programming/Unistuff/GCATR/src/GCATCPP/out/build/x64-Debug/CMakeFiles/edit_cache.dir
+G:/Programming/Unistuff/GCATR/src/GCATCPP/out/build/x64-Debug/libs/googletest-master/googlemock/CMakeFiles/edit_cache.dir
+G:/Programming/Unistuff/GCATR/src/GCATCPP/out/build/x64-Debug/libs/googletest-master/googlemock/CMakeFiles/gmock_main.dir
+G:/Programming/Unistuff/GCATR/src/GCATCPP/out/build/x64-Debug/libs/googletest-master/googlemock/CMakeFiles/gmock.dir
+G:/Programming/Unistuff/GCATR/src/GCATCPP/out/build/x64-Debug/libs/googletest-master/googlemock/CMakeFiles/rebuild_cache.dir
+G:/Programming/Unistuff/GCATR/src/GCATCPP/out/build/x64-Debug/libs/googletest-master/googlemock/CMakeFiles/test.dir
+G:/Programming/Unistuff/GCATR/src/GCATCPP/out/build/x64-Debug/libs/googletest-master/googletest/CMakeFiles/gtest.dir
+G:/Programming/Unistuff/GCATR/src/GCATCPP/out/build/x64-Debug/libs/googletest-master/googletest/CMakeFiles/gtest_main.dir
+G:/Programming/Unistuff/GCATR/src/GCATCPP/out/build/x64-Debug/libs/googletest-master/googletest/CMakeFiles/rebuild_cache.dir
+G:/Programming/Unistuff/GCATR/src/GCATCPP/out/build/x64-Debug/libs/googletest-master/googletest/CMakeFiles/test.dir
+G:/Programming/Unistuff/GCATR/src/GCATCPP/out/build/x64-Debug/libs/googletest-master/googletest/CMakeFiles/edit_cache.dir

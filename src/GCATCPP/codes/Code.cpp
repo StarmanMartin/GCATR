@@ -8,12 +8,8 @@
 // Created by Martin on 27.06.2018.
 //
 #include <string>
-#include <numeric>
 #include <iostream>
 #include <regex>
-#include <utility>
-#include <algorithm>
-#include <sstream>
 #include "StdGenCode.h"
 #include "../tester/Circular.h"
 #include "../tester/KCircular.h"
@@ -23,16 +19,15 @@
 #include "../modification/ShiftTuples.h"
 #include "../modification/TransformTuples.h"
 
-#include "Code.h"
-
 #define EMPTY_SEQUNECE "#"
 
 
-Code::Code(std::string sequence, unsigned int word_length) : AbstractCode(sequence, word_length){}
+Code::Code(std::string sequence, unsigned int word_length) : AbstractCode(sequence, word_length) {}
 
-Code::Code(const std::vector<std::string> &code_vec) : AbstractCode(code_vec){}
+Code::Code(const std::vector<std::string>& code_vec) : AbstractCode(code_vec) {}
 
-Code::Code(const Code &agc) : AbstractCode(agc){}
+Code::Code(const Code& agc) : AbstractCode(agc) {}
+
 
 bool Code::test_code() {
     if (this->is_tested || !AbstractCode::test_code()) {
@@ -41,7 +36,7 @@ bool Code::test_code() {
 
     if (this->word_length.size() != 1) {
         this->add_error_msg("Word size dose not match");
-        this->word_length.empty();
+        this->word_length.clear();
         return (this->is_ok = false);
     }
 
@@ -78,21 +73,29 @@ void Code::shift_tuples(size_t shifts) { // NOLINT
     this->run_modification(tester);
 }
 
-seq::Seq_Result Code::find_code_in_sequence(const std::string &seq) {
+seq::Seq_Result Code::find_code_in_sequence(const std::string& seq, int frame) {
+    if(seq.length() == 0) {
+        this->add_error_msg("Sequence should not be empty");
+        throw  std::invalid_argument("Sequence should not be empty!");
+    }
+    int actualFrame = this->calculateModulo(frame, seq.length());
     this->test_code();
-    seq::Seq_Result result = seq::Seq_Result(seq);
+    std::string firstPart = seq.substr(actualFrame, seq.length() - actualFrame);
+    std::string secondPart = seq.substr(0, actualFrame);
+    std::string copyInFrameShift = firstPart.append(secondPart);
+    seq::Seq_Result result = seq::Seq_Result(copyInFrameShift);
     std::stringstream rest;
     std::stringstream parts;
     unsigned int current_match_length = 0;
-    for (int i = 0; i < seq.length(); i += this->word_length[0]) {
+    for (int i = 0; i < copyInFrameShift.length(); i += this->word_length[0]) {
         bool found = false;
-        std::string seq_word = seq.substr(static_cast<unsigned long>(i),
-                                          static_cast<unsigned long>(this->word_length[0]));
+        std::string seq_word = copyInFrameShift.substr(static_cast<unsigned long>(i),
+            static_cast<unsigned long>(this->word_length[0]));
 
-        for (const std::string &word : this->code_vec) {
+        for (const std::string& word : this->code_vec) {
             if (seq_word == word) {
                 result.words.emplace_back(seq_word);
-                result.idx_list.emplace_back(i);
+                result.idx_list.emplace_back(i + actualFrame);
                 current_match_length += this->word_length[0];
                 found = true;
                 break;
@@ -100,9 +103,9 @@ seq::Seq_Result Code::find_code_in_sequence(const std::string &seq) {
         }
 
         parts.seekg(0, std::ios::end);
-        auto size = (int) parts.tellg();
+        auto size = (int)parts.tellg();
 
-        if((!found && current_match_length > 0) || (found && current_match_length == this->word_length[0])) {
+        if ((!found && current_match_length > 0) || (found && current_match_length == this->word_length[0])) {
             result.parts.emplace_back(parts.str());
             parts.clear();//clear any bits set
             parts.str(std::string());
@@ -113,14 +116,17 @@ seq::Seq_Result Code::find_code_in_sequence(const std::string &seq) {
         if (!found) {
             rest << seq_word;
             result.longest_match = std::max(current_match_length, result.longest_match);
-            result.total_match_in_percent += current_match_length;
             current_match_length = 0;
+        }
+
+        if (i == (copyInFrameShift.length() - this->word_length[0]) && found) {
+            result.longest_match = std::max(current_match_length, result.longest_match);
         }
     }
 
     result.parts.emplace_back(parts.str());
     result.rest = rest.str();
-    result.total_match_in_percent = 100.0 * (result.total_match_in_percent / (double) seq.length());
+    result.total_match_in_percent = 100.0 * ((result.words.size() * this->word_length[0]) / (double) copyInFrameShift.length());
 
     return result;
 

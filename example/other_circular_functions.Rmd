@@ -1,0 +1,234 @@
+---
+title: "Testing for circularity"
+output:
+  pdf_document:
+    toc: yes
+  html_notebook:
+    number_sections: yes
+    toc: yes
+  html_document:
+    df_print: paged
+    toc: yes
+---
+
+# Prerequisites
+
+To use the package that allows testing circularity you first have to install it as shown below.
+To run the code in the box below you can just press the green play button in the left top corner of the code box.
+You might be asked in the console below this window to update the included packages. Afterwards it might take a while to install all 3 packages.
+
+```{r, eval = FALSE}
+install.packages("Rcpp", repos = "https://packages.othr.de/cran/" )
+install.packages("devtools", repos = "https://packages.othr.de/cran/")
+devtools::install_github("StarmanMartin/GCATR", ref = "Testing")
+```
+
+# Analyse whether given code is present in sequence
+
+Now that you have installed all prerequisistes you can try out the GCATR package. 
+
+You should define the sequence seq and the code for which the sequence is checked
+If you define the string as in the following example, you have to provide the tuple length. On top of that you can provide the frame in which the sequence is checked. If you provide no value for the frame, no frameshift will be done.
+
+To execute the following code snippet you just have to press the little green arrow on the right side of the code box.
+
+```{r, warning = FALSE, message = FALSE, }
+seq <- "ACGTCGCGACGTACGACGTCG"
+code = "ACGTCG"
+analysis <- GCATR::find_and_analysis_code_in_sequence(seq, "ACGTCG", tuple_length=3)
+print(analysis)
+```
+
+# Ways to provide input {#input}
+Apart from the way seen above you can also provide the input as follows: 
+
+```{r}
+code = "ACG TCG"
+code = c("ACG", "TCG")
+```
+
+# Generate a circular code by min value
+This function allows you to generate a circular code by providing a tuple length and a input alphabet. It uses the first codon of each individual equivalence class.
+
+You can play around with the functionality with following code snippet.
+
+```{r, warning = FALSE, message = FALSE, }
+alphabet <- c("A","C","G","U")
+tuple_length <- 3
+min_code <- GCATR::generate_code_by_min_value(alphabet, tuple_length)
+print(min_code)
+```
+
+# Shift tuples by a specific value
+This function allows you to apply a shift to given tuples.
+The code can be provided as seen in the [section that states the way to provide the input.](#input)
+
+The following snippet demonstrates how to apply a 1 or 2 shift.
+```{r, warning = FALSE, message = FALSE, }
+shifted_code <- GCATR::shift_tuples(1, "CAGGGAUGA", tuple_length = 3)
+print(shifted_code)
+shifted_code <- GCATR::shift_tuples(2, "CAGGGAUGA", tuple_length = 3)
+print(shifted_code)
+```
+
+
+# Shift tuples by a specific value
+This function allows you to apply a shift to given tuples.
+The code can be provided as seen in the [section that states the way to provide the input.](#input)
+
+The following snippet demonstrates how to apply a 1 or 2 shift.
+
+```{r, warning = FALSE, message = FALSE, }
+shifted_code <- GCATR::shift_tuples(1, "CAGGGAUGA", tuple_length = 3)
+print(shifted_code)
+shifted_code <- GCATR::shift_tuples(2, "CAGGGAUGA", tuple_length = 3)
+print(shifted_code)
+```
+
+# Transform code 
+This function enables you to perform custom transformations on provided code. 
+You may specify how letters are translated.
+In order to do so you have to create to strings as so.
+```{r}
+from = "AGCT"
+to = "GCAT"
+```
+What this does is it determines how each individual letter is transformed
+In our example the A from the first string gets transformed to a G.
+The table below shows how the transformation is done.
+
+```{r, warning = FALSE, message = FALSE, }
+library(knitr)
+values <- matrix(c("A", "G", "C", "T", "G", "C", "A", "T"),byrow = FALSE, nrow = 4)
+colnames(values) <- c("from", "to")
+kable(values[1:4, ], caption = "Value Transformation")
+```
+
+The function call is done like this.
+The code can be provided as seen in the [section that states the way to provide the input.](#input)
+```{r, warning = FALSE, message = FALSE, }
+from = "AGCT"
+to = "GCAT"
+transformed_code <- GCATR::code_transform_tuples(from, to, "ACGTCT", tuple_length = 3)
+print(transformed_code)
+```
+
+# Transform code with self-complementarity preserving permuations
+There is eight transformations that preserve self-complementarity.
+The most simple one is the identity transformation, that does not permute anything
+The code can be provided as seen in the [section that states the way to provide the input.](#input).
+
+```{r}
+transformation_type <- "Id"
+code <- "ACGTCT"
+transformed_code <- GCATR::code_named_transform_tuples(transformation_type, code, tuple_length = 3)
+print(transformed_code)
+```
+
+Next up is the KM transformation. 
+It transforms the code as seen in the table below.
+
+```{r, warning = FALSE, message = FALSE, }
+library(knitr)
+values <- matrix(c("A", "T", "C", "G", "C", "G", "A", "T"),byrow = FALSE, nrow = 4)
+colnames(values) <- c("from", "to")
+kable(values[1:4, ], caption = "Value Transformation")
+```
+
+Call it identically as the Identity transformation just changing up the transformation type.
+
+```{r, warning = FALSE, message = FALSE, }
+transformation_type <- "KM"
+code <- "ACG TCT"
+transformed_code <- GCATR::code_named_transform_tuples(transformation_type, code)
+print(transformed_code)
+```
+
+The YR transformation transforms the code as seen below.
+
+```{r, warning = FALSE, message = FALSE, }
+library(knitr)
+values <- matrix(c("A", "T", "C", "G", "G", "C", "T", "A"),byrow = FALSE, nrow = 4)
+colnames(values) <- c("from", "to")
+kable(values[1:4, ], caption = "Value Transformation")
+```
+
+Call it identically as the other transformations just changing up the transformation type.
+
+```{r, warning = FALSE, message = FALSE, }
+transformation_type <- "YR"
+code <- c("ACG","TCT")
+transformed_code <- GCATR::code_named_transform_tuples(transformation_type, code)
+print(transformed_code)
+```
+
+The AT transformation transforms the code as seen below.
+
+```{r, warning = FALSE, message = FALSE, }
+library(knitr)
+values <- matrix(c("A", "T", "C", "G", "T", "A", "C", "G"),byrow = FALSE, nrow = 4)
+colnames(values) <- c("from", "to")
+kable(values[1:4, ], caption = "Value Transformation")
+```
+
+Call it identically as the other transformations just changing up the transformation type.
+
+```{r, warning = FALSE, message = FALSE, }
+transformation_type <- "AT"
+code <- "ACGTCT"
+transformed_code <- GCATR::code_named_transform_tuples(transformation_type, code, tuple_length = 3)
+print(transformed_code)
+```
+
+The CG transformation transforms the code as seen below.
+```{r, warning = FALSE, message = FALSE, }
+library(knitr)
+values <- matrix(c("A", "T", "C", "G", "A", "T", "G", "C"),byrow = FALSE, nrow = 4)
+colnames(values) <- c("from", "to")
+kable(values[1:4, ], caption = "Value Transformation")
+```
+
+Call it identically as the other transformations just changing up the transformation type.
+
+```{r, warning = FALSE, message = FALSE, }
+transformation_type <- "CG"
+code <- c("ACG","TCT")
+transformed_code <- GCATR::code_named_transform_tuples(transformation_type, code)
+print(transformed_code)
+```
+
+The ACTG transformation transforms the code as seen below.
+```{r, warning = FALSE, message = FALSE, }
+library(knitr)
+values <- matrix(c("A", "T", "C", "G", "C", "G", "T", "A"),byrow = FALSE, nrow = 4)
+colnames(values) <- c("from", "to")
+kable(values[1:4, ], caption = "Value Transformation")
+```
+
+Call it identically as the other transformations just changing up the transformation type.
+
+```{r, warning = FALSE, message = FALSE, }
+transformation_type <- "ACTG"
+code <- "ACG TCT"
+transformed_code <- GCATR::code_named_transform_tuples(transformation_type, code)
+print(transformed_code)
+```
+
+The AGTC transformation transforms the code as seen below.
+```{r, warning = FALSE, message = FALSE, }
+library(knitr)
+values <- matrix(c("A", "T", "C", "G", "G", "C", "A", "T"),byrow = FALSE, nrow = 4)
+colnames(values) <- c("from", "to")
+kable(values[1:4, ], caption = "Value Transformation")
+```
+
+Call it identically as the other transformations just changing up the transformation type.
+
+```{r, warning = FALSE, message = FALSE, }
+transformation_type <- "AGTC"
+code = c("ACG", "TCT")
+transformed_code <- GCATR::code_named_transform_tuples(transformation_type, code)
+print(transformed_code)
+```
+
+

@@ -4,12 +4,12 @@
 \alias{code_as_vector}
 \title{Returns a code as vector.}
 \usage{
-code_as_vector(code, length = -1L)
+code_as_vector(code, tuple_length = -55555L)
 }
 \arguments{
 \item{code}{is either a string vector or a string. It can either be a code or a sequence.}
 
-\item{length}{if code is a sequence, length is the tuple length of the code.}
+\item{tuple_length}{if code is a sequence, length is the tuple length of the code.}
 }
 \value{
 StringVector code as vector.

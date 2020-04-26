@@ -1,7 +1,6 @@
 #include <Rcpp.h>
 #include <algorithm>
 
-#include "GCATCPP/codes/CodeFactory.h"
 #include "GCATCPP/graph/Graph.h"
 #include "GCATCPP/graph/C3Graph.h"
 #include "GCATCPP/miner/LongestPathMiner.h"
@@ -144,9 +143,9 @@ Rcpp::List prepare_factor_gen_c3graph(AbstractGenCode &gc) {
 //' code_prepare_factor_gen_c3graph("ACG CAG")
 //'
 // [[Rcpp::export]]
-Rcpp::List code_prepare_factor_gen_c3graph(StringVector code, int tuple_length = -1) {
+Rcpp::List code_prepare_factor_gen_c3graph(StringVector code, int tuple_length = -55555) {
     auto code_vec = RAdapterUtils::as_cpp_string_vector(code);
-    auto gc = CodeFactory::rFactorGenCode(code_vec, tuple_length);
+    auto gc = RAdapterUtils::factorGenCodeWrapper(code_vec, tuple_length);
     return prepare_factor_gen_c3graph(*gc);
 
 }
@@ -183,9 +182,9 @@ Rcpp::List code_prepare_factor_gen_c3graph(StringVector code, int tuple_length =
 //' code_prepare_factor_graph("ACG CAG", TRUE, TRUE)
 //' 
 // [[Rcpp::export]]
-Rcpp::List code_prepare_factor_graph(StringVector code, bool show_cycles = false, bool show_longest_path = false, int tuple_length = -1) {
+Rcpp::List code_prepare_factor_graph(StringVector code, bool show_cycles = false, bool show_longest_path = false, int tuple_length = -55555) {
     auto code_vec = RAdapterUtils::as_cpp_string_vector(code);
-    auto gc = CodeFactory::rFactor(code_vec, tuple_length);
+    auto gc = RAdapterUtils::factorCodeWrapper(code_vec, tuple_length);
     return prepare_factor_graph(*gc, show_cycles, show_longest_path);
 }
 
@@ -208,9 +207,9 @@ Rcpp::List code_prepare_factor_graph(StringVector code, bool show_cycles = false
 //' code_prepare_factor_all_cycle("ACG CAG")
 //' 
 // [[Rcpp::export]]
-Rcpp::List code_prepare_factor_all_cycle(StringVector code, int tuple_length = -1) {
+Rcpp::List code_prepare_factor_all_cycle(StringVector code, int tuple_length = -55555) {
     auto code_vec = RAdapterUtils::as_cpp_string_vector(code);
-    auto gc = CodeFactory::rFactor(code_vec, tuple_length);
+    auto gc = RAdapterUtils::factorCodeWrapper(code_vec, tuple_length);
     return prepare_factor_all_circles(*gc);
 }
 
@@ -233,8 +232,8 @@ Rcpp::List code_prepare_factor_all_cycle(StringVector code, int tuple_length = -
 //' code_prepare_factor_longest_path("ACG CAG")
 //' 
 // [[Rcpp::export]]
-Rcpp::List code_prepare_factor_longest_path(StringVector code, int tuple_length = -1) {
+Rcpp::List code_prepare_factor_longest_path(StringVector code, int tuple_length = -55555) {
     auto code_vec = RAdapterUtils::as_cpp_string_vector(code);
-    auto gc = CodeFactory::rFactor(code_vec, tuple_length);
+    auto gc = RAdapterUtils::factorCodeWrapper(code_vec, tuple_length);
     return prepare_factor_longest_path(*gc);
 }

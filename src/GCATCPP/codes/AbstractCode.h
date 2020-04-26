@@ -48,6 +48,8 @@ public:
 
     virtual bool test_code();
 
+
+
     std::vector<int> get_word_length() override;
 
     std::string as_string_sequence();
@@ -67,7 +69,7 @@ public:
     virtual void shift_tuples(size_t shifts=1) = 0; // NOLINT
     virtual void transform_tuples(const std::string& from_rule, const std::string& to_rule) = 0; // NOLINT
 
-    virtual seq::Seq_Result find_code_in_sequence(const std::string &) = 0;
+    virtual seq::Seq_Result find_code_in_sequence(const std::string&, int) = 0;
 
     const Alphabet& get_alphabet() const;
     std::string get_alphabet_as_string() const;
@@ -76,6 +78,8 @@ public:
 
     std::vector<std::string> get_tuples() override;
     std::vector<std::string> get_nucleotide_tuples() override;
+
+    static int calculateModulo(int frame, int length);
 
 protected:
     std::vector<std::string> code_vec;
@@ -110,8 +114,6 @@ protected:
         _stream << mc.to_string();
         return _stream;
     }
-
-
 };
 
 #endif //GCATCPP_ABSTRACTCODE_H

@@ -4,7 +4,7 @@
 \alias{code_prepare_factor_longest_path}
 \title{Returns a list, with only the longest path(s) in the graph of a circular code.}
 \usage{
-code_prepare_factor_longest_path(code, tuple_length = -1L)
+code_prepare_factor_longest_path(code, tuple_length = -55555L)
 }
 \arguments{
 \item{code}{A vertor with codons.' @param length if code is a sequence, length is the tuple length of the code.}

@@ -1,26 +1,13 @@
-#include <utility>
-
-//
-// Created by Martin on 2/7/2019.
-//
-
-
-
 //
 // Created by Martin on 27.06.2018.
 //
 #include <string>
 #include <regex>
-#include <iterator>
 #include <unordered_set>
-#include <algorithm>
 
 
 #include "../tester/AbstractTester.h"
 #include "../modification/AbstractModifier.h"
-#include "../geneticCode/CodonTranslTables.h"
-
-#include "AbstractCode.h"
 
 #define EMPTY_SEQUNECE "#"
 
@@ -86,8 +73,17 @@ bool AbstractCode::test_code() {
     this->is_ok = true;
 
     if (this->code_vec.empty()) {
-        this->add_error_msg("Code is empty!");
-        return (this->is_ok = false);
+        (this->is_ok = false);
+        throw std::invalid_argument("Code is empty!");
+    }
+
+    const std::regex re( "[^0-9A-Za-z]" ) ;
+
+    std::smatch match ;
+    auto temp = this->as_string_sequence();
+    if (std::regex_search (temp,match,re)) {
+        (this->is_ok = false);
+        throw std::invalid_argument("Code only allows letters and numbers");
     }
 
     this->set_code_properties();
@@ -199,6 +195,13 @@ std::string AbstractCode::to_string() const {
 
 bool AbstractCode::is_translatable() {
     return false;
+}
+
+int AbstractCode::calculateModulo(int frame, int length) {
+    if (frame < 0) {
+        return calculateModulo(frame + length, length);
+    }
+    return (frame % length);
 }
 
 std::vector<std::string> AbstractCode::get_tuples() {

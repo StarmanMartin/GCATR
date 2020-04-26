@@ -4,7 +4,7 @@
 \alias{code_named_transform_tuples}
 \title{Transformation of all tuples}
 \usage{
-code_named_transform_tuples(trans_name, code, tuple_length = -1L)
+code_named_transform_tuples(trans_name, code, tuple_length = -55555L)
 }
 \arguments{
 \item{trans_name}{tname of a transformation. listed in description.}

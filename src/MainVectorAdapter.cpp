@@ -1,5 +1,6 @@
 
 #include <Rcpp.h>
+
 #include "GCATCPP/codes/CodeFactory.h"
 #include "GCATCPP/miner/LongestPathMiner.h"
 #include "GCATCPP/miner/kCircularityMiner.h"
@@ -12,6 +13,7 @@
 
 
 using namespace Rcpp;
+
 
 
 //' Check if a code is circular.
@@ -28,7 +30,7 @@ using namespace Rcpp;
 //' \emph{2007 Christian MICHEL. CIRCULAR CODES IN GENES}
 //'
 //' @param code is either a string vector or a string. It can either be a code or a sequence.
-//' @param length if code is a sequence, length is the tuple length of the code.
+//' @param tuple_length if code is a sequence, length is the tuple length of the code.
 //' @return Boolean value. True if the code is circular.
 //' @examples
 //' code_check_if_circular(c("ACG", "CAG"))
@@ -37,9 +39,9 @@ using namespace Rcpp;
 //'
 //' @export 
 // [[Rcpp::export]]
-bool code_check_if_circular(StringVector code, int length = -1) {
+bool code_check_if_circular(StringVector code, int tuple_length = -55555) {
     auto code_vec = RAdapterUtils::as_cpp_string_vector(code);
-    auto a = CodeFactory::rFactor(code_vec, length);
+    auto a = RAdapterUtils::factorCodeWrapper(code_vec, tuple_length);
     return a->is_circular();
 }
 
@@ -48,7 +50,7 @@ bool code_check_if_circular(StringVector code, int length = -1) {
 //' Turns a sequence or a single string code into a string vector.
 //'
 //' @param code is either a string vector or a string. It can either be a code or a sequence.
-//' @param length if code is a sequence, length is the tuple length of the code.
+//' @param tuple_length if code is a sequence, length is the tuple length of the code.
 //' @return StringVector code as vector.
 //' @examples
 //' code_vec <- code_as_vector("ACGCAG", 3)
@@ -56,10 +58,29 @@ bool code_check_if_circular(StringVector code, int length = -1) {
 //'
 //' @export 
 // [[Rcpp::export]]
-StringVector code_as_vector(StringVector code, int length = -1) {
+StringVector code_as_vector(StringVector code, int tuple_length = -55555) {
     auto code_vec = RAdapterUtils::as_cpp_string_vector(code);
-    auto a = CodeFactory::rFactor(code_vec, length);
-    return RAdapterUtils::as_r_string_vector(a->as_vector());
+    auto a = RAdapterUtils::factorCodeWrapper(code_vec, tuple_length);
+    return RAdapterUtils::as_r_string_vector(a->get_tuples());
+}
+
+//' Returns a code as vector.
+//' 
+//' Turns a sequence or a single string code into a code (ordered string set).
+//'
+//' @param code is either a string vector or a string. It can either be a code or a sequence.
+//' @param tuple_length if code is a sequence, length is the tuple length of the code.
+//' @return StringVector code as vector.
+//' @examples
+//' code_vec <- code_as_unique_vector("CAGACGACG", 3)
+//' code_vec <- code_as_unique_vector("CAG ACG ACG")
+//'
+//' @export 
+// [[Rcpp::export]]
+StringVector code_as_unique_vector(StringVector code, int tuple_length = -55555) {
+    auto code_vec = RAdapterUtils::as_cpp_string_vector(code);
+    auto a = RAdapterUtils::factorCodeWrapper(code_vec, tuple_length);
+    return RAdapterUtils::as_r_string_vector(a->get_tuples());
 }
 
 
@@ -69,7 +90,7 @@ StringVector code_as_vector(StringVector code, int length = -1) {
 //' Returns the tuple length of the code. If the code is a mixed code it returns the longest tuple length.
 //'
 //' @param code is either a string vector or a string. It can either be a code or a sequence.
-//' @param length if code is a sequence, length is the tuple length of the code.
+//' @param tuple_length if code is a sequence, length is the tuple length of the code.
 //' @return Number tuple length.
 //' @examples
 //' code_l <- code_tuple_length(c("ACG", "CAG"))
@@ -78,9 +99,9 @@ StringVector code_as_vector(StringVector code, int length = -1) {
 //'
 //' @export 
 // [[Rcpp::export]]
-int code_tuple_length(StringVector code, int length = -1) {
+int code_tuple_length(StringVector code, int tuple_length = -55555) {
     auto code_vec = RAdapterUtils::as_cpp_string_vector(code);
-    auto a = CodeFactory::rFactor(code_vec, length);
+    auto a = RAdapterUtils::factorCodeWrapper(code_vec, tuple_length);
     return a->get_word_length()[0];
 }
 
@@ -103,7 +124,7 @@ int code_tuple_length(StringVector code, int length = -1) {
 //' \emph{2007 Christian MICHEL. CIRCULAR CODES IN GENES}
 //'
 //' @param code is either a string vector or a string. It can either be a code or a sequence.
-//' @param length if code is a sequence, length is the tuple length of the code.
+//' @param tuple_length if code is a sequence, length is the tuple length of the code.
 //' @return Boolean value. True if the code is circular.
 //' @examples
 //' code_check_if_circular(c("ACG", "CAG"))
@@ -112,9 +133,9 @@ int code_tuple_length(StringVector code, int length = -1) {
 //'
 //' @export
 // [[Rcpp::export]]
-bool code_check_if_code(StringVector code, int length = -1) {
+bool code_check_if_code(StringVector code, int tuple_length = -55555) {
     auto code_vec = RAdapterUtils::as_cpp_string_vector(code);
-    auto a = CodeFactory::rFactor(code_vec, length);
+    auto a = RAdapterUtils::factorCodeWrapper(code_vec, tuple_length);
     return a->test_code();
 }
 
@@ -132,7 +153,7 @@ bool code_check_if_code(StringVector code, int length = -1) {
 //'
 //' @param k is is integer. k refers to the k-circular property.
 //' @param code is either a string vector or a string. It can either be a code or a sequence.
-//' @param length if code is a sequence, length is the tuple length of the code.
+//' @param tuple_length if code is a sequence, length is the tuple length of the code.
 //' @return Boolean value. True if the code is k-circular.
 //' @examples
 //' code_check_if_k_circular(2, c("ACG", "CAG"))
@@ -141,9 +162,9 @@ bool code_check_if_code(StringVector code, int length = -1) {
 //'
 //' @export
 // [[Rcpp::export]]
-bool code_check_if_k_circular(int k, StringVector code, int length = -1) {
+bool code_check_if_k_circular(int k, StringVector code, int tuple_length = -55555) {
     auto code_vec = RAdapterUtils::as_cpp_string_vector(code);
-    auto a = CodeFactory::rFactor(code_vec, length);
+    auto a = RAdapterUtils::factorCodeWrapper(code_vec, tuple_length);
     return a->is_k_circular(k);
 }
 
@@ -161,7 +182,7 @@ bool code_check_if_k_circular(int k, StringVector code, int length = -1) {
 //'
 //' @param k is is integer. k refers to the k-circular property.
 //' @param code is either a string vector or a string. It can either be a code or a sequence.
-//' @param length if code is a sequence, length is the tuple length of the code.
+//' @param tuple_length if code is a sequence, length is the tuple length of the code.
 //' @return k value of a k-circular code.
 //' @examples
 //' code_k_value(c("ACG", "CAG"))
@@ -170,9 +191,9 @@ bool code_check_if_k_circular(int k, StringVector code, int length = -1) {
 //'
 //' @export
 // [[Rcpp::export]]
-int code_k_value(StringVector code, int length = -1) {
+int code_k_value(StringVector code, int tuple_length = -55555) {
     auto code_vec = RAdapterUtils::as_cpp_string_vector(code);
-    auto a = CodeFactory::rFactor(code_vec, length);
+    auto a = RAdapterUtils::factorCodeWrapper(code_vec, tuple_length);
     return miner::kCircularityMiner::mine_k_value(a.get());
 }
 
@@ -189,7 +210,7 @@ int code_k_value(StringVector code, int length = -1) {
 //' \emph{2007 Christian MICHEL. CIRCULAR CODES IN GENES}
 //'
 //' @param code is either a string vector or a string. It can either be a code or a sequence.
-//' @param length if code is a sequence, length is the tuple length of the code.
+//' @param tuple_length if code is a sequence, length is the tuple length of the code.
 //'
 //' @return Boolean value. True if the code is Cn-circular.
 //' @examples
@@ -199,9 +220,9 @@ int code_k_value(StringVector code, int length = -1) {
 //'
 //' @export
 // [[Rcpp::export]]
-bool code_check_if_cn_circular(StringVector code, int length = -1) {
+bool code_check_if_cn_circular(StringVector code, int tuple_length = -55555) {
     auto code_vec = RAdapterUtils::as_cpp_string_vector(code);
-    auto a = CodeFactory::rFactor(code_vec, length);
+    auto a = RAdapterUtils::factorCodeWrapper(code_vec, tuple_length);
     return a->is_cn_circular();
 }
 
@@ -218,7 +239,7 @@ bool code_check_if_cn_circular(StringVector code, int length = -1) {
 //' \emph{2007 Christian MICHEL. CIRCULAR CODES IN GENES}
 //'
 //' @param code is either a string vector or a string. It can either be a code or a sequence.
-//' @param length if code is a sequence, length is the tuple length of the code.
+//' @param tuple_length if code is a sequence, length is the tuple length of the code.
 //' @return Boolean value. True if the code is comma free.
 //' @examples
 //' code_check_if_comma_free(c("ACG", "CAG"))
@@ -227,18 +248,18 @@ bool code_check_if_cn_circular(StringVector code, int length = -1) {
 //'
 //' @export
 // [[Rcpp::export]]
-bool code_check_if_comma_free(StringVector code, int length = -1) {
+bool code_check_if_comma_free(StringVector code,int tuple_length = -55555) {
     auto code_vec = RAdapterUtils::as_cpp_string_vector(code);
-    auto a = CodeFactory::rFactor(code_vec, length);
+    auto a = RAdapterUtils::factorCodeWrapper(code_vec, tuple_length);
     return a->is_comma_free();
 }
 
 
 //' @export
 // [[Rcpp::export]]
-StringVector code_strip_complements(StringVector code, int length = -1) {
+StringVector code_strip_complements(StringVector code,int tuple_length = -55555) {
     auto code_vec = RAdapterUtils::as_cpp_string_vector(code);
-    auto a = CodeFactory::rFactorGenCode(code_vec, length);
+    auto a = RAdapterUtils::factorGenCodeWrapper(code_vec, tuple_length);
     a->strip_complements();
     return RAdapterUtils::as_r_string_vector(a->get_tuples());
 }
@@ -255,7 +276,7 @@ StringVector code_strip_complements(StringVector code, int length = -1) {
 //' \emph{2007 Christian MICHEL. CIRCULAR CODES IN GENES}
 //'
 //' @param code is either a string vector or a string. It has to be a RNA/DNA - code or a sequence.
-//' @param length if code is a sequence, length is the tuple length of the code.
+//' @param tuple_length if code is a sequence, length is the tuple length of the code.
 //' @param mute set false to get console output information about not self-complementary tuples.
 //' @return Boolean value. True if the code is self-complementary.
 //' @examples
@@ -265,9 +286,9 @@ StringVector code_strip_complements(StringVector code, int length = -1) {
 //'
 //' @export
 // [[Rcpp::export]]
-bool code_check_if_self_complementary(StringVector code, int length = -1, bool mute=true) {
+bool code_check_if_self_complementary(StringVector code, int tuple_length = -55555, bool mute=true) {
     auto code_vec = RAdapterUtils::as_cpp_string_vector(code);
-    auto a = CodeFactory::rFactorGenCode(code_vec, length);
+    auto a = RAdapterUtils::factorGenCodeWrapper(code_vec, tuple_length);
     bool res = a->is_self_complementary(mute);
     return res;//a->is_self_complementary();
 }
@@ -284,7 +305,7 @@ bool code_check_if_self_complementary(StringVector code, int length = -1, bool m
 //' \emph{2007 Christian MICHEL. CIRCULAR CODES IN GENES}
 //'
 //' @param code is either a string vector or a string. It should be a RNA/DNA - code or a sequence.
-//' @param length if code is a sequence, length is the tuple length of the code.
+//' @param tuple_length if code is a sequence, length is the tuple length of the code.
 //' @return String value. One of NONE, DNA, RNA
 //' @examples
 //' code_get_acid(c("ACG", "CAG"))
@@ -293,9 +314,9 @@ bool code_check_if_self_complementary(StringVector code, int length = -1, bool m
 //' 
 //' @export
 // [[Rcpp::export]]
-StringVector code_get_acid(StringVector code, int length = -1) {
+StringVector code_get_acid(StringVector code, int tuple_length = -55555) {
     auto code_vec = RAdapterUtils::as_cpp_string_vector(code);
-    auto a = CodeFactory::rFactorGenCode(code_vec, length);
+    auto a = RAdapterUtils::factorGenCodeWrapper(code_vec, tuple_length);
     return acid::acid_to_string(a->get_acid());;
 }
 
@@ -310,7 +331,6 @@ StringVector code_get_acid(StringVector code, int length = -1) {
 //' \emph{2007 Christian MICHEL. CIRCULAR CODES IN GENES}
 //'
 //' @param code is either a string vector or a string. It should be a RNA/DNA - code or a sequence.
-//' @param length if code is a sequence, length is the tuple length of the code.
 //' @param idx the index of a Genetic Code table as int. (check \link{print_all_translation_table})
 //' @return String vector. list of amino acids
 //' @examples
@@ -338,7 +358,6 @@ StringVector code_get_all_amino_acids(StringVector code, int idx_trans_table = 1
 //' \emph{2007 Christian MICHEL. CIRCULAR CODES IN GENES}
 //'
 //' @param code is either a string vector or a string. It should be a RNA/DNA - code or a sequence.
-//' @param length if code is a sequence, length is the tuple length of the code.
 //' @param idx the index of a Genetic Code table as int. (check \link{print_all_translation_table})
 //' @return String vector. list of amino acids
 //' @examples
@@ -364,7 +383,7 @@ StringVector code_get_amino_acids(StringVector code, int idx_trans_table = 1) {
 //' @seealso \link{code_factor_longest_path} for a graph of the longest path. \link{code_get_all_longest_path_as_vector} for the results as list
 //'
 //' @param code is either a string vector or a string. It can either be a code or a sequence.
-//' @param length if code is a sequence, length is the tuple length of the code.
+//' @param tuple_length if code is a sequence, length is the tuple length of the code.
 //'
 //' @return A String vector. Nodes of the longest path
 //' @examples
@@ -374,9 +393,9 @@ StringVector code_get_amino_acids(StringVector code, int idx_trans_table = 1) {
 //'
 //' @export
 // [[Rcpp::export]]
-StringVector code_get_one_longest_path_as_vector(StringVector code, int length = -1) {
+StringVector code_get_one_longest_path_as_vector(StringVector code, int tuple_length = -55555) {
     auto code_vec = RAdapterUtils::as_cpp_string_vector(code);
-    auto gc = CodeFactory::rFactor(code_vec, length);
+    auto gc = RAdapterUtils::factorCodeWrapper(code_vec, tuple_length);
     auto longest_path_collection = miner::LongestPathMiner::mine_path_as_vector(&*gc);
     if (longest_path_collection.size() == 0) {
         gc->print_errors();
@@ -396,7 +415,7 @@ StringVector code_get_one_longest_path_as_vector(StringVector code, int length =
 //' @seealso \link{code_factor_longest_path} for a graph of the longest path. \link{code_get_all_longest_path_as_vector} for only one result
 //'
 //' @param code is either a string vector or a string. It can either be a code or a sequence.
-//' @param length if code is a sequence, length is the tuple length of the code.
+//' @param tuple_length if code is a sequence, length is the tuple length of the code.
 //'
 //' @return A list of String vectors. Nodes of the longest path
 //' @examples
@@ -406,9 +425,9 @@ StringVector code_get_one_longest_path_as_vector(StringVector code, int length =
 //'
 //' @export
 // [[Rcpp::export]]
-Rcpp::List code_get_all_longest_path_as_vector(StringVector code, int length = -1) {
+Rcpp::List code_get_all_longest_path_as_vector(StringVector code, int tuple_length = -55555) {
     auto code_vec = RAdapterUtils::as_cpp_string_vector(code);
-    auto gc = CodeFactory::rFactor(code_vec, length);
+    auto gc = RAdapterUtils::factorCodeWrapper(code_vec, tuple_length);
     auto longest_path_collection = miner::LongestPathMiner::mine_path_as_vector(&*gc);
     if (longest_path_collection.size() == 0) {
         gc->print_errors();
@@ -438,9 +457,9 @@ Rcpp::List code_get_all_longest_path_as_vector(StringVector code, int length = -
 //'
 //' @export
 // [[Rcpp::export]]
-StringVector code_get_one_cycles_as_vector(StringVector code, int tuple_length = -1) {
+StringVector code_get_one_cycles_as_vector(StringVector code,int tuple_length = -55555) {
     auto code_vec = RAdapterUtils::as_cpp_string_vector(code);
-    auto gc = CodeFactory::rFactor(code_vec, tuple_length);
+    auto gc = RAdapterUtils::factorCodeWrapper(code_vec, tuple_length);
     auto circle_path_collection = miner::CircleMiner::mine_path_as_vector(&*gc);
     if (circle_path_collection.size() == 0) {
         gc->print_errors();
@@ -470,9 +489,9 @@ StringVector code_get_one_cycles_as_vector(StringVector code, int tuple_length =
 //'
 //' @export
 // [[Rcpp::export]]
-Rcpp::List code_get_all_cycles_as_vector(StringVector code, int tuple_length = -1) {
+Rcpp::List code_get_all_cycles_as_vector(StringVector code,int tuple_length = -55555) {
     auto code_vec = RAdapterUtils::as_cpp_string_vector(code);
-    auto gc = CodeFactory::rFactor(code_vec, tuple_length);
+    auto gc = RAdapterUtils::factorCodeWrapper(code_vec, tuple_length);
     auto circle_path_collection = miner::CircleMiner::mine_path_as_vector(&*gc);
     if (circle_path_collection.size() == 0) {
         gc->print_errors();
@@ -541,10 +560,10 @@ Rcpp::StringVector get_rna_bases() {
 //'
 //' @export
 // [[Rcpp::export]]
-Rcpp::List find_and_analysis_code_in_sequence(std::string seq, StringVector code, int tuple_length = -1) {
+Rcpp::List find_and_analysis_code_in_sequence(std::string seq, StringVector code,int tuple_length = -55555, int frame = 0) {
     auto code_vec = RAdapterUtils::as_cpp_string_vector(code);
-    auto gc = CodeFactory::rFactor(code_vec, tuple_length);
-    auto res = gc->find_code_in_sequence(seq);
+    auto gc = RAdapterUtils::factorCodeWrapper(code_vec, tuple_length);
+    auto res = gc->find_code_in_sequence(seq, frame);
 
     return Rcpp::List::create(
             Rcpp::Named("word") = Rcpp::wrap(res.words),
@@ -595,11 +614,11 @@ StringVector generate_code_by_min_value(StringVector alphabet, int tuple_length)
 //'
 //' @export
 // [[Rcpp::export]]
-StringVector shift_tuples(int shifts, StringVector code, int tuple_length = -1) {
+StringVector shift_tuples(int shifts, StringVector code,int tuple_length = -55555) {
     auto code_vec = RAdapterUtils::as_cpp_string_vector(code);
-    auto gc = CodeFactory::rFactor(code_vec, tuple_length);
+    auto gc = RAdapterUtils::factorCodeWrapper(code_vec, tuple_length);
     gc->shift_tuples(shifts);
-    return RAdapterUtils::as_r_string_vector(gc->as_vector());
+    return RAdapterUtils::as_r_string_vector(gc->get_tuples());
 }
 
 
@@ -626,11 +645,11 @@ StringVector shift_tuples(int shifts, StringVector code, int tuple_length = -1) 
 //'
 //' @export
 // [[Rcpp::export]]
-StringVector code_transform_tuples(std::string from, std::string to, StringVector code, int tuple_length = -1) {
+StringVector code_transform_tuples(std::string from, std::string to, StringVector code,int tuple_length = -55555) {
     auto code_vec = RAdapterUtils::as_cpp_string_vector(code);
-    auto gc = CodeFactory::rFactor(code_vec, tuple_length);
+    auto gc = RAdapterUtils::factorCodeWrapper(code_vec, tuple_length);
     gc->transform_tuples(from, to);
-    return RAdapterUtils::as_r_string_vector(gc->as_vector());
+    return RAdapterUtils::as_r_string_vector(gc->get_tuples());
 }
 
 //' Transformation of all tuples
@@ -659,9 +678,9 @@ StringVector code_transform_tuples(std::string from, std::string to, StringVecto
 //'
 //' @export
 // [[Rcpp::export]]
-StringVector code_named_transform_tuples(std::string trans_name, StringVector code, int tuple_length = -1) {
-auto code_vec = RAdapterUtils::as_cpp_string_vector(code);
-auto gc = CodeFactory::rFactorGenCode(code_vec, tuple_length);
-gc->transform_tuples_by_name(trans_name);
-return RAdapterUtils::as_r_string_vector(gc->as_vector());
+StringVector code_named_transform_tuples(std::string trans_name, StringVector code,int tuple_length = -55555) {
+    auto code_vec = RAdapterUtils::as_cpp_string_vector(code);
+    auto gc = RAdapterUtils::factorGenCodeWrapper(code_vec, tuple_length);
+    gc->transform_tuples_by_name(trans_name);
+    return RAdapterUtils::as_r_string_vector(gc->get_tuples());
 }
