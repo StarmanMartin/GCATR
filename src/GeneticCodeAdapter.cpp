@@ -3,7 +3,6 @@ using namespace Rcpp;
 
 #include "GCATCPP/geneticCode/CodonClusteringAlgorithm.h"
 #include "GCATCPP/geneticCode/CodonTranslTables.h"
-#include "GCATCPP/codes/CodeFactory.h"
 #include "GCATCPP/sequences/Sequence.h"
 
 #include "RAdapterUtils.h"
@@ -247,7 +246,7 @@ List genetic_codes_by_index(int idx, std::string acid="DNA") {
 //' \emph{2007 Christian MICHEL. CIRCULAR CODES IN GENES}
 //'
 //' @param code is either a string vector or a string. It can either be a code or a sequence.
-//' @param length if code is a sequence, length is the tuple length of the code.
+//' @param tuple_length if code is a sequence, length is the tuple length of the code.
 //' @return Boolean value. True if a fitting translation table exists.
 //' @examples
 //' code_is_translatable(c("ACG", "CAG"))
@@ -256,9 +255,9 @@ List genetic_codes_by_index(int idx, std::string acid="DNA") {
 //'
 //' @export
 // [[Rcpp::export]]
-bool code_is_translatable(StringVector code, int length = -1) {
+bool code_is_translatable(StringVector code, int tuple_length = -55555) {
     auto code_vec = RAdapterUtils::as_cpp_string_vector(code);
-    auto a = CodeFactory::rFactorGenCode(code_vec, length);
+    auto a =  RAdapterUtils::factorGenCodeWrapper(code_vec, tuple_length);
     return a->is_translatable();
 }
 

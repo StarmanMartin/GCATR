@@ -80,13 +80,7 @@ test_that('code is not contained in sequence', {
 
 test_that('code is contained in sequence', {
   seq <- "#+oopp&%?!!$"
-  res <- find_and_analysis_code_in_sequence(seq,c("&%?"))
-  expect_equal(res$word,c("&%?"))
-  expect_equal(res$idx_list,c(6))
-  expect_equal(res$rest,"#+oopp!!$")
-  expect_equal(res$parts, c("#+oopp","&%?","!!$"))
-  expect_equal(res$longest_match,3)
-  expect_equal(res$total_match_in_percent,25)
+  expect_error(find_and_analysis_code_in_sequence(seq,c("&%?")))
 })
 
 
@@ -310,12 +304,12 @@ test_that('tuples are shifted correctly', {
 test_that('error is thrown', {
   expect_error(shift_tuples(1, "CAGGGAUGA", tuple_length = 0))
   expect_error(shift_tuples(2, "CAGGGAUGA", tuple_length = -2))
-  expect_error(shift_tuples(1, "CAGGGAUGA", tuple_length = 1))
+  expect_equal(shift_tuples(1, "CAGGGAUGA", tuple_length = 1), c("C","A","G","G","G","A","U","G","A"))
 })
 
-# Try with empty input code 
+# Try with empty input code
 test_that('empty code leads to empty output', {
-  expect_length(shift_tuples(1, "", tuple_length = 3), 0)
+  expect_error(shift_tuples(1, "", tuple_length = 3))
 })
 
 
@@ -325,8 +319,8 @@ test_that('code is transformed correctly', {
   expect_equal(code_transform_tuples("1234", "2345","133422",tuple_length = 3 ), c("244","533"))
   # fails cause of incorrect order
   expect_equal(code_transform_tuples("FHGJ", "KLMN","GGHFJG",tuple_length = 2 ), c("MM","LK", "NM"))
-  expect_equal(code_transform_tuples("k$.€", "1234", "k $ . $ € ."),c("1","2", "3", "2", "4", "3"))
-  
+  expect_error(code_transform_tuples("k$.€", "1234", "k $ . $ € ."))
+
   # How to check that error message is printed
   # Could not find a way to figure out
   expect_error(code_transform_tuples("123", "3456", "12345"))
@@ -335,7 +329,7 @@ test_that('code is transformed correctly', {
 
 #code_named_transform_tuples
 
-# Test all of the eight self-complementarity preserving base permutations 
+# Test all of the eight self-complementarity preserving base permutations
 
 # try identity transformation
 test_that("identify does not transform code", {
@@ -349,7 +343,7 @@ test_that("identify does not transform code", {
 })
 
 
-# A <-> C, G <-> T 
+# A <-> C, G <-> T
 # KM
 test_that("complementary function transforms correctly", {
   expect_equal(code_named_transform_tuples("KM", c("ATC", "GTC")), c("CGA", "TGA"))
@@ -361,7 +355,7 @@ test_that("complementary function transforms correctly", {
   expect_equal(code_named_transform_tuples("KM", "AUCGUC", 3), c("CGA", "UGA"))
 })
 
-# A <-> T, C <-> G 
+# A <-> T, C <-> G
 #SW
 test_that("complementary function transforms correctly", {
   expect_equal(code_named_transform_tuples("SW", c("ATC", "GTC")), c("TAG", "CAG"))
@@ -371,7 +365,7 @@ test_that("complementary function transforms correctly", {
   expect_equal(code_named_transform_tuples("SW", c("AUC", "GUC")), c("UAG", "CAG"))
   expect_equal(code_named_transform_tuples("SW", "AUC GUC"), c("UAG", "CAG"))
   expect_equal(code_named_transform_tuples("SW", "AUCGUC", 3), c("UAG", "CAG"))
-  
+
 })
 
 # A <-> G, T <-> C
@@ -392,7 +386,7 @@ test_that("AT transformation is done correctly", {
   expect_equal(code_named_transform_tuples("AT", c("ATC", "GTC")), c("TAC", "GAC"))
   expect_equal(code_named_transform_tuples("AT", "ATC GTC"), c("TAC", "GAC"))
   expect_equal(code_named_transform_tuples("AT", "ATCGTC", 3), c("TAC", "GAC"))
-  # try with RNA bases instead 
+  # try with RNA bases instead
   expect_equal(code_named_transform_tuples("AT", c("AUC", "GUC")), c("UAC", "GAC"))
   expect_equal(code_named_transform_tuples("AT", "AUC GUC"), c("UAC", "GAC"))
   expect_equal(code_named_transform_tuples("AT", "AUCGUC", 3), c("UAC", "GAC"))
@@ -423,7 +417,7 @@ test_that("ACUG transformation is done correctly", {
 })
 
 # A -> G, T -> C, C -> A, G -> T
-# AGTC 
+# AGTC
 test_that("ACUG transformation is done correctly", {
   expect_equal(code_named_transform_tuples("AGTC", c("ATC", "GTC")), c("GCA", "TCA"))
   expect_equal(code_named_transform_tuples("AGTC", "ATC GTC"), c("GCA", "TCA"))
@@ -438,10 +432,10 @@ test_that("ACUG transformation is done correctly", {
 # empty transformation type
 
 test_that("Wrong inputs cause error", {
-  expect_error(code_named_transform_tuples("", c("ATC", "GTC")), c("GCA", "TCA"))
+  expect_error(code_named_transform_tuples("", c("ATC", "GTC")))
   expect_error(code_named_transform_tuples("Id", c()))
   expect_error(code_named_transform_tuples("Id", ""))
-  
+
 })
 
 

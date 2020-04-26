@@ -9,7 +9,7 @@
 #include "../codes/CodeFactory.h"
 
 bool run_self_complementary_for_code(std::vector<std::string> code) {
-    auto sc = CodeFactory::rFactorGenCode(code, -1);
+    auto sc = CodeFactory::rFactorGenCode(code);
     return sc->is_self_complementary(true);
 }
 
@@ -36,7 +36,7 @@ TEST(SelfComplementary, removeComplements) {
                                              "CCG", "CCU", "CGG", "CGU", "CUU", "GCU", "GGU", "GUU", "UCA", "UGA"};
 
 
-        auto sc = CodeFactory::rFactorGenCode(code_vec, -1);
+        auto sc = CodeFactory::rFactorGenCode(code_vec);
         auto temp = sc->get_tuples();
         sc->strip_complements();
 

@@ -4,12 +4,12 @@
 \alias{code_get_all_longest_path_as_vector}
 \title{Finds all longest paths in the graph of the code.}
 \usage{
-code_get_all_longest_path_as_vector(code, length = -1L)
+code_get_all_longest_path_as_vector(code, tuple_length = -55555L)
 }
 \arguments{
 \item{code}{is either a string vector or a string. It can either be a code or a sequence.}
 
-\item{length}{if code is a sequence, length is the tuple length of the code.}
+\item{tuple_length}{if code is a sequence, length is the tuple length of the code.}
 }
 \value{
 A list of String vectors. Nodes of the longest path

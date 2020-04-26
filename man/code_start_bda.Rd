@@ -4,10 +4,12 @@
 \alias{code_start_bda}
 \title{Start a BDA procedure for a code.}
 \usage{
-code_start_bda(code, length = -1L)
+code_start_bda(code, tuple_length = -55555L)
 }
 \arguments{
-\item{code}{is a DNA or RNA code as string vector.}
+\item{code}{is either a string vector or a string. It can be a DNA or RNA sequence.}
+
+\item{tuple_length}{if code is a sequence, length is the tuple length of the code.}
 }
 \value{
 Boolean value. True if the procedure has started
@@ -23,6 +25,8 @@ A binary dichotomic algorithm generates a binary representation of a generic cod
 }
 \examples{
 code_start_bda(c("ACG", "CAG"))
+code_start_bda("ACG CAG")
+code_start_bda("ACGCAG", tuple_length=3)
 add_bda(1, 2, "C", "G", "A", "T")
 res.binary <- run_bda()
 

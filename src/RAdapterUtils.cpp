@@ -3,6 +3,7 @@
 //
 
 #include "RAdapterUtils.h"
+#include "GCATCPP/codes/CodeFactory.h"
 #include <stdexcept>
 
 std::vector <std::string> RAdapterUtils::as_cpp_string_vector(StringVector r_vec) {
@@ -40,3 +41,18 @@ acid::acids RAdapterUtils::string_to_acid(std::string acid_name) {
   
   return acid::acids::NONE;
 }
+
+std::shared_ptr<AbstractGenCode> RAdapterUtils::factorGenCodeWrapper(std::vector <std::string> cVec, int tuple_length) {
+  if(tuple_length == TUPLE_LENGTH_EMPTY) {
+    return CodeFactory::rFactorGenCode(cVec);
+  }
+  return CodeFactory::rFactorGenCode(cVec, tuple_length);
+}
+
+std::shared_ptr<AbstractCode> RAdapterUtils::factorCodeWrapper(std::vector <std::string> cVec, int tuple_length) {
+  if(tuple_length == TUPLE_LENGTH_EMPTY) {
+    return CodeFactory::rFactor(cVec);
+  }
+  return CodeFactory::rFactor(cVec, tuple_length);
+}
+

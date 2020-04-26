@@ -24,7 +24,12 @@ TEST(ShiftTester, differentShifts) {
     code = CodeFactory::rFactorTypesCodonCode({code_text});
     code->shift_tuples(-1);
     ASSERT_THAT(code->get_tuples(), testing::ElementsAre("GAC", "GTC", "GCC", "CCC" ));
-
+    {
+        std::vector<std::string> cv = {"ACGACG"};
+        auto n_code = CodeFactory::rFactor(cv, 1);
+        n_code->shift_tuples(1);
+        ASSERT_THAT(n_code->get_tuples(), testing::ElementsAre("A", "C", "G", "A", "C", "G"));
+    }
 }
 
 TEST(TransformTester, differentTransforms) {
@@ -43,13 +48,25 @@ TEST(TransformTester, differentTransforms) {
 
 
     code = CodeFactory::rFactorTypesCodonCode({code_text});
-    code->transform_tuples("AA", "TT");
-    ASSERT_THAT(code->get_tuples(), testing::ElementsAre("ACG", "TCG", "CCG", "CCC" ));
+    ASSERT_ANY_THROW(code->transform_tuples("AA", "TT"));
 
     std::vector<std::string> code_as_vec = {"ACG", "GAT"};
-    auto scode = CodeFactory::rFactor(code_as_vec, -1);
+    auto scode = CodeFactory::rFactor(code_as_vec);
     scode->transform_tuples("ACTG", "CAGT");
     ASSERT_THAT(scode->get_tuples(), testing::ElementsAre("CAT", "TCG" ));
+    {
+        std::vector<std::string> cv = {"asd"};
+        auto n_code = CodeFactory::rFactor(cv, 1);
+        EXPECT_ANY_THROW(n_code->transform_tuples("k€.€", "1234"));
+        EXPECT_ANY_THROW(n_code->transform_tuples("k€$€", "1234"));
+        EXPECT_ANY_THROW(n_code->transform_tuples("k€^€", "1234"));
+        EXPECT_ANY_THROW(n_code->transform_tuples("k€(€", "1234"));
+        EXPECT_ANY_THROW(n_code->transform_tuples("k€)€", "1234"));
+        EXPECT_ANY_THROW(n_code->transform_tuples("k€[€", "1234"));
+        EXPECT_ANY_THROW(n_code->transform_tuples("k€]€", "1234"));
+        EXPECT_ANY_THROW(n_code->transform_tuples("k€{€", "1234"));
+        EXPECT_ANY_THROW(n_code->transform_tuples("k€}€", "1234"));
+    }
 
 }
 
@@ -89,10 +106,7 @@ TEST(TransformTester, TransformationLessCompare) {
         EXPECT_FALSE(t1 < t2);
     }
     {
-        TransformTuples t1("ATUCC", "GATGT");
-        TransformTuples t2("CGAT", "TCGA");
-
-        EXPECT_FALSE(t1 < t2);
+        EXPECT_ANY_THROW(TransformTuples t1("ATUCC", "GATGT"));
     }
 }
 
@@ -116,10 +130,7 @@ TEST(TransformTester, TransformationGreaterCompare) {
         EXPECT_FALSE(t1 > t2);
     }
     {
-        TransformTuples t2("ATUCC", "GATGT");
-        TransformTuples t1("CGAT", "TCGA");
-
-        EXPECT_FALSE(t1 > t2);
+        EXPECT_ANY_THROW(TransformTuples t2("ATUCC", "GATGT"));
     }
 }
 
@@ -149,10 +160,7 @@ TEST(TransformTester, TransformationCompare) {
         EXPECT_TRUE(t1 != t2);
     }
     {
-        TransformTuples t1("TCG", "GATC");
-        TransformTuples t2("CGAT", "TCGA");
-
-        EXPECT_FALSE(t1 == t2);
+        EXPECT_ANY_THROW(TransformTuples t1("TCG", "GATC"));
     }
     {
         TransformTuples t1("ATCG", "GCTC");

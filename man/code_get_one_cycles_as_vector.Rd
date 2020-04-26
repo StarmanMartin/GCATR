@@ -4,7 +4,7 @@
 \alias{code_get_one_cycles_as_vector}
 \title{Finds one circular sequences constructable in a code.}
 \usage{
-code_get_one_cycles_as_vector(code, tuple_length = -1L)
+code_get_one_cycles_as_vector(code, tuple_length = -55555L)
 }
 \arguments{
 \item{code}{is either a string vector or a string. It can either be a code or a sequence.}

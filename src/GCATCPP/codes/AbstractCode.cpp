@@ -73,8 +73,17 @@ bool AbstractCode::test_code() {
     this->is_ok = true;
 
     if (this->code_vec.empty()) {
-        this->add_error_msg("Code is empty!");
-        return (this->is_ok = false);
+        (this->is_ok = false);
+        throw std::invalid_argument("Code is empty!");
+    }
+
+    const std::regex re( "[^0-9A-Za-z]" ) ;
+
+    std::smatch match ;
+    auto temp = this->as_string_sequence();
+    if (std::regex_search (temp,match,re)) {
+        (this->is_ok = false);
+        throw std::invalid_argument("Code only allows letters and numbers");
     }
 
     this->set_code_properties();

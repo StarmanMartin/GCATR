@@ -4,7 +4,7 @@
 \alias{code_transform_tuples}
 \title{Transformation of all tuples}
 \usage{
-code_transform_tuples(from, to, code, tuple_length = -1L)
+code_transform_tuples(from, to, code, tuple_length = -55555L)
 }
 \arguments{
 \item{from}{the origin letters which are maped to the letters of the \emph{to} parameter.}

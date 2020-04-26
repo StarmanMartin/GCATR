@@ -31,7 +31,7 @@ test_that('is self-complementary, string vector', {
 })
 
 test_that('empty code is not self complementary',{
-  expect_false(code_check_if_self_complementary(("")))
+  expect_error(code_check_if_self_complementary(("")))
 })
 
 
@@ -70,7 +70,7 @@ test_that('is circular, string vector', {
 })
 
 test_that("empty code is not circular", {
-  expect_false(code_check_if_circular(""))
+  expect_error(code_check_if_circular(""))
 })
 
 # k- circularity
@@ -136,10 +136,10 @@ test_that('is circular,  string vector', {
 
 # 7. try empty input
 test_that("empty string is not ciruclar",{
-  expect_false(code_check_if_k_circular(1,c("")))
-  expect_false(code_check_if_k_circular(2,c("")))
-  expect_false(code_check_if_k_circular(3,c("")))
-  expect_false(code_check_if_k_circular(4,c("")))
+  expect_error(code_check_if_k_circular(1,c("")))
+  expect_error(code_check_if_k_circular(2,c("")))
+  expect_error(code_check_if_k_circular(3,c("")))
+  expect_error(code_check_if_k_circular(4,c("")))
 })
 
 # cn-circularity
@@ -174,7 +174,7 @@ test_that('is cn-circular, string vector', {
 })
 
 test_that('empty code is not cn circular', {
-  expect_false(code_check_if_cn_circular(""))
+  expect_error(code_check_if_cn_circular(""))
 })
 
 
@@ -197,7 +197,7 @@ test_that('is comma free, string with split by " "', {
 })
 
 test_that('empty code is not comma-free', {
-  expect_false(code_check_if_comma_free(''))
+  expect_error(code_check_if_comma_free(''))
 })
 
 # test with different alphabet
@@ -212,5 +212,5 @@ test_that('is comma free, string vector', {
 })
 
 test_that('empty code is not comma free', {
-  expect_false(code_check_if_comma_free(""))
+  expect_error(code_check_if_comma_free(""))
 })

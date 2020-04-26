@@ -114,8 +114,6 @@ protected:
         _stream << mc.to_string();
         return _stream;
     }
-
-
 };
 
 #endif //GCATCPP_ABSTRACTCODE_H
