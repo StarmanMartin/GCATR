@@ -6,7 +6,7 @@
 #include <stdexcept>
 
 std::vector <std::string> RAdapterUtils::as_cpp_string_vector(StringVector r_vec) {
-  Rprintf("the value of rvec: %f \n", r_vec[0]);
+  Rcout(r_vec[0]);
 
   if(r_vec.size() == 0) {
       throw std::invalid_argument("Vector should not be empty!");
