@@ -201,18 +201,17 @@ test_that('code is not contained in sequence in frameshift 2', {
 })
 
 
-test_that('empty sequence produces only empty results', {
-  seq <- ""
+test_that('empty sequence throws error', {
+  seq <- ''
+  res <- find_and_analysis_code_in_sequence(seq,"1345", tuple_length = 4, 2)
   expect_error(find_and_analysis_code_in_sequence(seq,"1345", tuple_length = 4, 2))
 })
 
 
-# Causes R to crash!
-test_that('empty code is not contained in sequence', {
+test_that('empty code throws error', {
   seq = "123456"
-  res <- find_and_analysis_code_in_sequence(seq, "", tuple_length = 2)
-  print(res)
-})
+  expect_error(find_and_analysis_code_in_sequence(seq,"", tuple_length = 2, 2))
+ })
 
 # Generate code by min value
 
