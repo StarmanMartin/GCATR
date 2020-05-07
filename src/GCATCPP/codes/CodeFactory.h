@@ -42,9 +42,7 @@ public:
             } else {
                 return CodeFactory::factor(code.at(0));
             }
-        }  else if(code.size() == 0) {
-            throw std::invalid_argument("Vector should not be empty!");
-        }
+        } 
 
         return CodeFactory::factor(code);
 
