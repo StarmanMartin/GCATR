@@ -42,7 +42,7 @@ public:
             } else {
                 return CodeFactory::factor(code.at(0));
             }
-        } 
+        }
 
         return CodeFactory::factor(code);
 

@@ -196,410 +196,83 @@ BEGIN_RCPP
 END_RCPP
 }
 // seq_get_info
-List seq_get_info(std::string seq, int tuple_length);
-RcppExport SEXP _GCATR_seq_get_info(SEXP seqSEXP, SEXP tuple_lengthSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< std::string >::type seq(seqSEXP);
-    Rcpp::traits::input_parameter< int >::type tuple_length(tuple_lengthSEXP);
-    rcpp_result_gen = Rcpp::wrap(seq_get_info(seq, tuple_length));
-    return rcpp_result_gen;
-END_RCPP
-}
-// code_prepare_factor_gen_c3graph
-Rcpp::List code_prepare_factor_gen_c3graph(StringVector code, int tuple_length);
-RcppExport SEXP _GCATR_code_prepare_factor_gen_c3graph(SEXP codeSEXP, SEXP tuple_lengthSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< StringVector >::type code(codeSEXP);
-    Rcpp::traits::input_parameter< int >::type tuple_length(tuple_lengthSEXP);
-    rcpp_result_gen = Rcpp::wrap(code_prepare_factor_gen_c3graph(code, tuple_length));
-    return rcpp_result_gen;
-END_RCPP
-}
-// code_prepare_factor_graph
-Rcpp::List code_prepare_factor_graph(StringVector code, bool show_cycles, bool show_longest_path, int tuple_length);
-RcppExport SEXP _GCATR_code_prepare_factor_graph(SEXP codeSEXP, SEXP show_cyclesSEXP, SEXP show_longest_pathSEXP, SEXP tuple_lengthSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< StringVector >::type code(codeSEXP);
-    Rcpp::traits::input_parameter< bool >::type show_cycles(show_cyclesSEXP);
-    Rcpp::traits::input_parameter< bool >::type show_longest_path(show_longest_pathSEXP);
-    Rcpp::traits::input_parameter< int >::type tuple_length(tuple_lengthSEXP);
-    rcpp_result_gen = Rcpp::wrap(code_prepare_factor_graph(code, show_cycles, show_longest_path, tuple_length));
-    return rcpp_result_gen;
-END_RCPP
-}
-// code_prepare_factor_all_cycle
-Rcpp::List code_prepare_factor_all_cycle(StringVector code, int tuple_length);
-RcppExport SEXP _GCATR_code_prepare_factor_all_cycle(SEXP codeSEXP, SEXP tuple_lengthSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< StringVector >::type code(codeSEXP);
-    Rcpp::traits::input_parameter< int >::type tuple_length(tuple_lengthSEXP);
-    rcpp_result_gen = Rcpp::wrap(code_prepare_factor_all_cycle(code, tuple_length));
-    return rcpp_result_gen;
-END_RCPP
-}
-// code_prepare_factor_longest_path
-Rcpp::List code_prepare_factor_longest_path(StringVector code, int tuple_length);
-RcppExport SEXP _GCATR_code_prepare_factor_longest_path(SEXP codeSEXP, SEXP tuple_lengthSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< StringVector >::type code(codeSEXP);
-    Rcpp::traits::input_parameter< int >::type tuple_length(tuple_lengthSEXP);
-    rcpp_result_gen = Rcpp::wrap(code_prepare_factor_longest_path(code, tuple_length));
-    return rcpp_result_gen;
-END_RCPP
-}
-// code_check_if_circular
-bool code_check_if_circular(StringVector code, int length);
-RcppExport SEXP _GCATR_code_check_if_circular(SEXP codeSEXP, SEXP lengthSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< StringVector >::type code(codeSEXP);
-    Rcpp::traits::input_parameter< int >::type length(lengthSEXP);
-    rcpp_result_gen = Rcpp::wrap(code_check_if_circular(code, length));
-    return rcpp_result_gen;
-END_RCPP
-}
-// code_as_vector
-StringVector code_as_vector(StringVector code, int length);
-RcppExport SEXP _GCATR_code_as_vector(SEXP codeSEXP, SEXP lengthSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< StringVector >::type code(codeSEXP);
-    Rcpp::traits::input_parameter< int >::type length(lengthSEXP);
-    rcpp_result_gen = Rcpp::wrap(code_as_vector(code, length));
-    return rcpp_result_gen;
-END_RCPP
-}
-// code_tuple_length
-int code_tuple_length(StringVector code, int length);
-RcppExport SEXP _GCATR_code_tuple_length(SEXP codeSEXP, SEXP lengthSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< StringVector >::type code(codeSEXP);
-    Rcpp::traits::input_parameter< int >::type length(lengthSEXP);
-    rcpp_result_gen = Rcpp::wrap(code_tuple_length(code, length));
-    return rcpp_result_gen;
-END_RCPP
-}
-// code_check_if_code
-bool code_check_if_code(StringVector code, int length);
-RcppExport SEXP _GCATR_code_check_if_code(SEXP codeSEXP, SEXP lengthSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< StringVector >::type code(codeSEXP);
-    Rcpp::traits::input_parameter< int >::type length(lengthSEXP);
-    rcpp_result_gen = Rcpp::wrap(code_check_if_code(code, length));
-    return rcpp_result_gen;
-END_RCPP
-}
-// code_check_if_k_circular
-bool code_check_if_k_circular(int k, StringVector code, int length);
-RcppExport SEXP _GCATR_code_check_if_k_circular(SEXP kSEXP, SEXP codeSEXP, SEXP lengthSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< int >::type k(kSEXP);
-    Rcpp::traits::input_parameter< StringVector >::type code(codeSEXP);
-    Rcpp::traits::input_parameter< int >::type length(lengthSEXP);
-    rcpp_result_gen = Rcpp::wrap(code_check_if_k_circular(k, code, length));
-    return rcpp_result_gen;
-END_RCPP
-}
-// code_k_value
-int code_k_value(StringVector code, int length);
-RcppExport SEXP _GCATR_code_k_value(SEXP codeSEXP, SEXP lengthSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< StringVector >::type code(codeSEXP);
-    Rcpp::traits::input_parameter< int >::type length(lengthSEXP);
-    rcpp_result_gen = Rcpp::wrap(code_k_value(code, length));
-    return rcpp_result_gen;
-END_RCPP
-}
-// code_check_if_cn_circular
-bool code_check_if_cn_circular(StringVector code, int length);
-RcppExport SEXP _GCATR_code_check_if_cn_circular(SEXP codeSEXP, SEXP lengthSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< StringVector >::type code(codeSEXP);
-    Rcpp::traits::input_parameter< int >::type length(lengthSEXP);
-    rcpp_result_gen = Rcpp::wrap(code_check_if_cn_circular(code, length));
-    return rcpp_result_gen;
-END_RCPP
-}
-// code_check_if_comma_free
-bool code_check_if_comma_free(StringVector code, int length);
-RcppExport SEXP _GCATR_code_check_if_comma_free(SEXP codeSEXP, SEXP lengthSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< StringVector >::type code(codeSEXP);
-    Rcpp::traits::input_parameter< int >::type length(lengthSEXP);
-    rcpp_result_gen = Rcpp::wrap(code_check_if_comma_free(code, length));
-    return rcpp_result_gen;
-END_RCPP
-}
-// code_strip_complements
-StringVector code_strip_complements(StringVector code, int length);
-RcppExport SEXP _GCATR_code_strip_complements(SEXP codeSEXP, SEXP lengthSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< StringVector >::type code(codeSEXP);
-    Rcpp::traits::input_parameter< int >::type length(lengthSEXP);
-    rcpp_result_gen = Rcpp::wrap(code_strip_complements(code, length));
-    return rcpp_result_gen;
-END_RCPP
-}
-// code_check_if_self_complementary
-bool code_check_if_self_complementary(StringVector code, int length, bool mute);
-RcppExport SEXP _GCATR_code_check_if_self_complementary(SEXP codeSEXP, SEXP lengthSEXP, SEXP muteSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< StringVector >::type code(codeSEXP);
-    Rcpp::traits::input_parameter< int >::type length(lengthSEXP);
-    Rcpp::traits::input_parameter< bool >::type mute(muteSEXP);
-    rcpp_result_gen = Rcpp::wrap(code_check_if_self_complementary(code, length, mute));
-    return rcpp_result_gen;
-END_RCPP
-}
-// code_get_acid
-StringVector code_get_acid(StringVector code, int length);
-RcppExport SEXP _GCATR_code_get_acid(SEXP codeSEXP, SEXP lengthSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< StringVector >::type code(codeSEXP);
-    Rcpp::traits::input_parameter< int >::type length(lengthSEXP);
-    rcpp_result_gen = Rcpp::wrap(code_get_acid(code, length));
-    return rcpp_result_gen;
-END_RCPP
-}
-// code_get_all_amino_acids
-StringVector code_get_all_amino_acids(StringVector code, int idx_trans_table);
-RcppExport SEXP _GCATR_code_get_all_amino_acids(SEXP codeSEXP, SEXP idx_trans_tableSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< StringVector >::type code(codeSEXP);
-    Rcpp::traits::input_parameter< int >::type idx_trans_table(idx_trans_tableSEXP);
-    rcpp_result_gen = Rcpp::wrap(code_get_all_amino_acids(code, idx_trans_table));
-    return rcpp_result_gen;
-END_RCPP
-}
-// code_get_amino_acids
-StringVector code_get_amino_acids(StringVector code, int idx_trans_table);
-RcppExport SEXP _GCATR_code_get_amino_acids(SEXP codeSEXP, SEXP idx_trans_tableSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< StringVector >::type code(codeSEXP);
-    Rcpp::traits::input_parameter< int >::type idx_trans_table(idx_trans_tableSEXP);
-    rcpp_result_gen = Rcpp::wrap(code_get_amino_acids(code, idx_trans_table));
-    return rcpp_result_gen;
-END_RCPP
-}
-// code_get_one_longest_path_as_vector
-StringVector code_get_one_longest_path_as_vector(StringVector code, int length);
-RcppExport SEXP _GCATR_code_get_one_longest_path_as_vector(SEXP codeSEXP, SEXP lengthSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< StringVector >::type code(codeSEXP);
-    Rcpp::traits::input_parameter< int >::type length(lengthSEXP);
-    rcpp_result_gen = Rcpp::wrap(code_get_one_longest_path_as_vector(code, length));
-    return rcpp_result_gen;
-END_RCPP
-}
-// code_get_all_longest_path_as_vector
-Rcpp::List code_get_all_longest_path_as_vector(StringVector code, int length);
-RcppExport SEXP _GCATR_code_get_all_longest_path_as_vector(SEXP codeSEXP, SEXP lengthSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< StringVector >::type code(codeSEXP);
-    Rcpp::traits::input_parameter< int >::type length(lengthSEXP);
-    rcpp_result_gen = Rcpp::wrap(code_get_all_longest_path_as_vector(code, length));
-    return rcpp_result_gen;
-END_RCPP
-}
-// code_get_one_cycles_as_vector
-StringVector code_get_one_cycles_as_vector(StringVector code, int tuple_length);
-RcppExport SEXP _GCATR_code_get_one_cycles_as_vector(SEXP codeSEXP, SEXP tuple_lengthSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< StringVector >::type code(codeSEXP);
-    Rcpp::traits::input_parameter< int >::type tuple_length(tuple_lengthSEXP);
-    rcpp_result_gen = Rcpp::wrap(code_get_one_cycles_as_vector(code, tuple_length));
-    return rcpp_result_gen;
-END_RCPP
-}
-// code_get_all_cycles_as_vector
-Rcpp::List code_get_all_cycles_as_vector(StringVector code, int tuple_length);
-RcppExport SEXP _GCATR_code_get_all_cycles_as_vector(SEXP codeSEXP, SEXP tuple_lengthSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< StringVector >::type code(codeSEXP);
-    Rcpp::traits::input_parameter< int >::type tuple_length(tuple_lengthSEXP);
-    rcpp_result_gen = Rcpp::wrap(code_get_all_cycles_as_vector(code, tuple_length));
-    return rcpp_result_gen;
-END_RCPP
-}
-// get_dna_bases
-Rcpp::StringVector get_dna_bases();
-RcppExport SEXP _GCATR_get_dna_bases() {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    rcpp_result_gen = Rcpp::wrap(get_dna_bases());
-    return rcpp_result_gen;
-END_RCPP
-}
-// get_rna_bases
-Rcpp::StringVector get_rna_bases();
-RcppExport SEXP _GCATR_get_rna_bases() {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    rcpp_result_gen = Rcpp::wrap(get_rna_bases());
-    return rcpp_result_gen;
-END_RCPP
-}
-// find_and_analysis_code_in_sequence
-Rcpp::List find_and_analysis_code_in_sequence(std::string seq, StringVector code, int tuple_length, int frame);
-RcppExport SEXP _GCATR_find_and_analysis_code_in_sequence(SEXP seqSEXP, SEXP codeSEXP, SEXP tuple_lengthSEXP, SEXP frameSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< std::string >::type seq(seqSEXP);
-    Rcpp::traits::input_parameter< StringVector >::type code(codeSEXP);
-    Rcpp::traits::input_parameter< int >::type tuple_length(tuple_lengthSEXP);
-    Rcpp::traits::input_parameter< int >::type frame(frameSEXP);
-    rcpp_result_gen = Rcpp::wrap(find_and_analysis_code_in_sequence(seq, code, tuple_length, frame));
-    return rcpp_result_gen;
-END_RCPP
-}
-// generate_code_by_min_value
-StringVector generate_code_by_min_value(StringVector alphabet, int tuple_length);
-RcppExport SEXP _GCATR_generate_code_by_min_value(SEXP alphabetSEXP, SEXP tuple_lengthSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< StringVector >::type alphabet(alphabetSEXP);
-    Rcpp::traits::input_parameter< int >::type tuple_length(tuple_lengthSEXP);
-    rcpp_result_gen = Rcpp::wrap(generate_code_by_min_value(alphabet, tuple_length));
-    return rcpp_result_gen;
-END_RCPP
-}
-// shift_tuples
-StringVector shift_tuples(int shifts, StringVector code, int tuple_length);
-RcppExport SEXP _GCATR_shift_tuples(SEXP shiftsSEXP, SEXP codeSEXP, SEXP tuple_lengthSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< int >::type shifts(shiftsSEXP);
-    Rcpp::traits::input_parameter< StringVector >::type code(codeSEXP);
-    Rcpp::traits::input_parameter< int >::type tuple_length(tuple_lengthSEXP);
-    rcpp_result_gen = Rcpp::wrap(shift_tuples(shifts, code, tuple_length));
-    return rcpp_result_gen;
-END_RCPP
-}
-// code_transform_tuples
-StringVector code_transform_tuples(std::string from, std::string to, StringVector code, int tuple_length);
-RcppExport SEXP _GCATR_code_transform_tuples(SEXP fromSEXP, SEXP toSEXP, SEXP codeSEXP, SEXP tuple_lengthSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< std::string >::type from(fromSEXP);
-    Rcpp::traits::input_parameter< std::string >::type to(toSEXP);
-    Rcpp::traits::input_parameter< StringVector >::type code(codeSEXP);
-    Rcpp::traits::input_parameter< int >::type tuple_length(tuple_lengthSEXP);
-    rcpp_result_gen = Rcpp::wrap(code_transform_tuples(from, to, code, tuple_length));
-    return rcpp_result_gen;
-END_RCPP
-}
-// code_named_transform_tuples
-StringVector code_named_transform_tuples(std::string trans_name, StringVector code, int tuple_length);
-RcppExport SEXP _GCATR_code_named_transform_tuples(SEXP trans_nameSEXP, SEXP codeSEXP, SEXP tuple_lengthSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< std::string >::type trans_name(trans_nameSEXP);
-    Rcpp::traits::input_parameter< StringVector >::type code(codeSEXP);
-    Rcpp::traits::input_parameter< int >::type tuple_length(tuple_lengthSEXP);
-    rcpp_result_gen = Rcpp::wrap(code_named_transform_tuples(trans_name, code, tuple_length));
-    return rcpp_result_gen;
-END_RCPP
-}
+List seq_get_info(std::string seq, int tuple_lengtÖfÛìı_ßí³ÃŞ ?|õ£•o÷VùşuÔÆ,@Gü1<ôó0uÙ+/CI=I_ •?|zÔyä°G]üèãÇ?Ş=úpcÓÛ]/½İ5ó·»&şÒ0Ÿ¥ ÏI‡ ú½x†hBÊ"!“(£rC(ôôÀOÒ4ôs"^y ¸!Š +	“ßzØéö:ìa·Ó¸µ…I¤R·ÚÛÅø–’tğcø>ºR;ÿ´Í´*Ì…2§	`ÏIÍ¸úÛásP’ú¤ï»ô}ww‹}z€’ï"Ò´úİÎğh$)Aã¼ítÿÒé÷Øsh0|õ©- ùà†lÇq=Ô¢ş	$ÙÑ¸—Fƒ½—íúcÑøeKrKc­Å¢LI"’b® 0(³Å#—ä$l€oÛa—(3Yø7h _è—$›Ï@ôG1´[>F,SÅx:µÃÔÛŒX£ê™l\­µK e¡'c€ajÍ0¸D–’`Fo^â;Çªğó½ucí»\q…³`5øs¶ıÿ;¬G[›X=èV©*˜íI­¶ÀIcëpı©xS zØŸÙâ9 F2ùĞk‚%gr½PZP<ááÚ°ğ·qÌTŞ;ŒÀ€MQ­"×ÕJÿKø6F¢=õJĞYJ)-Ì¾;h7»ÿª,åkI&,Í¯×n™²N­•
+ƒà‚Tû³Ø“ÖÙû}z€Ëƒ™Ÿ{€ÏBâòÔãY,ú'÷NcÅ—­æšXÖHM¸aYƒ]Ù9—2U¡/klg&ÃÁQˆSv9aƒ:CJ¢¼49e9³¬P“å‰K¥âëì`Ñwó&÷£@2DggÀQ9¢úwI)´º@KŠn™–’KoÒ<åERlHÆ-²nÕxˆ8¿h£¢Ìñ‘¬Ks[°È±„ª)dÎG E##İˆÒe7[F‰ÄiQtL2Å´^üÌp	—ZñÔwÎ|YkdµĞ…<Äú<¦¹‘An”œ‘k=Ä¾†a¼4 `‘ °tæïCp#NïØë(O æxF^,ˆb@mMe©­˜nì?G´ësöpÉÕªõºÍV¼( Qı'ŞÕšT¿Li£öµwšeì×£òP½µ«{Í»©:ÙšT½Di£êUwšeìW¤ê_¿ª×Ó¼“ªoœú{«òÁTÙÔ©ˆáÕ×«ò¿m§>‚î*k?táÜz ÜŒºˆc¿QıcÿYû;ª|3Õ;©ûÆ¹ß¨ûÆ¹ÿœû»ª{#ÕUÔİX‹Á:¨•\±Ê3W½E5Œ£,/––a§æ^ÄÅÂNà0M“Ÿ@KiõMdŒ¸Ï01@3Ò×03”/Ì\1¥>l	Ş[ÏÛ[rjawÙùvÍ|?„0¶(Ë™åuĞìi’'?'w¨İÀça
+Øëk?™Æ^6ñv§Q*¿×ùÄ,ò€\¾~OÍœİ( “Ãö½ìÚ½ÀóqÙy…Zå~zi©oLR=p„é„²¿¹LàÇ"~¾µˆÌ¦q’ƒĞ7Ú~lfxAÑQ@ÙaÔ{!”Å¿=ãg†Ôj¨XâÑ‰¡ş¨º|Nù–€t2Ğ¡šlQ5Û{M.İRí¢ÓÁtÇq2¾¦[˜·è«4œx9
+İBMĞmtìƒ2ƒêMf Š§qô·|Y˜İh¨Ô#©¯Á6Ì×tW7Ö[h§›ƒty‹óéê‚DêÃ~ô1ÊĞdµI4ú)à^JÉ©#£uä­<g	è.XÎ¡¹£ªŞ,»ºÿâ¥×`§ãÈ×ÒTJúÍ,Ôè:N …&^CÚ?ª´¯Ã,	"­XŸRëÓ[¨47ø"µ	÷´½@-I|\XGYnH®…ş°ãd–ú¡	ĞAÜ„ğè¢ŸÃŸX«Ãò®·X/şÙãÉevQü9š°7YÆ ¬Ğ:ğX— ’ÜÁQ’‡ş˜'qr~ Ï&Âò·İ[{`fç°×ĞÒ î€ºïÜc·ãŞXl¢:Ï¦$¥˜²sÏØ ùè²ö¶û¸ıÍM‘S¸?ã<ŸfÏvv.//]îŸF.'.Æîyòqgè]%<™\ï¼Ë£8Û¹$Kxî»şytS‰Âô¤]$N¯Gdãnœ¦×h5)ÓÓ™g“‹pé}ÌK\»ìqTxİ²y„j£–s0Z…	/Qû:¨ƒbÏ,z†#!p«/ÁNSï:s„—ßK<ÊcåªHsá…gè{kï<IÁÖ¹…X]!1Ñü7f0…Öáà!s-©FÔ7µİ3-úÇèAÃ  Ÿm‚l	ƒ
+äx†!?ı‹Åƒ {t—±Ğ‘vTú€"šØ%À²ÕHÒU¬Q%R´Ô
+B½–µÚ[e¸¨OhÇb/;@©£Ô‹]”d2ºZ×üŸëç°·2Ø”Yd4©ÑNĞ…‰ÙXVä_”«(;“ReÌ)‡÷gQnF–fÑÏ¡9HAö¢/®Aµ'(/«Ñtâïx)´ôàÎÛ×İ§O¾İm?Ùİ¹q”bh@"˜æÛ¦çÎ¶A¼ìôÜ=KwşÍw'Àjït£§_Òé·;Î
+:¤`»ÿÊä|Ùƒî«Ş¡ËºGİw‡#Ö}³ß;fÖïzÇ7*+ùÊ¤ëKÙåĞ—õõ°_Å$L¥ßÃ+h¬!v0ÊF¦„6‡ş–1¾{óé(aSMëR¯#|·DrÕ Şù¦ŞŸNK¨àe£à¬Öèƒ‘ò@–ÓMíÓn@Vëˆ¤ O~ßşfc¢7&úŞšh[3jõ"ej6ÙG&{Í%÷Š?s>Ÿ¿OÓ½·rùÕœÈN¾~8¡P&3¦©'ºü±äËzíXX†hšŸ~¸Ø£§1Ñ,éÃcÒz "jË¤ôĞ ò^|ısHU4ÿ)ŞÀ•£…áKøÉŒçgğ¾âÄì5ø/5´ê9­Ul—¹¢0we‰¬ÈÇKıgğ«ƒs¹‚³ü‘/–CÀyµÀ±»·}zÓ±r_züæn{¸t&©¸…´jSd<œWfS®.ˆdj 6ËÄ¶*@kĞ¹™Ÿ‹e"¤A:¡™p±OĞ<Åµ!Ìbn¯<ü=Jt£ A,’´AÄ¿ZêEx¢LQQ‰„Ù8:Culé*LÃt2ËQG·´áÒVbŒXÓ:%í¢u« ÑdÆƒ(ËØTŠÉãYÇÉ%6\E\¬y?Nis–Î*«œñmó±¸*bdBÚ9FÛçeêq˜¤×¬Õ…*\ˆœ$Îî°ö·ß¶·DíUûö©p@#SÈˆ£j··pM'ÛbßÉr2Ñ’=—½
+qC;x¢h9ûğé£sùáÆ¤ˆ¥Ûß3aÂÏUÿ` òĞ¼hµ÷R”1ö>"È·„Çàs¸àH±¥­ëP'°BÎNÉÆ“a€S/iìü(l:˜…ªƒö‹.ÙuÛ.;îOØ±!µ¦ aØ.l¹ì¯¡èÏ°ÚƒıÖÉ{N`ş=ƒïë½ÃGN>·„‘(7¸Lè©e‰’$°7ìN §™”²ì–:Ø¼ëöŞö{u£ù£ÎÛWløª÷æèöT6• õáÓ íºî rÑ?Ñ·=B{°;ØÃ_›ñÄaÙŸXÿö>(§£÷N“x?Øu{ƒö:+å*’	K…ñR–º‚
+é¡†.DˆÂ6j‘ê„öªë|^–%~Dæ$æD	Ã/‹Ôµc¤í‹63ÈÙ‹„)”údIÊ%ˆ_&ÄĞüãïÿÊx	.*~¢L`-22
+nñíhËzŠ~¡jîVçp@_¼~İ;tX×evåTÃ:ƒ}vè²ãáÑÿşç ÿº3¸ ¦L› N~•	+wŸòùüûºM}²g¬×dIµñ,7*V­~öò@´}wIÙ¨æ‰ 9yæîû^&s1W´ õ:æŠš©¯:m´šÃ3ÇÛ©Ù+~İéìl¼ˆ!½ˆEŞÃ—pø\ç€¯fñç“Ø˜ı_—ÙÏÆÉåÈ¿Æµ.<¾!Ibµ.s º‹K3´	€J³X@Uâ1»Tß8AU…•Bâ„|4õ@u–)J€OefF™Í’N‘À×àÆ¬Ó‡©ó^6<z×ŸÍÎÈ\Æ1{û¹ WéšçKÀD	%¦êwÇ”½çìeçğ¸¡âÕİ£E‘ÁP#õÓ‘5iîË@aç$H¢vr"{®Sõ›àû©‡LÂmxm$d†7¶ÀÍVáÏ¨¢ˆáÒü¿å¦)i_q¶«S-®XåWÚF–DVE ‚ñ"ÕõÌBYÁ3N÷Z]5Fî—[tÿzG`eQ];šáD>Ñ^z<VäXy4fg-N÷ªÅ%øŠiÚ«Äæã‰i[àÓ/,¿F\1aù³À‹h{İôÙZ¡¤C­ È@}-­\d}ñ7_ÌXÜÚÁÆŒ¥ñÆÊ´2äTr/@Ë·Y?ğ˜äWÅ.­ÂQ|¦ÒÔ»(•À?KÏ†JÉÊqgÊR	6²Rš© X¦%LÃÉE{î)ÙÔ§é’V‡a ‡!]{ …ãF	T–ĞÀe„.úzú_2'ôü„æ@hÁ['&]D­Ò@Ú¯qşÂ‡‘*×ÛÅhTP¸¼A¼ÖÔ.Ó(Ïi¡÷XœpIªâ©SˆƒhW»)ŠÒá*bTMğ5 Ş4÷å¡²Ÿ¦ÉGü9…/x¢mg·NcOØÌí5N‘G !§£A¥Ó(ü¨öDÊƒ‰éB|Faa¤ØàÍ¨AqåØBš¢ÉfÉ­ã7Q˜_if­Á¬‡^ÒıQt6Réš·š´6ö²>Y]ô¥„ÖJ†u j…èí]8_Æ¹A(0T¾Ö&:_(¼”Ñ	4m‹SÍVãû&{"ìï{ÁaMUe^b×Òw/‰´õBÔœt é„ë Mì‹ğİÕºL Æmk#DÙhÆ#(^ÈˆÀ¯fqªfb(Y˜­Q²¬<k0‹æmåÌlg-cGÆ§±#ÊC(M¢+1ñ;/›„Ç_.íËŸ8:¡Ú†U¹‹µ ™¬4[Ë†ôµh7'í¸³šdif¸Ã İîHÁ_ıÜEİ€C¦—ş.û	Ÿî8:Ÿx7BDä¢§OÇŞ)N3Àøô‹œJgßÌóû˜–}²}t‹Šú6y¹—…#¯3ĞÚéÉ¶í¯ã@°(ä¤uÕfëºú*g4s"Vs*B7}ìÑ% 'Ğ„W¬Íşç¿áÏ.şÿ_AjW°Ó¡V;i®HÑB4LÁQ ™¨'4âĞ&¤Ä¾[ÔØ£±]³ïX›joÇaÃ-»'XqàáªN9=ÑÈ¨‹ëuz=Qi5«ØÿıûÇßÿÙW'qs‡M€ÇÔW¸„yÅ±MéÛD¬^b¹Bs¹-Ê.TÉŸ«äò9n@‹ÂLşÂ÷â4…«“şDeã×6v ÃøfÔsÿ@û~zÊƒ¤ælÊ;x’yS.=gt±m¶árnçù*f¤¦œ±	ˆŞ/0Äh}U*c§2ãñW èœ]huÍçMQ DJ­Sc…à g‚5šÒlÍQ»G4^y”¦É4Lóbk59æ.1Yvl¯Tä÷†š…01ÁÄÅ“_^0Ñ¼Ò2ºğ Ïğ2/oÈjv÷× %]ƒ¡æíÈ,R;ı|4­¦]R/êg’.êp5l½X0T[„Ù>8L¢Éx‚Õì+ãrI¡™“:IDñl`w»Ø½°»HûkPöbDYšıS• GÍ—ÍÀ)S­Ã•¤Öàvù-ĞR¦¯	
+Öj°"ŸÊÛç(xÁ%ÖÂd‚á-@YÂ›s°æ6øµ8—Ã;–ğüÊJ4oøÌWAó¥Ñ|õq4ÿ…Öù­—ë"1’ÉÄ¯#\afÔÎóUašæL. Ú§!Š½O's
+)åy“(n@……QÙm"©ê_à:nÂëå´-Èvñì
+áSh…>ÓÂCa‚âØƒƒ“’±7úI>Ş€æ4ï0Ûhkè<ÀÄ”#L¹^‰À¥p©YG•cÍsŠìªXYºI7¦HÒMèªµÜ¨["º8ÏÂåL‘ôÒëBì2/ïûƒÎ .œïÌá™êD'Å×æâäMÆ6S~ÚÄóh[è2†§ºIÄ]¼¼”*G£hMûAéaRfC¡	4×?mÇ†¬õNìâëÒï¾ˆc4è	TôwúÃÔâ
+"mÖ„Ç Z;¸Íaû3® :™É}­g t	NáÒ»m–Og9-Ó©Ãœ¼SxHñß(Û¶`1\Ğ«„;æY9– øšLó¾!Ã€_Í¹4¦:¢K‹bKXjYËB­(Êœ0¥ÃÖòë©1ñ©VÅ¸H	?sPpƒp
+®›¸YD÷k†»SÑ3£^´“HğÕıaøæø`Ğc­î–Ã:û½ıèÀş»øÑ§n©ß` e7¾úá5enad…)øI™¤œo³	UwP;R.U‰6ÍwGîÁ!ÁŸÅ”æé¨‘'#?¥É"Å
+\KNDx€ä/ÙHIÈÕ5€ŠÁy3è=Ø¬Á/ÕÙ8™ÅÁ—…j+|O!éNZŠıé D;òøÇÜ¤+b@µ›AR§¨EDë­±W£Œ*İ:HEkU¿±»ÛiK‚q*"4yˆsëQœ¥y2Ü­ÀY %F8ÎJ[5¤¯Šl5PPÂ`LÀCõ _a@ñ ’Héq/>-tGŸ3f^xsã‚'§Î$Ë©ºŠDb8,l:[Ó:’zéK˜6a@¿8ı¢Ó–ğHëŠ†Í# oœšYİºåë{ææ/pëÙ¼œõ(gS©¼1‚[w6ÑyÈW¢nùpëÅ½Împnƒs·Ç¹»`Ü­ğíîØ¶v\»¦½„®Í(¤ÄÚ]ŞÆ_^‚{+öø¢Ó}$rØ[ÂXï
 
-static const R_CallMethodDef CallEntries[] = {
-    {"_GCATR_add_bda", (DL_FUNC) &_GCATR_add_bda, 6},
-    {"_GCATR_seq_start_bda", (DL_FUNC) &_GCATR_seq_start_bda, 2},
-    {"_GCATR_code_start_bda", (DL_FUNC) &_GCATR_code_start_bda, 2},
-    {"_GCATR_run_bda", (DL_FUNC) &_GCATR_run_bda, 0},
-    {"_GCATR_get_average_conductance_of_code", (DL_FUNC) &_GCATR_get_average_conductance_of_code, 2},
-    {"_GCATR_get_max_conductance_of_code", (DL_FUNC) &_GCATR_get_max_conductance_of_code, 2},
-    {"_GCATR_get_min_conductance_of_code", (DL_FUNC) &_GCATR_get_min_conductance_of_code, 2},
-    {"_GCATR_get_average_conductance_of_codeidx", (DL_FUNC) &_GCATR_get_average_conductance_of_codeidx, 2},
-    {"_GCATR_get_max_conductance_of_codeidx", (DL_FUNC) &_GCATR_get_max_conductance_of_codeidx, 2},
-    {"_GCATR_get_min_conductance_of_codeidx", (DL_FUNC) &_GCATR_get_min_conductance_of_codeidx, 2},
-    {"_GCATR_print_all_translation_tables", (DL_FUNC) &_GCATR_print_all_translation_tables, 0},
-    {"_GCATR_genetic_codes_by_index", (DL_FUNC) &_GCATR_genetic_codes_by_index, 2},
-    {"_GCATR_code_is_translatable", (DL_FUNC) &_GCATR_code_is_translatable, 2},
-    {"_GCATR_cpp_genetic_codes_as_df_by_index", (DL_FUNC) &_GCATR_cpp_genetic_codes_as_df_by_index, 2},
-    {"_GCATR_genetic_codes_by_name", (DL_FUNC) &_GCATR_genetic_codes_by_name, 1},
-    {"_GCATR_seq_get_tuple_count", (DL_FUNC) &_GCATR_seq_get_tuple_count, 2},
-    {"_GCATR_seq_get_info", (DL_FUNC) &_GCATR_seq_get_info, 2},
-    {"_GCATR_code_prepare_factor_gen_c3graph", (DL_FUNC) &_GCATR_code_prepare_factor_gen_c3graph, 2},
-    {"_GCATR_code_prepare_factor_graph", (DL_FUNC) &_GCATR_code_prepare_factor_graph, 4},
-    {"_GCATR_code_prepare_factor_all_cycle", (DL_FUNC) &_GCATR_code_prepare_factor_all_cycle, 2},
-    {"_GCATR_code_prepare_factor_longest_path", (DL_FUNC) &_GCATR_code_prepare_factor_longest_path, 2},
-    {"_GCATR_code_check_if_circular", (DL_FUNC) &_GCATR_code_check_if_circular, 2},
-    {"_GCATR_code_as_vector", (DL_FUNC) &_GCATR_code_as_vector, 2},
-    {"_GCATR_code_tuple_length", (DL_FUNC) &_GCATR_code_tuple_length, 2},
-    {"_GCATR_code_check_if_code", (DL_FUNC) &_GCATR_code_check_if_code, 2},
-    {"_GCATR_code_check_if_k_circular", (DL_FUNC) &_GCATR_code_check_if_k_circular, 3},
-    {"_GCATR_code_k_value", (DL_FUNC) &_GCATR_code_k_value, 2},
-    {"_GCATR_code_check_if_cn_circular", (DL_FUNC) &_GCATR_code_check_if_cn_circular, 2},
-    {"_GCATR_code_check_if_comma_free", (DL_FUNC) &_GCATR_code_check_if_comma_free, 2},
-    {"_GCATR_code_strip_complements", (DL_FUNC) &_GCATR_code_strip_complements, 2},
-    {"_GCATR_code_check_if_self_complementary", (DL_FUNC) &_GCATR_code_check_if_self_complementary, 3},
-    {"_GCATR_code_get_acid", (DL_FUNC) &_GCATR_code_get_acid, 2},
-    {"_GCATR_code_get_all_amino_acids", (DL_FUNC) &_GCATR_code_get_all_amino_acids, 2},
-    {"_GCATR_code_get_amino_acids", (DL_FUNC) &_GCATR_code_get_amino_acids, 2},
-    {"_GCATR_code_get_one_longest_path_as_vector", (DL_FUNC) &_GCATR_code_get_one_longest_path_as_vector, 2},
-    {"_GCATR_code_get_all_longest_path_as_vector", (DL_FUNC) &_GCATR_code_get_all_longest_path_as_vector, 2},
-    {"_GCATR_code_get_one_cycles_as_vector", (DL_FUNC) &_GCATR_code_get_one_cycles_as_vector, 2},
-    {"_GCATR_code_get_all_cycles_as_vector", (DL_FUNC) &_GCATR_code_get_all_cycles_as_vector, 2},
-    {"_GCATR_get_dna_bases", (DL_FUNC) &_GCATR_get_dna_bases, 0},
-    {"_GCATR_get_rna_bases", (DL_FUNC) &_GCATR_get_rna_bases, 0},
-    {"_GCATR_find_and_analysis_code_in_sequence", (DL_FUNC) &_GCATR_find_and_analysis_code_in_sequence, 4},
-    {"_GCATR_generate_code_by_min_value", (DL_FUNC) &_GCATR_generate_code_by_min_value, 2},
-    {"_GCATR_shift_tuples", (DL_FUNC) &_GCATR_shift_tuples, 3},
-    {"_GCATR_code_transform_tuples", (DL_FUNC) &_GCATR_code_transform_tuples, 4},
-    {"_GCATR_code_named_transform_tuples", (DL_FUNC) &_GCATR_code_named_transform_tuples, 3},
-    {NULL, NULL, 0}
-};
-
-RcppExport void R_init_GCATR(DllInfo *dll) {
-    R_registerRoutines(dll, NULL, CallEntries, NULL, NULL);
-    R_useDynamicSymbols(dll, FALSE);
-}
+ó¥³h’Ö«À}ã@%X4ŠğÂ¢(Í0Âf&Îê;KÏşğ`
+õ¦£ğ¹T/xĞµü|zÔ“Ë(³6„xEb:×Ànˆ/q¼’}Cõsİ)ò¢T«‹,ÖMÊ šŠma‚VN'/d³8§£¸QïíŠ‡	02Ä¨ùkš¬4±Ş¯[$d$â²ŒÍ|öô;rä·l^ÂÈ¥Æ„«äcT\İd™ÊVßáëB6—°òq„CU°Xˆ”åX3 	ÂkGÅ­‰>Ö~Kğ£cıJ Gu³AÙ1¨¹)—E¢9–À£¹ç£RsæµMl5–p;TB¡ÔÊ£D‚‚2ÄY®b ÅKÛWs‘ì£Â
+(ªâ¢0dDd¸“·ƒ™¹DGq{_ó#*\‹;ê„¼Ä¯~+®Î¡DÑ©M)_ÉWäèm¤Ô˜h³dæ*Ğ¬q±çSÎ¶NŸ§LûöŞÎpeç³á‹í×dõ@c…}…ÎêXS'Ö4¹5œ¹ß8SgaÖéÅÜgôù- ¹8ßGSÁ¥¾üôpH‹ØHûko˜NÅİĞÈZÀ½‘X¦/_-ÍØïë.“._'e¤¯½3º¦.Guy·j]RUvå–lëí’5I—©IoÀÊìX6}ş¥GSê©œRWjSo:A»¹:èY›as"¹9´ £ÂÅ1ò“„Â™õQpæ¦u¿	&Cs9€ğÒ÷bTğ\š‡‰—ûcT}ÑPjÖæëD5dÍ^+N²oKóD;eé«ÕŞò76nA°/à£ÂoXË{mi“»9PÄó‰Óæ¬;ÿD!8¯ŠA9ò U»T‡R³èkå ƒÔu-Eõp{`q§•"U•fºÛ4È[T‰Dµñ,‚z"ò2å‚NğÄx@¤ÀaÑ2°\½wÄâ¿ùÊäÏfKëè­nó­&YW,hÑ³ˆåIîÅ‚Ô(â£i˜ú`ÅJTåSï\Gÿ—*v¿G&,Ä9´{C²™ğWA5¤oğÙ–uàO÷¡¤gĞy#ş	h“7ó‘âKÜ“WØñaWEÈ¬HBXóúÓPoAŠ«e=XL zà<Kïˆã)áÁã«¿¸Ä9÷V‹–—¯Ú»°Á¾z{ ÊWÑÄ‹ë·}QØ$±©R“(íQg‰gYtÎÕ…*ÕˆB-0«M-jd@>Yr‰š«·”RÆŞAæÇP„+jB4q˜Óy¢\®*ëZ Éª©<‚Ï =ñ3¨Î^*i°>’)2æKh7¢xÖ¬Í'ì—:¯:KXÛ83a¯\Ôé,¥”÷‚b¯
+Á9½M@xŠı¶Ú-Ú‡ë£{u·‚Ö“°Ä]µOÉål¼,´d½<7ĞV»ô`¯iT–T¬>¨Ù‚–‰„Y)ˆ_4.ÇUşÄ¿À!,@1—¡$›±ğè=F‡©–KIécáÒp"´åÍ Q\ƒÜõâ‚¥´Átõ,æsÙ~9¢·Ø­ ƒ+éÇ òíãÁ³B2¶”%²<š„eû#kÌ…/‚Óƒ{l¡¤–¨«9kU£Öš‰úT"ú-N†ËìÓ=ÀœIc´(æÀÔµæg™ÌŒÊ*)™Ğ¶,Ôw·9ëÃ$Ù`:ik³áÅŞ„…ê&ÂŠ0CÆ	{ Ïu“X*NQ¹DDáå,¶®öAÛáe…¢è‰Hè¥ê¾,:h7OÊ‹¤…"µÂó1nôoÊ¼1¨"Iu‚üú¡¼&L_ş%	[Š-[d=DíìWŠ–zF¸aVZÂ¹øÙ4Ø ÉÈKj±,İ<Ç¯©¢kÔƒÈ»jUãí;ñ¦êõü"´Â‹L¹-+¹—b×6•d‘TÚ©¶œ{ŠZf?/\F&È„êW
+W T†*ê	q©ÕîBo.âİ•p-Öf·`ÅøIn}R™z=BÎ+æ^b$9i¨¡ §.f¸t•i!Ü qÕœŠğ„¿r>]\((—+Ä€Ë:ş+4^«ã°¡Óuú[lû;Ö:ô®ŠÖüá¨š^ãïJó—×Õ4]¤‚´†*UgØPşR›úûÕ4ôËd	å²©@ƒ+Únï[&¨P´'Ï>iºÎJWu@¤®íœêsN7Àgâ	¶`Pƒ*«c^©5!ß
+ä›ñ¯ˆ…‚…|İëK©GÃùÅş?µ¯ú¨µxœ•}TgÆ´–Q¨ŠÚi©X>QA°A©HA@Ç!™$“I˜L" FDŒµtË¬
+”Rµ¥ÆZÛîÚ‚PQDèúqĞ‚D°"Glp¡±3‚lsÎü‘sß½÷½ï½Ïëãí½Ì×—µfõ{7xnàMÙr~Àã§MÇ—*õĞ1§Âm¼5>Èã)<TéÂšpØñ×ûoÎf†7¤0„½„j9‡ÃâŠy J
+§Ë @qq1F2ÁÑ;ßß·ŞEÙçT¨Š|ôàšõÆGã‘ÌsqÙ2«_Ï]Œ@îŞØ³¨:Fİ¼ºáş2º˜+„¸i Ì¸0Æ•! O+"F[ÒîáÁ›xï_
+ÍS
+bÍC¨	wÈÆí¸ß¾»ë¸¿««Ú1·Õ<Gü#ù/öh À9¬ß„T¶&T³­jÔ“ "ğ1ˆÂFCëDüüUİ›PÛå‹İNì	u7‹¥™”—ê<Ï­—Õvrx~oúÎí:ÖWe“B•R‚@"ÅA,“Ä+p©,Z«Èw¹Ú£9Šª5?jé8$›pÙ”IÂ5cGkS}ºà*ê¹´ŞæU8É‘ÉE¨shÓ_f-qı~]â·íË%Ó-Ìè'â?ƒİÜWôÈ¢U™«†ƒµïGÔ*3zDŒ
+ )H@œÂ˜ó¿Ô«Ö]³ÓåR†ÓÂ6§J@8 ra©ØÊ¼âŸÌÌº\S®êY’œ–ğ'-‚  FÅ%%1U³Ç[Ñ›Ê"väHzáçíæ0êèRÓ‘=ÍcÜ¹•>Ó=×Si¿í¿~¯ÉËK?–iNõÒÛ)GÔ×GD¡*%¯=şàOLÖìêˆüÒc°?âg3Öffşw†ÿ‹ˆ…ÌüÅÖyŸúØš§ùø‡Š9?—%rbÌ±“ìÊëÉĞ±z/œySdíx¾*y–8¢RÄÁÃ¬|·îrÁıÛS¿y¸÷^Í•Y]İ©õ!t$ƒˆŒ’.?x$$zN~“4+[¼¹P>fû.EAÄ3$à‹1€ËˆÁ§ºÂph´ôØÌúvq•]³S÷ÒI	`DŒá¤Úİ5±Â²8L³lø,«İï 6QR›Ë‰û'Ù,o'@Ğ+úWÒáÙªÆıàÉ—°¥/Ú•¶Ës«sb´ùl‘ç]vğ½Ñ·×¿Œ6r³io¶¸şô]Ûò–İÙÒªµ{xç%Ü‹‹¤,jÎ}\:Êp¾]Ö¸¯ˆŸ”drñRÂ:p£ÕZx:cº7r89mùZ¿ô»ò¤!ºØ\ÿö=ãç'¬ú¨-é´Ee£{ICòWÃ&©
+Š*.é>n™p /`Î®œ•Å§Ô%Ÿæõ	Ù5‡¹”ıR3L\_J& £<(ƒÄƒSïÜ)ñğÎµêÔ¯³ltĞÀ‹Ùã8Ÿ õH¦”HÃ`¢„YÏÊ¥n1q[cXR:ë?ÈÜº£›%µºñ dnÄ!Gd%öïùˆô)79µ±û5±Íq¥Oùê¿ê£/+ú™2ª)Áoç
+Õ€À^Ä®o¨5‹Ò!†Oõ‘sU;–&hş2$˜¨an"×ƒdâ”øòLÍÖYgaÃ•²‘fäôCŠœ8Ÿ€<Ê“qqh	 ~şÔÙúu³ùªâz}0ÄÑeOùÚ²æïÑ0*Y‰;ë~öŸ¿E-Œ…¹’=âáú¹š€‡‚@
+(5ÌMq[¼U÷´mÎkf¾şSUËùéVçhZ˜1Y™3‡æ:–ÅNİ³Ì®)Œ!wjg×®rùkr¼Ä+°pc±SİÇ‡³U²‚ã©l»ör:LÜø$ió;N^?‰½–«jùdËt©3ò×äxÚŒÕ!.ñ÷Ú=èµÄFqÛ³µîÆèÙl7óË‡V\’;İeZ–¼Tô‚–ˆ,F–R¦Öc_·{¡—ûgm\Şı¼hIÕ»½¿›&œyÇ+…‹_¿§s-,İQş´¿Bág½}œ`0jx¼ŒvIªº›îßŸP)n5ïiñ²Z'D3|½‰ƒ¤bÆ…¤S˜¶óãÓÏÀ·Şé»êh9ü«_±É˜5ºMïØÔ±/’Ï¬mq¼‘´y0²Ê't©Š\%ˆc0ÕCiy@ò,fkºMî7y¨İ_ê3®'œzÂfÃËPª1_5Í;°A{C®N«Îrñï‘k)FBóqš•÷·wŸ¨¹jûlÑÜƒùí¢ÁK­ÏÄ"·'¹86Rçèïã.ØøQ=S»¯èø]ƒ~²'xœ…‘AK1…ïùC¡`¡­ x=”"Eğ «x*”˜L·İdMfKËÒÿîd“ÅZî-//ï}3;†Zô’PÃç¼;K´7÷ XG€ÚP¼ØI«Å^+”“ªjk´$É8ÆBq]¨¦y:4ÎS˜bmer72lö¨Èù“XËÊÈğW&CvRëm 	Ñ 2@2ÌÙÑYb'~¿¼ŠÇ)PÛT¸©Ğ–´ƒG˜İÅïe"bŸ/{ÎĞ‰µ!¬ûêSg ¡zî
+ä-s¸iÏJÚÁú‰Y2áW‹V!ÓåìsîØ&³	gæ)dLV94¡šÛöZ|Å¡L¿—UËC¿õ8	ğb5Ñ¦1(ošø+:ñW84fXà¢<kâ²ä.Çïãğ k¦
+yÛ|3¸Øüh±\-«Ñn'ÿù '‚³¿Xİ„ê	KxœûÄ²‚uB–Ji^faij|YjrI~Q-WLbNfbqur~Jj|bq<Dvbƒ5„µq—7£$HRA#¿(%µ(5E¡¸¤(3/]¡8µDs²“²,ŠJÎîÎ ¤¤£`¬9YITS…P„•4¹¸j¹ f³4m²Æxœí]İrÛÈ•¾÷St)U2¡@Û“ÔÖÊ–+4­a”Ø²K¢3šò¸XĞ$1 -).æ:o°7{·‘ûì}"O²ç§»Ñø£HIñHºf(èsúôùùút£»ùèAä…_ŠçÇŞ|îL_<zdníú½aÿİ»®û2íöáó[×ËâäÊ™îÔ›‘Lº¯ãh"Óì›MßàUeÏûAâ-B7	²«kcÙP®(6‘ğÈùº/İTşÉr o50ı`xnÄQ÷dŒ³ábÊKÛŠ8îùî<“Éû,ÕÃED¹3™Î]O
+Tß3¸ÿ¨Ûı¥èO¥w.‚±pêN©ğTK*@Ã)Ü/"«Ò¤DPVò]Ï„²©LÄ™„¢Ÿ$ZDÄc‘‘è.\‘Ê?/däIGÂEK•×ü± f®ï(€Š‹8ñE(£I6s7¶A›‘"’Ò—>‹®MF,Y‚Rœ…14˜î8â;).‚0Qá+Ë,ñ~³ùôóéo¥PƒªXë†…ü$“+¸ŠÀ62"û 
+¨Y\,Eåì.À‡ ¨€‚.é-”bê‚:¢ğ
+… kÁ_zñl§Ôb ÏbÅsœÄ3ÃŒz˜aÓ©ôğM-¢yÂË9|q½© ry9]”LT ³iì3ÜŸL±X"³$ŸĞgØI†ƒÛ®÷Æ¨ì›x|Ôs~ğâõ-Ørƒ‚ƒhcË2ô˜tqö£¦İÓEƒèüó4Ëæé^·{qqáDŞYàDáÌ‰‚©3‰?uç3¯ë&Y šI»ïŞôû›ÿzúä7O»ËN•	ğğçÙ.Öë,vÓ,qÓ³‰3NºõœY ®vµŒúdõ¹?¶‘"Ÿ>~üŸ
+If¨ïÍaÿ÷¯Ñ?<î¿İ;ı·¯NÄá‘œ,‘’¨G¾g‚@y;ØTºÒŸßrĞVåÀ òb0ØÜÉGÊÙÁãtmyñ¸‹6#
+}/ÎÃJ±/’H¼ŒãP‚(Ÿ~ n“9´.\…‚ßÉKw†¡AWXfDP0
+Æ#]²åµvzıÁNGìô{ƒv{UY,‰¥:â›kË	b—k¼9N2„'ñáBÚŞßúøñÑ´¬‰×	ÙáOl,ÓÁà**y_ìşÿµÅçGş¹ˆâ…§İÛsÓÔ?bØè-,Ş~–“»Uº1uQè”ß%¨’‰A§ b£Ìæî¾Ò¼=ğpÉP~LÏSíP€,Šãª€AUö:Få´lûˆD.ø±óu¸}ÅÊšªqs4ûó]şÖV&®wßæ²›¸pEJ‹×ƒwájåI©jpò‰ÌFÜ·ÚÿV'§ï-è[e=¡* ©@{ëğÚñQ _?wf˜_áúU*Q€t·‰‚"ÛŸk0ÃÁö+ÌãUÎb'Şìo³à"¯3%'3	yÈT­ïá‡ÉÑbv"T5Y¡qs[š¹OA}²¢ğ&]†A•Ëƒ8ÒmjxüÑôÖˆÇsî+r7½~4«(ô á5ğáÂI0™¹KöÓq|	çS÷J¸‘/N±ÖÅ™HÚ4¿
+Å4Æ8ÄñÖ‘a¿KÃ§‹|h(:8˜;İ-qtÉB²¯¶.Ÿˆã8Pú2mdsšÁ¸™QE  §nFÕ‚%.Åñ¿ÃŸ§ø‡ÿ»„â¨Gº;mnK®%ã“ÆäÔŠSÏš>·Ô Çj´KC[9ÀÅñ„î†2Ãñ|Ñ8ÈÎ` ËÃUÇXæ”ÍÑ(ª%p,c|+|a»øçÿŠıí¿±hœˆ:br<&c^>­^F¨Wú6£¶u¨bÆˆ'$´!5Á¾&ĞÀ@¦úKÌ¸Š ÿHõã×'hÈˆ¶ãê‡Û‘|ãêµ‡ÕpõUt)d5Üšv]O¢w¾[0İšİI‰ê~L‘êHÍ…3pÛÔ Ê:&Bw]K·2Õ	rbx@íçFlÓúU³lLB¢¹Ï8’(i¦§<57šñ4áSœú$å4é)/?´LÌ“,Ÿ]™-Ì;kÌŸH© °>r–¤f_BŸ¦ÎWÃç‚u¬zjn$r,š.F[.¤uïü,p¼Ø«ü<Çİ§±œ	®ÁôjáÛ»Å±ü¼SFx€(¤vÃÎs¨@æxÎ–fğ²\zÕàF"6-yÇÅ¢sş[ğß‚ÿCÿkÁ ëÏGD´"W×%êÑÜ~º|›‰Mÿà¡š–QìíU]ìíáÓN×üµßÔdìıèF){™ì~Á¶%]nãLF”2™-2ìÔöwÑÂb,s›pĞ+AãÄ"'g¼ÅÚí|‡,eCäÊ•ˆZ9ím6ó­?ùİéüGôõ­,ˆêÔ­‹g3ò3¹ÑÔz‰êáªN½CàI$êZôIIª"aìÎ‚°û÷¸Á»ÄSë ‡@Lty¤¡”’ëì"Vƒ	Zù¥æ¿Q0ˆ³ÀÏŸÑä>Íi‡îøÇÙtÜ[à¾ƒ‰êR´®Äl,;Â²kAv^ú:Ä.–¼í„µaVÅë	×yƒÔÂ€ë´R]TÏ‘T5“Q–Ş;İd´¶z@/ÕİÙ¤š0•!¥®ÌM®6Z:İD¾FÏøê¨×=>ê}Á²·BljVäó|õRUIÇK™¿¸Qì2R¡daÛEX½¨T,Ãşú9\´Ì7ã²gn*©·aŸï¾CÑzß&Áút=à5ê_`À‚Iê`¸í£¨Â7ø‘äpàb]p5±ûÅ{*fãWIÆà%ÅÂyWH‡Ò­·Èæ‹ŒŞ'3ÎÜ3¸	)UF^º[ôvÇ»Â*§ë»D¤hÖék¨®é"(n×UÖ0İdˆÓÄm·Ÿ>ï]?AâAr¼¸+­i0J_ì:€àY·ÛHP|¥àz¥gWsëÅ@Ş3èÅy* ÇA«g¾œCÁç€˜Š—l…åzfH@˜Ûÿ~øöäğè@´úíè½:8¢‹\Ş÷øbÀşCÕ+¥f‰TŞÀøûïßı°ki×A¶RQ¾eicjO{ŒÍ~“*Ó÷Ç½şák‚gí‚TF¨ãF¡,z„w[FZ[t¥DáåDZˆhM=ulşÀ¯NzíàÛ£b¿]¯³A“NãEèÿÔ]La•´î ŞF²h×úvl‚{L1ÒW`»)Rä…Ç9j‹äò†Õ½›Ú›õÕÂç(‹U½:5§FBbnnJù¦;¢˜hÁ#¬œìª)]E’â&¿Hø &îÀD.äæ
+6ÆàÌ*#"HÆ8A¥!§8™{ê¼!‹ØIà´Hù®ài•ºêãT jÄÒLÙÆc™Hô¨%tS«+ô•f‚È——¤‡DBŞÎÕJÍ”Ğì
+Ã‘%ñˆx¥Ëövmã—ÂÊÀ¿$ cq
+2PvïÓ(Œ¬ëÒË]G´(ó»Ş„Ëv-pò†‚>¨ª<¢Vâ&Ô@E)Ó2„v°,W¾ÿ´›%9ÀŞ„R¬$½)—*j@æR¥¸ø®q­®6Æïí%üméi
+bBgËÖdŠÌ†äCëåÕ¡Ù*ÉzÃÙ[)íRæ|×¾Åì-fo1ûn0ûVx}3¬ş"8½ÅèŒ¥ÍHı-xiJK÷ôÆÀ¹‹/˜@¦ß°nà]"ÁİñÕ¢8fšâVsqp	¢{*¡·™›5,â>hòà?)ou4ÇA’âZÆMM«hSó	,"êí2ºÂ³8ğ¾Šh‚dˆ_ ì
+F…öAZØéæ…q|YÒ…S@øöğÍ›ƒ×ÑwÄ…CĞó½ G'ÃãÿûŸ£Á›ŞÑ‘#v£Hg_Y¡ƒ§vP@.p¯ ×ivÆzEËƒ°‘n„ÂñKZ·h¨‚ô6ÊØò]éÌ€Y!Z.%`yĞïJ¨Ù+ãæY¡Fo5è’¾ÌÎNT&øÊˆÃZ›û-@ôôÂºÄ¨@ff6!TáZ³Åõø‰œëã'›Œ˜Ônø¶•øšåÅ!¦o˜kíë¥Šå³¤ÔJÅ’şãWÚà›­®NüE¶Úb_<ÖÊÀo÷÷ñ2IâÄ¼Ô´`ıó’o-7ÃúA><şho6g´¯òFp¯s;†}f|÷Ø®Åµ1¾"ÛÏäÍz}Fú¯	àµ¹@ŸŞé›5º6Ş¯`±ê_C¾öóåkTÔ:Ü·È¯ÿx4sAo—MÔåöt„ÑRDPÿÂS3QåŒ…Í|gÓ‘ä_ƒç8¯k%™âV¹:G*°yrÇZ5swnt- ó£N”ó£ŸU¦şZÁ8[\Z*£…/Ùí`<­ÌYÍ•º¤Ô&_“ºÂ7 ¼“Ì½Âù'ZxWÀ­Æ8¸mÒºd×óûò¹z½&U/&ê·„î’õ/áÅ”<mÀòÂ²öû™¥oçuqšÃysJ¾…ò¯Ê›ñ-ßO 7©w½ 5g\â;#z«X	ŒÏ;CrQü@oÛì,<Á¼ÄÜ¯µk­yŒ_|¨À¨¥µ•fşŞ«ü9}g÷x¡0©e-æAÂ¢¥Ãè¤	<ëñ3øó\Ô<¿şu`[ˆÙ>âBN"ÙàRe³î•¹Õãx…1ŞßÀI®Ã"¾bŠä›"¹CSô"7¼J‹»PŸÏ• CõÕëñ¼Ès!Äè®(	ÊÏ¨ (ß3ÁÅíYÈ—"|Yï‹YL{ Íéîöfj•÷»Ç¡ızŸ’ Ï±ÃÊTŞ€àM±+ãÔ/¬èU×QÇ·àyù¸Ô˜	J—•¼Õ(@„Ü]¨´\[ÆPp¯˜QıKÑ*L…µ‰·-à
+%äÛ9øy:b·”…áKJ”	*RpêŠÌ«;}`şFünEÀı¦Ü@<ˆÄğ5¼x£&n†ÄÆv&w)²%Uı8¦˜i»Ÿhhâ¼v[7ˆäÃ¾ÏJP[2õó¯O´Ù–äÒ?ôØ¨½İäóZãEnYœ¹!óÑzt²³[u×˜½³¥¦}3Œ>ˆñ˜Ğ)„¿|bò¾Ágo8è÷zğ§¿cwc°âÈ¥ÿìèP:T­–­_ìó£†}³ÔxCœ©î3¯ıonÌKëNv¾.w]§†¼TÛ-O7Ó¯V+µ»O	.ïAÁD“tQ¯`jPºP£Å½=/‘ $-Óã?~~„~k±r§Óİ{X‡0´İi&Ô]G¬Ÿ­¢G|­£Åû«èêéÁ*ÊÄ$+Ü]A]i†Mıã<K)F?ëC³)3÷2˜¹aqê ‡—y*Ãg&ùñºˆtqiLğ \Z3¤7­Y›Õòß²™êÓô4	IãÄysÆÕ`#¼êp¸1Ä'm fú]™H­,4ÁKµNÓ° >ÎIŒÕf}RrîÍÊ5EO‡‹aÇŸ® ïfxæ¬GŸõ_÷®¯Ö8^\åÑ ñT˜òx60‡íÙÕF Ö1PfTÀX+ä¾¹ÁLíŠZ
+å´&«/Ùn|š«­êoVCsÕ yp…Û Ÿ•Ä Œt_Y8É"ÚxÏ¶agíÖ6óŸø“Y:yäõaÆ
+…ˆM¹hZÚ¹Ì¾áZÕØ;ÇIIÈ<"µÆ—¬c-6ó¦.ÎŒÊÄÄ–â4Á=*‰œñ3E>¿v¢ºê85‰«ÔTâ‰}:âUyK`¾I[­F©—¼‚ÔÃsùš0“”`Î00L²`&«—jtÄ98şâİxàI™rj‹şEƒr€7¥pL3ÒqN×ú<€ÂÃéì:"$Áâõ)×:Ô‚jÛ@
+¼Ø¾¥R÷,wÂ„©Ğ,nÒ¦¨lš~^ƒÖÔæÛÊ×€^ï$uÂ´:_õn|†¨¦â•úÔ-0sb‡¾kâ>Ÿbà’.µ3¦óñqíÿE¬¢Q!Ã§¹¤ş:¿—ÅK‹-²ÄM@on¦Ğı’Üë³«2çR©ßÌˆwfÌ^©[¡!¡İl…4ROç1ƒbãf¦ªŞş-„¦vhûØ c“`²iäZ¹ó\ıøšZ„1UVtšÌMĞÂMUÙuÄeÕWôp‘Ø6ø&hlÑ©@Í#E?Ò09Ô;jk‘ú6W£øm9ßáëk°‡ÎèRaßÉâ‡ŞTÌÌâ»éb'@Ùa"M_ XI12•0îS4ZÄ	‰ëyJã3½·şª7ÚHgV¨I?ªíä;°\«×ÃN¿3h‹İ¢5ì¸1èôÍN±ï«¥à9^÷L¡?¾©ê#ä64ÅzÃ†ñÊœİ7¨¢«‚XpMuÚ’A<ö`‹VÀMÚkQÒNŸô’¡Ø8Úà d/	æùOâlÑ½
+™¨H¿8o ìM¼î
+Ş7à+o¨§ ìÆï!ÀorDÆãü6­•·ò.Ğşÿ ÷Œ¦í¥Xxœ-NÍJÃ@&M{èjU¨6¶J±•¢PĞƒˆ Rô  oÙf‡t1ÙÄìFZB^ÀƒPæ^ğ	|_Â£¯<¸‰†a¾Ÿù¾oë“Œ;ô$$L§ãM¢éÌ98¡<¢2Ò¸Ğ1a’“½€)øCyä¥!HÍ´ˆ$’º‡®ÇÃi%Z¸d$YÎk­zNF,L•×Š¹´Ğdğpn9Ä@©b>dÄ(6«‡>¶ë­íë^A±Ä/£TFFBC˜yFgøZ½qròé4à> éë‰á¾ÈÙr^˜ŸX]|_'kâ ¼DÄEqCäÖ#¶»§Á°·ƒw•#|©<ã–=@×¾Â…½‡íæ9®îñ­yÜ0v˜²Ğd©²l×ŒƒıF¹jK¶	ıŞOwfé¨xœ-NMK1Dè¥ÁV¡P±"¤[V­ßxğĞƒX–Ò‹)x[4ylƒÙdI²Ò²,ôxÊ]ğø—Ä?àÕ“˜­™yof>¿7~ê³A‚&-±V‹eòj€™ÂRYŒÛJ˜ÉPˆï,S4OAZb¹’˜K<½˜Ò,-2¥­9Ÿ¢X’
+÷îÖKÁ‰Y£¦G–[E4úäHĞAÊI @şb¯¦œºn½½×¯$¢“u”)PÌ-¤õeáŞj“ıs6Ï<
+‰{íİl–Õó3yåû^n{ÈÀPÍ³ª´''Á…[#×=ºmGòŒrMsA4NH3ˆ©Fî°÷àV½×mİÖñÈ½·®Ş$õfİøÄOÇõÕnÃhŒ£á8è#_àU}}ÒîªNxœmPÁJ1D´S‹ÛVíI‰JµJYÑƒAA¥¢ Å›…w_ÛĞİì²ÉÊ–uñäİ~?¢ goş€WLZozH2™™—7/_oùû*=SàÒ›‚dĞ±³Gİ€Š@Qp¹2B	—Té…LÂ˜u'öA(¦x (´¹ÕtÂ°‘„A¤¤İ$-Á|HÀ…¶Ó§ßæ¶¹e¤Å<Î¤–.ÿÑW¤Ç†¥¼C• (—ƒ­±d]HÉß—kf«ãòôÂâÙ1}¢î(£LI‹+ğGi²§Î+ùåTzĞö@tUOkŸä`&3Å·Ì‹uVWñeXšrA:ÍÄZÈ&VĞ·òxg]á»ÕÇÓâzÅk|-áB)ŞV=Ğ™…ş,ío9I¶mÛNİ§cä’û¡ÇAˆÏ¥5N®ãrùg7øTŞ-è¶0m=>äjzU°>_ß¹ü¤ûf|£Qã­>xœ=½JA…	j±cD%àO™5.‰F"XXXˆ‹Š¤Èdç²ØYvfeÃ²š°º½àˆ¥¯ /`+X¶–Î±:ÜóİsÏıø®½‘¡GOABÊp:ÓTåãäş!åŠJe(pa*0b’^FÀ4L]®‚,i˜JR!i¯$‰Ÿ'*5º×'Éb(ğ³»æ”dÀ"Áôÿd„‰,»mo;eš…P×çÅa]g¥y¶]1–†¿5º a .ª…²À‡ÙóÕ’üy&K"¸Š@†fdÙ9ª—UøšEYuøŞkáK»¾d-:HER=mAYkák{'›>ºc„Î>wnpÒºC·q‚‹;>>5lrÛ=ı»ËV›øŞu¬nÍØºšyıì¯nxœEÁJBA†‘Zäd‰H–f0*R†$´p‰ˆ›‚p}!Æ{×Á{g.3sC¹\p­føõ½CïĞ´mÙŒE­çûÿs~ş¯Ìãö¤‰GÀ@,°àó…ì¢‡=W<ª¬0%ÌCM| ‘ğC=îÆ!0EåS†Ççc7Š†óˆ%;cä0B¢‡Ù9$ D®·]³)ªHSpgú¥TFÅ’ø ã(oÍÚØå´u-[ªÜ´¬L„¿“	r¨‚0™¥‰NËİ|Š~½0lµy»ÿÇTp óÕÔhŸè*—Úo$ˆmØs³Q¹T¸q@DÇJHWĞÈ¶2†4S×o¥œ^Ö‡ºvr½÷oÆ!&{+æG+½l<éZ±¯ó§CıZ¼Ü1¯`NB“/×­ªú½R0gıQ½»-K7Læ74Ì…wà²@xœ=ÁJÃ@†	ê¡«R¥Z^6•Š!ÁÅ"¥ÁôV”m2¤d’´„€Gïsñ|¯¾‚/àM<ºk¥§åÿ¾Ùù™ÏíyuÜ¦à1>Ïh–Lgpç„ú	å‰ à‡B‰	ã>iÓa,‡9õ¯ˆ&Â„ÓS×v½4íOÓ$¹å’g1”XïÒZEF,
+Y¾H"‘tÖ>‘©ÈY %‘R_ñLÔkMãÒ¤q!€Òk÷¦ßQƒ,ş:ó’ŒBq©¦«_–L;;ùç¢H#¸‹€b"ı9«/œZ*™æ×*µôE…j¿u7dô!÷²0UWIXi-|²¶ğ¡µ‡Û¶úÁ¹ÖÃk_í+ü¶êÖ>¾5Öåw˜²XvçósğİÙ”o»vÑ´LÚí(j.ÉÚ_¢€ïâµ
+xœUËJÃ@†İtP*ìB‹ÓbÑQ¶!”’ dk¡™C:Ì„dRBŸá€KÁ'—n}ÁK·îtR/ĞåÿşËyû\z/İ4©"¦Óë”Fj–z )WT*M]&LrÒ¤>°~(Wn€ÔL%©Ô9tÜ0ÎBéøÀ!#ÉÈ\Åaì3WğœŒ˜/XüGËÿXíC†OjÍ¨$fddÁ»W¨}¬—6jg-R$EŞ|@œ‘‘ĞÌCóVÚøuÒªæä—ë$ôaìƒôôÄÜ?Èéj^L™Ÿ˜¼êï¬É!v#ïøÚIñ¼«ğ¥{‹vïï—w±^±°Üâc¥·f0cI6ıx×ßÆçşæÖââ†5°éÀ²-bú¾1•…ê·Axœ-?KAÅ‘há¢‰"4H‚(X¤ˆÎ?!‚œ–i6·Ã¹°·{ÜîÉ…ój;›é;;?“66~ ;İK,†áıæ½™ùü™{#ã‚‚„Yàt<¡‰Î&!¨£åš*m)paËÁ=Sœ´èf`F¹Ò”eVhE…¢ş¡Äñ ‹ubÍOFŠEc­¿±X“‚™©ZuÊ
++!‚5”I‰Mo›8šBNœis!Ğöñ£¿Ö¸j—3–„Ós&'#a!ÊKC‘ãë|OÚÕ‚üsÁ3‡¿Ïï–Š2÷ÀdZî¼¾ØYq’ƒ	—?;¸îuğ±w‹O@ïø_*{Ø¬Ÿa­3À÷zwÙ cQ,ÁÌŞÂ¯Ó]×»®X½Üª¸÷Uqşè¹ixœ-NÁJ1EQjƒ½XªñĞCa«"ÚƒoêAEY-º(ãfØ²É²ÉÊ–eÁÈÕCıEÅğêÑD=3óŞ›÷æó{î¹	]zŠs0ÈèÃ”æªœ&(÷)ST*C‘qã‰	HFºôJ hüC™Š‹¥Ã•¤\Òp'Œ³ì¸ÌTnôvH"	)Úàz³A"´Ÿ—Hd¸XÙ`t@j¬ˆíÜn,ÆŠa`·škóç O~#tE"n0­¼ ®ìËÂE»&ÿ˜)2÷eb&û"GËµ?~QxãşpÅ­uœóÌ?ëÀ×³ÖíÛHÚİqÛ¾Ÿ`Ë‰°„Ô¹¹<ûtÓ³³áªëW}{wÙhy[B+§ø§ó5ùı)t–é¼xœ-NÁJÃ@Ek+zÑƒ
++RPŠÅ“‚7ÛC“Vr	Ê˜ÒÕÍnÈn$%ñöüÁ¿ğî]¼ztW=3óŞ›÷æã{î½]:D‰dôvFUÍR”ıÊ•ÊPdÜxb
+’‘.½ÿP¦’2CiÀp%)—4:Œ’<?¯rUİ‹H,!Ca·Eb´Ÿ—Hl¸XÛ§ÑiH\jH±&¶î.î%Šáİi¯oû„"ıÍĞ5‰¹Á¬ö‚¦¶/áFCş1SæoÊÔL÷EÎ–ü ¢ôÎl|¼êV†:)xî¿uàëèÎN%—+ö9Ø²oì8V97—g?Ç={µæú©«¾½´:ŞV#‚ĞÊ)6ÃÇù†ü buuÑä…txœ$ Ûÿ¨
+û	l‘p‘‘‘¬2±â_³Q4“‰9“Æ2“ü,èNåƒxœ›ÃÙË9!{ò)f‘‰õB`j)?s~^êÄíö@èfnFSÆÉLe©É%ùE
+å™%
+%©
+yù)©Å
+ùi\‰
+É™EÉ¥9‰E
+‰%›Y™s'f‹J+¤•ƒT¥—æ”+$+äd—pÕr Ó(¤à‚Txœ»Îy’sB6s~^êdFFñ‰­B0¦|-WLIfINjµ[f^J±PX!'?/=µ¸D¡ ±$câE]ÒÅŒŒŒ"Á%E™yé
+e©É%ùEz
+~ù)©Å“XD&1ÉLcòW,ÉHU()-ÈIš“¦ â¥eJË/ÍK=y5“ŸD¿ByfI†u“å˜»¸€‚ñÉ™EÉ9©“w0ë#s¿3k#sX&‹l)J-.Í))VH,VÈÉ,.áªå /T¬èšPxœmPAJÃPEP„¿éÂ…Û!+%"@KÅ½ËB™şL’ÑŸÿKfŠÖP¼‚’ƒy/  şd¡Òv30ï½™÷f>ÍÇñKqÇ2×½8T\8Ú˜:FilÈh¾K*«£æF ¡SÀú*ò+Á‚³oúõı;AÈY•}ñ;ÈÁCO=²¨´_Ï=,ş–Sì5 VìcµœI
+·%Õ”‡šFÀ
+ÂÕÒ­Á–dï8ùvJ¶e—@@Ë¸~µŒ ğAÈ{¤‹mXN¢]ßËZ”ªtfë´=?|l]ÔN¯·°³d<™NÆÓd—Ã½èĞI†ÆlÌ½î’5xœëæŞÁ5!=6;¾,1§4µ–+&1'3±¸:9?%5!X’Y’“ZíZ¢­ SÈOSHTÈÖMÎ,J.ÍI,R iĞª,-NLO­æBÖ¯1ñ…ÑäHÆU“…íÕ€JÀ‚Õ\øLšlÅ¤ Ÿ´®$#ÕJ¬ByFfrÆæ,¦eL~0;’5”İ•t”œİ•45Q] ’‰ë(c‘Q káâªå $6ZœãÄPxœMÏJÃ@Æé‚ÿ­Ò¶¶=ª¢GéEQêÁK l“iºì†Í¤Ióû â‚ïáÍğ<êAÄM-ÕÓì|¿ùæ›}û\x&ƒ&í‚ Å:H©’Iê‚8>¡¤B"‡cFL8¤I¯=`!üª´#2äRP.hï°gÁyH…áAX‚ùéÎ¤RÊ‰Å<ÎÂy‡=Ã&ã*1]22b`ua¿°¶©-hëZi»~Ñ*æ˜r§‘aF,àgÃy¦“£µœÌHa5ÚÃÒey®axĞ÷@¸82ìt¶òbí˜y‘‰Ÿ.JåëS±»ntB[ñ øŸ9î~œêj<\dÜ3WÜÜêï¸\¢İöYË²ÑOqM¿Æuıej-ÙÓİ¤¡eÒX1&H˜oòK_aE¤û³º£ï°õï½©_&Ë‹æ°^qš½±Lxœ¥SmkÛ0şî_qÊÈ¼Ò1…Â‚g²@Ö·û0Š|±µÊ’'É]‚ÉïIq²fÍh`şæ{{^îtSTh˜Ã–0z½)Q]]C¡AiXçSEtß%2‹»h¡y[£rÌ	­@(ÈŞe¼iÒu£³q-«±ãºÀ¼1Ø0ƒùŠq§M.µ*Ñº¼a®ÚF&³ç:á$vºÖ(¤°n¿…«@+¹W!ô-à[†vä‰ùpiXCU+êâÂğV21¦±­e%vÑk†¾`®m$æUI°7ğöƒÿæ£È1e°ÄvÑB8¬ƒ¦m7G44mÇ”bZÙø|" VC?I¬^˜Å_-*Nhû¬*ö>Fb|¬WÑ#>g·íşw(izd²%sædõ5¤¹tA‘àôC'½^«Şw2Õ %g„*_lÀ£h¹?¥.º¯ˆÙªU|wY–ttÁÃ¬î†R¨‡“Wú¶£˜€ğNPanËÏÆ’c¸×P¢£¢Áò'r­==uÂAò
+ùƒõ«ß{îÕîµÄ0;Nøyê²Ş»-–`ãhuSuW——!©‰´•¯³äK:!™eÉù$ƒäÛçôf·0MoÓ»°x\³šÃó0†ƒI2ŒaL¦ƒÑèõ_ïkŸÓÍû3[!àDDó	Hµîƒxœ;È9‘sB™`bNN|rerNj-WLbNfbñÄDQN¸àÄÕêl`FñÄ‡öáÉ:Œ–®™Å
+©™%©E
+‰
+Å%E™yé
+e©É%ùE
+ù!=Ï…äÄ<…¤T ˜‹Ÿ#H2H§–¦æ%O>ÆØµas#+Äü<æ$ m
+…Ì< E
+E©E©Å©y% »Ò‹2&?`Dr–+‹¯œE_ÎÓPrtvWpvtWÒäâªå Š.X˜º“xœUQo"7~ß_1Št¨›m’Ó©º¨<pdP‘ÍiCRªã„Ì2°î-öÖö† Ä{ŸûÜÓÒ_Ò±aIî¢¨HÀîØ3óÍ7ßØo ‹38…É
+”|XÍQœÃT‚pÊ]È™˜oàSL£·NeV-Pf¸À¤?¦YYÆ¥TFGi0lëLNq\*,™ÂñŒeFªñ\±2ß#Vp¦_Üa¸)pıÑ5å£‚÷¨ÏèEÎèÈY¡&0\ÌÁùºÈ¸Êª‚)°9(\¥Ù×Áw36p[Cú×¹\³UVP–|l÷oâGs!!1ã’™¼¾hª²ÀqbîìÇïì§4[¬š;¾ô:qƒW÷fÍ©,nrTWe¸G‹äŞAÏ@F…NlIÛ.¦ô§ñ
+E†Ñ&ØF­ÁŞ¬Û0‘²€{VTH1f`T…@Ù€Å–ÎeÎ³ˆ	 :Ì–7ëïl™,¤"qĞ÷I:¯Ë´‹o­[opÖMl€ÇLuB‰«™ëgì±ô¶|“ÕFv.;Û6›õ¢ Ôpô¹6çOO^Bªz"¦È›¢Î/í ¬ƒAN f•ÈÜ<Ì¶’µÙ5º²÷ê­ÿ#Ÿ‹"è(*MÔIË‚SeÆåp"H˜S6¶8ùf]`TpñÕàÁàÙ3Yri‘LqÆw…ùš'¶˜rE‘(³Lù	8©G>İ¤˜YÌ”\ì¶æ(Õ
+ªé«ãäRFŠNß¿?mÒ:Ûîº²¨c–¥€ÃòœÁ† dº	w.ŞÓmı8‚KT¤j-;)­ïÃåhS8Àw@îÈ´ûm-T³TœúDÜkÌ'ÈÙ=Úà~Õ!ğˆfbÛ~'uªfŠÊ·l‚Tş­dœ$ó™€|±ªÉ]6Ñ(SÁÅ¾gÑi}=„şLøíÄœAÒŒàWôÄç-ë6
