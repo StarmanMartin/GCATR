@@ -1,7 +1,6 @@
 # Test code property functions
 
 library(testthat)
-library(Rcpp)
 library(GCATR)
 
 # Self-complementarity
