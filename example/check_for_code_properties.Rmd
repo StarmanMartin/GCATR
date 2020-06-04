@@ -49,7 +49,6 @@ GCATR::code_check_if_self_complementary(c('UGG', 'GUG', 'GAG'))
 # Testing for maximum circularity
 
 To test for maximum circularity you might just execute the following code snippet.
-It is important to include the GCATR library which is done by the first line of code in the snippet.
 
 Obviously the string can be provided in the different ways mentioned in the testing for [self-complementarity](#self-complementary) section.
 

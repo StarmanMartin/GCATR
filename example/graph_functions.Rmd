@@ -1,0 +1,128 @@
+---
+title: "Graph Functions"
+output:
+  pdf_document:
+    toc: yes
+  html_notebook:
+    number_sections: yes
+    toc: yes
+  html_document:
+    df_print: paged
+    toc: yes
+---
+
+# Prerequisites
+
+To use the package that allows testing circularity you first have to install it as shown below.
+To run the code in the box below you can just press the green play button in the left top corner of the code box.
+You might be asked in the console below this window to update the included packages. Afterwards it might take a while to install all 3 packages.
+
+```{r, eval = FALSE}
+install.packages("Rcpp", repos = "https://packages.othr.de/cran/" )
+install.packages("devtools", repos = "https://packages.othr.de/cran/")
+devtools::install_github("StarmanMartin/GCATR", ref = "Testing")
+```
+
+# Factoring a graph
+Now that you have installed all prerequisistes you can try out the GCATR package. 
+
+As with other functions there is three ways to provide input vectors/codons
+You can provide the input as an R vector, as a string split by spaces or stating the tuple length.
+The example below demonstrates the first two ways.
+The last way is demonstrated in the code sample below this one.
+```{r, warning = FALSE, message = FALSE, collapse = TRUE}
+code_as_vector <- c("ACG", "AGU", "CGU")
+code_as_split_string <- c("ACG AGU CGU")
+```
+
+
+
+To execute the following code snippet you just have to press the little green arrow on the right side of the code box.
+The code creates an igraph from the vectors passed to it. It contains all possible edges from given vectors.
+```{r, warning = FALSE, message = FALSE, collapse = TRUE}
+graph <- GCATR::code_factor_graph("ACGGGUGA",tuple_length = 4)
+plot(graph)
+```
+
+# Factoring a cycle
+
+This functions returns the vectors that violate the rules of circular codes as an igraph.
+In this example the first codon combined with the second one allow to form the codons GGC and UGU in frameshift one (U|GG + C|UG) when read on a circle while the third and fourth codon allow to form the codons CUG and UGG in frameshift two (GG|C + UG|U) when read on a circle, thus violating the condition of circularity.
+```{r, warning = FALSE, message = FALSE, collapse = TRUE}
+factored_cycle <- GCATR::code_factor_cycle("UGG CUG GGC UGU")
+plot(factored_cycle)
+```
+
+If the graph is circular NULL will be returned.
+```{r, warning = FALSE, message = FALSE, collapse = TRUE}
+circular_code_example <- GCATR::code_factor_cycle("GGUGGCACUACCAGCAGUGACGAUGUCGUUAAUAUUAACAUCGCUGCC", 3)
+print(circular_code_example)
+```
+
+
+# Factoring the longest path
+
+This function returns the longest paths of a graph. 
+In this example there is two paths that qualify as a longest paths, since they have equal lenghts.
+```{r, warning = FALSE, message = FALSE, collapse = TRUE}
+longest_path <- GCATR::code_factor_longest_path("ACG GCA AAG")
+plot(longest_path)
+```
+
+If the longest path would be infinite due to being circular, it will return NULL.
+```{r, warning = FALSE, message = FALSE, collapse = TRUE}
+longest_path_is_infinite <- GCATR::code_factor_longest_path("UGGGUG", 3)
+print(length(longest_path_is_infinite))
+```
+
+# Cycles as vector
+This function returns the vectors that violate the rules of circular codes in a single combined vector.
+```{r, warning = FALSE, message = FALSE, collapse = TRUE}
+cycled_vector <- GCATR::code_get_one_cycles_as_vector("UGG CUG GGC UGU")
+print(cycled_vector)
+```
+
+If the code is circular the function will return an empty vector.
+```{r, warning = FALSE, message = FALSE, collapse = TRUE}
+cycled_vector <- GCATR::code_get_one_cycles_as_vector("GGUGGCACUACCAGCAGUGACGAUGUCGUUAAUAUUAACAUCGCUGCC", 3)
+print(length(cycled_vector))
+```
+
+# All cycles as vector
+This functions returns the vectors from given input that violate the rules of circular codes in a list of cycle vectors.
+```{r, warning = FALSE, message = FALSE, collapse = TRUE}
+cycles <- GCATR::code_get_all_cycles_as_vector(c("AG","CG","GA","TC","TT"))
+print(cycles)
+```
+
+If the code is circular, an empty list is returned
+```{r, warning = FALSE, message = FALSE, collapse = TRUE}
+cycle_vectors <- GCATR::code_get_all_cycles_as_vector("GGUGGCACUACCAGCAGUGACGAUGUCGUUAAUAUUAACAUCGCUGCC", 3)
+print(length(cycle_vectors))
+```
+
+# Get one longest path as vector
+
+This functions returns one of the longest paths from its input as a vector.
+```{r, warning = FALSE, message = FALSE, collapse = TRUE}
+longest_path <- GCATR::code_get_one_longest_path_as_vector("ACG GCA AAG")
+print(longest_path)
+```
+
+If the code is circular, an empty vector is returned
+```{r, warning = FALSE, message = FALSE, collapse = TRUE}
+longest_path <- GCATR::code_get_one_longest_path_as_vector("AGCGGATCTT",2)
+print(length(longest_path))
+```
+
+# Get all longest paths
+This functions returns a list of vectors containing all longesth paths from its input.
+```{r, warning = FALSE, message = FALSE, collapse = TRUE}
+longest_path <- GCATR::code_get_all_longest_path_as_vector("ACG GCA AAG")
+print(longest_path)
+```
+If code has a circle, it does return an empty list.
+```{r, warning = FALSE, message = FALSE, collapse = TRUE}
+empty <- GCATR::code_get_one_longest_path_as_vector("AGCGGATCTT",2)
+print(length(empty))
+```
