@@ -60,6 +60,8 @@ run_bda_as_matrix <- function() {
   }
   for(i in 1:length(res$code)) {
     if(rna_list[i] != res$code[i]) {
+      print(rna_list[i])
+      print(res$code[i])
       stop(error_msg ) 
     }
     
