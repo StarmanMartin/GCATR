@@ -79,3 +79,7 @@ TEST (BDASequenceTest, TwoRuleTest) {
     std::vector<std::string> res = {"00", "10", "11", "11", "11", "11", "01", "01"};
     test_help::test_equal_vector<std::string>(test_BDA_of_seq("ACCAAGAGUUUUAGUUUUGGUCUU", rules), res);
 }
+
+TEST (BDASequenceTest, testRunBdaAsMatrix) {
+    BDA::BDATools::run_bda_for_code()
+}

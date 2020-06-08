@@ -62,3 +62,4 @@ test_that("pdf is created in the right dir", {
   expect_true(file.exists(fn))
 })
 
+
