@@ -58,7 +58,7 @@ run_bda_as_matrix <- function() {
   }
   for(i in 1:length(res$code)) {
     if(rna_list[i] != rev(res$code)[i]) {
-      print((rna_list[i])
+      print(rna_list[i])
       print(rev(res$code)[i])
       stop(error_msg ) 
     }
