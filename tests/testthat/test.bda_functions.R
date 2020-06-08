@@ -59,5 +59,4 @@ test_that("bda correctly returns true for both codons", {
 # run_bda_as_matrix
 start_bda()
 add_bda(1, 2, "C", "G", "A", "U")
-add_bda(1, 3, "A", "G", "C", "U")
 res <- run_bda_as_matrix()
