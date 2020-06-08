@@ -52,7 +52,7 @@ start_bda <- function() {
 run_bda_as_matrix <- function() {
   res <- run_bda()
   error_msg = "run_bda_as_matrix only works for the correct codon table restar bda procedure with start_bda"
-  rna_list = get_rna_codon_list()
+  rna_list = sort(get_rna_codon_list())
   print(length(rna_list))
   print(length(res$code))
   if(length(res$code) != length(rna_list)) {
