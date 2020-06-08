@@ -52,16 +52,18 @@ start_bda <- function() {
 run_bda_as_matrix <- function() {
   res <- run_bda()
   error_msg = "run_bda_as_matrix only works for the correct codon table restar bda procedure with start_bda"
-  rna_list = sort(get_rna_codon_list())
+  rna_list = get_rna_codon_list()
   if(length(res$code) != length(rna_list)) {
     stop(error_msg ) 
   }
   for(i in 1:length(res$code)) {
-    if(rna_list[i] != res$code[i]) {
+    if(rna_list[i] != rev(res$code)[i] {
+      print((rna_list[i])
+      print(rev(res$code)[i])
       stop(error_msg ) 
     }
     
-    rna_list[i] = paste(rna_list[i], res$bda[i], sep=" -> ")
+    rna_list[i] = paste(rna_list[i], rev(res$bda)[i], sep=" -> ")
   }
   
   return(factor_rna_codon_table(rna_list))
