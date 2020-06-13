@@ -20,7 +20,7 @@ install.packages("devtools", repos = "https://packages.othr.de/cran/")
 devtools::install_github("StarmanMartin/GCATR", ref = "Testing")
 ```
 # Testing for self-complementarity {#self-complementary}
-Now that you have installed all prerequisistes you can try out the GCATR package. 
+Now that you have installed all prerequisites you can try out the GCATR package. 
 
 To execute the following code snippet you just have to press the little green arrow on the right side of the code box.
 You should be shown FALSE when executing the code snippet as the provided code is not self-complementary.

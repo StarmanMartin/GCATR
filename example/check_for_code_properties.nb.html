@@ -1483,8 +1483,8 @@ window.initializeCodeFolding = function(show) {
 
     // create a collapsable div to wrap the code in
     var div = $('<div class="collapse r-code-collapse"></div>');
-    if (show || $(this)[0].classList.contains('fold-show'))
-      div.addClass('in');
+    show = (show || $(this).hasClass('fold-show')) && !$(this).hasClass('fold-hide');
+    if (show) div.addClass('in');
     var id = 'rcode-643E0F36' + currentIndex++;
     div.attr('id', id);
     $(this).before(div);
@@ -1751,6 +1751,10 @@ summary {
 <ul>
 <li><a href="#prerequisites"><span class="toc-section-number">1</span> Prerequisites</a></li>
 <li><a href="#self-complementary"><span class="toc-section-number">2</span> Testing for self-complementarity</a></li>
+<li><a href="#testing-for-maximum-circularity"><span class="toc-section-number">3</span> Testing for maximum circularity</a></li>
+<li><a href="#testing-for-k-circularity"><span class="toc-section-number">4</span> Testing for k-circularity</a></li>
+<li><a href="#testing-for-cn-circularity"><span class="toc-section-number">5</span> Testing for cn-circularity</a></li>
+<li><a href="#testing-for-comma-freeness"><span class="toc-section-number">6</span> Testing for comma-freeness</a></li>
 </ul>
 </div>
 
@@ -1770,293 +1774,129 @@ devtools::install_github(&quot;StarmanMartin/GCATR&quot;, ref = &quot;Testing&qu
 </div>
 <div id="self-complementary" class="section level1">
 <h1><span class="header-section-number">2</span> Testing for self-complementarity</h1>
-<p>Now that you have installed all prerequisistes you can try out the GCATR package.</p>
+<p>Now that you have installed all prerequisites you can try out the GCATR package.</p>
 <p>To execute the following code snippet you just have to press the little green arrow on the right side of the code box. You should be shown FALSE when executing the code snippet as the provided code is not self-complementary.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuR0NBVFI6OmNvZGVfY2hlY2tfaWZfc2VsZl9jb21wbGVtZW50YXJ5KCdVR0cgR1VHJylcbmBgYFxuYGBgIn0= -->
-<pre class="r"><code>```r
-GCATR::code_check_if_self_complementary(&#39;UGG GUG&#39;)
-
-&lt;!-- rnb-source-end --&gt;
-
-&lt;!-- rnb-chunk-end --&gt;
-
-
-&lt;!-- rnb-text-begin --&gt;
-
-There is three options to provide the string that represents the code you are trying to test.
-
-Option 1 is providing the string with a specific tuple length like this:
-
-&lt;!-- rnb-text-end --&gt;
-
-
-&lt;!-- rnb-chunk-begin --&gt;
-
-
-&lt;!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuR0NBVFI6OmNvZGVfY2hlY2tfaWZfc2VsZl9jb21wbGVtZW50YXJ5KCdVR0dHVUcnLCAzKVxuYGBgXG5gYGAifQ== --&gt;
-
-```r
-```r
-GCATR::code_check_if_self_complementary(&#39;UGGGUG&#39;, 3)
-
-&lt;!-- rnb-source-end --&gt;
-
-&lt;!-- rnb-chunk-end --&gt;
-
-
-&lt;!-- rnb-text-begin --&gt;
-
-
-Option 2 is providing the string split in tuples by spaces like so:
-
-&lt;!-- rnb-text-end --&gt;
-
-
-&lt;!-- rnb-chunk-begin --&gt;
-
-
-&lt;!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuR0NBVFI6OmNvZGVfY2hlY2tfaWZfc2VsZl9jb21wbGVtZW50YXJ5KCdVR0cgR1VHJylcbmBgYFxuYGBgIn0= --&gt;
-
-```r
-```r
-GCATR::code_check_if_self_complementary(&#39;UGG GUG&#39;)
-
-&lt;!-- rnb-source-end --&gt;
-
-&lt;!-- rnb-chunk-end --&gt;
-
-
-&lt;!-- rnb-text-begin --&gt;
-
-
-The last option is to provide each tuple separate in a vector as so:
-This last example should come up TRUE, as the provided code is ciruclar.
-
-
-&lt;!-- rnb-text-end --&gt;
-
-
-&lt;!-- rnb-chunk-begin --&gt;
-
-
-&lt;!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuR0NBVFI6OmNvZGVfY2hlY2tfaWZfc2VsZl9jb21wbGVtZW50YXJ5KGMoJ1VHRycsICdHVUcnLCAnR0FHJykpXG5gYGBcbmBgYCJ9 --&gt;
-
-```r
-```r
-GCATR::code_check_if_self_complementary(c(&#39;UGG&#39;, &#39;GUG&#39;, &#39;GAG&#39;))
-
-&lt;!-- rnb-source-end --&gt;
-
-&lt;!-- rnb-chunk-end --&gt;
-
-
-&lt;!-- rnb-text-begin --&gt;
-
-
-# Testing for maximum circularity
-
-To test for maximum circularity you might just execute the following code snippet.
-
-Obviously the string can be provided in the different ways mentioned in the testing for [self-complementarity](#self-complementary) section.
-
-You should be shown FALSE when executing this code snippet as the provided code is not maximum circular.
-
-
-&lt;!-- rnb-text-end --&gt;
-
-
-&lt;!-- rnb-chunk-begin --&gt;
-
-
-&lt;!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuR0NBVFI6OmNvZGVfY2hlY2tfaWZfY2lyY3VsYXIoJ1VHRyBHVUcnKVxuYGBgXG5gYGAifQ== --&gt;
-
-```r
-```r
-GCATR::code_check_if_circular(&#39;UGG GUG&#39;)
-
-&lt;!-- rnb-source-end --&gt;
-
-&lt;!-- rnb-chunk-end --&gt;
-
-
-&lt;!-- rnb-text-begin --&gt;
-
-# Testing for k-circularity
-
-Testing for k-cicurlarity works analogous to testing for maximum circularity
-The main differences are that the function has a different name and that you have to provide the value for k.
-Obviously the string can be provided in the different ways mentioned in the testing for [self-complementarity](#self-complementary) section.
-
-k = 1, should come up FALSE
-
-&lt;!-- rnb-text-end --&gt;
-
-
-&lt;!-- rnb-chunk-begin --&gt;
-
-
-&lt;!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuR0NBVFI6OmNvZGVfY2hlY2tfaWZfa19jaXJjdWxhcigxLCdVR0dHVUcnLCAzKVxuYGBgXG5gYGAifQ== --&gt;
-
-```r
-```r
-GCATR::code_check_if_k_circular(1,&#39;UGGGUG&#39;, 3)
-
-&lt;!-- rnb-source-end --&gt;
-
-&lt;!-- rnb-chunk-end --&gt;
-
-
-&lt;!-- rnb-text-begin --&gt;
-
-k = 2, should come up TRUE
-
-&lt;!-- rnb-text-end --&gt;
-
-
-&lt;!-- rnb-chunk-begin --&gt;
-
-
-&lt;!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuR0NBVFI6OmNvZGVfY2hlY2tfaWZfa19jaXJjdWxhcigyLCdBQ0dHVUFDR1VDR0dVQUMnLDMpXG5gYGBcbmBgYCJ9 --&gt;
-
-```r
-```r
-GCATR::code_check_if_k_circular(2,&#39;ACGGUACGUCGGUAC&#39;,3)
-
-&lt;!-- rnb-source-end --&gt;
-
-&lt;!-- rnb-chunk-end --&gt;
-
-
-&lt;!-- rnb-text-begin --&gt;
-
-k = 3, should come up FALSE
-
-&lt;!-- rnb-text-end --&gt;
-
-
-&lt;!-- rnb-chunk-begin --&gt;
-
-
-&lt;!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuR0NBVFI6OmNvZGVfY2hlY2tfaWZfa19jaXJjdWxhcigzLCdBQ0cgR1VBIENHVSBDR0cgVUFDJylcbmBgYFxuYGBgIn0= --&gt;
-
-```r
-```r
-GCATR::code_check_if_k_circular(3,&#39;ACG GUA CGU CGG UAC&#39;)
-
-&lt;!-- rnb-source-end --&gt;
-
-&lt;!-- rnb-chunk-end --&gt;
-
-
-&lt;!-- rnb-text-begin --&gt;
-
-
- k = 4, should come up TRUE
-
-&lt;!-- rnb-text-end --&gt;
-
-
-&lt;!-- rnb-chunk-begin --&gt;
-
-
-&lt;!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuR0NBVFI6OmNvZGVfY2hlY2tfaWZfa19jaXJjdWxhcig0LGMoJ0dHVScsICdHR0MnLCAnQUNVJywgJ0FDQycsICdBR0MnLCAnQUdVJywgJ0dBQycsICdHQVUnLCAnR1VDJywgJ0dVVScsICdBQVUnLCAnQVVVJywgJ0FBQycsICdBVUMnLCAnR0NVJywgJ0dDQycpKVxuYGBgXG5gYGAifQ== --&gt;
-
-```r
-```r
-GCATR::code_check_if_k_circular(4,c(&#39;GGU&#39;, &#39;GGC&#39;, &#39;ACU&#39;, &#39;ACC&#39;, &#39;AGC&#39;, &#39;AGU&#39;, &#39;GAC&#39;, &#39;GAU&#39;, &#39;GUC&#39;, &#39;GUU&#39;, &#39;AAU&#39;, &#39;AUU&#39;, &#39;AAC&#39;, &#39;AUC&#39;, &#39;GCU&#39;, &#39;GCC&#39;))
-
-&lt;!-- rnb-source-end --&gt;
-
-&lt;!-- rnb-chunk-end --&gt;
-
-
-&lt;!-- rnb-text-begin --&gt;
-
-# Testing for cn-circularity
-
-Testing for cn-circularity is analogous to testing for circularity expect for the fact, that the function has a different name.
-Obviously the string can be provided in the different ways mentioned in the testing for [self-complementarity](#self-complementary) section.
-
-This example should come up FALSE
-
-
-&lt;!-- rnb-text-end --&gt;
-
-
-&lt;!-- rnb-chunk-begin --&gt;
-
-
-&lt;!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuR0NBVFI6OmNvZGVfY2hlY2tfaWZfY25fY2lyY3VsYXIoJ1VHRyBHVUcnKVxuYGBgXG5gYGAifQ== --&gt;
-
-```r
-```r
-GCATR::code_check_if_cn_circular(&#39;UGG GUG&#39;)
-
-&lt;!-- rnb-source-end --&gt;
-
-&lt;!-- rnb-chunk-end --&gt;
-
-
-&lt;!-- rnb-text-begin --&gt;
-
-
-While this one should come up TRUE
-
-
-&lt;!-- rnb-text-end --&gt;
-
-
-&lt;!-- rnb-chunk-begin --&gt;
-
-
-&lt;!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuR0NBVFI6OmNvZGVfY2hlY2tfaWZfY25fY2lyY3VsYXIoYygnR0dVJywnR0dDJywnQUNVJywnQUNDJywnQUdDJywnQUdVJywnR0FDJywnR0FVJywnR1VDJywnR1VVJywnQUFVJywnQVVVJywnQUFDJywnQVVDJywnR0NVJywnR0NDJykpXG5gYGBcbmBgYCJ9 --&gt;
-
-```r
-```r
-GCATR::code_check_if_cn_circular(c(&#39;GGU&#39;,&#39;GGC&#39;,&#39;ACU&#39;,&#39;ACC&#39;,&#39;AGC&#39;,&#39;AGU&#39;,&#39;GAC&#39;,&#39;GAU&#39;,&#39;GUC&#39;,&#39;GUU&#39;,&#39;AAU&#39;,&#39;AUU&#39;,&#39;AAC&#39;,&#39;AUC&#39;,&#39;GCU&#39;,&#39;GCC&#39;))
-
-&lt;!-- rnb-source-end --&gt;
-
-&lt;!-- rnb-chunk-end --&gt;
-
-
-&lt;!-- rnb-text-begin --&gt;
-
-
-# Testing for comma-freeness
-
-Testing for comma-freeness also works analogous to the other function calls.
-Just execute the following code snippet to try it out.
-Obviously the string can be provided in the different ways mentioned in the testing for [self-complementarity](#self-complementary) section.
-
-The example should come up TRUE.
-
-&lt;!-- rnb-text-end --&gt;
-
-
-&lt;!-- rnb-chunk-begin --&gt;
-
-
-&lt;!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuR0NBVFI6OmNvZGVfY2hlY2tfaWZfY29tbWFfZnJlZSgnR0dVIEdHQyBBQ1UgQUNDIEFHQyBBR1UgR0FDIEdBVSBHVUMgR1VVIEFBVSBBVVUgQUFDIEFVQyBHQ1UgR0NDJylcbmBgYFxuYGBgIn0= --&gt;
-
-```r
-```r
-GCATR::code_check_if_comma_free(&#39;GGU GGC ACU ACC AGC AGU GAC GAU GUC GUU AAU AUU AAC AUC GCU GCC&#39;)
-
-&lt;!-- rnb-source-end --&gt;
-
-&lt;!-- rnb-output-begin eyJkYXRhIjoiWzFdIFRSVUVcbiJ9 --&gt;
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuR0NBVFI6OmNvZGVfY2hlY2tfaWZfc2VsZl9jb21wbGVtZW50YXJ5KCdVR0cgR1VHJylcblxuYGBgIn0= -->
+<pre class="r"><code>GCATR::code_check_if_self_complementary(&#39;UGG GUG&#39;)
 </code></pre>
-<p>[1] TRUE ```</p>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIEZBTFNFXG4ifQ== -->
+<pre><code>[1] FALSE</code></pre>
 <!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>There is three options to provide the string that represents the code you are trying to test.</p>
+<p>Option 1 is providing the string with a specific tuple length like this:</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuR0NBVFI6OmNvZGVfY2hlY2tfaWZfc2VsZl9jb21wbGVtZW50YXJ5KCdVR0dHVUcnLCAzKVxuYGBgIn0= -->
+<pre class="r"><code>GCATR::code_check_if_self_complementary(&#39;UGGGUG&#39;, 3)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Option 2 is providing the string split in tuples by spaces like so:</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuR0NBVFI6OmNvZGVfY2hlY2tfaWZfc2VsZl9jb21wbGVtZW50YXJ5KCdVR0cgR1VHJylcbmBgYCJ9 -->
+<pre class="r"><code>GCATR::code_check_if_self_complementary(&#39;UGG GUG&#39;)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>The last option is to provide each tuple separate in a vector as so: This last example should come up TRUE, as the provided code is ciruclar.</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuR0NBVFI6OmNvZGVfY2hlY2tfaWZfc2VsZl9jb21wbGVtZW50YXJ5KGMoJ1VHRycsICdHVUcnLCAnR0FHJykpXG5gYGAifQ== -->
+<pre class="r"><code>GCATR::code_check_if_self_complementary(c(&#39;UGG&#39;, &#39;GUG&#39;, &#39;GAG&#39;))</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
+<div id="testing-for-maximum-circularity" class="section level1">
+<h1><span class="header-section-number">3</span> Testing for maximum circularity</h1>
+<p>To test for maximum circularity you might just execute the following code snippet.</p>
+<p>Obviously the string can be provided in the different ways mentioned in the testing for <a href="#self-complementary">self-complementarity</a> section.</p>
+<p>You should be shown FALSE when executing this code snippet as the provided code is not maximum circular.</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuR0NBVFI6OmNvZGVfY2hlY2tfaWZfY2lyY3VsYXIoJ1VHRyBHVUcnKVxuYGBgIn0= -->
+<pre class="r"><code>GCATR::code_check_if_circular(&#39;UGG GUG&#39;)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
+<div id="testing-for-k-circularity" class="section level1">
+<h1><span class="header-section-number">4</span> Testing for k-circularity</h1>
+<p>Testing for k-cicurlarity works analogous to testing for maximum circularity The main differences are that the function has a different name and that you have to provide the value for k. Obviously the string can be provided in the different ways mentioned in the testing for <a href="#self-complementary">self-complementarity</a> section.</p>
+<p>k = 1, should come up FALSE</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuR0NBVFI6OmNvZGVfY2hlY2tfaWZfa19jaXJjdWxhcigxLCdVR0dHVUcnLCAzKVxuYGBgIn0= -->
+<pre class="r"><code>GCATR::code_check_if_k_circular(1,&#39;UGGGUG&#39;, 3)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>k = 2, should come up TRUE</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuR0NBVFI6OmNvZGVfY2hlY2tfaWZfa19jaXJjdWxhcigyLCdBQ0dHVUFDR1VDR0dVQUMnLDMpXG5gYGAifQ== -->
+<pre class="r"><code>GCATR::code_check_if_k_circular(2,&#39;ACGGUACGUCGGUAC&#39;,3)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>k = 3, should come up FALSE</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuR0NBVFI6OmNvZGVfY2hlY2tfaWZfa19jaXJjdWxhcigzLCdBQ0cgR1VBIENHVSBDR0cgVUFDJylcbmBgYCJ9 -->
+<pre class="r"><code>GCATR::code_check_if_k_circular(3,&#39;ACG GUA CGU CGG UAC&#39;)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>k = 4, should come up TRUE</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuR0NBVFI6OmNvZGVfY2hlY2tfaWZfa19jaXJjdWxhcig0LGMoJ0dHVScsICdHR0MnLCAnQUNVJywgJ0FDQycsICdBR0MnLCAnQUdVJywgJ0dBQycsICdHQVUnLCAnR1VDJywgJ0dVVScsICdBQVUnLCAnQVVVJywgJ0FBQycsICdBVUMnLCAnR0NVJywgJ0dDQycpKVxuYGBgIn0= -->
+<pre class="r"><code>GCATR::code_check_if_k_circular(4,c(&#39;GGU&#39;, &#39;GGC&#39;, &#39;ACU&#39;, &#39;ACC&#39;, &#39;AGC&#39;, &#39;AGU&#39;, &#39;GAC&#39;, &#39;GAU&#39;, &#39;GUC&#39;, &#39;GUU&#39;, &#39;AAU&#39;, &#39;AUU&#39;, &#39;AAC&#39;, &#39;AUC&#39;, &#39;GCU&#39;, &#39;GCC&#39;))</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
+<div id="testing-for-cn-circularity" class="section level1">
+<h1><span class="header-section-number">5</span> Testing for cn-circularity</h1>
+<p>Testing for cn-circularity is analogous to testing for circularity expect for the fact, that the function has a different name. Obviously the string can be provided in the different ways mentioned in the testing for <a href="#self-complementary">self-complementarity</a> section.</p>
+<p>This example should come up FALSE</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuR0NBVFI6OmNvZGVfY2hlY2tfaWZfY25fY2lyY3VsYXIoJ1VHRyBHVUcnKVxuYGBgIn0= -->
+<pre class="r"><code>GCATR::code_check_if_cn_circular(&#39;UGG GUG&#39;)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>While this one should come up TRUE</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuR0NBVFI6OmNvZGVfY2hlY2tfaWZfY25fY2lyY3VsYXIoYygnR0dVJywnR0dDJywnQUNVJywnQUNDJywnQUdDJywnQUdVJywnR0FDJywnR0FVJywnR1VDJywnR1VVJywnQUFVJywnQVVVJywnQUFDJywnQVVDJywnR0NVJywnR0NDJykpXG5gYGAifQ== -->
+<pre class="r"><code>GCATR::code_check_if_cn_circular(c(&#39;GGU&#39;,&#39;GGC&#39;,&#39;ACU&#39;,&#39;ACC&#39;,&#39;AGC&#39;,&#39;AGU&#39;,&#39;GAC&#39;,&#39;GAU&#39;,&#39;GUC&#39;,&#39;GUU&#39;,&#39;AAU&#39;,&#39;AUU&#39;,&#39;AAC&#39;,&#39;AUC&#39;,&#39;GCU&#39;,&#39;GCC&#39;))</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
+<div id="testing-for-comma-freeness" class="section level1">
+<h1><span class="header-section-number">6</span> Testing for comma-freeness</h1>
+<p>Testing for comma-freeness also works analogous to the other function calls. Just execute the following code snippet to try it out. Obviously the string can be provided in the different ways mentioned in the testing for <a href="#self-complementary">self-complementarity</a> section.</p>
+<p>The example should come up TRUE.</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuR0NBVFI6OmNvZGVfY2hlY2tfaWZfY29tbWFfZnJlZSgnR0dVIEdHQyBBQ1UgQUNDIEFHQyBBR1UgR0FDIEdBVSBHVUMgR1VVIEFBVSBBVVUgQUFDIEFVQyBHQ1UgR0NDJylcbmBgYCJ9 -->
+<pre class="r"><code>GCATR::code_check_if_comma_free(&#39;GGU GGC ACU ACC AGC AGU GAC GAU GUC GUU AAU AUU AAC AUC GCU GCC&#39;)</code></pre>
+<!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 </div>
 
-<div id="rmd-source-code">LS0tDQp0aXRsZTogIlRlc3RpbmcgZm9yIGNpcmN1bGFyaXR5Ig0Kb3V0cHV0Og0KICBwZGZfZG9jdW1lbnQ6DQogICAgdG9jOiB5ZXMNCiAgaHRtbF9ub3RlYm9vazoNCiAgICBudW1iZXJfc2VjdGlvbnM6IHllcw0KICAgIHRvYzogeWVzDQotLS0NCg0KIyBQcmVyZXF1aXNpdGVzDQoNClRvIHVzZSB0aGUgcGFja2FnZSB0aGF0IGFsbG93cyB0ZXN0aW5nIGNpcmN1bGFyaXR5IHlvdSBmaXJzdCBoYXZlIHRvIGluc3RhbGwgaXQgYXMgc2hvd24gYmVsb3cuDQpUbyBydW4gdGhlIGNvZGUgaW4gdGhlIGJveCBiZWxvdyB5b3UgY2FuIGp1c3QgcHJlc3MgdGhlIGdyZWVuIHBsYXkgYnV0dG9uIGluIHRoZSBsZWZ0IHRvcCBjb3JuZXIgb2YgdGhlIGNvZGUgYm94Lg0KWW91IG1pZ2h0IGJlIGFza2VkIGluIHRoZSBjb25zb2xlIGJlbG93IHRoaXMgd2luZG93IHRvIHVwZGF0ZSB0aGUgaW5jbHVkZWQgcGFja2FnZXMuIEFmdGVyd2FyZHMgaXQgbWlnaHQgdGFrZSBhIHdoaWxlIHRvIGluc3RhbGwgYWxsIDMgcGFja2FnZXMuDQoNCmBgYHtyLCBldmFsID0gRkFMU0V9DQppbnN0YWxsLnBhY2thZ2VzKCJSY3BwIiwgcmVwb3MgPSAiaHR0cHM6Ly9wYWNrYWdlcy5vdGhyLmRlL2NyYW4vIiApDQppbnN0YWxsLnBhY2thZ2VzKCJkZXZ0b29scyIsIHJlcG9zID0gImh0dHBzOi8vcGFja2FnZXMub3Roci5kZS9jcmFuLyIpDQpkZXZ0b29sczo6aW5zdGFsbF9naXRodWIoIlN0YXJtYW5NYXJ0aW4vR0NBVFIiLCByZWYgPSAiVGVzdGluZyIpDQpgYGANCiMgVGVzdGluZyBmb3Igc2VsZi1jb21wbGVtZW50YXJpdHkgeyNzZWxmLWNvbXBsZW1lbnRhcnl9DQpOb3cgdGhhdCB5b3UgaGF2ZSBpbnN0YWxsZWQgYWxsIHByZXJlcXVpc2lzdGVzIHlvdSBjYW4gdHJ5IG91dCB0aGUgR0NBVFIgcGFja2FnZS4gDQoNClRvIGV4ZWN1dGUgdGhlIGZvbGxvd2luZyBjb2RlIHNuaXBwZXQgeW91IGp1c3QgaGF2ZSB0byBwcmVzcyB0aGUgbGl0dGxlIGdyZWVuIGFycm93IG9uIHRoZSByaWdodCBzaWRlIG9mIHRoZSBjb2RlIGJveC4NCllvdSBzaG91bGQgYmUgc2hvd24gRkFMU0Ugd2hlbiBleGVjdXRpbmcgdGhlIGNvZGUgc25pcHBldCBhcyB0aGUgcHJvdmlkZWQgY29kZSBpcyBub3Qgc2VsZi1jb21wbGVtZW50YXJ5Lg0KYGBge3IsIHdhcm5pbmcgPSBGQUxTRSwgbWVzc2FnZSA9IEZBTFNFLCBjb2xsYXBzZSA9IFRSVUV9DQpHQ0FUUjo6Y29kZV9jaGVja19pZl9zZWxmX2NvbXBsZW1lbnRhcnkoJ1VHRyBHVUcnKQ0KYGBgDQpUaGVyZSBpcyB0aHJlZSBvcHRpb25zIHRvIHByb3ZpZGUgdGhlIHN0cmluZyB0aGF0IHJlcHJlc2VudHMgdGhlIGNvZGUgeW91IGFyZSB0cnlpbmcgdG8gdGVzdC4NCg0KT3B0aW9uIDEgaXMgcHJvdmlkaW5nIHRoZSBzdHJpbmcgd2l0aCBhIHNwZWNpZmljIHR1cGxlIGxlbmd0aCBsaWtlIHRoaXM6DQpgYGB7ciwgd2FybmluZyA9IEZBTFNFLCBtZXNzYWdlID0gRkFMU0UsIGNvbGxhcHNlID0gVFJVRX0NCkdDQVRSOjpjb2RlX2NoZWNrX2lmX3NlbGZfY29tcGxlbWVudGFyeSgnVUdHR1VHJywgMykNCmBgYA0KDQpPcHRpb24gMiBpcyBwcm92aWRpbmcgdGhlIHN0cmluZyBzcGxpdCBpbiB0dXBsZXMgYnkgc3BhY2VzIGxpa2Ugc286DQpgYGB7ciwgd2FybmluZyA9IEZBTFNFLCBtZXNzYWdlID0gRkFMU0UsIGNvbGxhcHNlID0gVFJVRX0NCkdDQVRSOjpjb2RlX2NoZWNrX2lmX3NlbGZfY29tcGxlbWVudGFyeSgnVUdHIEdVRycpDQpgYGANCg0KVGhlIGxhc3Qgb3B0aW9uIGlzIHRvIHByb3ZpZGUgZWFjaCB0dXBsZSBzZXBhcmF0ZSBpbiBhIHZlY3RvciBhcyBzbzoNClRoaXMgbGFzdCBleGFtcGxlIHNob3VsZCBjb21lIHVwIFRSVUUsIGFzIHRoZSBwcm92aWRlZCBjb2RlIGlzIGNpcnVjbGFyLg0KDQpgYGB7ciwgd2FybmluZyA9IEZBTFNFLCBtZXNzYWdlID0gRkFMU0UsIGNvbGxhcHNlID0gVFJVRX0NCkdDQVRSOjpjb2RlX2NoZWNrX2lmX3NlbGZfY29tcGxlbWVudGFyeShjKCdVR0cnLCAnR1VHJywgJ0dBRycpKQ0KYGBgDQoNCiMgVGVzdGluZyBmb3IgbWF4aW11bSBjaXJjdWxhcml0eQ0KDQpUbyB0ZXN0IGZvciBtYXhpbXVtIGNpcmN1bGFyaXR5IHlvdSBtaWdodCBqdXN0IGV4ZWN1dGUgdGhlIGZvbGxvd2luZyBjb2RlIHNuaXBwZXQuDQoNCk9idmlvdXNseSB0aGUgc3RyaW5nIGNhbiBiZSBwcm92aWRlZCBpbiB0aGUgZGlmZmVyZW50IHdheXMgbWVudGlvbmVkIGluIHRoZSB0ZXN0aW5nIGZvciBbc2VsZi1jb21wbGVtZW50YXJpdHldKCNzZWxmLWNvbXBsZW1lbnRhcnkpIHNlY3Rpb24uDQoNCllvdSBzaG91bGQgYmUgc2hvd24gRkFMU0Ugd2hlbiBleGVjdXRpbmcgdGhpcyBjb2RlIHNuaXBwZXQgYXMgdGhlIHByb3ZpZGVkIGNvZGUgaXMgbm90IG1heGltdW0gY2lyY3VsYXIuDQoNCmBgYHtyLCB3YXJuaW5nID0gRkFMU0UsIG1lc3NhZ2UgPSBGQUxTRSwgY29sbGFwc2UgPSBUUlVFfQ0KR0NBVFI6OmNvZGVfY2hlY2tfaWZfY2lyY3VsYXIoJ1VHRyBHVUcnKQ0KYGBgDQojIFRlc3RpbmcgZm9yIGstY2lyY3VsYXJpdHkNCg0KVGVzdGluZyBmb3Igay1jaWN1cmxhcml0eSB3b3JrcyBhbmFsb2dvdXMgdG8gdGVzdGluZyBmb3IgbWF4aW11bSBjaXJjdWxhcml0eQ0KVGhlIG1haW4gZGlmZmVyZW5jZXMgYXJlIHRoYXQgdGhlIGZ1bmN0aW9uIGhhcyBhIGRpZmZlcmVudCBuYW1lIGFuZCB0aGF0IHlvdSBoYXZlIHRvIHByb3ZpZGUgdGhlIHZhbHVlIGZvciBrLg0KT2J2aW91c2x5IHRoZSBzdHJpbmcgY2FuIGJlIHByb3ZpZGVkIGluIHRoZSBkaWZmZXJlbnQgd2F5cyBtZW50aW9uZWQgaW4gdGhlIHRlc3RpbmcgZm9yIFtzZWxmLWNvbXBsZW1lbnRhcml0eV0oI3NlbGYtY29tcGxlbWVudGFyeSkgc2VjdGlvbi4NCg0KayA9IDEsIHNob3VsZCBjb21lIHVwIEZBTFNFDQpgYGB7ciwgd2FybmluZyA9IEZBTFNFLCBtZXNzYWdlID0gRkFMU0UsIGNvbGxhcHNlID0gVFJVRX0NCkdDQVRSOjpjb2RlX2NoZWNrX2lmX2tfY2lyY3VsYXIoMSwnVUdHR1VHJywgMykNCmBgYA0KayA9IDIsIHNob3VsZCBjb21lIHVwIFRSVUUNCmBgYHtyLCB3YXJuaW5nID0gRkFMU0UsIG1lc3NhZ2UgPSBGQUxTRSwgY29sbGFwc2UgPSBUUlVFfQ0KR0NBVFI6OmNvZGVfY2hlY2tfaWZfa19jaXJjdWxhcigyLCdBQ0dHVUFDR1VDR0dVQUMnLDMpDQpgYGANCmsgPSAzLCBzaG91bGQgY29tZSB1cCBGQUxTRQ0KYGBge3IsIHdhcm5pbmcgPSBGQUxTRSwgbWVzc2FnZSA9IEZBTFNFLCBjb2xsYXBzZSA9IFRSVUV9DQpHQ0FUUjo6Y29kZV9jaGVja19pZl9rX2NpcmN1bGFyKDMsJ0FDRyBHVUEgQ0dVIENHRyBVQUMnKQ0KYGBgDQoNCiBrID0gNCwgc2hvdWxkIGNvbWUgdXAgVFJVRQ0KYGBge3IsIHdhcm5pbmcgPSBGQUxTRSwgbWVzc2FnZSA9IEZBTFNFLCBjb2xsYXBzZSA9IFRSVUV9DQpHQ0FUUjo6Y29kZV9jaGVja19pZl9rX2NpcmN1bGFyKDQsYygnR0dVJywgJ0dHQycsICdBQ1UnLCAnQUNDJywgJ0FHQycsICdBR1UnLCAnR0FDJywgJ0dBVScsICdHVUMnLCAnR1VVJywgJ0FBVScsICdBVVUnLCAnQUFDJywgJ0FVQycsICdHQ1UnLCAnR0NDJykpDQpgYGANCiMgVGVzdGluZyBmb3IgY24tY2lyY3VsYXJpdHkNCg0KVGVzdGluZyBmb3IgY24tY2lyY3VsYXJpdHkgaXMgYW5hbG9nb3VzIHRvIHRlc3RpbmcgZm9yIGNpcmN1bGFyaXR5IGV4cGVjdCBmb3IgdGhlIGZhY3QsIHRoYXQgdGhlIGZ1bmN0aW9uIGhhcyBhIGRpZmZlcmVudCBuYW1lLg0KT2J2aW91c2x5IHRoZSBzdHJpbmcgY2FuIGJlIHByb3ZpZGVkIGluIHRoZSBkaWZmZXJlbnQgd2F5cyBtZW50aW9uZWQgaW4gdGhlIHRlc3RpbmcgZm9yIFtzZWxmLWNvbXBsZW1lbnRhcml0eV0oI3NlbGYtY29tcGxlbWVudGFyeSkgc2VjdGlvbi4NCg0KVGhpcyBleGFtcGxlIHNob3VsZCBjb21lIHVwIEZBTFNFDQoNCmBgYHtyLCB3YXJuaW5nID0gRkFMU0UsIG1lc3NhZ2UgPSBGQUxTRSwgY29sbGFwc2UgPSBUUlVFfQ0KR0NBVFI6OmNvZGVfY2hlY2tfaWZfY25fY2lyY3VsYXIoJ1VHRyBHVUcnKQ0KYGBgDQoNCldoaWxlIHRoaXMgb25lIHNob3VsZCBjb21lIHVwIFRSVUUNCg0KYGBge3IsIHdhcm5pbmcgPSBGQUxTRSwgbWVzc2FnZSA9IEZBTFNFLCBjb2xsYXBzZSA9IFRSVUV9DQpHQ0FUUjo6Y29kZV9jaGVja19pZl9jbl9jaXJjdWxhcihjKCdHR1UnLCdHR0MnLCdBQ1UnLCdBQ0MnLCdBR0MnLCdBR1UnLCdHQUMnLCdHQVUnLCdHVUMnLCdHVVUnLCdBQVUnLCdBVVUnLCdBQUMnLCdBVUMnLCdHQ1UnLCdHQ0MnKSkNCmBgYA0KDQojIFRlc3RpbmcgZm9yIGNvbW1hLWZyZWVuZXNzDQoNClRlc3RpbmcgZm9yIGNvbW1hLWZyZWVuZXNzIGFsc28gd29ya3MgYW5hbG9nb3VzIHRvIHRoZSBvdGhlciBmdW5jdGlvbiBjYWxscy4NCkp1c3QgZXhlY3V0ZSB0aGUgZm9sbG93aW5nIGNvZGUgc25pcHBldCB0byB0cnkgaXQgb3V0Lg0KT2J2aW91c2x5IHRoZSBzdHJpbmcgY2FuIGJlIHByb3ZpZGVkIGluIHRoZSBkaWZmZXJlbnQgd2F5cyBtZW50aW9uZWQgaW4gdGhlIHRlc3RpbmcgZm9yIFtzZWxmLWNvbXBsZW1lbnRhcml0eV0oI3NlbGYtY29tcGxlbWVudGFyeSkgc2VjdGlvbi4NCg0KVGhlIGV4YW1wbGUgc2hvdWxkIGNvbWUgdXAgVFJVRS4NCmBgYHtyLCB3YXJuaW5nID0gRkFMU0UsIG1lc3NhZ2UgPSBGQUxTRSwgY29sbGFwc2UgPSBUUlVFfQ0KR0NBVFI6OmNvZGVfY2hlY2tfaWZfY29tbWFfZnJlZSgnR0dVIEdHQyBBQ1UgQUNDIEFHQyBBR1UgR0FDIEdBVSBHVUMgR1VVIEFBVSBBVVUgQUFDIEFVQyBHQ1UgR0NDJykNCmBgYA0KDQo=</div>
+<div id="rmd-source-code">LS0tDQp0aXRsZTogIlRlc3RpbmcgZm9yIGNpcmN1bGFyaXR5Ig0Kb3V0cHV0Og0KICBwZGZfZG9jdW1lbnQ6DQogICAgdG9jOiB5ZXMNCiAgaHRtbF9ub3RlYm9vazoNCiAgICBudW1iZXJfc2VjdGlvbnM6IHllcw0KICAgIHRvYzogeWVzDQotLS0NCg0KIyBQcmVyZXF1aXNpdGVzDQoNClRvIHVzZSB0aGUgcGFja2FnZSB0aGF0IGFsbG93cyB0ZXN0aW5nIGNpcmN1bGFyaXR5IHlvdSBmaXJzdCBoYXZlIHRvIGluc3RhbGwgaXQgYXMgc2hvd24gYmVsb3cuDQpUbyBydW4gdGhlIGNvZGUgaW4gdGhlIGJveCBiZWxvdyB5b3UgY2FuIGp1c3QgcHJlc3MgdGhlIGdyZWVuIHBsYXkgYnV0dG9uIGluIHRoZSBsZWZ0IHRvcCBjb3JuZXIgb2YgdGhlIGNvZGUgYm94Lg0KWW91IG1pZ2h0IGJlIGFza2VkIGluIHRoZSBjb25zb2xlIGJlbG93IHRoaXMgd2luZG93IHRvIHVwZGF0ZSB0aGUgaW5jbHVkZWQgcGFja2FnZXMuIEFmdGVyd2FyZHMgaXQgbWlnaHQgdGFrZSBhIHdoaWxlIHRvIGluc3RhbGwgYWxsIDMgcGFja2FnZXMuDQoNCmBgYHtyLCBldmFsID0gRkFMU0V9DQppbnN0YWxsLnBhY2thZ2VzKCJSY3BwIiwgcmVwb3MgPSAiaHR0cHM6Ly9wYWNrYWdlcy5vdGhyLmRlL2NyYW4vIiApDQppbnN0YWxsLnBhY2thZ2VzKCJkZXZ0b29scyIsIHJlcG9zID0gImh0dHBzOi8vcGFja2FnZXMub3Roci5kZS9jcmFuLyIpDQpkZXZ0b29sczo6aW5zdGFsbF9naXRodWIoIlN0YXJtYW5NYXJ0aW4vR0NBVFIiLCByZWYgPSAiVGVzdGluZyIpDQpgYGANCiMgVGVzdGluZyBmb3Igc2VsZi1jb21wbGVtZW50YXJpdHkgeyNzZWxmLWNvbXBsZW1lbnRhcnl9DQpOb3cgdGhhdCB5b3UgaGF2ZSBpbnN0YWxsZWQgYWxsIHByZXJlcXVpc2l0ZXMgeW91IGNhbiB0cnkgb3V0IHRoZSBHQ0FUUiBwYWNrYWdlLiANCg0KVG8gZXhlY3V0ZSB0aGUgZm9sbG93aW5nIGNvZGUgc25pcHBldCB5b3UganVzdCBoYXZlIHRvIHByZXNzIHRoZSBsaXR0bGUgZ3JlZW4gYXJyb3cgb24gdGhlIHJpZ2h0IHNpZGUgb2YgdGhlIGNvZGUgYm94Lg0KWW91IHNob3VsZCBiZSBzaG93biBGQUxTRSB3aGVuIGV4ZWN1dGluZyB0aGUgY29kZSBzbmlwcGV0IGFzIHRoZSBwcm92aWRlZCBjb2RlIGlzIG5vdCBzZWxmLWNvbXBsZW1lbnRhcnkuDQpgYGB7ciwgd2FybmluZyA9IEZBTFNFLCBtZXNzYWdlID0gRkFMU0UsIGNvbGxhcHNlID0gVFJVRX0NCkdDQVRSOjpjb2RlX2NoZWNrX2lmX3NlbGZfY29tcGxlbWVudGFyeSgnVUdHIEdVRycpDQpgYGANClRoZXJlIGlzIHRocmVlIG9wdGlvbnMgdG8gcHJvdmlkZSB0aGUgc3RyaW5nIHRoYXQgcmVwcmVzZW50cyB0aGUgY29kZSB5b3UgYXJlIHRyeWluZyB0byB0ZXN0Lg0KDQpPcHRpb24gMSBpcyBwcm92aWRpbmcgdGhlIHN0cmluZyB3aXRoIGEgc3BlY2lmaWMgdHVwbGUgbGVuZ3RoIGxpa2UgdGhpczoNCmBgYHtyLCB3YXJuaW5nID0gRkFMU0UsIG1lc3NhZ2UgPSBGQUxTRSwgY29sbGFwc2UgPSBUUlVFfQ0KR0NBVFI6OmNvZGVfY2hlY2tfaWZfc2VsZl9jb21wbGVtZW50YXJ5KCdVR0dHVUcnLCAzKQ0KYGBgDQoNCk9wdGlvbiAyIGlzIHByb3ZpZGluZyB0aGUgc3RyaW5nIHNwbGl0IGluIHR1cGxlcyBieSBzcGFjZXMgbGlrZSBzbzoNCmBgYHtyLCB3YXJuaW5nID0gRkFMU0UsIG1lc3NhZ2UgPSBGQUxTRSwgY29sbGFwc2UgPSBUUlVFfQ0KR0NBVFI6OmNvZGVfY2hlY2tfaWZfc2VsZl9jb21wbGVtZW50YXJ5KCdVR0cgR1VHJykNCmBgYA0KDQpUaGUgbGFzdCBvcHRpb24gaXMgdG8gcHJvdmlkZSBlYWNoIHR1cGxlIHNlcGFyYXRlIGluIGEgdmVjdG9yIGFzIHNvOg0KVGhpcyBsYXN0IGV4YW1wbGUgc2hvdWxkIGNvbWUgdXAgVFJVRSwgYXMgdGhlIHByb3ZpZGVkIGNvZGUgaXMgY2lydWNsYXIuDQoNCmBgYHtyLCB3YXJuaW5nID0gRkFMU0UsIG1lc3NhZ2UgPSBGQUxTRSwgY29sbGFwc2UgPSBUUlVFfQ0KR0NBVFI6OmNvZGVfY2hlY2tfaWZfc2VsZl9jb21wbGVtZW50YXJ5KGMoJ1VHRycsICdHVUcnLCAnR0FHJykpDQpgYGANCg0KIyBUZXN0aW5nIGZvciBtYXhpbXVtIGNpcmN1bGFyaXR5DQoNClRvIHRlc3QgZm9yIG1heGltdW0gY2lyY3VsYXJpdHkgeW91IG1pZ2h0IGp1c3QgZXhlY3V0ZSB0aGUgZm9sbG93aW5nIGNvZGUgc25pcHBldC4NCg0KT2J2aW91c2x5IHRoZSBzdHJpbmcgY2FuIGJlIHByb3ZpZGVkIGluIHRoZSBkaWZmZXJlbnQgd2F5cyBtZW50aW9uZWQgaW4gdGhlIHRlc3RpbmcgZm9yIFtzZWxmLWNvbXBsZW1lbnRhcml0eV0oI3NlbGYtY29tcGxlbWVudGFyeSkgc2VjdGlvbi4NCg0KWW91IHNob3VsZCBiZSBzaG93biBGQUxTRSB3aGVuIGV4ZWN1dGluZyB0aGlzIGNvZGUgc25pcHBldCBhcyB0aGUgcHJvdmlkZWQgY29kZSBpcyBub3QgbWF4aW11bSBjaXJjdWxhci4NCg0KYGBge3IsIHdhcm5pbmcgPSBGQUxTRSwgbWVzc2FnZSA9IEZBTFNFLCBjb2xsYXBzZSA9IFRSVUV9DQpHQ0FUUjo6Y29kZV9jaGVja19pZl9jaXJjdWxhcignVUdHIEdVRycpDQpgYGANCiMgVGVzdGluZyBmb3Igay1jaXJjdWxhcml0eQ0KDQpUZXN0aW5nIGZvciBrLWNpY3VybGFyaXR5IHdvcmtzIGFuYWxvZ291cyB0byB0ZXN0aW5nIGZvciBtYXhpbXVtIGNpcmN1bGFyaXR5DQpUaGUgbWFpbiBkaWZmZXJlbmNlcyBhcmUgdGhhdCB0aGUgZnVuY3Rpb24gaGFzIGEgZGlmZmVyZW50IG5hbWUgYW5kIHRoYXQgeW91IGhhdmUgdG8gcHJvdmlkZSB0aGUgdmFsdWUgZm9yIGsuDQpPYnZpb3VzbHkgdGhlIHN0cmluZyBjYW4gYmUgcHJvdmlkZWQgaW4gdGhlIGRpZmZlcmVudCB3YXlzIG1lbnRpb25lZCBpbiB0aGUgdGVzdGluZyBmb3IgW3NlbGYtY29tcGxlbWVudGFyaXR5XSgjc2VsZi1jb21wbGVtZW50YXJ5KSBzZWN0aW9uLg0KDQprID0gMSwgc2hvdWxkIGNvbWUgdXAgRkFMU0UNCmBgYHtyLCB3YXJuaW5nID0gRkFMU0UsIG1lc3NhZ2UgPSBGQUxTRSwgY29sbGFwc2UgPSBUUlVFfQ0KR0NBVFI6OmNvZGVfY2hlY2tfaWZfa19jaXJjdWxhcigxLCdVR0dHVUcnLCAzKQ0KYGBgDQprID0gMiwgc2hvdWxkIGNvbWUgdXAgVFJVRQ0KYGBge3IsIHdhcm5pbmcgPSBGQUxTRSwgbWVzc2FnZSA9IEZBTFNFLCBjb2xsYXBzZSA9IFRSVUV9DQpHQ0FUUjo6Y29kZV9jaGVja19pZl9rX2NpcmN1bGFyKDIsJ0FDR0dVQUNHVUNHR1VBQycsMykNCmBgYA0KayA9IDMsIHNob3VsZCBjb21lIHVwIEZBTFNFDQpgYGB7ciwgd2FybmluZyA9IEZBTFNFLCBtZXNzYWdlID0gRkFMU0UsIGNvbGxhcHNlID0gVFJVRX0NCkdDQVRSOjpjb2RlX2NoZWNrX2lmX2tfY2lyY3VsYXIoMywnQUNHIEdVQSBDR1UgQ0dHIFVBQycpDQpgYGANCg0KIGsgPSA0LCBzaG91bGQgY29tZSB1cCBUUlVFDQpgYGB7ciwgd2FybmluZyA9IEZBTFNFLCBtZXNzYWdlID0gRkFMU0UsIGNvbGxhcHNlID0gVFJVRX0NCkdDQVRSOjpjb2RlX2NoZWNrX2lmX2tfY2lyY3VsYXIoNCxjKCdHR1UnLCAnR0dDJywgJ0FDVScsICdBQ0MnLCAnQUdDJywgJ0FHVScsICdHQUMnLCAnR0FVJywgJ0dVQycsICdHVVUnLCAnQUFVJywgJ0FVVScsICdBQUMnLCAnQVVDJywgJ0dDVScsICdHQ0MnKSkNCmBgYA0KIyBUZXN0aW5nIGZvciBjbi1jaXJjdWxhcml0eQ0KDQpUZXN0aW5nIGZvciBjbi1jaXJjdWxhcml0eSBpcyBhbmFsb2dvdXMgdG8gdGVzdGluZyBmb3IgY2lyY3VsYXJpdHkgZXhwZWN0IGZvciB0aGUgZmFjdCwgdGhhdCB0aGUgZnVuY3Rpb24gaGFzIGEgZGlmZmVyZW50IG5hbWUuDQpPYnZpb3VzbHkgdGhlIHN0cmluZyBjYW4gYmUgcHJvdmlkZWQgaW4gdGhlIGRpZmZlcmVudCB3YXlzIG1lbnRpb25lZCBpbiB0aGUgdGVzdGluZyBmb3IgW3NlbGYtY29tcGxlbWVudGFyaXR5XSgjc2VsZi1jb21wbGVtZW50YXJ5KSBzZWN0aW9uLg0KDQpUaGlzIGV4YW1wbGUgc2hvdWxkIGNvbWUgdXAgRkFMU0UNCg0KYGBge3IsIHdhcm5pbmcgPSBGQUxTRSwgbWVzc2FnZSA9IEZBTFNFLCBjb2xsYXBzZSA9IFRSVUV9DQpHQ0FUUjo6Y29kZV9jaGVja19pZl9jbl9jaXJjdWxhcignVUdHIEdVRycpDQpgYGANCg0KV2hpbGUgdGhpcyBvbmUgc2hvdWxkIGNvbWUgdXAgVFJVRQ0KDQpgYGB7ciwgd2FybmluZyA9IEZBTFNFLCBtZXNzYWdlID0gRkFMU0UsIGNvbGxhcHNlID0gVFJVRX0NCkdDQVRSOjpjb2RlX2NoZWNrX2lmX2NuX2NpcmN1bGFyKGMoJ0dHVScsJ0dHQycsJ0FDVScsJ0FDQycsJ0FHQycsJ0FHVScsJ0dBQycsJ0dBVScsJ0dVQycsJ0dVVScsJ0FBVScsJ0FVVScsJ0FBQycsJ0FVQycsJ0dDVScsJ0dDQycpKQ0KYGBgDQoNCiMgVGVzdGluZyBmb3IgY29tbWEtZnJlZW5lc3MNCg0KVGVzdGluZyBmb3IgY29tbWEtZnJlZW5lc3MgYWxzbyB3b3JrcyBhbmFsb2dvdXMgdG8gdGhlIG90aGVyIGZ1bmN0aW9uIGNhbGxzLg0KSnVzdCBleGVjdXRlIHRoZSBmb2xsb3dpbmcgY29kZSBzbmlwcGV0IHRvIHRyeSBpdCBvdXQuDQpPYnZpb3VzbHkgdGhlIHN0cmluZyBjYW4gYmUgcHJvdmlkZWQgaW4gdGhlIGRpZmZlcmVudCB3YXlzIG1lbnRpb25lZCBpbiB0aGUgdGVzdGluZyBmb3IgW3NlbGYtY29tcGxlbWVudGFyaXR5XSgjc2VsZi1jb21wbGVtZW50YXJ5KSBzZWN0aW9uLg0KDQpUaGUgZXhhbXBsZSBzaG91bGQgY29tZSB1cCBUUlVFLg0KYGBge3IsIHdhcm5pbmcgPSBGQUxTRSwgbWVzc2FnZSA9IEZBTFNFLCBjb2xsYXBzZSA9IFRSVUV9DQpHQ0FUUjo6Y29kZV9jaGVja19pZl9jb21tYV9mcmVlKCdHR1UgR0dDIEFDVSBBQ0MgQUdDIEFHVSBHQUMgR0FVIEdVQyBHVVUgQUFVIEFVVSBBQUMgQVVDIEdDVSBHQ0MnKQ0KYGBgDQoNCg==</div>
 
 
 
