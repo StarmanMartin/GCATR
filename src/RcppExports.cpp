@@ -55,6 +55,16 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// run_bda_for_all_rna_codons
+List run_bda_for_all_rna_codons();
+RcppExport SEXP _GCATR_run_bda_for_all_rna_codons() {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    rcpp_result_gen = Rcpp::wrap(run_bda_for_all_rna_codons());
+    return rcpp_result_gen;
+END_RCPP
+}
 // get_average_conductance_of_code
 double get_average_conductance_of_code(std::string codeName, std::string acid);
 RcppExport SEXP _GCATR_get_average_conductance_of_code(SEXP codeNameSEXP, SEXP acidSEXP) {
@@ -555,6 +565,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_GCATR_seq_start_bda", (DL_FUNC) &_GCATR_seq_start_bda, 2},
     {"_GCATR_code_start_bda", (DL_FUNC) &_GCATR_code_start_bda, 2},
     {"_GCATR_run_bda", (DL_FUNC) &_GCATR_run_bda, 0},
+    {"_GCATR_run_bda_for_all_rna_codons", (DL_FUNC) &_GCATR_run_bda_for_all_rna_codons, 0},
     {"_GCATR_get_average_conductance_of_code", (DL_FUNC) &_GCATR_get_average_conductance_of_code, 2},
     {"_GCATR_get_max_conductance_of_code", (DL_FUNC) &_GCATR_get_max_conductance_of_code, 2},
     {"_GCATR_get_min_conductance_of_code", (DL_FUNC) &_GCATR_get_min_conductance_of_code, 2},
