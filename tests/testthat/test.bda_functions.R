@@ -56,7 +56,16 @@ test_that("bda correctly returns true for both codons", {
   expect_equal(run_bda()$bda, c("1","0"))
 })
 
+#Something wrong here
 # run_bda_as_matrix
-start_bda()
-add_bda(1, 2, "C", "G", "A", "U")
-res <- run_bda_as_matrix()
+test_that("bda correctly applied to all rna codons", {
+  start_bda()
+  add_bda(1,2, "C", "A", "C", "U")
+  res <- run_bda_as_matrix()  
+  expect_equal(length(res), 64)
+  expect_equal(res[1],"UUU -> 1")
+  expect_equal(res[14], "GUC -> 1")
+  expect_equal(res[25], "ACU -> 1")
+})
+
+

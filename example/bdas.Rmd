@@ -1,0 +1,51 @@
+---
+title: "Running BDAs (Binary dichotomic algorithms)"
+output:
+  pdf_document:
+    toc: yes
+  html_notebook:
+    number_sections: yes
+    toc: yes
+  html_document:
+    df_print: paged
+    toc: yes
+---
+
+# Prerequisites
+
+To use the package that allows testing circularity you first have to install it as shown below.
+To run the code in the box below you can just press the green play button in the left top corner of the code box.
+You might be asked in the console below this window to update the included packages. Afterwards it might take a while to install all 3 packages.
+
+```{r, eval = FALSE}
+install.packages("Rcpp", repos = "https://packages.othr.de/cran/" )
+install.packages("devtools", repos = "https://packages.othr.de/cran/")
+devtools::install_github("StarmanMartin/GCATR", ref = "Testing")
+```
+
+# Running BDAs
+You can either run BDAs for specific DNA or RNA codons or for all RNA codons.
+Following code sequence which can be executed by clicking the green arrow on the right side of the code box, demonstrates how to start a BDA. You pass the codons for which the BDA is to be executed to the message code_start_bda as such.
+It will return true, if the process was successfully started.
+```{r,warning = FALSE, message = FALSE}
+  GCATR::code_start_bda(c("ACG", "CAG"))
+```
+
+After starting the BDA you can add as many rulesets for the BDA as you would wish. For this, the method add_bda is used.
+Its first and second argument determine which part of the codos is assessed in the BDA, the following four refer to which bases are used for the BDA. For a clearer insight, refer to the github [page](https://github.com/StarmanMartin/GCATR#add_bda).
+The code box belows demonstrates an example.
+```{r,warning = FALSE, message = FALSE}
+  GCATR::code_start_bda(c("ACG", "CAG"))
+  GCATR::add_bda(1,3, "A", "C", "G", "C")
+```
+
+After these steps run the BDA. It retuns 0 or 1, depending on your input and ruleset.
+In this specific example the first codon returns 0, the second 1.
+```{r}
+  GCATR::code_start_bda(c("ACG", "CAG"))
+  GCATR::add_bda(1,3, "A", "C", "G", "C")
+  print(GCATR::run_bda())
+```
+
+
+
