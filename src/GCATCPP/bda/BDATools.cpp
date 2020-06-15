@@ -31,7 +31,7 @@ bool BDATools::add_rule(const BDA_Rule& rule) {
 }
 
 std::vector<std::string> BDATools::run_bda_for_all_rna_codons() {
-    auto code_vec = get_rna_bases();
+    auto code_vec = this->get_all_rna_codons();
 
     std::vector<std::string> result_vec(code_vec.size());
 
@@ -111,10 +111,17 @@ bool BDATools::validate_rule(const BDA_Rule& rule) {
     return true;
 }
 
- std::vector<std::string> BDATools::get_rna_bases() {
-    std::vector<std::string> result(acid::acid_base_length);
+ std::vector<std::string> BDATools::get_all_rna_codons() {
+    std::vector<std::string> result(64);
+    int s = 0;
     for (int i = 0; i < acid::acid_base_length; ++i) {
-        result[i] = acid::rna[i];
+        for (int j = 0; j < acid::acid_base_length; ++j) {
+            for (int k = 0; k < acid::acid_base_length; ++k) {
+                std::string codon = std::string(1,acid::rna[i]) +  std::string(1,acid::rna[k]) + std::string(1,acid::rna[j]);
+                result[s] = codon;
+                s++;
+            }
+        }
     }
 
     return result;
