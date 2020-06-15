@@ -33,8 +33,6 @@ bool BDATools::add_rule(const BDA_Rule& rule) {
 std::vector<std::string> BDATools::run_bda_for_all_rna_codons() {
     auto code_vec = this->get_all_rna_codons();
 
-    std::vector<std::string> result_vec(code_vec.size());
-
     return this->run_bda_for_code(code_vec);
 
 }
