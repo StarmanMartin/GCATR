@@ -30,8 +30,16 @@ bool BDATools::add_rule(const BDA_Rule& rule) {
     return false;
 }
 
+std::vector<std::string> BDATools::run_bda_for_all_rna_codons() {
+    auto code_vec = this->get_all_rna_codons();
+
+    return this->run_bda_for_code(code_vec);
+
+}
+
 std::vector<std::string> BDATools::run_bda_for_code() {
     auto code_vec = this->code->get_tuples();
+
 
     if (this->code->get_word_length()[0] != BDA_WORD_LENGTH) {
         this->add_error_msg("Bda only developed for word length of 3");
@@ -41,6 +49,11 @@ std::vector<std::string> BDATools::run_bda_for_code() {
         this->add_error_msg("No mixed codes allowed.");
         return {};
     }
+    
+    return this->run_bda_for_code(code_vec);
+}
+
+std::vector<std::string> BDATools::run_bda_for_code(std::vector<std::string> code_vec) {
     
     std::vector<std::string> result_vec(code_vec.size());
 
@@ -67,6 +80,8 @@ std::vector<std::string> BDATools::run_bda_for_code() {
     return result_vec;
 }
 
+
+
 std::shared_ptr<AbstractTupleContainer> BDATools::get_code() {
     return this->code;
 }
@@ -92,4 +107,20 @@ bool BDATools::validate_rule(const BDA_Rule& rule) {
     }
 
     return true;
+}
+
+ std::vector<std::string> BDATools::get_all_rna_codons() {
+    std::vector<std::string> result(64);
+    int s = 0;
+    for (int i = 0; i < acid::acid_base_length; ++i) {
+        for (int j = 0; j < acid::acid_base_length; ++j) {
+            for (int k = 0; k < acid::acid_base_length; ++k) {
+                std::string codon = std::string(1,acid::rna[i]) +  std::string(1,acid::rna[k]) + std::string(1,acid::rna[j]);
+                result[s] = codon;
+                s++;
+            }
+        }
+    }
+
+    return result;
 }

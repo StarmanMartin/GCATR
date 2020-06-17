@@ -1,0 +1,78 @@
+---
+title: "Genetic Functions"
+output:
+  pdf_document:
+    toc: yes
+  html_notebook:
+    number_sections: yes
+    toc: yes
+  html_document:
+    df_print: paged
+    toc: yes
+---
+# Prerequisites
+
+To use the package that allows testing circularity you first have to install it as shown below.
+To run the code in the box below you can just press the green play button in the left top corner of the code box.
+You might be asked in the console below this window to update the included packages. Afterwards it might take a while to install all 3 packages.
+
+```{r, eval = FALSE}
+install.packages("Rcpp", repos = "https://packages.othr.de/cran/" )
+install.packages("devtools", repos = "https://packages.othr.de/cran/")
+devtools::install_github("StarmanMartin/GCATR", ref = "Testing")
+```
+
+# Get codon type
+As with other functions there is three ways to provide input vectors/codons
+You can provide the input as an R vector, as a string split by spaces or stating the tuple length.
+The example below demonstrates the first two ways.
+The last way is demonstrated in the code sample below this one.
+```{r, warning = FALSE, message = FALSE, collapse = TRUE}
+code_as_vector <- c("ACG", "AGU", "CGU")
+code_as_split_string <- c("ACG AGU CGU")
+```
+
+
+The code snippet below demonstrates how the function code_get_acid can be used to determine whether a code uses DNA or RNA bases.
+You can execute the snippet below by clicking the green button to the right of the box. 
+The code below should return DNA as this how the function works, when neither U nor T is used in the code.
+```{r, warning = FALSE, message = FALSE, collapse = TRUE}
+GCATR::code_get_acid("ACGGCA",3)
+```
+
+Likewise this example should return DNA as it uses the base T.
+```{r, warning = FALSE, message = FALSE, collapse = TRUE}
+GCATR::code_get_acid(c("ACG", "ATT"))
+```
+
+This example uses the base U and thus returns RNA.
+```{r, warning = FALSE, message = FALSE, collapse = TRUE}
+GCATR::code_get_acid(c("ACG", "AUU"))
+```
+The last example returns NONE as neither RNA nor DNA bases are used.
+```{r, warning = FALSE, message = FALSE, collapse = TRUE}
+GCATR::code_get_acid(c("343", "123"))
+```
+
+
+# Get DNA and RNA bases
+
+These two functions demonstrated below respectively return the DNA and RNA bases as a vector.
+```{r, warning = FALSE, message = FALSE, collapse = TRUE}
+GCATR::get_dna_bases()
+GCATR::get_rna_bases()
+```
+
+
+# Get RNA Codon Table
+As the name suggests this function returns a data table containing all 64 rna codons.
+These two functions demonstrated below respectively return the DNA and RNA bases as a vector.
+```{r, warning = FALSE, message = FALSE, collapse = TRUE}
+GCATR::get_rna_codon_table()
+```
+
+# Get RNA Codon list
+This functions returns all RNA codons as a list.
+```{r, warning = FALSE, message = FALSE, collapse = TRUE}
+GCATR::get_rna_codon_list()
+```

@@ -79,3 +79,12 @@ TEST (BDASequenceTest, TwoRuleTest) {
     std::vector<std::string> res = {"00", "10", "11", "11", "11", "11", "01", "01"};
     test_help::test_equal_vector<std::string>(test_BDA_of_seq("ACCAAGAGUUUUAGUUUUGGUCUU", rules), res);
 }
+
+TEST (BDASequenceTest, testRunBdaAsMatrix) {
+
+
+    std::vector<std::string> res = {"11", "11", "11"};
+    std::shared_ptr<StdGenCode> code = std::make_shared<StdGenCode>("ACCAAGAGUUUUAGUUUUGGUCUU",3);
+    BDA::BDATools b(code);
+    std::vector<std::string> code_vec = b.run_bda_for_all_rna_codons();
+}

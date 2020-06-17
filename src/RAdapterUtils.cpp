@@ -7,7 +7,7 @@
 #include <stdexcept>
 
 std::vector <std::string> RAdapterUtils::as_cpp_string_vector(StringVector r_vec) {
-  if(r_vec.length() == 0) {
+    if(r_vec.size() == 0 || r_vec[0].empty()) {
       throw std::invalid_argument("Vector should not be empty!");
   }
 

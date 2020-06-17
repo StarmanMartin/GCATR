@@ -1,7 +1,6 @@
 # Test code property functions
 
 library(testthat)
-library(Rcpp)
 library(GCATR)
 
 # Self-complementarity
@@ -30,7 +29,7 @@ test_that('is self-complementary, string vector', {
   expect_true(code_check_if_self_complementary(c('CGG', 'ACG', 'CCG', 'CGU')))
 })
 
-test_that('empty code is not self complementary',{
+test_that('empty code throws error',{
   expect_error(code_check_if_self_complementary(("")))
 })
 
@@ -69,7 +68,7 @@ test_that('is circular, string vector', {
   expect_true(code_check_if_circular(c('334','332','124','122','132','134','312','314','342','344','114','144','112','132','324','322')))
 })
 
-test_that("empty code is not circular", {
+test_that("empty code throws error", {
   expect_error(code_check_if_circular(""))
 })
 
@@ -79,7 +78,7 @@ test_that("empty code is not circular", {
 # A -> 1, C-> 2, G-> 3, U ->4
 
 test_that('error is thrown when negative k value is used',{
-  expect_true(code_check_if_k_circular(0,'UGGGUG', 3))
+  expect_error(code_check_if_k_circular(0,'UGGGUG', 3))
   expect_error(code_check_if_k_circular(-2,'UGG GUG'))
   expect_error(code_check_if_k_circular(-10,c('UGG','GUG')))
 })
@@ -89,7 +88,7 @@ test_that('is non circular, string with no delimiter, tuple length 3', {
   expect_false(code_check_if_k_circular(2,'433243332434',3))
   expect_false(code_check_if_k_circular(3,'ACGGUACGUCGGUAC',3))
   expect_false(code_check_if_k_circular(4,'CGUACGUACGUA',3))
-
+  
   
 })
 
@@ -98,7 +97,7 @@ test_that('is circular, string with no delimiter, tuple length 3', {
   expect_true(code_check_if_k_circular(2,'ACGGUACGUCGGUAC',3))
   expect_true(code_check_if_k_circular(3,'234123412341',3))
   expect_true(code_check_if_k_circular(4,'GGUGGCACUACCAGCAGUGACGAUGUCGUUAAUAUUAACAUCGCUGCC',3))
-
+  
   
   
 })
@@ -135,7 +134,7 @@ test_that('is circular,  string vector', {
 })
 
 # 7. try empty input
-test_that("empty string is not ciruclar",{
+test_that("empty string throws error",{
   expect_error(code_check_if_k_circular(1,c("")))
   expect_error(code_check_if_k_circular(2,c("")))
   expect_error(code_check_if_k_circular(3,c("")))
@@ -173,7 +172,7 @@ test_that('is cn-circular, string vector', {
   expect_true(code_check_if_cn_circular(c('GGU','GGC','ACU','ACC','AGC','AGU','GAC','GAU','GUC','GUU','AAU','AUU','AAC','AUC','GCU','GCC')))
 })
 
-test_that('empty code is not cn circular', {
+test_that('empty code throws error', {
   expect_error(code_check_if_cn_circular(""))
 })
 
@@ -181,7 +180,7 @@ test_that('empty code is not cn circular', {
 # Comma-freeness
 
 test_that('is not comma free, string with no delimiter, tuple length 3', {
-    expect_false(code_check_if_comma_free('AUCUCCCAA', 3))
+  expect_false(code_check_if_comma_free('AUCUCCCAA', 3))
 })
 
 test_that('is comma free, string with no delimiter, tuple length 3', {
@@ -196,7 +195,7 @@ test_that('is comma free, string with split by " "', {
   expect_true(code_check_if_comma_free('GGU GGC ACU ACC AGC AGU GAC GAU GUC GUU AAU AUU AAC AUC GCU GCC'))
 })
 
-test_that('empty code is not comma-free', {
+test_that('expect error when code is empty', {
   expect_error(code_check_if_comma_free(''))
 })
 
@@ -204,13 +203,13 @@ test_that('empty code is not comma-free', {
 # A -> 1, C-> 2, G->3, U-> 4
 
 test_that('is not comma free, string vector', {
-   expect_false(code_check_if_comma_free(c('142', '422', '211')))
+  expect_false(code_check_if_comma_free(c('142', '422', '211')))
 })
 
 test_that('is comma free, string vector', {
   expect_true(code_check_if_comma_free(c('332','322')))
 })
 
-test_that('empty code is not comma free', {
+test_that('empty code throws error', {
   expect_error(code_check_if_comma_free(""))
 })
