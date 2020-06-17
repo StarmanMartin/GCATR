@@ -8,6 +8,8 @@
 
 #include "../tester/AbstractTester.h"
 #include "../modification/AbstractModifier.h"
+#include "AbstractCode.h"
+
 
 #define EMPTY_SEQUNECE "#"
 
@@ -89,6 +91,38 @@ bool AbstractCode::test_code() {
     this->set_code_properties();
 
     return (this->is_ok = true);
+}
+
+int AbstractCode::getMaxLength(int n, int length) {
+    if(n < 2 || length < 1) {
+        throw std::invalid_argument("length must be > 0 and n must be > 1");
+    }
+    std::vector<int> factors = {};
+    int tl = length;
+    for (int i = 2; i <= tl; i++) {
+        // While i divides n, print i and divide n
+        if(tl % i == 0) {
+            factors.push_back(i);
+            while (tl % i == 0) {
+                tl = tl / i;
+            }
+        }
+    }
+    int res = static_cast<int>(pow(n, length));
+    std::vector<int> co = {1};
+    std::vector<int> e = {1};
+    for(const auto &p : factors) {
+        auto eLength = e.size();
+        for(size_t i = 0; i < eLength; i++) {
+            int eNext = e.at(i) * p;
+            int coNext = co.at(i) * -1;
+            e.push_back(eNext);
+            co.push_back(coNext);
+            res += coNext * static_cast<int>(pow(n, static_cast<int>(length/eNext)));
+        }
+    }
+
+    return static_cast<int>(res/length);
 }
 
 void AbstractCode::set_code_properties() {

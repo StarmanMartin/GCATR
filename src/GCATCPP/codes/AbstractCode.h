@@ -81,6 +81,8 @@ public:
 
     static int calculateModulo(int frame, int length);
 
+    static int getMaxLength(int n, int length);
+
 protected:
     std::vector<std::string> code_vec;
     std::vector<std::string> code_vec_unsorted;
