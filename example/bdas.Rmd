@@ -31,8 +31,8 @@ It will return true, if the process was successfully started.
   GCATR::code_start_bda(c("ACG", "CAG"))
 ```
 
-After starting the BDA you can add as many rulesets for the BDA as you would wish. For this, the method add_bda is used.
-Its first and second argument determine which part of the codos is assessed in the BDA, the following four refer to which bases are used for the BDA. For a clearer insight, refer to the github [page](https://github.com/StarmanMartin/GCATR#add_bda).
+After starting the BDA you can add as many rulesets for the BDA as you like.For this, the method add_bda is used.
+Its first and second argument determine which part of the codons is assessed in the BDA, the following four refer to which bases are used for the BDA. For a clearer insight, refer to the github [page](https://github.com/StarmanMartin/GCATR#add_bda).
 The code box belows demonstrates an example.
 ```{r,warning = FALSE, message = FALSE}
   GCATR::code_start_bda(c("ACG", "CAG"))
