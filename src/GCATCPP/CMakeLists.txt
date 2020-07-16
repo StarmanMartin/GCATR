@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.10)
 project(GCATCPP)
 
-set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD 17)
 
 enable_testing()
 
@@ -41,7 +41,6 @@ set(SOURCE_TEST_FILES unit_tests/test_utils.cpp
 #set(CURRENT_TEST_FILES unit_tests/test_utils.cpp unit_tests/generatorTest.cpp)
 #set(CURRENT_TEST_FILES unit_tests/test_utils.cpp unit_tests/binaryTest.cpp unit_tests/codeFactoryTester.cpp)
 set(CURRENT_TEST_FILES unit_tests/test_utils.cpp unit_tests/sequenceTest.cpp)
-
 
 add_executable(MainTest ${SOURCE_FILES} ${SOURCE_TEST_FILES})
 add_executable(CurrentTest ${SOURCE_FILES} ${CURRENT_TEST_FILES})

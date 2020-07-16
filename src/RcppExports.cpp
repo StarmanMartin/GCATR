@@ -21,27 +21,15 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
-// seq_start_bda
-bool seq_start_bda(StringVector code, int length);
-RcppExport SEXP _GCATR_seq_start_bda(SEXP codeSEXP, SEXP lengthSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< StringVector >::type code(codeSEXP);
-    Rcpp::traits::input_parameter< int >::type length(lengthSEXP);
-    rcpp_result_gen = Rcpp::wrap(seq_start_bda(code, length));
-    return rcpp_result_gen;
-END_RCPP
-}
 // code_start_bda
-bool code_start_bda(StringVector code, int length);
-RcppExport SEXP _GCATR_code_start_bda(SEXP codeSEXP, SEXP lengthSEXP) {
+bool code_start_bda(StringVector code, int tuple_length);
+RcppExport SEXP _GCATR_code_start_bda(SEXP codeSEXP, SEXP tuple_lengthSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< StringVector >::type code(codeSEXP);
-    Rcpp::traits::input_parameter< int >::type length(lengthSEXP);
-    rcpp_result_gen = Rcpp::wrap(code_start_bda(code, length));
+    Rcpp::traits::input_parameter< int >::type tuple_length(tuple_lengthSEXP);
+    rcpp_result_gen = Rcpp::wrap(code_start_bda(code, tuple_length));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -159,14 +147,14 @@ BEGIN_RCPP
 END_RCPP
 }
 // code_is_translatable
-bool code_is_translatable(StringVector code, int length);
-RcppExport SEXP _GCATR_code_is_translatable(SEXP codeSEXP, SEXP lengthSEXP) {
+bool code_is_translatable(StringVector code, int tuple_length);
+RcppExport SEXP _GCATR_code_is_translatable(SEXP codeSEXP, SEXP tuple_lengthSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< StringVector >::type code(codeSEXP);
-    Rcpp::traits::input_parameter< int >::type length(lengthSEXP);
-    rcpp_result_gen = Rcpp::wrap(code_is_translatable(code, length));
+    Rcpp::traits::input_parameter< int >::type tuple_length(tuple_lengthSEXP);
+    rcpp_result_gen = Rcpp::wrap(code_is_translatable(code, tuple_length));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -268,136 +256,148 @@ BEGIN_RCPP
 END_RCPP
 }
 // code_check_if_circular
-bool code_check_if_circular(StringVector code, int length);
-RcppExport SEXP _GCATR_code_check_if_circular(SEXP codeSEXP, SEXP lengthSEXP) {
+bool code_check_if_circular(StringVector code, int tuple_length);
+RcppExport SEXP _GCATR_code_check_if_circular(SEXP codeSEXP, SEXP tuple_lengthSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< StringVector >::type code(codeSEXP);
-    Rcpp::traits::input_parameter< int >::type length(lengthSEXP);
-    rcpp_result_gen = Rcpp::wrap(code_check_if_circular(code, length));
+    Rcpp::traits::input_parameter< int >::type tuple_length(tuple_lengthSEXP);
+    rcpp_result_gen = Rcpp::wrap(code_check_if_circular(code, tuple_length));
     return rcpp_result_gen;
 END_RCPP
 }
 // code_as_vector
-StringVector code_as_vector(StringVector code, int length);
-RcppExport SEXP _GCATR_code_as_vector(SEXP codeSEXP, SEXP lengthSEXP) {
+StringVector code_as_vector(StringVector code, int tuple_length);
+RcppExport SEXP _GCATR_code_as_vector(SEXP codeSEXP, SEXP tuple_lengthSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< StringVector >::type code(codeSEXP);
-    Rcpp::traits::input_parameter< int >::type length(lengthSEXP);
-    rcpp_result_gen = Rcpp::wrap(code_as_vector(code, length));
+    Rcpp::traits::input_parameter< int >::type tuple_length(tuple_lengthSEXP);
+    rcpp_result_gen = Rcpp::wrap(code_as_vector(code, tuple_length));
+    return rcpp_result_gen;
+END_RCPP
+}
+// code_as_unique_vector
+StringVector code_as_unique_vector(StringVector code, int tuple_length);
+RcppExport SEXP _GCATR_code_as_unique_vector(SEXP codeSEXP, SEXP tuple_lengthSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< StringVector >::type code(codeSEXP);
+    Rcpp::traits::input_parameter< int >::type tuple_length(tuple_lengthSEXP);
+    rcpp_result_gen = Rcpp::wrap(code_as_unique_vector(code, tuple_length));
     return rcpp_result_gen;
 END_RCPP
 }
 // code_tuple_length
-int code_tuple_length(StringVector code, int length);
-RcppExport SEXP _GCATR_code_tuple_length(SEXP codeSEXP, SEXP lengthSEXP) {
+int code_tuple_length(StringVector code, int tuple_length);
+RcppExport SEXP _GCATR_code_tuple_length(SEXP codeSEXP, SEXP tuple_lengthSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< StringVector >::type code(codeSEXP);
-    Rcpp::traits::input_parameter< int >::type length(lengthSEXP);
-    rcpp_result_gen = Rcpp::wrap(code_tuple_length(code, length));
+    Rcpp::traits::input_parameter< int >::type tuple_length(tuple_lengthSEXP);
+    rcpp_result_gen = Rcpp::wrap(code_tuple_length(code, tuple_length));
     return rcpp_result_gen;
 END_RCPP
 }
 // code_check_if_code
-bool code_check_if_code(StringVector code, int length);
-RcppExport SEXP _GCATR_code_check_if_code(SEXP codeSEXP, SEXP lengthSEXP) {
+bool code_check_if_code(StringVector code, int tuple_length);
+RcppExport SEXP _GCATR_code_check_if_code(SEXP codeSEXP, SEXP tuple_lengthSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< StringVector >::type code(codeSEXP);
-    Rcpp::traits::input_parameter< int >::type length(lengthSEXP);
-    rcpp_result_gen = Rcpp::wrap(code_check_if_code(code, length));
+    Rcpp::traits::input_parameter< int >::type tuple_length(tuple_lengthSEXP);
+    rcpp_result_gen = Rcpp::wrap(code_check_if_code(code, tuple_length));
     return rcpp_result_gen;
 END_RCPP
 }
 // code_check_if_k_circular
-bool code_check_if_k_circular(int k, StringVector code, int length);
-RcppExport SEXP _GCATR_code_check_if_k_circular(SEXP kSEXP, SEXP codeSEXP, SEXP lengthSEXP) {
+bool code_check_if_k_circular(int k, StringVector code, int tuple_length);
+RcppExport SEXP _GCATR_code_check_if_k_circular(SEXP kSEXP, SEXP codeSEXP, SEXP tuple_lengthSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< int >::type k(kSEXP);
     Rcpp::traits::input_parameter< StringVector >::type code(codeSEXP);
-    Rcpp::traits::input_parameter< int >::type length(lengthSEXP);
-    rcpp_result_gen = Rcpp::wrap(code_check_if_k_circular(k, code, length));
+    Rcpp::traits::input_parameter< int >::type tuple_length(tuple_lengthSEXP);
+    rcpp_result_gen = Rcpp::wrap(code_check_if_k_circular(k, code, tuple_length));
     return rcpp_result_gen;
 END_RCPP
 }
 // code_k_value
-int code_k_value(StringVector code, int length);
-RcppExport SEXP _GCATR_code_k_value(SEXP codeSEXP, SEXP lengthSEXP) {
+int code_k_value(StringVector code, int tuple_length);
+RcppExport SEXP _GCATR_code_k_value(SEXP codeSEXP, SEXP tuple_lengthSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< StringVector >::type code(codeSEXP);
-    Rcpp::traits::input_parameter< int >::type length(lengthSEXP);
-    rcpp_result_gen = Rcpp::wrap(code_k_value(code, length));
+    Rcpp::traits::input_parameter< int >::type tuple_length(tuple_lengthSEXP);
+    rcpp_result_gen = Rcpp::wrap(code_k_value(code, tuple_length));
     return rcpp_result_gen;
 END_RCPP
 }
 // code_check_if_cn_circular
-bool code_check_if_cn_circular(StringVector code, int length);
-RcppExport SEXP _GCATR_code_check_if_cn_circular(SEXP codeSEXP, SEXP lengthSEXP) {
+bool code_check_if_cn_circular(StringVector code, int tuple_length);
+RcppExport SEXP _GCATR_code_check_if_cn_circular(SEXP codeSEXP, SEXP tuple_lengthSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< StringVector >::type code(codeSEXP);
-    Rcpp::traits::input_parameter< int >::type length(lengthSEXP);
-    rcpp_result_gen = Rcpp::wrap(code_check_if_cn_circular(code, length));
+    Rcpp::traits::input_parameter< int >::type tuple_length(tuple_lengthSEXP);
+    rcpp_result_gen = Rcpp::wrap(code_check_if_cn_circular(code, tuple_length));
     return rcpp_result_gen;
 END_RCPP
 }
 // code_check_if_comma_free
-bool code_check_if_comma_free(StringVector code, int length);
-RcppExport SEXP _GCATR_code_check_if_comma_free(SEXP codeSEXP, SEXP lengthSEXP) {
+bool code_check_if_comma_free(StringVector code, int tuple_length);
+RcppExport SEXP _GCATR_code_check_if_comma_free(SEXP codeSEXP, SEXP tuple_lengthSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< StringVector >::type code(codeSEXP);
-    Rcpp::traits::input_parameter< int >::type length(lengthSEXP);
-    rcpp_result_gen = Rcpp::wrap(code_check_if_comma_free(code, length));
+    Rcpp::traits::input_parameter< int >::type tuple_length(tuple_lengthSEXP);
+    rcpp_result_gen = Rcpp::wrap(code_check_if_comma_free(code, tuple_length));
     return rcpp_result_gen;
 END_RCPP
 }
 // code_strip_complements
-StringVector code_strip_complements(StringVector code, int length);
-RcppExport SEXP _GCATR_code_strip_complements(SEXP codeSEXP, SEXP lengthSEXP) {
+StringVector code_strip_complements(StringVector code, int tuple_length);
+RcppExport SEXP _GCATR_code_strip_complements(SEXP codeSEXP, SEXP tuple_lengthSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< StringVector >::type code(codeSEXP);
-    Rcpp::traits::input_parameter< int >::type length(lengthSEXP);
-    rcpp_result_gen = Rcpp::wrap(code_strip_complements(code, length));
+    Rcpp::traits::input_parameter< int >::type tuple_length(tuple_lengthSEXP);
+    rcpp_result_gen = Rcpp::wrap(code_strip_complements(code, tuple_length));
     return rcpp_result_gen;
 END_RCPP
 }
 // code_check_if_self_complementary
-bool code_check_if_self_complementary(StringVector code, int length, bool mute);
-RcppExport SEXP _GCATR_code_check_if_self_complementary(SEXP codeSEXP, SEXP lengthSEXP, SEXP muteSEXP) {
+bool code_check_if_self_complementary(StringVector code, int tuple_length, bool mute);
+RcppExport SEXP _GCATR_code_check_if_self_complementary(SEXP codeSEXP, SEXP tuple_lengthSEXP, SEXP muteSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< StringVector >::type code(codeSEXP);
-    Rcpp::traits::input_parameter< int >::type length(lengthSEXP);
+    Rcpp::traits::input_parameter< int >::type tuple_length(tuple_lengthSEXP);
     Rcpp::traits::input_parameter< bool >::type mute(muteSEXP);
-    rcpp_result_gen = Rcpp::wrap(code_check_if_self_complementary(code, length, mute));
+    rcpp_result_gen = Rcpp::wrap(code_check_if_self_complementary(code, tuple_length, mute));
     return rcpp_result_gen;
 END_RCPP
 }
 // code_get_acid
-StringVector code_get_acid(StringVector code, int length);
-RcppExport SEXP _GCATR_code_get_acid(SEXP codeSEXP, SEXP lengthSEXP) {
+StringVector code_get_acid(StringVector code, int tuple_length);
+RcppExport SEXP _GCATR_code_get_acid(SEXP codeSEXP, SEXP tuple_lengthSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< StringVector >::type code(codeSEXP);
-    Rcpp::traits::input_parameter< int >::type length(lengthSEXP);
-    rcpp_result_gen = Rcpp::wrap(code_get_acid(code, length));
+    Rcpp::traits::input_parameter< int >::type tuple_length(tuple_lengthSEXP);
+    rcpp_result_gen = Rcpp::wrap(code_get_acid(code, tuple_length));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -426,26 +426,26 @@ BEGIN_RCPP
 END_RCPP
 }
 // code_get_one_longest_path_as_vector
-StringVector code_get_one_longest_path_as_vector(StringVector code, int length);
-RcppExport SEXP _GCATR_code_get_one_longest_path_as_vector(SEXP codeSEXP, SEXP lengthSEXP) {
+StringVector code_get_one_longest_path_as_vector(StringVector code, int tuple_length);
+RcppExport SEXP _GCATR_code_get_one_longest_path_as_vector(SEXP codeSEXP, SEXP tuple_lengthSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< StringVector >::type code(codeSEXP);
-    Rcpp::traits::input_parameter< int >::type length(lengthSEXP);
-    rcpp_result_gen = Rcpp::wrap(code_get_one_longest_path_as_vector(code, length));
+    Rcpp::traits::input_parameter< int >::type tuple_length(tuple_lengthSEXP);
+    rcpp_result_gen = Rcpp::wrap(code_get_one_longest_path_as_vector(code, tuple_length));
     return rcpp_result_gen;
 END_RCPP
 }
 // code_get_all_longest_path_as_vector
-Rcpp::List code_get_all_longest_path_as_vector(StringVector code, int length);
-RcppExport SEXP _GCATR_code_get_all_longest_path_as_vector(SEXP codeSEXP, SEXP lengthSEXP) {
+Rcpp::List code_get_all_longest_path_as_vector(StringVector code, int tuple_length);
+RcppExport SEXP _GCATR_code_get_all_longest_path_as_vector(SEXP codeSEXP, SEXP tuple_lengthSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< StringVector >::type code(codeSEXP);
-    Rcpp::traits::input_parameter< int >::type length(lengthSEXP);
-    rcpp_result_gen = Rcpp::wrap(code_get_all_longest_path_as_vector(code, length));
+    Rcpp::traits::input_parameter< int >::type tuple_length(tuple_lengthSEXP);
+    rcpp_result_gen = Rcpp::wrap(code_get_all_longest_path_as_vector(code, tuple_length));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -562,7 +562,6 @@ END_RCPP
 
 static const R_CallMethodDef CallEntries[] = {
     {"_GCATR_add_bda", (DL_FUNC) &_GCATR_add_bda, 6},
-    {"_GCATR_seq_start_bda", (DL_FUNC) &_GCATR_seq_start_bda, 2},
     {"_GCATR_code_start_bda", (DL_FUNC) &_GCATR_code_start_bda, 2},
     {"_GCATR_run_bda", (DL_FUNC) &_GCATR_run_bda, 0},
     {"_GCATR_run_bda_for_all_rna_codons", (DL_FUNC) &_GCATR_run_bda_for_all_rna_codons, 0},
@@ -585,6 +584,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_GCATR_code_prepare_factor_longest_path", (DL_FUNC) &_GCATR_code_prepare_factor_longest_path, 2},
     {"_GCATR_code_check_if_circular", (DL_FUNC) &_GCATR_code_check_if_circular, 2},
     {"_GCATR_code_as_vector", (DL_FUNC) &_GCATR_code_as_vector, 2},
+    {"_GCATR_code_as_unique_vector", (DL_FUNC) &_GCATR_code_as_unique_vector, 2},
     {"_GCATR_code_tuple_length", (DL_FUNC) &_GCATR_code_tuple_length, 2},
     {"_GCATR_code_check_if_code", (DL_FUNC) &_GCATR_code_check_if_code, 2},
     {"_GCATR_code_check_if_k_circular", (DL_FUNC) &_GCATR_code_check_if_k_circular, 3},

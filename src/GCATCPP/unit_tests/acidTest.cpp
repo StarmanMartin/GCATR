@@ -74,8 +74,8 @@ TEST(ACIDTest, AcidTranslationSet) {
     std::vector<std::string> code_gen_vec({"ACG CG"});
     std::vector<std::string> code_vec({"110 101 100"});
 
-    auto b = CodeFactory::rFactorGenCode(code_gen_vec, -1);
-    auto c = CodeFactory::rFactor(code_vec, -1);
+    auto b = CodeFactory::rFactorGenCode(code_gen_vec);
+    auto c = CodeFactory::rFactor(code_vec);
 
     EXPECT_FALSE(b->is_translatable());
     EXPECT_FALSE(c->is_translatable());

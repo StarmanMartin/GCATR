@@ -21,7 +21,7 @@ public:
     bool is_circular() override;
     bool is_cn_circular() override;
     bool is_comma_free() override;
-    seq::Seq_Result find_code_in_sequence(const std::string &seq, int &frame) override;
+    seq::Seq_Result find_code_in_sequence(const std::string& seq, int frame) override;
     void shift_tuples(size_t shifts=1) override; // NOLINT
     void transform_tuples(const std::string& from_rule, const std::string& to_rule) override; // NOLINT
 };

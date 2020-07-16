@@ -22,8 +22,16 @@ public:
 
 
     static std::shared_ptr<AbstractGenCode>
-    rFactorGenCode(const std::vector<std::string> &code, int tuple_length = -1) {
+    rFactorGenCode(const std::vector<std::string> &code, int tuple_length) {
+        if(tuple_length <= 0) {
+            throw std::invalid_argument("Tuple length has to be at least 1");
+        }
+
         return CodeFactory::rFactorTypesGenCode(code, tuple_length, CODE_TPYE_GEN);
+    }
+    static std::shared_ptr<AbstractGenCode>
+    rFactorGenCode(const std::vector<std::string> &code) {
+        return CodeFactory::rFactorTypesGenCode(code, -1, CODE_TPYE_GEN);
     }
 
     static std::shared_ptr<AbstractGenCode> rFactorTypesCodonCode(const std::vector<std::string> &code) {
@@ -34,18 +42,26 @@ public:
         return rFactorTypesGenCode(code, 4, CODE_TPYE_TESSERA);
     }
 
-    static std::shared_ptr<AbstractCode> rFactor(std::vector<std::string> &code, int tuple_length) {
+    static std::shared_ptr<AbstractGenCode> rFactorTypesTesseraCodeFromCodons(const std::vector<std::string> &code) {
+        auto codons = rFactorTypesCodonCode(code);
+        return TesseraCode::tesseraCodeFromCodons(codons);
+    }
+
+    static std::shared_ptr<AbstractCode> rFactor(std::vector<std::string> &code) {
         if (code.size() == 1) {
-            if (tuple_length > 0) {
-                std::string a = code.at(0);
-                return CodeFactory::factor(a, (unsigned) tuple_length);
-            } else {
-                return CodeFactory::factor(code.at(0));
-            }
+            return CodeFactory::factor(code.at(0));
         }
 
         return CodeFactory::factor(code);
+    }
 
+    static std::shared_ptr<AbstractCode> rFactor(std::vector<std::string> &code, int tuple_length) {
+        if(tuple_length <= 0) {
+            throw std::invalid_argument("Tuple length has to be at least 1");
+        }
+
+        std::string a = code.at(0);
+        return CodeFactory::factor(a, (unsigned) tuple_length);
     }
 
     static std::shared_ptr<AbstractCode> factor(std::string &code) {
@@ -55,8 +71,12 @@ public:
     }
 
     static std::shared_ptr<AbstractCode> factor(std::string &seq, unsigned int tuple_length) {
+        if(tuple_length <= 0) {
+            throw std::invalid_argument("Tuple length has to be at least 1");
+        }
+
         Code temp(seq, tuple_length);
-        return CodeFactory::factor(temp.as_vector());
+        return CodeFactory::factor(temp.as_unsorted_vector());
     }
 
     static std::shared_ptr<AbstractCode> factor(std::vector<std::string> code) {
@@ -83,7 +103,7 @@ private:
 
     static std::vector<std::string> factorGenCode(std::string &seq, unsigned int tuple_length) {
         Code temp(seq, tuple_length);
-        return temp.as_vector();
+        return temp.as_unsorted_vector();
     }
 
     static std::shared_ptr<AbstractGenCode> factorGenCode(std::vector<std::string> code, size_t code_type) {

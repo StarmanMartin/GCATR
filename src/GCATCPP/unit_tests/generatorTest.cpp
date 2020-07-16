@@ -7,6 +7,18 @@
 #include "../codes/StdGenCode.h"
 #include "../generator/BaseValueGenerator.h"
 
+#include <cmath>
+
+TEST(MacimalLength, LengthForDiffAlphabet) {
+    double res44 = (pow(4,4)-pow(4,2))/4.0f;
+    EXPECT_EQ(AbstractCode::getMaxLength(4,4), static_cast<int>(res44)) ;
+    EXPECT_EQ(AbstractCode::getMaxLength(4,3), 20);
+    EXPECT_EQ(AbstractCode::getMaxLength(3,6), 116);
+    EXPECT_EQ(AbstractCode::getMaxLength(3,1), 3);
+    EXPECT_ANY_THROW(AbstractCode::getMaxLength(1,3));
+    EXPECT_ANY_THROW(AbstractCode::getMaxLength(-1,3));
+    EXPECT_ANY_THROW(AbstractCode::getMaxLength(4,-3));
+}
 
 TEST (BaseValueGeneratorTester, SimpleGenerator) {
     auto code = BaseValueGenerator({{"A",0}, {"C",1},{"G",2},{"U",3}}, {16,4,1});

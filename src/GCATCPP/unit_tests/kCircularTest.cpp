@@ -60,7 +60,7 @@ TEST(KCircular, testerTests) {
     {
         std::string code = "ACG";
         auto c = CodeFactory::factor(code);
-        EXPECT_TRUE(c->is_k_circular(-2));
+        EXPECT_ANY_THROW(c->is_k_circular(-2));
     }
     {
         std::string code = "ACG GTC TCT TAC";

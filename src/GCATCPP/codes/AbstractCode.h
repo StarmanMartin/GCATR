@@ -24,6 +24,7 @@ namespace seq {
     struct Seq_Result {
         std::vector<std::string> words;
         std::vector<std::string> parts;
+        std::vector<std::size_t> circularPermutations;
         std::string rest;
         std::vector<unsigned int> idx_list;
         std::string seq;
@@ -55,6 +56,7 @@ public:
     std::string as_string_sequence();
 
     std::vector<std::string> as_vector() const;
+    std::vector<std::string> as_unsorted_vector() const;
     std::vector<std::string> as_set() const;
 
     virtual bool is_circular()= 0;
@@ -68,7 +70,7 @@ public:
     virtual void shift_tuples(size_t shifts=1) = 0; // NOLINT
     virtual void transform_tuples(const std::string& from_rule, const std::string& to_rule) = 0; // NOLINT
 
-    virtual seq::Seq_Result find_code_in_sequence(const std::string &, int &frame) = 0;
+    virtual seq::Seq_Result find_code_in_sequence(const std::string&, int) = 0;
 
     const Alphabet& get_alphabet() const;
     std::string get_alphabet_as_string() const;
@@ -80,8 +82,11 @@ public:
 
     static int calculateModulo(int frame, int length);
 
+    static int getMaxLength(int n, int length);
+
 protected:
     std::vector<std::string> code_vec;
+    std::vector<std::string> code_vec_unsorted;
     bool is_tested;
     bool is_ok;
 

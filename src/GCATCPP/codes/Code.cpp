@@ -8,12 +8,8 @@
 // Created by Martin on 27.06.2018.
 //
 #include <string>
-#include <numeric>
 #include <iostream>
 #include <regex>
-#include <utility>
-#include <algorithm>
-#include <sstream>
 #include "StdGenCode.h"
 #include "../tester/Circular.h"
 #include "../tester/KCircular.h"
@@ -22,8 +18,6 @@
 
 #include "../modification/ShiftTuples.h"
 #include "../modification/TransformTuples.h"
-
-#include "Code.h"
 
 #define EMPTY_SEQUNECE "#"
 
@@ -42,7 +36,7 @@ bool Code::test_code() {
 
     if (this->word_length.size() != 1) {
         this->add_error_msg("Word size dose not match");
-        this->word_length.empty();
+        this->word_length.clear();
         return (this->is_ok = false);
     }
 
@@ -79,16 +73,15 @@ void Code::shift_tuples(size_t shifts) { // NOLINT
     this->run_modification(tester);
 }
 
-seq::Seq_Result Code::find_code_in_sequence(const std::string& seq, int& frame) {
+seq::Seq_Result Code::find_code_in_sequence(const std::string& seq, int frame) {
     if(seq.length() == 0) {
         this->add_error_msg("Sequence should not be empty");
         throw  std::invalid_argument("Sequence should not be empty!");
     }
-    int actualFrame = calculateModulo(frame, seq.length());
+    int actualFrame = Code::calculateModulo(frame, seq.length());
     this->test_code();
-    std::string firstPart = seq.substr(actualFrame, seq.length() - actualFrame);
-    std::string secondPart = seq.substr(0, actualFrame);
-    std::string copyInFrameShift = firstPart.append(secondPart);
+    std::string copyInFrameShift = seq.substr(actualFrame, seq.length() - actualFrame);
+
     seq::Seq_Result result = seq::Seq_Result(copyInFrameShift);
     std::stringstream rest;
     std::stringstream parts;
@@ -101,11 +94,30 @@ seq::Seq_Result Code::find_code_in_sequence(const std::string& seq, int& frame) 
         for (const std::string& word : this->code_vec) {
             if (seq_word == word) {
                 result.words.emplace_back(seq_word);
+                result.circularPermutations.emplace_back(1);
                 result.idx_list.emplace_back(i + actualFrame);
                 current_match_length += this->word_length[0];
                 found = true;
                 break;
             }
+        }
+        if(!found) {
+            std::size_t shif_idx = 1;
+            std::size_t res_value = 0;
+            while(shif_idx <= word_length[0]) {
+                ShiftTuples shifter(shif_idx);
+                auto temp_seq_word = shifter.modify_word(seq_word);
+                shif_idx++;
+                for (const std::string& word : this->code_vec) {
+                    if (temp_seq_word == word) {
+                        res_value = shif_idx;
+                        shif_idx = -1;
+                        break;
+                    }
+                }
+
+            }
+            result.circularPermutations.emplace_back(res_value);
         }
 
         parts.seekg(0, std::ios::end);

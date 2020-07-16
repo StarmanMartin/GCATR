@@ -9,8 +9,6 @@ code_get_all_amino_acids(code, idx_trans_table = 1L)
 \arguments{
 \item{code}{is either a string vector or a string. It should be a RNA/DNA - code or a sequence.}
 
-\item{length}{if code is a sequence, length is the tuple length of the code.}
-
 \item{idx}{the index of a Genetic Code table as int. (check \link{print_all_translation_table})}
 }
 \value{

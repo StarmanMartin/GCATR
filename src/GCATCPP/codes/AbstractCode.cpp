@@ -1,30 +1,21 @@
-#include <utility>
-
-//
-// Created by Martin on 2/7/2019.
-//
-
-
-
 //
 // Created by Martin on 27.06.2018.
 //
 #include <string>
 #include <regex>
-#include <iterator>
 #include <unordered_set>
-#include <algorithm>
+#include <cmath>
 
 
 #include "../tester/AbstractTester.h"
 #include "../modification/AbstractModifier.h"
-#include "../geneticCode/CodonTranslTables.h"
-
 #include "AbstractCode.h"
+
 
 #define EMPTY_SEQUNECE "#"
 
-
+#pragma clang diagnostic push
+#pragma ide diagnostic ignored "VirtualCallInCtorOrDtor"
 AbstractCode::AbstractCode(const std::string &sequence, unsigned int word_length) : string_sequence(sequence),
                                                                                     is_tested(false), is_ok(false),
                                                                                     is_alphabet_set(false) {
@@ -46,9 +37,12 @@ AbstractCode::AbstractCode(const std::string &sequence, unsigned int word_length
     this->reset(code_temp_vec);
 }
 
+#pragma clang diagnostic push
+#pragma ide diagnostic ignored "VirtualCallInCtorOrDtor"
 AbstractCode::AbstractCode(const std::vector<std::string> &code_vec) : is_tested(false), is_ok(false), is_alphabet_set(false) {
     this->reset(code_vec);
 }
+#pragma clang diagnostic pop
 
 AbstractCode::AbstractCode(const AbstractCode &agc) : AbstractErrorManager(agc) {
     this->code_vec = agc.code_vec;
@@ -63,8 +57,10 @@ AbstractCode::AbstractCode(const AbstractCode &agc) : AbstractErrorManager(agc) 
 
 void AbstractCode::reset(std::vector<std::string> code_param_vec) {
     this->code_vec.clear();
+    this->code_vec_unsorted.clear();
     std::unordered_set<std::string> s(code_param_vec.begin(), code_param_vec.end());
     this->code_vec.assign(s.begin(), s.end());
+    this->code_vec_unsorted.assign(code_param_vec.begin(), code_param_vec.end());
     sort(this->code_vec.begin(), this->code_vec.end());
     this->is_tested = false;
     this->is_ok = false;
@@ -84,13 +80,54 @@ bool AbstractCode::test_code() {
     this->is_ok = true;
 
     if (this->code_vec.empty()) {
-        this->add_error_msg("Code is empty!");
-        return (this->is_ok = false);
+        (this->is_ok = false);
+        throw std::invalid_argument("Code is empty!");
+    }
+
+    const std::regex re( "[^0-9A-Za-z]" ) ;
+
+    std::smatch match ;
+    auto temp = this->as_string_sequence();
+    if (std::regex_search (temp,match,re)) {
+        (this->is_ok = false);
+        throw std::invalid_argument("Code only allows letters and numbers");
     }
 
     this->set_code_properties();
 
     return (this->is_ok = true);
+}
+
+int AbstractCode::getMaxLength(int n, int length) {
+    if(n < 2 || length < 1) {
+        throw std::invalid_argument("length must be > 0 and n must be > 1");
+    }
+    std::vector<int> factors = {};
+    int tl = length;
+    for (int i = 2; i <= tl; i++) {
+        // While i divides n, print i and divide n
+        if(tl % i == 0) {
+            factors.push_back(i);
+            while (tl % i == 0) {
+                tl = tl / i;
+            }
+        }
+    }
+    int res = static_cast<int>(pow(n, length));
+    std::vector<int> co = {1};
+    std::vector<int> e = {1};
+    for(const auto &p : factors) {
+        auto eLength = e.size();
+        for(size_t i = 0; i < eLength; i++) {
+            int eNext = e.at(i) * p;
+            int coNext = co.at(i) * -1;
+            e.push_back(eNext);
+            co.push_back(coNext);
+            res += coNext * static_cast<int>(pow(n, static_cast<int>(length/eNext)));
+        }
+    }
+
+    return static_cast<int>(res/length);
 }
 
 void AbstractCode::set_code_properties() {
@@ -118,13 +155,17 @@ std::string AbstractCode::as_string_sequence() {
     }
 
     std::string result;
-    for (std::string const &s : this->code_vec) { result += s; }
+    for (std::string const &s : this->code_vec_unsorted) { result += s; }
 
     return this->string_sequence = result;
 }
 
 std::vector<std::string> AbstractCode::as_vector() const {
     return this->code_vec;
+}
+
+std::vector<std::string> AbstractCode::as_unsorted_vector() const {
+    return this->code_vec_unsorted;
 }
 
 std::vector<std::string> AbstractCode::as_set() const{
@@ -203,12 +244,12 @@ int AbstractCode::calculateModulo(int frame, int length) {
 }
 
 std::vector<std::string> AbstractCode::get_tuples() {
-    return this->code_vec;
+    return this->as_unsorted_vector();
 }
 
 std::vector<std::string> AbstractCode::get_nucleotide_tuples() {
     if(this->is_translatable()) {
-        return this->code_vec;
+        return this->as_unsorted_vector();
     }
 
     return std::vector<std::string>();

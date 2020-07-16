@@ -4,7 +4,7 @@
 \alias{code_prepare_factor_all_cycle}
 \title{Returns a list, with only the cycles in the graph of a circular code.}
 \usage{
-code_prepare_factor_all_cycle(code, tuple_length = -1L)
+code_prepare_factor_all_cycle(code, tuple_length = -55555L)
 }
 \arguments{
 \item{code}{is either a string vector or a string. It can be a DNA or RNA sequence.}

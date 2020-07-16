@@ -13,15 +13,21 @@
 
 
 TransformTuples::TransformTuples(const std::string &from_rule, const std::string &to_rule) {
+    const std::regex re( "[^0-9A-Za-z]" ) ;
+
+    std::smatch match ;
+    if (std::regex_search (from_rule,match,re)) {
+        throw std::invalid_argument("Transformation rules only allow letters and numbers");
+    }
     std::string uniqu_from;
     for (int i = 0; i < from_rule.length(); ++i) {
         auto letter = from_rule.substr(i, 1);
         if (uniqu_from.find(letter) != std::string::npos) {
-            this->add_error_msg(
-                    "Each symbol in the FROM string must be uniqu!." + letter + " appears twice in: " + from_rule);
+            auto msg = "Each symbol in the FROM string must be uniqu!." + letter + " appears twice in: " + from_rule;
+            this->add_error_msg(msg);
             this->has_error = true;
             this->rule_set = TransformTuples::transformation_by_name("");;
-            return;
+            throw std::invalid_argument (msg);
         }
 
         uniqu_from += letter;
@@ -31,7 +37,7 @@ TransformTuples::TransformTuples(const std::string &from_rule, const std::string
         this->add_error_msg("The FROM string and the TO string must have the same length!.");
         this->has_error = true;
         this->rule_set = TransformTuples::transformation_by_name("");;
-        return;
+        throw std::invalid_argument ("The FROM string and the TO string must have the same length!.");
     }
 
     this->rule_set = {uniqu_from, to_rule};
@@ -43,6 +49,7 @@ TransformTuples::TransformTuples(const std::string &name, acid::acids acid) {
     if (name != I && this->rule_set[0].length() == 0) {
         this->add_error_msg("The name could not be found please check the documentation for mor info!");
         this->has_error = true;
+        throw std::invalid_argument ("The name could not be found please check the documentation for mor info!");
     }
 }
 
@@ -50,10 +57,10 @@ TransformTuples::TransformTuples(const std::string &name, acid::acids acid) {
 std::vector<std::string> TransformTuples::modify(AbstractCode *code) {
     if (this->has_error) {
         this->add_error_msg("Error appeared! Something must be rong with your transformation rules!");
-        return code->as_vector();
+        return code->get_tuples();
     }
 
-    auto code_vec = code->as_vector();
+    auto code_vec = code->get_tuples();
     for (auto &word : code_vec) {
         this->replacements = {};
         for (size_t i = 0; i < this->rule_set[0].length(); ++i) {

@@ -3,9 +3,7 @@
 //
 #include <string>
 #include <regex>
-#include <utility>
 #include "../tester/AbstractTester.h"
-#include "../geneticCode/CodonTranslTables.h"
 
 #include "AbstractGenCode.h"
 #include "../modification/TransformTuples.h"
