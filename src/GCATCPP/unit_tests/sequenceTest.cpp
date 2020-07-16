@@ -25,17 +25,30 @@ TEST(CodeSequenceTest, CopyConstructor) {
 
 
 TEST(CodeSequenceTest, SequenceCodeTest) {
-    std::string code_seq = "ACGTCG";
-    std::string seq = "ACGTCGCGACGTACGACGTCGTACTCGATGCAAGATC";
-    // ACG TCG CGA CGT ACG ACG TCG TAC TCG ATG CAA GAT C";
-    StdGenCode a(code_seq, 3);
-    int frame = 0;
-    auto res = a.find_code_in_sequence(seq, frame);
-    EXPECT_EQ((int)(res.total_match_in_percent * 100), 4864);
-    EXPECT_EQ(res.longest_match, 9);
-    EXPECT_EQ(res.rest, "CGACGTTACATGCAAGATC");
-    test_help::test_equal_vector(res.words, {"ACG", "TCG", "ACG", "ACG", "TCG", "TCG"});
-    test_help::test_equal_vector(res.idx_list, {0,3,12,15,18,24});
+    {
+        std::string code_seq = "ACGTCG";
+        std::string seq = "ACGTCGCGACGTACGACGTCGTACTCGATGCAAGATC";
+        // ACG TCG CGA CGT ACG ACG TCG TAC TCG ATG CAA GAT C";
+        StdGenCode a(code_seq, 3);
+        int frame = 0;
+        auto res = a.find_code_in_sequence(seq, frame);
+        EXPECT_EQ((int) (res.total_match_in_percent * 100), 4864);
+        EXPECT_EQ(res.longest_match, 9);
+        EXPECT_EQ(res.rest, "CGACGTTACATGCAAGATC");
+        test_help::test_equal_vector(res.words, {"ACG", "TCG", "ACG", "ACG", "TCG", "TCG"});
+        test_help::test_equal_vector(res.idx_list, {0, 3, 12, 15, 18, 24});
+    }
+    {
+        std::string code_seq = "ACGTCG";
+        std::string seq = "ACGTCGCGAGACCGTGTCTTC";
+        // ACG TCG CGA CGT ACG ACG TCG TAC TCG ATG CAA GAT C";
+        StdGenCode a(code_seq, 3);
+        int frame = 0;
+        auto res = a.find_code_in_sequence(seq, frame);
+        auto testVal = res.circularPermutations;
+
+        test_help::test_equal_vector(res.idx_list, {0, 3, 12, 15, 18, 24});
+    }
 }
 
 TEST(CodeSequenceTest, SequenceCodeTest2) {

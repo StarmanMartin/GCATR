@@ -52,7 +52,7 @@ factor_graph <- function(vertices_edges_list) {
 #' plot(G)
 #' 
 #' @export 
-code_factor_graph <- function(code, show_cycles=FALSE, show_longest_path=FALSE, tuple_length=-1) {
+code_factor_graph <- function(code, show_cycles=FALSE, show_longest_path=FALSE, tuple_length=-55555L) {
   vertices_edges_list = code_prepare_factor_graph(code, show_cycles = show_cycles, show_longest_path = show_longest_path, tuple_length = tuple_length)
   return(factor_graph(vertices_edges_list))
 }
@@ -90,7 +90,7 @@ code_factor_graph <- function(code, show_cycles=FALSE, show_longest_path=FALSE, 
 #' plot(G)
 #'
 #' @export 
-code_factor_c3graph <- function(code, tuple_length=-1) {
+code_factor_c3graph <- function(code, tuple_length=-55555L) {
   vertices_edges_list = code_prepare_factor_gen_c3graph(code, tuple_length)
   return(factor_graph(vertices_edges_list))
 }
@@ -114,7 +114,7 @@ code_factor_c3graph <- function(code, tuple_length=-1) {
 #' plot(G)
 #'
 #' @export
-code_factor_cycle <- function(code, tuple_length=-1) {
+code_factor_cycle <- function(code, tuple_length=-55555L) {
   vertices_edges_list = code_prepare_factor_all_cycle(code, tuple_length)
   return(factor_graph(vertices_edges_list))
 }

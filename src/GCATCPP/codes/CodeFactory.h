@@ -42,6 +42,11 @@ public:
         return rFactorTypesGenCode(code, 4, CODE_TPYE_TESSERA);
     }
 
+    static std::shared_ptr<AbstractGenCode> rFactorTypesTesseraCodeFromCodons(const std::vector<std::string> &code) {
+        auto codons = rFactorTypesCodonCode(code);
+        return TesseraCode::tesseraCodeFromCodons(codons);
+    }
+
     static std::shared_ptr<AbstractCode> rFactor(std::vector<std::string> &code) {
         if (code.size() == 1) {
             return CodeFactory::factor(code.at(0));

@@ -24,6 +24,7 @@ namespace seq {
     struct Seq_Result {
         std::vector<std::string> words;
         std::vector<std::string> parts;
+        std::vector<std::size_t> circularPermutations;
         std::string rest;
         std::vector<unsigned int> idx_list;
         std::string seq;

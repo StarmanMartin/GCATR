@@ -5,6 +5,7 @@
 #include "KCircular.h"
 
 #include "../miner/kCircularityMiner.h"
+#include <stdexcept>
 
 
 bool KCircular::test(AbstractCode *code, int k) {
