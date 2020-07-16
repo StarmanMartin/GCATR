@@ -30,7 +30,7 @@ set(SOURCE_FILES main_test.cpp
         graph/Edge.cpp graph/Edge.h graph/Vertex.cpp graph/Vertex.h graph/Graph.cpp graph/Graph.h graph/C3Graph.cpp graph/C3Graph.h
         geneticCode/CodonTranslTables.cpp geneticCode/CodonTranslTables.h geneticCode/CodonClusteringAlgorithm.cpp geneticCode/CodonClusteringAlgorithm.h
         generator/BaseValueGenerator.cpp generator/BaseValueGenerator.h generator/AbstractGenerator.cpp generator/AbstractGenerator.h codes/TesseraCode.cpp codes/TesseraCode.h modification/TransformTuples.cpp modification/TransformTuples.h
-        sequences/Sequence.cpp sequences/Sequence.h interfaces/AbstractTupleContainer.cpp interfaces/AbstractTupleContainer.h interfaces/AbstractTranslatable.cpp interfaces/AbstractTranslatable.h miner/kCircularityMiner.cpp miner/kCircularityMiner.h)
+        sequences/Sequence.cpp sequences/Sequence.h interfaces/AbstractTupleContainer.cpp interfaces/AbstractTupleContainer.h interfaces/AbstractTranslatable.cpp interfaces/AbstractTranslatable.h miner/kCircularityMiner.cpp miner/kCircularityMiner.h miner/PathEndVerticesMiner.cpp miner/PathEndVerticesMiner.h)
 
 set(SOURCE_TEST_FILES unit_tests/test_utils.cpp
         unit_tests/circular.cpp unit_tests/codeTestTest.cpp unit_tests/bdaTest.cpp unit_tests/test_utils.cpp
@@ -40,7 +40,7 @@ set(SOURCE_TEST_FILES unit_tests/test_utils.cpp
 
 #set(CURRENT_TEST_FILES unit_tests/test_utils.cpp unit_tests/generatorTest.cpp)
 #set(CURRENT_TEST_FILES unit_tests/test_utils.cpp unit_tests/binaryTest.cpp unit_tests/codeFactoryTester.cpp)
-set(CURRENT_TEST_FILES unit_tests/test_utils.cpp unit_tests/sequenceTest.cpp)
+set(CURRENT_TEST_FILES unit_tests/test_utils.cpp unit_tests/minerPathTest.cpp)
 
 add_executable(MainTest ${SOURCE_FILES} ${SOURCE_TEST_FILES})
 add_executable(CurrentTest ${SOURCE_FILES} ${CURRENT_TEST_FILES})

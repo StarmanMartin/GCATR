@@ -7,11 +7,34 @@
 
 #include "../codes/StdGenCode.h"
 #include "../miner/LongestPathMiner.h"
+#include "../miner/PathEndVerticesMiner.h"
 
 std::vector<std::vector<std::string> > run_longest_path_miner(std::vector<std::string> c) {
     StdGenCode gc(c);
 
     return miner::LongestPathMiner::mine_path_as_vector(&gc);
+}
+TEST(PathEndVerticesMiner, simplePath) {
+    {
+        StdGenCode gc("ACGCGT", 3);
+        auto res = miner::PathEndVerticesMiner::mine_vertices_as_vector(&gc);
+        test_help::test_equal_vector(res, {"G", "GT", "T"});
+    }
+    {
+        StdGenCode gc("ACGCGTGTTTTG", 3);
+        auto res = miner::PathEndVerticesMiner::mine_vertices_as_vector(&gc);
+        test_help::test_equal_vector(res, {"TG"});
+    }
+    {
+        StdGenCode gc("AACAATACCATCATTCAGCTCCTGGAAGACGAGGATGCCGGCGGTGTAGTCGTTTACTTC", 3);
+        auto res = miner::PathEndVerticesMiner::mine_vertices_as_vector(&gc);
+        test_help::test_equal_vector(res, {"AG", "CC", "TC", "TG"});
+    }
+    {
+        StdGenCode gc("ACCCACACCCCT", 4);
+        auto res = miner::PathEndVerticesMiner::mine_vertices_as_vector(&gc);
+        test_help::test_equal_vector(res, {"CAC", "CCT", "CT", "T"});
+    }
 }
 
 TEST(LongestPathMiner, simplePath) {
