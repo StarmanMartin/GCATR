@@ -4,6 +4,7 @@
 #include <string>
 #include <regex>
 #include <unordered_set>
+#include <cmath>
 
 
 #include "../tester/AbstractTester.h"
@@ -13,7 +14,8 @@
 
 #define EMPTY_SEQUNECE "#"
 
-
+#pragma clang diagnostic push
+#pragma ide diagnostic ignored "VirtualCallInCtorOrDtor"
 AbstractCode::AbstractCode(const std::string &sequence, unsigned int word_length) : string_sequence(sequence),
                                                                                     is_tested(false), is_ok(false),
                                                                                     is_alphabet_set(false) {
@@ -35,9 +37,12 @@ AbstractCode::AbstractCode(const std::string &sequence, unsigned int word_length
     this->reset(code_temp_vec);
 }
 
+#pragma clang diagnostic push
+#pragma ide diagnostic ignored "VirtualCallInCtorOrDtor"
 AbstractCode::AbstractCode(const std::vector<std::string> &code_vec) : is_tested(false), is_ok(false), is_alphabet_set(false) {
     this->reset(code_vec);
 }
+#pragma clang diagnostic pop
 
 AbstractCode::AbstractCode(const AbstractCode &agc) : AbstractErrorManager(agc) {
     this->code_vec = agc.code_vec;

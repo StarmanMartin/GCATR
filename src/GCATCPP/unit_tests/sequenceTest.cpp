@@ -47,7 +47,7 @@ TEST(CodeSequenceTest, SequenceCodeTest) {
         auto res = a.find_code_in_sequence(seq, frame);
         auto testVal = res.circularPermutations;
 
-        test_help::test_equal_vector(res.idx_list, {0, 3, 12, 15, 18, 24});
+        test_help::test_equal_vector(testVal, {1,1,3,2,3,2,0});
     }
 }
 
