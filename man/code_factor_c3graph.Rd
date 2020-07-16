@@ -4,7 +4,7 @@
 \alias{code_factor_c3graph}
 \title{Factors an representing C3-graph of a circular code}
 \usage{
-code_factor_c3graph(code, tuple_length = -1)
+code_factor_c3graph(code, tuple_length = -55555L)
 }
 \arguments{
 \item{code}{is either a string vector or a string. It can be a DNA or RNA sequence.}
