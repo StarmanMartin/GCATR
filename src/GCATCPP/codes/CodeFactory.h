@@ -38,8 +38,10 @@ public:
         return CodeFactory::rFactorTypesGenCode(code, 3, CODE_TPYE_CODON);
     }
 
-    static std::shared_ptr<AbstractGenCode> rFactorTypesTesseraCode(const std::vector<std::string> &code) {
-        return rFactorTypesGenCode(code, 4, CODE_TPYE_TESSERA);
+    static std::shared_ptr<TesseraCode> rFactorTypesTesseraCode(const std::vector<std::string> &code) {
+        auto a = rFactorTypesGenCode(code, 4, CODE_TPYE_TESSERA);
+        return std::static_pointer_cast<TesseraCode>(a);
+
     }
 
     static std::shared_ptr<AbstractGenCode> rFactorTypesTesseraCodeFromCodons(const std::vector<std::string> &code) {
@@ -107,11 +109,11 @@ private:
     }
 
     static std::shared_ptr<AbstractGenCode> factorGenCode(std::vector<std::string> code, size_t code_type) {
-        if (code_type & CODE_TPYE_TESSERA) {
+        if (code_type & CODE_TPYE_GEN) {
             auto tessera_code = std::make_shared<TesseraCode>(code);
             if (tessera_code->test_code()) {
                 return tessera_code;
-            } else if (0 == (code_type & CODE_TPYE_GEN)) {
+            } else if (code_type == CODE_TPYE_TESSERA) {
                 return tessera_code;
             }
         } else if (code_type & CODE_TPYE_CODON) {

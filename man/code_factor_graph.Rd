@@ -8,7 +8,7 @@ code_factor_graph(
   code,
   show_cycles = FALSE,
   show_longest_path = FALSE,
-  tuple_length = -1
+  tuple_length = -55555L
 )
 }
 \arguments{

@@ -19,9 +19,16 @@ TEST(TESSERA_TEST, WRONG_TESSEREA) {
 }
 
 TEST(TESSERA_TEST, FACTORY_TESSEREA) {
-    std::vector<std::string> code_vec = {"AAUC", "ACCA"};
-    auto t = CodeFactory::rFactorTypesTesseraCode(code_vec);
-    EXPECT_TRUE(t->test_code());
+    {
+        std::vector<std::string> code_vec = {"AAUC", "ACCA"};
+        auto t = CodeFactory::rFactorTypesTesseraCode(code_vec);
+        EXPECT_FALSE(t->test_code());
+    }
+    {
+        std::vector<std::string> code_vec = {"AAUU", "ACCA"};
+        auto t = CodeFactory::rFactorTypesTesseraCode(code_vec);
+        EXPECT_TRUE(t->test_code());
+    }
 }
 
 TEST(TESSERA_TEST, FACTORY_TESSEREA_FROM_CODONS) {

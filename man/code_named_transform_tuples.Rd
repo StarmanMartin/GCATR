@@ -31,7 +31,7 @@ AGTC = (A, T,C,G) -> (G,C, A, T)\cr
 }
 \examples{
 transformed_tuples <- code_named_transform_tuples("I", c("ACG", "GAT"))
-transformed_tuples <- code_named_transform_tuples("ACTG", "CAGT", "ACGGAT", tuple_length=3)
-transformed_tuples <- code_named_transform_tuples("ACTG", "CAGT", "ACG GAT")
+transformed_tuples <- code_named_transform_tuples("SW", "ACGGAT", tuple_length=3)
+transformed_tuples <- code_named_transform_tuples("SW", "ACG GAT")
 
 }
