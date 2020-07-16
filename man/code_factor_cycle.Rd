@@ -4,7 +4,7 @@
 \alias{code_factor_cycle}
 \title{Prepares a graph G(X) with only the edges which are parte of a cycle.}
 \usage{
-code_factor_cycle(code, tuple_length = -1)
+code_factor_cycle(code, tuple_length = -55555L)
 }
 \arguments{
 \item{code}{is either a string vector or a string.}

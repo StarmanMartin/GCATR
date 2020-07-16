@@ -923,7 +923,8 @@ get_rna_bases <- function() {
 #' \emph{rest} (String) all parts of the sequence which are not matching the code.\cr
 #' \emph{parts} (String vector) the sequence separated in matching and non matching parts. Odd indexes are matching, even indexes are not matching.\cr
 #' \emph{longest_match} (Number) the longest connected matching sequence.\cr
-#' \emph{total_match_in_percent} (Number) the percentage of the matching parts.
+#' \emph{total_match_in_percent} (Number) the percentage of the matching parts.\cr
+#' \emph{circularPermutations} (Number vector) list the circular permutation of each word in the siquence which is in the code. 0-> if no circular permution is in the code; 1-> if the word is in the code; 2-> if the 1st circular permutation of the word is in the code; 3->...; 
 #'
 #' @param code is either a string vector or a string. It can either be a code or a sequence.
 #' @param tuple_length if code is a sequence, length is the tuple length of the code.
@@ -1024,11 +1025,66 @@ code_transform_tuples <- function(from, to, code, tuple_length = -55555L) {
 #'
 #' @examples
 #' transformed_tuples <- code_named_transform_tuples("I", c("ACG", "GAT"))
-#' transformed_tuples <- code_named_transform_tuples("ACTG", "CAGT", "ACGGAT", tuple_length=3)
-#' transformed_tuples <- code_named_transform_tuples("ACTG", "CAGT", "ACG GAT")
+#' transformed_tuples <- code_named_transform_tuples("SW", "ACGGAT", tuple_length=3)
+#' transformed_tuples <- code_named_transform_tuples("SW", "ACG GAT")
 #'
 #' @export
 code_named_transform_tuples <- function(trans_name, code, tuple_length = -55555L) {
     .Call('_GCATR_code_named_transform_tuples', PACKAGE = 'GCATR', trans_name, code, tuple_length)
+}
+
+#' Tessera check function
+#'
+#' This function checks if all words in the code are correct Tessera words.
+#' 
+#' @param code is either a string vector or a string. It can either be a code or a sequence.
+#'
+#' @return if code only contains tessera
+#'
+#' @examples
+#' is_tessera <- code_check_if_tessera(c("ACGT", "GATC"))
+#' is_tessera <- code_check_if_tessera("ACGTGATC" )
+#' is_tessera <- code_check_if_tessera("ACGT GATC")
+#' 
+#' @export
+code_check_if_tessera <- function(code) {
+    .Call('_GCATR_code_check_if_tessera', PACKAGE = 'GCATR', code)
+}
+
+#' Tessera from codons
+#'
+#' This function uses a transformation to map all codons to a tessera. This transformation was published by Gonzalez, Giannerini and Rosa. 
+#' 
+#' @param code is either a string vector or a string. It can either be a code or a sequence.
+#'
+#' @return the argument code transfomed to a set of tesserae  
+#'
+#' @examples
+#' tessera <- codons_to_tessera(c("ACG", "GAT"))
+#' tessera <- codons_to_tessera("ACGGAT")
+#' tessera <- codons_to_tessera("ACG GAT")
+#' 
+#' @export
+codons_to_tessera <- function(code) {
+    .Call('_GCATR_codons_to_tessera', PACKAGE = 'GCATR', code)
+}
+
+#' Pathend vertices miner
+#'
+#' This function finds all vertices which have no outgoing edges in the associated graph. 
+#' 
+#' @param code is either a string vector or a string. It can either be a code or a sequence.
+#' @param tuple_length if code is a sequence, length is the tuple length of the code.
+#'
+#' @return list of vertices
+#'
+#' @examples
+#' vertices <- code_path_end_vertices_miner(c("ACG", "GAT"))
+#' vertices <- code_path_end_vertices_miner("ACGGAT", tuple_length=3)
+#' vertices <- code_path_end_vertices_miner("ACG GAT")
+#' 
+#' @export
+code_path_end_vertices_miner <- function(code, tuple_length = -55555L) {
+    .Call('_GCATR_code_path_end_vertices_miner', PACKAGE = 'GCATR', code, tuple_length)
 }
 

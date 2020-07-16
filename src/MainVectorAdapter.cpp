@@ -3,6 +3,7 @@
 
 #include "GCATCPP/codes/CodeFactory.h"
 #include "GCATCPP/miner/LongestPathMiner.h"
+#include "GCATCPP/miner/PathEndVerticesMiner.h"
 #include "GCATCPP/miner/kCircularityMiner.h"
 #include "GCATCPP/miner/CircleMiner.h"
 #include "GCATCPP/generator/BaseValueGenerator.h"
@@ -547,7 +548,8 @@ Rcpp::StringVector get_rna_bases() {
 //' \emph{rest} (String) all parts of the sequence which are not matching the code.\cr
 //' \emph{parts} (String vector) the sequence separated in matching and non matching parts. Odd indexes are matching, even indexes are not matching.\cr
 //' \emph{longest_match} (Number) the longest connected matching sequence.\cr
-//' \emph{total_match_in_percent} (Number) the percentage of the matching parts.
+//' \emph{total_match_in_percent} (Number) the percentage of the matching parts.\cr
+//' \emph{circularPermutations} (Number vector) list the circular permutation of each word in the siquence which is in the code. 0-> if no circular permution is in the code; 1-> if the word is in the code; 2-> if the 1st circular permutation of the word is in the code; 3->...; 
 //'
 //' @param code is either a string vector or a string. It can either be a code or a sequence.
 //' @param tuple_length if code is a sequence, length is the tuple length of the code.
@@ -571,7 +573,8 @@ Rcpp::List find_and_analysis_code_in_sequence(std::string seq, StringVector code
             Rcpp::Named("rest") = Rcpp::wrap(res.rest),
             Rcpp::Named("parts") = Rcpp::wrap(res.parts),
             Rcpp::Named("longest_match") = res.longest_match,
-            Rcpp::Named("total_match_in_percent") = res.total_match_in_percent);
+            Rcpp::Named("total_match_in_percent") = res.total_match_in_percent,
+            Rcpp::Named("circularPermutations") = res.circularPermutations);
 }
 
 //' This function generates a maximal circular code.
@@ -673,8 +676,8 @@ StringVector code_transform_tuples(std::string from, std::string to, StringVecto
 //'
 //' @examples
 //' transformed_tuples <- code_named_transform_tuples("I", c("ACG", "GAT"))
-//' transformed_tuples <- code_named_transform_tuples("ACTG", "CAGT", "ACGGAT", tuple_length=3)
-//' transformed_tuples <- code_named_transform_tuples("ACTG", "CAGT", "ACG GAT")
+//' transformed_tuples <- code_named_transform_tuples("SW", "ACGGAT", tuple_length=3)
+//' transformed_tuples <- code_named_transform_tuples("SW", "ACG GAT")
 //'
 //' @export
 // [[Rcpp::export]]
@@ -683,4 +686,74 @@ StringVector code_named_transform_tuples(std::string trans_name, StringVector co
     auto gc = RAdapterUtils::factorGenCodeWrapper(code_vec, tuple_length);
     gc->transform_tuples_by_name(trans_name);
     return RAdapterUtils::as_r_string_vector(gc->get_tuples());
+}
+
+//' Tessera check function
+//'
+//' This function checks if all words in the code are correct Tessera words.
+//' 
+//' @param code is either a string vector or a string. It can either be a code or a sequence.
+//'
+//' @return if code only contains tessera
+//'
+//' @examples
+//' is_tessera <- code_check_if_tessera(c("ACGT", "GATC"))
+//' is_tessera <- code_check_if_tessera("ACGTGATC" )
+//' is_tessera <- code_check_if_tessera("ACGT GATC")
+//' 
+//' @export
+// [[Rcpp::export]]
+bool code_check_if_tessera(StringVector code) {
+    auto code_vec = RAdapterUtils::as_cpp_string_vector(code);
+    auto gc = CodeFactory::rFactorTypesTesseraCode(code_vec);
+    return gc->test_code();
+}
+
+//' Tessera from codons
+//'
+//' This function uses a transformation to map all codons to a tessera. This transformation was published by Gonzalez, Giannerini and Rosa. 
+//' 
+//' @param code is either a string vector or a string. It can either be a code or a sequence.
+//'
+//' @return the argument code transfomed to a set of tesserae  
+//'
+//' @examples
+//' tessera <- codons_to_tessera(c("ACG", "GAT"))
+//' tessera <- codons_to_tessera("ACGGAT")
+//' tessera <- codons_to_tessera("ACG GAT")
+//' 
+//' @export
+// [[Rcpp::export]]
+StringVector codons_to_tessera(StringVector code) {
+    auto code_vec = RAdapterUtils::as_cpp_string_vector(code);
+    auto gc = CodeFactory::rFactorTypesTesseraCodeFromCodons(code_vec);
+    return RAdapterUtils::as_r_string_vector(gc->get_tuples());;
+}
+
+
+
+//' Pathend vertices miner
+//'
+//' This function finds all vertices which have no outgoing edges in the associated graph. 
+//' 
+//' @param code is either a string vector or a string. It can either be a code or a sequence.
+//' @param tuple_length if code is a sequence, length is the tuple length of the code.
+//'
+//' @return list of vertices
+//'
+//' @examples
+//' vertices <- code_path_end_vertices_miner(c("ACG", "GAT"))
+//' vertices <- code_path_end_vertices_miner("ACGGAT", tuple_length=3)
+//' vertices <- code_path_end_vertices_miner("ACG GAT")
+//' 
+//' @export
+// [[Rcpp::export]]
+StringVector code_path_end_vertices_miner(StringVector code, int tuple_length = -55555) {
+    auto code_vec = RAdapterUtils::as_cpp_string_vector(code);
+    auto gc = RAdapterUtils::factorGenCodeWrapper(code_vec, tuple_length);
+    
+
+    auto res = miner::PathEndVerticesMiner::mine_vertices_as_vector(gc.get());
+    
+    return RAdapterUtils::as_r_string_vector(res);
 }
