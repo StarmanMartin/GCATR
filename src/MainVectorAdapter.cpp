@@ -757,3 +757,28 @@ StringVector code_path_end_vertices_miner(StringVector code, int tuple_length = 
     
     return RAdapterUtils::as_r_string_vector(res);
 }
+
+
+
+//' Block length
+//'
+//' This function gets the block length of a code. 
+//' 
+//' @param code is either a string vector or a string. It can either be a code or a sequence.
+//' @param tuple_length if code is a sequence, length is the tuple length of the code.
+//'
+//' @return block length
+//'
+//' @examples
+//' block.length <- code_block_length(c("ACG", "GAT"))
+//' block.length <- code_block_length("ACGGAT", tuple_length=3)
+//' block.length <- code_block_length("ACG GAT")
+//' 
+//' @export
+// [[Rcpp::export]]
+int code_block_length(StringVector code, int tuple_length = -55555) {
+    auto code_vec = RAdapterUtils::as_cpp_string_vector(code);
+    auto gc = RAdapterUtils::factorGenCodeWrapper(code_vec, tuple_length);
+    
+    return gc->get_word_length()[0];
+}

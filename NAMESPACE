@@ -3,6 +3,7 @@
 export(add_bda)
 export(code_as_unique_vector)
 export(code_as_vector)
+export(code_block_length)
 export(code_check_if_circular)
 export(code_check_if_cn_circular)
 export(code_check_if_code)

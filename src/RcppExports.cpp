@@ -593,6 +593,18 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// code_block_length
+int code_block_length(StringVector code, int tuple_length);
+RcppExport SEXP _GCATR_code_block_length(SEXP codeSEXP, SEXP tuple_lengthSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< StringVector >::type code(codeSEXP);
+    Rcpp::traits::input_parameter< int >::type tuple_length(tuple_lengthSEXP);
+    rcpp_result_gen = Rcpp::wrap(code_block_length(code, tuple_length));
+    return rcpp_result_gen;
+END_RCPP
+}
 
 static const R_CallMethodDef CallEntries[] = {
     {"_GCATR_add_bda", (DL_FUNC) &_GCATR_add_bda, 6},
@@ -644,6 +656,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_GCATR_code_check_if_tessera", (DL_FUNC) &_GCATR_code_check_if_tessera, 1},
     {"_GCATR_codons_to_tessera", (DL_FUNC) &_GCATR_codons_to_tessera, 1},
     {"_GCATR_code_path_end_vertices_miner", (DL_FUNC) &_GCATR_code_path_end_vertices_miner, 2},
+    {"_GCATR_code_block_length", (DL_FUNC) &_GCATR_code_block_length, 2},
     {NULL, NULL, 0}
 };
 

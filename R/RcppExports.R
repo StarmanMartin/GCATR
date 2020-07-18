@@ -1088,3 +1088,22 @@ code_path_end_vertices_miner <- function(code, tuple_length = -55555L) {
     .Call('_GCATR_code_path_end_vertices_miner', PACKAGE = 'GCATR', code, tuple_length)
 }
 
+#' Block length
+#'
+#' This function gets the block length of a code. 
+#' 
+#' @param code is either a string vector or a string. It can either be a code or a sequence.
+#' @param tuple_length if code is a sequence, length is the tuple length of the code.
+#'
+#' @return block length
+#'
+#' @examples
+#' block.length <- code_block_length(c("ACG", "GAT"))
+#' block.length <- code_block_length("ACGGAT", tuple_length=3)
+#' block.length <- code_block_length("ACG GAT")
+#' 
+#' @export
+code_block_length <- function(code, tuple_length = -55555L) {
+    .Call('_GCATR_code_block_length', PACKAGE = 'GCATR', code, tuple_length)
+}
+
