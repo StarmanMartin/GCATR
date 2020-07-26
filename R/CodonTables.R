@@ -1,12 +1,21 @@
+factor_dna_codon_table <- function(dna_codon_list) {
+  return(p_factor_codon_table(dna_codon_list, get_dna_bases()))
+}
+
 factor_rna_codon_table <- function(rna_codon_list) {
+  return(p_factor_codon_table(rna_codon_list, get_rna_bases()))
+}
+
+
+p_factor_codon_table <- function(rna_codon_list, bases) {
   row_namse=rep("---", 16)
   col_namse=rep("---", 4)
   row_idx = 1;
   col_idx = 1;
-  for(first in get_rna_bases()) {
+  for(first in bases) {
     col_namse[col_idx] = first
     col_idx = col_idx + 1
-    for(second in get_rna_bases()) {
+    for(second in bases) {
       row_namse[row_idx] = paste(first, second, sep="_")
       row_idx = row_idx + 1;
     }
@@ -69,6 +78,49 @@ get_rna_codon_list <- function() {
   }
   
   return(result)
+}
+
+#' A List of all DNA codons
+#'
+#' get_dna_codon_list will generate the following list:\cr
+#' TTT TCT TAT TGT TTC TCC TAC TGC TTA TCA TAA TGA TTG TCG TAG TGG CTT CCT CAT CGT CTC CCC CAC CGC CTA CCA CAA CGA CTG CCG CAG CGG
+#' ATT ACT AAT AGT ATC ACC AAC AGC ATA ACA AAA AGA ATG ACG AAG AGG GTT GCT GAT GGT GTC GCC GAC GGC GTA GCA GAA GGA GTG GCG GAG GGG
+#'
+#' @return A vector object with all DNA codons
+#' @examples
+#' res <- get_dna_codon_list()
+#'
+#' @export
+get_dna_codon_list <- function() {
+  return(code_transform_tuples("U", "T", get_rna_codon_list()))
+}
+#' A Matrix of all DNA codons
+#'
+#' get_dna_codon_table will generate a 4*16 table based on the following list:\cr
+#'  TTT TCT TAT TGT\cr
+#'  TTC TCC TAC TGC\cr
+#'  TTA TCA TAA TGA\cr
+#'  TTG TCG TAG TGG\cr
+#'  CTT CCT CAT CGT\cr
+#'  CTC CCC CAC CGC\cr
+#'  CTA CCA CAA CGA\cr
+#'  CTG CCG CAG CGG\cr
+#'  ATT ACT AAT AGT\cr
+#'  ATC ACC AAC AGC\cr
+#'  ATA ACA AAA AGA\cr
+#'  ATG ACG AAG AGG\cr
+#'  GTT GCT GAT GGT\cr
+#'  GTC GCC GAC GGC\cr
+#'  GTA GCA GAA GGA\cr
+#'  GTG GCG GAG GGG
+#'
+#' @return A matrix object with all DNA codons
+#' @examples
+#' res <- get_rna_codon_table()
+#'
+#' @export
+get_dna_codon_table <- function() {
+  return(factor_dna_codon_table(get_dna_codon_list()))      
 }
 
 #' The Genetic Codes
