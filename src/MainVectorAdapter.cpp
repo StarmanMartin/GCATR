@@ -778,7 +778,7 @@ StringVector code_path_end_vertices_miner(StringVector code, int tuple_length = 
 // [[Rcpp::export]]
 int code_block_length(StringVector code, int tuple_length = -55555) {
     auto code_vec = RAdapterUtils::as_cpp_string_vector(code);
-    auto gc = RAdapterUtils::factorGenCodeWrapper(code_vec, tuple_length);
+    auto gc = RAdapterUtils::factorCodeWrapper(code_vec, tuple_length);
     
     return gc->get_word_length()[0];
 }

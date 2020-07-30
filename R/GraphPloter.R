@@ -138,7 +138,7 @@ code_factor_cycle <- function(code, tuple_length=-55555L) {
 #' plot(G)
 #'
 #' @export
-code_factor_longest_path <- function(code, tuple_length = -1) {
+code_factor_longest_path <- function(code, tuple_length = -55555L) {
   vertices_edges_list = code_prepare_factor_longest_path(code, tuple_length)
   return(factor_graph(vertices_edges_list))
 }
