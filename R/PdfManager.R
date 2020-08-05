@@ -13,15 +13,18 @@
 #' 
 #' 
 #' @export
-code_pdf_report <- function(code, length=-1) {
+code_pdf_report <- function(code, tuple_length = -55555) {
   dirname <- "GCATR_Report"
   idx <- 0;
   while (dir.exists(dirname)) {
     idx <- idx + 1;
     dirname <- paste0("GCATR_Report_", idx, collapse = NULL)
   }
-  
-  code <- code_as_vector(code, length)
+  if(tuple_length == - 55555) {
+    code <- code_as_vector(code)
+  } else {
+    code <- code_as_vector(code, length)
+  }
   
   startwd <- getwd()
   dir.create(dirname)

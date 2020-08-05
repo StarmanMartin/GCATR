@@ -15,8 +15,9 @@ test_that("BDA to be started", {
 
 # both true, first condition true
 test_that("bda correctly returns true for both codons", {
-  code_start_bda(c("CCG", "CAG"))
-  add_bda(1,3, "A", "C", "G", "C")
+  b1 <- code_start_bda(c("CCG", "CAG"))
+  b2 <- add_bda(1,3, "A", "C", "G", "C")
+  a <- run_bda()
   expect_equal(run_bda()$bda, c("1","1"))
 })
 

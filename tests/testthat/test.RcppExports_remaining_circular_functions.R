@@ -79,13 +79,7 @@ test_that('code is not contained in sequence', {
 
 test_that('code is contained in sequence', {
   seq <- "#+oopp&%?!!$"
-  res <- find_and_analysis_code_in_sequence(seq,c("&%?"))
-  expect_equal(res$word,c("&%?"))
-  expect_equal(res$idx_list,c(6))
-  expect_equal(res$rest,"#+oopp!!$")
-  expect_equal(res$parts, c("#+oopp","&%?","!!$"))
-  expect_equal(res$longest_match,3)
-  expect_equal(res$total_match_in_percent,25)
+  expect_error(find_and_analysis_code_in_sequence(seq,c("&%?")))
 })
 
 
@@ -96,11 +90,11 @@ test_that('code is contained in sequence in frameshift 1', {
   res <- find_and_analysis_code_in_sequence(seq,"13453456", tuple_length = 4, 1)
   expect_equal(res$word,c("1345", "3456"))
   expect_equal(res$idx_list, c(1,9))
-  expect_equal(res$rest,"5123335")
-  expect_equal(res$parts, c("","1345","5123","3456", "335"))
+  expect_equal(res$rest,"512333")
+  expect_equal(res$parts, c("","1345","5123","3456", "33"))
   expect_equal(res$longest_match,4)
-  expect_gt(res$total_match_in_percent,53)
-  expect_lt(res$total_match_in_percent,53.5)
+  expect_gt(res$total_match_in_percent,55)
+  expect_lt(res$total_match_in_percent,57.5)
 })
 
 test_that('code is not contained in sequence in frameshift 1', { 
@@ -108,8 +102,8 @@ test_that('code is not contained in sequence in frameshift 1', {
   res <- find_and_analysis_code_in_sequence(seq,"1345", tuple_length = 4, 1)
   expect_length(res$word,0)
   expect_length(res$idx_list, 0)
-  expect_equal(res$rest,"3455123341")
-  expect_equal(res$parts, c("3455123341"))
+  expect_equal(res$rest,"345512334")
+  expect_equal(res$parts, c("345512334"))
   expect_equal(res$longest_match,0)
   expect_equal(res$total_match_in_percent,0)
 })
@@ -120,11 +114,11 @@ test_that('code is contained in sequence in frameshift 2', {
   res <- find_and_analysis_code_in_sequence(seq,"1345", tuple_length = 4, 2)
   expect_equal(res$word,c("1345"))
   expect_equal(res$idx_list, c(2))
-  expect_equal(res$rest,"51233933")
-  expect_equal(res$parts, c("","1345","51233933"))
+  expect_equal(res$rest,"512339")
+  expect_equal(res$parts, c("","1345","512339"))
   expect_equal(res$longest_match,4)
-  expect_gt(res$total_match_in_percent,33)
-  expect_lt(res$total_match_in_percent,33.5)
+  expect_gt(res$total_match_in_percent,39)
+  expect_lt(res$total_match_in_percent,42)
 })
 
 
@@ -133,8 +127,8 @@ test_that('code is not contained in sequence in frameshift 2', {
   res <- find_and_analysis_code_in_sequence(seq,"1345", tuple_length = 4, 2)
   expect_length(res$word,0)
   expect_length(res$idx_list, 0)
-  expect_equal(res$rest,"3455123531")
-  expect_equal(res$parts, c("3455123531"))
+  expect_equal(res$rest,"34551235")
+  expect_equal(res$parts, c("34551235"))
   expect_equal(res$longest_match,0)
   expect_equal(res$total_match_in_percent,0)
 })
@@ -150,11 +144,11 @@ test_that('code is contained in sequence in frameshift 1', {
   print(res)
   expect_equal(res$word,c("1345", "3456"))
   expect_equal(res$idx_list, c(1,9))
-  expect_equal(res$rest,"5123335")
-  expect_equal(res$parts, c("","1345","5123","3456", "335"))
+  expect_equal(res$rest,"512333")
+  expect_equal(res$parts, c("","1345","5123","3456", "33"))
   expect_equal(res$longest_match,4)
-  expect_gt(res$total_match_in_percent,53)
-  expect_lt(res$total_match_in_percent,53.5)
+  expect_gt(res$total_match_in_percent,56)
+  expect_lt(res$total_match_in_percent,57.5)
 })
 
 
@@ -165,8 +159,8 @@ test_that('code is not contained in sequence in frameshift 1', {
   res <- find_and_analysis_code_in_sequence(seq,"1345", tuple_length = 4, -29)
   expect_length(res$word,0)
   expect_length(res$idx_list, 0)
-  expect_equal(res$rest,"3455123341")
-  expect_equal(res$parts, c("3455123341"))
+  expect_equal(res$rest,"345512334")
+  expect_equal(res$parts, c("345512334"))
   expect_equal(res$longest_match,0)
   expect_equal(res$total_match_in_percent,0)
 })
@@ -178,11 +172,11 @@ test_that('code is contained in sequence in frameshift 2', {
   res <- find_and_analysis_code_in_sequence(seq,"1345", tuple_length = 4, -22)
   expect_equal(res$word,c("1345"))
   expect_equal(res$idx_list, c(2))
-  expect_equal(res$rest,"51233933")
-  expect_equal(res$parts, c("","1345","51233933"))
+  expect_equal(res$rest,"512339")
+  expect_equal(res$parts, c("","1345","512339"))
   expect_equal(res$longest_match,4)
-  expect_gt(res$total_match_in_percent,33)
-  expect_lt(res$total_match_in_percent,33.5)
+  expect_gt(res$total_match_in_percent,39)
+  expect_lt(res$total_match_in_percent,41)
 })
 
 
@@ -193,8 +187,8 @@ test_that('code is not contained in sequence in frameshift 2', {
   res <- find_and_analysis_code_in_sequence(seq,"1345", tuple_length = 4, -38)
   expect_length(res$word,0)
   expect_length(res$idx_list, 0)
-  expect_equal(res$rest,"3455123531")
-  expect_equal(res$parts, c("3455123531"))
+  expect_equal(res$rest,"34551235")
+  expect_equal(res$parts, c("34551235"))
   expect_equal(res$longest_match,0)
   expect_equal(res$total_match_in_percent,0)
 })
@@ -306,7 +300,7 @@ test_that('tuples are shifted correctly', {
 test_that('error is thrown', {
   expect_error(shift_tuples(1, "CAGGGAUGA", tuple_length = 0))
   expect_error(shift_tuples(2, "CAGGGAUGA", tuple_length = -2))
-  expect_error(shift_tuples(1, "CAGGGAUGA", tuple_length = 1))
+  expect_equal(shift_tuples(1, "CAGGGAUGA", tuple_length = 1), c("C","A","G","G","G","A","U","G","A"))
 })
 
 # Try with empty input code 
@@ -321,12 +315,12 @@ test_that('code is transformed correctly', {
   expect_equal(code_transform_tuples("1234", "2345","133422",tuple_length = 3 ), c("244","533"))
   # fails cause of incorrect order
   expect_equal(code_transform_tuples("FHGJ", "KLMN","GGHFJG",tuple_length = 2 ), c("MM","LK", "NM"))
-  expect_equal(code_transform_tuples("k$.€", "1234", "k $ . $ € ."),c("1","2", "3", "2", "4", "3"))
+  expect_error(code_transform_tuples("k$.€", "1234", "k $ . $ € ."))
   
   # How to check that error message is printed
   # Could not find a way to figure out
   expect_error(code_transform_tuples("123", "3456", "12345"))
-  expect_error(code_transform_tuples("", "", ""),c(""))
+  expect_error(code_transform_tuples("", "", ""))
 })
 
 #code_named_transform_tuples
@@ -434,7 +428,7 @@ test_that("ACUG transformation is done correctly", {
 # empty transformation type
 
 test_that("Wrong inputs cause error", {
-  expect_error(code_named_transform_tuples("", c("ATC", "GTC")), c("GCA", "TCA"))
+  expect_error(code_named_transform_tuples("", c("ATC", "GTC")))
   expect_error(code_named_transform_tuples("Id", ""))
 
 })
