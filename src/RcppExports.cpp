@@ -5,54 +5,6 @@
 
 using namespace Rcpp;
 
-// add_bda
-bool add_bda(int i_1, int i_2, std::string Q_11, std::string Q_12, std::string Q_21, std::string Q_22);
-RcppExport SEXP _GCATR_add_bda(SEXP i_1SEXP, SEXP i_2SEXP, SEXP Q_11SEXP, SEXP Q_12SEXP, SEXP Q_21SEXP, SEXP Q_22SEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< int >::type i_1(i_1SEXP);
-    Rcpp::traits::input_parameter< int >::type i_2(i_2SEXP);
-    Rcpp::traits::input_parameter< std::string >::type Q_11(Q_11SEXP);
-    Rcpp::traits::input_parameter< std::string >::type Q_12(Q_12SEXP);
-    Rcpp::traits::input_parameter< std::string >::type Q_21(Q_21SEXP);
-    Rcpp::traits::input_parameter< std::string >::type Q_22(Q_22SEXP);
-    rcpp_result_gen = Rcpp::wrap(add_bda(i_1, i_2, Q_11, Q_12, Q_21, Q_22));
-    return rcpp_result_gen;
-END_RCPP
-}
-// code_start_bda
-bool code_start_bda(StringVector code, int tuple_length);
-RcppExport SEXP _GCATR_code_start_bda(SEXP codeSEXP, SEXP tuple_lengthSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< StringVector >::type code(codeSEXP);
-    Rcpp::traits::input_parameter< int >::type tuple_length(tuple_lengthSEXP);
-    rcpp_result_gen = Rcpp::wrap(code_start_bda(code, tuple_length));
-    return rcpp_result_gen;
-END_RCPP
-}
-// run_bda
-List run_bda();
-RcppExport SEXP _GCATR_run_bda() {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    rcpp_result_gen = Rcpp::wrap(run_bda());
-    return rcpp_result_gen;
-END_RCPP
-}
-// run_bda_for_all_rna_codons
-List run_bda_for_all_rna_codons();
-RcppExport SEXP _GCATR_run_bda_for_all_rna_codons() {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    rcpp_result_gen = Rcpp::wrap(run_bda_for_all_rna_codons());
-    return rcpp_result_gen;
-END_RCPP
-}
 // get_average_conductance_of_code
 double get_average_conductance_of_code(std::string codeName, std::string acid);
 RcppExport SEXP _GCATR_get_average_conductance_of_code(SEXP codeNameSEXP, SEXP acidSEXP) {
@@ -606,11 +558,9 @@ BEGIN_RCPP
 END_RCPP
 }
 
+RcppExport SEXP _rcpp_module_boot_BDATools();
+
 static const R_CallMethodDef CallEntries[] = {
-    {"_GCATR_add_bda", (DL_FUNC) &_GCATR_add_bda, 6},
-    {"_GCATR_code_start_bda", (DL_FUNC) &_GCATR_code_start_bda, 2},
-    {"_GCATR_run_bda", (DL_FUNC) &_GCATR_run_bda, 0},
-    {"_GCATR_run_bda_for_all_rna_codons", (DL_FUNC) &_GCATR_run_bda_for_all_rna_codons, 0},
     {"_GCATR_get_average_conductance_of_code", (DL_FUNC) &_GCATR_get_average_conductance_of_code, 2},
     {"_GCATR_get_max_conductance_of_code", (DL_FUNC) &_GCATR_get_max_conductance_of_code, 2},
     {"_GCATR_get_min_conductance_of_code", (DL_FUNC) &_GCATR_get_min_conductance_of_code, 2},
@@ -657,6 +607,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_GCATR_codons_to_tessera", (DL_FUNC) &_GCATR_codons_to_tessera, 1},
     {"_GCATR_code_path_end_vertices_miner", (DL_FUNC) &_GCATR_code_path_end_vertices_miner, 2},
     {"_GCATR_code_block_length", (DL_FUNC) &_GCATR_code_block_length, 2},
+    {"_rcpp_module_boot_BDATools", (DL_FUNC) &_rcpp_module_boot_BDATools, 0},
     {NULL, NULL, 0}
 };
 

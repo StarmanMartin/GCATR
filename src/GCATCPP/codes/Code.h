@@ -11,7 +11,7 @@
 class Code : public AbstractCode {
 public:
     explicit Code(const std::vector<std::string> &);
-    explicit Code(std::string, unsigned int);
+    explicit Code(const std::string&, unsigned int);
 
     Code(const Code &agc);
 
