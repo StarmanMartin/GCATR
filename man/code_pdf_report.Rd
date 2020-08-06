@@ -4,7 +4,7 @@
 \alias{code_pdf_report}
 \title{Generate a PDF/latex report}
 \usage{
-code_pdf_report(code, length = -1)
+code_pdf_report(code, tuple_length = -55555)
 }
 \arguments{
 \item{code}{is either a string vector or a string. It can either be a code or a sequence.}

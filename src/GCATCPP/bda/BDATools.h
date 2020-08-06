@@ -44,20 +44,25 @@ namespace BDA {
     public:
 
         explicit BDATools(std::shared_ptr<AbstractTupleContainer>);
+        explicit BDATools(const std::string&, int);
 
         bool add_rule(unsigned int i_1, unsigned int i_2, char Q_11, char Q_12, char Q_21, char Q_22);
+        bool r_add_rule(unsigned int i_1, unsigned int i_2, char Q_11, char Q_12, char Q_21, char Q_22);
 
         bool add_rule(const BDA_Rule& rule);
 
+        std::vector<BDA_Rule> get_rules();
+
         std::shared_ptr<AbstractTupleContainer> get_code();
+        std::vector<std::string> get_tuples();
 
         std::vector<std::string> run_bda_for_code();
 
         std::vector<std::string> run_bda_for_all_rna_codons();
 
-        std::vector<std::string> get_all_rna_codons();
+        static std::vector<std::string> get_all_rna_codons();
     private:
-        std::vector<std::string> run_bda_for_code(std::vector<std::string> code_vec);
+        std::vector<std::string> _run_bda_for_code(std::vector<std::string> code_vec);
 
     };
 }

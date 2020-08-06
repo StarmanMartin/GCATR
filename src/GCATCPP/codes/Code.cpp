@@ -22,7 +22,7 @@
 #define EMPTY_SEQUNECE "#"
 
 
-Code::Code(std::string sequence, unsigned int word_length) : AbstractCode(sequence, word_length) {}
+Code::Code(const std::string& sequence, unsigned int word_length) : AbstractCode(sequence, word_length) {}
 
 Code::Code(const std::vector<std::string>& code_vec) : AbstractCode(code_vec) {}
 

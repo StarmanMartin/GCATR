@@ -4,7 +4,7 @@
 \alias{code_factor_longest_path}
 \title{Prepares a graph G(X) with only longest paths.}
 \usage{
-code_factor_longest_path(code, tuple_length = -1)
+code_factor_longest_path(code, tuple_length = -55555L)
 }
 \arguments{
 \item{code}{is either a string vector or a string.}

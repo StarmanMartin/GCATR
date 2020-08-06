@@ -5,6 +5,7 @@
 #include "BDATools.h"
 #include "../codes/Acid.h"
 #include "../interfaces/AbstractTupleContainer.h"
+#include "../sequences/Sequence.h"
 #include <memory>
 #include <sstream>
 #include <utility>
@@ -14,6 +15,16 @@ using namespace BDA;
 
 BDATools::BDATools(std::shared_ptr<AbstractTupleContainer> code) : code(std::move(code)) {
     this->rules = {};
+}
+
+
+
+BDATools::BDATools(const std::string& sequence, int tuple_length) {
+    this->code = std::make_shared<Sequence>(sequence, tuple_length);
+}
+
+bool BDATools::r_add_rule(unsigned int i_1, unsigned int i_2, char Q_11, char Q_12, char Q_21, char Q_22) {
+    return this->add_rule(i_1, i_2, Q_11, Q_12, Q_21, Q_22);
 }
 
 bool BDATools::add_rule(unsigned int i_1, unsigned int i_2, char Q_11, char Q_12, char Q_21, char Q_22) {
@@ -30,10 +41,14 @@ bool BDATools::add_rule(const BDA_Rule& rule) {
     return false;
 }
 
-std::vector<std::string> BDATools::run_bda_for_all_rna_codons() {
-    auto code_vec = this->get_all_rna_codons();
+std::vector<BDA_Rule> BDATools::get_rules() {
+    return this->rules;
+}
 
-    return this->run_bda_for_code(code_vec);
+std::vector<std::string> BDATools::run_bda_for_all_rna_codons() {
+    auto code_vec = BDA::BDATools::get_all_rna_codons();
+
+    return this->_run_bda_for_code(code_vec);
 
 }
 
@@ -50,10 +65,10 @@ std::vector<std::string> BDATools::run_bda_for_code() {
         return {};
     }
     
-    return this->run_bda_for_code(code_vec);
+    return this->_run_bda_for_code(code_vec);
 }
 
-std::vector<std::string> BDATools::run_bda_for_code(std::vector<std::string> code_vec) {
+std::vector<std::string> BDATools::_run_bda_for_code(std::vector<std::string> code_vec) {
     
     std::vector<std::string> result_vec(code_vec.size());
 
@@ -112,10 +127,10 @@ bool BDATools::validate_rule(const BDA_Rule& rule) {
  std::vector<std::string> BDATools::get_all_rna_codons() {
     std::vector<std::string> result(64);
     int s = 0;
-    for (int i = 0; i < acid::acid_base_length; ++i) {
-        for (int j = 0; j < acid::acid_base_length; ++j) {
-            for (int k = 0; k < acid::acid_base_length; ++k) {
-                std::string codon = std::string(1,acid::rna[i]) +  std::string(1,acid::rna[k]) + std::string(1,acid::rna[j]);
+    for (char i : acid::rna) {
+        for (char j : acid::rna) {
+            for (char k : acid::rna) {
+                std::string codon = std::string(1,i) +  std::string(1,k) + std::string(1,j);
                 result[s] = codon;
                 s++;
             }
@@ -123,4 +138,8 @@ bool BDATools::validate_rule(const BDA_Rule& rule) {
     }
 
     return result;
+}
+
+std::vector<std::string> BDATools::get_tuples() {
+    return this->code->get_tuples();
 }
