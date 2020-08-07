@@ -39,6 +39,11 @@ devtools::install_github("StarmanMartin/GCATR")
 [code_factor_longest_path](#code_factor_longest_path)<br>
 [code_factor_c3graph](#code_factor_c3graph)<br>
 
+[code_prepare_factor_graph](#code_prepare_factor_gen_c3graph)<br>
+[code_prepare_factor_all_cycle](#code_prepare_factor_all_cycle)<br>
+[code_prepare_factor_longest_path](#code_prepare_factor_longest_path)<br>
+[code_prepare_factor_gen_c3graph](#code_prepare_factor_gen_c3graph)<br>
+
 [code_get_one_cycles_as_vector](#code_get_one_cycles_as_vector)<br>
 [code_get_all_cycles_as_vector](#code_get_all_cycles_as_vector)<br>
 [code_get_one_longest_path_as_vector](#code_get_one_longest_path_as_vector)<br>

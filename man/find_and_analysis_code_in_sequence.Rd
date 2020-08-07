@@ -12,6 +12,8 @@ find_and_analysis_code_in_sequence(
 )
 }
 \arguments{
+\item{seq}{a character string a sequence of letters and/or numbers}
+
 \item{code}{is either a string vector or a string. It can either be a code or a sequence.}
 
 \item{tuple_length}{if code is a sequence, length is the tuple length of the code.}
@@ -24,7 +26,7 @@ Returns a List with all analysing results. The list contains the following:\cr
 \emph{parts} (String vector) the sequence separated in matching and non matching parts. Odd indexes are matching, even indexes are not matching.\cr
 \emph{longest_match} (Number) the longest connected matching sequence.\cr
 \emph{total_match_in_percent} (Number) the percentage of the matching parts.\cr
-\emph{circularPermutations} (Number vector) list the circular permutation of each word in the siquence which is in the code. 0-> if no circular permution is in the code; 1-> if the word is in the code; 2-> if the 1st circular permutation of the word is in the code; 3->...;
+\emph{circularPermutations} (Number vector) list the circular per
 }
 \description{
 Finds all appearances of a code in a sequence. Finds the longest connected motive of words of the code in the sequence.

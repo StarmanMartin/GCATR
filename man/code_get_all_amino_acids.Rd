@@ -9,7 +9,7 @@ code_get_all_amino_acids(code, idx_trans_table = 1L)
 \arguments{
 \item{code}{is either a string vector or a string. It should be a RNA/DNA - code or a sequence.}
 
-\item{idx}{the index of a Genetic Code table as int. (check \link{print_all_translation_table})}
+\item{idx_trans_table}{the index of a Genetic Code translation table as int. (see \link{print_all_translation_table})}
 }
 \value{
 String vector. list of amino acids

@@ -9,7 +9,7 @@ get_max_conductance_of_code(codeName, acid = "DNA")
 \arguments{
 \item{codeName}{a String, the name of the genetic translation table. (see \link{print_all_translation_tables})}
 
-\item{acid}{a String, is optional: DNA or RNA}
+\item{acid}{a String [optional]: The value must be DNA or RNA}
 }
 \value{
 A Number, the max conductance of a genetic translation table

@@ -9,7 +9,7 @@ code_pdf_report(code, tuple_length = -55555)
 \arguments{
 \item{code}{is either a string vector or a string. It can either be a code or a sequence.}
 
-\item{length}{if code is a sequence, length is the tuple length of the code.}
+\item{tuple_length}{if code is a sequence, length is the tuple length of the code.}
 }
 \description{
 The function makes a dir called: "GCATR_Report" in your current working dir. In the following steps it cops a .Rnw template file

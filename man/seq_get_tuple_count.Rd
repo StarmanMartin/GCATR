@@ -2,10 +2,18 @@
 % Please edit documentation in R/RcppExports.R
 \name{seq_get_tuple_count}
 \alias{seq_get_tuple_count}
-\title{Sequence analyzer}
+\title{Sequence, Code analyzer}
 \usage{
 seq_get_tuple_count(seq, tuple_length = 3L)
 }
+\arguments{
+\item{tuple_length}{a number, the length of the block or tuple used}
+
+\item{a}{character string a sequence of letters and/or numbers}
+}
+\value{
+Key value map of the words in the sequence
+}
 \description{
-Sequence analyzer
+Returns a table with all words in a sequence. For each word, the table shows how often the word appears in the sequence.
 }

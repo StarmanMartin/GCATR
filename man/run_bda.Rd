@@ -6,6 +6,9 @@
 \usage{
 run_bda(bda_obj)
 }
+\arguments{
+\item{bda_obj}{BDA object (see \link{BDATools})}
+}
 \value{
 A List. A binary representation of the Code.
 }

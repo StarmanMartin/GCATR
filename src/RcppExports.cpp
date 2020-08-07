@@ -123,13 +123,14 @@ BEGIN_RCPP
 END_RCPP
 }
 // genetic_codes_by_name
-List genetic_codes_by_name(std::string name);
-RcppExport SEXP _GCATR_genetic_codes_by_name(SEXP nameSEXP) {
+List genetic_codes_by_name(std::string name, std::string acid);
+RcppExport SEXP _GCATR_genetic_codes_by_name(SEXP nameSEXP, SEXP acidSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< std::string >::type name(nameSEXP);
-    rcpp_result_gen = Rcpp::wrap(genetic_codes_by_name(name));
+    Rcpp::traits::input_parameter< std::string >::type acid(acidSEXP);
+    rcpp_result_gen = Rcpp::wrap(genetic_codes_by_name(name, acid));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -571,7 +572,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_GCATR_genetic_codes_by_index", (DL_FUNC) &_GCATR_genetic_codes_by_index, 2},
     {"_GCATR_code_is_translatable", (DL_FUNC) &_GCATR_code_is_translatable, 2},
     {"_GCATR_cpp_genetic_codes_as_df_by_index", (DL_FUNC) &_GCATR_cpp_genetic_codes_as_df_by_index, 2},
-    {"_GCATR_genetic_codes_by_name", (DL_FUNC) &_GCATR_genetic_codes_by_name, 1},
+    {"_GCATR_genetic_codes_by_name", (DL_FUNC) &_GCATR_genetic_codes_by_name, 2},
     {"_GCATR_seq_get_tuple_count", (DL_FUNC) &_GCATR_seq_get_tuple_count, 2},
     {"_GCATR_seq_get_info", (DL_FUNC) &_GCATR_seq_get_info, 2},
     {"_GCATR_code_prepare_factor_gen_c3graph", (DL_FUNC) &_GCATR_code_prepare_factor_gen_c3graph, 2},

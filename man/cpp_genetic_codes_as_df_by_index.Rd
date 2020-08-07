@@ -9,7 +9,7 @@ cpp_genetic_codes_as_df_by_index(idx, acid = "RNA")
 \arguments{
 \item{idx}{the index of a Genetic Code table as int. (check \link{print_all_translation_table})}
 
-\item{a@param}{acid a String, is optional: DNA or RNA}
+\item{acid}{a String [optional]: The value must be DNA or RNA}
 }
 \value{
 Returns a named List with all codons and the translated amino acids:\cr

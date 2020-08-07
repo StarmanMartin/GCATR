@@ -9,7 +9,7 @@ code_is_translatable(code, tuple_length = -55555L)
 \arguments{
 \item{code}{is either a string vector or a string. It can either be a code or a sequence.}
 
-\item{tuple_length}{if code is a sequence, length is the tuple length of the code.}
+\item{tuple_length}{if code is a sequence, length is the tuple/word length of the code.}
 }
 \value{
 Boolean value. True if a fitting translation table exists.
