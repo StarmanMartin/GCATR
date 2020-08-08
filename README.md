@@ -19,58 +19,89 @@ devtools::install_github("StarmanMartin/GCATR")
 # Function outline
 
 <!--outline-start-->
-### [General Circular Codes](#general-circular-codes)
+### [General code tools](#general-circular-codes)
 
-[code_check_if_circular](#code_check_if_circular)<br>
-[code_check_if_k_circular](#code_check_if_k_circular)<br>
-[code_check_if_cn_circular](#code_check_if_cn_circular)<br>
-[code_check_if_comma_free](#code_check_if_comma_free)<br>
-[find_and_analysis_code_in_sequence](#find_and_analysis_code_in_sequence)<br>
-[generate_code_by_min_value](#generate_code_by_min_value)<br>
+[code_as_unique_vector](#code_as_unique_vector)<br>
+[code_as_vector](#code_as_vector)<br>
+[code_block_length](#code_block_length)<br>
+[code_transform_tuples](#code_transform_tuples)<br>
 [shift_tuples](#shift_tuples)<br>
 
-[code_transform_tuples](#code_transform_tuples)<br>
-[code_named_transform_tuples](#code_named_transform_tuples)<br>
+### [General circular code tools](#general-circular-codes)
+
+[generate_code_by_min_value](#generate_code_by_min_value)<br>
+
+[code_check_if_circular](#code_check_if_circular)<br>
+[code_check_if_cn_circular](#code_check_if_cn_circular)<br>
+[code_check_if_code](#code_check_if_code)<br>
+[code_check_if_comma_free](#code_check_if_comma_free)<br>
+[code_check_if_k_circular](#code_check_if_k_circular)<br>
+[code_k_value](#code_k_value)<br>
+
+[seq_get_tuple_count](#seq_get_tuple_count)<br>
+[seq_get_info](#seq_get_info)<br>
+[find_and_analysis_code_in_sequence](#find_and_analysis_code_in_sequence)<br>
 
 ### [Graph based functions](#graph-based-functions)
 
-[code_factor_graph](#code_factor_graph)<br>
 [code_factor_cycle](#code_factor_cycle)<br>
+[code_factor_graph](#code_factor_graph)<br>
 [code_factor_longest_path](#code_factor_longest_path)<br>
-[code_factor_c3graph](#code_factor_c3graph)<br>
 
 [code_get_one_cycles_as_vector](#code_get_one_cycles_as_vector)<br>
-[code_get_all_cycles_as_vector](#code_get_all_cycles_as_vector)<br>
 [code_get_one_longest_path_as_vector](#code_get_one_longest_path_as_vector)<br>
+[code_get_all_cycles_as_vector](#code_get_all_cycles_as_vector)<br>
 [code_get_all_longest_path_as_vector](#code_get_all_longest_path_as_vector)<br>
+[code_path_end_vertices_miner](#code_path_end_vertices_miner)<br>
 
-### [Genetic Circular Codes](#generic-circular-codes)
+### [Genetic circular codes tools](#generic-circular-codes)
 
-[code_check_if_self_complementary](#code_check_if_self_complementary)<br>
-[code_get_acid](#code_get_acid)<br>
-[get_dna_bases](#get_dna_bases)<br>
-[get_rna_bases](#get_rna_bases)<br>
-[get_rna_codon_table](#get_rna_codon_table)<br><!--accessory:[![Genetic Code Analysis Toolkit Logo](/man/resources/bio/gcat/codon_table.jpg?raw=true)]-->
-[get_rna_codon_list](#get_rna_codon_list)<br>
-
-[print_all_translation_tables](#print_all_translation_tables)<br>
+[genetic_codes_as_df_by_index](#genetic_codes_as_df_by_index)<br>
 [genetic_codes_by_index](#genetic_codes_by_index)<br>
 [genetic_codes_by_name](#genetic_codes_by_name)<br>
+[print_all_translation_tables](#print_all_translation_tables)<br>
 
-[get_average_conductance_of_codeidx](#get_average_conductance_of_codeidx)<br>
-[get_max_conductance_of_codeidx](#get_max_conductance_of_codeidx)<br>
-[get_min_conductance_of_codeidx](#get_min_conductance_of_codeidx)<br>
-[get_average_conductance_of_code](#get_average_conductance_of_code)<br>
-[get_max_conductance_of_code](#get_max_conductance_of_code)<br>
-[get_min_conductance_of_code](#get_min_conductance_of_code)<br>
+[code_strip_complements](#code_strip_complements)<br>
+[code_check_if_self_complementary](#code_check_if_self_complementary)<br>
+[code_get_acid](#code_get_acid)<br>
+[code_is_translatable](#code_is_translatable)<br>
+
+[code_get_all_amino_acids](#code_get_all_amino_acids)<br>
+[code_get_amino_acids](#code_get_amino_acids)<br>
+
+[code_named_transform_tuples](#code_named_transform_tuples)<br>
+
+[codons_to_tessera](#codons_to_tessera)<br>
+[code_check_if_tessera](#code_check_if_tessera)<br>
+
+[get_rna_bases](#get_rna_bases)<br>
+[get_rna_codon_list](#get_rna_codon_list)<br>
+[get_rna_codon_table](#get_rna_codon_table)<br><!--accessory:[![Genetic Code Analysis Toolkit Logo](/man/resources/bio/gcat/codon_table.jpg?raw=true)]-->
+
+[get_dna_bases](#get_dna_bases)<br>
+[get_dna_codon_list](#get_dna_codon_list)<br>
+[get_dna_codon_table](#get_dna_codon_table)<br>
 
 [code_pdf_report](#code_pdf_report)<br>
 
+
+### [Conductance](#conductance)
+
+[get_average_conductance_of_code](#get_average_conductance_of_code)<br>
+[get_average_conductance_of_codeidx](#get_average_conductance_of_codeidx)<br>
+[get_max_conductance_of_code](#get_max_conductance_of_code)<br>
+[get_max_conductance_of_codeidx](#get_max_conductance_of_codeidx)<br>
+[get_min_conductance_of_code](#get_min_conductance_of_code)<br>
+[get_min_conductance_of_codeidx](#get_min_conductance_of_codeidx)<br>
+
+
+
 ### [Binary Dichotomic Algorithm (BDA)](#binary_dichotomic_algorithm_(BDA))
 
-[start_bda](#start_bda)<br><!--accessory:[![Genetic Code Analysis Toolkit Logo](/man/resources/bio/gcat/codon_table.jpg?raw=true)]-->
+[BDATools](#BDATools)<br><!--accessory:[![Genetic Code Analysis Toolkit Logo](/man/resources/bio/gcat/codon_table.jpg?raw=true)]-->
+[start_bda](#start_bda)<<br>
 [code_start_bda](#code_start_bda)<br>
-[add_bda](#add_bda)<br><!--accessory:[![Genetic Code Analysis Toolkit Logo](/man/resources/bio/gcat/bda_diagramm.png?raw=true)]-->
+[add_rule](#add_rule)<br><!--accessory:[![Genetic Code Analysis Toolkit Logo](/man/resources/bio/gcat/bda_diagramm.png?raw=true)]-->
 [run_bda](#run_bda)<br>
 [run_bda_as_matrix](#run_bda_as_matrix)<br>
 

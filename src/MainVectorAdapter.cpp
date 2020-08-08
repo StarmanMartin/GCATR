@@ -84,28 +84,6 @@ StringVector code_as_unique_vector(StringVector code, int tuple_length = -55555)
     return RAdapterUtils::as_r_string_vector(a->get_tuples());
 }
 
-
-
-//' Returns tuple length.
-//' 
-//' Returns the tuple length of the code. If the code is a mixed code it returns the longest tuple length.
-//'
-//' @param code is either a string vector or a string. It can either be a code or a sequence.
-//' @param tuple_length if code is a sequence, length is the tuple length of the code.
-//' @return Number tuple length.
-//' @examples
-//' code_l <- code_tuple_length(c("ACG", "CAG"))
-//' code_l <- code_tuple_length("ACGCAG", 3)
-//' code_l <- code_tuple_length("ACG CAG")
-//'
-//' @export 
-// [[Rcpp::export]]
-int code_tuple_length(StringVector code, int tuple_length = -55555) {
-    auto code_vec = RAdapterUtils::as_cpp_string_vector(code);
-    auto a = RAdapterUtils::factorCodeWrapper(code_vec, tuple_length);
-    return a->get_word_length()[0];
-}
-
 //' Check if a set is a code.
 //'
 //' This function checks if a code is a code.\cr
@@ -336,7 +314,7 @@ StringVector code_get_acid(StringVector code, int tuple_length = -55555) {
 
 //' Gets all amino acids encoded by a code
 //' 
-//' Returns the amino acids encoded by a codes even duplicates. The code can contain only CYTOSINE (C), ADENINE (A), GUANINE (G)
+//' Returns the amino acids which are encoded by a codes. It returns a list of amino acids in the same order as the code. The code can contain only CYTOSINE (C), ADENINE (A), GUANINE (G)
 //' and THYMINE (T) or URACIL (U) bases. If no other translation table is selecte the function will use the 
 //' \emph{standard genetic code}. A different tranlastion table has to be added by index. Therefore, (see \link{print_all_translation_tables})\cr
 //' For more info on this subject read:\cr
@@ -365,7 +343,7 @@ StringVector code_get_all_amino_acids(StringVector code, int idx_trans_table = 1
 
 //' Get amino acids encoded by a code
 //' 
-//' Returns the amino acids encoded by a codes. The code can contain only CYTOSINE (C), ADENINE (A), GUANINE (G)
+//' Returns a set of all the amino acids which are encoded by the codes. The code can contain only CYTOSINE (C), ADENINE (A), GUANINE (G)
 //' and THYMINE (T) or URACIL (U) bases. If no other translation table is selecte the function will use the 
 //' \emph{standard genetic code}. A different tranlastion table has to be added by index. Therefore, (see \link{print_all_translation_tables})\cr
 //' For more info on this subject read:\cr
@@ -782,21 +760,19 @@ StringVector code_path_end_vertices_miner(StringVector code, int tuple_length = 
 //'
 //' This function gets the block length of a code. 
 //' 
-//' @param code is either a string vector or a string. It can either be a code or a sequence.
-//' @param tuple_length if code is a sequence, length is the tuple length of the code.
+//' @param code is either a string vector or a string. It has to be a set of words/blocks
 //'
 //' @return block length
 //'
 //' @examples
 //' block.length <- code_block_length(c("ACG", "GAT"))
-//' block.length <- code_block_length("ACGGAT", tuple_length=3)
 //' block.length <- code_block_length("ACG GAT")
 //' 
 //' @export
 // [[Rcpp::export]]
-int code_block_length(StringVector code, int tuple_length = -55555) {
+int code_block_length(StringVector code) {
     auto code_vec = RAdapterUtils::as_cpp_string_vector(code);
-    auto gc = RAdapterUtils::factorCodeWrapper(code_vec, tuple_length);
+    auto gc = RAdapterUtils::factorCodeWrapper(code_vec, -55555);
     
     return gc->get_word_length()[0];
 }

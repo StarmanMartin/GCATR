@@ -15,7 +15,7 @@ code_get_amino_acids(code, idx_trans_table = 1L)
 String vector. list of amino acids
 }
 \description{
-Returns the amino acids encoded by a codes. The code can contain only CYTOSINE (C), ADENINE (A), GUANINE (G)
+Returns a set of all the amino acids which are encoded by the codes. The code can contain only CYTOSINE (C), ADENINE (A), GUANINE (G)
 and THYMINE (T) or URACIL (U) bases. If no other translation table is selecte the function will use the 
 \emph{standard genetic code}. A different tranlastion table has to be added by index. Therefore, (see \link{print_all_translation_tables})\cr
 For more info on this subject read:\cr

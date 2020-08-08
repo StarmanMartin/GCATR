@@ -281,7 +281,6 @@ bool code_is_translatable(StringVector code, int tuple_length = -55555) {
 //' @examples
 //' (code <- genetic_codes_as_df_by_index(1))
 //'
-//' @export
 // [[Rcpp::export]]
 DataFrame cpp_genetic_codes_as_df_by_index(int idx, std::string acid="RNA") {
     auto code = gen_codes::CodonTranslTables::getInstance().getCodeByIndex(idx, RAdapterUtils::string_to_acid(acid));
@@ -349,7 +348,7 @@ List genetic_codes_by_name(std::string name, std::string acid="RNA") {
 //' @param a character string a sequence of letters and/or numbers
 //' @param tuple_length a number, the length of the block or tuple used 
 //' 
-//' @example
+//' @examples
 //' res <- seq_get_tuple_count("ACGCGAACG", 3)
 //' 
 //' @export
@@ -369,12 +368,11 @@ std::map<std::string, int> seq_get_tuple_count(std::string seq, int tuple_length
 //' \emph{alphabet} (String) All letters and symbols used.\cr
 //' \emph{number_of_tuple} (Number) The number of all words/tuples used.\cr
 //' \emph{tuple_count} (Key value map) Key value map of the words in the sequence.\cr
-
 //' 
 //' @param a character string a sequence of letters and/or numbers
 //' @param tuple_length a number, the length of the block or tuple used 
 //' 
-//' @example
+//' @examples
 //' res <- seq_get_info("ACGCGAACG", 3)
 //' 
 //' @export

@@ -4,12 +4,10 @@
 \alias{code_block_length}
 \title{Block length}
 \usage{
-code_block_length(code, tuple_length = -55555L)
+code_block_length(code)
 }
 \arguments{
-\item{code}{is either a string vector or a string. It can either be a code or a sequence.}
-
-\item{tuple_length}{if code is a sequence, length is the tuple length of the code.}
+\item{code}{is either a string vector or a string. It has to be a set of words/blocks}
 }
 \value{
 block length
@@ -19,7 +17,6 @@ This function gets the block length of a code.
 }
 \examples{
 block.length <- code_block_length(c("ACG", "GAT"))
-block.length <- code_block_length("ACGGAT", tuple_length=3)
 block.length <- code_block_length("ACG GAT")
 
 }

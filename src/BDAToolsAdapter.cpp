@@ -7,7 +7,6 @@
 using namespace BDA;
 using namespace Rcpp;
 
-class BdaRObj;
 RCPP_EXPOSED_CLASS(BDA::BDATools);
 
 
