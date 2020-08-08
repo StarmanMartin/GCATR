@@ -116,11 +116,13 @@ private:
             } else if (code_type == CODE_TPYE_TESSERA) {
                 return tessera_code;
             }
-        } else if (code_type & CODE_TPYE_CODON) {
+        }
+
+        if (code_type & CODE_TPYE_CODON) {
             auto std_code = std::make_shared<StdGenCode>(code);
             if (std_code->test_code()) {
                 return std_code;
-            } else if (0 == (code_type & CODE_TPYE_GEN)) {
+            } else if (0 == (code_type == CODE_TPYE_CODON)) {
                 return std_code;
             }
         }

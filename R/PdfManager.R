@@ -4,7 +4,7 @@
 #' into the new dir. Afterwords it executes knitr with parameters based on the your input. All the generated files are in the new dir.
 #' 
 #' @param code is either a string vector or a string. It can either be a code or a sequence.
-#' @param length if code is a sequence, length is the tuple length of the code.
+#' @param tuple_length if code is a sequence, length is the tuple length of the code.
 #' 
 #' @examples
 #' code_pdf_report(c("ACG", "CAG"))
@@ -30,7 +30,7 @@ code_pdf_report <- function(code, tuple_length = -55555) {
   dir.create(dirname)
   setwd(dirname)
   
-  template_file <- system.file("data", "GCATR_Report.Rnw", package = "GCATR")
+  template_file <- system.file("inst/extdata/data", "GCATR_Report.Rnw", package = "GCATR")
   
   file.copy(template_file , "GCATR_Report.Rnw")
   

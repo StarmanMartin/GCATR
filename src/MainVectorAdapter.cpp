@@ -84,28 +84,6 @@ StringVector code_as_unique_vector(StringVector code, int tuple_length = -55555)
     return RAdapterUtils::as_r_string_vector(a->get_tuples());
 }
 
-
-
-//' Returns tuple length.
-//' 
-//' Returns the tuple length of the code. If the code is a mixed code it returns the longest tuple length.
-//'
-//' @param code is either a string vector or a string. It can either be a code or a sequence.
-//' @param tuple_length if code is a sequence, length is the tuple length of the code.
-//' @return Number tuple length.
-//' @examples
-//' code_l <- code_tuple_length(c("ACG", "CAG"))
-//' code_l <- code_tuple_length("ACGCAG", 3)
-//' code_l <- code_tuple_length("ACG CAG")
-//'
-//' @export 
-// [[Rcpp::export]]
-int code_tuple_length(StringVector code, int tuple_length = -55555) {
-    auto code_vec = RAdapterUtils::as_cpp_string_vector(code);
-    auto a = RAdapterUtils::factorCodeWrapper(code_vec, tuple_length);
-    return a->get_word_length()[0];
-}
-
 //' Check if a set is a code.
 //'
 //' This function checks if a code is a code.\cr
@@ -181,10 +159,11 @@ bool code_check_if_k_circular(int k, StringVector code, int tuple_length = -5555
 //' \link{http://dpt-info.u-strasbg.fr/~c.michel/Circular_Codes.pdf},\cr
 //' \emph{2007 Christian MICHEL. CIRCULAR CODES IN GENES}
 //'
-//' @param k is is integer. k refers to the k-circular property.
 //' @param code is either a string vector or a string. It can either be a code or a sequence.
 //' @param tuple_length if code is a sequence, length is the tuple length of the code.
+//' 
 //' @return k value of a k-circular code.
+//' 
 //' @examples
 //' code_k_value(c("ACG", "CAG"))
 //' code_k_value("ACGCAG", 3)
@@ -241,7 +220,9 @@ bool code_check_if_cn_circular(StringVector code, int tuple_length = -55555) {
 //'
 //' @param code is either a string vector or a string. It can either be a code or a sequence.
 //' @param tuple_length if code is a sequence, length is the tuple length of the code.
+//' 
 //' @return Boolean value. True if the code is comma free.
+//' 
 //' @examples
 //' code_check_if_comma_free(c("ACG", "CAG"))
 //' code_check_if_comma_free("ACGCAG", 3)
@@ -255,7 +236,15 @@ bool code_check_if_comma_free(StringVector code,int tuple_length = -55555) {
     return a->is_comma_free();
 }
 
-
+//' Code strip complements
+//' 
+//' This function removes one codon of each codon anti-codon pair. (see  \link{code_check_if_self_complementary}) 
+//' 
+//' @param code is either a string vector or a string. It has to be a RNA/DNA - code or a sequence.
+//' @param tuple_length if code is a sequence, length is the tuple length of the code.
+//' 
+//' @return a string the code reduced to a strongly comma-free code
+//' 
 //' @export
 // [[Rcpp::export]]
 StringVector code_strip_complements(StringVector code,int tuple_length = -55555) {
@@ -279,7 +268,9 @@ StringVector code_strip_complements(StringVector code,int tuple_length = -55555)
 //' @param code is either a string vector or a string. It has to be a RNA/DNA - code or a sequence.
 //' @param tuple_length if code is a sequence, length is the tuple length of the code.
 //' @param mute set false to get console output information about not self-complementary tuples.
+//' 
 //' @return Boolean value. True if the code is self-complementary.
+//' 
 //' @examples
 //' code_check_if_self_complementary(c("ACG", "CAG"))
 //' code_check_if_self_complementary("ACGCAG", 3)
@@ -323,7 +314,7 @@ StringVector code_get_acid(StringVector code, int tuple_length = -55555) {
 
 //' Gets all amino acids encoded by a code
 //' 
-//' Returns the amino acids encoded by a codes even duplicates. The code can contain only CYTOSINE (C), ADENINE (A), GUANINE (G)
+//' Returns the amino acids which are encoded by a codes. It returns a list of amino acids in the same order as the code. The code can contain only CYTOSINE (C), ADENINE (A), GUANINE (G)
 //' and THYMINE (T) or URACIL (U) bases. If no other translation table is selecte the function will use the 
 //' \emph{standard genetic code}. A different tranlastion table has to be added by index. Therefore, (see \link{print_all_translation_tables})\cr
 //' For more info on this subject read:\cr
@@ -332,8 +323,10 @@ StringVector code_get_acid(StringVector code, int tuple_length = -55555) {
 //' \emph{2007 Christian MICHEL. CIRCULAR CODES IN GENES}
 //'
 //' @param code is either a string vector or a string. It should be a RNA/DNA - code or a sequence.
-//' @param idx the index of a Genetic Code table as int. (check \link{print_all_translation_table})
+//' @param idx_trans_table the index of a Genetic Code translation table as int. (see \link{print_all_translation_table})
+//' 
 //' @return String vector. list of amino acids
+//' 
 //' @examples
 //' code_get_all_amino_acids(c("ACG", "CAG"), idx_trans_table=2)
 //' code_get_all_amino_acids("ACGCAG", idx_trans_table=2)
@@ -350,7 +343,7 @@ StringVector code_get_all_amino_acids(StringVector code, int idx_trans_table = 1
 
 //' Get amino acids encoded by a code
 //' 
-//' Returns the amino acids encoded by a codes. The code can contain only CYTOSINE (C), ADENINE (A), GUANINE (G)
+//' Returns a set of all the amino acids which are encoded by the codes. The code can contain only CYTOSINE (C), ADENINE (A), GUANINE (G)
 //' and THYMINE (T) or URACIL (U) bases. If no other translation table is selecte the function will use the 
 //' \emph{standard genetic code}. A different tranlastion table has to be added by index. Therefore, (see \link{print_all_translation_tables})\cr
 //' For more info on this subject read:\cr
@@ -359,8 +352,10 @@ StringVector code_get_all_amino_acids(StringVector code, int idx_trans_table = 1
 //' \emph{2007 Christian MICHEL. CIRCULAR CODES IN GENES}
 //'
 //' @param code is either a string vector or a string. It should be a RNA/DNA - code or a sequence.
-//' @param idx the index of a Genetic Code table as int. (check \link{print_all_translation_table})
+//' @param idx_trans_table the index of a Genetic Code table as int. (check \link{print_all_translation_table})
+//' 
 //' @return String vector. list of amino acids
+//' 
 //' @examples
 //' code_get_amino_acids(c("ACG", "CAG"), idx_trans_table=2)
 //' code_get_amino_acids("ACGCAG", idx_trans_table=2)
@@ -549,8 +544,9 @@ Rcpp::StringVector get_rna_bases() {
 //' \emph{parts} (String vector) the sequence separated in matching and non matching parts. Odd indexes are matching, even indexes are not matching.\cr
 //' \emph{longest_match} (Number) the longest connected matching sequence.\cr
 //' \emph{total_match_in_percent} (Number) the percentage of the matching parts.\cr
-//' \emph{circularPermutations} (Number vector) list the circular permutation of each word in the siquence which is in the code. 0-> if no circular permution is in the code; 1-> if the word is in the code; 2-> if the 1st circular permutation of the word is in the code; 3->...; 
-//'
+//' \emph{circularPermutations} (Number vector) list the circular per
+//' 
+//' @param seq a character string a sequence of letters and/or numbers
 //' @param code is either a string vector or a string. It can either be a code or a sequence.
 //' @param tuple_length if code is a sequence, length is the tuple length of the code.
 //'
@@ -764,21 +760,19 @@ StringVector code_path_end_vertices_miner(StringVector code, int tuple_length = 
 //'
 //' This function gets the block length of a code. 
 //' 
-//' @param code is either a string vector or a string. It can either be a code or a sequence.
-//' @param tuple_length if code is a sequence, length is the tuple length of the code.
+//' @param code is either a string vector or a string. It has to be a set of words/blocks
 //'
 //' @return block length
 //'
 //' @examples
 //' block.length <- code_block_length(c("ACG", "GAT"))
-//' block.length <- code_block_length("ACGGAT", tuple_length=3)
 //' block.length <- code_block_length("ACG GAT")
 //' 
 //' @export
 // [[Rcpp::export]]
-int code_block_length(StringVector code, int tuple_length = -55555) {
+int code_block_length(StringVector code) {
     auto code_vec = RAdapterUtils::as_cpp_string_vector(code);
-    auto gc = RAdapterUtils::factorCodeWrapper(code_vec, tuple_length);
+    auto gc = RAdapterUtils::factorCodeWrapper(code_vec, -55555);
     
     return gc->get_word_length()[0];
 }

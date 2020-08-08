@@ -62,15 +62,29 @@ TEST(ACIDTest, AcidTranslation) {
 }
 
 TEST(ACIDTest, AcidTranslationSet) {
-    std::string seq = "CUAUCUUCCUCAUGA";
-    StdGenCode a(seq, 3);
-    auto acids = a.get_a_set_amino_acids();
-    std::stringstream ss;
-    for(const auto &c : acids) {
-        ss << c;
+    {
+        std::vector<std::string>  code_vec = {"CUAUCUUCCUCAUGA"};
+        auto a = CodeFactory::rFactorTypesCodonCode(code_vec);
+        a->setTranslTableByIdx(1);
+        auto acids = a->get_a_set_amino_acids();
+        std::stringstream ss;
+        for (const auto &c : acids) {
+            ss << c;
+        }
+        EXPECT_EQ(ss.str(), "LeuSerStop");
+        EXPECT_TRUE(a->is_translatable());
+
+        acids = a->get_amino_acids();
+        ss.clear();
+        ss.str("");
+        for(const auto &cd : acids) {
+            ss << cd;
+        }
+
+        EXPECT_EQ(ss.str(), "LeuSerSerSerStop");
     }
 
-    EXPECT_EQ(ss.str(), "LeuSerStop");
+
     std::vector<std::string> code_gen_vec({"ACG CG"});
     std::vector<std::string> code_vec({"110 101 100"});
 
@@ -79,14 +93,6 @@ TEST(ACIDTest, AcidTranslationSet) {
 
     EXPECT_FALSE(b->is_translatable());
     EXPECT_FALSE(c->is_translatable());
-    EXPECT_TRUE(a.is_translatable());
 
-    acids = a.get_amino_acids();
-    ss.clear();
-    ss.str("");
-    for(const auto &cd : acids) {
-        ss << cd;
-    }
 
-    EXPECT_EQ(ss.str(), "LeuSerSerSerStop");
 }

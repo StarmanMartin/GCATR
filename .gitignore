@@ -22,3 +22,9 @@ src/GCATCPP/unit_tests/asserts/*.csv
 data/GCATR_tikzgraph.tex
 
 GCATR_tikzgraph/GCATR_tikzgraph
+
+inst/tools/RDocToReadme/__pycache__/
+
+inst/tools/RDocToReadme/venv/
+
+inst/tools/RDocToReadme/RDocToReadme.iml

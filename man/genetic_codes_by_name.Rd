@@ -4,10 +4,12 @@
 \alias{genetic_codes_by_name}
 \title{The Genetic Codes}
 \usage{
-genetic_codes_by_name(name)
+genetic_codes_by_name(name, acid = "RNA")
 }
 \arguments{
 \item{name}{the name of a Genetic Code as string. (check \link{print_all_translation_table})}
+
+\item{acid}{a String [optional]: The value must be DNA or RNA}
 }
 \value{
 Returns a named List with all codons and the translated amino acids:\cr

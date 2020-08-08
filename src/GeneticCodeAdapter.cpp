@@ -15,7 +15,7 @@ using namespace Rcpp;
 //' codons translating the same amino acid but differ in more then one position.
 //'
 //' @param codeName a String, the name of the genetic translation table. (see \link{print_all_translation_tables})
-//' @param acid a String, is optional: DNA or RNA
+//' @param acid a String [optional]: The value must be DNA or RNA
 //'
 //' @return A Number, the average conductance of a genetic translation table
 //'
@@ -39,7 +39,7 @@ double get_average_conductance_of_code(std::string codeName, std::string acid="D
 //' codons translating the same amino acid but differ in more then one position.
 //'
 //' @param codeName a String, the name of the genetic translation table. (see \link{print_all_translation_tables})
-//' @param acid a String, is optional: DNA or RNA
+//' @param acid a String [optional]: The value must be DNA or RNA
 //'
 //' @return A Number, the max conductance of a genetic translation table
 //'
@@ -63,7 +63,7 @@ double get_max_conductance_of_code(std::string codeName, std::string acid="DNA")
 //' codons translating the same amino acid but differ in more then one position.
 //'
 //' @param codeName a String, the name of the genetic translation table. (see \link{print_all_translation_tables})
-//' @param acid a String, is optional: DNA or RNA
+//' @param acid a String [optional]: The value must be DNA or RNA
 //'
 //' @return A Number, the min conductance of a genetic translation table
 //'
@@ -88,7 +88,7 @@ double get_min_conductance_of_code(std::string codeName, std::string acid="DNA")
 //' codons translating the same amino acid but differ in more then one position.
 //'
 //' @param codeIdx a Number, the index of the genetic translation table. (see \link{print_all_translation_tables})
-//' @param acid a String, is optional: DNA or RNA
+//' @param acid a String [optional]: The value must be DNA or RNA
 //'
 //' @return A Number, the average conductance of a genetic translation table
 //'
@@ -112,7 +112,7 @@ double get_average_conductance_of_codeidx(int codeIdx, std::string acid="DNA") {
 //' codons translating the same amino acid but differ in more then one position.
 //'
 //' @param codeIdx a Number, the index of the genetic translation table. (see \link{print_all_translation_tables})
-//' @param acid a String, is optional: DNA or RNA
+//' @param acid a String [optional]: The value must be DNA or RNA
 //'
 //' @return A Number, the max conductance of a genetic translation table
 //'
@@ -136,7 +136,7 @@ double get_max_conductance_of_codeidx(int codeIdx, std::string acid="DNA") {
 //' codons translating the same amino acid but differ in more then one position.
 //'
 //' @param codeIdx a Number, the index of the genetic translation table. (see \link{print_all_translation_tables})
-//' @param acid a String, is optional: DNA or RNA
+//' @param acid a String [optional]: The value must be DNA or RNA
 //'
 //' @return A Number, the min conductance of a genetic translation table
 //'
@@ -210,7 +210,7 @@ void print_all_translation_tables() {
 //' \emph{amino_acids} the translated aminop acids in same order.\cr
 //'
 //' @param idx the index of a Genetic Code table as int. (check \link{print_all_translation_table})
-//' @param a@param acid a String, is optional: DNA or RNA
+//' @param acid a String [optional]: The value must be DNA or RNA
 //'
 //' @return Returns a named List with all codons and the translated amino acids:\cr
 //' @examples
@@ -246,8 +246,10 @@ List genetic_codes_by_index(int idx, std::string acid="DNA") {
 //' \emph{2007 Christian MICHEL. CIRCULAR CODES IN GENES}
 //'
 //' @param code is either a string vector or a string. It can either be a code or a sequence.
-//' @param tuple_length if code is a sequence, length is the tuple length of the code.
+//' @param tuple_length if code is a sequence, length is the tuple/word length of the code.
+//' 
 //' @return Boolean value. True if a fitting translation table exists.
+//' 
 //' @examples
 //' code_is_translatable(c("ACG", "CAG"))
 //' code_is_translatable("ACGCAG", 3)
@@ -273,13 +275,12 @@ bool code_is_translatable(StringVector code, int tuple_length = -55555) {
 //' \emph{amino_acids} the translated aminop acids in same order.\cr
 //'
 //' @param idx the index of a Genetic Code table as int. (check \link{print_all_translation_table})
-//' @param a@param acid a String, is optional: DNA or RNA
+//' @param acid a String [optional]: The value must be DNA or RNA
 //'
 //' @return Returns a named List with all codons and the translated amino acids:\cr
 //' @examples
 //' (code <- genetic_codes_as_df_by_index(1))
 //'
-//' @export
 // [[Rcpp::export]]
 DataFrame cpp_genetic_codes_as_df_by_index(int idx, std::string acid="RNA") {
     auto code = gen_codes::CodonTranslTables::getInstance().getCodeByIndex(idx, RAdapterUtils::string_to_acid(acid));
@@ -323,22 +324,32 @@ DataFrame cpp_genetic_codes_as_df_by_index(int idx, std::string acid="RNA") {
 //' \emph{amino_acids} the translated aminop acids in same order.\cr
 //'
 //' @param name the name of a Genetic Code as string. (check \link{print_all_translation_table})
-//'
+//' @param acid a String [optional]: The value must be DNA or RNA
+//' 
 //' @return Returns a named List with all codons and the translated amino acids:\cr
+//' 
 //' @examples
 //' (code <- genetic_codes_by_name("The Yeast Mitochondrial Code"))
 //'
 //' @export
 // [[Rcpp::export]]
-List genetic_codes_by_name(std::string name) {
+List genetic_codes_by_name(std::string name, std::string acid="RNA") {
     auto idx = gen_codes::CodonTranslTables::getInstance().getIdxByName(name);
-    return genetic_codes_by_index(idx);
+    return genetic_codes_by_index(idx, acid);
 }
 
 
-//' Sequence analyzer
+//' Sequence, Code analyzer
 //' 
+//' Returns a table with all words in a sequence. For each word, the table shows how often the word appears in the sequence.
 //' 
+//' @return Key value map of the words in the sequence
+//' 
+//' @param a character string a sequence of letters and/or numbers
+//' @param tuple_length a number, the length of the block or tuple used 
+//' 
+//' @examples
+//' res <- seq_get_tuple_count("ACGCGAACG", 3)
 //' 
 //' @export
 // [[Rcpp::export]]
@@ -349,6 +360,21 @@ std::map<std::string, int> seq_get_tuple_count(std::string seq, int tuple_length
 
 
 
+//' Sequence, Code analyzer
+//' 
+//' Returns a table with all words in a sequence. For each word, the table shows how often the word appears in the sequence.
+//' 
+//' @return A named list with the listed values:\cr
+//' \emph{alphabet} (String) All letters and symbols used.\cr
+//' \emph{number_of_tuple} (Number) The number of all words/tuples used.\cr
+//' \emph{tuple_count} (Key value map) Key value map of the words in the sequence.\cr
+//' 
+//' @param a character string a sequence of letters and/or numbers
+//' @param tuple_length a number, the length of the block or tuple used 
+//' 
+//' @examples
+//' res <- seq_get_info("ACGCGAACG", 3)
+//' 
 //' @export
 // [[Rcpp::export]]
 List seq_get_info(std::string seq, int tuple_length=3) {

@@ -10,8 +10,6 @@ code_k_value(code, tuple_length = -55555L)
 \item{code}{is either a string vector or a string. It can either be a code or a sequence.}
 
 \item{tuple_length}{if code is a sequence, length is the tuple length of the code.}
-
-\item{k}{is is integer. k refers to the k-circular property.}
 }
 \value{
 k value of a k-circular code.

@@ -123,13 +123,14 @@ BEGIN_RCPP
 END_RCPP
 }
 // genetic_codes_by_name
-List genetic_codes_by_name(std::string name);
-RcppExport SEXP _GCATR_genetic_codes_by_name(SEXP nameSEXP) {
+List genetic_codes_by_name(std::string name, std::string acid);
+RcppExport SEXP _GCATR_genetic_codes_by_name(SEXP nameSEXP, SEXP acidSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< std::string >::type name(nameSEXP);
-    rcpp_result_gen = Rcpp::wrap(genetic_codes_by_name(name));
+    Rcpp::traits::input_parameter< std::string >::type acid(acidSEXP);
+    rcpp_result_gen = Rcpp::wrap(genetic_codes_by_name(name, acid));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -240,18 +241,6 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< StringVector >::type code(codeSEXP);
     Rcpp::traits::input_parameter< int >::type tuple_length(tuple_lengthSEXP);
     rcpp_result_gen = Rcpp::wrap(code_as_unique_vector(code, tuple_length));
-    return rcpp_result_gen;
-END_RCPP
-}
-// code_tuple_length
-int code_tuple_length(StringVector code, int tuple_length);
-RcppExport SEXP _GCATR_code_tuple_length(SEXP codeSEXP, SEXP tuple_lengthSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< StringVector >::type code(codeSEXP);
-    Rcpp::traits::input_parameter< int >::type tuple_length(tuple_lengthSEXP);
-    rcpp_result_gen = Rcpp::wrap(code_tuple_length(code, tuple_length));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -546,14 +535,13 @@ BEGIN_RCPP
 END_RCPP
 }
 // code_block_length
-int code_block_length(StringVector code, int tuple_length);
-RcppExport SEXP _GCATR_code_block_length(SEXP codeSEXP, SEXP tuple_lengthSEXP) {
+int code_block_length(StringVector code);
+RcppExport SEXP _GCATR_code_block_length(SEXP codeSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< StringVector >::type code(codeSEXP);
-    Rcpp::traits::input_parameter< int >::type tuple_length(tuple_lengthSEXP);
-    rcpp_result_gen = Rcpp::wrap(code_block_length(code, tuple_length));
+    rcpp_result_gen = Rcpp::wrap(code_block_length(code));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -571,7 +559,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_GCATR_genetic_codes_by_index", (DL_FUNC) &_GCATR_genetic_codes_by_index, 2},
     {"_GCATR_code_is_translatable", (DL_FUNC) &_GCATR_code_is_translatable, 2},
     {"_GCATR_cpp_genetic_codes_as_df_by_index", (DL_FUNC) &_GCATR_cpp_genetic_codes_as_df_by_index, 2},
-    {"_GCATR_genetic_codes_by_name", (DL_FUNC) &_GCATR_genetic_codes_by_name, 1},
+    {"_GCATR_genetic_codes_by_name", (DL_FUNC) &_GCATR_genetic_codes_by_name, 2},
     {"_GCATR_seq_get_tuple_count", (DL_FUNC) &_GCATR_seq_get_tuple_count, 2},
     {"_GCATR_seq_get_info", (DL_FUNC) &_GCATR_seq_get_info, 2},
     {"_GCATR_code_prepare_factor_gen_c3graph", (DL_FUNC) &_GCATR_code_prepare_factor_gen_c3graph, 2},
@@ -581,7 +569,6 @@ static const R_CallMethodDef CallEntries[] = {
     {"_GCATR_code_check_if_circular", (DL_FUNC) &_GCATR_code_check_if_circular, 2},
     {"_GCATR_code_as_vector", (DL_FUNC) &_GCATR_code_as_vector, 2},
     {"_GCATR_code_as_unique_vector", (DL_FUNC) &_GCATR_code_as_unique_vector, 2},
-    {"_GCATR_code_tuple_length", (DL_FUNC) &_GCATR_code_tuple_length, 2},
     {"_GCATR_code_check_if_code", (DL_FUNC) &_GCATR_code_check_if_code, 2},
     {"_GCATR_code_check_if_k_circular", (DL_FUNC) &_GCATR_code_check_if_k_circular, 3},
     {"_GCATR_code_k_value", (DL_FUNC) &_GCATR_code_k_value, 2},
@@ -606,7 +593,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_GCATR_code_check_if_tessera", (DL_FUNC) &_GCATR_code_check_if_tessera, 1},
     {"_GCATR_codons_to_tessera", (DL_FUNC) &_GCATR_codons_to_tessera, 1},
     {"_GCATR_code_path_end_vertices_miner", (DL_FUNC) &_GCATR_code_path_end_vertices_miner, 2},
-    {"_GCATR_code_block_length", (DL_FUNC) &_GCATR_code_block_length, 2},
+    {"_GCATR_code_block_length", (DL_FUNC) &_GCATR_code_block_length, 1},
     {"_rcpp_module_boot_BDATools", (DL_FUNC) &_rcpp_module_boot_BDATools, 0},
     {NULL, NULL, 0}
 };
