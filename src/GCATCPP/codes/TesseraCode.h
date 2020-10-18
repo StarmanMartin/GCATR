@@ -11,6 +11,7 @@
 
 #include "AbstractGenCode.h"
 #include "../modification/TransformTuples.h"
+#include "StdGenCode.h"
 
 class TesseraCode : public AbstractGenCode{
 
@@ -23,7 +24,9 @@ public:
 
     bool test_code() override;
 
-    static std::shared_ptr<TesseraCode> tesseraCodeFromCodons(std::shared_ptr<AbstractGenCode> code);
+    static std::shared_ptr<TesseraCode> tesseraCodeFromCodons(const std::shared_ptr<AbstractGenCode>& code);
+
+    static std::shared_ptr<AbstractGenCode> codonsCodesFromTessera(const std::shared_ptr<TesseraCode>& sharedPtr);
 
 protected:
     std::string tessera_transformation_names[TESSERA_TRANSFORMATIONS] = {SW, YR, I, KM};

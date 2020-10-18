@@ -728,6 +728,29 @@ StringVector codons_to_tessera(StringVector code) {
 
 
 
+//' Codons from Tessera
+//'
+//' This function uses a transformation to map all tessera to a codon. This transformation was published by Gonzalez, Giannerini and Rosa. 
+//' 
+//' @param code is either a  tessera string vector or a string. It can either be a code or a sequence.
+//'
+//' @return the argument code transfomed to a set of codons  
+//'
+//' @examples
+//' codons <- codons_to_tessera(c("ACGT", "GATC"))
+//' codons <- codons_to_tessera("ACGTGATC")
+//' codons <- codons_to_tessera("ACGT GATC")
+//' 
+//' @export
+// [[Rcpp::export]]
+StringVector tessera_to_codons(StringVector code) {
+    auto code_vec = RAdapterUtils::as_cpp_string_vector(code);
+    auto gc = CodeFactory::rFactorTypesCodonsCodeFromTessera(code_vec);
+    return RAdapterUtils::as_r_string_vector(gc->get_tuples());;
+}
+
+
+
 //' Pathend vertices miner
 //'
 //' This function finds all vertices which have no outgoing edges in the associated graph. 

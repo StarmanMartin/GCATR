@@ -991,6 +991,24 @@ codons_to_tessera <- function(code) {
     .Call('_GCATR_codons_to_tessera', PACKAGE = 'GCATR', code)
 }
 
+#' Codons from Tessera
+#'
+#' This function uses a transformation to map all tessera to a codon. This transformation was published by Gonzalez, Giannerini and Rosa. 
+#' 
+#' @param code is either a  tessera string vector or a string. It can either be a code or a sequence.
+#'
+#' @return the argument code transfomed to a set of codons  
+#'
+#' @examples
+#' codons <- codons_to_tessera(c("ACGT", "GATC"))
+#' codons <- codons_to_tessera("ACGTGATC")
+#' codons <- codons_to_tessera("ACGT GATC")
+#' 
+#' @export
+tessera_to_codons <- function(code) {
+    .Call('_GCATR_tessera_to_codons', PACKAGE = 'GCATR', code)
+}
+
 #' Pathend vertices miner
 #'
 #' This function finds all vertices which have no outgoing edges in the associated graph. 

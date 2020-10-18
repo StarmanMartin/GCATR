@@ -202,3 +202,23 @@ bool operator<(const TransformTuples &c1, const TransformTuples &c2) {
 bool operator<=(const TransformTuples &c1, const TransformTuples &c2) {
     return c1.compare_to(c2, COMPARE_LE);
 }
+
+std::string TransformTuples::getTransformationName(acid::acids acid) {
+    for(const auto* tsName : TransformationNameList) {
+        TransformTuples ts(tsName, acid);
+        if(this->compare_to(ts, COMPARE_LE)) {
+            return tsName;
+        }
+    }
+    return std::string();
+}
+
+std::string TransformTuples::getKleinFourTransformationName(acid::acids acid) {
+    for(const auto* tsName : KleinFourTransformationNameList) {
+        TransformTuples ts(tsName, acid);
+        if(this->compare_to(ts, COMPARE_LE)) {
+            return tsName;
+        }
+    }
+    return std::string();
+}
