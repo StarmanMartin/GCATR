@@ -18,6 +18,9 @@
 #define AGTC "AGTC"
 #define I "Id"
 
+#define TransformationNameList {SW,YR,KM,AT,CG,ACTG,AGTC,I}
+#define KleinFourTransformationNameList {SW,YR,KM,I}
+
 #define COMPARE_E 0b001u
 #define COMPARE_LE 0b011u
 #define COMPARE_L 0b010u
@@ -34,6 +37,8 @@ public:
     std::vector<std::string> modify(AbstractCode *code) override;
 
     std::string modify_word(std::string word) override;
+    std::string getTransformationName(acid::acids acid);
+    std::string getKleinFourTransformationName(acid::acids acid);
 
     friend bool operator== (const TransformTuples &c1, const TransformTuples &c2);
     friend bool operator!= (const TransformTuples &c1, const TransformTuples &c2);

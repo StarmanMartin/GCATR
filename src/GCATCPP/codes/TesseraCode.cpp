@@ -35,7 +35,7 @@ bool TesseraCode::test_code() {
     return (this->is_ok = true);
 }
 
-std::shared_ptr<TesseraCode> TesseraCode::tesseraCodeFromCodons(std::shared_ptr<AbstractGenCode> codons) {
+std::shared_ptr<TesseraCode> TesseraCode::tesseraCodeFromCodons(const std::shared_ptr<AbstractGenCode>& codons) {
     if (codons->test_code() && codons->get_word_length()[0] != 3) {
         throw std::invalid_argument("Codons are not correct.");
     }
@@ -63,4 +63,35 @@ std::shared_ptr<TesseraCode> TesseraCode::tesseraCodeFromCodons(std::shared_ptr<
         words.push_back(ss.str());
     }
     return std::make_shared<TesseraCode>(words);
+}
+
+std::shared_ptr<AbstractGenCode> TesseraCode::codonsCodesFromTessera(const std::shared_ptr<TesseraCode>& tessCode) {
+    if (tessCode->test_code() && tessCode->get_word_length()[0] != 4) {
+        throw std::invalid_argument("Tesserae are not correct.");
+    }
+
+    std::map<std::string, std::string> mapping;
+    mapping[I] = "A";
+    mapping[SW] = "U";
+    mapping[SW] = "T";
+    mapping[KM] = "C";
+    mapping[YR] = "G";
+
+    std::vector<std::string> words;
+
+    for (const auto &c: tessCode->as_unsorted_vector()) {
+        auto t1 = TransformTuples::find_transformation_from_sequences(c.substr(0, 1), c.substr(1, 1));
+        auto t1Name = t1.getKleinFourTransformationName(tessCode->get_acid());
+
+
+        auto t2 = TransformTuples::find_transformation_from_sequences(c.substr(1, 1), c.substr(2, 1));
+        auto t2Name = t2.getKleinFourTransformationName(tessCode->get_acid());
+
+        std::stringstream ss;
+
+        ss << mapping[t1Name] <<  mapping[t2Name] << c.substr(3, 1);
+
+        words.push_back(ss.str());
+    }
+    return std::make_shared<AbstractGenCode>(words);
 }

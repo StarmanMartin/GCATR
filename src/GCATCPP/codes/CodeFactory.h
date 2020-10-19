@@ -49,6 +49,11 @@ public:
         return TesseraCode::tesseraCodeFromCodons(codons);
     }
 
+    static std::shared_ptr<AbstractGenCode> rFactorTypesCodonsCodeFromTessera(const std::vector<std::string> &code) {
+        auto tessera_code = std::make_shared<TesseraCode>(code);
+        return TesseraCode::codonsCodesFromTessera(tessera_code);
+    }
+
     static std::shared_ptr<AbstractCode> rFactor(std::vector<std::string> &code) {
         if (code.size() == 1) {
             return CodeFactory::factor(code.at(0));

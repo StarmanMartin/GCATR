@@ -37,3 +37,13 @@ TEST(TESSERA_TEST, FACTORY_TESSEREA_FROM_CODONS) {
     auto a = t->as_unsorted_vector();
     EXPECT_TRUE(t->test_code());
 }
+
+
+
+TEST(TESSERA_TEST, FACTORY_CODONS_FROM_TESSEREA) {
+    std::vector<std::string> code_vec = {"AAUU", "ACCA"};
+    auto t = CodeFactory::rFactorTypesCodonsCodeFromTessera(code_vec);
+    auto a = t->as_unsorted_vector();
+
+    EXPECT_TRUE(t->test_code());
+}
