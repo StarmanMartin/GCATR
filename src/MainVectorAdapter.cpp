@@ -737,9 +737,8 @@ StringVector codons_to_tessera(StringVector code) {
 //' @return the argument code transfomed to a set of codons  
 //'
 //' @examples
-//' codons <- codons_to_tessera(c("ACGT", "GATC"))
-//' codons <- codons_to_tessera("ACGTGATC")
-//' codons <- codons_to_tessera("ACGT GATC")
+//' codons <- tessera_to_codons(c("ACGT", "GATC"))
+//' codons <- tessera_to_codons("ACGT GATC")
 //' 
 //' @export
 // [[Rcpp::export]]

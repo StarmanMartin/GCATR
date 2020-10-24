@@ -15,6 +15,7 @@ bool CommaFree::test(AbstractCode *code) {
 
 
 bool CommaFree::is_comma_free(AbstractCode *code) {
+    this->suppress_errors();
     auto res = miner::LongestPathMiner::mine_path_as_vector(code);
     return !res.empty() && res[0].size() < 4;
 

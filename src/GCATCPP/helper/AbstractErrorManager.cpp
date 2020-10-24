@@ -45,6 +45,7 @@ void AbstractErrorManager::add_error_msg(const std::string& err_msg) {
 }
 
 void AbstractErrorManager::reset_msg() {
+    this->is_suppressed = true;
     this->_has_error = false;
     this->msg = {};
 }
