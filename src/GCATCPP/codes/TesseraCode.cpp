@@ -42,10 +42,14 @@ std::shared_ptr<TesseraCode> TesseraCode::tesseraCodeFromCodons(const std::share
 
     std::map<std::string, std::string> mapping;
     mapping["A"] = I;
-    mapping["U"] = SW;
-    mapping["T"] = SW;
     mapping["C"] = KM;
     mapping["G"] = YR;
+
+    if(codons->get_acid() == acid::DNA) {
+        mapping[SW] = "T";
+    } else {
+        mapping[SW] = "U";
+    }
 
     std::vector<std::string> words;
 
@@ -72,10 +76,14 @@ std::shared_ptr<AbstractGenCode> TesseraCode::codonsCodesFromTessera(const std::
 
     std::map<std::string, std::string> mapping;
     mapping[I] = "A";
-    mapping[SW] = "U";
-    mapping[SW] = "T";
     mapping[KM] = "C";
     mapping[YR] = "G";
+
+    if(tessCode->get_acid() == acid::DNA) {
+        mapping[SW] = "T";
+    } else {
+        mapping[SW] = "U";
+    }
 
     std::vector<std::string> words;
 
