@@ -31,6 +31,9 @@ public:
 
     [[nodiscard]] std::vector<std::string> generateCode() const;
     [[nodiscard]] std::string printableTable() const;
+    [[nodiscard]] std::vector<std::string> printableTableR() const;
+    [[nodiscard]] std::vector<std::vector<std::size_t>> getTable() const;
+
     [[nodiscard]] size_t checkSum() const;
 
     bool testTable();

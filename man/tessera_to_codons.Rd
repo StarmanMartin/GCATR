@@ -16,8 +16,7 @@ the argument code transfomed to a set of codons
 This function uses a transformation to map all tessera to a codon. This transformation was published by Gonzalez, Giannerini and Rosa.
 }
 \examples{
-codons <- codons_to_tessera(c("ACGT", "GATC"))
-codons <- codons_to_tessera("ACGTGATC")
-codons <- codons_to_tessera("ACGT GATC")
+codons <- tessera_to_codons(c("ACGT", "GATC"))
+codons <- tessera_to_codons("ACGT GATC")
 
 }

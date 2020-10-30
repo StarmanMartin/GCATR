@@ -139,6 +139,27 @@ std::string TesseraTable::printableTable() const {
     return ss.str();
 }
 
+std::vector<std::string> TesseraTable::printableTableR() const {
+    std::vector<std::string> res(4);
+
+    for (size_t r_i = 0; r_i < 4; ++r_i) {
+        std::stringstream ss;
+        ss << "|";
+        for (size_t c_i = 0; c_i < 4; ++c_i) {
+            ss << this->table_values[r_i][c_i] << "|";
+        }
+
+        res[r_i] = ss.str();
+    }
+
+    return res;
+}
+
+std::vector<std::vector<std::size_t>> TesseraTable::getTable() const {
+    return this->table_values;
+}
+
+
 void TesseraTable::reset_fragmet_order() {
     this->reset_din_order_by_fragment_pos({"ID", "SW", "KM", "YR"});
     this->fragments_pos.clear();

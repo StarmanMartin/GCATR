@@ -71,8 +71,6 @@ devtools::install_github("StarmanMartin/GCATR")
 
 [code_named_transform_tuples](#code_named_transform_tuples)<br>
 
-[codons_to_tessera](#codons_to_tessera)<br>
-[code_check_if_tessera](#code_check_if_tessera)<br>
 
 [get_rna_bases](#get_rna_bases)<br>
 [get_rna_codon_list](#get_rna_codon_list)<br>
@@ -84,7 +82,14 @@ devtools::install_github("StarmanMartin/GCATR")
 
 [code_pdf_report](#code_pdf_report)<br>
 
+### [Tassera codes tools](#tessrea-codes)
 
+[codons_to_tessera](#codons_to_tessera)<br>
+[tessera_to_codons](#tessera_to_codons)<br>
+[code_check_if_tessera](#code_check_if_tessera)<br> 
+
+[tessera_to_table](#tessera_to_table)<br>
+[tessera_to_table_str](#tessera_to_table_str)<br>
 ### [Conductance](#conductance)
 
 [get_average_conductance_of_code](#get_average_conductance_of_code)<br>
@@ -1386,68 +1391,6 @@ transformed_tuples <- code_named_transform_tuples("SW", "ACG GAT")
 ```
 <hr>
 
-### codons_to_tessera
-
-#### Usage
-```R 
-codons_to_tessera(code)
-```
-
-#### Arguments
- 
-*code*	is either a string vector or a string. It can either be a code or a sequence.<br>
-
-
-#### Return
- 
-the argument code transfomed to a set of tesserae
-
-
-#### Description
- 
-This function uses a transformation to map all codons to a tessera. This transformation was published by Gonzalez, Giannerini and Rosa.
-
-
-#### Examples
-```R 
-tessera <- codons_to_tessera(c("ACG", "GAT"))
-tessera <- codons_to_tessera("ACGGAT")
-tessera <- codons_to_tessera("ACG GAT")
-
-```
-<hr>
-
-### code_check_if_tessera
-
-#### Usage
-```R 
-code_check_if_tessera(code)
-```
-
-#### Arguments
- 
-*code*	is either a string vector or a string. It can either be a code or a sequence.<br>
-
-
-#### Return
- 
-if code only contains tessera
-
-
-#### Description
- 
-This function checks if all words in the code are correct Tessera words.
-
-
-#### Examples
-```R 
-is_tessera <- code_check_if_tessera(c("ACGT", "GATC"))
-is_tessera <- code_check_if_tessera("ACGTGATC" )
-is_tessera <- code_check_if_tessera("ACGT GATC")
-
-```
-<hr>
-
 ### get_rna_bases
 
 #### Usage
@@ -1663,6 +1606,160 @@ code_pdf_report(c("ACG", "CAG"))
 code_pdf_report("ACGCAG", 3)
 code_pdf_report("ACG CAG")
 
+
+```
+<hr>
+
+## Tassera codes tools
+
+### codons_to_tessera
+
+#### Usage
+```R 
+codons_to_tessera(code)
+```
+
+#### Arguments
+ 
+*code*	is either a string vector or a string. It can either be a code or a sequence.<br>
+
+
+#### Return
+ 
+the argument code transfomed to a set of tesserae
+
+
+#### Description
+ 
+This function uses a transformation to map all codons to a tessera. This transformation was published by Gonzalez, Giannerini and Rosa.
+
+
+#### Examples
+```R 
+tessera <- codons_to_tessera(c("ACG", "GAT"))
+tessera <- codons_to_tessera("ACGGAT")
+tessera <- codons_to_tessera("ACG GAT")
+
+```
+<hr>
+
+### tessera_to_codons
+
+#### Usage
+```R 
+tessera_to_codons(code)
+```
+
+#### Arguments
+ 
+*code*	is either a  tessera string vector or a string. It can either be a code or a sequence.<br>
+
+
+#### Return
+ 
+the argument code transfomed to a set of codons
+
+
+#### Description
+ 
+This function uses a transformation to map all tessera to a codon. This transformation was published by Gonzalez, Giannerini and Rosa.
+
+
+#### Examples
+```R 
+codons <- tessera_to_codons(c("ACGT", "GATC"))
+codons <- tessera_to_codons("ACGT GATC")
+
+```
+<hr>
+
+### code_check_if_tessera
+
+#### Usage
+```R 
+code_check_if_tessera(code)
+```
+
+#### Arguments
+ 
+*code*	is either a string vector or a string. It can either be a code or a sequence.<br>
+
+
+#### Return
+ 
+if code only contains tessera
+
+
+#### Description
+ 
+This function checks if all words in the code are correct Tessera words.
+
+
+#### Examples
+```R 
+is_tessera <- code_check_if_tessera(c("ACGT", "GATC"))
+is_tessera <- code_check_if_tessera("ACGTGATC" )
+is_tessera <- code_check_if_tessera("ACGT GATC")
+
+```
+<hr>
+
+### tessera_to_table
+
+#### Usage
+```R 
+tessera_to_table(code)
+```
+
+#### Arguments
+ 
+*code*	is either a  tessera string vector or a string. It can either be a code or a sequence.<br>
+
+
+#### Return
+ 
+A 4*4 tabele associated to the Tessera code
+
+
+#### Description
+ 
+This function generates a table that represents a Tessera code. The exact definition can be found in the article: "Circular Tessera Codes in the Evolution of the Genetic Code".
+
+
+#### Examples
+```R 
+table <- tessera_to_table(c("ACGT", "GATC"))
+table <- tessera_to_table("ACGT GATC")
+
+```
+<hr>
+
+### tessera_to_table_str
+
+#### Usage
+```R 
+tessera_to_table_str(code)
+```
+
+#### Arguments
+ 
+*code*	is either a  tessera string vector or a string. It can either be a code or a sequence.<br>
+
+
+#### Return
+ 
+A 4*4 tabele associated to the Tessera code as String
+
+
+#### Description
+ 
+This function generates a table that represents a Tessera code. The exact definition can be found in the article: "Circular Tessera Codes in the Evolution of the Genetic Code".
+
+
+#### Examples
+```R 
+table <- tessera_to_table_str(c("ACGT", "GATC"))
+table <- tessera_to_table_str("ACGT GATC")
 
 ```
 <hr>

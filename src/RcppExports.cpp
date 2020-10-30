@@ -556,6 +556,28 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// tessera_to_table
+Rcpp::List tessera_to_table(StringVector code);
+RcppExport SEXP _GCATR_tessera_to_table(SEXP codeSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< StringVector >::type code(codeSEXP);
+    rcpp_result_gen = Rcpp::wrap(tessera_to_table(code));
+    return rcpp_result_gen;
+END_RCPP
+}
+// tessera_to_table_str
+StringVector tessera_to_table_str(StringVector code);
+RcppExport SEXP _GCATR_tessera_to_table_str(SEXP codeSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< StringVector >::type code(codeSEXP);
+    rcpp_result_gen = Rcpp::wrap(tessera_to_table_str(code));
+    return rcpp_result_gen;
+END_RCPP
+}
 
 RcppExport SEXP _rcpp_module_boot_BDATools();
 
@@ -606,6 +628,8 @@ static const R_CallMethodDef CallEntries[] = {
     {"_GCATR_tessera_to_codons", (DL_FUNC) &_GCATR_tessera_to_codons, 1},
     {"_GCATR_code_path_end_vertices_miner", (DL_FUNC) &_GCATR_code_path_end_vertices_miner, 2},
     {"_GCATR_code_block_length", (DL_FUNC) &_GCATR_code_block_length, 1},
+    {"_GCATR_tessera_to_table", (DL_FUNC) &_GCATR_tessera_to_table, 1},
+    {"_GCATR_tessera_to_table_str", (DL_FUNC) &_GCATR_tessera_to_table_str, 1},
     {"_rcpp_module_boot_BDATools", (DL_FUNC) &_rcpp_module_boot_BDATools, 0},
     {NULL, NULL, 0}
 };

@@ -2,6 +2,7 @@
 #include <Rcpp.h>
 
 #include "GCATCPP/codes/CodeFactory.h"
+#include "GCATCPP/codes/TesseraTable.h"
 #include "GCATCPP/miner/LongestPathMiner.h"
 #include "GCATCPP/miner/PathEndVerticesMiner.h"
 #include "GCATCPP/miner/kCircularityMiner.h"
@@ -798,3 +799,51 @@ int code_block_length(StringVector code) {
     
     return gc->get_word_length()[0];
 }
+
+//' Tables associated to Tessera
+//'
+//' This function generates a table that represents a Tessera code. The exact definition can be found in the article: "Circular Tessera Codes in the Evolution of the Genetic Code". 
+//' 
+//' @param code is either a  tessera string vector or a string. It can either be a code or a sequence.
+//'
+//' @return A 4*4 tabele associated to the Tessera code
+//'
+//' @examples
+//' table <- tessera_to_table(c("ACGT", "GATC"))
+//' table <- tessera_to_table("ACGT GATC")
+//' 
+//' @export
+// [[Rcpp::export]]
+Rcpp::List tessera_to_table(StringVector code) {
+    auto code_vec = RAdapterUtils::as_cpp_string_vector(code);
+    auto gc = CodeFactory::rFactorTypesTesseraCode(code_vec);
+    TesseraTable a(gc);
+    auto tab = a.getTable();
+    return Rcpp::List::create(
+        Rcpp::Named("X1") = Rcpp::wrap(tab[0]),
+        Rcpp::Named("X2") = Rcpp::wrap(tab[1]),
+        Rcpp::Named("X3") = Rcpp::wrap(tab[2]),
+        Rcpp::Named("X4") = Rcpp::wrap(tab[3]));
+}
+
+//' Tables associated to Tessera as String
+//'
+//' This function generates a table that represents a Tessera code. The exact definition can be found in the article: "Circular Tessera Codes in the Evolution of the Genetic Code". 
+//' 
+//' @param code is either a  tessera string vector or a string. It can either be a code or a sequence.
+//'
+//' @return A 4*4 tabele associated to the Tessera code as String
+//'
+//' @examples
+//' table <- tessera_to_table_str(c("ACGT", "GATC"))
+//' table <- tessera_to_table_str("ACGT GATC")
+//' 
+//' @export
+// [[Rcpp::export]]
+StringVector tessera_to_table_str(StringVector code) {
+    auto code_vec = RAdapterUtils::as_cpp_string_vector(code);
+    auto gc = CodeFactory::rFactorTypesTesseraCode(code_vec);
+    TesseraTable a(gc);
+    return RAdapterUtils::as_r_string_vector(a.printableTableR());
+}
+
