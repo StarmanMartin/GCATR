@@ -1000,9 +1000,8 @@ codons_to_tessera <- function(code) {
 #' @return the argument code transfomed to a set of codons  
 #'
 #' @examples
-#' codons <- codons_to_tessera(c("ACGT", "GATC"))
-#' codons <- codons_to_tessera("ACGTGATC")
-#' codons <- codons_to_tessera("ACGT GATC")
+#' codons <- tessera_to_codons(c("ACGT", "GATC"))
+#' codons <- tessera_to_codons("ACGT GATC")
 #' 
 #' @export
 tessera_to_codons <- function(code) {
@@ -1043,5 +1042,39 @@ code_path_end_vertices_miner <- function(code, tuple_length = -55555L) {
 #' @export
 code_block_length <- function(code) {
     .Call('_GCATR_code_block_length', PACKAGE = 'GCATR', code)
+}
+
+#' Tables associated to Tessera
+#'
+#' This function generates a table that represents a Tessera code. The exact definition can be found in the article: "Circular Tessera Codes in the Evolution of the Genetic Code". 
+#' 
+#' @param code is either a  tessera string vector or a string. It can either be a code or a sequence.
+#'
+#' @return A 4*4 tabele associated to the Tessera code
+#'
+#' @examples
+#' table <- tessera_to_table(c("ACGT", "GATC"))
+#' table <- tessera_to_table("ACGT GATC")
+#' 
+#' @export
+tessera_to_table <- function(code) {
+    .Call('_GCATR_tessera_to_table', PACKAGE = 'GCATR', code)
+}
+
+#' Tables associated to Tessera as String
+#'
+#' This function generates a table that represents a Tessera code. The exact definition can be found in the article: "Circular Tessera Codes in the Evolution of the Genetic Code". 
+#' 
+#' @param code is either a  tessera string vector or a string. It can either be a code or a sequence.
+#'
+#' @return A 4*4 tabele associated to the Tessera code as String
+#'
+#' @examples
+#' table <- tessera_to_table_str(c("ACGT", "GATC"))
+#' table <- tessera_to_table_str("ACGT GATC")
+#' 
+#' @export
+tessera_to_table_str <- function(code) {
+    .Call('_GCATR_tessera_to_table_str', PACKAGE = 'GCATR', code)
 }
 
