@@ -80,7 +80,9 @@ seq::Seq_Result Code::find_code_in_sequence(const std::string& seq, int frame) {
     }
     int actualFrame = Code::calculateModulo(frame, seq.length());
     this->test_code();
-    std::string copyInFrameShift = seq.substr(actualFrame, seq.length() - actualFrame);
+    std::string firstPart = seq.substr(actualFrame, seq.length() - actualFrame);
+    std::string secondPart = seq.substr(0, actualFrame);
+    std::string copyInFrameShift = firstPart.append(secondPart);
 
     seq::Seq_Result result = seq::Seq_Result(copyInFrameShift);
     std::stringstream rest;

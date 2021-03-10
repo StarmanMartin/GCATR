@@ -82,7 +82,7 @@ StringVector code_as_vector(StringVector code, int tuple_length = -55555) {
 StringVector code_as_unique_vector(StringVector code, int tuple_length = -55555) {
     auto code_vec = RAdapterUtils::as_cpp_string_vector(code);
     auto a = RAdapterUtils::factorCodeWrapper(code_vec, tuple_length);
-    return RAdapterUtils::as_r_string_vector(a->get_tuples());
+    return RAdapterUtils::as_r_string_vector(a->as_set());
 }
 
 //' Check if a set is a code.
