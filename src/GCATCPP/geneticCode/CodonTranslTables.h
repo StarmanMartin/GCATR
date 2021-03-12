@@ -41,26 +41,26 @@ namespace gen_codes {
     public:
         static CodonTranslTables &getInstance();
 
-        const std::string getAllCodesText();
+        std::string getAllCodesText();
 
-        const std::vector<std::string> getAllCodes();
+        std::vector<std::string> getAllCodes();
 
-        const std::vector<std::string> getCodeByName(const std::string &name, acid::acids ac = acid::acids::DNA);
+        std::vector<std::string> getCodeByName(const std::string &name, acid::acids ac = acid::acids::DNA);
 
-        const std::vector<std::string> getCodeByIndex(int idx, acid::acids ac = acid::acids::DNA);
+        std::vector<std::string> getCodeByIndex(int idx, acid::acids ac = acid::acids::DNA);
 
-        const std::vector<std::string> getStandardCode(acid::acids ac = acid::acids::DNA);
+        std::vector<std::string> getStandardCode(acid::acids ac = acid::acids::DNA);
 
         bool read_and_add_new_transl_table(const std::string &);
 
         bool add_new_transl_table(std::string translName, std::vector<std::string> newDeviationTable);
 
-        const int getIdxByName(const std::string &name);
+        int getIdxByName(const std::string &name);
 
     private:
         static std::string replaceAll(std::string str, const std::string &from, const std::string &to);
 
-        std::string get_code_name(const std::string &s);
+        static std::string get_code_name(const std::string &s);
 
         explicit CodonTranslTables();
 
@@ -68,7 +68,7 @@ namespace gen_codes {
 
         void setCodes();
 
-        const std::vector<std::string> prepareCode(const TranslTableData &data, acid::acids ac);
+        std::vector<std::string> prepareCode(const TranslTableData &data, acid::acids ac);
 
         std::vector<TranslTableData> codes;
         const std::vector<std::string> standardCode = {"TTT", "Phe", "TCT", "Ser", "TAT", "Tyr", "TGT", "Cys", "TTC",

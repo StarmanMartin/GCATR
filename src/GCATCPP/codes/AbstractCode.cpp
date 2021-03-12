@@ -71,7 +71,7 @@ void AbstractCode::reset(std::vector<std::string> code_param_vec) {
 }
 
 
-bool AbstractCode::test_code() {
+bool AbstractCode::test_code()  {
     if (this->is_tested) {
         return this->is_ok;
     }
@@ -81,6 +81,7 @@ bool AbstractCode::test_code() {
 
     if (this->code_vec.empty()) {
         (this->is_ok = false);
+
         throw std::invalid_argument("Code is empty!");
     }
 

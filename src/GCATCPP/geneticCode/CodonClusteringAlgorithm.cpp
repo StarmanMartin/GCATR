@@ -22,16 +22,21 @@ void gen_codes::CodonClusteringAlgorithm::calculate_cluster_table_for_code(const
     this->all_acids.clear();
     this->class_conductance_values.clear();
 
+    auto mapping_table = std::map<std::string, std::string>();
+    for (int idx = 0; idx < code.size(); idx += 2) {
+        mapping_table.insert(std::pair<std::string, std::string>(code[idx], code[idx+1]));
+    }
+
     for (int idx = 0; idx < code.size(); idx += 2) {
         auto acid_groups = gen_codes::CodonClusteringAlgorithm::all_acids_in_cluster(idx);
 
         auto translated_from_amino_acids = gen_codes::CodonClusteringAlgorithm::split_encoded_amino_acid(code[idx + 1]);
-        for (auto single_from_acid : translated_from_amino_acids) {
+        for (const auto& single_from_acid : translated_from_amino_acids) {
             this->all_acids.insert(single_from_acid);
             for (int acidIdx : acid_groups) {
                 auto translated_to_amino_acids = gen_codes::CodonClusteringAlgorithm::split_encoded_amino_acid(
                         code[acidIdx + 1]);
-                for (auto single_to_acid : translated_to_amino_acids) {
+                for (const auto& single_to_acid : translated_to_amino_acids) {
                     std::pair<std::string, std::string> key(single_from_acid, single_to_acid);
                     if (!this->cluster_table.count(key)) {
                         this->cluster_table[key] = 0;

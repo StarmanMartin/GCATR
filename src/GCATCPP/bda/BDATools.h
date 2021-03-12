@@ -61,9 +61,11 @@ namespace BDA {
         std::vector<std::string> run_bda_for_all_rna_codons();
 
         static std::vector<std::string> get_all_rna_codons();
+        static std::vector<std::string> get_all_rna_tuples(int length);
     private:
         std::vector<std::string> _run_bda_for_code(std::vector<std::string> code_vec);
 
+        int tuple_size;
     };
 }
 

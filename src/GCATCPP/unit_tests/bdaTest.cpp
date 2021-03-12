@@ -36,14 +36,16 @@ std::vector<std::string> test_BDA_of_seq(const std::string& c, const std::vector
 TEST(BDAAddRule, WrongRule) {
     std::vector<std::string> c = {"ATT"};
     std::shared_ptr<StdGenCode> code = std::make_shared<StdGenCode>(c);
+    auto aa = code->get_word_length();
+    std::cout << aa[0];
     BDA::BDATools b(code);
 
-    EXPECT_FALSE(b.add_rule(-1, 2, 'G', 'A', 'C', 'A'));
-    EXPECT_FALSE(b.add_rule(0, 2, 'G', 'A', 'C', 'A'));
-    EXPECT_FALSE(b.add_rule(4, 2, 'G', 'A', 'C', 'A'));
-    EXPECT_FALSE(b.add_rule(1, 2, 'U', 'A', 'C', 'A'));
-    EXPECT_FALSE(b.add_rule(1, 2, 'Z', 'A', 'C', 'A'));
-    EXPECT_FALSE(b.add_rule(2, 2, 'G', 'A', 'C', 'A'));
+    EXPECT_ANY_THROW(b.add_rule(-1, 2, 'G', 'A', 'C', 'A'));
+    EXPECT_ANY_THROW(b.add_rule(0, 2, 'G', 'A', 'C', 'A'));
+    EXPECT_ANY_THROW(b.add_rule(4, 2, 'G', 'A', 'C', 'A'));
+    EXPECT_ANY_THROW(b.add_rule(1, 2, 'U', 'A', 'C', 'A'));
+    EXPECT_ANY_THROW(b.add_rule(1, 2, 'Z', 'A', 'C', 'A'));
+    EXPECT_ANY_THROW(b.add_rule(2, 2, 'G', 'A', 'C', 'A'));
 }
 
 TEST(BDAAddRule, CorrectRule) {

@@ -5,6 +5,7 @@
 #include "gtest/gtest.h"
 #include "../geneticCode/CodonTranslTables.h"
 #include "../geneticCode/CodonClusteringAlgorithm.h"
+#include "../bda/BDATools.h"
 #include <string>
 
 #ifdef _WIN32
@@ -62,6 +63,7 @@ std::string get_aps_path(std::string relPath) {
 
 
 std::string getCodeAsOneLineByIndex(int idx, acid::acids ac=acid::acids::DNA) {
+    auto a = BDA::BDATools::get_all_rna_tuples(4);
     auto codes = gen_codes::CodonTranslTables::getInstance().getCodeByIndex(idx, ac);
     std::stringstream ss;
     for(const auto &c : codes) {

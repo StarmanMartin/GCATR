@@ -25,7 +25,7 @@ CodonTranslTables &CodonTranslTables::getInstance() {
     return _instance;
 }
 
-const std::string CodonTranslTables::getAllCodesText() {
+std::string CodonTranslTables::getAllCodesText() {
 
     std::vector<std::string> codeStringList = this->getAllCodes();
 
@@ -39,11 +39,11 @@ const std::string CodonTranslTables::getAllCodesText() {
     return imploded.str();
 }
 
-const std::vector<std::string> CodonTranslTables::getAllCodes() {
+std::vector<std::string> CodonTranslTables::getAllCodes() {
     this->setCodes();
     auto codeStringList = std::vector<std::string>();
 
-    for (auto tempCode : this->codes) {
+    for (const auto& tempCode : this->codes) {
         std::stringstream ss;
         ss << tempCode.name << "(transl_table=" << tempCode.index << ")";
         codeStringList.push_back(ss.str());
@@ -95,7 +95,7 @@ void CodonTranslTables::setCodes() {
     this->codes[23].setData("Blastocrithidia Nuclear", 31, {"TGA", "Trp", "TAG", "Glu_STOP", "TAA", "Glu_STOP"});
 }
 
-const std::vector<std::string> CodonTranslTables::getCodeByName(const std::string &name, acid::acids ac) {
+std::vector<std::string> CodonTranslTables::getCodeByName(const std::string &name, acid::acids ac) {
     this->setCodes();
     for (TranslTableData &code : this->codes) {
         if (code.name == name) {
@@ -107,7 +107,7 @@ const std::vector<std::string> CodonTranslTables::getCodeByName(const std::strin
     return std::vector<std::string>();
 }
 
-const std::vector<std::string> CodonTranslTables::getCodeByIndex(int idx, acid::acids ac) {
+std::vector<std::string> CodonTranslTables::getCodeByIndex(int idx, acid::acids ac) {
     this->setCodes();
     for (int startIdx = std::min(idx, (int) this->codes.size()) - 1; startIdx >= 0; --startIdx) {
         if (this->codes[startIdx].index == idx) {
@@ -119,11 +119,11 @@ const std::vector<std::string> CodonTranslTables::getCodeByIndex(int idx, acid::
     return std::vector<std::string>();
 }
 
-const std::vector<std::string> CodonTranslTables::getStandardCode(acid::acids ac) {
+std::vector<std::string> CodonTranslTables::getStandardCode(acid::acids ac) {
     return this->getCodeByIndex(1, ac);
 }
 
-const std::vector<std::string> CodonTranslTables::prepareCode(const TranslTableData &data, acid::acids ac) {
+std::vector<std::string> CodonTranslTables::prepareCode(const TranslTableData &data, acid::acids ac) {
     auto newCode = this->standardCode;
     for (int i = 0; i < newCode.size(); i += 2) {
         for (int deviationIdx = 0; deviationIdx < data.deviation.size(); deviationIdx += 2) {
@@ -150,7 +150,7 @@ std::string CodonTranslTables::replaceAll(std::string str, const std::string &fr
     return str;
 }
 
-const int CodonTranslTables::getIdxByName(const std::string &name) {
+int CodonTranslTables::getIdxByName(const std::string &name) {
     this->setCodes();
     for (TranslTableData &code : this->codes) {
         if (code.name == name) {
