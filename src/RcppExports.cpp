@@ -5,6 +5,17 @@
 
 using namespace Rcpp;
 
+// get_all_rna_tuples
+Rcpp::StringVector get_all_rna_tuples(int tuple_length);
+RcppExport SEXP _GCATR_get_all_rna_tuples(SEXP tuple_lengthSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< int >::type tuple_length(tuple_lengthSEXP);
+    rcpp_result_gen = Rcpp::wrap(get_all_rna_tuples(tuple_length));
+    return rcpp_result_gen;
+END_RCPP
+}
 // get_average_conductance_of_code
 double get_average_conductance_of_code(std::string codeName, std::string acid);
 RcppExport SEXP _GCATR_get_average_conductance_of_code(SEXP codeNameSEXP, SEXP acidSEXP) {
@@ -582,6 +593,7 @@ END_RCPP
 RcppExport SEXP _rcpp_module_boot_BDATools();
 
 static const R_CallMethodDef CallEntries[] = {
+    {"_GCATR_get_all_rna_tuples", (DL_FUNC) &_GCATR_get_all_rna_tuples, 1},
     {"_GCATR_get_average_conductance_of_code", (DL_FUNC) &_GCATR_get_average_conductance_of_code, 2},
     {"_GCATR_get_max_conductance_of_code", (DL_FUNC) &_GCATR_get_max_conductance_of_code, 2},
     {"_GCATR_get_min_conductance_of_code", (DL_FUNC) &_GCATR_get_min_conductance_of_code, 2},

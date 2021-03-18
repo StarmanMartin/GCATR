@@ -127,7 +127,7 @@ private:
             auto std_code = std::make_shared<StdGenCode>(code);
             if (std_code->test_code()) {
                 return std_code;
-            } else if (0 == (code_type == CODE_TPYE_CODON)) {
+            } else if (code_type == CODE_TPYE_CODON) {
                 return std_code;
             }
         }

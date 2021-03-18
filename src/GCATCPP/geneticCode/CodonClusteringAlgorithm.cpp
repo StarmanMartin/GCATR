@@ -6,10 +6,9 @@
 #include <iterator>
 #include <sstream>
 #include <iostream>
+#include <regex>
 #include "CodonClusteringAlgorithm.h"
 #include "../helper/FileManager.h"
-
-
 
 
 gen_codes::CodonClusteringAlgorithm::CodonClusteringAlgorithm(const std::vector<std::string> &code) : is_calculated(
@@ -21,54 +20,47 @@ void gen_codes::CodonClusteringAlgorithm::calculate_cluster_table_for_code(const
     this->cluster_table.clear();
     this->all_acids.clear();
     this->class_conductance_values.clear();
+    this->mapping_table.clear();
 
-    auto mapping_table = std::map<std::string, std::string>();
     for (int idx = 0; idx < code.size(); idx += 2) {
-        mapping_table.insert(std::pair<std::string, std::string>(code[idx], code[idx+1]));
+        this->mapping_table.insert(std::pair<std::string, std::string>(code[idx], code[idx + 1]));
     }
+}
 
-    for (int idx = 0; idx < code.size(); idx += 2) {
-        auto acid_groups = gen_codes::CodonClusteringAlgorithm::all_acids_in_cluster(idx);
+void gen_codes::CodonClusteringAlgorithm::setup_cluster() {
+    for (const auto &elem : this->mapping_table) {
+        auto acid_groups = gen_codes::CodonClusteringAlgorithm::all_tuples_in_cluster(elem.first);
 
-        auto translated_from_amino_acids = gen_codes::CodonClusteringAlgorithm::split_encoded_amino_acid(code[idx + 1]);
-        for (const auto& single_from_acid : translated_from_amino_acids) {
+        auto translated_from_amino_acids = gen_codes::CodonClusteringAlgorithm::split_encoded_amino_acid(elem.second);
+        for (const auto &single_from_acid : translated_from_amino_acids) {
             this->all_acids.insert(single_from_acid);
-            for (int acidIdx : acid_groups) {
+            for (const std::string &acidIdx : acid_groups) {
                 auto translated_to_amino_acids = gen_codes::CodonClusteringAlgorithm::split_encoded_amino_acid(
-                        code[acidIdx + 1]);
-                for (const auto& single_to_acid : translated_to_amino_acids) {
+                        this->mapping_table[acidIdx]);
+                for (const auto &single_to_acid : translated_to_amino_acids) {
                     std::pair<std::string, std::string> key(single_from_acid, single_to_acid);
-                    if (!this->cluster_table.count(key)) {
-                        this->cluster_table[key] = 0;
-                    }
 
-                    this->cluster_table[key] += 1;
+                    this->cluster_table[key].push_back(gen_codes::ClusterDistance(elem.first, acidIdx));
                 }
             }
         }
     }
 }
 
-std::vector<int> gen_codes::CodonClusteringAlgorithm::all_acids_in_cluster(int idx) {
-    idx /= 2;
-    int startSecond = (idx / 4) * 4;
-    int startFirst = idx % 16;
-    int startThird = (idx % 4) + (idx / 16) * 16;
-    std::vector<int> a;
-    for (int i = 0; i < 4; i++) {
-        int firstLetter = startFirst + (i * 16);
-        if (firstLetter != idx) {
-            a.push_back(firstLetter * 2);
+std::vector<std::string> gen_codes::CodonClusteringAlgorithm::all_tuples_in_cluster(const std::string &tuple) {
+    std::vector<std::string> a;
+    std::stringstream ss_key_regexp;
+    for (size_t i = 0; i < tuple.length(); ++i) {
+        if (i != 0) {
+            ss_key_regexp << "|";
         }
+        ss_key_regexp << "(" << tuple.substr(0, i) << "[^" << tuple.substr(i, 1) << "]" << tuple.substr(i + 1) << ")";
 
-        int secondLetter = startSecond + i;
-        if (secondLetter != idx) {
-            a.push_back(secondLetter * 2);
-        }
-
-        int thirdLetter = startThird + (i * 4);
-        if (thirdLetter != idx) {
-            a.push_back(thirdLetter * 2);
+    }
+    std::regex key_regexp(ss_key_regexp.str());
+    for (const auto &elem : this->mapping_table) {
+        if (std::regex_search(elem.first, key_regexp)) {
+            a.push_back(elem.first);
         }
     }
 
@@ -117,6 +109,8 @@ void gen_codes::CodonClusteringAlgorithm::calculate_conductance_values() {
         return;
     }
 
+    this->setup_cluster();
+
     this->is_calculated = true;
 
     for (const auto &from_acid : this->all_acids) {
@@ -125,10 +119,14 @@ void gen_codes::CodonClusteringAlgorithm::calculate_conductance_values() {
         double numerator = 0;
         for (const auto &to_acid : this->all_acids) {
             std::pair<std::string, std::string> key(from_acid, to_acid);
-            if (to_acid != from_acid) {
-                numerator += this->cluster_table[key];
+            int val = 0;
+            for(const auto & elm : this->cluster_table[key]) {
+                val += elm.weight;
             }
-            denominator += this->cluster_table[key];
+            if (to_acid != from_acid) {
+                numerator += val;
+            }
+            denominator += val;
 
         }
 
@@ -136,31 +134,35 @@ void gen_codes::CodonClusteringAlgorithm::calculate_conductance_values() {
     }
 }
 
-void gen_codes::CodonClusteringAlgorithm::generate_value_table_file_csv_string(const std::string& filePath,const std::string& fileName) {
-    if(!std_m::FileManager::getInstance().is_dir(filePath)) { // Dir does not exists;
-        return;
-    }
+std::string gen_codes::CodonClusteringAlgorithm::generate_value_table_file_csv_string(const std::string &filePath,
+                                                                               const std::string &fileName) {
 
-    std_m::FileManager::getInstance().write_file(filePath + "/" + fileName, ".csv", this->generate_value_table_csv_string());
+    return std_m::FileManager::getInstance().write_file(filePath + "/" + fileName, ".csv",
+                                                 this->generate_value_table_csv_string());
 }
 
 std::string gen_codes::CodonClusteringAlgorithm::generate_value_table_csv_string() {
+    this->setup_cluster();
     auto csv_vec_length = static_cast<unsigned int>(this->all_acids.size() + 1);
-   std::vector<std::string> csv_res(csv_vec_length*csv_vec_length);
-   int idx = 0;
-   for (const auto &from_acid : this->all_acids) {
-       csv_res[idx+1] = from_acid;
-       int inner_idx = csv_vec_length * (idx + 1) + 1;
-       for (const auto &to_acid : this->all_acids) {
-           std::pair<std::string, std::string> key(from_acid, to_acid);
-           csv_res[inner_idx++] = std::to_string(this->cluster_table[key]);
-       }
-       csv_res[(csv_vec_length * (idx+1))] = "\n" + from_acid;
-       ++idx;
+    std::vector<std::string> csv_res(csv_vec_length * csv_vec_length);
+    int idx = 0;
+    for (const auto &from_acid : this->all_acids) {
+        csv_res[idx + 1] = from_acid;
+        int inner_idx = csv_vec_length * (idx + 1) + 1;
+        for (const auto &to_acid : this->all_acids) {
+            std::pair<std::string, std::string> key(from_acid, to_acid);
+            int val = 0;
+            for(const auto & elm : this->cluster_table[key]) {
+                val += elm.weight;
+            }
+            csv_res[inner_idx++] = std::to_string(val);
+        }
+        csv_res[(csv_vec_length * (idx + 1))] = "\n" + from_acid;
+        ++idx;
     }
 
 
-    const char* const delim = ";";
+    const char *const delim = ";";
 
     std::stringstream imploded;
     std::copy(csv_res.begin(), csv_res.end(),
@@ -169,16 +171,20 @@ std::string gen_codes::CodonClusteringAlgorithm::generate_value_table_csv_string
     return imploded.str();
 }
 
-std::vector< std::vector<std::string> > gen_codes::CodonClusteringAlgorithm::generate_value_table_vec() {
+std::vector<std::vector<std::string> > gen_codes::CodonClusteringAlgorithm::generate_value_table_vec() {
     auto csv_vec_length = static_cast<unsigned int>(this->all_acids.size());
-    std::vector< std::vector<std::string> > value_table(csv_vec_length);
+    std::vector<std::vector<std::string> > value_table(csv_vec_length);
     int idx = 0;
     for (const auto &from_acid : this->all_acids) {
         std::vector<std::string> value_row(csv_vec_length);
         int inner_idx = 0;
         for (const auto &to_acid : this->all_acids) {
             std::pair<std::string, std::string> key(from_acid, to_acid);
-            value_row[inner_idx++] = std::to_string(this->cluster_table[key]);
+            int val = 0;
+            for(const auto & elm : this->cluster_table[key]) {
+                val += elm.weight;
+            }
+            value_row[inner_idx++] = std::to_string(val);
         }
         value_table[idx++] = value_row;
     }
@@ -194,7 +200,7 @@ std::vector<std::string> gen_codes::CodonClusteringAlgorithm::split_encoded_amin
         if (index != std::string::npos && index < str.length()) {
             result.push_back(str.substr(0, index));
             str = str.substr(index + token.size());
-            if (str.empty()){
+            if (str.empty()) {
                 result.push_back(str);
             }
         } else {
@@ -207,7 +213,7 @@ std::vector<std::string> gen_codes::CodonClusteringAlgorithm::split_encoded_amin
 }
 
 std::vector<std::string> gen_codes::CodonClusteringAlgorithm::all_acids_in_order() {
-    std::vector <std::string> output;
+    std::vector<std::string> output;
     std::copy(this->all_acids.begin(), this->all_acids.end(), output.begin());
     return output;
 }

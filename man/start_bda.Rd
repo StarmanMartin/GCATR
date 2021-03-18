@@ -4,7 +4,7 @@
 \alias{start_bda}
 \title{Start a BDA procedure for all codons}
 \usage{
-start_bda()
+start_bda(tupleSize = 3)
 }
 \value{
 Boolean value. True if the procedure has started

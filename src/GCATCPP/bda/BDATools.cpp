@@ -23,6 +23,7 @@ BDATools::BDATools(std::shared_ptr<AbstractTupleContainer> code) : code(std::mov
 BDATools::BDATools(const std::string &sequence, int tuple_length) : tuple_size(tuple_length) {
     this->rules = {};
     this->code = std::make_shared<Sequence>(sequence, tuple_length);
+    this->tuple_size = this->code->get_word_length()[0];
 }
 
 bool BDATools::r_add_rule(unsigned int i_1, unsigned int i_2, char Q_11, char Q_12, char Q_21, char Q_22) {
@@ -71,18 +72,20 @@ std::vector<std::string> BDATools::run_bda_for_code() {
 
 std::vector<std::string> BDATools::_run_bda_for_code(std::vector<std::string> code_vec) {
 
-    std::vector<std::string> result_vec(code_vec.size());
+    std::vector<std::string> result_vec(code_vec.size() * 2);
 
-
-    for (const BDA_Rule &rule : this->rules) {
-        for (size_t i = 0; i < code_vec.size(); ++i) {
+    for (size_t idx = 0; idx < code_vec.size(); ++idx) {
+        size_t i = idx * 2;
+        result_vec[i] = code_vec[idx];
+        ++i;
+        for (const BDA_Rule &rule : this->rules) {
             std::stringstream os;
-            if (code_vec[i][rule.i_1] == rule.Q_12) {
+            if (code_vec[idx][rule.i_1] == rule.Q_12) {
                 os << result_vec[i] << "1";
-            } else if (code_vec[i][rule.i_1] == rule.Q_11) {
+            } else if (code_vec[idx][rule.i_1] == rule.Q_11) {
                 os << result_vec[i] << "0";
             } else {
-                if (code_vec[i][rule.i_2] == rule.Q_21 || code_vec[i][rule.i_2] == rule.Q_22) {
+                if (code_vec[idx][rule.i_2] == rule.Q_21 || code_vec[idx][rule.i_2] == rule.Q_22) {
                     os << result_vec[i] << "0";
                 } else {
                     os << result_vec[i] << "1";

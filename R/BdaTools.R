@@ -43,8 +43,14 @@ loadModule(module = "BDATools", TRUE)
 #' res <- run_bda_as_matrix(bda_obj)
 #' 
 #' @export 
-start_bda <- function() {
-  return(code_start_bda(get_rna_codon_list()))
+start_bda <- function(tupleSize = 3) {
+  if(tupleSize == 3) {
+    return(code_start_bda(get_rna_codon_list()))
+  } else if (tupleSize > 0) {
+    return(code_start_bda(get_all_rna_tuples(tupleSize)))
+  }
+  
+  stop("The argument of start_bda must be an intager > 0")
 }
 
 #' Start a BDA procedure for a code.
@@ -139,6 +145,7 @@ add_rule <- function(bda_obj, i_1, i_2, Q_11, Q_12, Q_21, Q_22) {
 run_bda <- function(bda_obj) {
   
   return_val <- bda_obj$run_bda_for_code();
+  return_val <- return_val[seq(2, length(return_val), 2)]
   return_list <- list(bda_obj$get_tuples(), return_val)
   names(return_list) <- c("code", "bda")
   return(return_list);
