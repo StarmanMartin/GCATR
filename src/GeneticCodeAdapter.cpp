@@ -15,20 +15,23 @@ using namespace Rcpp;
 //' codons translating the same amino acid but differ in more then one position.
 //'
 //' @param codeName a String, the name of the genetic translation table. (see \link{print_all_translation_tables})
-//' @param acid a String [optional]: The value must be DNA or RNA
 //'
 //' @return A Number, the average conductance of a genetic translation table
 //'
 //' @examples
 //' ac = get_average_conductance_of_code("The Standard Code")
-//' ac = get_average_conductance_of_code("The Vertebrate Mitochondrial Code", "RNA")
+//' ac = get_average_conductance_of_code("The Vertebrate Mitochondrial Code")
 //' @export
 // [[Rcpp::export]]
-double get_average_conductance_of_code(std::string codeName, std::string acid="DNA") {
-    auto code = gen_codes::CodonTranslTables::getInstance().getCodeByName(codeName, RAdapterUtils::string_to_acid(acid));
+double get_average_conductance_of_code(std::string codeName, std::string cluster="") {
+    auto code = gen_codes::CodonTranslTables::getInstance().getCodeByName(codeName);
     gen_codes::CodonClusteringAlgorithm cca(code);
+    
+    if(cluster=="") {
+        cca.get_average_conductance();
+    }
 
-    return cca.get_average_conductance();
+    return cca.get_conductance_of_cluster(cluster);
 }
 
 //' To calculate the max conductance of a translation table
@@ -39,17 +42,16 @@ double get_average_conductance_of_code(std::string codeName, std::string acid="D
 //' codons translating the same amino acid but differ in more then one position.
 //'
 //' @param codeName a String, the name of the genetic translation table. (see \link{print_all_translation_tables})
-//' @param acid a String [optional]: The value must be DNA or RNA
 //'
 //' @return A Number, the max conductance of a genetic translation table
 //'
 //' @examples
-//' ac = get_average_conductance_of_code("The Standard Code")
-//' ac = get_average_conductance_of_code("The Vertebrate Mitochondrial Code", "RNA")
+//' ac = get_max_conductance_of_code("The Standard Code")
+//' ac = get_max_conductance_of_code("The Vertebrate Mitochondrial Code")
 //' @export
 // [[Rcpp::export]]
-double get_max_conductance_of_code(std::string codeName, std::string acid="DNA") {
-    auto code = gen_codes::CodonTranslTables::getInstance().getCodeByName(codeName, RAdapterUtils::string_to_acid(acid));
+double get_max_conductance_of_code(std::string codeName) {
+    auto code = gen_codes::CodonTranslTables::getInstance().getCodeByName(codeName);
     gen_codes::CodonClusteringAlgorithm cca(code);
 
     return cca.get_max_conductance();
@@ -69,11 +71,11 @@ double get_max_conductance_of_code(std::string codeName, std::string acid="DNA")
 //'
 //' @examples
 //' ac = get_average_conductance_of_code("The Standard Code")
-//' ac = get_average_conductance_of_code("The Vertebrate Mitochondrial Code", "RNA")
+//' ac = get_average_conductance_of_code("The Vertebrate Mitochondrial Code")
 //' @export
 // [[Rcpp::export]]
-double get_min_conductance_of_code(std::string codeName, std::string acid="DNA") {
-    auto code = gen_codes::CodonTranslTables::getInstance().getCodeByName(codeName, RAdapterUtils::string_to_acid(acid));
+double get_min_conductance_of_code(std::string codeName) {
+    auto code = gen_codes::CodonTranslTables::getInstance().getCodeByName(codeName);
 
     gen_codes::CodonClusteringAlgorithm cca(code);
 
@@ -88,17 +90,16 @@ double get_min_conductance_of_code(std::string codeName, std::string acid="DNA")
 //' codons translating the same amino acid but differ in more then one position.
 //'
 //' @param codeIdx a Number, the index of the genetic translation table. (see \link{print_all_translation_tables})
-//' @param acid a String [optional]: The value must be DNA or RNA
 //'
 //' @return A Number, the average conductance of a genetic translation table
 //'
 //' @examples
 //' ac = get_average_conductance_of_code("The Standard Code")
-//' ac = get_average_conductance_of_code("The Vertebrate Mitochondrial Code", "RNA")
+//' ac = get_average_conductance_of_code("The Vertebrate Mitochondrial Code")
 //' @export
 // [[Rcpp::export]]
-double get_average_conductance_of_codeidx(int codeIdx, std::string acid="DNA") {
-    auto code = gen_codes::CodonTranslTables::getInstance().getCodeByIndex(codeIdx, RAdapterUtils::string_to_acid(acid));
+double get_average_conductance_of_codeidx(int codeIdx) {
+    auto code = gen_codes::CodonTranslTables::getInstance().getCodeByIndex(codeIdx);
     gen_codes::CodonClusteringAlgorithm cca(code);
 
     return cca.get_average_conductance();
@@ -112,21 +113,23 @@ double get_average_conductance_of_codeidx(int codeIdx, std::string acid="DNA") {
 //' codons translating the same amino acid but differ in more then one position.
 //'
 //' @param codeIdx a Number, the index of the genetic translation table. (see \link{print_all_translation_tables})
-//' @param acid a String [optional]: The value must be DNA or RNA
 //'
 //' @return A Number, the max conductance of a genetic translation table
 //'
 //' @examples
 //' ac = get_average_conductance_of_code("The Standard Code")
-//' ac = get_average_conductance_of_code("The Vertebrate Mitochondrial Code", "RNA")
+//' ac = get_average_conductance_of_code("The Vertebrate Mitochondrial Code")
 //' @export
 // [[Rcpp::export]]
-double get_max_conductance_of_codeidx(int codeIdx, std::string acid="DNA") {
-    auto code = gen_codes::CodonTranslTables::getInstance().getCodeByIndex(codeIdx, RAdapterUtils::string_to_acid(acid));
+double get_max_conductance_of_codeidx(int codeIdx) {
+    auto code = gen_codes::CodonTranslTables::getInstance().getCodeByIndex(codeIdx);
     gen_codes::CodonClusteringAlgorithm cca(code);
 
     return cca.get_max_conductance();
 }
+
+
+
 
 //' To calculate the min conductance of a translation table
 //'
@@ -136,17 +139,16 @@ double get_max_conductance_of_codeidx(int codeIdx, std::string acid="DNA") {
 //' codons translating the same amino acid but differ in more then one position.
 //'
 //' @param codeIdx a Number, the index of the genetic translation table. (see \link{print_all_translation_tables})
-//' @param acid a String [optional]: The value must be DNA or RNA
 //'
 //' @return A Number, the min conductance of a genetic translation table
 //'
 //' @examples
 //' ac = get_average_conductance_of_code("The Standard Code")
-//' ac = get_average_conductance_of_code("The Vertebrate Mitochondrial Code", "RNA")
+//' ac = get_average_conductance_of_code("The Vertebrate Mitochondrial Code")
 //' @export
 // [[Rcpp::export]]
-double get_min_conductance_of_codeidx(int codeIdx, std::string acid="DNA") {
-    auto code = gen_codes::CodonTranslTables::getInstance().getCodeByIndex(codeIdx, RAdapterUtils::string_to_acid(acid));
+double get_min_conductance_of_codeidx(int codeIdx) {
+    auto code = gen_codes::CodonTranslTables::getInstance().getCodeByIndex(codeIdx);
     gen_codes::CodonClusteringAlgorithm cca(code);
 
     return cca.get_min_conductance();
@@ -237,6 +239,7 @@ List genetic_codes_by_index(int idx, std::string acid="DNA") {
     return Rcpp::List::create(Rcpp::Named("codons") = codons,
                               Rcpp::Named("amino_acids") = amino_acids);
 }
+
 //' Is a code translatable?
 //'
 //' This function checks if a code can be translated into amino acids. Therefore, it simply checks if a translation table which fits the tuple size of the code

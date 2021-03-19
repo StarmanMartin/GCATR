@@ -25,16 +25,15 @@ get_all_rna_tuples <- function(tuple_length) {
 #' codons translating the same amino acid but differ in more then one position.
 #'
 #' @param codeName a String, the name of the genetic translation table. (see \link{print_all_translation_tables})
-#' @param acid a String [optional]: The value must be DNA or RNA
 #'
 #' @return A Number, the average conductance of a genetic translation table
 #'
 #' @examples
 #' ac = get_average_conductance_of_code("The Standard Code")
-#' ac = get_average_conductance_of_code("The Vertebrate Mitochondrial Code", "RNA")
+#' ac = get_average_conductance_of_code("The Vertebrate Mitochondrial Code")
 #' @export
-get_average_conductance_of_code <- function(codeName, acid = "DNA") {
-    .Call('_GCATR_get_average_conductance_of_code', PACKAGE = 'GCATR', codeName, acid)
+get_average_conductance_of_code <- function(codeName, cluster = "") {
+    .Call('_GCATR_get_average_conductance_of_code', PACKAGE = 'GCATR', codeName, cluster)
 }
 
 #' To calculate the max conductance of a translation table
@@ -45,16 +44,15 @@ get_average_conductance_of_code <- function(codeName, acid = "DNA") {
 #' codons translating the same amino acid but differ in more then one position.
 #'
 #' @param codeName a String, the name of the genetic translation table. (see \link{print_all_translation_tables})
-#' @param acid a String [optional]: The value must be DNA or RNA
 #'
 #' @return A Number, the max conductance of a genetic translation table
 #'
 #' @examples
-#' ac = get_average_conductance_of_code("The Standard Code")
-#' ac = get_average_conductance_of_code("The Vertebrate Mitochondrial Code", "RNA")
+#' ac = get_max_conductance_of_code("The Standard Code")
+#' ac = get_max_conductance_of_code("The Vertebrate Mitochondrial Code")
 #' @export
-get_max_conductance_of_code <- function(codeName, acid = "DNA") {
-    .Call('_GCATR_get_max_conductance_of_code', PACKAGE = 'GCATR', codeName, acid)
+get_max_conductance_of_code <- function(codeName) {
+    .Call('_GCATR_get_max_conductance_of_code', PACKAGE = 'GCATR', codeName)
 }
 
 #' To calculate the min conductance of a translation table
@@ -71,10 +69,10 @@ get_max_conductance_of_code <- function(codeName, acid = "DNA") {
 #'
 #' @examples
 #' ac = get_average_conductance_of_code("The Standard Code")
-#' ac = get_average_conductance_of_code("The Vertebrate Mitochondrial Code", "RNA")
+#' ac = get_average_conductance_of_code("The Vertebrate Mitochondrial Code")
 #' @export
-get_min_conductance_of_code <- function(codeName, acid = "DNA") {
-    .Call('_GCATR_get_min_conductance_of_code', PACKAGE = 'GCATR', codeName, acid)
+get_min_conductance_of_code <- function(codeName) {
+    .Call('_GCATR_get_min_conductance_of_code', PACKAGE = 'GCATR', codeName)
 }
 
 #' To calculate the average conductance of a translation table
@@ -85,16 +83,15 @@ get_min_conductance_of_code <- function(codeName, acid = "DNA") {
 #' codons translating the same amino acid but differ in more then one position.
 #'
 #' @param codeIdx a Number, the index of the genetic translation table. (see \link{print_all_translation_tables})
-#' @param acid a String [optional]: The value must be DNA or RNA
 #'
 #' @return A Number, the average conductance of a genetic translation table
 #'
 #' @examples
 #' ac = get_average_conductance_of_code("The Standard Code")
-#' ac = get_average_conductance_of_code("The Vertebrate Mitochondrial Code", "RNA")
+#' ac = get_average_conductance_of_code("The Vertebrate Mitochondrial Code")
 #' @export
-get_average_conductance_of_codeidx <- function(codeIdx, acid = "DNA") {
-    .Call('_GCATR_get_average_conductance_of_codeidx', PACKAGE = 'GCATR', codeIdx, acid)
+get_average_conductance_of_codeidx <- function(codeIdx) {
+    .Call('_GCATR_get_average_conductance_of_codeidx', PACKAGE = 'GCATR', codeIdx)
 }
 
 #' To calculate the max conductance of a translation table
@@ -105,16 +102,15 @@ get_average_conductance_of_codeidx <- function(codeIdx, acid = "DNA") {
 #' codons translating the same amino acid but differ in more then one position.
 #'
 #' @param codeIdx a Number, the index of the genetic translation table. (see \link{print_all_translation_tables})
-#' @param acid a String [optional]: The value must be DNA or RNA
 #'
 #' @return A Number, the max conductance of a genetic translation table
 #'
 #' @examples
 #' ac = get_average_conductance_of_code("The Standard Code")
-#' ac = get_average_conductance_of_code("The Vertebrate Mitochondrial Code", "RNA")
+#' ac = get_average_conductance_of_code("The Vertebrate Mitochondrial Code")
 #' @export
-get_max_conductance_of_codeidx <- function(codeIdx, acid = "DNA") {
-    .Call('_GCATR_get_max_conductance_of_codeidx', PACKAGE = 'GCATR', codeIdx, acid)
+get_max_conductance_of_codeidx <- function(codeIdx) {
+    .Call('_GCATR_get_max_conductance_of_codeidx', PACKAGE = 'GCATR', codeIdx)
 }
 
 #' To calculate the min conductance of a translation table
@@ -125,16 +121,15 @@ get_max_conductance_of_codeidx <- function(codeIdx, acid = "DNA") {
 #' codons translating the same amino acid but differ in more then one position.
 #'
 #' @param codeIdx a Number, the index of the genetic translation table. (see \link{print_all_translation_tables})
-#' @param acid a String [optional]: The value must be DNA or RNA
 #'
 #' @return A Number, the min conductance of a genetic translation table
 #'
 #' @examples
 #' ac = get_average_conductance_of_code("The Standard Code")
-#' ac = get_average_conductance_of_code("The Vertebrate Mitochondrial Code", "RNA")
+#' ac = get_average_conductance_of_code("The Vertebrate Mitochondrial Code")
 #' @export
-get_min_conductance_of_codeidx <- function(codeIdx, acid = "DNA") {
-    .Call('_GCATR_get_min_conductance_of_codeidx', PACKAGE = 'GCATR', codeIdx, acid)
+get_min_conductance_of_codeidx <- function(codeIdx) {
+    .Call('_GCATR_get_min_conductance_of_codeidx', PACKAGE = 'GCATR', codeIdx)
 }
 
 #' The Genetic Codes

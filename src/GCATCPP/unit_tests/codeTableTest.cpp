@@ -187,17 +187,134 @@ TEST (GenerticCodeTest, BlastocrithidiaNuclear) {
     EXPECT_EQ(gen_codes::CodonTranslTables::getInstance().getIdxByName("Blastocrithidia Nuclear"), 31);
 }
 
+TEST (GenerticCodeTest, ClusterAlgorthemCusterSet) {
+    auto code = gen_codes::CodonTranslTables::getInstance().getCodeByIndex(1);
+    gen_codes::CodonClusteringAlgorithm cca(code);
+    std::string S1 = "Met";
+    std::string S2 = "Phe";
+    std::string S3 = "Ile";
+    std::string S4 = "Pro";
+    std::string S6 = "Ser";
+    double condS1 = cca.get_conductance_of_cluster(S1);
+    double condS2 = cca.get_conductance_of_cluster(S2);
+    double condS3 = cca.get_conductance_of_cluster(S3);
+    double condS4 = cca.get_conductance_of_cluster(S4);
+    double condS6 = cca.get_conductance_of_cluster(S6);
+
+    EXPECT_NEAR(1, condS1, 0.000001);
+    EXPECT_NEAR(0.888, condS2, 0.001);
+    EXPECT_NEAR(0.777, condS3, 0.001);
+    EXPECT_NEAR(0.666, condS4, 0.001);
+    EXPECT_NEAR(0.740, condS6, 0.001);
+}
+
+TEST (GenerticCodeTest, ClusterAlgorthemCusterSetWeights_TA) {
+
+    auto code = gen_codes::CodonTranslTables::getInstance().getCodeByIndex(1);
+    gen_codes::CodonClusteringAlgorithm cca(code);
+
+    cca.add_weight(3, "T", "A", 3);
+    EXPECT_ANY_THROW(cca.add_weight(3, "T", "T", 3));
+    EXPECT_ANY_THROW(cca.add_weight(3, "TA", "T", 3));
+    EXPECT_ANY_THROW(cca.add_weight(0, "TA", "T", 3));
+
+    std::string S1 = "Met";
+    std::string S2 = "Phe";
+    std::string S3 = "Ile";
+    std::string S4 = "Pro";
+    std::string S6 = "Ser";
+    double condS1 = cca.get_conductance_of_cluster(S1);
+    double condS2 = cca.get_conductance_of_cluster(S2);
+    double condS3 = cca.get_conductance_of_cluster(S3);
+    double condS4 = cca.get_conductance_of_cluster(S4);
+    double condS6 = cca.get_conductance_of_cluster(S6);
+
+    EXPECT_NEAR(1, condS1, 0.000001);
+    EXPECT_NEAR(0.904, condS2, 0.001);
+    EXPECT_NEAR(0.7, condS3, 0.001);
+    EXPECT_NEAR(0.615, condS4, 0.001);
+    EXPECT_NEAR(0.716, condS6, 0.001);
+}
+
+TEST (GenerticCodeTest, ClusterAlgorthemCusterSetWeights_C) {
+
+    auto code = gen_codes::CodonTranslTables::getInstance().getCodeByIndex(1);
+    gen_codes::CodonClusteringAlgorithm cca(code);
+
+
+    cca.add_weight(3, "C", 3);
+    //cca.add_weight(1, 4);
+
+    std::string S1 = "Met";
+    std::string S2 = "Phe";
+    std::string S3 = "Ile";
+    std::string S4 = "Pro";
+    std::string S6 = "Ser";
+    double condS1 = cca.get_conductance_of_cluster(S1);
+    double condS2 = cca.get_conductance_of_cluster(S2);
+    double condS3 = cca.get_conductance_of_cluster(S3);
+    double condS4 = cca.get_conductance_of_cluster(S4);
+    double condS6 = cca.get_conductance_of_cluster(S6);
+
+    EXPECT_NEAR(1, condS1, 0.000001);
+    EXPECT_NEAR(0.8140, condS2, 0.001);
+    EXPECT_NEAR(0.666, condS3, 0.001);
+    EXPECT_NEAR(0.533, condS4, 0.001);
+    EXPECT_NEAR(0.638, condS6, 0.001);
+}
+
+TEST (GenerticCodeTest, ClusterAlgorthemCusterSetWeights_3) {
+
+    auto code = gen_codes::CodonTranslTables::getInstance().getCodeByIndex(1);
+    gen_codes::CodonClusteringAlgorithm cca(code);
+
+    cca.add_weight(3, 3);
+
+    std::string S1 = "Met";
+    std::string S2 = "Phe";
+    std::string S3 = "Ile";
+    std::string S4 = "Pro";
+    std::string S6 = "Ser";
+    double condS1 = cca.get_conductance_of_cluster(S1);
+    double condS2 = cca.get_conductance_of_cluster(S2);
+    double condS3 = cca.get_conductance_of_cluster(S3);
+    double condS4 = cca.get_conductance_of_cluster(S4);
+    double condS6 = cca.get_conductance_of_cluster(S6);
+
+    EXPECT_NEAR(1, condS1, 0.000001);
+    EXPECT_NEAR(0.777, condS2, 0.001);
+    EXPECT_NEAR(0.555, condS3, 0.001);
+    EXPECT_NEAR(0.333, condS4, 0.001);
+    EXPECT_NEAR(0.481, condS6, 0.001);
+}
+
+TEST (GenerticCodeTest, ClusterAlgorthemCusterSetWeights_Stable) {
+
+    auto code = gen_codes::CodonTranslTables::getInstance().getCodeByIndex(1);
+    gen_codes::CodonClusteringAlgorithm cca(code);
+
+    cca.add_weight_stable_base(2, "C", 3);
+
+    std::string S4 = "Pro";
+
+    double condS4 = cca.get_conductance_of_cluster(S4);
+
+    EXPECT_NEAR(0.555, condS4, 0.001);
+}
+
 TEST (GenerticCodeTest, ClusterAlgorthemNotUniqueTrransl) {
     auto code = gen_codes::CodonTranslTables::getInstance().getCodeByIndex(900);
     gen_codes::CodonClusteringAlgorithm cca(code);
 
     double average = cca.get_average_conductance();
+    double conductanceAla = cca.get_conductance_of_cluster("Ala");
     double max = cca.get_max_conductance();
     double min = cca.get_min_conductance();
 
     EXPECT_NEAR(1, min, 0.000001);
-    EXPECT_NEAR(0.675675675, max, 0.000001);
-    EXPECT_NEAR(0.8412048, average, 0.000001);
+    EXPECT_NEAR(0.666, conductanceAla, 0.001);
+    EXPECT_NEAR(0.666, max, 0.001);
+    EXPECT_NEAR(0.836, average, 0.001);
 }
 
 TEST (GenerticCodeTest, ClusterAlgorthem) {
@@ -208,9 +325,9 @@ TEST (GenerticCodeTest, ClusterAlgorthem) {
    double max = cca.get_max_conductance();
    double min = cca.get_min_conductance();
 
-    EXPECT_NEAR(1, min, 0.000001);
-    EXPECT_NEAR(0.666667, max, 0.000001);
-    EXPECT_NEAR(0.811287, average, 0.000001);
+    EXPECT_NEAR(1, min, 0.0001);
+    EXPECT_NEAR(0.666667, max, 0.0001);
+    EXPECT_NEAR(0.811287, average, 0.0001);
 }
 
 TEST (GenerticCodeTest, ClusterAlgorthemBDA) {
