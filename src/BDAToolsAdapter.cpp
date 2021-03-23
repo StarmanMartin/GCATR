@@ -5,11 +5,8 @@
 
 
 using namespace BDA;
-using namespace Rcpp;
 
-RCPP_EXPOSED_CLASS(BDA::BDATools);
 
-// Approach 4: Module docstrings
 RCPP_MODULE(BDATools){
   using namespace Rcpp;
   //' BDA object

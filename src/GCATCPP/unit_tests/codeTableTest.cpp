@@ -214,7 +214,7 @@ TEST (GenerticCodeTest, ClusterAlgorthemCusterSetWeights_TA) {
     gen_codes::CodonClusteringAlgorithm cca(code);
 
     cca.add_weight(3, "T", "A", 3);
-    EXPECT_ANY_THROW(cca.add_weight(3, "T", "T", 3));
+
     EXPECT_ANY_THROW(cca.add_weight(3, "TA", "T", 3));
     EXPECT_ANY_THROW(cca.add_weight(0, "TA", "T", 3));
 

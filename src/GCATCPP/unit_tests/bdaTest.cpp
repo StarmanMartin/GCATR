@@ -66,7 +66,7 @@ TEST (BDATest, TwoRuleTest) {
     rules.push_back(r_2);
 
 
-    std::vector<std::string> res = {"11", "11", "11"};
+    std::vector<std::string> res = {"AGA", "11","AUA", "11","CAA", "11"};
 
     test_help::test_equal_vector<std::string>(test_BDA_of_code({"AGA", "AUA", "CAA"}, rules), res);
 }
@@ -78,7 +78,7 @@ TEST (BDASequenceTest, TwoRuleTest) {
     BDA::BDA_Rule r_2(3, 2, 'G', 'A', 'C', 'A');
     rules.push_back(r_2);
 
-    std::vector<std::string> res = {"00", "10", "11", "11", "11", "11", "01", "01"};
+    std::vector<std::string> res = {"ACC", "00", "AAG", "10", "AGU", "11", "UUU", "11", "AGU", "11", "UUU", "11", "GGU", "01", "CUU", "01"};
     test_help::test_equal_vector<std::string>(test_BDA_of_seq("ACCAAGAGUUUUAGUUUUGGUCUU", rules), res);
 }
 

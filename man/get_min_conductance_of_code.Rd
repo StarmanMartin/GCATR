@@ -4,7 +4,7 @@
 \alias{get_min_conductance_of_code}
 \title{To calculate the min conductance of a translation table}
 \usage{
-get_min_conductance_of_code(codeName, acid = "DNA")
+get_min_conductance_of_code(codeName)
 }
 \arguments{
 \item{codeName}{a String, the name of the genetic translation table. (see \link{print_all_translation_tables})}
@@ -22,5 +22,5 @@ codons translating the same amino acid but differ in more then one position.
 }
 \examples{
 ac = get_average_conductance_of_code("The Standard Code")
-ac = get_average_conductance_of_code("The Vertebrate Mitochondrial Code", "RNA")
+ac = get_average_conductance_of_code("The Vertebrate Mitochondrial Code")
 }

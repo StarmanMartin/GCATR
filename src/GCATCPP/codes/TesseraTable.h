@@ -65,7 +65,7 @@ private:
     void reset_din_order_by_fragment_pos(const std::vector<std::string> & inFrag);
 
     [[nodiscard]] int index_of_din(size_t idx, const std::string& obj) const;
-    [[nodiscard]] static std::string next_transformation(const std::string &, const std::string &) ;
+    static std::string next_transformation(const std::string &, const std::string &) ;
 
     size_t get_value_of_table_rows(size_t idx_range, ...) const;
 
@@ -76,9 +76,9 @@ private:
 
     void row_swap(size_t a, size_t b);
 
-    [[nodiscard]] static std::vector<std::vector<std::vector<std::size_t>>> get_all_possible_inner_separations(const std::vector<std::size_t> &);
+    static std::vector<std::vector<std::vector<std::size_t>>> get_all_possible_inner_separations(const std::vector<std::size_t> &);
 
-    [[nodiscard]] static std::vector<TesseraTable> assemble_valid_separations(const std::vector<std::vector<std::vector<std::size_t>>> &inner_seps,
+    static std::vector<TesseraTable> assemble_valid_separations(const std::vector<std::vector<std::vector<std::size_t>>> &inner_seps,
                                                          const std::vector<std::size_t> &main_separations);
 
     bool static check_vals(const std::vector<std::size_t> &vals);

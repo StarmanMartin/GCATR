@@ -222,14 +222,23 @@ double gen_codes::CodonClusteringAlgorithm::_get_conductance_of_cluster(const st
     }
 
 
-    this->class_conductance_values[from_acid] = numerator / denominator;
+    return (this->class_conductance_values[from_acid] = numerator / denominator);
+}
+
+void gen_codes::CodonClusteringAlgorithm::r_add_weight(unsigned int pos, const std::string &from="", const std::string &to="",
+                                                       int weight=1) {
+    this->add_weight(pos, from, to, weight);
 }
 
 void gen_codes::CodonClusteringAlgorithm::add_weight(unsigned int pos, const std::string &from, const std::string &to,
                                                      int weight) {
     bool has_target = to.length() != 0;
 
-    if (has_target && (from.length() != to.length() || from == to)) {
+    if( has_target && from == to ) {
+        return this->add_weight_stable_base(pos, from, weight);
+    }
+
+    if (has_target && (from.length() != to.length())) {
         throw std::invalid_argument("Length of from and to must be the same");
     }
 

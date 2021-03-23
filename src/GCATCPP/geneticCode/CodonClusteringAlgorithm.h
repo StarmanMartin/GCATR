@@ -60,6 +60,7 @@ namespace gen_codes {
         std::string generate_value_table_file_csv_string(const std::string &filePath, const std::string &fileName);
 
         void add_weight(unsigned int pos, const std::string &from, const std::string &to, int weight);
+        void r_add_weight(unsigned int pos, const std::string &from, const std::string &to, int weight);
 
         void add_weight(unsigned int pos, const std::string &from, int weight);
 

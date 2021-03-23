@@ -586,6 +586,7 @@ END_RCPP
 }
 
 RcppExport SEXP _rcpp_module_boot_BDATools();
+RcppExport SEXP _rcpp_module_boot_CodonClusteringAlgorithm();
 
 static const R_CallMethodDef CallEntries[] = {
     {"_GCATR_get_all_rna_tuples", (DL_FUNC) &_GCATR_get_all_rna_tuples, 1},
@@ -638,6 +639,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_GCATR_tessera_to_table", (DL_FUNC) &_GCATR_tessera_to_table, 1},
     {"_GCATR_tessera_to_table_str", (DL_FUNC) &_GCATR_tessera_to_table_str, 1},
     {"_rcpp_module_boot_BDATools", (DL_FUNC) &_rcpp_module_boot_BDATools, 0},
+    {"_rcpp_module_boot_CodonClusteringAlgorithm", (DL_FUNC) &_rcpp_module_boot_CodonClusteringAlgorithm, 0},
     {NULL, NULL, 0}
 };
 
