@@ -9,10 +9,11 @@
 #include <regex>
 #include "CodonClusteringAlgorithm.h"
 #include "../helper/FileManager.h"
+#include "../codes/Code.h"
 
 
 gen_codes::CodonClusteringAlgorithm::CodonClusteringAlgorithm(const std::vector<std::string> &code) : is_calculated(
-        false) {
+        false), word_length(0) {
     this->calculate_cluster_table_for_code(code);
 }
 
@@ -21,9 +22,22 @@ void gen_codes::CodonClusteringAlgorithm::calculate_cluster_table_for_code(const
     this->all_acids.clear();
     this->class_conductance_values.clear();
     this->mapping_table.clear();
+    std::vector<std::string> code_vec(code.size() / 2);
+
 
     for (int idx = 0; idx < code.size(); idx += 2) {
+        code_vec[idx / 2] = code[idx];
         this->mapping_table.insert(std::pair<std::string, std::string>(code[idx], code[idx + 1]));
+    }
+
+    Code c(code_vec);
+    if(c.test_code()) {
+        this->word_length = c.get_word_length()[0];
+        this->alphabet_length = c.get_alphabet_as_string().length();
+    } else {
+        this->word_length = 1;
+        this->alphabet_length = 2;
+
     }
 }
 
@@ -78,6 +92,23 @@ std::vector<std::string> gen_codes::CodonClusteringAlgorithm::all_tuples_in_clus
 
     return a;
 }
+
+double gen_codes::CodonClusteringAlgorithm::get_weighted_average_conductance() {
+    this->calculate_conductance_values();
+    double conductance_average = 0;
+    unsigned int conductance_average_counter = 0;
+    int cluster_factor = (this->alphabet_length - 1) * this->word_length;
+    for (const auto &conductance_value :  this->class_conductance_values) {
+        auto cluster_size = this->cluster_set[conductance_value.first].size() / cluster_factor;
+        conductance_average += conductance_value.second * cluster_size;
+        conductance_average_counter +=  cluster_size;
+    }
+
+    conductance_average /= (double) conductance_average_counter;
+
+    return conductance_average;
+}
+
 
 double gen_codes::CodonClusteringAlgorithm::get_average_conductance() {
     this->calculate_conductance_values();
@@ -225,16 +256,17 @@ double gen_codes::CodonClusteringAlgorithm::_get_conductance_of_cluster(const st
     return (this->class_conductance_values[from_acid] = numerator / denominator);
 }
 
-void gen_codes::CodonClusteringAlgorithm::r_add_weight(unsigned int pos, const std::string &from="", const std::string &to="",
-                                                       int weight=1) {
+void gen_codes::CodonClusteringAlgorithm::r_add_weight(unsigned int pos, const std::string &from = "",
+                                                       const std::string &to = "",
+                                                       float weight = 1) {
     this->add_weight(pos, from, to, weight);
 }
 
 void gen_codes::CodonClusteringAlgorithm::add_weight(unsigned int pos, const std::string &from, const std::string &to,
-                                                     int weight) {
+                                                     float weight) {
     bool has_target = to.length() != 0;
 
-    if( has_target && from == to ) {
+    if (has_target && from == to) {
         return this->add_weight_stable_base(pos, from, weight);
     }
 
@@ -242,9 +274,13 @@ void gen_codes::CodonClusteringAlgorithm::add_weight(unsigned int pos, const std
         throw std::invalid_argument("Length of from and to must be the same");
     }
 
-    if (pos < 1) {
-        throw std::invalid_argument("pos mus be in 1, ...., tuple size");
+    if (pos < 1 || pos > this->get_word_length()) {
+        std::stringstream ss;
+        ss << "pos mus be in 1, ...., " << this->get_word_length();
+        throw std::invalid_argument(ss.str());
     }
+
+    this->is_calculated = false;
     this->setup_cluster();
     pos--;
 
@@ -260,20 +296,24 @@ void gen_codes::CodonClusteringAlgorithm::add_weight(unsigned int pos, const std
 
 }
 
-void gen_codes::CodonClusteringAlgorithm::add_weight(unsigned int pos, const std::string &from, int weight) {
+void gen_codes::CodonClusteringAlgorithm::add_weight(unsigned int pos, const std::string &from, float weight) {
     this->add_weight(pos, from, "", weight);
 }
 
 
-void gen_codes::CodonClusteringAlgorithm::add_weight(unsigned int pos, int weight) {
+void gen_codes::CodonClusteringAlgorithm::add_weight(unsigned int pos, float weight) {
     this->add_weight(pos, "", weight);
 }
 
 void
-gen_codes::CodonClusteringAlgorithm::add_weight_stable_base(unsigned int pos, const std::string &base, int weight) {
-    if (pos < 1) {
-        throw std::invalid_argument("pos mus be in 1, ...., tuple size");
+gen_codes::CodonClusteringAlgorithm::add_weight_stable_base(unsigned int pos, const std::string &base, float weight) {
+    if (pos < 1 || pos > this->get_word_length()) {
+        std::stringstream ss;
+        ss << "pos mus be in 1, ...., " << this->get_word_length();
+        throw std::invalid_argument(ss.str());
     }
+
+    this->is_calculated = false;
     this->setup_cluster();
     pos--;
 
@@ -284,4 +324,37 @@ gen_codes::CodonClusteringAlgorithm::add_weight_stable_base(unsigned int pos, co
             }
         }
     }
+}
+
+void gen_codes::CodonClusteringAlgorithm::reset_all_weights(float weight) {
+    this->setup_cluster();
+    this->is_calculated = false;
+    for (const auto &acid : this->all_acids) {
+        for (auto &elm : this->cluster_set[acid]) {
+            elm.weight = weight;
+        }
+    }
+}
+
+int gen_codes::CodonClusteringAlgorithm::get_word_length() const {
+    return this->word_length;
+}
+
+std::set<std::string> gen_codes::CodonClusteringAlgorithm::get_all_cluster() {
+    this->setup_cluster();
+    return this->all_acids;
+}
+
+std::set<std::string> gen_codes::CodonClusteringAlgorithm::get_all_weights() {
+    std::set<std::string> weightlist;
+    this->is_calculated = false;
+    for (const auto &acid : this->all_acids) {
+        for (auto &elm : this->cluster_set[acid]) {
+            std::stringstream ss;
+            ss << elm.v_1 << "--" << elm.weight << "-->" << elm.v_2;
+            weightlist.insert(ss.str());
+        }
+    }
+
+    return weightlist;
 }

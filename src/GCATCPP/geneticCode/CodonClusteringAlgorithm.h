@@ -16,7 +16,7 @@ namespace gen_codes {
     struct ClusterDistance {
         unsigned int i_1;
 
-        int weight;
+        float weight;
 
         std::string v_1;
         std::string v_2;
@@ -24,7 +24,7 @@ namespace gen_codes {
         bool in_cluster;
 
         ClusterDistance(const std::string &acid_1, const std::string &acid_2, bool in_cluster) :
-                weight(1),
+                weight(1.0),
                 v_1(acid_1),
                 v_2(acid_2),
                 in_cluster(in_cluster) {
@@ -44,6 +44,7 @@ namespace gen_codes {
         explicit CodonClusteringAlgorithm(const std::vector<std::string> &);
 
         double get_average_conductance();
+        double get_weighted_average_conductance();
 
         double get_max_conductance();
 
@@ -59,14 +60,19 @@ namespace gen_codes {
 
         std::string generate_value_table_file_csv_string(const std::string &filePath, const std::string &fileName);
 
-        void add_weight(unsigned int pos, const std::string &from, const std::string &to, int weight);
-        void r_add_weight(unsigned int pos, const std::string &from, const std::string &to, int weight);
+        void add_weight(unsigned int pos, const std::string &from, const std::string &to, float weight);
+        void r_add_weight(unsigned int pos, const std::string &from, const std::string &to, float weight);
+        void reset_all_weights(float weight=1);
 
-        void add_weight(unsigned int pos, const std::string &from, int weight);
+        void add_weight(unsigned int pos, const std::string &from, float weight);
 
-        void add_weight(unsigned int pos, int weight);
+        void add_weight(unsigned int pos, float weight);
 
-        void add_weight_stable_base(unsigned int pos, const std::string &base, int weight);
+        void add_weight_stable_base(unsigned int pos, const std::string &base, float weight);
+
+        int get_word_length() const;
+        std::set<std::string> get_all_cluster();
+        std::set<std::string> get_all_weights();
 
     private:
         std::map<std::string, std::vector<ClusterDistance>> cluster_set;
@@ -77,6 +83,8 @@ namespace gen_codes {
 
         bool is_calculated;
         bool is_setup = false;
+        int word_length;
+        int alphabet_length;
 
         void calculate_cluster_table_for_code(const std::vector<std::string> &code);
 
@@ -89,6 +97,7 @@ namespace gen_codes {
         static std::vector<std::string> split_encoded_amino_acid(std::string s);
 
         double _get_conductance_of_cluster(const std::string &from_acid);
+
 
 
     };

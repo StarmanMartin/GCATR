@@ -19,6 +19,6 @@ The conductance the ration of the codons translating one amino acid which differ
 codons translating the same amino acid but differ in more then one position.
 }
 \examples{
-ac = get_average_conductance_of_code("The Standard Code")
-ac = get_average_conductance_of_code("The Vertebrate Mitochondrial Code")
+ac = get_average_conductance_of_code(1)
+ac = get_average_conductance_of_code(x) x in 1,...,31
 }

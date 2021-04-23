@@ -75,9 +75,9 @@ get_min_conductance_of_code <- function(codeName) {
     .Call('_GCATR_get_min_conductance_of_code', PACKAGE = 'GCATR', codeName)
 }
 
-#' To calculate the average conductance of a translation table
+#' @title To calculate the average conductance of a translation table
 #'
-#' This function calculates the average conductance for a selected genetic translation table.
+#' @description This function calculates the average conductance for a selected genetic translation table.
 #' The conductance is a number which reflects the robustness of a genetic translation table.
 #' The conductance the ration of the codons translating one amino acid which differ in only one position and the
 #' codons translating the same amino acid but differ in more then one position.
@@ -87,8 +87,8 @@ get_min_conductance_of_code <- function(codeName) {
 #' @return A Number, the average conductance of a genetic translation table
 #'
 #' @examples
-#' ac = get_average_conductance_of_code("The Standard Code")
-#' ac = get_average_conductance_of_code("The Vertebrate Mitochondrial Code")
+#' ac = get_average_conductance_of_code(1)
+#' ac = get_average_conductance_of_code(x) x in 1,...,31
 #' @export
 get_average_conductance_of_codeidx <- function(codeIdx) {
     .Call('_GCATR_get_average_conductance_of_codeidx', PACKAGE = 'GCATR', codeIdx)
